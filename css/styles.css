@@ -92,7 +92,9 @@ body {
   background: var(--page);
   border: 1px solid var(--line); border-radius: var(--pill);
   box-shadow: 0 3px 12px rgba(48, 44, 255, 0.05);
+  transition: transform 0.35s var(--ease), box-shadow var(--t);
 }
+.topbar.nav-hidden { transform: translateY(calc(-100% - 28px)); }
 .brand { display: flex; align-items: center; gap: 7px; text-decoration: none; color: var(--ink); }
 .brand-mark { font-size: 18px; font-weight: 800; color: var(--brand); }
 .brand-name { font-weight: 800; font-size: 18px; letter-spacing: -0.01em; }
@@ -126,7 +128,7 @@ body {
 
 /* Section head */
 .sec-head { max-width: 680px; margin-bottom: 38px; }
-.eyebrow { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brand); margin-bottom: 16px; }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 16px; }
 .eyebrow.center { display: block; text-align: center; }
 .sec-title { margin: 0; font-size: clamp(28px, 4.6vw, 48px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
 .sec-lead { margin: 18px 0 0; color: var(--ink-dim); font-size: clamp(15px, 1.7vw, 18px); line-height: 1.7; }
@@ -141,15 +143,17 @@ body {
   position: relative; margin-top: 18px;
   padding: clamp(60px, 9vw, 124px) clamp(24px, 5vw, 60px) clamp(44px, 6vw, 68px);
   border-radius: var(--r-island); overflow: hidden; text-align: center; color: var(--island-ink);
-  background: var(--island); box-shadow: var(--shadow-card);
+  background: var(--island);
+  box-shadow: inset 0 -2px 70px rgba(48, 44, 255, 0.4), var(--shadow-card);
 }
-.hero-bg { position: absolute; inset: 0; background: url("/assets/images/002-cityscape-night.jpg") center/cover no-repeat; opacity: 0.22; filter: grayscale(0.6) brightness(0.7); }
-.hero::before { /* mesh + tint */
+.hero-bg { position: absolute; inset: 0; background: url("/assets/images/002-cityscape-night.jpg") center/cover no-repeat; opacity: 0.2; filter: grayscale(0.55) brightness(0.75); }
+.hero::before { /* electric-blue mesh + tint */
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(120% 80% at 50% -10%, rgba(48, 44, 255, 0.55), transparent 58%),
-    radial-gradient(80% 60% at 85% 20%, rgba(161, 222, 251, 0.18), transparent 55%),
-    linear-gradient(180deg, rgba(7, 7, 33, 0.2), rgba(7, 7, 33, 0.85));
+    radial-gradient(92% 78% at 100% 36%, rgba(48, 44, 255, 0.66), transparent 56%),
+    radial-gradient(96% 62% at 50% 124%, rgba(48, 44, 255, 0.52), transparent 60%),
+    radial-gradient(70% 50% at 80% 8%, rgba(161, 222, 251, 0.16), transparent 55%),
+    linear-gradient(180deg, rgba(7, 7, 33, 0.1), rgba(7, 7, 33, 0.6));
 }
 .hero::after { /* grain */
   content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.05; mix-blend-mode: overlay;
@@ -175,20 +179,19 @@ body {
 .poster-quote { margin: auto 0; font-size: clamp(20px, 4vw, 27px); line-height: 1.55; color: #fff; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5); }
 .poster-note { font-size: 11px; color: #b6b6d6; }
 
-/* ---------- Buttons (radius 10px + hover scale3d(.95), IX2 재현) ---------- */
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 26px; border-radius: 10px; cursor: pointer;
+/* ---------- Buttons (pill + hover scale3d(.95) + press) ---------- */
+.btn { display: inline-flex; align-items: center; gap: 9px; padding: 17px 30px; border-radius: var(--pill); cursor: pointer;
   font-family: inherit; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; border: 1px solid transparent; text-decoration: none;
   transform-style: preserve-3d; transition: transform var(--t), background-color var(--t), color var(--t), border-color var(--t), box-shadow var(--t); }
 .btn svg { width: 16px; height: 16px; transition: transform var(--t); }
 .btn:hover svg { transform: translateX(6px); }
-.btn.primary { background: var(--brand); color: #fff; box-shadow: 0 2px 8px rgba(48, 44, 255, 0.18); }
+.btn.primary { background: var(--brand); color: #fff; box-shadow: 0 6px 22px rgba(48, 44, 255, 0.4); }
 .btn.primary:hover { background: #1d1c43; transform: scale3d(.95, .95, 1.01); box-shadow: 0 0 rgba(48, 44, 255, 0); }
-.btn.ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.34); }
-.btn.ghost:hover { background: rgba(255, 255, 255, 0.08); transform: scale3d(.95, .95, 1.01); }
+.btn.ghost { background: rgba(255, 255, 255, 0.04); color: #fff; border-color: rgba(255, 255, 255, 0.38); }
+.btn.ghost:hover { background: rgba(255, 255, 255, 0.1); transform: scale3d(.95, .95, 1.01); }
 .btn.ghost:hover svg { transform: none; }
-/* 클릭(누름) 모션 — 원본 hover scale 위에 짧고 깊은 press */
-.btn:active { transform: scale3d(.92, .92, 1); transition-duration: .08s; }
-.btn.ghost:active { transform: scale3d(.92, .92, 1); }
+/* 클릭(누름) 모션 */
+.btn:active, .btn.ghost:active { transform: scale3d(.92, .92, 1); transition-duration: .08s; }
 
 /* ---------- Marquee (full-bleed) ---------- */
 .marquee { position: relative; width: 100vw; margin: 8px 0 0 calc(50% - 50vw); overflow: hidden; padding: 16px 0;
@@ -252,8 +255,13 @@ body {
 .credits-band { position: relative; margin-top: 18px; text-align: center; overflow: hidden;
   padding: clamp(54px, 8vw, 96px) clamp(24px, 5vw, 60px); border-radius: var(--r-island);
   background: var(--island); color: var(--island-ink); box-shadow: var(--shadow-card); }
-.credits-band .credits-bg { position: absolute; inset: 0; background: url("/assets/images/002-cityscape-night.jpg") center/cover no-repeat; opacity: 0.16; filter: grayscale(0.7) brightness(0.6); }
-.credits-band::before { content: ""; position: absolute; inset: 0; background: radial-gradient(100% 70% at 50% 0%, rgba(48, 44, 255, 0.4), transparent 60%), linear-gradient(180deg, rgba(7,7,33,.4), rgba(7,7,33,.9)); }
+.credits-band { box-shadow: inset 0 -2px 70px rgba(48, 44, 255, 0.38), var(--shadow-card); }
+.credits-band .credits-bg { position: absolute; inset: 0; background: url("/assets/images/002-cityscape-night.jpg") center/cover no-repeat; opacity: 0.16; filter: grayscale(0.6) brightness(0.65); }
+.credits-band::before { content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(90% 70% at 100% 30%, rgba(48, 44, 255, 0.55), transparent 56%),
+    radial-gradient(96% 60% at 50% 120%, rgba(48, 44, 255, 0.45), transparent 60%),
+    linear-gradient(180deg, rgba(7,7,33,.28), rgba(7,7,33,.78)); }
 .credits-band > * { position: relative; z-index: 1; }
 .credits-band .eyebrow { color: #a8c4ff; }
 .credits-band .sec-title { color: #fff; }

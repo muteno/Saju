@@ -34,9 +34,20 @@ themeBtn?.addEventListener("click", () => {
   localStorage.setItem("yeul.theme", next);
 });
 
-// 스크롤 탑 (우하단 플로팅)
+// 스크롤 탑 (우하단 플로팅) + 상단 내비 자동 숨김(아래로 숨고, 위로 나타남)
 const topBtn = document.getElementById("scroll-top");
-const onScroll = () => topBtn?.classList.toggle("show", window.scrollY > 320);
+const topbar = document.querySelector(".topbar");
+let lastY = window.scrollY;
+const onScroll = () => {
+  const y = window.scrollY;
+  topBtn?.classList.toggle("show", y > 320);
+  if (topbar) {
+    if (y < 90) topbar.classList.remove("nav-hidden");           // 최상단: 항상 표시
+    else if (y > lastY + 6) topbar.classList.add("nav-hidden");   // 아래로 → 숨김
+    else if (y < lastY - 6) topbar.classList.remove("nav-hidden"); // 위로 → 표시
+  }
+  lastY = y;
+};
 window.addEventListener("scroll", onScroll, { passive: true });
 topBtn?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 onScroll();
