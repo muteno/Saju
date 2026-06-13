@@ -299,8 +299,9 @@ body {
 .scene-split { display: grid; gap: 18px; }
 @media (min-width: 680px) { .scene-split { grid-template-columns: 1fr 1fr; gap: 22px; } }
 .pane { border: 1px solid var(--border); border-radius: var(--radius); background: var(--panel-2); padding: 18px; }
-.pane-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.pane-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; }
 .pane-head > span { font-size: 12px; font-weight: 800; letter-spacing: 0.14em; color: var(--text-faint); text-transform: uppercase; }
+.pane-actions { display: flex; gap: 8px; }
 .source-text { margin: 0; color: var(--text-dim); font-size: 14.5px; line-height: 1.9; }
 .poem-pane { background: linear-gradient(170deg, rgba(47,107,255,.08), var(--panel-2)); }
 .poem { font-size: clamp(18px, 2.4vw, 21px); line-height: 1.95; color: var(--text); }

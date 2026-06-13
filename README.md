@@ -37,6 +37,7 @@ js/
     003-scenes.knowledge.js      #   장면 데이터(원문+시) 스키마+본문
     004-clipboard.knowledge.js   #   복사 + 토스트
     005-ui-kit.knowledge.js      #   아이콘 · 장면 카드 · 섹션 조각
+    006-poem-image.knowledge.js  #   시 → 1080×1350 PNG 렌더/다운로드
   units/                         # 기능 — 라우터에 매달림
     001-landing.unit.js          #   원페이지(히어로~크레딧) · view
     002-scene-detail.unit.js     #   장면 상세 모달(원문/시/복사) · overlay

@@ -6,7 +6,8 @@
 import { getScene, adjacentScene } from "../knowledge/003-scenes.knowledge.js";
 import { ICON } from "../knowledge/005-ui-kit.knowledge.js";
 import { esc, ymd } from "../knowledge/001-formatters.knowledge.js";
-import { copyWithToast } from "../knowledge/004-clipboard.knowledge.js";
+import { copyWithToast, toast } from "../knowledge/004-clipboard.knowledge.js";
+import { downloadPoemImage } from "../knowledge/006-poem-image.knowledge.js";
 
 let mountedId = null;
 let keyHandler = null;
@@ -69,7 +70,10 @@ function render({ mount, params, router }) {
 
           <section class="pane poem-pane">
             <div class="pane-head"><span>시</span>
-              <button class="pill-btn" id="copy-poem">${ICON.copy} 시 복사</button>
+              <div class="pane-actions">
+                <button class="pill-btn ghost" id="save-poem">${ICON.download} 이미지</button>
+                <button class="pill-btn" id="copy-poem">${ICON.copy} 복사</button>
+              </div>
             </div>
             <div class="poem gungseo">${verses(s.poem)}</div>
           </section>
@@ -90,6 +94,14 @@ function render({ mount, params, router }) {
   mount.querySelector("#copy-src").onclick = () => copyWithToast(s.source, "원문을 복사했어요");
   mount.querySelector("#copy-poem").onclick = () => copyWithToast(copyPoem, "시를 복사했어요");
   mount.querySelector("#copy-all").onclick = () => copyWithToast(copyAll, "원문과 시를 복사했어요");
+  mount.querySelector("#save-poem").onclick = async (e) => {
+    const btn = e.currentTarget;
+    btn.disabled = true;
+    toast("이미지 생성 중…");
+    const ok = await downloadPoemImage(s).catch(() => false);
+    toast(ok ? "시 이미지를 저장했어요 ✓" : "이미지 저장에 실패했어요", ok);
+    btn.disabled = false;
+  };
   mount.querySelector("#close-btn").onclick = () => close(router);
   mount.querySelector("[data-close]").onclick = () => close(router);
   if (prev) mount.querySelector("#prev-btn").onclick = () => router.setQuery({ id: prev.id });
