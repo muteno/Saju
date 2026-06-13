@@ -8,6 +8,9 @@ import { Router } from "./core/001-router.core.js";
 import landingUnit from "./units/001-landing.unit.js";
 import sceneDetailUnit from "./units/002-scene-detail.unit.js";
 
+// 리빌 활성화(렌더 전에 켜야 첫 화면도 숨김→등장). 이 줄이 안 돌면 .reveal 은 그냥 보임.
+document.documentElement.classList.add("reveal-ready");
+
 // ---- 라우터 구성 (단일 인스턴스) ----
 const router = new Router({
   view: document.getElementById("view"),

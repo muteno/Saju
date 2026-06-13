@@ -57,8 +57,8 @@ export function sceneCard(s) {
 export function sectionHead(eyebrow, title, lead = "") {
   return `
     <header class="sec-head">
-      ${eyebrow ? `<span class="eyebrow">${esc(eyebrow)}</span>` : ""}
-      <h2 class="sec-title">${esc(title)}</h2>
-      ${lead ? `<p class="sec-lead">${esc(lead)}</p>` : ""}
+      ${eyebrow ? `<span class="eyebrow reveal">${esc(eyebrow)}</span>` : ""}
+      <h2 class="sec-title reveal">${esc(title)}</h2>
+      ${lead ? `<p class="sec-lead reveal">${esc(lead)}</p>` : ""}
     </header>`;
 }

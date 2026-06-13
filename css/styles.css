@@ -133,10 +133,20 @@ body {
 .sec-title { margin: 0; font-size: clamp(28px, 4.6vw, 48px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; }
 .sec-lead { margin: 18px 0 0; color: var(--ink-dim); font-size: clamp(15px, 1.7vw, 18px); line-height: 1.7; }
 
-/* ---------- Reveal (촤르르 — IX2 재현: 10px / .3s ease / 100ms stagger) ---------- */
-.reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; will-change: opacity, transform; }
-.reveal.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
+/* ---------- Reveal (촤르르 — fade + slide-up, ease-out-quint, 90ms stagger) ----------
+   영상 분석: 변위 ~22px / dur ~.6s / easing cubic-bezier(.16,1,.3,1) / 카드 soft-zoom .96→1
+   안전: 기본은 '보임'. JS가 .reveal-ready 를 켜야 숨김 모드 → 스크립트 실패 시에도 콘텐츠 노출 */
+.reveal { opacity: 1; transform: none; }
+.reveal-ready .reveal {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity .6s cubic-bezier(.16, 1, .3, 1), transform .6s cubic-bezier(.16, 1, .3, 1);
+  will-change: opacity, transform;
+}
+.reveal-ready .reveal.in { opacity: 1; transform: none; will-change: auto; }
+/* 카드 soft-zoom 변형 */
+.reveal-ready .reveal.zoom { transform: translateY(22px) scale(.96); }
+.reveal-ready .reveal.zoom.in { transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal, .reveal-ready .reveal { opacity: 1 !important; transform: none !important; } }
 
 /* ---------- Hero (dark island) ---------- */
 .hero {

@@ -29,7 +29,7 @@ function renderScenes(mount) {
   const grid = mount.querySelector("#scene-grid");
   grid.innerHTML = scenesFiltered().map(sceneCard).join("");
   grid.querySelectorAll(".scene-card").forEach((card) => {
-    card.classList.add("reveal");
+    card.classList.add("reveal", "zoom");
     const open = () => router.setQuery({ id: card.dataset.id });
     card.addEventListener("click", open);
     card.addEventListener("keydown", (e) => {
@@ -75,7 +75,7 @@ function render({ mount, router: r }) {
 
     <!-- SYNOPSIS -->
     <section class="band" id="synopsis">
-      <div class="reveal">${sectionHead("SYNOPSIS", "시놉시스", "")}</div>
+      <div>${sectionHead("SYNOPSIS", "시놉시스", "")}</div>
       <p class="synopsis reveal">${esc(BRAND.synopsis)}</p>
       <div class="taglines reveal">
         ${BRAND.taglines.map((t) => `<p class="tagline gungseo">${esc(t)}</p>`).join("")}
@@ -84,10 +84,10 @@ function render({ mount, router: r }) {
 
     <!-- WHO'S IT FOR -->
     <section class="band" id="audience">
-      <div class="reveal">${sectionHead("WHO'S IT FOR", "이런 당신에게", "")}</div>
+      <div>${sectionHead("WHO'S IT FOR", "이런 당신에게", "")}</div>
       <div class="aud-grid">
         ${AUDIENCE.map((a) => `
-          <article class="aud-card reveal">
+          <article class="aud-card reveal zoom">
             <span class="aud-ico">${AUDIENCE_ICON[a.icon] || ""}</span>
             <h3>${esc(a.title)}</h3>
             <p>${esc(a.desc)}</p>
@@ -97,7 +97,7 @@ function render({ mount, router: r }) {
 
     <!-- SCENES -->
     <section class="band" id="scenes">
-      <div class="reveal">${sectionHead("SCENES", "원문과 시, 여섯 개의 장면", "직장의 한 컷이 원문이 되고, 그 옆에 시가 선다. 한 장면을 열어 전문을 읽고, 복사하거나 이미지로 저장하세요.")}</div>
+      <div>${sectionHead("SCENES", "원문과 시, 여섯 개의 장면", "직장의 한 컷이 원문이 되고, 그 옆에 시가 선다. 한 장면을 열어 전문을 읽고, 복사하거나 이미지로 저장하세요.")}</div>
       <div class="act-tabs reveal" role="tablist">
         ${ACTS.map((a) => `<button class="act-tab${a === state.act ? " on" : ""}" data-act="${esc(a)}" role="tab">${esc(a)}</button>`).join("")}
       </div>
@@ -106,7 +106,7 @@ function render({ mount, router: r }) {
 
     <!-- FAQ -->
     <section class="band" id="faq">
-      <div class="reveal">${sectionHead("FAQ", "자주 묻는 질문", "")}</div>
+      <div>${sectionHead("FAQ", "자주 묻는 질문", "")}</div>
       <div class="faq reveal">
         ${FAQ.map((f) => `
           <details class="faq-item">
@@ -117,7 +117,7 @@ function render({ mount, router: r }) {
     </section>
 
     <!-- CREDITS -->
-    <section class="band credits-band reveal" id="credits">
+    <section class="band credits-band" id="credits">
       <div class="credits-bg" aria-hidden="true"></div>
       ${sectionHead("CREDITS", "엔딩 크레딧", "")}
       <ul class="credits">
