@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="dark">
+<html lang="ko" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="EXIT : MARU — 영화 「탈예울」. 전국의 퇴사자를 위로하기 위해, 내가 먼저 퇴사한다." />
-  <meta name="theme-color" content="#05070f" />
+  <meta name="theme-color" content="#ffffff" />
   <title>EXIT : MARU · 「탈예울」</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='86'%3E%F0%9F%9A%AA%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -18,25 +18,26 @@
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
-  <div class="aurora" aria-hidden="true"></div>
-
-  <header class="topbar glass">
+  <header class="topbar">
     <a class="brand" href="/" data-route>
       <span class="brand-mark">⎋</span>
       <span class="brand-name">EXIT</span>
       <span class="brand-sub">: MARU</span>
     </a>
-    <button class="icon-btn" id="theme-btn" title="테마 전환" aria-label="테마 전환">
-      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-    </button>
+    <nav class="nav-right">
+      <button class="icon-btn" id="theme-btn" title="테마 전환" aria-label="테마 전환">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+      </button>
+      <button class="nav-cta" id="nav-cta">지금 탈출하기</button>
+    </nav>
   </header>
 
   <main id="view" class="view"><!-- 라우터 view 레이어 --></main>
 
   <div id="overlay"><!-- 라우터 overlay 레이어 (모달) --></div>
 
-  <button id="scroll-top" class="fab glass" aria-label="맨 위로">
+  <button id="scroll-top" class="fab" aria-label="맨 위로">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
   </button>
 

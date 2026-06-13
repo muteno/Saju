@@ -42,3 +42,10 @@ topBtn?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smo
 onScroll();
 
 // 브랜드(.brand[data-route])는 라우터의 링크 위임이 처리한다.
+
+// 내비 CTA → 장면 섹션으로 스크롤
+document.getElementById("nav-cta")?.addEventListener("click", () => {
+  router.navigate("/");
+  requestAnimationFrame(() =>
+    document.getElementById("scenes")?.scrollIntoView({ behavior: "smooth" }));
+});
