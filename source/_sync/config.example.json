@@ -1,0 +1,13 @@
+{
+  "_안내": "이 파일을 복사해 같은 폴더에 config.json 으로 저장하고, 아래 값을 채운다. config.json 은 깃에 올라가지 않는다(비밀값 보호).",
+
+  "tenantId": "여기에-Microsoft-디렉터리(테넌트)-ID-붙여넣기",
+  "clientId": "여기에-앱(클라이언트)-ID-붙여넣기",
+  "chatId": "여기에-가져올-대화의-chat-ID-붙여넣기",
+
+  "_chatId설명": "어떤 대화를 가져올지 가리키는 주소. 어떻게 찾는지는 SETUP.md 4단계 참고. 비워두면 스크립트가 내 대화 목록을 보여줘서 고르게 해준다.",
+
+  "branch": "main",
+  "autoCommit": true,
+  "autoPush": true
+}
