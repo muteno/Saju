@@ -261,31 +261,37 @@ body {
 .faq-item[open] summary::after { transform: rotate(45deg); }
 .faq-item p { margin: 0 0 20px; color: var(--ink-dim); font-size: 14.5px; line-height: 1.75; }
 
-/* ---------- Credits (frosted glass island) ---------- */
+/* ---------- Credits (dark smoked glass) ---------- */
 .credits-band { position: relative; margin-top: 18px; text-align: center; overflow: hidden;
   padding: clamp(54px, 8vw, 96px) clamp(24px, 5vw, 60px); border-radius: var(--r-island);
   color: var(--island-ink);
-  /* 유리: 반투명 바탕 + 뒤가 비치는 블러 */
-  background: linear-gradient(180deg, rgba(20, 18, 58, 0.60), rgba(7, 7, 33, 0.82));
-  -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.14); }
+  /* 본체: 어두운 유리(가독성 유지) + 안쪽 블루 글로우를 배경 레이어로 */
+  background:
+    linear-gradient(180deg, rgba(7, 7, 33, 0.18), rgba(7, 7, 33, 0.46)),
+    radial-gradient(90% 70% at 100% 30%, rgba(48, 44, 255, 0.42), transparent 56%),
+    radial-gradient(96% 60% at 50% 120%, rgba(48, 44, 255, 0.38), transparent 60%),
+    linear-gradient(180deg, rgba(20, 18, 58, 0.66), rgba(7, 7, 33, 0.74));
+  -webkit-backdrop-filter: blur(16px) saturate(175%); backdrop-filter: blur(16px) saturate(175%); }
 .credits-band {
-  /* 유리 테두리 광택(위 밝은 선) + 안쪽 블루 글로우 + 떠 있는 그림자 */
+  /* 유리 신호는 모서리에: 상단 specular 광택 + 미세 림 + 안쪽 블루 글로우 + 하단 깊이 + 네이비 드롭 */
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
-    inset 0 -2px 70px rgba(48, 44, 255, 0.34),
-    0 24px 60px rgba(7, 7, 33, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.27),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 -2px 70px rgba(48, 44, 255, 0.30),
+    inset 0 -22px 46px rgba(7, 7, 33, 0.40),
+    0 10px 34px rgba(10, 12, 40, 0.50),
     var(--shadow-card); }
 .credits-band .credits-bg { position: absolute; inset: 0; background: url("/assets/images/002-cityscape-night.jpg") center/cover no-repeat; opacity: 0.14; filter: grayscale(0.6) brightness(0.65); }
-.credits-band::before { content: ""; position: absolute; inset: 0;
-  background:
-    radial-gradient(90% 70% at 100% 30%, rgba(48, 44, 255, 0.55), transparent 56%),
-    radial-gradient(96% 60% at 50% 120%, rgba(48, 44, 255, 0.45), transparent 60%),
-    linear-gradient(180deg, rgba(7,7,33,.28), rgba(7,7,33,.78)); }
-/* 윗가장자리 유리 광택(빛 반사) */
-.credits-band::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(120% 58% at 50% -12%, rgba(255, 255, 255, 0.16), transparent 60%); }
+/* 유리 모서리 빛(specular edge): 좌상 흰빛 → 우하 브랜드 블루, 1px 테두리만 */
+.credits-band::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.06) 40%, rgba(48, 44, 255, 0.45));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out; mask-composite: exclude; }
+/* 미세 그레인(유리 표면 질감) — 아주 옅게 */
+.credits-band::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  opacity: 0.05; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .credits-band > * { position: relative; z-index: 1; }
 .credits-band .eyebrow { color: #a8c4ff; }
 .credits-band .sec-title { color: #fff; }
