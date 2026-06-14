@@ -68,6 +68,7 @@
 
   <div class="toc">
     <b>순서</b>
+    <a href="#easy">🖱️ 쉬운 길 — .bat 더블클릭 <span class="badge b-auto">추천</span></a>
     <a href="#a0">A0. 시작 전 — 참여자 동의 <span class="badge b-once">첫 1회</span></a>
     <a href="#a1">A1. 깃 설치 + 저장소 내려받기 <span class="badge b-once">첫 1회</span> <span class="badge b-skip">있으면 스킵</span></a>
     <a href="#a2">A2. 마이크로소프트에 앱 등록 (열쇠 2개 받기) <span class="badge b-once">첫 1회</span></a>
@@ -80,6 +81,17 @@
     <a href="#b">B. 그다음부터 — 자동 <span class="badge b-auto">자동</span></a>
     <a href="#quick">곁가지: 딱 한 번만 통째로 받고 싶다면 (Graph Explorer)</a>
     <a href="#trouble">막혔을 때 / 솔직한 주의</a>
+  </div>
+
+  <div class="ok" id="easy">
+    <b>🖱️ 더 쉽게 — 명령어 타이핑이 싫으면 “.bat 더블클릭”</b><br>
+    설정(A1~A5)을 한 번 끝낸 뒤에는, <code>source\_sync</code> 폴더의 파일을 <b>더블클릭만</b> 하면 된다:
+    <ul>
+      <li><code>run-sync.bat</code> — 더블클릭 = 대화 한 번 수집 (A6·A7을 대신)</li>
+      <li><code>install-schedule.bat</code> — 더블클릭 = “2시간마다 자동” 등록 (A8을 대신)</li>
+      <li><code>uninstall-schedule.bat</code> — 더블클릭 = 자동 실행 해제</li>
+    </ul>
+    <span class="small">대화를 실제로 긁어오는 두뇌는 PowerShell(<code>sync-teams-chat.ps1</code>)이라, .bat은 그 파일과 <b>같은 폴더</b>에 있어야 한다. 첫 실행 때만 로그인 코드 입력 한 번 필요(A6).</span>
   </div>
 
   <h2 id="a0"><span class="step-num">A0</span>시작 전 — 참여자 동의 <span class="badge b-once">첫 1회</span></h2>
@@ -201,12 +213,15 @@ git clone https://github.com/exitmaru/Yeul.git</pre>
       <li><code>source\chats\</code> 폴더에 대화가 <b>마크다운</b>으로 저장되고, 깃에 올라가면 성공.</li>
       <li>깃허브 저장소의 <code>source/chats/</code>에 파일이 보이면 끝.</li>
     </ul>
+    <p class="small">🖱️ 명령어가 번거로우면 폴더의 <code>run-sync.bat</code>을 <b>더블클릭</b>해도 똑같이 실행된다.</p>
     <div class="note"><b>여기서 한 번은 꼭 직접 돌려봐야 한다.</b> 이 스크립트는 실제 테넌트에 연결해 검증된 적이 없는 “출발점”이다.
       에러가 뜨면 그 메시지를 그대로 복사해 알려주면 바로 고쳐줄 수 있다.</div>
   </div>
 
   <h2 id="a8"><span class="step-num">A8</span>자동으로 돌게 예약 — 작업 스케줄러 <span class="badge b-once">첫 1회</span></h2>
   <div class="card">
+    <p>🖱️ <b>가장 쉬운 방법:</b> 폴더의 <code>install-schedule.bat</code>을 <b>더블클릭</b>하면 “2시간마다 자동”이 한 번에 등록된다. (아래 수동 방법은 대안)</p>
+    <hr>
     <p class="small">작업 스케줄러 = 윈도우가 정해진 시간마다 프로그램을 대신 눌러주는 알람.</p>
     <ol>
       <li>시작 메뉴에 <b>작업 스케줄러(Task Scheduler)</b> 검색 → 실행</li>
