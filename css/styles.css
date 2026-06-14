@@ -94,7 +94,7 @@ body {
   box-shadow: 0 3px 12px rgba(48, 44, 255, 0.05);
 }
 .brand { display: flex; align-items: center; gap: 7px; text-decoration: none; color: var(--ink); }
-.brand-mark { font-size: 18px; font-weight: 800; color: var(--brand); }
+.brand-mark { width: 26px; height: 26px; border-radius: 7px; object-fit: cover; display: block; }
 .brand-name { font-weight: 800; font-size: 18px; letter-spacing: -0.01em; }
 .brand-sub { font-size: 13px; font-weight: 700; color: var(--ink-faint); }
 .nav-right { display: flex; align-items: center; gap: 8px; }

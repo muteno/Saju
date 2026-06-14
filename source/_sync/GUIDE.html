@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>팀즈 대화 → 깃 자동 수집 · 설치 가이드</title>
+<style>
+  :root{
+    --ink:#15151f; --dim:#5b5b6e; --line:#e6e6ef; --bg:#f6f6fb; --card:#fff;
+    --cobalt:#302cff; --once:#2563eb; --auto:#0f9d58; --warn:#b45309; --skip:#6b7280;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Pretendard",sans-serif;
+       color:var(--ink);background:var(--bg);line-height:1.7;font-size:16px}
+  .wrap{max-width:820px;margin:0 auto;padding:32px 20px 80px}
+  h1{font-size:28px;line-height:1.25;margin:0 0 6px}
+  .sub{color:var(--dim);margin:0 0 22px}
+  h2{font-size:21px;margin:38px 0 6px;padding-top:18px;border-top:2px solid var(--line)}
+  h3{font-size:17px;margin:22px 0 6px}
+  p{margin:8px 0}
+  a{color:var(--cobalt);word-break:break-all}
+  code{background:#eef0f6;border:1px solid var(--line);border-radius:6px;padding:1px 6px;
+       font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px}
+  pre{background:#0e1020;color:#e9ebff;border-radius:12px;padding:14px 16px;overflow:auto;
+      font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;line-height:1.6}
+  pre .c{color:#8b8fb5}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:14px 0;
+        box-shadow:0 1px 3px rgba(20,20,40,.04)}
+  .badge{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:3px 10px;
+         vertical-align:middle;margin-left:8px;letter-spacing:.02em}
+  .b-once{background:#e7efff;color:var(--once)}
+  .b-auto{background:#e6f6ec;color:var(--auto)}
+  .b-skip{background:#eef0f3;color:var(--skip)}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 6px}
+  .legend span{font-size:13px;color:var(--dim)}
+  ol,ul{margin:8px 0 8px 2px;padding-left:20px}
+  li{margin:5px 0}
+  .note{background:#fff7ed;border:1px solid #fcd9a8;border-radius:12px;padding:12px 16px;margin:12px 0;
+        font-size:14.5px;color:#7c4a02}
+  .ok{background:#ecfdf3;border:1px solid #b7e4c7;border-radius:12px;padding:12px 16px;margin:12px 0;
+      font-size:14.5px;color:#13693a}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 22px;margin:18px 0}
+  .toc a{display:block;padding:3px 0;text-decoration:none}
+  .kbd{background:#fff;border:1px solid #cfcfdd;border-bottom-width:2px;border-radius:6px;padding:1px 7px;
+       font-size:13px;font-family:ui-monospace,monospace}
+  .step-num{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;
+            background:var(--cobalt);color:#fff;font-size:14px;font-weight:800;margin-right:8px;vertical-align:middle}
+  hr{border:none;border-top:1px dashed var(--line);margin:20px 0}
+  .small{font-size:13.5px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>팀즈 대화 → 깃 자동 수집 · 설치 가이드</h1>
+  <p class="sub">한 번만 설정해두면, PC가 정해진 시간마다 팀즈 대화를 알아서 가져와 깃(코드 창고)에 쌓아준다.</p>
+
+  <div class="legend">
+    <span><span class="badge b-once">첫 1회만</span> 한 번 해두면 끝(다시 안 함)</span>
+    <span><span class="badge b-auto">자동</span> 컴퓨터가 알아서</span>
+    <span><span class="badge b-skip">이미 있으면 스킵</span> 이미 돼 있으면 건너뛰기</span>
+  </div>
+
+  <div class="note">
+    <b>큰 그림 한 줄.</b> 아래 <b>A(첫 1회 설정)</b>를 한 번 끝내면, 그다음부턴 <b>B(자동)</b>로 굴러간다.
+    깃 설치·앱 등록·관리자 동의·스케줄 등록은 <b>전부 “한 번만”</b> 하는 일이다.
+  </div>
+
+  <div class="toc">
+    <b>순서</b>
+    <a href="#easy">🖱️ 쉬운 길 — .bat 더블클릭 <span class="badge b-auto">추천</span></a>
+    <a href="#a0">A0. 시작 전 — 참여자 동의 <span class="badge b-once">첫 1회</span></a>
+    <a href="#a1">A1. 깃 설치 + 저장소 내려받기 <span class="badge b-once">첫 1회</span> <span class="badge b-skip">있으면 스킵</span></a>
+    <a href="#a2">A2. 마이크로소프트에 앱 등록 (열쇠 2개 받기) <span class="badge b-once">첫 1회</span></a>
+    <a href="#a3">A3. “내가 직접 로그인” 방식 켜기 <span class="badge b-once">첫 1회</span></a>
+    <a href="#a4">A4. “내 대화 읽기” 권한 + 관리자 동의 <span class="badge b-once">첫 1회</span></a>
+    <a href="#a5">A5. 설정 파일(config.json) 만들기 <span class="badge b-once">첫 1회</span></a>
+    <a href="#a6">A6. 어떤 대화 모을지 고르기 <span class="badge b-once">첫 1회</span></a>
+    <a href="#a7">A7. 한 번 진짜로 모아보기(테스트) <span class="badge b-once">첫 1회</span></a>
+    <a href="#a8">A8. 자동으로 돌게 예약 <span class="badge b-once">첫 1회</span></a>
+    <a href="#b">B. 그다음부터 — 자동 <span class="badge b-auto">자동</span></a>
+    <a href="#quick">곁가지: 딱 한 번만 통째로 받고 싶다면 (Graph Explorer)</a>
+    <a href="#trouble">막혔을 때 / 솔직한 주의</a>
+  </div>
+
+  <div class="ok" id="easy">
+    <b>🖱️ 더 쉽게 — 명령어 타이핑이 싫으면 “.bat 더블클릭”</b><br>
+    설정(A1~A5)을 한 번 끝낸 뒤에는, <code>source\_sync</code> 폴더의 파일을 <b>더블클릭만</b> 하면 된다:
+    <ul>
+      <li><code>run-sync.bat</code> — 더블클릭 = 대화 한 번 수집 (A6·A7을 대신)</li>
+      <li><code>install-schedule.bat</code> — 더블클릭 = “2시간마다 자동” 등록 (A8을 대신)</li>
+      <li><code>uninstall-schedule.bat</code> — 더블클릭 = 자동 실행 해제</li>
+    </ul>
+    <span class="small">대화를 실제로 긁어오는 두뇌는 PowerShell(<code>sync-teams-chat.ps1</code>)이라, .bat은 그 파일과 <b>같은 폴더</b>에 있어야 한다. 첫 실행 때만 로그인 코드 입력 한 번 필요(A6).</span>
+  </div>
+
+  <h2 id="a0"><span class="step-num">A0</span>시작 전 — 참여자 동의 <span class="badge b-once">첫 1회</span></h2>
+  <div class="card">
+    <p>여기 쌓이는 건 <b>참여자들의 실제 대화</b>다. 모으기 전에 한 번만 물어보고 가자:</p>
+    <p>“우리 대화를 작품 재료로 모아둘게, 괜찮을까?” → 다들 OK면 진행.</p>
+  </div>
+
+  <h2 id="a1"><span class="step-num">A1</span>깃 설치 + 저장소 내려받기 <span class="badge b-once">첫 1회</span> <span class="badge b-skip">이미 깃 쓰면 스킵</span></h2>
+  <div class="card">
+    <p class="small">깃(Git) = 코드를 깃허브(인터넷 창고)에 올리고 내리는 도구. <b>이미 PC에서 깃을 쓰고 클론·푸시가 된다면 이 단계 전체를 건너뛰어도 된다.</b></p>
+
+    <h3>① 깃 설치 (윈도우)</h3>
+    <ol>
+      <li>브라우저에서 열기 → <a href="https://git-scm.com/download/win" target="_blank">https://git-scm.com/download/win</a></li>
+      <li>다운로드된 설치 파일 실행 → 설정 바꿀 것 없이 <span class="kbd">Next</span> 계속 → <span class="kbd">Install</span> → <span class="kbd">Finish</span></li>
+    </ol>
+
+    <h3>② 잘 깔렸는지 확인</h3>
+    <ol>
+      <li>시작 메뉴에서 <b>PowerShell</b> 검색 → 열기</li>
+      <li>입력 후 엔터: <pre>git --version</pre></li>
+      <li><code>git version 2.x …</code> 처럼 나오면 성공. (안 나오면 PowerShell 창을 닫고 새로 열기)</li>
+    </ol>
+
+    <h3>③ 내 이름표 달기 (한 번만)</h3>
+    <pre>git config --global user.name "네이름"
+git config --global user.email "muteno@pm.me"</pre>
+
+    <h3>④ 저장소 내려받기</h3>
+    <pre><span class="c"># 문서 폴더로 이동</span>
+cd $HOME\Documents
+<span class="c"># 저장소 통째로 받기</span>
+git clone https://github.com/exitmaru/Yeul.git</pre>
+    <div class="note">받는 도중 <b>깃허브 로그인 창</b>이 브라우저 팝업으로 뜬다 → 내 깃허브 계정으로 로그인/승인.
+      이게 “올리기(push) 권한”을 받는 과정이라 첫 1회만 한다.</div>
+    <div class="ok">끝나면 <code>Documents\Yeul</code> 폴더에 저장소가 내려와 있다. 안에 <code>source\_sync</code> 폴더가 보이면 성공.</div>
+  </div>
+
+  <h2 id="a2"><span class="step-num">A2</span>마이크로소프트에 앱 등록 — 열쇠 2개 받기 <span class="badge b-once">첫 1회</span></h2>
+  <div class="card">
+    <p class="small">앱 등록 = “이 프로그램이 내 대화를 읽어가도 된다”고 마이크로소프트에 신고하는 절차. 신고하면 열쇠(ID) 두 개를 준다.</p>
+    <ol>
+      <li>열기 → <a href="https://entra.microsoft.com" target="_blank">https://entra.microsoft.com</a> (관리자 계정으로 로그인)</li>
+      <li>왼쪽 메뉴 <b>앱 등록(App registrations)</b> → 위쪽 <b>+ 새 등록(New registration)</b></li>
+      <li><b>이름</b>: <code>yeul-chat-sync</code> (아무거나)</li>
+      <li><b>지원되는 계정 유형</b>: 맨 위 <b>“이 조직 디렉터리의 계정만”</b> 선택</li>
+      <li>맨 아래 <b>등록(Register)</b></li>
+      <li>등록 후 뜨는 <b>개요(Overview)</b> 화면에서 두 값을 복사해 둔다:
+        <ul>
+          <li><b>애플리케이션(클라이언트) ID</b> → 나중에 <code>clientId</code></li>
+          <li><b>디렉터리(테넌트) ID</b> → 나중에 <code>tenantId</code></li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <h2 id="a3"><span class="step-num">A3</span>“내가 직접 로그인” 방식 켜기 <span class="badge b-once">첫 1회</span></h2>
+  <div class="card">
+    <ol>
+      <li>방금 만든 앱 화면 → 왼쪽 <b>인증(Authentication)</b></li>
+      <li>아래로 내려 <b>고급 설정(Advanced settings)</b> → <b>퍼블릭 클라이언트 흐름 허용(Allow public client flows)</b> → <b>예(Yes)</b></li>
+      <li>위쪽 <b>저장(Save)</b></li>
+    </ol>
+  </div>
+
+  <h2 id="a4"><span class="step-num">A4</span>“내 대화 읽기” 권한 + 관리자 동의 <span class="badge b-once">첫 1회</span></h2>
+  <div class="card">
+    <ol>
+      <li>왼쪽 <b>API 권한(API permissions)</b> → <b>+ 권한 추가(Add a permission)</b></li>
+      <li><b>Microsoft Graph</b> → <b>위임된 권한(Delegated permissions)</b></li>
+      <li>검색창에 <code>Chat.Read</code> 입력 → 체크 → <b>권한 추가(Add permissions)</b></li>
+      <li><b>관리자 동의</b>(필요 시): 같은 화면의 <b>“&lt;조직&gt;에 대한 관리자 동의 부여”</b> 클릭 → 예.
+        <span class="badge b-once">첫 1회</span> 한 번 눌러두면 끝.</li>
+    </ol>
+    <div class="note">로그인할 때 본인이 동의하므로 관리자 동의가 꼭 필요하진 않다. 조직 정책상 막혀 있으면 위 4번을 눌러 한 번만 풀어주면 된다.</div>
+  </div>
+
+  <h2 id="a5"><span class="step-num">A5</span>설정 파일(config.json) 만들기 <span class="badge b-once">첫 1회</span></h2>
+  <div class="card">
+    <ol>
+      <li>탐색기로 <code>Documents\Yeul\source\_sync</code> 폴더 열기</li>
+      <li><code>config.example.json</code> 복사 → 같은 폴더에 <code>config.json</code> 으로 저장</li>
+      <li><code>config.json</code> 열어서 채우기:
+        <pre>{
+  "tenantId": "<span class="c">A2에서 복사한 디렉터리(테넌트) ID</span>",
+  "clientId": "<span class="c">A2에서 복사한 애플리케이션(클라이언트) ID</span>",
+  "chatId":   "<span class="c">일단 비워두기 (A6에서 채움)</span>",
+  "branch": "main",
+  "autoCommit": true,
+  "autoPush": true
+}</pre>
+      </li>
+    </ol>
+    <div class="ok"><code>config.json</code> · <code>token-cache.json</code> · <code>sync-state.json</code> 은 비밀값이라 깃에 안 올라간다(<code>.gitignore</code>로 막아둠). 공유 금지.</div>
+  </div>
+
+  <h2 id="a6"><span class="step-num">A6</span>어떤 대화 모을지 고르기 <span class="badge b-once">첫 1회</span></h2>
+  <div class="card">
+    <ol>
+      <li>시작 메뉴 → <b>PowerShell</b> 열기</li>
+      <li>폴더로 이동:
+        <pre>cd $HOME\Documents\Yeul\source\_sync</pre>
+      </li>
+      <li>스크립트 실행:
+        <pre>powershell -ExecutionPolicy Bypass -File .\sync-teams-chat.ps1</pre>
+        <span class="small">(<code>-ExecutionPolicy Bypass</code> = “이 스크립트 한 번 실행 허용”. 윈도우 기본 보안 때문에 붙임.)</span>
+      </li>
+      <li>처음이라 <b>로그인 안내</b>가 뜬다 → 화면에 나온 <b>주소로 가서 코드 입력</b>(딱 한 번).</li>
+      <li>로그인 후 <code>chatId</code>가 비어 있으면 <b>내 대화 목록 + 각 대화의 ID</b>를 보여준다. 모으고 싶은 대화의 ID를 복사해 <code>config.json</code>의 <code>chatId</code>에 넣고 저장.</li>
+    </ol>
+  </div>
+
+  <h2 id="a7"><span class="step-num">A7</span>한 번 진짜로 모아보기 — 테스트 <span class="badge b-once">첫 1회</span></h2>
+  <div class="card">
+    <p>다시 같은 명령으로 실행:</p>
+    <pre>powershell -ExecutionPolicy Bypass -File .\sync-teams-chat.ps1</pre>
+    <ul>
+      <li><code>source\chats\</code> 폴더에 대화가 <b>마크다운</b>으로 저장되고, 깃에 올라가면 성공.</li>
+      <li>깃허브 저장소의 <code>source/chats/</code>에 파일이 보이면 끝.</li>
+    </ul>
+    <p class="small">🖱️ 명령어가 번거로우면 폴더의 <code>run-sync.bat</code>을 <b>더블클릭</b>해도 똑같이 실행된다.</p>
+    <div class="note"><b>여기서 한 번은 꼭 직접 돌려봐야 한다.</b> 이 스크립트는 실제 테넌트에 연결해 검증된 적이 없는 “출발점”이다.
+      에러가 뜨면 그 메시지를 그대로 복사해 알려주면 바로 고쳐줄 수 있다.</div>
+  </div>
+
+  <h2 id="a8"><span class="step-num">A8</span>자동으로 돌게 예약 — 작업 스케줄러 <span class="badge b-once">첫 1회</span></h2>
+  <div class="card">
+    <p>🖱️ <b>가장 쉬운 방법:</b> 폴더의 <code>install-schedule.bat</code>을 <b>더블클릭</b>하면 “2시간마다 자동”이 한 번에 등록된다. (아래 수동 방법은 대안)</p>
+    <hr>
+    <p class="small">작업 스케줄러 = 윈도우가 정해진 시간마다 프로그램을 대신 눌러주는 알람.</p>
+    <ol>
+      <li>시작 메뉴에 <b>작업 스케줄러(Task Scheduler)</b> 검색 → 실행</li>
+      <li>오른쪽 <b>기본 작업 만들기(Create Basic Task)</b></li>
+      <li>이름 <code>yeul-chat-sync</code> → 다음</li>
+      <li><b>트리거</b>(언제): “매일” 또는 “컴퓨터 시작 시” 등 → 다음 (자주 쓰는 시간대에 1~2시간마다가 무난)</li>
+      <li><b>동작</b>: “프로그램 시작” → 다음</li>
+      <li><b>프로그램/스크립트</b>: <code>powershell.exe</code><br>
+        <b>인수 추가</b>: <code>-ExecutionPolicy Bypass -File "C:\Users\내이름\Documents\Yeul\source\_sync\sync-teams-chat.ps1"</code>
+        <span class="small">(따옴표 안은 실제 전체 경로로 교체)</span></li>
+      <li>마침</li>
+    </ol>
+  </div>
+
+  <h2 id="b"><span class="step-num">B</span>그다음부터 — 자동 <span class="badge b-auto">자동</span></h2>
+  <div class="card">
+    <p>이제 손댈 게 없다. 예약한 시간마다 PC가 알아서:</p>
+    <ul>
+      <li>저장된 토큰으로 <b>자동 로그인</b>(다시 코드 입력 안 함)</li>
+      <li>지난번 이후 <b>새 메시지만</b> 가져와 <code>source\chats\</code>에 쌓고</li>
+      <li><b>깃에 자동으로 올린다</b></li>
+    </ul>
+    <div class="ok">즉 A를 한 번 끝내면, B는 영원히 자동이다. 가끔 로그인이 만료되면 그때만 다시 코드 한 번 입력하면 된다.</div>
+  </div>
+
+  <h2 id="quick">곁가지 — 딱 한 번만 통째로 받고 싶다면 (Graph Explorer)</h2>
+  <div class="card">
+    <p class="small">스크립트 세팅 없이, 지금 당장 대화를 한 번 긁어오는 방법. 붙여넣기보다 깔끔하다.</p>
+    <ol>
+      <li>열기 → <a href="https://developer.microsoft.com/graph/graph-explorer" target="_blank">https://developer.microsoft.com/graph/graph-explorer</a></li>
+      <li>오른쪽 위에서 <b>회사 계정으로 로그인</b></li>
+      <li>입력 후 Run: <pre>GET https://graph.microsoft.com/v1.0/me/chats</pre> → 내 대화 목록이 뜸 (권한 동의 창 뜨면 <code>Chat.Read</code> 허용)</li>
+      <li>원하는 대화의 <code>id</code> 복사</li>
+      <li>입력 후 Run: <pre>GET https://graph.microsoft.com/v1.0/chats/{복사한id}/messages?$top=50</pre> → 대화가 JSON으로 쫙. 복사하면 끝.</li>
+      <li>대화가 길면 결과 맨 아래 <code>@odata.nextLink</code> 주소를 다시 Run → 다음 묶음</li>
+    </ol>
+  </div>
+
+  <h2 id="trouble">막혔을 때 / 솔직한 주의</h2>
+  <div class="card">
+    <ul>
+      <li><b>스크립트 테스트(A7)는 직접 한 번 돌려봐야 한다.</b> 환경마다 응답이 조금씩 달라서, 실제로 한 번 확인한 뒤 자동 예약을 걸자.</li>
+      <li><b>개인 대화를 모으는 일</b>이다 — 시작 전 참여자 동의(A0).</li>
+      <li><b>비밀값은 공유·커밋 금지</b>: <code>config.json</code>, <code>token-cache.json</code>, <code>sync-state.json</code>.</li>
+      <li><b>대화 본문은 쉐어포인트/원드라이브로는 안 나온다.</b> 본문은 위 방식(Graph)으로만. 원드라이브엔 대화에 ‘첨부한 파일’만 들어간다.</li>
+      <li>어느 단계든 막히면 <b>그 화면을 캡처</b>하거나 <b>에러 메시지를 그대로 복사</b>해서 물어보면, 다음 단계까지 같이 짚어준다.</li>
+    </ul>
+  </div>
+
+  <p class="small" style="margin-top:30px">EXIT : MARU · 내부용 설치 가이드</p>
+
+</div>
+</body>
+</html>
