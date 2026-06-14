@@ -261,17 +261,31 @@ body {
 .faq-item[open] summary::after { transform: rotate(45deg); }
 .faq-item p { margin: 0 0 20px; color: var(--ink-dim); font-size: 14.5px; line-height: 1.75; }
 
-/* ---------- Credits (dark island) ---------- */
+/* ---------- Credits (frosted glass island) ---------- */
 .credits-band { position: relative; margin-top: 18px; text-align: center; overflow: hidden;
   padding: clamp(54px, 8vw, 96px) clamp(24px, 5vw, 60px); border-radius: var(--r-island);
-  background: var(--island); color: var(--island-ink); box-shadow: var(--shadow-card); }
-.credits-band { box-shadow: inset 0 -2px 70px rgba(48, 44, 255, 0.38), var(--shadow-card); }
-.credits-band .credits-bg { position: absolute; inset: 0; background: url("/assets/images/002-cityscape-night.jpg") center/cover no-repeat; opacity: 0.16; filter: grayscale(0.6) brightness(0.65); }
+  color: var(--island-ink);
+  /* 유리: 반투명 바탕 + 뒤가 비치는 블러 */
+  background: linear-gradient(180deg, rgba(20, 18, 58, 0.60), rgba(7, 7, 33, 0.82));
+  -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.14); }
+.credits-band {
+  /* 유리 테두리 광택(위 밝은 선) + 안쪽 블루 글로우 + 떠 있는 그림자 */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 -2px 70px rgba(48, 44, 255, 0.34),
+    0 24px 60px rgba(7, 7, 33, 0.45),
+    var(--shadow-card); }
+.credits-band .credits-bg { position: absolute; inset: 0; background: url("/assets/images/002-cityscape-night.jpg") center/cover no-repeat; opacity: 0.14; filter: grayscale(0.6) brightness(0.65); }
 .credits-band::before { content: ""; position: absolute; inset: 0;
   background:
     radial-gradient(90% 70% at 100% 30%, rgba(48, 44, 255, 0.55), transparent 56%),
     radial-gradient(96% 60% at 50% 120%, rgba(48, 44, 255, 0.45), transparent 60%),
     linear-gradient(180deg, rgba(7,7,33,.28), rgba(7,7,33,.78)); }
+/* 윗가장자리 유리 광택(빛 반사) */
+.credits-band::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(120% 58% at 50% -12%, rgba(255, 255, 255, 0.16), transparent 60%); }
 .credits-band > * { position: relative; z-index: 1; }
 .credits-band .eyebrow { color: #a8c4ff; }
 .credits-band .sec-title { color: #fff; }
