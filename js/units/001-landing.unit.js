@@ -1,10 +1,10 @@
 // =========================================================
 // units/001-landing.unit.js
 // 유닛 — 「탈예울」 영화 프로모션 원페이지. 라우터 view 레이어.
-//   히어로 → 마퀴 → 시놉시스 → 관객 → 장면 → FAQ → 크레딧 → 푸터.
+//   히어로 → 마퀴 → 시놉시스 → 관객 → 장면 → FAQ → 푸터.
 //   막(Act) 필터·스크롤 리빌은 유닛 내부에서 관리.
 // =========================================================
-import { BRAND, CREDITS, CTA, AUDIENCE, FAQ, FOOTER, ACTS } from "../knowledge/002-brand.knowledge.js";
+import { BRAND, CTA, AUDIENCE, FAQ, FOOTER, ACTS } from "../knowledge/002-brand.knowledge.js";
 import { getScenes } from "../knowledge/003-scenes.knowledge.js";
 import { sceneCard, sectionHead, AUDIENCE_ICON, ICON } from "../knowledge/005-ui-kit.knowledge.js";
 import { esc } from "../knowledge/001-formatters.knowledge.js";
@@ -116,17 +116,6 @@ function render({ mount, router: r }) {
       </div>
     </section>
 
-    <!-- CREDITS -->
-    <section class="band credits-band" id="credits">
-      <div class="credits-bg" aria-hidden="true"></div>
-      ${sectionHead("CREDITS", "엔딩 크레딧", "")}
-      <ul class="credits">
-        ${CREDITS.map((c) => `<li>${esc(c)}</li>`).join("")}
-      </ul>
-      <p class="rating">${esc(BRAND.release.rating)}</p>
-      <p class="rating sub">${esc(BRAND.release.sub)}</p>
-    </section>
-
     <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-inner">
@@ -149,7 +138,6 @@ function render({ mount, router: r }) {
         </div>
         <div class="footer-col">
           <h4>정보</h4>
-          <a href="#credits">엔딩 크레딧</a>
           <span>이미지 · 폰트 출처(CC0)</span>
           <span>${esc(BRAND.release.rating)}</span>
         </div>

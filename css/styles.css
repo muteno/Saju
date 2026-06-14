@@ -124,7 +124,7 @@ body {
 .view { width: min(var(--maxw), calc(100% - 32px)); margin: 0 auto; padding: 22px 0 0; }
 .band { padding: clamp(46px, 8vw, 96px) clamp(4px, 2vw, 18px); }
 /* 고정 내비가 섹션 제목을 가리지 않도록 앵커 스크롤 오프셋 */
-[id="synopsis"], [id="audience"], [id="scenes"], [id="faq"], [id="credits"] { scroll-margin-top: 96px; }
+[id="synopsis"], [id="audience"], [id="scenes"], [id="faq"] { scroll-margin-top: 96px; }
 
 /* Section head */
 .sec-head { max-width: 680px; margin-bottom: 38px; }
@@ -260,47 +260,6 @@ body {
 .faq-item summary::after { content: "+"; color: var(--brand); font-size: 24px; font-weight: 400; transition: transform var(--t); }
 .faq-item[open] summary::after { transform: rotate(45deg); }
 .faq-item p { margin: 0 0 20px; color: var(--ink-dim); font-size: 14.5px; line-height: 1.75; }
-
-/* ---------- Credits (dark smoked glass) ---------- */
-.credits-band { position: relative; margin-top: 18px; text-align: center; overflow: hidden;
-  padding: clamp(54px, 8vw, 96px) clamp(24px, 5vw, 60px); border-radius: var(--r-island);
-  color: var(--island-ink);
-  /* 본체: 어두운 유리(가독성 유지) + 안쪽 블루 글로우를 배경 레이어로 */
-  background:
-    linear-gradient(180deg, rgba(7, 7, 33, 0.18), rgba(7, 7, 33, 0.46)),
-    radial-gradient(90% 70% at 100% 30%, rgba(48, 44, 255, 0.42), transparent 56%),
-    radial-gradient(96% 60% at 50% 120%, rgba(48, 44, 255, 0.38), transparent 60%),
-    linear-gradient(180deg, rgba(20, 18, 58, 0.66), rgba(7, 7, 33, 0.74));
-  -webkit-backdrop-filter: blur(16px) saturate(175%); backdrop-filter: blur(16px) saturate(175%); }
-.credits-band {
-  /* 유리 신호는 모서리에: 상단 specular 광택 + 미세 림 + 안쪽 블루 글로우 + 하단 깊이 + 네이비 드롭 */
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.27),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 -2px 70px rgba(48, 44, 255, 0.30),
-    inset 0 -22px 46px rgba(7, 7, 33, 0.40),
-    0 10px 34px rgba(10, 12, 40, 0.50),
-    var(--shadow-card); }
-.credits-band .credits-bg { position: absolute; inset: 0; background: url("/assets/images/002-cityscape-night.jpg") center/cover no-repeat; opacity: 0.14; filter: grayscale(0.6) brightness(0.65); }
-/* 유리 모서리 빛(specular edge): 좌상 흰빛 → 우하 브랜드 블루, 1px 테두리만 */
-.credits-band::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.06) 40%, rgba(48, 44, 255, 0.45));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out; mask-composite: exclude; }
-/* 미세 그레인(유리 표면 질감) — 아주 옅게 */
-.credits-band::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  opacity: 0.05; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-.credits-band > * { position: relative; z-index: 1; }
-.credits-band .eyebrow { color: #a8c4ff; }
-.credits-band .sec-title { color: #fff; }
-.credits-band .sec-head { margin: 0 auto 32px; }
-.credits { list-style: none; margin: 0 auto; padding: 0; max-width: 480px; display: grid; gap: 13px; }
-.credits li { font-size: 15px; color: var(--island-dim); }
-.credits li:first-child { color: #fff; font-weight: 700; }
-.rating { margin: 30px 0 0; color: #ffd79a; font-weight: 700; font-size: 14px; }
-.rating.sub { color: var(--island-faint); font-weight: 500; font-size: 13px; margin-top: 6px; }
 
 /* ---------- Footer (full-bleed, minimum-code 스타일) ---------- */
 .site-footer { width: 100vw; margin-left: calc(50% - 50vw); margin-top: 60px; background: var(--ink); color: #fff; }

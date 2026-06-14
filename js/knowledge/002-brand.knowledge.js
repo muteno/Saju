@@ -29,17 +29,6 @@ export const BRAND = Object.freeze({
   },
 });
 
-export const CREDITS = Object.freeze([
-  "감독 : 사직서 (辭職書)",
-  "주연 : 너 (THE YOU)",
-  "조연 : 어제의 나 / 오늘의 나",
-  "제작 : 누적된 야근",
-  "각본 : 반려된 보고서 3,402건",
-  "음악 : 퇴근길 이어폰 속 그 노래",
-  "특별출연 : 텅 빈 책상",
-  "배급 : 전국퇴사자연합 (비공식)",
-]);
-
 export const CTA = Object.freeze({
   primary: "지금 탈출하기",
   trailer: "예고편 보기",
