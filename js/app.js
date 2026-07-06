@@ -5,6 +5,7 @@
 //   아래 register 에 한 줄 매달면 끝.
 // =========================================================
 import { Router } from "./core/001-router.core.js";
+import { toast } from "./knowledge/004-clipboard.knowledge.js";
 import landingUnit from "./units/001-landing.unit.js";
 import sceneDetailUnit from "./units/002-scene-detail.unit.js";
 
@@ -51,4 +52,42 @@ document.getElementById("nav-cta")?.addEventListener("click", () => {
   router.navigate("/");
   requestAnimationFrame(() =>
     document.getElementById("scenes")?.scrollIntoView({ behavior: "smooth" }));
+});
+
+// ---- PWA: 앱 설치 + 오프라인 (sw.js) ----
+
+// 서비스 워커 등록 — 오프라인 사본을 만들고, 브라우저 설치 요건을 채운다
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js").catch(() => {});
+  });
+}
+
+// 설치 버튼: 브라우저가 "설치 가능" 신호(beforeinstallprompt)를 주면 켠다.
+//   이미 앱 창(standalone)으로 열렸으면 켜지 않는다.
+//   아이폰 사파리는 이 신호가 없어 버튼 대신 FAQ 안내(공유 → 홈 화면에 추가)로 커버.
+const installBtn = document.getElementById("pwa-install");
+const inApp =
+  matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+let installEvt = null;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault(); // 브라우저 미니 배너 대신 우리 버튼으로
+  installEvt = e;
+  if (!inApp && installBtn) installBtn.hidden = false;
+});
+
+installBtn?.addEventListener("click", async () => {
+  if (!installEvt) return;
+  const evt = installEvt;
+  installEvt = null; // prompt() 는 이벤트당 1회만 허용
+  installBtn.hidden = true;
+  evt.prompt();
+  const { outcome } = await evt.userChoice;
+  if (outcome !== "accepted") toast("설치를 취소했어요 — 버튼은 다음 방문에 다시 떠요", false);
+});
+
+window.addEventListener("appinstalled", () => {
+  if (installBtn) installBtn.hidden = true;
+  toast("앱 설치 완료 — 바탕화면·홈 화면에 바로가기가 생겼어요 ✓");
 });
