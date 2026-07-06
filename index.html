@@ -9,6 +9,10 @@
   <link rel="icon" href="/assets/images/005-logo.png" />
   <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
+  <!-- 홈 화면 설치(PWA) — 설치된 앱 창에서 브라우저 UI 없이 뜨게 -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="어휴게소" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,6 +34,9 @@
       <span class="brand-sub">: MARU</span>
     </a>
     <nav class="nav-right">
+      <button class="icon-btn" id="pwa-install" title="앱으로 설치" aria-label="앱으로 설치" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+      </button>
       <button class="icon-btn" id="theme-btn" title="테마 전환" aria-label="테마 전환">
         <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
         <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>

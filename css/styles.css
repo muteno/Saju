@@ -68,6 +68,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; } /* display 지정된 요소(.icon-btn 등)에도 hidden 속성이 먹게 */
 html { scroll-behavior: smooth; }
 html, body { height: 100%; }
 
