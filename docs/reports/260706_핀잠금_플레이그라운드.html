@@ -267,7 +267,7 @@
     · 실제 폰트(Plus Jakarta Sans·Pretendard)는 시스템 폴백으로 근사 — 실기기에선 조금 더 또렷함.<br>
     · 글래스(backdrop-filter)는 <b>뒤에 텍스처가 있어야</b> 살아나서, 배경에 Yeul 히어로(코발트 메시+블롭)를 깔아 재현함.<br>
     · nomute 원본은 키패드를 매번 <b>섞어서</b> 보여줌(보안). 여긴 프로모션 사이트라 <b>일반 배열</b>로 뒀는데, 원하면 섞기도 켤 수 있어.<br>
-    · 동그라미 채움·바운스·2초 자동 마스킹·성공 스윕 = nomute 뉘앙스 그대로, 색만 코발트로 계승.
+    · 동그라미 채움·바운스·0.5초 자동 마스킹·성공 스윕 = nomute 뉘앙스 그대로, 색만 코발트로 계승.
   </div>
 </div>
 
@@ -309,7 +309,7 @@
     if(last>=0) maskT = setTimeout(function(){
       var el = sl[last]; if(!el || !el.classList.contains('cur')) return;
       el.classList.remove('cur'); el.classList.add('on'); el.textContent='';
-    },2000);
+    },500);   // 입력한 숫자 → 0.5초 뒤 채워진 점으로 자동 마스킹(역행=백스페이스도 동일 경로 · 운영자 260706)
   }
 
   function flash(el,d){
