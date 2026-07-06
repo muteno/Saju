@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<title>260706 · PIN 잠금 화면 — 만져보는 시안</title>
+<style>
+  :root{
+    /* ── css/styles.css :root 토큰 사본(값 복사 = 계승 · 시안은 일회성 스냅샷) ── */
+    --brand:#302cff; --brand-2:#6b67ff; --brand-cyan:#a1defb;
+    --island:#070721; --island-ink:#ffffff; --island-dim:#b6b6d6; --island-faint:#6a6a93;
+    --island-line:rgba(255,255,255,.12);
+    --ink:#f3f3fb; --dim:#a8a8cf; --faint:#6e6e98; --line:rgba(160,160,199,.18);
+    --r-island:32px; --r-card:36px; --r-inner:20px; --pill:64px;
+    --ease:cubic-bezier(.22,.61,.36,1); --t:.35s;
+    --font-sans:"Plus Jakarta Sans","Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",Roboto,sans-serif;
+
+    /* ── 잠금화면 강조(다크 위 코발트 = 밝은 --brand-2 계승 · 글로우 잘 보임) ── */
+    --lk-accent:#6b67ff; --lk-accent-rgb:107,103,255;
+
+    /* ── 글래스 튜닝 변수(--t-*) : 프리셋/슬라이더가 실시간으로 바꿈 · 기본값 = 추천 프리셋 ── */
+    --t-blur:26px;        /* backdrop 블러 세기 */
+    --t-alpha:.30;        /* 카드 배경 불투명도(무채색 검정 베이스) */
+    --t-sat:1.4;          /* backdrop 채도(뒤 색을 살릴지) */
+    --t-tint:.05;         /* 코발트 살짝 틴트(0=완전 무채색) */
+    --t-bord:.14;         /* 위쪽 테두리 하이라이트 밝기 */
+    --t-shadow:.45;       /* 카드 그림자 세기 */
+    --t-radius:28px;      /* 카드 모서리 */
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:#05050f;color:var(--ink);line-height:1.6;font-family:var(--font-sans);
+       padding:22px 12px 120px;-webkit-font-smoothing:antialiased;letter-spacing:-.012em}
+  .wrap{max-width:820px;margin:0 auto}
+  .eyebrow{font-size:11.5px;letter-spacing:.16em;color:var(--brand-2);font-weight:800;text-transform:uppercase;margin-bottom:8px}
+  h1{font-size:24px;line-height:1.25;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+  .lead{color:var(--dim);margin:0 0 2px;font-size:14.5px}
+  .stamp{color:var(--faint);font-size:12px}
+
+  /* ══════════ ① 실물 재현 미리보기 (폰 프레임) ══════════ */
+  .stagewrap{display:flex;justify-content:center;margin:22px 0 8px}
+  .phone{position:relative;width:min(360px,92vw);aspect-ratio:9/19;border-radius:44px;overflow:hidden;
+    border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 0 0 3px #000;background:#000}
+
+  /* 배경 = Yeul 다크 아일랜드 히어로(글래스가 비칠 텍스처) */
+  .lockroot{position:absolute;inset:0;overflow:hidden;background:var(--island);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;isolation:isolate}
+  .lk-bg{position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(92% 60% at 100% 30%,rgba(48,44,255,.55),transparent 56%),
+      radial-gradient(96% 55% at 20% 120%,rgba(48,44,255,.45),transparent 60%),
+      radial-gradient(60% 46% at 78% 6%,rgba(161,222,251,.16),transparent 55%),
+      linear-gradient(180deg,rgba(7,7,33,.1),rgba(7,7,33,.7));}
+  .lk-blob{position:absolute;border-radius:50%;filter:blur(38px);opacity:.55;pointer-events:none;mix-blend-mode:screen}
+  .lk-blob.b1{width:180px;height:180px;left:-40px;top:16%;background:#3a2cff;animation:drift1 14s var(--ease) infinite alternate}
+  .lk-blob.b2{width:150px;height:150px;right:-30px;top:52%;background:#6b67ff;animation:drift2 17s var(--ease) infinite alternate}
+  .lk-blob.b3{width:120px;height:120px;left:34%;bottom:-24px;background:#a1defb;opacity:.3;animation:drift1 20s var(--ease) infinite alternate-reverse}
+  @keyframes drift1{to{transform:translate(30px,-24px) scale(1.15)}}
+  @keyframes drift2{to{transform:translate(-26px,20px) scale(1.1)}}
+  .lk-grain{position:absolute;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* 잠금 해제 후 드러날 가짜 히어로(글래스 뒤 배경 = 언락 시 노출) */
+  .lk-behind{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;color:var(--island-ink);padding:24px;z-index:1;opacity:0;transition:opacity .6s var(--ease)}
+  .lockroot.unlocked .lk-behind{opacity:1}
+  .lk-behind .eb{font-size:10px;letter-spacing:.4em;color:#a8c4ff;font-weight:800;text-transform:uppercase}
+  .lk-behind h2{margin:10px 0 0;font-size:52px;line-height:.95;font-weight:800;letter-spacing:-.04em;
+    background:linear-gradient(180deg,#fff 35%,#b9caff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .lk-behind .hj{font-size:13px;letter-spacing:.42em;color:var(--island-faint);margin-top:6px}
+  .lk-behind .relock{margin-top:26px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.28);
+    color:#fff;font-family:inherit;font-size:12.5px;font-weight:700;padding:11px 20px;border-radius:var(--pill);cursor:pointer}
+
+  /* ── 글래스 카드(개선 대상 · --t-* 변수 배선) ── */
+  .lk-card{position:relative;z-index:2;width:min(300px,84%);padding:30px 22px 26px;text-align:center;
+    border-radius:var(--t-radius);
+    background:
+      linear-gradient(180deg,rgba(var(--lk-accent-rgb),var(--t-tint)),rgba(var(--lk-accent-rgb),0) 42%),
+      linear-gradient(165deg,rgba(14,14,26,calc(var(--t-alpha) + .08)),rgba(8,8,16,calc(var(--t-alpha) + .16)));
+    -webkit-backdrop-filter:blur(var(--t-blur)) saturate(var(--t-sat));
+    backdrop-filter:blur(var(--t-blur)) saturate(var(--t-sat));
+    border:1px solid rgba(255,255,255,.06);
+    border-top-color:rgba(255,255,255,var(--t-bord));
+    box-shadow:0 22px 60px rgba(0,0,0,var(--t-shadow)),inset 0 1px 0 rgba(255,255,255,calc(var(--t-bord) * .8));
+    transition:opacity .6s var(--ease),filter .6s var(--ease),transform .5s var(--ease)}
+  .lockroot.unlocked .lk-card{opacity:0;filter:blur(14px);transform:scale(.96);pointer-events:none}
+  .lockroot.ent .lk-card{animation:lkRise .6s var(--ease) .55s backwards}
+  @keyframes lkRise{from{transform:translateY(40px);opacity:0}}
+
+  /* 워드마크 = EXIT : MARU (레퍼런스 2톤 계승 · MARU=코발트) */
+  .lk-wm{margin-bottom:22px}
+  .lockroot.ent .lk-wm{animation:wmIn .7s var(--ease) both}
+  @keyframes wmIn{from{opacity:0;transform:translateY(8px)}}
+  .lk-wm b{display:block;font-size:23px;font-weight:800;letter-spacing:-.01em;color:#fff;line-height:1}
+  .lk-wm b i{font-style:normal;color:var(--lk-accent)}
+  .lk-wm small{display:block;margin-top:8px;font-size:11px;font-weight:700;letter-spacing:.34em;color:var(--island-faint)}
+
+  /* ── 동그라미 슬롯 (nomute 뉘앙스 이식 · 색만 코발트) ── */
+  .lk-slotwrap{position:relative;width:min(220px,100%);margin:0 auto;padding:14px 0 6px}
+  .lk-slots{display:flex;justify-content:center;gap:18px}
+  .lk-slot{position:relative;width:26px;height:26px;display:grid;place-items:center;
+    font-size:17px;font-weight:700;color:var(--lk-accent);font-variant-numeric:tabular-nums}
+  .lk-slot::before{content:"";position:absolute;left:50%;top:50%;width:13px;height:13px;border-radius:50%;
+    transform:translate(-50%,-50%);border:2px solid rgba(178,182,255,.38);background:transparent;
+    transition:background .2s var(--ease),border-color .2s var(--ease),transform .28s var(--ease),opacity .28s var(--ease),box-shadow .2s var(--ease)}
+  .lk-slot.on::before{background:var(--lk-accent);border-color:var(--lk-accent);
+    box-shadow:0 0 12px rgba(var(--lk-accent-rgb),.6)}
+  .lk-slot.cur::before{opacity:0;transform:translate(-50%,-50%) scale(.4);background:var(--lk-accent);border-color:var(--lk-accent)}
+  .lk-slot.cur{animation:pinDigitIn .18s var(--ease)}
+  .lk-slot.cur,.lk-slot.on{animation:lkFillBnc .36s var(--ease)}
+  @keyframes pinDigitIn{from{opacity:0;transform:scale(.5)}}
+  @keyframes lkFillBnc{0%{transform:translateY(0)}40%{transform:translateY(-7px) scale(1.12)}100%{transform:translateY(0)}}
+  .lk-slots.bad .lk-slot::before{background:#e5484d;border-color:#e5484d;box-shadow:0 0 12px rgba(229,72,77,.5)}
+  .lk-slots.bad .lk-slot.cur{color:#e5484d}
+  .lk-slots.shake{animation:lkShake .45s cubic-bezier(.36,.07,.19,.97)}
+  @keyframes lkShake{0%,100%{transform:translateX(0)}12%{transform:translateX(-9px)}28%{transform:translateX(8px)}44%{transform:translateX(-6px)}60%{transform:translateX(4px)}76%{transform:translateX(-2px)}}
+
+  /* 성공 인증 스윕(테두리 한 바퀴) */
+  .lk-okring{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;overflow:visible}
+  .lk-slotwrap.ok .lk-okring{opacity:1}
+  .lk-okring rect{x:1px;y:1px;width:calc(100% - 2px);height:calc(100% - 2px);rx:14px;fill:none;
+    stroke:rgba(var(--lk-accent-rgb),.5);stroke-width:2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100}
+  .lk-slotwrap.ok .lk-okring rect{animation:lkOkSweep .5s var(--ease) forwards}
+  @keyframes lkOkSweep{to{stroke-dashoffset:0}}
+
+  .lk-err{min-height:16px;margin:10px 0 2px;font-size:12px;font-weight:700;color:#ff8a8e;
+    text-shadow:0 1px 3px rgba(0,0,0,.5)}
+
+  /* ── 숫자 키패드 (키보드 입력 없음 = CapsLock 원천 무효) ── */
+  .lk-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:230px;margin:6px auto 0}
+  .lk-key{position:relative;height:52px;display:grid;place-items:center;font-size:22px;font-weight:700;
+    font-family:inherit;color:#eef0ff;background:none;border:none;border-radius:14px;cursor:pointer;
+    -webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;
+    transition:background .12s var(--ease),color .15s var(--ease),transform .07s var(--ease)}
+  .lk-key:active{transform:scale(.9)}
+  .lk-key.pop{animation:lkPop .24s var(--ease)}
+  @keyframes lkPop{0%{transform:scale(.84)}50%{transform:scale(1.04)}100%{transform:scale(1)}}
+  .lk-key.hit{color:var(--lk-accent);text-shadow:0 0 14px rgba(var(--lk-accent-rgb),.85)}
+  .lk-key.empty{pointer-events:none}
+  .lk-key.back svg{width:25px;height:25px;stroke:#eef0ff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .lk-key.back.hit svg{stroke:var(--lk-accent)}
+  .lk-fx{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;
+    color:rgba(var(--lk-accent-rgb),.9);font:700 22px/1 inherit;animation:lkTrail .5s ease-out forwards}
+  @keyframes lkTrail{from{transform:scale(1);opacity:.9}to{transform:scale(1.9);opacity:0}}
+
+  .lk-ghost{margin-top:16px;background:none;border:none;color:var(--island-dim);font-family:inherit;
+    font-size:12px;font-weight:600;cursor:pointer;opacity:.7;transition:opacity var(--t),color var(--t)}
+  .lk-ghost:hover{opacity:1;color:#fff}
+
+  @media (prefers-reduced-motion:reduce){
+    .lk-slot.cur,.lk-slot.on,.lk-slots.shake,.lk-key.pop,.lk-fx,.lockroot.ent .lk-card,.lockroot.ent .lk-wm,.lk-blob{animation:none}
+    .lk-slotwrap.ok .lk-okring rect{animation:none}}
+
+  /* ══════════ 컨트롤 패널 ══════════ */
+  .panel{margin-top:20px;background:#0b0b1c;border:1px solid var(--line);border-radius:20px;padding:18px 16px}
+  .panel h2{font-size:14.5px;margin:0 0 12px;font-weight:800;display:flex;align-items:center;gap:8px}
+  .panel h2 .n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:7px;background:var(--brand);color:#fff;font-size:12px;font-weight:800}
+  .panel + .panel{margin-top:12px}
+
+  /* ② 프리셋 */
+  .presets{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px}
+  .preset{position:relative;text-align:left;background:#12122a;border:1px solid var(--line);border-radius:14px;
+    padding:12px 13px;cursor:pointer;color:var(--ink);font-family:inherit;transition:border-color var(--t),background var(--t),transform .08s}
+  .preset:hover{border-color:rgba(160,160,199,.4)}
+  .preset:active{transform:scale(.98)}
+  .preset.on{border-color:var(--brand-2);background:rgba(107,103,255,.12)}
+  .preset .pn{font-size:13.5px;font-weight:800;display:flex;align-items:center;gap:6px}
+  .preset .star{color:#ffd27e}
+  .preset .pd{font-size:11.5px;color:var(--dim);margin-top:4px;line-height:1.5}
+
+  /* ③ 슬라이더 */
+  .sld{margin-top:2px}
+  .sld-row{display:flex;align-items:center;gap:12px;padding:9px 2px;border-bottom:1px solid rgba(160,160,199,.1)}
+  .sld-row:last-child{border-bottom:none}
+  .sld-row label{flex:0 0 92px;font-size:12.5px;color:var(--dim);font-weight:700}
+  .sld-row input[type=range]{flex:1;accent-color:var(--brand-2);height:4px}
+  .sld-row .val{flex:0 0 54px;text-align:right;font-size:12.5px;font-weight:800;color:#cfcdff;font-variant-numeric:tabular-nums}
+
+  /* ④ 선택값 출력 */
+  .out{margin-top:2px}
+  .out pre{background:#07071a;border:1px solid var(--line);border-radius:12px;padding:13px 14px;overflow:auto;
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;line-height:1.7;color:#dfe0ff;margin:0}
+  .out .tag{font-size:10px;font-weight:800;padding:1px 6px;border-radius:999px;margin-left:6px;vertical-align:middle}
+  .tag-keep{background:rgba(126,226,168,.16);color:#7ee2a8}
+  .tag-new{background:rgba(255,210,126,.16);color:#ffd27e}
+  .copybtn{margin-top:10px;width:100%;background:var(--brand);color:#fff;border:none;border-radius:12px;
+    padding:12px;font-family:inherit;font-size:13.5px;font-weight:800;cursor:pointer;transition:filter var(--t),transform .08s}
+  .copybtn:hover{filter:brightness(1.08)}.copybtn:active{transform:scale(.98)}
+  .copybtn.done{background:#2fa968}
+  .legend{margin-top:10px;font-size:11.5px;color:var(--faint);line-height:1.6}
+
+  /* ⑤ 각주 */
+  .foot{margin-top:14px;font-size:11.5px;color:var(--faint);line-height:1.7;
+    background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+  .foot b{color:var(--dim)}
+  .hintpin{color:var(--brand-2);font-weight:800;font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">EXIT : MARU · 시안</div>
+  <h1>PIN 잠금 화면 — 만져보는 시안</h1>
+  <p class="lead">nomute-editor 잠금 화면의 <b style="color:#fff">동그라미 채움 뉘앙스</b>를 Yeul 코발트로 이식 · 숫자 키패드라 <b style="color:#fff">CapsLock 자체가 없음</b> · 글래스는 아래에서 골라봐.</p>
+  <p class="stamp">폰에서 바로 눌러볼 수 있어. 아래 키패드를 두들기면 동그라미가 차오르고, 데모 PIN을 맞추면 잠금이 풀려.</p>
+
+  <!-- ① 실물 재현 미리보기 -->
+  <div class="stagewrap">
+    <div class="phone">
+      <div class="lockroot ent" id="lockroot">
+        <div class="lk-bg"></div>
+        <span class="lk-blob b1"></span><span class="lk-blob b2"></span><span class="lk-blob b3"></span>
+        <div class="lk-grain"></div>
+
+        <!-- 언락 시 드러나는 배경(가짜 히어로) -->
+        <div class="lk-behind">
+          <div class="eb">National Union of Quitters</div>
+          <h2>탈예울</h2>
+          <div class="hj">脫 例 蔚</div>
+          <button class="relock" id="relock" type="button">다시 잠그기 ↺</button>
+        </div>
+
+        <!-- 글래스 카드 -->
+        <div class="lk-card" id="lkcard">
+          <div class="lk-wm"><b>EXIT : <i>MARU</i></b><small>UNLOCK</small></div>
+          <div class="lk-slotwrap" id="lkslotwrap">
+            <div class="lk-slots" id="lkslots"><span class="lk-slot"></span><span class="lk-slot"></span><span class="lk-slot"></span><span class="lk-slot"></span></div>
+            <svg class="lk-okring" aria-hidden="true"><rect pathLength="100"/></svg>
+          </div>
+          <div class="lk-err" id="lkerr" role="alert" aria-live="assertive"></div>
+          <div class="lk-pad" id="lkpad"></div>
+          <button class="lk-ghost" id="lkghost" type="button">그냥 둘러보기 →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 프리셋 -->
+  <div class="panel">
+    <h2><span class="n">2</span>글래스 프리셋 — 하나 눌러봐</h2>
+    <div class="presets" id="presets"></div>
+  </div>
+
+  <!-- ③ 슬라이더 -->
+  <div class="panel">
+    <h2><span class="n">3</span>미세조정</h2>
+    <div class="sld" id="sliders"></div>
+  </div>
+
+  <!-- ④ 선택값 -->
+  <div class="panel">
+    <h2><span class="n">4</span>선택값 — 이거 복사해서 답장에 붙여줘</h2>
+    <div class="out">
+      <pre id="outcode"></pre>
+      <button class="copybtn" id="copybtn" type="button">선택값 복사</button>
+      <div class="legend">
+        <span class="tag tag-keep">계승</span> 기존 Yeul 토큰 그대로 &nbsp;·&nbsp;
+        <span class="tag tag-new">신규</span> 지금 새로 정하는 글래스 값(Yeul엔 아직 글래스 토큰이 없음)
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ 각주 -->
+  <div class="foot">
+    <b>재현 한계 / 메모</b><br>
+    · 데모 PIN = <span class="hintpin">2 4 8 1</span> — 맞추면 성공 스윕→언락, 틀리면 흔들림(실제 페이지엔 진짜 PIN 검증·5회 잠금 로직을 붙임).<br>
+    · 실제 폰트(Plus Jakarta Sans·Pretendard)는 시스템 폴백으로 근사 — 실기기에선 조금 더 또렷함.<br>
+    · 글래스(backdrop-filter)는 <b>뒤에 텍스처가 있어야</b> 살아나서, 배경에 Yeul 히어로(코발트 메시+블롭)를 깔아 재현함.<br>
+    · nomute 원본은 키패드를 매번 <b>섞어서</b> 보여줌(보안). 여긴 프로모션 사이트라 <b>일반 배열</b>로 뒀는데, 원하면 섞기도 켤 수 있어.<br>
+    · 동그라미 채움·바운스·2초 자동 마스킹·성공 스윕 = nomute 뉘앙스 그대로, 색만 코발트로 계승.
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var DEMO_PIN = "2481", LEN = 4;
+  var root = document.getElementById('lockroot');
+  var slotsEl = document.getElementById('lkslots');
+  var wrapEl = document.getElementById('lkslotwrap');
+  var padEl = document.getElementById('lkpad');
+  var errEl = document.getElementById('lkerr');
+  var cardEl = document.getElementById('lkcard');
+  var real = "", busy = false, maskT = null, badT = null;
+  var BSVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 5H9l-6 7 6 7h11a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/><path d="M16 9l-4 4M12 9l4 4"/></svg>';
+
+  // ── 키패드 빌드(일반 배열 1-9,0) ──
+  var order = [1,2,3,4,5,6,7,8,9,'',0,'back'];
+  function buildPad(){
+    var h='';
+    order.forEach(function(k){
+      if(k==='') h+='<button type="button" class="lk-key empty" tabindex="-1" aria-hidden="true"></button>';
+      else if(k==='back') h+='<button type="button" class="lk-key back" data-back="1" aria-label="지우기">'+BSVG+'</button>';
+      else h+='<button type="button" class="lk-key kd" data-d="'+k+'">'+k+'</button>';
+    });
+    padEl.innerHTML=h;
+  }
+
+  // ── 슬롯 렌더 (renderPinSlots 뉘앙스 이식: cur=방금·on=이전·2초 자동 마스킹) ──
+  function renderSlots(){
+    var sl = slotsEl.querySelectorAll('.lk-slot'), last = real.length-1;
+    for(var i=0;i<sl.length;i++){
+      var filled = i < real.length, cur = (i===last && last>=0);
+      sl[i].classList.toggle('cur', cur);
+      sl[i].classList.toggle('on', filled && !cur);
+      sl[i].textContent = cur ? real[i] : '';
+    }
+    clearTimeout(maskT);
+    if(last>=0) maskT = setTimeout(function(){
+      var el = sl[last]; if(!el || !el.classList.contains('cur')) return;
+      el.classList.remove('cur'); el.classList.add('on'); el.textContent='';
+    },2000);
+  }
+
+  function flash(el,d){
+    if(!el) return;
+    el.classList.remove('hit'); void el.offsetWidth; el.classList.add('hit');
+    clearTimeout(el._ht); el._ht=setTimeout(function(){el.classList.remove('hit');},260);
+    try{navigator.vibrate&&navigator.vibrate(15);}catch(e){}
+    if(d!=null){ var f=document.createElement('span'); f.className='lk-fx'; f.textContent=d; el.appendChild(f); setTimeout(function(){f.remove();},520); }
+  }
+  function unbad(){ clearTimeout(badT); slotsEl.classList.remove('bad','shake'); errEl.textContent=''; }
+
+  function press(d){
+    if(busy || root.classList.contains('unlocked') || real.length>=LEN) return;
+    flash(padEl.querySelector('.kd[data-d="'+d+'"]'), d);
+    unbad(); real += String(d); renderSlots();
+    if(real.length===LEN) setTimeout(fire, 340);
+  }
+  function back(){
+    if(busy || !real.length) return;
+    flash(padEl.querySelector('.back')); unbad(); real = real.slice(0,-1); renderSlots();
+  }
+  function fire(){
+    if(busy || real.length!==LEN) return;
+    busy = true;
+    if(real===DEMO_PIN){
+      wrapEl.classList.remove('ok'); void wrapEl.offsetWidth; wrapEl.classList.add('ok');
+      setTimeout(unlock, 380);
+      return;
+    }
+    errEl.textContent = 'PIN 번호가 틀립니다';
+    real=''; renderSlots();
+    slotsEl.classList.add('bad'); void slotsEl.offsetWidth; slotsEl.classList.add('shake');
+    clearTimeout(badT); badT=setTimeout(function(){ slotsEl.classList.remove('bad','shake'); errEl.textContent=''; },2600);
+    busy = false;
+  }
+  function unlock(){ root.classList.add('unlocked'); }
+  function relock(){
+    root.classList.remove('unlocked'); real=''; busy=false;
+    slotsEl.classList.remove('bad','shake'); wrapEl.classList.remove('ok'); errEl.textContent='';
+    renderSlots();
+    root.classList.remove('ent'); void root.offsetWidth; root.classList.add('ent');
+  }
+
+  padEl.addEventListener('click', function(e){
+    var b = e.target.closest('.lk-key'); if(!b || b.classList.contains('empty')) return;
+    b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop');
+    if(b.getAttribute('data-back')!==null) back();
+    else if(b.getAttribute('data-d')!==null) press(b.getAttribute('data-d'));
+  });
+  document.getElementById('relock').addEventListener('click', relock);
+  document.getElementById('lkghost').addEventListener('click', unlock);
+
+  buildPad(); renderSlots();
+
+  // ══════════ ② 프리셋 · ③ 슬라이더 · ④ 출력 ══════════
+  // 각 값: [현행Yeul토큰 계승 여부, 라벨]
+  var VARS = [
+    {k:'--t-blur',   label:'블러',      min:0,  max:40, step:1,   unit:'px', keep:false},
+    {k:'--t-alpha',  label:'불투명도',  min:.05,max:.7, step:.01, unit:'',   keep:false},
+    {k:'--t-sat',    label:'채도',      min:1,  max:2,  step:.05, unit:'',   keep:false},
+    {k:'--t-tint',   label:'코발트틴트',min:0,  max:.2, step:.01, unit:'',   keep:false},
+    {k:'--t-bord',   label:'테두리광',  min:0,  max:.4, step:.01, unit:'',   keep:false},
+    {k:'--t-shadow', label:'그림자',    min:.1, max:.7, step:.01, unit:'',   keep:false},
+    {k:'--t-radius', label:'모서리',    min:14, max:40, step:1,   unit:'px', keep:false}
+  ];
+  var PRESETS = [
+    {name:'기본 (레퍼런스 근사)', star:false, desc:'스크린샷처럼 얇고 뿌연 글래스 — 비교 기준',
+      v:{'--t-blur':'12px','--t-alpha':'.22','--t-sat':'1','--t-tint':'0','--t-bord':'.08','--t-shadow':'.3','--t-radius':'22px'}},
+    {name:'무채색 글래스', star:true, desc:'nomute 방식 — 블러+채도 살짝, 위쪽 하이라이트, 깊은 그림자',
+      v:{'--t-blur':'26px','--t-alpha':'.30','--t-sat':'1.4','--t-tint':'.05','--t-bord':'.14','--t-shadow':'.45','--t-radius':'28px'}},
+    {name:'딥 글래스', star:false, desc:'더 진하고 무거운 프리미엄 감 — 뒤가 거의 안 비침',
+      v:{'--t-blur':'34px','--t-alpha':'.5','--t-sat':'1.2','--t-tint':'.03','--t-bord':'.18','--t-shadow':'.6','--t-radius':'30px'}},
+    {name:'코발트 틴트', star:false, desc:'브랜드색이 은은히 감도는 컬러 글래스',
+      v:{'--t-blur':'22px','--t-alpha':'.26','--t-sat':'1.6','--t-tint':'.16','--t-bord':'.16','--t-shadow':'.42','--t-radius':'26px'}}
+  ];
+
+  var presetsEl = document.getElementById('presets');
+  var slidersEl = document.getElementById('sliders');
+  var outEl = document.getElementById('outcode');
+  var curPreset = 1;
+
+  PRESETS.forEach(function(p,idx){
+    var b=document.createElement('button'); b.type='button'; b.className='preset'+(idx===curPreset?' on':'');
+    b.innerHTML='<span class="pn">'+p.name+(p.star?' <span class="star">★</span>':'')+'</span><span class="pd">'+p.desc+'</span>';
+    b.addEventListener('click', function(){ applyPreset(idx); });
+    presetsEl.appendChild(b);
+  });
+
+  var inputs={};
+  VARS.forEach(function(v){
+    var row=document.createElement('div'); row.className='sld-row';
+    var lb=document.createElement('label'); lb.textContent=v.label;
+    var inp=document.createElement('input'); inp.type='range'; inp.min=v.min; inp.max=v.max; inp.step=v.step;
+    var val=document.createElement('span'); val.className='val';
+    inp.addEventListener('input', function(){
+      document.documentElement.style.setProperty(v.k, inp.value+(v.unit));
+      val.textContent = inp.value+(v.unit);
+      markCustom(); render();
+    });
+    row.appendChild(lb); row.appendChild(inp); row.appendChild(val);
+    slidersEl.appendChild(row); inputs[v.k]={inp:inp,val:val,def:v};
+  });
+
+  function setVar(k,raw){
+    document.documentElement.style.setProperty(k, raw);
+    var num = parseFloat(raw);
+    if(inputs[k]){ inputs[k].inp.value=num; inputs[k].val.textContent = raw; }
+  }
+  function applyPreset(idx){
+    curPreset=idx;
+    Array.prototype.forEach.call(presetsEl.children,function(c,i){ c.classList.toggle('on', i===idx); });
+    var v=PRESETS[idx].v;
+    Object.keys(v).forEach(function(k){ setVar(k, v[k]); });
+    render();
+  }
+  function markCustom(){
+    curPreset=-1;
+    Array.prototype.forEach.call(presetsEl.children,function(c){ c.classList.remove('on'); });
+  }
+  function render(){
+    var lines=[];
+    lines.push('/* Yeul PIN 잠금 — 글래스 선택값 */');
+    lines.push('--lk-blur:    '+cur('--t-blur')+';');
+    lines.push('--lk-alpha:   '+cur('--t-alpha')+';');
+    lines.push('--lk-sat:     '+cur('--t-sat')+';');
+    lines.push('--lk-tint:    '+cur('--t-tint')+';');
+    lines.push('--lk-bord:    '+cur('--t-bord')+';');
+    lines.push('--lk-shadow:  '+cur('--t-shadow')+';');
+    lines.push('--lk-radius:  '+cur('--t-radius')+';');
+    lines.push('/* 프리셋: '+(curPreset>=0?PRESETS[curPreset].name:'커스텀')+' */');
+    outEl.textContent = lines.join('\n');
+  }
+  function cur(k){ return getComputedStyle(document.documentElement).getPropertyValue(k).trim(); }
+
+  document.getElementById('copybtn').addEventListener('click', function(){
+    var btn=this, txt=outEl.textContent;
+    function done(){ btn.classList.add('done'); btn.textContent='복사됨 ✓'; setTimeout(function(){btn.classList.remove('done');btn.textContent='선택값 복사';},1600); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done,fallback); }
+    else fallback();
+    function fallback(){ var ta=document.createElement('textarea'); ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); done(); }
+  });
+
+  applyPreset(1);
+})();
+</script>
+</body>
+</html>
