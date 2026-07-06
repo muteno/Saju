@@ -19,14 +19,14 @@
     /* ── 잠금화면 강조(다크 위 코발트 = 밝은 --brand-2 계승 · 글로우 잘 보임) ── */
     --lk-accent:#6b67ff; --lk-accent-rgb:107,103,255;
 
-    /* ── 글래스 튜닝 변수(--t-*) : 프리셋/슬라이더가 실시간으로 바꿈 · 기본값 = 추천 프리셋 ── */
-    --t-blur:26px;        /* backdrop 블러 세기 */
-    --t-alpha:.30;        /* 카드 배경 불투명도(무채색 검정 베이스) */
-    --t-sat:1.4;          /* backdrop 채도(뒤 색을 살릴지) */
-    --t-tint:.05;         /* 코발트 살짝 틴트(0=완전 무채색) */
-    --t-bord:.14;         /* 위쪽 테두리 하이라이트 밝기 */
-    --t-shadow:.45;       /* 카드 그림자 세기 */
-    --t-radius:28px;      /* 카드 모서리 */
+    /* ── 글래스 튜닝 변수(--t-*) : 프리셋/슬라이더가 실시간으로 바꿈 · 기본값 = 운영자 선택값(260706) ── */
+    --t-blur:2px;         /* backdrop 블러 세기 */
+    --t-alpha:.1;         /* 카드 배경 불투명도(무채색 검정 베이스) */
+    --t-sat:1.1;          /* backdrop 채도(뒤 색을 살릴지) */
+    --t-tint:.02;         /* 코발트 살짝 틴트(0=완전 무채색) */
+    --t-bord:.04;         /* 위쪽 테두리 하이라이트 밝기 */
+    --t-shadow:.51;       /* 카드 그림자 세기 */
+    --t-radius:29px;      /* 카드 모서리 */
   }
   *{box-sizing:border-box}
   html,body{margin:0}
@@ -376,9 +376,11 @@
     {k:'--t-radius', label:'모서리',    min:14, max:40, step:1,   unit:'px', keep:false}
   ];
   var PRESETS = [
+    {name:'내 선택', star:true, desc:'네가 슬라이더로 맞춘 값 — 얇고 투명한 미니멀 글래스(그림자로 살짝 띄움)',
+      v:{'--t-blur':'2px','--t-alpha':'.1','--t-sat':'1.1','--t-tint':'.02','--t-bord':'.04','--t-shadow':'.51','--t-radius':'29px'}},
     {name:'기본 (레퍼런스 근사)', star:false, desc:'스크린샷처럼 얇고 뿌연 글래스 — 비교 기준',
       v:{'--t-blur':'12px','--t-alpha':'.22','--t-sat':'1','--t-tint':'0','--t-bord':'.08','--t-shadow':'.3','--t-radius':'22px'}},
-    {name:'무채색 글래스', star:true, desc:'nomute 방식 — 블러+채도 살짝, 위쪽 하이라이트, 깊은 그림자',
+    {name:'무채색 글래스', star:false, desc:'nomute 방식 — 블러+채도 살짝, 위쪽 하이라이트, 깊은 그림자',
       v:{'--t-blur':'26px','--t-alpha':'.30','--t-sat':'1.4','--t-tint':'.05','--t-bord':'.14','--t-shadow':'.45','--t-radius':'28px'}},
     {name:'딥 글래스', star:false, desc:'더 진하고 무거운 프리미엄 감 — 뒤가 거의 안 비침',
       v:{'--t-blur':'34px','--t-alpha':'.5','--t-sat':'1.2','--t-tint':'.03','--t-bord':'.18','--t-shadow':'.6','--t-radius':'30px'}},
@@ -389,7 +391,7 @@
   var presetsEl = document.getElementById('presets');
   var slidersEl = document.getElementById('sliders');
   var outEl = document.getElementById('outcode');
-  var curPreset = 1;
+  var curPreset = 0;
 
   PRESETS.forEach(function(p,idx){
     var b=document.createElement('button'); b.type='button'; b.className='preset'+(idx===curPreset?' on':'');
@@ -452,7 +454,7 @@
     function fallback(){ var ta=document.createElement('textarea'); ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); done(); }
   });
 
-  applyPreset(1);
+  applyPreset(0);
 })();
 </script>
 </body>
