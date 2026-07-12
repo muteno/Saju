@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>꼬미 사주카페 — 대화형 UX 데모 (260712)</title>
+<style>
+  :root{
+    --accent:#302cff; --accent-ink:#7c86ff; --accent-soft:rgba(48,44,255,.18);
+    --ink:#f0f1fa; --muted:#a6aac2; --panel:rgba(16,16,34,.82); --panel-line:rgba(255,255,255,.09);
+    --skin:#f3d9c6; --hair:#3a2e3f; --fs:1;
+    --t:.42s; --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:#0c0d16; color:var(--ink); font-family:"Pretendard",system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    min-height:100vh; display:flex; align-items:center; justify-content:center; padding:18px 10px;
+  }
+  @media (prefers-color-scheme:light){ body{background:#e8e9f2} }
+
+  /* ── 폰 프레임 ── */
+  .stage{width:min(400px,100%);}
+  .app{
+    position:relative; width:100%; height:min(78vh,760px); min-height:600px;
+    border-radius:28px; overflow:hidden; border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 24px 70px rgba(0,0,0,.55);
+    background:linear-gradient(180deg,#171531 0%,#1d1a38 46%,#241f42 100%);
+    display:flex; flex-direction:column; user-select:none;
+  }
+  .app[data-theme="dawn"]{background:linear-gradient(180deg,#232041 0%,#3a2f55 55%,#5a3f63 100%)}
+  .app[data-theme="day"]{background:linear-gradient(180deg,#dfe4f5 0%,#e9e4da 60%,#f2e8da 100%)}
+  .app[data-theme="day"]{--ink:#22243a;--muted:#6b6f88;--panel:rgba(255,255,255,.9);--panel-line:rgba(20,20,60,.12)}
+  @media (max-width:480px){ body{padding:0} .stage{width:100%} .app{height:100vh;height:100dvh;border-radius:0;min-height:100vh} }
+
+  /* ── 배경 소품 (밤 사주카페) ── */
+  .bg{position:absolute;inset:0;pointer-events:none;transition:filter var(--t) var(--ease)}
+  .bg .moonwin{position:absolute;top:7%;right:9%;width:74px;height:96px;border-radius:38px 38px 10px 10px;
+    background:linear-gradient(180deg,#2c2d55,#3d3566);box-shadow:inset 0 0 0 3px rgba(255,255,255,.07)}
+  .bg .moonwin::after{content:"";position:absolute;top:16px;left:18px;width:26px;height:26px;border-radius:50%;
+    background:#ffe9b8;box-shadow:0 0 26px 8px rgba(255,222,150,.35)}
+  .bg .lamp{position:absolute;top:0;left:14%;width:3px;height:64px;background:rgba(255,255,255,.14)}
+  .bg .lamp::after{content:"";position:absolute;top:64px;left:-13px;width:29px;height:20px;border-radius:0 0 14px 14px;
+    background:#e8b34c;box-shadow:0 14px 44px 14px rgba(232,179,76,.28)}
+  .bg .cat{position:absolute;bottom:31%;left:7%;width:44px;height:26px;border-radius:14px 16px 8px 8px;background:#101021;opacity:.85}
+  .bg .cat::before,.bg .cat::after{content:"";position:absolute;top:-7px;border-style:solid;border-width:0 5px 9px 5px;border-color:transparent transparent #101021 transparent}
+  .bg .cat::before{left:5px}.bg .cat::after{left:19px}
+  .bg .glow{position:absolute;inset:auto 0 0 0;height:52%;background:radial-gradient(60% 70% at 50% 100%,rgba(48,44,255,.16),transparent 70%)}
+  .app[data-theme="day"] .bg .moonwin::after{background:#ffd76e}
+  .app[data-theme="day"] .bg .cat{background:#c9bfae}
+  .app[data-theme="day"] .bg .cat::before,.app[data-theme="day"] .bg .cat::after{border-color:transparent transparent #c9bfae transparent}
+
+  /* ── 헤더: 호감도 + 팔자 프로그레스 ── */
+  .hud{position:relative;z-index:12;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:12px 14px 6px}
+  .brandtag{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--muted);white-space:nowrap}
+  .brandtag b{color:var(--accent-ink)}
+  .heart{margin-left:auto}
+  .pillars{order:9;width:100%;display:flex;gap:5px;justify-content:center}
+  .pillars .g{width:22px;height:26px;border-radius:6px;border:1px solid var(--panel-line);
+    display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:800;color:var(--muted);
+    background:rgba(255,255,255,.04);transition:all .5s var(--ease)}
+  .pillars .g.on{background:var(--accent);border-color:transparent;color:#fff;transform:translateY(-2px)}
+  .pillars .g.unk.on{background:rgba(255,255,255,.14);color:var(--muted);transform:none}
+  .heart{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .heart .bar{width:52px;height:6px;border-radius:4px;background:rgba(255,255,255,.1);overflow:hidden}
+  .heart .bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#ff5f8f,#ff8aa8);transition:width .5s var(--ease)}
+  .hud button{background:none;border:1px solid var(--panel-line);color:var(--muted);border-radius:9px;
+    width:30px;height:30px;font-size:14px;cursor:pointer;flex:none}
+
+  /* ── 언니 스탠딩 ── */
+  .unnie{position:relative;z-index:2;flex:1;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;
+    transition:transform var(--t) var(--ease)}
+  .app[data-pos="right"] .unnie{justify-content:flex-end;padding-right:26px}
+  .avatar{position:relative;width:172px;height:238px;transform-origin:bottom center;animation:breathe 4.2s ease-in-out infinite}
+  @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.012)}}
+  .avatar .body{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:150px;height:96px;
+    border-radius:42px 48px 0 0;background:linear-gradient(180deg,#8f86e8,#6f66c8)}
+  .avatar .body::after{content:"";position:absolute;top:8px;right:-7px;width:56px;height:80px;border-radius:30px 40px 0 0;
+    background:linear-gradient(180deg,#a79ef2,#8a80dd);transform:rotate(9deg)} /* 흘러내린 카디건 */
+  .avatar .head{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);width:118px;height:126px}
+  .avatar .hairback{position:absolute;inset:-8px -10px 6px -10px;border-radius:56px 56px 44px 44px;background:var(--hair)}
+  .avatar .bun{position:absolute;top:-22px;right:2px;width:44px;height:38px;border-radius:50%;background:var(--hair)}
+  .avatar .pen{position:absolute;top:-30px;right:-8px;width:44px;height:6px;border-radius:3px;background:#e8b34c;transform:rotate(-32deg)}
+  .avatar .face{position:absolute;top:16px;left:50%;transform:translateX(-50%);width:96px;height:104px;border-radius:46px 46px 40px 40px;background:var(--skin)}
+  .avatar .bangs{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:100px;height:40px;border-radius:48px 48px 20px 26px;background:var(--hair)}
+  .avatar .bangs::after{content:"";position:absolute;top:24px;left:14px;width:16px;height:26px;border-radius:0 0 12px 12px;background:var(--hair)}
+  .avatar .strand{position:absolute;top:20px;right:8px;width:10px;height:58px;border-radius:6px;background:var(--hair);transform:rotate(6deg)}
+  .avatar .eye{position:absolute;top:58px;width:16px;height:12px;border-radius:50% 50% 46% 46%;background:#241d28;transition:all .18s ease}
+  .avatar .eye.l{left:22px}.avatar .eye.r{right:22px}
+  .avatar .blush{position:absolute;top:74px;width:14px;height:7px;border-radius:50%;background:rgba(255,120,140,.5)}
+  .avatar .blush.l{left:14px}.avatar .blush.r{right:14px}
+  .avatar .mouth{position:absolute;top:84px;left:50%;transform:translateX(-50%);width:12px;height:6px;border-radius:0 0 10px 10px;background:#b5586a;transition:all .18s ease}
+  .avatar .earring{position:absolute;top:70px;left:6px;width:7px;height:7px;border-radius:50%;background:var(--accent-ink)}
+  .avatar .sweat{position:absolute;top:34px;right:2px;width:11px;height:15px;border-radius:50% 50% 60% 60%;background:#9fd4ff;opacity:0;transform:translateY(-4px)}
+  /* 표정 */
+  .avatar[data-exp="tsun"] .eye{height:4px;border-radius:3px}
+  .avatar[data-exp="tsun"] .mouth{width:14px;height:4px;border-radius:3px}
+  .avatar[data-exp="smile"] .eye{height:7px;border-radius:0 0 12px 12px;background:transparent;border-bottom:3.5px solid #241d28}
+  .avatar[data-exp="smile"] .mouth{width:16px;height:9px}
+  .avatar[data-exp="surprise"] .eye{height:15px;width:15px;border-radius:50%}
+  .avatar[data-exp="surprise"] .mouth{width:10px;height:10px;border-radius:50%}
+  .avatar[data-exp="panic"] .eye{height:11px;border-radius:2px;transform:rotate(14deg)}
+  .avatar[data-exp="panic"] .eye.r{transform:rotate(-14deg)}
+  .avatar[data-exp="panic"] .sweat{opacity:1;transform:translateY(0);transition:all .3s ease}
+  .avatar .tag{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);white-space:nowrap;
+    font-size:10px;color:var(--muted);background:var(--panel);border:1px dashed var(--panel-line);border-radius:8px;padding:3px 8px}
+
+  /* ── 대화 박스 ── */
+  .talk{position:relative;z-index:6;padding:0 12px 24px}
+  .dialog{
+    position:relative;background:var(--panel);backdrop-filter:blur(10px);border:1px solid var(--panel-line);
+    border-radius:18px;padding:18px 16px 14px;min-height:104px;cursor:pointer;
+    box-shadow:0 10px 34px rgba(0,0,0,.35);
+    animation:rise var(--t) var(--ease);
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .nametag{position:absolute;top:-12px;left:14px;background:var(--accent);color:#fff;font-size:12px;font-weight:800;
+    border-radius:8px;padding:4px 11px;letter-spacing:.02em}
+  .dtext{font-size:calc(16px*var(--fs));line-height:1.66;min-height:54px;word-break:keep-all}
+  .dtext .caret{display:inline-block;width:2px;height:1em;background:var(--accent-ink);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .adv{position:absolute;right:14px;bottom:9px;font-size:12px;color:var(--accent-ink);opacity:0;animation:bob 1.1s ease-in-out infinite}
+  .dialog.done .adv{opacity:1}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+  /* 채팅 버블 변형 */
+  .app[data-bubble="chat"] .dialog{border-radius:4px 20px 20px 20px;max-width:88%;}
+  .app[data-bubble="chat"] .nametag{position:static;display:inline-block;margin-bottom:6px;background:none;color:var(--accent-ink);padding:0;font-size:12.5px}
+
+  /* ── 선택지 ── */
+  .choices{display:flex;flex-direction:column;gap:9px;margin-top:10px}
+  .choices button{
+    appearance:none;border:1.5px solid var(--panel-line);background:var(--panel);color:var(--ink);
+    font-family:inherit;font-size:calc(15.5px*var(--fs));font-weight:700;text-align:left;
+    border-radius:14px;padding:14px 16px;cursor:pointer;
+    transition:transform .12s ease,border-color .12s ease,background .12s ease;
+    animation:rise .5s var(--ease) backwards;
+  }
+  .choices button:nth-child(2){animation-delay:.09s}
+  .choices button:nth-child(3){animation-delay:.18s}
+  .choices button:active{transform:scale(.97)}
+  .choices button:hover{border-color:var(--accent-ink)}
+  .choices button b{color:var(--accent-ink);margin-right:8px}
+
+  /* ── 토스식 입력 패널 ── */
+  .panel{margin-top:10px;background:var(--panel);border:1px solid var(--panel-line);border-radius:18px;padding:16px;
+    animation:rise var(--t) var(--ease)}
+  .panel .lbl{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.06em;margin-bottom:8px}
+  .panel input[type="date"],.panel input[type="time"],.panel input[type="text"]{
+    width:100%;appearance:none;background:rgba(255,255,255,.06);border:1.5px solid var(--panel-line);color:var(--ink);
+    border-radius:12px;padding:13px 14px;font-family:inherit;font-size:calc(17px*var(--fs));font-weight:700;
+    font-variant-numeric:tabular-nums;outline:none}
+  .panel input:focus{border-color:var(--accent-ink)}
+  .app[data-theme="day"] .panel input{background:rgba(20,20,60,.05)}
+  .chips{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .chips .chip{border:1px solid var(--panel-line);background:none;color:var(--muted);border-radius:999px;
+    padding:7px 13px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer}
+  .chips .chip.on{border-color:var(--accent-ink);color:var(--accent-ink);background:var(--accent-soft)}
+  .cta{width:100%;margin-top:12px;appearance:none;border:0;border-radius:14px;padding:15px;
+    background:var(--accent);color:#fff;font-family:inherit;font-size:calc(16.5px*var(--fs));font-weight:800;cursor:pointer;
+    transition:filter .15s,transform .1s}
+  .cta:active{transform:scale(.98)}
+  .cta:disabled{opacity:.4}
+
+  /* ── 팔자 플립 ── */
+  .paljaStage{position:absolute;inset:0;z-index:7;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+    background:rgba(10,10,24,.66);backdrop-filter:blur(6px)}
+  .paljaStage.show{display:flex}
+  .paljaStage .cap{font-size:14px;color:var(--muted);font-weight:700;letter-spacing:.14em}
+  .pgrid{display:grid;grid-template-columns:repeat(4,64px);gap:12px}
+  .pcol{display:flex;flex-direction:column;gap:10px;align-items:center}
+  .pcol .pl{font-size:11px;color:var(--muted);letter-spacing:.1em}
+  .card3d{width:64px;height:84px;perspective:400px}
+  .cardIn{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s var(--ease)}
+  .card3d.flip .cardIn{transform:rotateY(180deg)}
+  .cf,.cb{position:absolute;inset:0;border-radius:12px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .cf{background:linear-gradient(150deg,#2c2a55,#1c1b3a);border:1px solid rgba(255,255,255,.14)}
+  .cf::after{content:"卦";font-size:20px;color:rgba(255,255,255,.22)}
+  .cb{transform:rotateY(180deg);background:linear-gradient(160deg,#4b46d8,#302cff);color:#fff;border:1px solid rgba(255,255,255,.2)}
+  .cb .han{font-size:27px;font-weight:800;line-height:1.1}
+  .cb .ko{font-size:11px;opacity:.85;margin-top:2px}
+  .cb.unk{background:rgba(255,255,255,.1);color:var(--muted)}
+
+  /* ── 결과 카드 ── */
+  .resultWrap{position:absolute;inset:0;z-index:8;display:none;overflow-y:auto;padding:52px 16px 20px;background:rgba(10,10,24,.5);backdrop-filter:blur(4px)}
+  .resultWrap.show{display:block}
+  .rcard{background:var(--panel);border:1px solid var(--panel-line);border-radius:20px;padding:20px 18px;animation:rise .5s var(--ease);
+    box-shadow:0 18px 50px rgba(0,0,0,.4)}
+  .rcard .eyebrow{font-size:11px;letter-spacing:.16em;color:var(--accent-ink);font-weight:800;margin-bottom:6px}
+  .rcard h2{margin:0 0 3px;font-size:21px;letter-spacing:-.01em}
+  .rcard .sub{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+  .rglyphs{display:flex;gap:6px;margin:10px 0 16px}
+  .rglyphs span{flex:1;text-align:center;background:var(--accent-soft);border:1px solid var(--panel-line);
+    border-radius:10px;padding:9px 0;font-size:17px;font-weight:800;color:var(--accent-ink)}
+  .rglyphs span.unk{background:rgba(255,255,255,.05);color:var(--muted)}
+  .ohang{display:flex;flex-direction:column;gap:7px;margin:8px 0 14px}
+  .ohang .row{display:flex;align-items:center;gap:10px;font-size:13px}
+  .ohang .k{width:44px;color:var(--muted);font-weight:700}
+  .ohang .track{flex:1;height:9px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
+  .ohang .track i{display:block;height:100%;width:0;border-radius:6px;background:var(--accent);transition:width .8s var(--ease)}
+  .ohang .v{width:14px;text-align:right;font-variant-numeric:tabular-nums;color:var(--muted);font-size:12px}
+  .ohang .row.zero .k{color:#ff8aa8}
+  .kwd{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+  .kwd span{font-size:12px;font-weight:800;border-radius:999px;padding:5px 11px;background:var(--accent-soft);color:var(--accent-ink)}
+  .rsay{border-left:3px solid var(--accent);padding:2px 0 2px 12px;font-size:14.5px;line-height:1.7;margin-bottom:16px}
+  .rsay .who{font-size:11.5px;color:var(--muted);margin-top:5px}
+  .rbtns{display:flex;gap:9px}
+  .rbtns .cta{margin-top:0}
+  .rbtns .ghost{flex:1;appearance:none;border:1.5px solid var(--panel-line);background:none;color:var(--ink);
+    border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;padding:14px}
+
+  /* ── 설정 드로어 · 각주 ── */
+  .drawer{position:absolute;inset:0;z-index:20;display:none;background:rgba(8,8,20,.55)}
+  .drawer.show{display:block}
+  .drawer .sheet{position:absolute;left:0;right:0;bottom:0;max-height:78%;overflow-y:auto;background:#15162b;
+    border-radius:22px 22px 0 0;padding:18px 18px 26px;border-top:1px solid var(--panel-line);animation:rise .35s var(--ease)}
+  .app[data-theme="day"] .drawer .sheet{background:#f2f3fa;color:#22243a}
+  .sheet h3{margin:0 0 4px;font-size:16px}
+  .sheet .hint{font-size:12px;color:var(--muted);margin-bottom:14px}
+  .sheet h4{margin:18px 0 8px;font-size:12px;letter-spacing:.1em;color:var(--muted)}
+  .presetRow{display:flex;gap:8px}
+  .presetRow button{flex:1;border:1.5px solid var(--panel-line);background:none;color:inherit;border-radius:12px;
+    padding:10px 6px;font-family:inherit;font-size:12.5px;font-weight:800;cursor:pointer;line-height:1.35}
+  .presetRow button.on{border-color:var(--accent-ink);color:var(--accent-ink);background:var(--accent-soft)}
+  .ctl{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:13.5px}
+  .ctl .name{width:104px;color:var(--muted);font-weight:700;flex:none}
+  .ctl input[type="range"]{flex:1;accent-color:var(--accent)}
+  .ctl .val{width:56px;text-align:right;font-variant-numeric:tabular-nums;color:var(--accent-ink);font-weight:700;font-size:12.5px}
+  .seg{display:flex;flex:1;border:1px solid var(--panel-line);border-radius:10px;overflow:hidden}
+  .seg button{flex:1;border:0;background:none;color:var(--muted);font-family:inherit;font-size:12.5px;font-weight:700;padding:8px 4px;cursor:pointer}
+  .seg button.on{background:var(--accent);color:#fff}
+  .sheet .close{width:100%;margin-top:16px}
+  .foot{position:absolute;left:0;right:0;bottom:0;z-index:4;text-align:center;font-size:10px;color:rgba(160,164,190,.55);padding:4px}
+
+  .modal{position:absolute;inset:0;z-index:22;display:none;background:rgba(8,8,20,.6);align-items:center;justify-content:center;padding:22px}
+  .modal.show{display:flex}
+  .modal .box{background:#15162b;border:1px solid var(--panel-line);border-radius:18px;padding:20px;max-height:80%;overflow-y:auto;font-size:13px;line-height:1.7}
+  .app[data-theme="day"] .modal .box{background:#f2f3fa;color:#22243a}
+  .modal h3{margin:0 0 10px;font-size:15px}
+  .modal li{margin:6px 0}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="app" id="app" data-theme="night" data-bubble="box" data-pos="center">
+
+    <div class="bg"><div class="glow"></div><div class="moonwin"></div><div class="lamp"></div><div class="cat"></div></div>
+
+    <div class="hud">
+      <span class="brandtag"><b>꼬미 사주카페</b> · DEMO</span>
+      <span class="heart" id="heartBox">🖤 <span class="bar"><i id="heartFill"></i></span><span id="heartVal">0</span></span>
+      <div class="pillars" id="pillars"></div>
+      <button id="btnInfo" title="재현 한계 각주">ⓘ</button>
+      <button id="btnSet" title="연출 설정">⚙</button>
+    </div>
+
+    <div class="unnie">
+      <div class="avatar" id="avatar" data-exp="tsun">
+        <div class="body"></div>
+        <div class="head">
+          <div class="hairback"></div><div class="bun"></div><div class="pen"></div>
+          <div class="face">
+            <div class="bangs"></div><div class="strand"></div>
+            <span class="eye l"></span><span class="eye r"></span>
+            <span class="blush l"></span><span class="blush r"></span>
+            <span class="mouth"></span><span class="earring"></span><span class="sweat"></span>
+          </div>
+        </div>
+        <span class="tag">🖼 웹툰 일러스트 자리 — 드래프트 §4 프롬프트</span>
+      </div>
+    </div>
+
+    <div class="talk">
+      <div class="dialog" id="dialog">
+        <span class="nametag" id="nametag">꼬미</span>
+        <div class="dtext" id="dtext"></div>
+        <span class="adv">▼ 탭</span>
+      </div>
+      <div class="choices" id="choices" style="display:none"></div>
+      <div class="panel" id="panel" style="display:none"></div>
+    </div>
+
+    <div class="paljaStage" id="paljaStage">
+      <div class="cap">만 세 력</div>
+      <div class="pgrid" id="pgrid"></div>
+      <div class="cap" id="paljaMsg" style="letter-spacing:0;font-weight:600"></div>
+    </div>
+
+    <div class="resultWrap" id="resultWrap"><div class="rcard" id="rcard"></div></div>
+
+    <div class="drawer" id="drawer"><div class="sheet" id="sheet"></div></div>
+    <div class="modal" id="modal"><div class="box">
+      <h3>재현 한계 각주 (정직 모드)</h3>
+      <ul>
+        <li><b>만세력 = 데모용 고정값.</b> 생일을 바꿔도 팔자가 같음 — 실앱은 만세력 계산 모듈(라이브러리/절기표) 필요. 데모 팔자는 대사와 정합(寅=역마 · 子·午=도화 · 金 0=금약)하도록 설계.</li>
+        <li><b>일러스트 = CSS 플레이스홀더.</b> 확정 웹툰 이미지(드래프트 §4 프롬프트)로 교체하는 자리. 표정 5종 슬롯(기본/츤/놀람/미소/허당)만 먼저 배선해 둠.</li>
+        <li><b>대사 = 무-LLM 고정 스크립트.</b> 실앱 = 템플릿 사다리 + LLM 승격 레이어(드래프트 §3). 선택지 분기 구조는 실제 설계와 동일.</li>
+        <li><b>저장/공유 버튼 = 연출만.</b> 이미지 내보내기는 실앱 구현 항목.</li>
+        <li><b>BGM·햅틱 없음.</b> 햅틱은 시각 펄스로 흉내(설정).</li>
+        <li><b>옵션 규모 축소 사유:</b> 확립 기틀이 없는 신규 앱 컨셉 데모 = 규약상 '단순 대상' 취급. 색은 폐쇄 팔레트 3종만(자유 hex 없음).</li>
+        <li><b>?fast=1</b> 파라미터 = 검증용 고속 모드(타이핑 즉시·자동 진행).</li>
+      </ul>
+      <button class="cta" id="modalClose">닫기</button>
+    </div></div>
+
+    <div class="foot">EXIT : MARU 인접 컨셉 · 260712 · 만세력은 데모용</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var FAST = /[?&]fast=1/.test(location.search);
+
+  /* ── 설정 상태 ── */
+  var SET = {
+    typeMs: FAST?0:34, autoAdv: FAST?1:0, autoDelay:1100, transMs: FAST?120:420,
+    tsun:2, clumsy:1, theme:"night", accent:"cobalt", fs:1, bubble:"box", pos:"center",
+    heartOn:1, pulse:1
+  };
+  var ACCENTS = { cobalt:["#302cff","#7c86ff"], vermil:["#e34f2f","#ff9a7a"], gold:["#b98a1f","#e8c25c"] };
+
+  /* ── 게임 상태 ── */
+  var G = { i:0, name:"", timeUnknown:false, heart:0, seen:{} };
+
+  /* ── 데모 팔자 (대사와 정합: 寅 역마 · 子/午 도화 · 金0 금약) ── */
+  var PILLARS = [
+    {pl:"년주", top:{han:"甲",ko:"갑",oh:"목"}, bot:{han:"子",ko:"자",oh:"수"}},
+    {pl:"월주", top:{han:"丙",ko:"병",oh:"화"}, bot:{han:"寅",ko:"인",oh:"목"}},
+    {pl:"일주", top:{han:"戊",ko:"무",oh:"토"}, bot:{han:"午",ko:"오",oh:"화"}},
+    {pl:"시주", top:{han:"壬",ko:"임",oh:"수"}, bot:{han:"戌",ko:"술",oh:"토"}}
+  ];
+
+  /* ── 시나리오 ──
+     say: 대사(타이핑) · input: 토스식 입력 · choice: 선택지 · palja: 만세력 연출 · result
+     라인 변형: t(기본) t1(츤1=순한맛) t3(츤3=매운맛) · gate:'clumsy1|2' = 허당 빈도 게이트 */
+  var SC = [
+    {id:"intro", type:"say", exp:"tsun", lines:[
+      {t:"…어. 왔네."},
+      {t:"복채? 됐어. 첫 손님은 서비스야.", t3:"복채? 첫 손님이니까 봐준다. 다음엔 두 배 받아."},
+      {t:"앉아 봐. 생일부터 불러."}]},
+    {id:"in_birth", type:"input", kind:"date", exp:"neutral",
+      ask:"생년월일. 양력으로.", sub:"틀리게 부르면 팔자도 틀리게 나와.", cta:"이 날이야", demo:"1995-03-15"},
+    {id:"in_time", type:"input", kind:"time", exp:"neutral",
+      ask:"태어난 시간은?", sub:"모르면 모른다고 해. …혼 안 내.", cta:"다음", demo:"08:30"},
+    {id:"in_name", type:"input", kind:"name", exp:"neutral",
+      ask:"뭐라고 부를까?", sub:"본명 아니어도 돼.", cta:"이렇게 불러", demo:"탈주닌자"},
+    {id:"calc", type:"palja"},
+    {id:"oops", type:"say", exp:"panic", gate:"clumsy1", lines:[
+      {t:"…어라. 잠깐."},
+      {t:"아, 이거 내 사주다. 미안. 다시 폈어."}]},
+    {id:"cold", type:"say", exp:"neutral", lines:[
+      {t:"{name}. 너 말이야—"},
+      {t:"한 군데 진득하게 못 붙어 있지. 지금 있는 데… 그만두고 싶잖아."}]},
+    {id:"q1", type:"choice", opts:[
+      {label:"헐, 어떻게 알았어?", next:"hit", heart:10},
+      {label:"…아닌데?", next:"miss", heart:4}]},
+    {id:"hit", type:"say", exp:"smile", lines:[
+      {t:"사주에 대문짝만하게 써 있거든. 역마(驛馬) — 한군데 못 붙는 기운."},
+      {t:"흠 아니야. 그냥 네 기질이야."}], next:"consol"},
+    {id:"miss", type:"say", exp:"tsun", lines:[
+      {t:"…그래? 흠.", t3:"…그래? 그럼 내기할까. 복채 두 배."},
+      {t:"그럼 곧 그렇게 될 거야. 인(寅)이 움직이는 해거든."}], next:"consol"},
+    {id:"consol", type:"say", exp:"neutral", lines:[
+      {t:"버티는 게 미덕이라는 판이 이상한 거지, 네가 약한 게 아니야."},
+      {t:"사주에도 그렇게 나와. 진짜야."}]},
+    {id:"q2", type:"choice", ask:"더 볼래? 뭐가 궁금한데.", opts:[
+      {label:"돈", next:"money", heart:6},
+      {label:"연애", next:"love", heart:6},
+      {label:"오늘은 됐어", next:"endpre", heart:2}]},
+    {id:"money", type:"say", exp:"neutral", lines:[
+      {t:"올해 금(金)이 얇아. 이따 표 보여줄게 — 아예 비었어."},
+      {t:"버는 건 되는데 새는 게 문제야. 큰 거 벌이지 말고, 지켜."},
+      {t:"…나도 어제 택시 두 번 탔다. 말을 말자.", gate:"clumsy2"}], next:"endpre"},
+    {id:"love", type:"say", exp:"smile", lines:[
+      {t:"오, 이건 좀 되네. 도화가 봄에 붙어 — 3월에서 5월."},
+      {t:"올 사람은 와. 흥, 좋다고 뜨지 말고 너나 잘 챙겨."}], next:"endpre"},
+    {id:"endpre", type:"say", exp:"tsun", lines:[
+      {t:"오늘은 여기까지."},
+      {t:"간다고? …또 와. 딱히 기다린단 건 아니고.", t1:"또 와. 기다릴게. …아니, 딱히 그런 건 아니고."}], next:"result"},
+    {id:"result", type:"result"}
+  ];
+  var IDX = {}; SC.forEach(function(s,i){ IDX[s.id]=i; });
+
+  /* ── DOM ── */
+  var $ = function(id){ return document.getElementById(id); };
+  var app=$("app"), dialog=$("dialog"), dtext=$("dtext"), choices=$("choices"), panel=$("panel"),
+      avatar=$("avatar"), pillarsEl=$("pillars"), heartFill=$("heartFill"), heartVal=$("heartVal"),
+      paljaStage=$("paljaStage"), pgrid=$("pgrid"), paljaMsg=$("paljaMsg"),
+      resultWrap=$("resultWrap"), rcard=$("rcard");
+
+  document.body.dataset.scene = "";
+
+  /* 헤더 팔자 슬롯 8개 */
+  var slotEls=[];
+  (function(){ for(var i=0;i<8;i++){ var d=document.createElement("div"); d.className="g"; d.textContent="·"; pillarsEl.appendChild(d); slotEls.push(d);} })();
+
+  function applySet(){
+    var r=document.documentElement.style;
+    r.setProperty("--accent",ACCENTS[SET.accent][0]);
+    r.setProperty("--accent-ink",ACCENTS[SET.accent][1]);
+    r.setProperty("--accent-soft",ACCENTS[SET.accent][0]+"2e");
+    r.setProperty("--fs",SET.fs);
+    r.setProperty("--t",(SET.transMs/1000)+"s");
+    app.dataset.theme=SET.theme; app.dataset.bubble=SET.bubble; app.dataset.pos=SET.pos;
+    $("heartBox").style.display = SET.heartOn? "flex":"none";
+  }
+
+  function pulse(){ if(!SET.pulse) return; app.animate([{transform:"scale(1)"},{transform:"scale(.995)"},{transform:"scale(1)"}],{duration:130}); }
+  function heart(n){ G.heart=Math.min(100,G.heart+n); heartFill.style.width=G.heart+"%"; heartVal.textContent=G.heart; }
+
+  function pickLine(L){
+    if(SET.tsun>=3 && L.t3) return L.t3;
+    if(SET.tsun<=1 && L.t1) return L.t1;
+    return L.t;
+  }
+  function fmt(s){ return s.replace("{name}", G.name||"손님"); }
+
+  /* ── 타이핑 엔진 ── */
+  var typing={timer:null,full:"",pos:0,active:false,onDone:null};
+  function typeLine(text,onDone){
+    clearInterval(typing.timer);
+    typing.full=text; typing.pos=0; typing.active=true; typing.onDone=onDone||null;
+    dialog.classList.remove("done");
+    if(SET.typeMs<=0){ finishType(); return; }
+    render();
+    typing.timer=setInterval(function(){
+      typing.pos++;
+      if(typing.pos>=typing.full.length){ finishType(); } else render();
+    },SET.typeMs);
+    function render(){ dtext.innerHTML=esc(typing.full.slice(0,typing.pos))+'<span class="caret"></span>'; }
+  }
+  function finishType(){
+    clearInterval(typing.timer); typing.pos=typing.full.length; typing.active=false;
+    dtext.innerHTML=esc(typing.full); dialog.classList.add("done");
+    if(typing.onDone) typing.onDone();
+  }
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+  /* ── say 진행 ── */
+  var say={lines:[],li:0,sc:null};
+  function runSay(sc){
+    say.sc=sc;
+    say.lines=sc.lines.filter(function(L){ return !(L.gate==="clumsy2" && SET.clumsy<2); });
+    say.li=0;
+    avatar.dataset.exp=sc.exp||"neutral";
+    showDialog(); nextLine();
+  }
+  function nextLine(){
+    if(say.li>=say.lines.length){ advanceScene(); return; }
+    var L=say.lines[say.li++];
+    typeLine(fmt(pickLine(L)),function(){
+      if(SET.autoAdv){ setTimeout(function(){ if(!typing.active && document.body.dataset.scene===say.sc.id) nextLine(); }, FAST?220:SET.autoDelay); }
+    });
+  }
+  dialog.addEventListener("click",function(){
+    var sc=SC[G.i];
+    if(sc.type!=="say") return;
+    pulse();
+    if(typing.active){ finishType(); return; }
+    nextLine();
+  });
+
+  function showDialog(){ dialog.style.display="block"; choices.style.display="none"; panel.style.display="none"; }
+
+  /* ── choice ── */
+  function runChoice(sc){
+    avatar.dataset.exp="neutral";
+    showDialog();
+    dtext.innerHTML=esc(sc.ask||typing.full||"…"); dialog.classList.remove("done");
+    choices.innerHTML=""; choices.style.display="flex";
+    sc.opts.forEach(function(o,k){
+      var b=document.createElement("button");
+      b.innerHTML="<b>"+(k+1)+"</b>"+esc(o.label);
+      b.addEventListener("click",function(){ pulse(); heart(o.heart||0); go(o.next); });
+      choices.appendChild(b);
+    });
+  }
+
+  /* ── input (토스식) ── */
+  function runInput(sc){
+    avatar.dataset.exp=sc.exp||"neutral";
+    showDialog();
+    typeLine(fmt(sc.ask)+" "+(sc.sub? "…"+sc.sub:""),null);
+    panel.innerHTML=""; panel.style.display="block";
+    var lbl=document.createElement("div"); lbl.className="lbl";
+    lbl.textContent = sc.kind==="date"?"생년월일 (양력)": sc.kind==="time"?"태어난 시간":"호칭";
+    panel.appendChild(lbl);
+    var input=document.createElement("input");
+    input.type = sc.kind==="date"?"date": sc.kind==="time"?"time":"text";
+    if(sc.kind==="name"){ input.placeholder="예: 탈주닌자"; input.maxLength=10; }
+    panel.appendChild(input);
+
+    var chips=document.createElement("div"); chips.className="chips";
+    var demoChip=document.createElement("button"); demoChip.type="button"; demoChip.className="chip"; demoChip.id="demoChip";
+    demoChip.textContent="데모 값으로 ✨";
+    demoChip.addEventListener("click",function(){ input.value=sc.demo; unk=false; if(unkChip) unkChip.classList.remove("on"); sync(); });
+    chips.appendChild(demoChip);
+    var unk=false, unkChip=null;
+    if(sc.kind==="time"){
+      unkChip=document.createElement("button"); unkChip.type="button"; unkChip.className="chip"; unkChip.id="unkChip";
+      unkChip.textContent="몰라 (시주 미상)";
+      unkChip.addEventListener("click",function(){ unk=!unk; unkChip.classList.toggle("on",unk); input.disabled=unk; sync(); });
+      chips.appendChild(unkChip);
+    }
+    panel.appendChild(chips);
+
+    var cta=document.createElement("button"); cta.className="cta"; cta.id="ctaBtn"; cta.textContent=sc.cta; cta.disabled=true;
+    panel.appendChild(cta);
+    function sync(){ cta.disabled = !(unk || input.value); }
+    input.addEventListener("input",sync);
+    cta.addEventListener("click",function(){
+      pulse();
+      if(sc.kind==="name") G.name=(input.value||"손님").trim();
+      if(sc.kind==="time") G.timeUnknown=unk;
+      advanceScene();
+    });
+  }
+
+  /* ── palja 연출 ── */
+  function runPalja(){
+    dialog.style.display="none"; choices.style.display="none"; panel.style.display="none";
+    paljaStage.classList.add("show"); paljaMsg.textContent="…펴 볼게.";
+    pgrid.innerHTML=""; var cards=[];
+    PILLARS.forEach(function(p,ci){
+      var col=document.createElement("div"); col.className="pcol";
+      var pl=document.createElement("div"); pl.className="pl"; pl.textContent=p.pl; col.appendChild(pl);
+      [p.top,p.bot].forEach(function(gl){
+        var unk = G.timeUnknown && ci===3;
+        var c3=document.createElement("div"); c3.className="card3d";
+        c3.innerHTML='<div class="cardIn"><div class="cf"></div><div class="cb'+(unk?" unk":"")+'">'+
+          '<span class="han">'+(unk?"?":gl.han)+'</span><span class="ko">'+(unk?"미상":gl.ko+"·"+gl.oh)+"</span></div></div>";
+        col.appendChild(c3); cards.push({el:c3,gl:gl,unk:unk});
+      });
+      pgrid.appendChild(col);
+    });
+    var step=FAST?90:340;
+    cards.forEach(function(c,k){
+      setTimeout(function(){
+        c.el.classList.add("flip");
+        slotEls[k].textContent = c.unk?"?":c.gl.ko;
+        slotEls[k].classList.add("on"); if(c.unk) slotEls[k].classList.add("unk");
+      }, 350+k*step);
+    });
+    setTimeout(function(){ paljaMsg.textContent="여덟 글자, 다 나왔다."; }, 350+cards.length*step+200);
+    setTimeout(function(){ paljaStage.classList.remove("show"); advanceScene(); }, 350+cards.length*step+(FAST?350:1100));
+  }
+
+  /* ── result ── */
+  function runResult(){
+    dialog.style.display="none"; choices.style.display="none"; panel.style.display="none";
+    avatar.dataset.exp="smile";
+    var counts={"목":0,"화":0,"토":0,"금":0,"수":0};
+    PILLARS.forEach(function(p,ci){
+      if(G.timeUnknown && ci===3) return;
+      counts[p.top.oh]++; counts[p.bot.oh]++;
+    });
+    var total=G.timeUnknown?6:8;
+    var glyphs=PILLARS.map(function(p,ci){
+      var unk=G.timeUnknown&&ci===3;
+      return '<span class="'+(unk?"unk":"")+'">'+(unk?"?":p.top.ko)+"</span>"+
+             '<span class="'+(unk?"unk":"")+'">'+(unk?"?":p.bot.ko)+"</span>";
+    }).join("");
+    var bars=Object.keys(counts).map(function(k){
+      var v=counts[k], pct=Math.round(v/total*100);
+      return '<div class="row'+(v===0?" zero":"")+'"><span class="k">'+k+(v===0?" ⚠":"")+'</span><span class="track"><i data-w="'+pct+'"></i></span><span class="v">'+v+"</span></div>";
+    }).join("");
+    var lastSay = G.heart>=20
+      ? "…오늘 좀 잘 통했다? 아니, 딱히 그런 건 아니고. — 잘 살아라. 못 살겠으면 또 오고."
+      : "복채는 마음만 받을게. …다음엔 진짜 받는다.";
+    rcard.innerHTML =
+      '<div class="eyebrow">KKOMI SAJU · 오늘의 판</div>'+
+      "<h2>"+esc(G.name||"손님")+"의 여덟 글자</h2>"+
+      '<div class="sub">데모 만세력 · 호감도 '+G.heart+"%"+(G.timeUnknown?" · 시주 미상":"")+"</div>"+
+      '<div class="rglyphs">'+glyphs+"</div>"+
+      '<div class="ohang">'+bars+"</div>"+
+      '<div class="kwd"><span>역마 — 떠나는 기질</span><span>도화 — 봄에 인연</span><span>금약 — 지갑 단속</span></div>'+
+      '<div class="rsay">"버티는 게 미덕이라는 판이 이상한 거지, 네가 약한 게 아니야."<div class="who">— 꼬미. '+esc(lastSay)+'</div></div>'+
+      '<div class="rbtns"><button class="ghost" id="btnRestart">처음부터</button><button class="cta" id="btnShare" style="flex:1.4">카드 저장 (데모)</button></div>';
+    resultWrap.classList.add("show");
+    requestAnimationFrame(function(){
+      Array.prototype.forEach.call(rcard.querySelectorAll(".track i"),function(i){ i.style.width=i.dataset.w+"%"; });
+    });
+    $("btnRestart").addEventListener("click",function(){ location.href=location.pathname+location.search; });
+    $("btnShare").addEventListener("click",function(){ this.textContent="실앱에서 이미지로 저장돼 ✓"; });
+  }
+
+  /* ── 씬 러너 ── */
+  function go(idOrNext){
+    var i = typeof idOrNext==="number"? idOrNext : IDX[idOrNext];
+    G.i=i; var sc=SC[i];
+    /* 게이트: 허당 빈도 */
+    if(sc.gate==="clumsy1" && SET.clumsy<1){ return go(i+1); }
+    document.body.dataset.scene=sc.id;
+    if(sc.type==="say") runSay(sc);
+    else if(sc.type==="input") runInput(sc);
+    else if(sc.type==="choice") runChoice(sc);
+    else if(sc.type==="palja") runPalja();
+    else if(sc.type==="result") runResult();
+  }
+  function advanceScene(){
+    var sc=SC[G.i];
+    if(sc.next){ go(sc.next); } else { go(G.i+1); }
+  }
+
+  /* ── 설정 드로어 ── */
+  var PRESETS={
+    concept:{label:"현행 컨셉 ★",set:{typeMs:34,autoAdv:0,transMs:420,tsun:2,clumsy:1,theme:"night",accent:"cobalt",fs:1,bubble:"box",pos:"center",heartOn:1,pulse:1}},
+    galge:{label:"미연시 몰입",set:{typeMs:46,autoAdv:0,transMs:560,tsun:3,clumsy:2,theme:"night",accent:"cobalt",fs:1.1,bubble:"box",pos:"center",heartOn:1,pulse:1}},
+    toss:{label:"토스 미니멀",set:{typeMs:14,autoAdv:1,transMs:260,tsun:1,clumsy:0,theme:"day",accent:"cobalt",fs:1,bubble:"chat",pos:"right",heartOn:0,pulse:0}}
+  };
+  function buildSheet(){
+    var sh=$("sheet"); sh.innerHTML="<h3>연출 설정</h3><div class='hint'>튜닝 축은 컨셉 데모 범위로 축소(각주 ⓘ 참고) · 색 = 폐쇄 팔레트만</div>";
+    var pr=document.createElement("div"); pr.className="presetRow";
+    Object.keys(PRESETS).forEach(function(k){
+      var b=document.createElement("button"); b.textContent=PRESETS[k].label; b.dataset.k=k;
+      if(k==="concept") b.classList.add("on");
+      b.addEventListener("click",function(){
+        Object.assign(SET,PRESETS[k].set); applySet(); buildSheet();
+        Array.prototype.forEach.call(pr.children,function(x){x.classList.toggle("on",x.dataset.k===k);});
+      });
+      pr.appendChild(b);
+    });
+    sh.appendChild(pr);
+    function h4(t){ var e=document.createElement("h4"); e.textContent=t; sh.appendChild(e); }
+    function range(name,key,min,max,stp,unit){
+      var w=document.createElement("div"); w.className="ctl";
+      w.innerHTML="<span class='name'>"+name+"</span>";
+      var r=document.createElement("input"); r.type="range"; r.min=min; r.max=max; r.step=stp; r.value=SET[key];
+      var v=document.createElement("span"); v.className="val"; v.textContent=SET[key]+unit;
+      r.addEventListener("input",function(){ SET[key]=+r.value; v.textContent=r.value+unit; applySet(); });
+      w.appendChild(r); w.appendChild(v); sh.appendChild(w);
+    }
+    function seg(name,key,items){
+      var w=document.createElement("div"); w.className="ctl";
+      w.innerHTML="<span class='name'>"+name+"</span>";
+      var s=document.createElement("div"); s.className="seg";
+      items.forEach(function(it){
+        var b=document.createElement("button"); b.textContent=it.l;
+        if(String(SET[key])===String(it.v)) b.classList.add("on");
+        b.addEventListener("click",function(){
+          SET[key]=it.v; applySet();
+          Array.prototype.forEach.call(s.children,function(x){x.classList.remove("on");}); b.classList.add("on");
+        });
+        s.appendChild(b);
+      });
+      w.appendChild(s); sh.appendChild(w);
+    }
+    h4("연출");
+    range("타이핑 속도","typeMs",0,80,2,"ms");
+    seg("자동 진행","autoAdv",[{l:"수동 탭",v:0},{l:"자동",v:1}]);
+    range("전환 속도","transMs",120,700,20,"ms");
+    seg("츤 레벨","tsun",[{l:"순한맛",v:1},{l:"기본",v:2},{l:"매운맛",v:3}]);
+    seg("허당 빈도","clumsy",[{l:"끔",v:0},{l:"가끔",v:1},{l:"자주",v:2}]);
+    h4("레이아웃");
+    seg("말풍선","bubble",[{l:"미연시 박스",v:"box"},{l:"채팅 버블",v:"chat"}]);
+    seg("언니 위치","pos",[{l:"중앙",v:"center"},{l:"우측",v:"right"}]);
+    seg("글자 크기","fs",[{l:"0.9",v:0.9},{l:"1.0",v:1},{l:"1.1",v:1.1},{l:"1.2",v:1.2}]);
+    seg("호감도 게이지","heartOn",[{l:"표시",v:1},{l:"숨김",v:0}]);
+    h4("무드");
+    seg("테마","theme",[{l:"밤",v:"night"},{l:"새벽",v:"dawn"},{l:"낮",v:"day"}]);
+    seg("포인트 컬러","accent",[{l:"코발트",v:"cobalt"},{l:"주홍",v:"vermil"},{l:"유자금",v:"gold"}]);
+    seg("탭 펄스(햅틱 흉내)","pulse",[{l:"켬",v:1},{l:"끔",v:0}]);
+    var c=document.createElement("button"); c.className="cta close"; c.textContent="닫고 이어보기";
+    c.addEventListener("click",function(){ $("drawer").classList.remove("show"); });
+    sh.appendChild(c);
+  }
+  $("btnSet").addEventListener("click",function(){ buildSheet(); $("drawer").classList.add("show"); });
+  $("drawer").addEventListener("click",function(e){ if(e.target===this) this.classList.remove("show"); });
+  $("btnInfo").addEventListener("click",function(){ $("modal").classList.add("show"); });
+  $("modalClose").addEventListener("click",function(){ $("modal").classList.remove("show"); });
+  $("modal").addEventListener("click",function(e){ if(e.target===this) this.classList.remove("show"); });
+
+  /* ── 시작 ── */
+  applySet();
+  go(0);
+})();
+</script>
+</body>
+</html>
