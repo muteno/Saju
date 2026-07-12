@@ -99,3 +99,29 @@
 - 검증 명령: `node --check js/**/*.js`, 정적 서버(`python3 -m http.server`)로 자산 200 확인.
 - **PWA**: `sw.js` = 네트워크 우선 + 오프라인 캐시 폴백(온라인이면 항상 최신 → 캐시 눌어붙음 사고 없음). ⚠ **새 js/css/핵심 이미지 파일을 추가하면 `sw.js`의 PRECACHE 목록에도 한 줄 추가**(빠지면 그 파일만 오프라인 첫 화면에서 누락). 설치 버튼 배선은 `js/app.js` 하단, 아이폰 안내는 FAQ(`002-brand`).
 - MCP 권한 자동 허용 정본 = `.claude/settings.json` permissions.allow(Claude Code Remote 서버 전체 + github PR 구독/해제) — 임의 삭제 금지. 강제는 settings.json이고 이 줄은 기록용.
+
+## 🔐 GitHub Actions 시크릿 (레포에 이미 등록됨 · 기록용 · 다시 안 물어보기)
+
+> 쉽게 말하면: 아래 열쇠(시크릿 = 워크플로가 쓰는 비밀 값)들은 **이미 GitHub 레포 설정에 다 넣어놨다.** 그러니 다음 세션이 "이 키 좀 주세요/등록해 주세요" 하고 **또 조르지 말 것.** 워크플로에서 쓸 땐 이름만 `${{ secrets.이름 }}` 으로 불러 쓰면 된다.
+>
+> ⚠ **철칙 — 이름만 적고, 값(진짜 열쇠 문자열)은 절대 이 레포 어떤 파일에도 적지 않는다.** 시크릿 값을 코드·문서·주석에 한 번이라도 적으면 깃 기록(=지워도 남는 과거 이력)에 영원히 박혀서 유출된다. 값은 오직 GitHub Settings 안에서만 살아있게 두고, 여기엔 "이런 이름의 열쇠가 있다"는 **목록**만 남긴다.
+
+- **등록 위치**: GitHub 레포 → **Settings → Secrets and variables → Actions → Repository secrets**. (여기서 값을 넣고 교체(로테이션)한다. 값 바꿔도 **이름을 그대로 두면** 워크플로 코드는 손 안 대도 됨.)
+- **기준일**: 2026-07-12 스크린샷으로 아래 10개 실존 확인.
+
+| # | 시크릿 이름 | 무엇의 열쇠인가(용도) |
+| --- | --- | --- |
+| 1 | `CLAUDE_CODE_OAUTH_TOKEN_EMS1130G` | Claude Code OAuth 토큰 — 계정/봇 **ems1130g**용 (GitHub Actions에서 Claude를 구독 계정으로 구동) |
+| 2 | `CLAUDE_CODE_OAUTH_TOKEN_EMS1130N` | Claude Code OAuth 토큰 — 계정/봇 **ems1130n**용 |
+| 3 | `CLAUDE_CODE_OAUTH_TOKEN_MUTENO` | Claude Code OAuth 토큰 — 계정/봇 **muteno**용 |
+| 4 | `CLAUDE_CODE_OAUTH_TOKEN_MUTENONA` | Claude Code OAuth 토큰 — 계정/봇 **mutenona**용 |
+| 5 | `CLAUDE_CODE_OAUTH_TOKEN_NOMUTEFB` | Claude Code OAuth 토큰 — 계정/봇 **nomutefb**용 |
+| 6 | `GEMINI_API_KEY` | Google **Gemini** API 키 |
+| 7 | `OPENAI_API_KEY_NOMUTE` | **OpenAI** API 키 — nomute용 |
+| 8 | `VAPID_PUBLIC_KEY` | 웹 푸시(PWA 알림) **VAPID 공개키** — 브라우저 구독용 |
+| 9 | `VAPID_PRIVATE_KEY` | 웹 푸시(PWA 알림) **VAPID 비밀키** — 서버가 알림 보낼 때 서명용 |
+| 10 | `YOUTUBE_API_KEY` | **YouTube Data** API 키 |
+
+- **워크플로에서 참조하는 법**: `.github/workflows/*.yml` 안에서 `${{ secrets.CLAUDE_CODE_OAUTH_TOKEN_EMS1130G }}` 처럼. Claude Code Action이면 `claude_code_oauth_token: ${{ secrets.<이름> }}`.
+- **`CLAUDE_CODE_OAUTH_TOKEN_*` 새로 발급하는 법** (= GRANTED TOKEN): 로컬 터미널(내 컴퓨터의 검은 명령창)에서 `claude setup-token` 실행 → 브라우저가 열리며 claude.ai 로그인·승인 → 화면에 토큰이 나옴 → 그 값을 위 이름 규칙(`CLAUDE_CODE_OAUTH_TOKEN_<봇이름 대문자>`)으로 Settings에 새 시크릿으로 등록. **Claude Pro/Max 구독 계정 필요.** 참고 문서: [Claude Code GitHub Actions](https://docs.claude.com/en/docs/claude-code/github-actions) · [setup 가이드](https://github.com/anthropics/claude-code-action/blob/main/docs/setup.md).
+- **새 토큰이 생기면**: 나한테 **값 말고 "이름"만** 알려주면 위 표에 한 줄 더 쌓는다(값은 여기 절대 안 적음).

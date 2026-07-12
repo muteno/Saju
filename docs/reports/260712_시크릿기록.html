@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Actions 시크릿 — CLAUDE.md 기록 보고서 (260712)</title>
+<style>
+  :root{
+    --bg:#f4f5f8; --card:#ffffff; --ink:#16182b; --muted:#6b7280;
+    --line:#e4e7ee; --accent:#302cff; --accent-soft:#ecebff;
+    --code-bg:#14152a; --code-ink:#e7e9f5; --code-key:#8be9c8; --code-cmt:#7c7f9e;
+    --warn:#b45309; --warn-bg:#fef6e7; --warn-line:#f0d9a8;
+    --ok:#0f7a4d; --ok-bg:#e9f6ee; --ok-line:#bfe6cf;
+    --danger:#b42323; --danger-bg:#fdeeee; --danger-line:#f0c4c4;
+    --zebra:#f8f9fc;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0e0f1a; --card:#171826; --ink:#eceef6; --muted:#9aa0b4;
+      --line:#262838; --accent:#6e6bff; --accent-soft:#20203a;
+      --code-bg:#0a0b18; --code-ink:#e7e9f5;
+      --warn:#e7b667; --warn-bg:#2a2213; --warn-line:#4a3c1c;
+      --ok:#6fd6a2; --ok-bg:#12241b; --ok-line:#274d38;
+      --danger:#f18a8a; --danger-bg:#2a1618; --danger-line:#4d2830;
+      --zebra:#1c1e2e;
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Pretendard",system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.65; font-size:15px; padding:30px 16px 72px;
+  }
+  .wrap{max-width:860px;margin:0 auto}
+
+  header{margin-bottom:22px}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:8px}
+  h1{font-size:29px;line-height:1.22;margin:0 0 10px;font-weight:800;letter-spacing:-.02em}
+  .lead{color:var(--muted);font-size:15px;margin:0}
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:18px}
+  .chip{background:var(--accent-soft);color:var(--accent);font-weight:800;padding:8px 14px;border-radius:10px;font-size:13.5px;white-space:nowrap}
+  .arrow{color:var(--muted);font-weight:700}
+
+  section{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 22px 20px;margin-top:16px}
+  h2{font-size:18px;margin:0 0 14px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;background:var(--accent);color:#fff;border-radius:8px;font-size:13px;font-weight:800;flex:none}
+  h2 small{font-size:13px;font-weight:600;color:var(--muted)}
+  h3{font-size:14.5px;margin:16px 0 7px;font-weight:800;color:var(--ink)}
+  p{margin:8px 0}
+  ul{margin:8px 0;padding-left:20px}
+  li{margin:5px 0}
+  b{font-weight:800}
+  .muted{color:var(--muted)}
+  .small{font-size:13px;color:var(--muted)}
+  code{font-family:"JetBrains Mono","SFMono-Regular",Consolas,monospace;font-size:12.5px}
+
+  .note{border-radius:12px;padding:13px 15px;margin:13px 0;font-size:14px;border:1px solid}
+  .note .t{font-weight:800;margin-bottom:3px;display:block}
+  .note.warn{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn)}
+  .note.ok{background:var(--ok-bg);border-color:var(--ok-line);color:var(--ok)}
+  .note.danger{background:var(--danger-bg);border-color:var(--danger-line);color:var(--danger)}
+  .note b{color:inherit}
+
+  /* before/after */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0}
+  .ba .col{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--bg)}
+  .ba .cap{font-size:12.5px;font-weight:800;padding:9px 13px;color:#fff;display:flex;align-items:center;gap:7px}
+  .ba .before .cap{background:#8a5a1f}
+  .ba .after .cap{background:var(--accent)}
+  .ba .body{padding:13px 14px;font-size:13.2px}
+  .ba .body .mini{font-family:"JetBrains Mono",Consolas,monospace;font-size:11.5px;background:var(--code-bg);color:var(--code-ink);border-radius:9px;padding:11px 12px;margin:9px 0 4px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+  .dim{color:var(--code-cmt)}
+  .emo{font-size:15px}
+
+  .tbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:13.3px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  .tbl th{background:var(--ink);color:var(--card);text-align:left;padding:9px 12px;font-weight:800;font-size:12.5px}
+  @media (prefers-color-scheme:dark){ .tbl th{background:#2c2f45;color:#eceef6} }
+  .tbl td{padding:9px 12px;border-top:1px solid var(--line);vertical-align:top}
+  .tbl tr:nth-child(even) td{background:var(--zebra)}
+  .tbl code{background:var(--accent-soft);border-radius:5px;padding:1px 6px;color:var(--accent);white-space:nowrap}
+  .tbl td.wrap-cell code{white-space:normal;word-break:break-all}
+  .badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;white-space:nowrap}
+  .b-tok{background:var(--accent-soft);color:var(--accent)}
+  .b-api{background:var(--ok-bg);color:var(--ok)}
+  .b-push{background:var(--warn-bg);color:var(--warn)}
+
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .box{border:1px solid var(--line);border-radius:13px;padding:14px 16px}
+  .box h3{margin-top:0}
+  .box.good{border-color:var(--ok-line);background:var(--ok-bg)}
+  .box.bad{border-color:var(--warn-line);background:var(--warn-bg)}
+  .box.good h3{color:var(--ok)} .box.bad h3{color:var(--warn)}
+  .box ul{padding-left:18px} .box li{margin:6px 0;font-size:13.5px}
+
+  .codeblock{position:relative;margin:12px 0}
+  .codeblock pre{margin:0;background:var(--code-bg);color:var(--code-ink);border-radius:12px;padding:15px 76px 15px 15px;overflow-x:auto;font-family:"JetBrains Mono",Consolas,monospace;font-size:12.8px;line-height:1.6}
+  .codeblock code{white-space:pre;display:block}
+  .copybtn{position:absolute;top:9px;right:9px;background:#33364d;color:#cdd1e6;border:1px solid #474a66;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;transition:background .15s,color .15s}
+  .copybtn:hover{background:#42456a;color:#fff}
+  .copybtn.done{background:var(--code-key);color:#0d2a20;border-color:var(--code-key)}
+  .ck{color:var(--code-key)} .cc{color:var(--code-cmt)}
+
+  footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:24px;padding-top:8px;line-height:1.7}
+  a{color:var(--accent)}
+
+  @media (max-width:600px){
+    body{font-size:14.5px;padding:22px 12px 56px}
+    h1{font-size:24px}
+    .ba{grid-template-columns:1fr}
+    .cols2{grid-template-columns:1fr}
+    .codeblock pre{padding-right:15px;padding-top:42px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">EXIT : MARU · 운영 기록 · 260712</div>
+    <h1>GitHub Actions 시크릿, CLAUDE.md에 심었다 🔐</h1>
+    <p class="lead">레포 설정에 이미 넣어둔 열쇠(시크릿) 10개를 최상위 <code>CLAUDE.md</code>에 <b>이름만</b> 기록. 이제 새 세션이 "그 키 뭐예요?" 하고 <b>다시 안 물어본다.</b> <span class="muted">— 값(진짜 열쇠 문자열)은 한 글자도 안 적음.</span></p>
+    <div class="flow">
+      <span class="chip">GitHub Settings에 등록됨</span>
+      <span class="arrow">→</span>
+      <span class="chip">CLAUDE.md에 이름만 기록</span>
+      <span class="arrow">→</span>
+      <span class="chip">다음 세션이 안 물어봄 ✅</span>
+    </div>
+  </header>
+
+  <!-- 1 -->
+  <section>
+    <h2><span class="n">1</span> 한눈에</h2>
+    <p>“시크릿”은 <b>워크플로(자동으로 돌아가는 로봇 작업)가 쓰는 비밀 값</b>이야 — API 키, 토큰 같은 것. 이걸 GitHub 레포 설정 안에 넣어두면 값은 숨겨진 채로 워크플로가 <code>${{ secrets.이름 }}</code> 이렇게 <b>이름만</b> 불러서 쓴다.</p>
+    <div class="note ok">
+      <span class="t">이번에 한 일 (딱 두 파일)</span>
+      ① <code>CLAUDE.md</code>에 <b>🔐 시크릿 목록 절</b>을 새로 만들어 10개 이름 + 용도 1줄씩 기록.<br>
+      ② <code>docs/작업이력.md</code>(원장)에 이번 작업 1건 append.<br>
+      → 초안 PR <b>#22</b>. Cloudflare Pages 체크 <b>초록불 통과</b>. <span class="muted">코드·화면 변화 0 (문서만).</span>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <h2><span class="n">2</span> 전 / 후 <small>· 진짜 바뀌는 건 “행동”</small></h2>
+    <div class="ba">
+      <div class="col before">
+        <div class="cap">😩 전 — 매번 다시 물어봄</div>
+        <div class="body">
+          시크릿이 <b>GitHub 설정 안에만</b> 존재. 세션 화면엔 안 보임 → 새 세션마다 이렇게 됨:
+          <div class="mini">새 세션 시작
+<span class="dim"># CLAUDE.md엔 시크릿 얘기 없음</span>
+🤖 "워크플로 만들려면 OAuth
+   토큰이 필요해요. 그 키
+   좀 등록해 주시겠어요?"
+<span class="dim"># ...또 물어본다 😩</span></div>
+        </div>
+      </div>
+      <div class="col after">
+        <div class="cap">✅ 후 — 이미 알고 넘어감</div>
+        <div class="body">
+          <code>CLAUDE.md</code>는 <b>매 세션 자동으로 읽힘</b>. 목록이 거기 있으니:
+          <div class="mini">새 세션 시작
+<span class="dim"># CLAUDE.md 🔐 절 로드됨</span>
+🤖 "OAuth 토큰 5개 · API 키 3개
+   · VAPID 2개 이미 등록돼 있네.
+   ${{ secrets.이름 }}로 부르면 됨."
+<span class="ck"># 안 물어보고 바로 진행 ✅</span></div>
+        </div>
+      </div>
+    </div>
+    <h3>문서 관점 전/후</h3>
+    <div class="ba">
+      <div class="col before">
+        <div class="cap">전 — CLAUDE.md</div>
+        <div class="body"><span class="muted">…「작업 메모」가 마지막 절. 시크릿에 대한 언급 전무.</span></div>
+      </div>
+      <div class="col after">
+        <div class="cap">후 — CLAUDE.md (+26줄)</div>
+        <div class="body"><span class="muted">「🔐 GitHub Actions 시크릿」 절 신설 — 10행 표 + 발급법 + 참조법 + ⚠ 보안 철칙.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <h2><span class="n">3</span> 기록한 시크릿 10개 <small>· 이름 + 용도만</small></h2>
+    <table class="tbl">
+      <tr><th>#</th><th>이름</th><th>무엇의 열쇠</th><th>종류</th></tr>
+      <tr><td>1</td><td class="wrap-cell"><code>CLAUDE_CODE_OAUTH_TOKEN_EMS1130G</code></td><td>Claude Code OAuth 토큰 — 봇 <b>ems1130g</b></td><td><span class="badge b-tok">토큰</span></td></tr>
+      <tr><td>2</td><td class="wrap-cell"><code>CLAUDE_CODE_OAUTH_TOKEN_EMS1130N</code></td><td>Claude Code OAuth 토큰 — 봇 <b>ems1130n</b></td><td><span class="badge b-tok">토큰</span></td></tr>
+      <tr><td>3</td><td class="wrap-cell"><code>CLAUDE_CODE_OAUTH_TOKEN_MUTENO</code></td><td>Claude Code OAuth 토큰 — 봇 <b>muteno</b></td><td><span class="badge b-tok">토큰</span></td></tr>
+      <tr><td>4</td><td class="wrap-cell"><code>CLAUDE_CODE_OAUTH_TOKEN_MUTENONA</code></td><td>Claude Code OAuth 토큰 — 봇 <b>mutenona</b></td><td><span class="badge b-tok">토큰</span></td></tr>
+      <tr><td>5</td><td class="wrap-cell"><code>CLAUDE_CODE_OAUTH_TOKEN_NOMUTEFB</code></td><td>Claude Code OAuth 토큰 — 봇 <b>nomutefb</b></td><td><span class="badge b-tok">토큰</span></td></tr>
+      <tr><td>6</td><td class="wrap-cell"><code>GEMINI_API_KEY</code></td><td>Google <b>Gemini</b> API 키</td><td><span class="badge b-api">API</span></td></tr>
+      <tr><td>7</td><td class="wrap-cell"><code>OPENAI_API_KEY_NOMUTE</code></td><td><b>OpenAI</b> API 키 — nomute용</td><td><span class="badge b-api">API</span></td></tr>
+      <tr><td>8</td><td class="wrap-cell"><code>VAPID_PUBLIC_KEY</code></td><td>웹 푸시(PWA 알림) <b>공개키</b> — 브라우저 구독용</td><td><span class="badge b-push">푸시</span></td></tr>
+      <tr><td>9</td><td class="wrap-cell"><code>VAPID_PRIVATE_KEY</code></td><td>웹 푸시(PWA 알림) <b>비밀키</b> — 서버 서명용</td><td><span class="badge b-push">푸시</span></td></tr>
+      <tr><td>10</td><td class="wrap-cell"><code>YOUTUBE_API_KEY</code></td><td><b>YouTube Data</b> API 키</td><td><span class="badge b-api">API</span></td></tr>
+    </table>
+    <p class="small">등록 위치 = GitHub 레포 → <b>Settings → Secrets and variables → Actions → Repository secrets</b>. 값을 바꿔도(로테이션) <b>이름을 그대로 두면</b> 워크플로 코드는 손 안 대도 됨.</p>
+  </section>
+
+  <!-- 4 -->
+  <section>
+    <h2><span class="n">4</span> 왜 “이름만” 적었나 <small>· 이 보고서의 핵심</small></h2>
+    <div class="note danger">
+      <span class="t">⚠ 철칙 — 값은 어떤 파일에도 절대 안 적는다</span>
+      시크릿 <b>값(진짜 열쇠 문자열)</b>을 코드·문서·주석에 <b>한 번이라도</b> 적으면, 나중에 지워도 <b>깃 기록(과거 이력)에 영원히 박혀서</b> 유출돼. 그래서 값은 오직 GitHub Settings 안에서만 살아있게 두고, 레포엔 “이런 이름의 열쇠가 있다”는 <b>목록</b>만 남긴다.
+    </div>
+    <p class="small">이름은 비밀이 아니라 <b>라벨</b>이야(예: <code>YOUTUBE_API_KEY</code>는 “유튜브 열쇠”라는 이름표일 뿐, 열쇠 자체가 아님). 그래서 이름을 적는 건 안전하고, 오히려 적어둬야 다음 세션이 헤매지 않아. <b>이번 커밋 값 유출 스캔 = 0건.</b></p>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <h2><span class="n">5</span> 장점 / 단점·주의</h2>
+    <div class="cols2">
+      <div class="box good">
+        <h3>👍 장점</h3>
+        <ul>
+          <li><b>반복 질문 소멸</b> — 새 세션이 키를 또 안 물어봄.</li>
+          <li><b>단일 출처</b> — 뭐가 등록됐는지 한 곳(CLAUDE.md)에서 확인.</li>
+          <li><b>보안 규칙 내장</b> — “값은 안 적는다”가 문서에 박혀 다음 세션도 지킴.</li>
+          <li><b>온보딩 빨라짐</b> — 워크플로 짤 때 이름 규칙(<code>..._&lt;봇 대문자&gt;</code>) 바로 앎.</li>
+        </ul>
+      </div>
+      <div class="box bad">
+        <h3>⚠ 단점·주의</h3>
+        <ul>
+          <li><b>수동 동기화</b> — 레포에서 시크릿 추가/삭제하면 이 표도 손으로 갱신해야 최신.</li>
+          <li><b>기준일 스냅샷</b> — “260712 기준 10개”라, 이후 변동은 반영 전까지 표가 실제와 어긋날 수 있음.</li>
+          <li><b>유혹 차단 필요</b> — “값도 같이 적으면 편하지 않나?”는 <b>절대 금지</b>(위 4번).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <h2><span class="n">6</span> 리스크 &amp; 완화</h2>
+    <table class="tbl">
+      <tr><th>리스크</th><th>완화책</th></tr>
+      <tr><td>누군가 실수로 <b>값</b>을 커밋</td><td>문서 상단 ⚠ 철칙 명시 + (아이디어) 시크릿 스캔 훅/워크플로로 기계 차단 — 아래 7번</td></tr>
+      <tr><td>표가 <b>실제 시크릿과 어긋남</b></td><td>추가/삭제 시 표 1줄 갱신을 규약화(“이름만 알려주면 내가 쌓음”) · 기준일 병기</td></tr>
+      <tr><td>토큰 <b>유효기간 만료</b>로 워크플로 실패</td><td>이름 유지한 채 값만 재발급(<code>claude setup-token</code>)해 교체 — 코드 무변경</td></tr>
+      <tr><td>봇 이름과 토큰 <b>매칭 혼동</b></td><td>이름 규칙 고정 <code>CLAUDE_CODE_OAUTH_TOKEN_&lt;봇 대문자&gt;</code> — 표에 봇명 병기</td></tr>
+    </table>
+  </section>
+
+  <!-- 7 -->
+  <section>
+    <h2><span class="n">7</span> 새 아이데이션 <small>· Yeul에 손 많이 갈 시기 대비</small></h2>
+    <ul>
+      <li><b>시크릿 스캔 게이트</b> — 커밋 전 훅으로 <code>sk-</code>·<code>ghp_</code>·<code>AIza</code> 같은 값 패턴을 잡아 실수 커밋을 기계로 차단(지금 “이름만” 규칙을 소프트→기계로 승격).</li>
+      <li><b>시크릿 존재 점검 워크플로</b> — 필요한 시크릿이 다 등록됐는지 CI가 확인(값은 안 읽고 “있음/없음”만).</li>
+      <li><b>웹 푸시 배선</b> — <code>VAPID_*</code> 2개가 이미 있으니, PWA 알림(구독→발송) 라인을 실제로 연결하는 유닛 후보.</li>
+      <li><b>봇 역할 표</b> — ems1130g/n·muteno·mutenona·nomutefb 각 봇이 어떤 워크플로를 맡는지 한 표로(늘어나면 헷갈리니 미리).</li>
+    </ul>
+    <p class="small muted">전부 “제안”일 뿐 — 결정은 네 몫이야. 원하는 것만 골라줘.</p>
+  </section>
+
+  <!-- 8 -->
+  <section>
+    <h2><span class="n">8</span> 검증 <small>· 확인하고 말한다</small></h2>
+    <ul>
+      <li>발급 명령 <code>claude setup-token</code> · 시크릿 이름 규칙 = 커밋 전 <b>웹 실측</b>(docs.claude.com · anthropics/claude-code-action)으로 확인 후 반영.</li>
+      <li>표 10행 = <b>등록 화면 스크린샷과 이름 1:1 대조</b> 일치.</li>
+      <li>diff <b>시크릿 값 유출 스캔 0건</b> (이름·설명만).</li>
+      <li>PR #22 = Cloudflare Pages 체크 <b>success</b> · 이 브랜치엔 다른 CI(<code>.github/workflows</code>) 없음.</li>
+      <li>이 보고서 = 자기완결 1파일(외부 요청 0 · 라이트/다크 자동 · 폰 대응).</li>
+    </ul>
+  </section>
+
+  <!-- 9 -->
+  <section>
+    <h2><span class="n">9</span> 보너스 — GRANTED TOKEN 새로 받는 법</h2>
+    <p class="small">내 컴퓨터 터미널(검은 명령창)에 아래 한 줄 → 브라우저로 claude.ai 로그인·승인 → 나온 토큰을 이름 규칙대로 Settings에 등록. <b>Claude Pro/Max 구독 계정</b> 필요.</p>
+    <div class="codeblock">
+      <button class="copybtn" onclick="copyCmd(this)">복사</button>
+      <pre><code>claude setup-token   <span class="cc"># → 브라우저 승인 → 토큰 발급</span></code></pre>
+    </div>
+    <p class="small">등록 이름 = <code>CLAUDE_CODE_OAUTH_TOKEN_&lt;봇이름 대문자&gt;</code>. 새로 만들면 나한테 <b>값 말고 “이름”만</b> 알려줘 → 3번 표에 한 줄 더 쌓을게. 참고: <a href="https://docs.claude.com/en/docs/claude-code/github-actions">Claude Code GitHub Actions 문서</a>.</p>
+  </section>
+
+  <footer>
+    EXIT : MARU · GitHub Actions 시크릿 기록 보고서 · 260712<br>
+    변경 = <code>CLAUDE.md</code> (+26) · <code>docs/작업이력.md</code> (+8) · PR #22 (draft) · 값 유출 0건
+  </footer>
+
+</div>
+
+<script>
+  function copyCmd(btn){
+    var t="claude setup-token";
+    navigator.clipboard.writeText(t).then(function(){
+      var o=btn.textContent; btn.textContent="복사됨 ✓"; btn.classList.add("done");
+      setTimeout(function(){ btn.textContent=o; btn.classList.remove("done"); },1400);
+    }).catch(function(){ btn.textContent="Ctrl+C"; });
+  }
+</script>
+</body>
+</html>
