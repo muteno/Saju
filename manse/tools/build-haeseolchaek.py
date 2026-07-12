@@ -49,15 +49,21 @@ def main():
     page = f"""<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>명리 해설책 — 본인 정리</title>
 <style>
-:root{{--ink:#f0eee9;--sub:#9a958c;--bg:#0f0f11;--card:#191a1d;--line:#2a2b2f;--accent:#c9a15a;--el:#c9a15a}}
-@media (prefers-color-scheme:light){{:root{{--ink:#20201e;--sub:#6b6862;--bg:#f7f5f1;--card:#fff;--line:#e6e2da;--accent:#8a6d2f}}}}
-:root[data-theme="dark"]{{--ink:#f0eee9;--sub:#9a958c;--bg:#0f0f11;--card:#191a1d;--line:#2a2b2f;--accent:#c9a15a}}
-:root[data-theme="light"]{{--ink:#20201e;--sub:#6b6862;--bg:#f7f5f1;--card:#fff;--line:#e6e2da;--accent:#8a6d2f}}
+:root{{--ink:#f0eee9;--sub:#9a958c;--bg:#0f0f11;--card:#191a1d;--line:#2a2b2f;--accent:#d97757;--el:#d97757}}
+@media (prefers-color-scheme:light){{:root{{--ink:#20201e;--sub:#6b6862;--bg:#f7f5f1;--card:#fff;--line:#e6e2da;--accent:#b85c3e}}}}
+:root[data-theme="dark"]{{--ink:#f0eee9;--sub:#9a958c;--bg:#0f0f11;--card:#191a1d;--line:#2a2b2f;--accent:#d97757}}
+:root[data-theme="light"]{{--ink:#20201e;--sub:#6b6862;--bg:#f7f5f1;--card:#fff;--line:#e6e2da;--accent:#b85c3e}}
 *{{box-sizing:border-box}}
 body{{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,'Noto Sans KR',sans-serif;line-height:1.7}}
 .wrap{{max-width:760px;margin:0 auto;padding:28px 18px 80px}}
-header h1{{font-size:24px;margin:0 0 4px;letter-spacing:-0.01em}}
+header h1{{font-size:26px;margin:0 0 4px;letter-spacing:-0.01em}}
+header h1 .god{{color:var(--accent);font-weight:800}}
 header .sub{{color:var(--sub);font-size:13px}}
+.opening{{background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 12%,var(--card)),var(--card));border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:16px;padding:18px 20px;margin:20px 0}}
+.opening .lead{{font-size:15px;font-weight:600;margin:0 0 10px;line-height:1.65}}
+.opening p{{margin:0 0 8px;font-size:13.5px}}
+.opening .caveat{{color:var(--sub);font-size:12.5px;margin-top:10px}}
+.opening b{{color:var(--accent)}}
 .toc{{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:20px 0}}
 .toc h3{{margin:0 0 8px;font-size:12px;letter-spacing:.08em;color:var(--sub)}}
 .toc ol{{margin:0;padding-left:18px;columns:2;column-gap:24px}}
@@ -73,15 +79,20 @@ footer{{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:
 </style>
 <div class="wrap">
 <header>
-  <h1>명리 해설책 <span style="color:var(--accent)">— 본인 정리</span></h1>
-  <div class="sub">FigJam 강의 요약을 주제별로 엮음 · 총 {total}개 노트 · 전부 참고용</div>
+  <h1>클로드 <span class="god">神</span> 선생님의 요약</h1>
+  <div class="sub">명리 해설책 · 강의 노트 {total}조각을 주제별로 엮음 · 전부 참고용</div>
 </header>
+<section class="opening">
+  <p class="lead">흩어져 있던 강의 노트 {total}조각을, 클로드가 아홉 갈래로 다시 세웠다 — 글자 하나부터 판 전체까지 순서대로 읽히게.</p>
+  <p>읽는 길은 이렇다. 먼저 <b>천간·지지</b>로 글자 자체의 성정을 익히고, <b>십신·합충</b>으로 글자 사이의 끌림과 부딪힘을 본다. 그다음 <b>궁위·운성·신살</b>로 자리와 기운의 흐름을 얹고, 마지막 <b>격국·용신</b>에서 판이 어떻게 짜이고 어디서 균형을 잡는지 종합한다.</p>
+  <p class="caveat">모든 내용은 참고용. 맥락과 강약을 무시한 단정은 명리가 가장 경계하는 것 — 이 요약도 그 원칙 위에 선다.</p>
+</section>
 <nav class="toc"><h3>목차</h3><ol>{''.join(toc)}</ol></nav>
 {''.join(secs)}
 <footer>
-  본 해설책의 내용·표현은 운영자 본인 정리(강의 요약)이며, 명시 인용만 출처 표기했습니다.
-  개인정보(팀원 실명 사주 명부)는 제외했고, 모든 항목은 <b>참고용</b>입니다 — 맥락·강약을 무시한 단정은 금물.
-  구성·정렬·조각 잇기는 자동 생성(manse/tools/build-haeseolchaek.py).
+  <b>내용·표현은 운영자 본인의 강의 정리</b>이고, 주제별 <b>구성·엮음은 클로드</b>입니다(‘神 선생님’은 애칭 😄).
+  명시 인용만 출처 표기, 개인정보(팀원 실명 사주 명부) 제외, 모든 항목은 <b>참고용</b> — 맥락·강약을 무시한 단정은 금물.
+  자동 생성: manse/tools/build-haeseolchaek.py.
 </footer>
 </div>"""
     open(OUT, "w").write(page)

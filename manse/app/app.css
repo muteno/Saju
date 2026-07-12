@@ -2,7 +2,7 @@
 :root {
   --ink: #f2f0ec; --sub: rgba(242, 240, 236, 0.62); --base: #0b0b0d;
   --glass-bg: rgba(255, 255, 255, 0.07); --glass-brd: rgba(255, 255, 255, 0.14);
-  --glass-blur: 20px; --radius: 22px; --accent: #e8e6e1; --accent-ink: #111;
+  --glass-blur: 20px; --radius: 22px; --accent: #d97757; --accent-ink: #fff; /* Claude 코랄 */
   --el-mok: #6fc46f; --el-hwa: #ef6a5e; --el-to: #d4a437; --el-geum: #a7b2bf; --el-su: #7f96c9;
   --ease: cubic-bezier(0.22, 1, 0.36, 1); --t: 480ms;
 }
