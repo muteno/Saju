@@ -1,0 +1,23 @@
+{
+ "meta": {
+  "name": "신강약 가중치",
+  "version": 1,
+  "source": "manse/js/knowledge (SSOT) — 이 파일은 생성물, 손 편집 금지",
+  "generator": "manse/tools/build-db.mjs",
+  "note": "참고용 휴리스틱. 유파 합의 없음 — 정본 행세 금지"
+ },
+ "weights": {
+  "월지": 30,
+  "일지": 15,
+  "시지": 10,
+  "년지": 5,
+  "년간": 10,
+  "월간": 12,
+  "시간": 8
+ },
+ "thresholds": {
+  "신강": 45,
+  "중화": 35
+ },
+ "total": 90
+}

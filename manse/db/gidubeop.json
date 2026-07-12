@@ -1,0 +1,37 @@
+{
+ "meta": {
+  "name": "기두법",
+  "version": 1,
+  "source": "manse/js/knowledge (SSOT) — 이 파일은 생성물, 손 편집 금지",
+  "generator": "manse/tools/build-db.mjs",
+  "note": "오호둔(연간→월간 기점)·오서둔(일간→시간 기점)·입춘 기점 월지 순서"
+ },
+ "month_stem_start": {
+  "0": 2,
+  "1": 4,
+  "2": 6,
+  "3": 8,
+  "4": 0
+ },
+ "hour_stem_start": {
+  "0": 0,
+  "1": 2,
+  "2": 4,
+  "3": 6,
+  "4": 8
+ },
+ "month_branch_from_ipchun": [
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  0,
+  1
+ ]
+}

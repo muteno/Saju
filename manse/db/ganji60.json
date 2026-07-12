@@ -1,0 +1,791 @@
+{
+ "meta": {
+  "name": "60갑자",
+  "version": 1,
+  "source": "manse/js/knowledge (SSOT) — 이 파일은 생성물, 손 편집 금지",
+  "generator": "manse/tools/build-db.mjs",
+  "note": "idx 0=甲子. 공망은 해당 일주 기준 순중공망 지지 idx"
+ },
+ "data": [
+  {
+   "idx": 0,
+   "han": "甲子",
+   "kor": "갑자",
+   "stem": 0,
+   "branch": 0,
+   "stemEl": "목",
+   "branchEl": "수",
+   "gongmang": [
+    10,
+    11
+   ]
+  },
+  {
+   "idx": 1,
+   "han": "乙丑",
+   "kor": "을축",
+   "stem": 1,
+   "branch": 1,
+   "stemEl": "목",
+   "branchEl": "토",
+   "gongmang": [
+    10,
+    11
+   ]
+  },
+  {
+   "idx": 2,
+   "han": "丙寅",
+   "kor": "병인",
+   "stem": 2,
+   "branch": 2,
+   "stemEl": "화",
+   "branchEl": "목",
+   "gongmang": [
+    10,
+    11
+   ]
+  },
+  {
+   "idx": 3,
+   "han": "丁卯",
+   "kor": "정묘",
+   "stem": 3,
+   "branch": 3,
+   "stemEl": "화",
+   "branchEl": "목",
+   "gongmang": [
+    10,
+    11
+   ]
+  },
+  {
+   "idx": 4,
+   "han": "戊辰",
+   "kor": "무진",
+   "stem": 4,
+   "branch": 4,
+   "stemEl": "토",
+   "branchEl": "토",
+   "gongmang": [
+    10,
+    11
+   ]
+  },
+  {
+   "idx": 5,
+   "han": "己巳",
+   "kor": "기사",
+   "stem": 5,
+   "branch": 5,
+   "stemEl": "토",
+   "branchEl": "화",
+   "gongmang": [
+    10,
+    11
+   ]
+  },
+  {
+   "idx": 6,
+   "han": "庚午",
+   "kor": "경오",
+   "stem": 6,
+   "branch": 6,
+   "stemEl": "금",
+   "branchEl": "화",
+   "gongmang": [
+    10,
+    11
+   ]
+  },
+  {
+   "idx": 7,
+   "han": "辛未",
+   "kor": "신미",
+   "stem": 7,
+   "branch": 7,
+   "stemEl": "금",
+   "branchEl": "토",
+   "gongmang": [
+    10,
+    11
+   ]
+  },
+  {
+   "idx": 8,
+   "han": "壬申",
+   "kor": "임신",
+   "stem": 8,
+   "branch": 8,
+   "stemEl": "수",
+   "branchEl": "금",
+   "gongmang": [
+    10,
+    11
+   ]
+  },
+  {
+   "idx": 9,
+   "han": "癸酉",
+   "kor": "계유",
+   "stem": 9,
+   "branch": 9,
+   "stemEl": "수",
+   "branchEl": "금",
+   "gongmang": [
+    10,
+    11
+   ]
+  },
+  {
+   "idx": 10,
+   "han": "甲戌",
+   "kor": "갑술",
+   "stem": 0,
+   "branch": 10,
+   "stemEl": "목",
+   "branchEl": "토",
+   "gongmang": [
+    8,
+    9
+   ]
+  },
+  {
+   "idx": 11,
+   "han": "乙亥",
+   "kor": "을해",
+   "stem": 1,
+   "branch": 11,
+   "stemEl": "목",
+   "branchEl": "수",
+   "gongmang": [
+    8,
+    9
+   ]
+  },
+  {
+   "idx": 12,
+   "han": "丙子",
+   "kor": "병자",
+   "stem": 2,
+   "branch": 0,
+   "stemEl": "화",
+   "branchEl": "수",
+   "gongmang": [
+    8,
+    9
+   ]
+  },
+  {
+   "idx": 13,
+   "han": "丁丑",
+   "kor": "정축",
+   "stem": 3,
+   "branch": 1,
+   "stemEl": "화",
+   "branchEl": "토",
+   "gongmang": [
+    8,
+    9
+   ]
+  },
+  {
+   "idx": 14,
+   "han": "戊寅",
+   "kor": "무인",
+   "stem": 4,
+   "branch": 2,
+   "stemEl": "토",
+   "branchEl": "목",
+   "gongmang": [
+    8,
+    9
+   ]
+  },
+  {
+   "idx": 15,
+   "han": "己卯",
+   "kor": "기묘",
+   "stem": 5,
+   "branch": 3,
+   "stemEl": "토",
+   "branchEl": "목",
+   "gongmang": [
+    8,
+    9
+   ]
+  },
+  {
+   "idx": 16,
+   "han": "庚辰",
+   "kor": "경진",
+   "stem": 6,
+   "branch": 4,
+   "stemEl": "금",
+   "branchEl": "토",
+   "gongmang": [
+    8,
+    9
+   ]
+  },
+  {
+   "idx": 17,
+   "han": "辛巳",
+   "kor": "신사",
+   "stem": 7,
+   "branch": 5,
+   "stemEl": "금",
+   "branchEl": "화",
+   "gongmang": [
+    8,
+    9
+   ]
+  },
+  {
+   "idx": 18,
+   "han": "壬午",
+   "kor": "임오",
+   "stem": 8,
+   "branch": 6,
+   "stemEl": "수",
+   "branchEl": "화",
+   "gongmang": [
+    8,
+    9
+   ]
+  },
+  {
+   "idx": 19,
+   "han": "癸未",
+   "kor": "계미",
+   "stem": 9,
+   "branch": 7,
+   "stemEl": "수",
+   "branchEl": "토",
+   "gongmang": [
+    8,
+    9
+   ]
+  },
+  {
+   "idx": 20,
+   "han": "甲申",
+   "kor": "갑신",
+   "stem": 0,
+   "branch": 8,
+   "stemEl": "목",
+   "branchEl": "금",
+   "gongmang": [
+    6,
+    7
+   ]
+  },
+  {
+   "idx": 21,
+   "han": "乙酉",
+   "kor": "을유",
+   "stem": 1,
+   "branch": 9,
+   "stemEl": "목",
+   "branchEl": "금",
+   "gongmang": [
+    6,
+    7
+   ]
+  },
+  {
+   "idx": 22,
+   "han": "丙戌",
+   "kor": "병술",
+   "stem": 2,
+   "branch": 10,
+   "stemEl": "화",
+   "branchEl": "토",
+   "gongmang": [
+    6,
+    7
+   ]
+  },
+  {
+   "idx": 23,
+   "han": "丁亥",
+   "kor": "정해",
+   "stem": 3,
+   "branch": 11,
+   "stemEl": "화",
+   "branchEl": "수",
+   "gongmang": [
+    6,
+    7
+   ]
+  },
+  {
+   "idx": 24,
+   "han": "戊子",
+   "kor": "무자",
+   "stem": 4,
+   "branch": 0,
+   "stemEl": "토",
+   "branchEl": "수",
+   "gongmang": [
+    6,
+    7
+   ]
+  },
+  {
+   "idx": 25,
+   "han": "己丑",
+   "kor": "기축",
+   "stem": 5,
+   "branch": 1,
+   "stemEl": "토",
+   "branchEl": "토",
+   "gongmang": [
+    6,
+    7
+   ]
+  },
+  {
+   "idx": 26,
+   "han": "庚寅",
+   "kor": "경인",
+   "stem": 6,
+   "branch": 2,
+   "stemEl": "금",
+   "branchEl": "목",
+   "gongmang": [
+    6,
+    7
+   ]
+  },
+  {
+   "idx": 27,
+   "han": "辛卯",
+   "kor": "신묘",
+   "stem": 7,
+   "branch": 3,
+   "stemEl": "금",
+   "branchEl": "목",
+   "gongmang": [
+    6,
+    7
+   ]
+  },
+  {
+   "idx": 28,
+   "han": "壬辰",
+   "kor": "임진",
+   "stem": 8,
+   "branch": 4,
+   "stemEl": "수",
+   "branchEl": "토",
+   "gongmang": [
+    6,
+    7
+   ]
+  },
+  {
+   "idx": 29,
+   "han": "癸巳",
+   "kor": "계사",
+   "stem": 9,
+   "branch": 5,
+   "stemEl": "수",
+   "branchEl": "화",
+   "gongmang": [
+    6,
+    7
+   ]
+  },
+  {
+   "idx": 30,
+   "han": "甲午",
+   "kor": "갑오",
+   "stem": 0,
+   "branch": 6,
+   "stemEl": "목",
+   "branchEl": "화",
+   "gongmang": [
+    4,
+    5
+   ]
+  },
+  {
+   "idx": 31,
+   "han": "乙未",
+   "kor": "을미",
+   "stem": 1,
+   "branch": 7,
+   "stemEl": "목",
+   "branchEl": "토",
+   "gongmang": [
+    4,
+    5
+   ]
+  },
+  {
+   "idx": 32,
+   "han": "丙申",
+   "kor": "병신",
+   "stem": 2,
+   "branch": 8,
+   "stemEl": "화",
+   "branchEl": "금",
+   "gongmang": [
+    4,
+    5
+   ]
+  },
+  {
+   "idx": 33,
+   "han": "丁酉",
+   "kor": "정유",
+   "stem": 3,
+   "branch": 9,
+   "stemEl": "화",
+   "branchEl": "금",
+   "gongmang": [
+    4,
+    5
+   ]
+  },
+  {
+   "idx": 34,
+   "han": "戊戌",
+   "kor": "무술",
+   "stem": 4,
+   "branch": 10,
+   "stemEl": "토",
+   "branchEl": "토",
+   "gongmang": [
+    4,
+    5
+   ]
+  },
+  {
+   "idx": 35,
+   "han": "己亥",
+   "kor": "기해",
+   "stem": 5,
+   "branch": 11,
+   "stemEl": "토",
+   "branchEl": "수",
+   "gongmang": [
+    4,
+    5
+   ]
+  },
+  {
+   "idx": 36,
+   "han": "庚子",
+   "kor": "경자",
+   "stem": 6,
+   "branch": 0,
+   "stemEl": "금",
+   "branchEl": "수",
+   "gongmang": [
+    4,
+    5
+   ]
+  },
+  {
+   "idx": 37,
+   "han": "辛丑",
+   "kor": "신축",
+   "stem": 7,
+   "branch": 1,
+   "stemEl": "금",
+   "branchEl": "토",
+   "gongmang": [
+    4,
+    5
+   ]
+  },
+  {
+   "idx": 38,
+   "han": "壬寅",
+   "kor": "임인",
+   "stem": 8,
+   "branch": 2,
+   "stemEl": "수",
+   "branchEl": "목",
+   "gongmang": [
+    4,
+    5
+   ]
+  },
+  {
+   "idx": 39,
+   "han": "癸卯",
+   "kor": "계묘",
+   "stem": 9,
+   "branch": 3,
+   "stemEl": "수",
+   "branchEl": "목",
+   "gongmang": [
+    4,
+    5
+   ]
+  },
+  {
+   "idx": 40,
+   "han": "甲辰",
+   "kor": "갑진",
+   "stem": 0,
+   "branch": 4,
+   "stemEl": "목",
+   "branchEl": "토",
+   "gongmang": [
+    2,
+    3
+   ]
+  },
+  {
+   "idx": 41,
+   "han": "乙巳",
+   "kor": "을사",
+   "stem": 1,
+   "branch": 5,
+   "stemEl": "목",
+   "branchEl": "화",
+   "gongmang": [
+    2,
+    3
+   ]
+  },
+  {
+   "idx": 42,
+   "han": "丙午",
+   "kor": "병오",
+   "stem": 2,
+   "branch": 6,
+   "stemEl": "화",
+   "branchEl": "화",
+   "gongmang": [
+    2,
+    3
+   ]
+  },
+  {
+   "idx": 43,
+   "han": "丁未",
+   "kor": "정미",
+   "stem": 3,
+   "branch": 7,
+   "stemEl": "화",
+   "branchEl": "토",
+   "gongmang": [
+    2,
+    3
+   ]
+  },
+  {
+   "idx": 44,
+   "han": "戊申",
+   "kor": "무신",
+   "stem": 4,
+   "branch": 8,
+   "stemEl": "토",
+   "branchEl": "금",
+   "gongmang": [
+    2,
+    3
+   ]
+  },
+  {
+   "idx": 45,
+   "han": "己酉",
+   "kor": "기유",
+   "stem": 5,
+   "branch": 9,
+   "stemEl": "토",
+   "branchEl": "금",
+   "gongmang": [
+    2,
+    3
+   ]
+  },
+  {
+   "idx": 46,
+   "han": "庚戌",
+   "kor": "경술",
+   "stem": 6,
+   "branch": 10,
+   "stemEl": "금",
+   "branchEl": "토",
+   "gongmang": [
+    2,
+    3
+   ]
+  },
+  {
+   "idx": 47,
+   "han": "辛亥",
+   "kor": "신해",
+   "stem": 7,
+   "branch": 11,
+   "stemEl": "금",
+   "branchEl": "수",
+   "gongmang": [
+    2,
+    3
+   ]
+  },
+  {
+   "idx": 48,
+   "han": "壬子",
+   "kor": "임자",
+   "stem": 8,
+   "branch": 0,
+   "stemEl": "수",
+   "branchEl": "수",
+   "gongmang": [
+    2,
+    3
+   ]
+  },
+  {
+   "idx": 49,
+   "han": "癸丑",
+   "kor": "계축",
+   "stem": 9,
+   "branch": 1,
+   "stemEl": "수",
+   "branchEl": "토",
+   "gongmang": [
+    2,
+    3
+   ]
+  },
+  {
+   "idx": 50,
+   "han": "甲寅",
+   "kor": "갑인",
+   "stem": 0,
+   "branch": 2,
+   "stemEl": "목",
+   "branchEl": "목",
+   "gongmang": [
+    0,
+    1
+   ]
+  },
+  {
+   "idx": 51,
+   "han": "乙卯",
+   "kor": "을묘",
+   "stem": 1,
+   "branch": 3,
+   "stemEl": "목",
+   "branchEl": "목",
+   "gongmang": [
+    0,
+    1
+   ]
+  },
+  {
+   "idx": 52,
+   "han": "丙辰",
+   "kor": "병진",
+   "stem": 2,
+   "branch": 4,
+   "stemEl": "화",
+   "branchEl": "토",
+   "gongmang": [
+    0,
+    1
+   ]
+  },
+  {
+   "idx": 53,
+   "han": "丁巳",
+   "kor": "정사",
+   "stem": 3,
+   "branch": 5,
+   "stemEl": "화",
+   "branchEl": "화",
+   "gongmang": [
+    0,
+    1
+   ]
+  },
+  {
+   "idx": 54,
+   "han": "戊午",
+   "kor": "무오",
+   "stem": 4,
+   "branch": 6,
+   "stemEl": "토",
+   "branchEl": "화",
+   "gongmang": [
+    0,
+    1
+   ]
+  },
+  {
+   "idx": 55,
+   "han": "己未",
+   "kor": "기미",
+   "stem": 5,
+   "branch": 7,
+   "stemEl": "토",
+   "branchEl": "토",
+   "gongmang": [
+    0,
+    1
+   ]
+  },
+  {
+   "idx": 56,
+   "han": "庚申",
+   "kor": "경신",
+   "stem": 6,
+   "branch": 8,
+   "stemEl": "금",
+   "branchEl": "금",
+   "gongmang": [
+    0,
+    1
+   ]
+  },
+  {
+   "idx": 57,
+   "han": "辛酉",
+   "kor": "신유",
+   "stem": 7,
+   "branch": 9,
+   "stemEl": "금",
+   "branchEl": "금",
+   "gongmang": [
+    0,
+    1
+   ]
+  },
+  {
+   "idx": 58,
+   "han": "壬戌",
+   "kor": "임술",
+   "stem": 8,
+   "branch": 10,
+   "stemEl": "수",
+   "branchEl": "토",
+   "gongmang": [
+    0,
+    1
+   ]
+  },
+  {
+   "idx": 59,
+   "han": "癸亥",
+   "kor": "계해",
+   "stem": 9,
+   "branch": 11,
+   "stemEl": "수",
+   "branchEl": "수",
+   "gongmang": [
+    0,
+    1
+   ]
+  }
+ ]
+}

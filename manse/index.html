@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>새 만세력 — 분석 모듈유닛 데모</title>
+<meta name="description" content="플러스만세력의 분석 구조(원국·십신·지장간·십이운성·신살·공망·대운·세운·용신 방향)를 지식모듈로 분리해 재구성한 새 UI" />
+<link rel="stylesheet" href="./css/manse.css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top rv">
+    <h1><span class="eyebrow">MANSE · MODULE LAB</span>새 만세력</h1>
+    <div class="top-actions">
+      <button id="btnTheme" class="pill small" title="라이트/다크 전환">테마</button>
+      <button id="btnCopy" class="pill small">선택값 복사</button>
+      <button id="btnDrawer" class="pill small primary">튜닝 ⚙</button>
+    </div>
+  </header>
+
+  <section class="card rv">
+    <h2>출생 정보 <span class="hint">양력 기준 · 음력 입력은 차기 배선</span></h2>
+    <div class="inputs">
+      <div class="span2"><label>년</label><input id="in-y" type="number" min="1900" max="2050" /></div>
+      <div><label>월</label><input id="in-mo" type="number" min="1" max="12" /></div>
+      <div><label>일</label><input id="in-d" type="number" min="1" max="31" /></div>
+      <div><label>시</label><input id="in-h" type="number" min="0" max="23" /></div>
+      <div><label>분</label><input id="in-mi" type="number" min="0" max="59" /></div>
+      <div class="span2"><label>성별</label><select id="in-sex"><option value="1">남</option><option value="2">여</option></select></div>
+      <div class="span2" style="display:flex;align-items:flex-end;"><button id="btnCalc" class="pill primary" style="width:100%">원국 보기</button></div>
+      <div class="span2" style="display:flex;align-items:flex-end;"><div id="presets" style="display:flex;gap:4px;flex-wrap:wrap;"></div></div>
+    </div>
+  </section>
+
+  <section class="card rv">
+    <h2>사주 원국 <span class="hint">십신 · 지장간 · 십이운성 · 신살</span></h2>
+    <div id="pillars" class="pillars"></div>
+    <div id="meta" class="meta-row"></div>
+  </section>
+
+  <section class="card rv">
+    <h2>오행 분포 <span class="hint">천간 4 + 지지 본기 4</span></h2>
+    <div id="bars" class="bars"></div>
+  </section>
+
+  <section class="card rv" id="strength">
+    <h2>신강·신약(간이) <span class="hint">참고용 점수 모델 — 정본 아님</span></h2>
+    <div id="strengthGauge" class="gauge"></div>
+    <div id="yongsinChips" class="meta-row"></div>
+  </section>
+
+  <section class="card rv">
+    <h2>대운 <span class="hint">절입 거리 ÷ 3</span></h2>
+    <div id="daeun" class="timeline"></div>
+  </section>
+
+  <section class="card rv">
+    <h2>세운 <span class="hint">올해 강조</span></h2>
+    <div id="seun" class="timeline"></div>
+  </section>
+
+  <section class="card rv" id="todayCard">
+    <h2>오늘의 간지</h2>
+    <div id="todayChips" class="meta-row"></div>
+  </section>
+
+  <footer id="selftest" class="selftest rv" data-pass="pending">자기검증 준비 중…</footer>
+</div>
+
+<div id="scrim" class="scrim"></div>
+<aside id="drawer" class="drawer" aria-label="튜닝 서랍">
+  <strong style="font-size:14px;">튜닝 서랍</strong>
+  <p style="font-size:11px;color:var(--sub);margin:4px 0 0;">축별 조절 → 즉시 반영. [선택값 복사]로 현재 상태를 내보낼 수 있어요.</p>
+  <div id="ctls"></div>
+</aside>
+<div id="toast" class="toast"></div>
+
+<script type="module">
+  import { mount } from './js/units/001-manse-view.unit.js';
+  mount();
+</script>
+</body>
+</html>

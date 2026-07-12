@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>만세 — 글래스 만세력</title>
+<meta name="description" content="만세력 간이 앱 — paper-shaders 무채색 배경 + 글래스모피즘 모바일 레이아웃" />
+<link rel="stylesheet" href="./app.css" />
+</head>
+<body data-tone="mono">
+  <!-- 셰이더 배경(뷰포트 전체) + CSS 그라디언트 폴백 -->
+  <div id="bg" aria-hidden="true"></div>
+
+  <!-- 모바일 앱 프레임: 폰에서는 풀블리드, 데스크톱에서는 폰 프레임 -->
+  <div class="frame">
+    <header class="appbar glass">
+      <div class="ttl">
+        <span class="eyebrow">MANSE · GLASS</span>
+        <h1>만세</h1>
+      </div>
+      <div class="acts">
+        <button id="btnTone" class="gbtn" title="무채 ↔ 레드 톤 전환">톤</button>
+        <button id="btnSheet" class="gbtn primary">입력</button>
+      </div>
+    </header>
+
+    <main id="scroll" class="scroll">
+      <!-- 탭 1: 원국 -->
+      <section data-tab="wonguk">
+        <div class="glass card rv">
+          <h2>사주 원국 <span class="hint" id="whoLine"></span></h2>
+          <div id="pillars" class="pillars"></div>
+          <div id="meta" class="chips"></div>
+        </div>
+        <div class="glass card rv">
+          <h2>오행 분포</h2>
+          <div id="bars" class="bars"></div>
+        </div>
+      </section>
+
+      <!-- 탭 2: 운 -->
+      <section data-tab="un" hidden>
+        <div class="glass card rv">
+          <h2>신강·신약 <span class="hint">참고용 간이 점수</span></h2>
+          <div id="gauge" class="gauge"></div>
+          <div id="yongsin" class="chips"></div>
+        </div>
+        <div class="glass card rv">
+          <h2>대운 <span class="hint" id="daeunHint"></span></h2>
+          <div id="daeun" class="strip"></div>
+        </div>
+        <div class="glass card rv">
+          <h2>세운</h2>
+          <div id="seun" class="strip"></div>
+        </div>
+      </section>
+
+      <!-- 탭 3: 오늘 -->
+      <section data-tab="today" hidden>
+        <div class="glass card rv">
+          <h2>오늘의 간지</h2>
+          <div id="today" class="chips big"></div>
+        </div>
+        <div class="glass card rv">
+          <h2>엔진 상태</h2>
+          <p id="selftest" class="statline" data-pass="pending">자기검증 준비 중…</p>
+          <p class="statline sub">계산: 지식모듈 5 + 역법·사주 코어 재사용 · 진태양시(서울) 보정 적용</p>
+        <p class="statline sub" style="opacity:.72">契路神 ⊗ 契路新 · <b>클로신</b> — 운명을 점치지 않고 관계를 읽는다</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- 하단 탭바 -->
+    <nav class="tabbar glass" role="tablist">
+      <button class="tab on" data-go="wonguk">원국</button>
+      <button class="tab" data-go="un">운</button>
+      <button class="tab" data-go="today">오늘</button>
+    </nav>
+
+    <!-- 출생 정보 바텀시트 -->
+    <div id="scrim" class="scrim"></div>
+    <div id="sheet" class="sheet glass" role="dialog" aria-label="출생 정보 입력">
+      <div class="grip"></div>
+      <h2>출생 정보 <span class="hint">양력 · 진태양시 보정</span></h2>
+      <div class="inputs">
+        <label>년<input id="in-y" type="number" min="1900" max="2050" /></label>
+        <label>월<input id="in-mo" type="number" min="1" max="12" /></label>
+        <label>일<input id="in-d" type="number" min="1" max="31" /></label>
+        <label>시<input id="in-h" type="number" min="0" max="23" /></label>
+        <label>분<input id="in-mi" type="number" min="0" max="59" /></label>
+        <label>성별<select id="in-sex"><option value="1">남</option><option value="2">여</option></select></label>
+      </div>
+      <button id="btnApply" class="gbtn primary wide">원국 보기</button>
+    </div>
+
+    <!-- 글자 사전 카드 (원국 글자 탭 시) -->
+    <div id="dict" class="sheet glass" role="dialog" aria-label="글자 사전">
+      <div class="grip"></div>
+      <div id="dictBody"></div>
+    </div>
+  </div>
+
+  <script src="../vendor/paper-bg.js"></script>
+  <script type="module">
+    import { mount } from './001-manse-app.unit.js';
+    mount();
+  </script>
+</body>
+</html>

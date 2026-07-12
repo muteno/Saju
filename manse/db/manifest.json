@@ -1,0 +1,101 @@
+{
+ "meta": {
+  "name": "DB 목록",
+  "version": 1,
+  "source": "manse/js/knowledge (SSOT) — 이 파일은 생성물, 손 편집 금지",
+  "generator": "manse/tools/build-db.mjs",
+  "note": "db/ 전체 색인"
+ },
+ "files": [
+  {
+   "file": "stems.json",
+   "bytes": 1016,
+   "name": "천간"
+  },
+  {
+   "file": "branches.json",
+   "bytes": 1767,
+   "name": "지지"
+  },
+  {
+   "file": "ganji60.json",
+   "bytes": 9717,
+   "name": "60갑자"
+  },
+  {
+   "file": "jijanggan.json",
+   "bytes": 2412,
+   "name": "지장간"
+  },
+  {
+   "file": "sipsin.json",
+   "bytes": 2707,
+   "name": "십신"
+  },
+  {
+   "file": "unseong.json",
+   "bytes": 1423,
+   "name": "십이운성"
+  },
+  {
+   "file": "sinsal.json",
+   "bytes": 1809,
+   "name": "십이신살"
+  },
+  {
+   "file": "gidubeop.json",
+   "bytes": 454,
+   "name": "기두법"
+  },
+  {
+   "file": "strength.json",
+   "bytes": 358,
+   "name": "신강약 가중치"
+  },
+  {
+   "file": "cities.json",
+   "bytes": 375,
+   "name": "출생지 경도"
+  },
+  {
+   "file": "jieqi_1900_2050.json",
+   "bytes": 153819,
+   "name": "절기(12節) 시각"
+  },
+  {
+   "file": "hapchung.json",
+   "bytes": 3151,
+   "name": "지지 관계"
+  },
+  {
+   "file": "gungwi.json",
+   "bytes": 847,
+   "name": "궁위론"
+  },
+  {
+   "file": "patterns.json",
+   "bytes": 666,
+   "name": "십신 패턴"
+  },
+  {
+   "file": "cheongan_archetype.json",
+   "bytes": 1860,
+   "name": "천간 아키타입"
+  },
+  {
+   "file": "jiji_archetype.json",
+   "bytes": 2169,
+   "name": "지지 아키타입"
+  },
+  {
+   "file": "unseong_meaning.json",
+   "bytes": 1282,
+   "name": "십이운성 의미"
+  },
+  {
+   "file": "sipsin_keywords.json",
+   "bytes": 1535,
+   "name": "십신 키워드"
+  }
+ ]
+}

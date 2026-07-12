@@ -1,0 +1,81 @@
+{
+ "meta": {
+  "name": "천간",
+  "version": 1,
+  "source": "manse/js/knowledge (SSOT) — 이 파일은 생성물, 손 편집 금지",
+  "generator": "manse/tools/build-db.mjs",
+  "note": "연해자평 공통 원표"
+ },
+ "data": [
+  {
+   "idx": 0,
+   "han": "甲",
+   "kor": "갑",
+   "el": "목",
+   "yang": true
+  },
+  {
+   "idx": 1,
+   "han": "乙",
+   "kor": "을",
+   "el": "목",
+   "yang": false
+  },
+  {
+   "idx": 2,
+   "han": "丙",
+   "kor": "병",
+   "el": "화",
+   "yang": true
+  },
+  {
+   "idx": 3,
+   "han": "丁",
+   "kor": "정",
+   "el": "화",
+   "yang": false
+  },
+  {
+   "idx": 4,
+   "han": "戊",
+   "kor": "무",
+   "el": "토",
+   "yang": true
+  },
+  {
+   "idx": 5,
+   "han": "己",
+   "kor": "기",
+   "el": "토",
+   "yang": false
+  },
+  {
+   "idx": 6,
+   "han": "庚",
+   "kor": "경",
+   "el": "금",
+   "yang": true
+  },
+  {
+   "idx": 7,
+   "han": "辛",
+   "kor": "신",
+   "el": "금",
+   "yang": false
+  },
+  {
+   "idx": 8,
+   "han": "壬",
+   "kor": "임",
+   "el": "수",
+   "yang": true
+  },
+  {
+   "idx": 9,
+   "han": "癸",
+   "kor": "계",
+   "el": "수",
+   "yang": false
+  }
+ ]
+}

@@ -1,0 +1,119 @@
+{
+ "meta": {
+  "name": "지지",
+  "version": 1,
+  "source": "manse/js/knowledge (SSOT) — 이 파일은 생성물, 손 편집 금지",
+  "generator": "manse/tools/build-db.mjs",
+  "note": "시간대 라벨 포함"
+ },
+ "data": [
+  {
+   "idx": 0,
+   "han": "子",
+   "kor": "자",
+   "el": "수",
+   "yang": true,
+   "hourLabel": "23–01시",
+   "jijanggan": "壬癸"
+  },
+  {
+   "idx": 1,
+   "han": "丑",
+   "kor": "축",
+   "el": "토",
+   "yang": false,
+   "hourLabel": "01–03시",
+   "jijanggan": "癸辛己"
+  },
+  {
+   "idx": 2,
+   "han": "寅",
+   "kor": "인",
+   "el": "목",
+   "yang": true,
+   "hourLabel": "03–05시",
+   "jijanggan": "戊丙甲"
+  },
+  {
+   "idx": 3,
+   "han": "卯",
+   "kor": "묘",
+   "el": "목",
+   "yang": false,
+   "hourLabel": "05–07시",
+   "jijanggan": "甲乙"
+  },
+  {
+   "idx": 4,
+   "han": "辰",
+   "kor": "진",
+   "el": "토",
+   "yang": true,
+   "hourLabel": "07–09시",
+   "jijanggan": "乙癸戊"
+  },
+  {
+   "idx": 5,
+   "han": "巳",
+   "kor": "사",
+   "el": "화",
+   "yang": false,
+   "hourLabel": "09–11시",
+   "jijanggan": "戊庚丙"
+  },
+  {
+   "idx": 6,
+   "han": "午",
+   "kor": "오",
+   "el": "화",
+   "yang": true,
+   "hourLabel": "11–13시",
+   "jijanggan": "丙己丁"
+  },
+  {
+   "idx": 7,
+   "han": "未",
+   "kor": "미",
+   "el": "토",
+   "yang": false,
+   "hourLabel": "13–15시",
+   "jijanggan": "丁乙己"
+  },
+  {
+   "idx": 8,
+   "han": "申",
+   "kor": "신",
+   "el": "금",
+   "yang": true,
+   "hourLabel": "15–17시",
+   "jijanggan": "戊壬庚"
+  },
+  {
+   "idx": 9,
+   "han": "酉",
+   "kor": "유",
+   "el": "금",
+   "yang": false,
+   "hourLabel": "17–19시",
+   "jijanggan": "庚辛"
+  },
+  {
+   "idx": 10,
+   "han": "戌",
+   "kor": "술",
+   "el": "토",
+   "yang": true,
+   "hourLabel": "19–21시",
+   "jijanggan": "辛丁戊"
+  },
+  {
+   "idx": 11,
+   "han": "亥",
+   "kor": "해",
+   "el": "수",
+   "yang": false,
+   "hourLabel": "21–23시",
+   "jijanggan": "戊甲壬"
+  }
+ ]
+}
