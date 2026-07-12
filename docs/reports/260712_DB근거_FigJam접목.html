@@ -1,0 +1,50 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>260712 DB 정립 근거 + FigJam 접목 보고</title>
+<style>
+:root{--ink:#1c1b1a;--sub:#6b6862;--line:#e7e3dc;--bg:#faf9f7}
+@media (prefers-color-scheme:dark){:root{--ink:#f0eee9;--sub:#97938b;--line:#33322f;--bg:#131313}}
+:root[data-theme="dark"]{--ink:#f0eee9;--sub:#97938b;--line:#33322f;--bg:#131313}
+:root[data-theme="light"]{--ink:#1c1b1a;--sub:#6b6862;--line:#e7e3dc;--bg:#faf9f7}
+body{font-family:'Pretendard',-apple-system,'Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);margin:0;padding:20px 14px 60px;line-height:1.65}
+main{max-width:960px;margin:0 auto} h1{font-size:20px} h2{font-size:15px;margin:26px 0 8px;color:var(--sub)}
+.card{border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:8px 0}
+table{border-collapse:collapse;font-size:12px;min-width:860px;width:100%} th,td{border:1px solid var(--line);padding:5px 8px;text-align:left}
+th{background:var(--bg);position:sticky;top:0} .ok{color:#2e7d32} .warn{color:#b3352f} code{font-size:11px} li{margin:4px 0} small{color:var(--sub)}
+</style>
+<main>
+<h1>DB 정립 근거 + FigJam 소스 접목 판정 (260712)</h1>
+<p><b>질문 요지</b>: ① 안에 데이터 다 가져왔나 ② 페이지(축)별로 DB를 어떻게 정립했는지 기틀 레포 근거로 ③ main에 올린 FigJam 열어서 소스 추출·접목 가능한가.</p>
+
+<h2>① 커버리지 — 정직한 답: "판정 규칙은 전부, 해석 문장은 의도적으로 제외"</h2>
+<div class="tbl"><table><thead><tr><th>축</th><th>상태</th><th>우리 쪽 구현</th><th>비고</th></tr></thead><tbody><tr><td>원국 4주 산출</td><td>완료</td><td>엔진 계산(절기·JDN·진태양시)</td><td>사이트 서버 은닉 로직을 공식으로 재구현</td></tr><tr><td>십신·지장간·운성·신살·공망</td><td>완료</td><td>지식모듈+DB 매트릭스</td><td>사이트 표기와 대조 검증</td></tr><tr><td>대운·세운·오늘 간지</td><td>완료</td><td>엔진 계산</td><td>순행 방향·대운수 실측</td></tr><tr><td>용신 방향(억부·조후)</td><td>부분</td><td>간이 힌트(참고 라벨)</td><td>통관·전왕 미구현 — 차기</td></tr><tr><td>사이트 해석 문장</td><td>미수집(의도)</td><td>-</td><td>타인 저작물 + 서버 은닉 → 대체 경로 = FigJam(운영자 저작)</td></tr><tr><td>음력 입력·DST·납음</td><td>미구현</td><td>-</td><td>차기 배선 목록에 등재</td></tr><tr><td>FigJam 해석 프레임</td><td>추출 완료·접목 대기</td><td>figjam_texts.txt 3,116런</td><td>궁위론·합충론·십신 키워드·격국 패턴·팀원 명부</td></tr></tbody></table></div>
+<div class="card">참조 사이트의 <b>계산·판정 체계</b>는 100% 재현 가능 상태(원국~대운·세운). 사이트의 <b>해석 문장</b>은
+타인 저작물+서버 은닉이라 안 가져왔고 — 그 빈자리를 <b>운영자 본인 저작인 FigJam 프레임</b>으로 채우는 경로가 이번에 열렸다.</div>
+
+<h2>② DB 정립 근거 매트릭스 — 테이블별 기틀 근거(file:line)</h2>
+<div class="tbl"><table><thead><tr><th>DB 테이블</th><th>담은 것</th><th>1차 출처</th><th>기틀 근거(manse/…)</th><th>생성 방식</th><th>검증 앵커</th></tr></thead><tbody><tr><td>stems.json</td><td>천간 10 원표(오행·음양)</td><td>고전 통설(연해자평 계열)</td><td>001-ganji.knowledge.js:5</td><td>STEMS 그대로 직렬화</td><td>60갑자 앵커</td></tr><tr><td>branches.json</td><td>지지 12 + 시간대 + 장간 요약</td><td>고전 통설</td><td>001-ganji:15 / 002-jijanggan:5</td><td>BRANCHES+JIJANGGAN 결합</td><td>시간대 경계 스팟</td></tr><tr><td>ganji60.json</td><td>60갑자 전표 + 순중공망</td><td>고전 통설</td><td>001-ganji ganjiOf / 004:32 gongmangOf</td><td>0~59 전조합 계산</td><td>甲子=idx0·공망 戌亥</td></tr><tr><td>jijanggan.json</td><td>지장간 여기·중기·본기</td><td>월률분야 통설표</td><td>002-jijanggan.knowledge.js:5</td><td>표 직렬화+main 계산</td><td>寅 본기=甲</td></tr><tr><td>sipsin.json</td><td>십신 10×10 + 지지본기 10×12 + 육친</td><td>자평 공통 공식</td><td>003-sipsin.knowledge.js:12</td><td>sipsinOf 전조합 사전계산</td><td>甲→庚=편관</td></tr><tr><td>unseong.json</td><td>십이운성 10×12</td><td>양생음사 기점표</td><td>004-unseong-sinsal.knowledge.js:12</td><td>unseongOf 전조합</td><td>甲亥=장생·乙午=장생</td></tr><tr><td>sinsal.json</td><td>십이신살 12×12</td><td>삼합 겁살 기점</td><td>004:26 sinsalOf</td><td>전조합 사전계산</td><td>子기준 酉=년살</td></tr><tr><td>gidubeop.json</td><td>월두법·시두법·월지 순서</td><td>오호둔·오서둔</td><td>001-ganji:44,47</td><td>상수 직렬화</td><td>1990-05=辛巳월</td></tr><tr><td>strength.json</td><td>신강약 가중치·임계값</td><td>본 프로젝트 명시 휴리스틱(정본 아님)</td><td>005-strength-yongsin.knowledge.js:6</td><td>상수 직렬화</td><td>라벨 &#x27;참고용&#x27; 강제</td></tr><tr><td>cities.json</td><td>출생지 경도 8도시</td><td>측지 좌표 공지값</td><td>001-manse-app.unit.js CITY_LON</td><td>상수 직렬화</td><td>서울 보정 −28분 실측</td></tr><tr><td>jieqi_1900_2050.json</td><td>12절 절입시각 151년 1,812행</td><td>태양황경 근사(NOAA식)</td><td>001-calendar.core.js:35 jieTime / build-db.mjs:101</td><td>연도별 이분탐색 사전계산</td><td>입춘2026=2/4 04:58 KST ±수분</td></tr></tbody></table></div>
+<div class="card">단방향 파이프라인: <code>knowledge 모듈(SSOT) → tools/build-db.mjs → db/*.json</code>.
+DB는 손편집 금지(생성물), 생성 시 앵커 7종 검증 실패 = 파일 기록 중단. 규칙 수정은 모듈에서만.</div>
+
+<h2>③ FigJam 추출 결과 — 열림 ✓ · 추출 ✓ · 접목 가능 ✓</h2>
+<div class="card"><b>파일</b>: main <code>Untitled (1).jam</code> (15.8MB ZIP → canvas.fig 1.5MB, zstd 해제 5.35MB)<br>
+<b>추출</b>: 한글 텍스트 런 <b>3,116개</b> + 부착 이미지 <b>214장</b>(PNG/JPEG). 합충 관련 83런 · 궁합/조화 55런 · 미약/과다 키워드 9런+.<br>
+<b>판정</b>: 운영자 본인 저작이라 저작권 제약 없음 — 지식모듈 006~010으로 계층 그대로 확장 가능.</div>
+<div class="tbl"><table><thead><tr><th>FigJam 축</th><th>내용</th><th>접목 목적지(제안)</th><th>판정</th></tr></thead><tbody><tr><td>십신 해석 키워드</td><td>미약/과다/남명/여명별 키워드 세트(9런+)</td><td>006-sipsin-keywords.knowledge.js + interpretations.json</td><td>즉시 가능</td></tr><tr><td>궁위론</td><td>년=초년기·월=사회궁·일지=배우자·시=말년 + 십신궁</td><td>007-gungwi.knowledge.js</td><td>즉시 가능</td></tr><tr><td>합충론</td><td>삼합·방합·육합 강도 서열, 반합(생지&gt;고지), 충형해파 상호작용(83런)</td><td>008-hapchung.knowledge.js + 매트릭스 DB</td><td>규칙화 가능(합충 판정표는 기계 생성)</td></tr><tr><td>격국 패턴</td><td>관인상생·살인상생·재다신약·간여지동 등 조합 해석</td><td>009-pattern.knowledge.js</td><td>즉시 가능</td></tr><tr><td>궁합 규칙</td><td>일주 천간지지 충 = 나쁜 궁합 등(55런)</td><td>010-gunghap.knowledge.js</td><td>앱 &#x27;조화&#x27; 기능으로 배선 가능</td></tr><tr><td>팀원 사주 명부</td><td>실명+일주+오행 — 개인정보</td><td>공개 레포 커밋 금지 — 비공개 저장(브라우저 로컬 or 비공개 DB)만</td><td>보류(운영자 결정 필요)</td></tr></tbody></table></div>
+<div class="card warn"><b>⚠ 개인정보</b>: 보드에 팀원 실명+생년 사주 명부가 포함 — 공개 레포/공개 DB에 올리면 안 된다.
+추출 원문은 세션 작업공간에만 두었고 레포에 커밋하지 않았다. 접목 시 명부는 익명 ID화하거나 비공개 저장(예: 앱 로컬 저장, 비공개 D1)로만.</div>
+
+<h2>④ soong.kr 연결 절차 (Cloudflare 관리 도메인 기준)</h2>
+<div class="card"><ol>
+<li>Cloudflare 대시보드 → <b>Workers &amp; Pages → Create → Pages → Connect to Git</b> → <code>exitmaru/Yeul</code> 선택</li>
+<li>프로젝트 이름 <code>soong</code> · Production branch <code>main</code> · Build command 비움 · <b>Build output directory = <code>manse</code></b></li>
+<li>Deploy 후 프로젝트 → <b>Custom domains → Set up a domain</b> → <code>soong.kr</code> 입력(같은 계정 도메인이라 DNS 자동 생성, 원클릭)</li>
+<li>끝. 루트 접속은 준비해둔 <code>manse/_redirects</code>가 글래스 앱(<code>/app/</code>)으로 보냄. DB는 <code>soong.kr/db/…</code></li></ol>
+<small>주의: 현재 manse는 PR #21 브랜치에만 있으므로, soong 프로젝트 Production branch를 임시로 <code>claude/manse-calendar-uiux-qlhtyf</code>로 잡거나 PR 머지 후 main으로.</small></div>
+
+<h2>재현 한계 각주</h2>
+<div class="card"><ol>
+<li>FigJam 추출은 텍스트 평문 기준 — 스티키 간 연결선·그룹 구조는 아직 미해석(kiwi 스키마 파싱 = 차기). 이미지 214장 중 캡처 자료는 개별 검토 필요.</li>
+<li>해석 프레임의 명리학적 타당성은 검증 대상 아님 — 운영자 정리본을 정본으로 승계(출처 라벨 'FigJam 260712').</li>
+<li>이번 턴 데드라인(10:32:22 접수) 대비 약 4~5분 초과 — FigJam 바이너리 포맷(zstd) 역해석 반복이 원인.</li></ol></div>
+</main>
