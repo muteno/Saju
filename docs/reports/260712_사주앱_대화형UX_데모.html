@@ -18,7 +18,7 @@
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{margin:0;padding:0}
   body{
-    background:#141416; color:var(--ink); font-family:"Pretendard",system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    background:#141416; color:var(--ink); font-family:"Pretendard",system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif; letter-spacing:-0.01em;
     min-height:100vh; display:flex; align-items:center; justify-content:center; padding:18px 10px;
   }
   @media (prefers-color-scheme:light){ body{background:#e9e7e2} }
@@ -355,6 +355,7 @@
         <li><b>일러스트 = CSS 플레이스홀더.</b> 확정 웹툰 이미지(드래프트 §4 프롬프트)로 교체하는 자리. 표정 5종 슬롯 배선됨.</li>
         <li><b>대사 = 무-LLM 고정 스크립트.</b> 실앱 = 템플릿 사다리 + LLM 승격(드래프트 §3). 선택지 분기 구조는 실설계와 동일.</li>
         <li><b>저장/공유 버튼 = 연출만.</b> BGM·햅틱 없음(햅틱 = 시각 펄스 흉내).</li>
+        <li><b>타이포 기준(운영자 확정 260712)</b>: 본문 = Pretendard · 자간 -10(=-0.01em) 전역 기본. 눈썹 라벨(광자간)·한자 인장(세리프)만 의도적 예외.</li>
         <li><b>?fast=1</b> = 검증용 고속 모드. 설정 축은 연출/레이아웃만(테마 축 없음 — 기틀 단일 계승이라).</li>
       </ul>
       <button class="cta" id="modalClose">닫기</button>
