@@ -14,6 +14,9 @@ import { branchRelations, HAP_STRENGTH } from '../js/knowledge/008-hapchung.know
 import { GUNGWI, GUNG_PAIR } from '../js/knowledge/007-gungwi.knowledge.js';
 import { PATTERNS } from '../js/knowledge/009-pattern.knowledge.js';
 import { CHEONGAN_ARCHETYPE, TOPIC_ROADMAP } from '../js/knowledge/011-cheongan-archetype.knowledge.js';
+import { JIJI_ARCHETYPE, JIJI_ROLE } from '../js/knowledge/012-jiji-archetype.knowledge.js';
+import { UNSEONG_MEANING } from '../js/knowledge/013-unseong-meaning.knowledge.js';
+import { SIPSIN_KEYWORDS } from '../js/knowledge/006-sipsin-keywords.knowledge.js';
 import { jieTime, JIE } from '../js/core/001-calendar.core.js';
 
 const OUT = new URL('../db/', import.meta.url);
@@ -131,6 +134,24 @@ files['cheongan_archetype.json'] = {
   data: CHEONGAN_ARCHETYPE, roadmap: TOPIC_ROADMAP,
 };
 
+// 14) 지지 아키타입 + 생왕고 분류
+files['jiji_archetype.json'] = {
+  meta: meta('지지 아키타입', '통설 물상·성정 + 생지/왕지/고지(역마·도화·화개) 분류'),
+  data: JIJI_ARCHETYPE, roles: JIJI_ROLE,
+};
+
+// 15) 십이운성 의미 태그
+files['unseong_meaning.json'] = {
+  meta: meta('십이운성 의미', '단계별 상징 의미 태그(판정은 unseong.json)'),
+  data: UNSEONG_MEANING,
+};
+
+// 16) 십신 키워드(미약/과다) 10종
+files['sipsin_keywords.json'] = {
+  meta: meta('십신 키워드', '십신별 미약/과다/관계 키워드 10종(통설 재정리)'),
+  data: SIPSIN_KEYWORDS,
+};
+
 // ── 검증(앵커) 후 기록 ──
 const assert = (name, cond) => { if (!cond) throw new Error(`DB 검증 실패: ${name}`); console.log(`ok  ${name}`); };
 assert('60갑자 0=甲子', files['ganji60.json'].data[0].han === '甲子');
@@ -147,6 +168,11 @@ const oo = branchRelations(6, 6).map((r) => r.type);
 assert('午午=자형만(삼합 아님)', oo.includes('자형') && !oo.some((t) => t.includes('삼합') || t.includes('반합')));
 assert('천간 아키타입 10천간', Object.keys(files['cheongan_archetype.json'].data).length === 10);
 assert('甲=목·큰 나무', files['cheongan_archetype.json'].data.甲.el === '목');
+assert('지지 아키타입 12지지', Object.keys(files['jiji_archetype.json'].data).length === 12);
+assert('子=왕지', files['jiji_archetype.json'].data.子.자리 === '왕지');
+assert('생지=寅申巳亥', files['jiji_archetype.json'].roles.생지.branches.join('') === '寅申巳亥');
+assert('십이운성 의미 12단계', Object.keys(files['unseong_meaning.json'].data).length === 12);
+assert('십신 키워드 10종', Object.keys(files['sipsin_keywords.json'].data).length === 10);
 assert('지지관계 子(0)丑(1)=육합(토)', files['hapchung.json'].matrix[0][1].includes('육합(토)'));
 
 await mkdir(OUT, { recursive: true });

@@ -81,6 +81,21 @@
    "file": "cheongan_archetype.json",
    "bytes": 1860,
    "name": "천간 아키타입"
+  },
+  {
+   "file": "jiji_archetype.json",
+   "bytes": 2169,
+   "name": "지지 아키타입"
+  },
+  {
+   "file": "unseong_meaning.json",
+   "bytes": 1282,
+   "name": "십이운성 의미"
+  },
+  {
+   "file": "sipsin_keywords.json",
+   "bytes": 1535,
+   "name": "십신 키워드"
   }
  ]
 }
