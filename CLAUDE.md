@@ -72,6 +72,16 @@
 검증 = 헤드리스 브라우저 렌더 실측(상태 전환 실클릭 + 프리셋별 스크린샷 + JS 에러 0) 후에만 전달. 전달 = 레포 커밋(정본) + **채팅 파일 직접 첨부**(원탭) · Artifact 링크 = 같은 시안 반복 수정 루프·외부 공유 시 보조.
 후속 = 운영자가 [선택값 복사] 결과를 붙이면 그 값을 `:root` 토큰·CSS에 배선(+검증 명령 `node --check js/**/*.js` · 정적 서버 자산 200 통과)까지.
 
+## 🎯 아이콘·픽토그램 정렬 (항상 로드)
+
+> 쉽게 말하면: 아이콘 버튼들을 세로/가로로 맞출 땐 「버튼 네모칸」이 아니라 「그 안 아이콘 그림의 눈에 보이는 중심」을 맞춘다. 한 번 맞춰도 다른 작업 하다 또 어긋나는 걸 규칙으로 막는다. 정본 = `docs/아이콘정렬_기틀.md`(이식팩 · §0~§8) — **툴바·팝업·리스트·헤더 만들기 전에 먼저 편다.**
+
+- **정렬 기준 = 픽토그램 시각중심, 셀 박스 아님(§3-1).** 세로 일직선으로 맞출 버튼들은 **같은 우측(좌측) 앵커선 + 같은 토큰 셀 폭 + `place-items:center`**를 공유한다(§3-2·3). 아이콘 크기가 달라도 중앙 배치면 중심은 같다(§3-4).
+- **방향성 아이콘(↗ ↻ ▶)은 편심 보정(§3-5).** `getBBox` 시각중심을 재서 `translate`로 셀 중앙에 오게 하거나 대칭 viewBox로 재정의. (Yeul: `play`▶가 +1px 우측 편심 — 현재는 글자 이끄는 단독이라 유지.)
+- **정렬 지배값 = 연쇄 SSOT(§3-6·§6).** 컨테이너·헤더·행 padding, 셀 폭은 한 묶음 — **하나라도 바꾸면 §5 픽셀 실측(맞출 아이콘 `pathCenterX` ±1px)으로 재검증**한 뒤 커밋. "이 팝업만" 하드코딩 금지. 실측 = 헤드리스 크로미움(`/opt/pw-browsers/chromium`)으로 좌표 확인(눈짐작 금지).
+- **Yeul 현황(260712 실측)**: 독립 아이콘 버튼 전부 `place-items:center`로 **이미 정렬**(결함 0) · 간판 사례(리스트 팝업 헤더X↔행버튼 세로열)는 **없음(N/A)** · 유일 취약점 = `.scene-open`(↗)이 자기 박스 없이 우연에 기댄 정렬. 상세·전수표 = 정본 §7.
+- **적용 범위**: 이건 **주변부 UI 규율**(문서·CLAUDE 문구 = 기틀 교차검증 제외 영역) — 정렬값 실측 재검증은 `docs/아이콘정렬_기틀.md` §5·§6로 갈음, `js/core`·`knowledge` 구조 변경이 아니면 Opus 패널 불요.
+
 ## 📦 결과 보고 + 기록 (항상 로드)
 
 - **실질 변경 결과 = 쉬운 설명 + HTML 보고서.** 동작·구조·화면이 의도적으로 바뀐 작업은 채팅으로 쉽게 설명하고, `docs/reports/{yymmdd}_{라벨}.html` 자기완결 1파일(인라인 CSS · 전/후 비교·장단점·리스크 포함, 폰에서 바로 열리게)로 만들어 채팅 파일 첨부까지. 작은 변경은 채팅 표로 갈음 가능. 수준 참조 사본 = `docs/참조/노뮤트_가이드HTML_수준참조.html`.
@@ -89,7 +99,7 @@
   - `js/core/` — `000-convention`(파일명 규칙), `001-router`(view+overlay 2레이어)
   - `js/knowledge/` — 포맷터·브랜드·장면(원문+시)·복사·UI킷·시이미지·리빌 (공통 단일 출처)
   - `js/units/` — `001-landing`(원페이지), `002-scene-detail`(모달)
-  - `docs/` — `플레이그라운드_포터블.md`(시안 표준 정본) · `reports/`(시안·HTML 보고서) · `참조/`(수준 참조 사본) · `작업이력.md`(원장)
+  - `docs/` — `플레이그라운드_포터블.md`(시안 표준 정본) · `아이콘정렬_기틀.md`(아이콘 정렬 이식팩) · `reports/`(시안·HTML 보고서) · `참조/`(수준 참조 사본) · `작업이력.md`(원장)
 - **파일명 규칙**: `NNN-<kebab-name>.<kind>.js` · 3자리 제로패딩 · ISO 8601 · kebab-case.
 - **UI/UX**: minimum-code 비주얼 충실 재현(라운드 다크 아일랜드·알약 버튼·아이브로우 라벨), 스크롤 리빌(slide-up·ease-out-quint·~90ms stagger).
 
@@ -99,3 +109,29 @@
 - 검증 명령: `node --check js/**/*.js`, 정적 서버(`python3 -m http.server`)로 자산 200 확인.
 - **PWA**: `sw.js` = 네트워크 우선 + 오프라인 캐시 폴백(온라인이면 항상 최신 → 캐시 눌어붙음 사고 없음). ⚠ **새 js/css/핵심 이미지 파일을 추가하면 `sw.js`의 PRECACHE 목록에도 한 줄 추가**(빠지면 그 파일만 오프라인 첫 화면에서 누락). 설치 버튼 배선은 `js/app.js` 하단, 아이폰 안내는 FAQ(`002-brand`).
 - MCP 권한 자동 허용 정본 = `.claude/settings.json` permissions.allow(Claude Code Remote 서버 전체 + github PR 구독/해제) — 임의 삭제 금지. 강제는 settings.json이고 이 줄은 기록용.
+
+## 🔐 GitHub Actions 시크릿 (레포에 이미 등록됨 · 기록용 · 다시 안 물어보기)
+
+> 쉽게 말하면: 아래 열쇠(시크릿 = 워크플로가 쓰는 비밀 값)들은 **이미 GitHub 레포 설정에 다 넣어놨다.** 그러니 다음 세션이 "이 키 좀 주세요/등록해 주세요" 하고 **또 조르지 말 것.** 워크플로에서 쓸 땐 이름만 `${{ secrets.이름 }}` 으로 불러 쓰면 된다.
+>
+> ⚠ **철칙 — 이름만 적고, 값(진짜 열쇠 문자열)은 절대 이 레포 어떤 파일에도 적지 않는다.** 시크릿 값을 코드·문서·주석에 한 번이라도 적으면 깃 기록(=지워도 남는 과거 이력)에 영원히 박혀서 유출된다. 값은 오직 GitHub Settings 안에서만 살아있게 두고, 여기엔 "이런 이름의 열쇠가 있다"는 **목록**만 남긴다.
+
+- **등록 위치**: GitHub 레포 → **Settings → Secrets and variables → Actions → Repository secrets**. (여기서 값을 넣고 교체(로테이션)한다. 값 바꿔도 **이름을 그대로 두면** 워크플로 코드는 손 안 대도 됨.)
+- **기준일**: 2026-07-12 스크린샷으로 아래 10개 실존 확인.
+
+| # | 시크릿 이름 | 무엇의 열쇠인가(용도) |
+| --- | --- | --- |
+| 1 | `CLAUDE_CODE_OAUTH_TOKEN_EMS1130G` | Claude Code OAuth 토큰 — 계정/봇 **ems1130g**용 (GitHub Actions에서 Claude를 구독 계정으로 구동) |
+| 2 | `CLAUDE_CODE_OAUTH_TOKEN_EMS1130N` | Claude Code OAuth 토큰 — 계정/봇 **ems1130n**용 |
+| 3 | `CLAUDE_CODE_OAUTH_TOKEN_MUTENO` | Claude Code OAuth 토큰 — 계정/봇 **muteno**용 |
+| 4 | `CLAUDE_CODE_OAUTH_TOKEN_MUTENONA` | Claude Code OAuth 토큰 — 계정/봇 **mutenona**용 |
+| 5 | `CLAUDE_CODE_OAUTH_TOKEN_NOMUTEFB` | Claude Code OAuth 토큰 — 계정/봇 **nomutefb**용 |
+| 6 | `GEMINI_API_KEY` | Google **Gemini** API 키 |
+| 7 | `OPENAI_API_KEY_NOMUTE` | **OpenAI** API 키 — nomute용 |
+| 8 | `VAPID_PUBLIC_KEY` | 웹 푸시(PWA 알림) **VAPID 공개키** — 브라우저 구독용 |
+| 9 | `VAPID_PRIVATE_KEY` | 웹 푸시(PWA 알림) **VAPID 비밀키** — 서버가 알림 보낼 때 서명용 |
+| 10 | `YOUTUBE_API_KEY` | **YouTube Data** API 키 |
+
+- **워크플로에서 참조하는 법**: `.github/workflows/*.yml` 안에서 `${{ secrets.CLAUDE_CODE_OAUTH_TOKEN_EMS1130G }}` 처럼. Claude Code Action이면 `claude_code_oauth_token: ${{ secrets.<이름> }}`.
+- **`CLAUDE_CODE_OAUTH_TOKEN_*` 새로 발급하는 법** (= GRANTED TOKEN): 로컬 터미널(내 컴퓨터의 검은 명령창)에서 `claude setup-token` 실행 → 브라우저가 열리며 claude.ai 로그인·승인 → 화면에 토큰이 나옴 → 그 값을 위 이름 규칙(`CLAUDE_CODE_OAUTH_TOKEN_<봇이름 대문자>`)으로 Settings에 새 시크릿으로 등록. **Claude Pro/Max 구독 계정 필요.** 참고 문서: [Claude Code GitHub Actions](https://docs.claude.com/en/docs/claude-code/github-actions) · [setup 가이드](https://github.com/anthropics/claude-code-action/blob/main/docs/setup.md).
+- **새 토큰이 생기면**: 나한테 **값 말고 "이름"만** 알려주면 위 표에 한 줄 더 쌓는다(값은 여기 절대 안 적음).

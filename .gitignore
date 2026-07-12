@@ -1,0 +1,24 @@
+# --- 비밀값: 절대 커밋 금지 (API 키 = 비밀번호) ---
+# GEMINI_API_KEY 등은 GitHub Actions Secrets(암호화) 또는 환경변수로만.
+.env
+.env.*
+*.key
+*.pem
+secrets.json
+secrets.*.json
+*_secret*
+*apikey*
+*api_key*
+.gemini_key
+gemini_key.txt
+openai_key.txt
+
+# --- 캐릭터 생성 작업용 임시물(원본 소스는 별도 보관) ---
+*.jam.extracted/
+_scratch/
+
+# --- OS / 에디터 잡파일 ---
+.DS_Store
+Thumbs.db
+*.swp
+*~
