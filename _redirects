@@ -1,3 +1,0 @@
-# Cloudflare Pages — SPA fallback
-# 정적 자산이 아닌 모든 경로를 index.html 로 보내 클라이언트 라우팅 처리
-/*    /index.html   200
