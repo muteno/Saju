@@ -6,7 +6,7 @@
 // =========================================================
 import { Router } from "./core/001-router.core.js";
 import { toast } from "./knowledge/004-clipboard.knowledge.js";
-import landingUnit from "./units/001-landing.unit.js";
+import sajuUnit from "./units/003-saju.unit.js";
 import sceneDetailUnit from "./units/002-scene-detail.unit.js";
 
 // 리빌 활성화(렌더 전에 켜야 첫 화면도 숨김→등장). 이 줄이 안 돌면 .reveal 은 그냥 보임.
@@ -19,7 +19,7 @@ const router = new Router({
 });
 
 router
-  .register(landingUnit)
+  .register(sajuUnit)
   .register(sceneDetailUnit)
   .start();
 
@@ -46,13 +46,7 @@ topBtn?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smo
 onScroll();
 
 // 브랜드(.brand[data-route])는 라우터의 링크 위임이 처리한다.
-
-// 내비 CTA → 장면 섹션으로 스크롤
-document.getElementById("nav-cta")?.addEventListener("click", () => {
-  router.navigate("/");
-  requestAnimationFrame(() =>
-    document.getElementById("scenes")?.scrollIntoView({ behavior: "smooth" }));
-});
+// (구 랜딩의 nav-cta→#scenes 스크롤 핸들러는 랜딩 제거로 함께 제거. 헤더 리브랜딩은 UI 단계에서.)
 
 // ---- PWA: 앱 설치 + 오프라인 (sw.js) ----
 

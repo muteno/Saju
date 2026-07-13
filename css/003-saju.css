@@ -1,0 +1,110 @@
+/* 003-saju.css — 사주 원국 뷰 전용 스타일 (.saju-app 스코프)
+   UIUX는 후속으로 갈아엎을 예정 — 지금은 "정보가 명료히 읽히는" 최소 담백판.
+   토큰은 이 스코프 안에만 둬서 사이트 :root(코발트)와 안 싸우게 격리한다. */
+
+.saju-app {
+  /* 오행 5색 — manse/app 계승 */
+  --el-mok: #6fc46f; --el-hwa: #ef6a5e; --el-to: #d4a437; --el-geum: #a7b2bf; --el-su: #7f96c9;
+  --sj-ink: #1c1a17; --sj-sub: #6b665e; --sj-line: #e7e3db; --sj-card: #faf8f4; --sj-accent: #302cff;
+  --sj-radius: 16px;
+  min-height: 100dvh;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  gap: 18px; padding: 40px 18px 32px;
+  background: #fdfcfa; color: var(--sj-ink);
+  font-family: "Pretendard", system-ui, -apple-system, "Malgun Gothic", sans-serif;
+  letter-spacing: -0.01em;
+}
+.saju-wrap { width: 100%; max-width: 560px; }
+
+/* 단계 전환 — 담백한 fade-up */
+.saju-step { opacity: 0; transform: translateY(10px); transition: opacity .38s ease, transform .38s ease; }
+.saju-step.in { opacity: 1; transform: none; }
+
+.saju-eyebrow { margin: 0 0 6px; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--sj-sub); text-transform: uppercase; }
+.saju-h { margin: 0 0 8px; font-size: 26px; font-weight: 800; line-height: 1.25; }
+.saju-day { font-size: 15px; font-weight: 700; color: var(--sj-sub); vertical-align: middle; }
+.saju-sub { margin: 0 0 20px; font-size: 15px; line-height: 1.6; color: var(--sj-sub); }
+.saju-sub b { color: var(--sj-ink); }
+
+/* 입력 */
+.saju-input {
+  width: 100%; padding: 14px 16px; margin-bottom: 14px;
+  font-size: 17px; font-family: inherit; color: var(--sj-ink);
+  border: 1.5px solid var(--sj-line); border-radius: 12px; background: #fff;
+}
+.saju-input:focus { outline: none; border-color: var(--sj-accent); }
+
+/* 버튼 */
+.saju-btn {
+  width: 100%; padding: 15px; font-size: 16px; font-weight: 700; font-family: inherit;
+  color: #fff; background: var(--sj-accent); border: none; border-radius: 12px; cursor: pointer;
+  transition: opacity .2s ease, transform .1s ease;
+}
+.saju-btn:disabled { opacity: .38; cursor: default; }
+.saju-btn:not(:disabled):active { transform: scale(.98); }
+.saju-btn.ghost { color: var(--sj-ink); background: var(--sj-card); border: 1.5px solid var(--sj-line); }
+.saju-link {
+  display: block; width: 100%; margin-top: 10px; padding: 8px; font-size: 14px; font-family: inherit;
+  color: var(--sj-sub); background: none; border: none; cursor: pointer; text-decoration: underline;
+}
+.saju-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* 결과 섹션 */
+.saju-sec { margin: 26px 0 0; }
+.saju-sec > h2 { margin: 0 0 12px; font-size: 15px; font-weight: 800; display: flex; align-items: baseline; gap: 8px; }
+.saju-sec > h2 small { font-size: 12px; font-weight: 500; color: var(--sj-sub); }
+.saju-sec.note { padding: 18px; background: var(--sj-card); border: 1px solid var(--sj-line); border-radius: var(--sj-radius); }
+.saju-sec.note h2 { display: block; }
+.saju-note { margin: 12px 0 0; font-size: 13px; line-height: 1.55; color: var(--sj-sub); }
+
+/* 팔자 네 기둥 */
+.saju-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.saju-pil {
+  padding: 12px 6px; text-align: center; background: var(--sj-card);
+  border: 1px solid var(--sj-line); border-radius: 12px;
+}
+.saju-pil.me { border-color: var(--sj-accent); border-width: 1.5px; }
+.saju-pil.unknown { display: flex; flex-direction: column; justify-content: center; opacity: .55; }
+.saju-pil .pl { font-size: 11px; font-weight: 700; color: var(--sj-sub); margin-bottom: 8px; }
+.saju-pil .gz { display: flex; flex-direction: column; gap: 2px; }
+.saju-pil .gch { font-size: 30px; font-weight: 800; line-height: 1.15; font-family: "Noto Serif KR", serif; }
+.saju-pil .q { font-size: 30px; font-weight: 800; color: var(--sj-sub); }
+.saju-pil .pn { font-size: 11px; color: var(--sj-sub); margin-top: 6px; }
+.saju-pil .pss { font-size: 10px; color: var(--sj-sub); margin-top: 4px; line-height: 1.4; }
+.saju-pil .prole { font-size: 10px; font-weight: 700; margin-top: 6px; color: var(--sj-ink); }
+
+/* 오행 막대 */
+.saju-bars { display: flex; flex-direction: column; gap: 8px; }
+.saju-bar { display: grid; grid-template-columns: 24px 1fr 24px; align-items: center; gap: 10px; }
+.saju-bar .bl { font-size: 13px; font-weight: 700; }
+.saju-bar .btrack { height: 10px; background: var(--sj-line); border-radius: 6px; overflow: hidden; }
+.saju-bar .bfill { height: 100%; border-radius: 6px; transition: width .5s ease; }
+.saju-bar .bn { font-size: 13px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* 십신·기운 칩 */
+.saju-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.saju-chip { padding: 7px 12px; font-size: 13px; background: var(--sj-card); border: 1px solid var(--sj-line); border-radius: 999px; }
+.saju-chip b { color: var(--sj-accent); }
+
+/* 대운 타임라인 */
+.saju-tls { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; }
+.saju-tl { flex: 0 0 auto; min-width: 60px; text-align: center; padding: 10px 8px; background: var(--sj-card); border: 1px solid var(--sj-line); border-radius: 12px; }
+.saju-tl .ta { font-size: 11px; color: var(--sj-sub); font-variant-numeric: tabular-nums; }
+.saju-tl .tg { font-size: 20px; font-weight: 800; font-family: "Noto Serif KR", serif; margin: 4px 0; }
+.saju-tl .ts { font-size: 10px; color: var(--sj-sub); }
+
+.saju-app .saju-btn#f-restart { margin-top: 28px; }
+.saju-foot { max-width: 560px; margin: 8px 0 0; font-size: 11px; line-height: 1.5; color: var(--sj-sub); text-align: center; }
+
+/* ── 상담 로그 (고리 진행) ── */
+.saju-log { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.saju-line { padding: 12px 14px; background: var(--sj-card); border: 1px solid var(--sj-line); border-radius: 14px; font-size: 15px; line-height: 1.6; }
+.saju-line p { margin: 0; }
+.saju-line.big { border-color: var(--sj-accent); border-width: 1.5px; }
+.saju-line.step { background: none; border: none; padding: 10px 2px 0; }
+.saju-line .cstep { font-size: 12px; font-weight: 800; letter-spacing: .04em; color: var(--sj-sub); }
+.saju-line.ask .cq { font-weight: 700; margin-bottom: 10px; }
+.saju-line .ca { margin-top: 8px; color: var(--sj-sub); font-size: 13px; }
+.saju-pick.three { grid-template-columns: 1fr 1fr 1fr; }
+#c-adv { margin-bottom: 8px; }
+#saju-errlog { color: #c00; font-size: 12px; }
