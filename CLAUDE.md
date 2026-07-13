@@ -36,3 +36,10 @@ docs/디자인기틀_SSOT.md, viewer/index.html
 [14] 작업 중 아이디어나, 개선하면 품질은 유지하면서 더 좋은 방향으로 이끌 수 있는 방향이 있으면 적극적으로 제안한다.
 
 [15] 웹앱 구조
+- 루트(/) = 사주 앱: `index.html` + `css/003-saju.css` + `js/app.js`(부트스트랩) → `js/units/003-saju.unit.js`(입력→원국→상담 흐름). PWA 오프라인 = `sw.js`(파일 추가·삭제 시 PRECACHE 동기화 + CACHE 버전 올림 필수).
+- `js/core/` = 라우터·컨벤션 · `js/knowledge/` = 009-상담그래프·010-정곡 (문구·판정 지식).
+- `manse/` = 만세력 독립 앱(글래스 UI · 자체 `_redirects` · soong.kr). `manse/js/` = 사주 계산 엔진 원본(core·knowledge) — 루트 사주 앱도 이걸 직수입해 쓴다(중복 금지).
+- `functions/api/` = Cloudflare Pages Functions 서버(D1 계정·프로필).
+- `source/` = 원자료(캐릭터 시트·아카이브) · 레포 루트 docx 3권 = 명리 코퍼스(대전·아카이브·유튜브 자막).
+- `docs/` = 원장(`작업이력.md`)·설계·포터블 팩 · `docs/reports/` = 산출 보고서(일회성 스냅샷 — 앱 코드 아님).
+- 브랜드 자산(로고·아이콘·styles.css)은 구 랜딩 철거로 제거됨 — 리브랜딩(UI 단계)에서 새로 만든다.

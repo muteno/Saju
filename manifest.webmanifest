@@ -2,17 +2,11 @@
   "id": "/",
   "name": "어휴게소",
   "short_name": "어휴게소",
-  "description": "전국의 퇴사자를 위로하기 위해, 내가 먼저 퇴사한다.",
+  "description": "어휴게소 — 사주 원국",
   "lang": "ko",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#070721",
-  "theme_color": "#070721",
-  "icons": [
-    { "src": "/assets/images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/assets/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/assets/images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "/assets/images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
-  ]
+  "background_color": "#fdfcfa",
+  "theme_color": "#fdfcfa"
 }

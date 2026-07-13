@@ -3,56 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content="EXIT : MARU — 영화 「탈예울」. 전국의 퇴사자를 위로하기 위해, 내가 먼저 퇴사한다." />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="어휴게소 — 사주 원국" />
+  <meta name="theme-color" content="#fdfcfa" />
   <title>어휴게소</title>
-  <link rel="icon" href="/assets/images/005-logo.png" />
-  <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <!-- 홈 화면 설치(PWA) — 설치된 앱 창에서 브라우저 UI 없이 뜨게 -->
+  <!-- 홈 화면 설치(PWA) — 아이콘 자산은 리브랜딩(UI 단계)에서 복원 -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="어휴게소" />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
-  <!-- 라틴 디스플레이(minimum-code 계열 지오메트릭 그로테스크): Plus Jakarta Sans -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
-  <!-- 궁서체 폴백(시 본문용): 시스템 GungSuh 우선, 없으면 Nanum Myeongjo -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" />
-  <link rel="stylesheet" href="/css/styles.css" />
+  <style>body{margin:0}</style>
   <link rel="stylesheet" href="/css/003-saju.css" />
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="/" data-route>
-      <img class="brand-mark" src="/assets/images/005-logo.png" alt="EXIT : MARU 로고" />
-      <span class="brand-name">EXIT</span>
-      <span class="brand-sub">: MARU</span>
-    </a>
-    <nav class="nav-right">
-      <button class="icon-btn" id="pwa-install" title="앱으로 설치" aria-label="앱으로 설치" hidden>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
-      </button>
-      <button class="icon-btn" id="theme-btn" title="테마 전환" aria-label="테마 전환">
-        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-      </button>
-      <button class="nav-cta" id="nav-cta">지금 탈출하기</button>
-    </nav>
-  </header>
-
   <main id="view" class="view"><!-- 라우터 view 레이어 --></main>
 
   <div id="overlay"><!-- 라우터 overlay 레이어 (모달) --></div>
-
-  <button id="scroll-top" class="fab" aria-label="맨 위로">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-  </button>
 
   <script type="module" src="/js/app.js"></script>
 </body>
