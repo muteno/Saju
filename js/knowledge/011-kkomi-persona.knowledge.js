@@ -51,20 +51,50 @@ function kkomiHook(c, base) {
 // opts(012 관계 리듀서 연동): { visits: 이번 포함 방문 수, call: 호칭('손님'|'너') }
 export function kkomiPack(opts = {}) {
   let sideNoteUsed = false;
+  let framePrev = '';
+  const frameCnt = { 희: 0, 기: 0 };
   const visits = opts.visits || 1;
 
   return {
     name: '꼬미',
 
-    // 등장 + 일간 소개 (도킹면: 009 인트로 2줄 대체 · 재방문 = 훅 뱅크 [재방문] 결)
-    intro(day, arch) {
+    // 등장 + 일간 소개 (도킹면: 009 인트로 대체 · 재방문 = 훅 뱅크 [재방문] 결 · month = 월령 계절)
+    intro(day, arch, month) {
+      const season = month?.season ? `${month.season}에 난 ` : '';
       const lines = [
         visits > 1
-          ? `또 왔어? …흥, 자리는 비워뒀어. ${day.han}(${day.kor}) 일간 — 판은 기억하고 있으니까 바로 가자.`
-          : `왔네. 앉아 봐 — 판은 이미 다 세워뒀어. 너, ${day.han}(${day.kor}) 일간이야.`,
+          ? `또 왔어? …흥, 자리는 비워뒀어. ${season}${day.han}(${day.kor}) 일간 — 판은 기억하고 있으니까 바로 가자.`
+          : `왔네. 앉아 봐 — 판은 이미 다 세워뒀어. 너, ${season}${day.han}(${day.kor}) 일간이야.`,
       ];
-      if (arch) lines.push(`${day.han}은 ${arch.물상}의 결이거든 — ${arch.성정서사[0]}. 이게 네 판의 중심 기질이야. ${visits > 1 ? '지난번에 말했지? 복습이야.' : '좋은 팔자냐고? 급하긴. 끝까지 들어.'}`);
+      if (arch) lines.push(`${day.han}은 ${arch.물상}의 결이거든 — ${arch.성정서사[0]}. 이게 네 판의 중심 기질이야. ${visits > 1 ? '지난번에 말했지? 복습이야.' : '판 전체 판정은 이따 종합에서 묶어줄게 — 먼저 눈에 확 걸리는 것부터.'}`);
       return lines;
+    },
+
+    // ④ 판정 선언(통합 독법) — 관찰 뒤 판정: 강약+축 선언 + 앞서 짚은 정곡 회수 연결. 어미 = INFER 완충 유지.
+    declare(fi, ctx, voiced) {
+      if (fi?.jong) return [`이 판은 한 기운이 거의 다 먹은 구조야 — 이런 판은 보통 잣대(강약)로 안 재. 흐름을 따라 읽는 편이거든. 정밀 판정(종격)은 참고로 접어둘게.`];
+      if (!fi?.axis) return [];
+      const axisWord = fi.axisSrc === 'johu' ? `계절 축(${fi.axis})` : `${fi.axis} 기운`;
+      const L1 = `자, 여기서 판 전체 계산 나간다 — ${ctx.strength} 쪽이야. 점수로는 ${ctx.score}/90.`;
+      let L2 = voiced && voiced.length
+        ? `아까 「${voiced[0]}」 짚었지 — 그거 따로 노는 얘기가 아니야. 이 판은 ${axisWord}을 축으로 보는 편이거든. 지금부터는 전부 그 축으로 묶여.`
+        : `이 판은 ${axisWord}을 축으로 보는 편이야 — 유파 갈리는 자리니까 어디까지나 참고고.`;
+      if (fi.conflict) L2 += ` 계절로는 ${ctx.yongsin?.johu}도 급한 판이라 그쪽도 참작할 거야.`;
+      if (ctx.counts && ctx.counts[fi.axis] === 0) L2 += ` 근데 웃긴 거 하나 — 그 ${fi.axis}가 네 여덟 글자엔 한 개도 없어. 없는 게 약이라서, 채우는 게 숙제인 판인 거야.`;
+      return [L1, L2];
+    },
+
+    // 프레임 커넥터(큰 정곡 한정·훅 앞에 후합성) — 변주 뱅크 + 직전 중복 회피 + rel별 2회 상한(기계 냄새 방지)
+    frame(c) {
+      const rel = c.frame?.rel;
+      if (!rel || frameCnt[rel] >= 2) return '';
+      const bank = rel === '희'
+        ? [`이거, 이따 축으로 묶일 놈이야 — `, `이 판에서 제일 아끼는 기운(${c.frame.el}) 얘기야 — `, `핵심 기운 쪽이야 — `]
+        : [`이건 잘 다뤄야 하는 쪽인데 — `, `잘 쓰면 무기가 되는 쪽이야 — `, `여긴 결이 좀 달라 — `];
+      let line = pick(bank, c.key);
+      if (line === framePrev) line = bank[(bank.indexOf(line) + 1) % bank.length];
+      framePrev = line; frameCnt[rel]++;
+      return line;
     },
 
     // 해금 예고(LV0 게이트로 보류된 깊은 정곡 — 조르기엔 안 열림, 다음 방문의 떡밥)

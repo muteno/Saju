@@ -73,6 +73,23 @@ function confirmPrompt(c) {
 
 const RECAL = `오케이, 그건 접을게 — 팔자에 있어도 겉으로 안 드러나는 자리가 있어. 억지로 맞다고 안 해.`;
 
+// ── 판정 선언(통합 독법 · 260713 재설계) — ④종합 직전에 강약+축을 선언하고, 앞서 나온 정곡을 축에 묶는다.
+// 어미 계약: 강약·용신 = INFER(완충 필수 "~쪽/~편이야"), 점수 = 계산 보고. 시간미상 = 호출 자체가 게이트됨(보류 정직).
+function declareNeutral(fi, ctx, voiced) {
+  if (!fi) return [];
+  if (fi.jong) return [`이 판은 한 기운이 거의 지배하는 구조야 — 이런 판은 보통 잣대(강약)로 재지 않고 흐름을 따라 읽는 편이야. 정밀 판정(종격)은 참고로 보류할게.`];
+  if (!fi.axis) return []; // 축 부재(중화+조후 없음) = 선언 스킵(감사 평결)
+  const L1 = `여기서 판 전체 계산 — ${ctx.strength} 쪽으로 나와, 점수로는 ${ctx.score}/90.`;
+  const axisWord = fi.axisSrc === 'johu' ? `계절 축(${fi.axis})` : `${fi.axis} 기운`;
+  let L2 = voiced && voiced.length
+    ? `아까 짚은 「${voiced[0]}」 — 따로 노는 얘기가 아니야. 이 판은 ${axisWord}을 축으로 보는 편이고, 지금부터는 그 축으로 묶여.`
+    : `이 판은 ${axisWord}을 축으로 보는 편이야 — 유파 따라 갈리는 자리라 참고로.`;
+  if (fi.conflict) L2 += ` 계절로는 ${ctx.yongsin?.johu}도 급한 판이라 그쪽은 참작하고.`;
+  // 세로 고리의 백미: 축 오행이 원국에 0개 = "약이 비어 있는 판"(계산 사실) → 처방(보충)으로 이어지는 다리
+  if (ctx.counts && ctx.counts[fi.axis] === 0) L2 += ` 그리고 이 축(${fi.axis})이 여덟 글자에 하나도 없어 — 그래서 밖에서 채우는 쪽이 처방이 되는 판이야.`;
+  return [L1, L2];
+}
+
 // 답변지(설계 §4): EVENT 정곡이 꽂힌 순간, 계산된 삶-장면 보기를 버튼으로.
 // 보기 근거 = 궁위론(007 GUNGWI domain)의 관장 영역 — 궁이 특정되면 그 궁의 장면을 앞세운다.
 const PALACE_OPTIONS = Object.freeze({
@@ -108,6 +125,9 @@ export function createConsult(saju, opts = {}) {
     confirm: (c) => (P?.confirm ? P.confirm(c, confirmPrompt(c)) : confirmPrompt(c)),
     recal: () => (P?.recal ? P.recal(RECAL) : RECAL),
     tease: (n) => (P?.tease ? P.tease(n) : `더 깊은 결도 계산엔 ${n}자리 있어 — 오늘은 여기까지 보고, 다음에 이어볼게.`),
+    // 프레임 커넥터(훅 출력에 후합성 — 페르소나 훅 사전이 base를 재작성해도 유실 없음 · 감사2-b)
+    frame: (c) => (P?.frame ? P.frame(c) : (c.frame?.rel === '희' ? `이 판의 축 기운(${c.frame.el}) 쪽 얘기야 — ` : `이건 잘 다뤄야 하는 쪽인데 — `)),
+    declare: (fi, ctx2, voiced) => (P?.declare ? P.declare(fi, ctx2, voiced) : declareNeutral(fi, ctx2, voiced)),
   };
   // 해금 게이트(012 관계 리듀서 연동 · 가산형): relLV 미지정 = 게이트 없음(기존 그대로).
   // LV0(첫 만남) = 아픈 깊은 정곡(SOFT·impact≥3.6)을 표면 후보로 대체하고 예고만 남긴다(포터블 ①§5-b·c).
@@ -118,8 +138,9 @@ export function createConsult(saju, opts = {}) {
   const queue = [];
   const day = STEMS[saju.pillars.일주.stem];
   const arch = CHEONGAN_ARCHETYPE[day.han];
-  const introLines = P?.intro ? P.intro(day, arch) : [
-    `${day.han}(${day.kor}) 일간 — 판은 다 세워뒀어. 위에서부터 하나씩 짚을게.`,
+  const month = sel.context.frameInfo?.month || null;
+  const introLines = P?.intro ? P.intro(day, arch, month) : [
+    `${day.han}(${day.kor}) 일간${month?.season ? ` · ${month.season}에 난 판` : ''} — 다 세워뒀어. 눈에 걸리는 것부터 하나씩 짚을게.`,
     arch ? `${day.han}은 ${arch.물상}의 결이야 — ${arch.성정서사[0]}. 이게 이 판의 중심 기질이라고 볼 수 있어.` : null,
   ];
   introLines.filter(Boolean).forEach((text) => queue.push({ kind: 'say', text }));
@@ -127,14 +148,28 @@ export function createConsult(saju, opts = {}) {
   let asksLeft = 3; // 템포: 확인 버튼 총예산(§7)
   let firstAsked = false;
   const stepsUsed = [1, 2, 3, 4, 5].filter((s) => sel.main[s]);
+  // 판정 선언 위치: ④(종합)가 정위치, 없으면 ⑤(시간) 직전 — 관찰(①~③ 특이점 훅) 뒤에 판정(정통 간명 순서 + 화술 '특이점 선행' 동시 충족)
+  const fi = sel.context.frameInfo;
+  const declareAt = timeKnown ? (stepsUsed.includes(4) ? 4 : (stepsUsed.includes(5) ? 5 : null)) : null;
+  let declared = false;
+  const voicedAxis = []; // ①~③에서 발화된 축(희) 정곡 라벨 — 선언이 회수 연결
+  const emitDeclare = () => {
+    t.declare(fi, sel.context, voicedAxis).filter(Boolean).forEach((text) => queue.push({ kind: 'say', text }));
+    declared = true;
+  };
+
   stepsUsed.forEach((s, idx) => {
     let c = sel.main[s];
     if (relLV === 0 && c.tone === 'SOFT' && c.impact >= 3.6) {
       const alt = (sel.byStep[s] || []).find((x) => x !== c && !(x.tone === 'SOFT' && x.impact >= 3.6));
       if (alt) { heldDeep++; c = alt; } // 대체 후보가 있을 때만 보류(빈 스텝 방지)
     }
+    if (s === declareAt) emitDeclare(); // 해당 스텝 제목 앞에서 판정 선언
     queue.push({ kind: 'step', step: s, title: STEP_TITLES[s] });
-    queue.push({ kind: 'say', text: t.hook(c), tone: c.tone, big: c.impact >= 3.6 });
+    // 커넥터 = 큰 정곡(≥3.6)·비SOFT·프레임 有 에만(반복 기계 냄새·흉계열 불안 조장 방지 — 감사3-b·d)
+    const conn = c.frame && c.tone !== 'SOFT' && c.impact >= 3.6 ? t.frame(c) : '';
+    if (c.frame?.rel === '희' && !declared) voicedAxis.push(c.label);
+    queue.push({ kind: 'say', text: conn + t.hook(c), tone: c.tone, big: c.impact >= 3.6 });
     queue.push({ kind: 'say', text: t.develop(c), tone: c.tone });
     const isEvent = c.key === 'gyoungi' || c.key.startsWith('daeun_');
     const ask = asksLeft > 0 && (!firstAsked || isEvent || c.impact >= 3.6);
@@ -146,13 +181,14 @@ export function createConsult(saju, opts = {}) {
     }
     if (idx === stepsUsed.length - 1) queue.push({ kind: 'sep' });
   });
+  if (timeKnown && !declared && declareAt === null) emitDeclare(); // ④·⑤ 둘 다 없던 판 — 마무리 직전 폴백
   if (heldDeep > 0) queue.push({ kind: 'say', text: t.tease(heldDeep) }); // 해금 예고(마무리 직전)
 
   // 엔딩 3종(§6-0: 처방 + 시기 + 격려) — 시간미상은 보류 정직 안내 포함
   const ctx = sel.context;
   let prescription;
-  if (timeKnown && ctx.yongsin?.eokbu) prescription = `균형 처방은 ${ctx.yongsin.eokbu} — 이 기운을 살리는 선택(일·환경·습관)이 판을 고르게 해.`;
-  else if (ctx.yongsin?.johu) prescription = `계절 처방은 ${ctx.yongsin.johu} — 태어난 계절의 치우침을 덜어 주는 기운이야.`;
+  if (timeKnown && ctx.yongsin?.eokbu) prescription = `균형 처방은 ${ctx.yongsin.eokbu} — 이 기운을 살리는 선택(일·환경·습관)이 판을 고르게 하는 쪽이야.`;
+  else if (ctx.yongsin?.johu) prescription = `계절 처방은 ${ctx.yongsin.johu} — 태어난 계절의 치우침을 덜어 주는 쪽으로 봐.`;
   else prescription = `이 판은 균형이 좋은 편이야 — 특정 처방보다 지금 결을 지키는 게 처방이야.`;
   const timing = sel.main[5] ? `시간축에선 「${sel.main[5].label}」 — 이 구간을 기억해 둬.` : `큰 전환 신호는 지금 구간엔 뚜렷하지 않아 — 흐름은 완만해.`;
   const heldNote = !timeKnown ? `그리고 정직하게 — 태어난 시(時)를 몰라서 ${ctx.held.join('·')}은 보류했어. 시를 알게 되면 그때 마저 볼게.` : null;

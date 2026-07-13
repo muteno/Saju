@@ -8,6 +8,7 @@ import { STEMS, BRANCHES, ELEMENTS } from '../../manse/js/knowledge/001-ganji.kn
 import { JIJI_ARCHETYPE, JIJI_ROLE } from '../../manse/js/knowledge/012-jiji-archetype.knowledge.js';
 import { SAMHAP, branchRelations } from '../../manse/js/knowledge/008-hapchung.knowledge.js';
 import { isGoegang, isBaekho, yanginBranchOf, gwimunPairsIn } from '../../manse/js/knowledge/014-special-sinsal.knowledge.js';
+import { isHelper } from '../../manse/js/knowledge/005-strength-yongsin.knowledge.js';
 
 // 엔진 relations의 자리 규약(002 엔진 L125와 동일 순서)
 export const PALACES = Object.freeze(['시주', '일주', '월주', '년주']);
@@ -198,9 +199,55 @@ function collect(saju, ctx, { timeKnown, nowYear }) {
  *  - fallback: 정곡이 빈약(중화·균형)해 골격 투어로 가야 하는지
  *  - context: 본식(신강약·용신) — 시간미상이면 조후·격국만(설계 §8)
  */
+// ── 통합 독법 프레임(260713 재설계 · 분신 3기 감사 반영) ──
+// 각 후보에 frame:{rel:'희'|'기', el} 태그를 붙인다 — "키워드 따로 읽기" 대신 용신 축으로 묶기 위한 재료.
+// 규칙(감사 평결 채택분):
+//  · 축 = 억부용신 1오행(시간 알 때) > 조후. 십신군은 일간 기준 역환산(비겁=同·식상=我生·재성=我克·관성=克我·인성=生我).
+//  · 기신군 = 억부 논리(신강 = 일간을 돕는 오행(005 isHelper 재사용) / 신약 = 그 반대). 중화·시간미상 = 기 판정 없음.
+//  · 조후↔억부 충돌(조후 오행이 기신군)이면 그 오행은 중립 고정 + conflict 표기(단정 금지).
+//  · 종격 후보(element_dominant ≥5) 존재 = 억부 신뢰 불가 → 프레임 전면 중립 + jong 표기.
+//  · '없음' 후보(element_zero·group_void)는 축 동일(="약이 비어 있음" 서사)일 때만 희 — 기 태그 금지(반전 오류).
+//  · 신살·합충·공망·패턴·대운 = 중립(오행 특정 불가 — 판정 창작 금지). 대운 희기는 차기(간지 분리 판정 필요).
+function applyFrames(cands, saju, timeKnown) {
+  const jong = cands.some((c) => c.key.startsWith('element_dominant.'));
+  const dayEl = STEMS[saju.pillars.일주.stem].el;
+  const dIdx = ELEMENTS.indexOf(dayEl);
+  const GROUP_EL = {
+    비겁: ELEMENTS[dIdx], 식상: ELEMENTS[(dIdx + 1) % 5], 재성: ELEMENTS[(dIdx + 2) % 5],
+    관성: ELEMENTS[(dIdx + 3) % 5], 인성: ELEMENTS[(dIdx + 4) % 5],
+  };
+  const strength = timeKnown ? saju.strength : null; // 시간미상 = 강약 보류(정직)
+  const axisEl = (timeKnown && saju.yongsin?.eokbu) || null;
+  const johuEl = saju.yongsin?.johu || null;
+  const declaredAxis = axisEl || johuEl || null;
+  const gisin = (e) => {
+    if (!strength || strength === '중화') return false;
+    return strength === '신강' ? isHelper(dayEl, e) : !isHelper(dayEl, e);
+  };
+  const conflict = !!(axisEl && johuEl && gisin(johuEl));
+  const mHan = BRANCHES[saju.pillars.월주.branch].han;
+  const frameInfo = {
+    axis: jong ? null : declaredAxis,
+    axisSrc: jong ? null : (axisEl ? 'eokbu' : johuEl ? 'johu' : null),
+    conflict, jong,
+    month: { han: mHan, season: JIJI_ARCHETYPE[mHan]?.계절 ?? null },
+  };
+  for (const c of cands) {
+    const e = c.facts?.el || (c.facts?.group ? GROUP_EL[c.facts.group] : null);
+    if (!e || jong || (conflict && e === johuEl)) { c.frame = null; continue; }
+    if (c.key.startsWith('element_zero.') || c.key.startsWith('group_void.')) {
+      c.frame = e === declaredAxis ? { rel: '희', el: e } : null;
+    } else if (e === declaredAxis) c.frame = { rel: '희', el: e };
+    else if (gisin(e)) c.frame = { rel: '기', el: e };
+    else c.frame = null;
+  }
+  return frameInfo;
+}
+
 export function selectJeonggok(saju, { timeKnown = true, nowYear = null } = {}) {
   const ctx = buildCtx(saju, timeKnown);
   const ranked = collect(saju, ctx, { timeKnown, nowYear }).sort((a, b) => b.impact - a.impact);
+  const frameInfo = applyFrames(ranked, saju, timeKnown); // 선별·랭킹 이후 태그만(로직 불변)
 
   const byStep = { 1: [], 2: [], 3: [], 4: [], 5: [] };
   for (const c of ranked) byStep[c.step].push(c);
@@ -210,9 +257,9 @@ export function selectJeonggok(saju, { timeKnown = true, nowYear = null } = {}) 
   const fallback = ranked.length < 3 || (ranked[0]?.impact ?? 0) < 3.3;
 
   const context = timeKnown
-    ? { strength: saju.strength, score: saju.score, yongsin: saju.yongsin, counts: ctx.counts, groups: ctx.groups }
+    ? { strength: saju.strength, score: saju.score, yongsin: saju.yongsin, counts: ctx.counts, groups: ctx.groups, frameInfo }
     : { yongsin: { johu: saju.yongsin?.johu ?? null, gyeokguk: saju.yongsin?.gyeokguk ?? null }, // 월지 기반 = 시 무관
-        counts: ctx.counts, groups: ctx.groups, held: ['신강약', '억부용신', '시주 십신'] };       // 정직 보류 목록
+        counts: ctx.counts, groups: ctx.groups, held: ['신강약', '억부용신', '시주 십신'], frameInfo }; // 정직 보류 목록
 
   return { ranked, byStep, main, fallback, context };
 }
