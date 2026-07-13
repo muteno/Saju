@@ -12,7 +12,7 @@
 //   CACHE 버전을 올리면(v1→v2) 옛 캐시는 activate 때 청소된다.
 // =========================================================
 
-const CACHE = "yeul-v5";
+const CACHE = "yeul-v6";
 
 const PRECACHE = [
   "/",
@@ -36,6 +36,7 @@ const PRECACHE = [
   "/js/units/003-saju.unit.js",
   "/js/knowledge/010-jeonggok.knowledge.js",
   "/js/knowledge/009-consult-graph.knowledge.js",
+  "/js/knowledge/011-kkomi-persona.knowledge.js",
   "/manse/js/knowledge/011-cheongan-archetype.knowledge.js",
   "/manse/js/knowledge/014-special-sinsal.knowledge.js",
   // 사주 코어가 쓰는 만세력 엔진 폐포(10) — 하나라도 빠지면 오프라인 첫 화면 백지

@@ -7,6 +7,7 @@ import { buildSaju } from '../../manse/js/core/002-saju-engine.core.js';
 import { STEMS, BRANCHES, ELEMENTS } from '../../manse/js/knowledge/001-ganji.knowledge.js';
 import { JIJI_ARCHETYPE, JIJI_ROLE } from '../../manse/js/knowledge/012-jiji-archetype.knowledge.js';
 import { createConsult } from '../knowledge/009-consult-graph.knowledge.js';
+import { kkomiPack } from '../knowledge/011-kkomi-persona.knowledge.js';
 
 // 계산 옵션 — 서울·진태양시 보정(만세뷰 기본값 계승). 출생지 선택은 후속.
 const OPTS = {
@@ -203,7 +204,9 @@ function stepChart(auto) {
 
 // ── 5) 상담 고리 (append 로그 · 탭 진행 · 확인 분기) ──
 function stepConsult(r, known, auto) {
-  const consult = createConsult(r, { timeKnown: known, nowYear: new Date().getFullYear() });
+  // 화자 = 꼬미(011 페르소나 팩·D5 도킹). ?plain=1 = 중립 문구 비교 모드(검증용).
+  const plain = new URLSearchParams(location.search).get('plain') === '1';
+  const consult = createConsult(r, { timeKnown: known, nowYear: new Date().getFullYear(), persona: plain ? null : kkomiPack() });
   box.innerHTML = `<section class="saju-step in">
     <div class="saju-log" id="c-log"></div>
     <button class="saju-btn ghost" id="c-adv">계속 ›</button>

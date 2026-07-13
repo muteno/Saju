@@ -94,18 +94,30 @@ function answerSheetOf(c) {
 }
 
 // ── 컨설트 컨트롤러 ──
-// createConsult(saju, {timeKnown, nowYear}) → { next(), answer(), trust, fallback, context }
+// createConsult(saju, {timeKnown, nowYear, persona}) → { next(), answer(), trust, fallback, context }
 // next(): {kind:'step'|'say'|'confirm'|'end', ...} | null(확인 대기 중) | undefined(종료 후)
+// persona(선택) = §11 페르소나 팩(011-kkomi-persona 등). 문구(how)만 갈아끼우고
+// 선별·랭킹·게이팅·3단 어조·prune 로직(what)은 불변 — 미지정 시 v1 중립 문구 그대로.
 export function createConsult(saju, opts = {}) {
   const sel = selectJeonggok(saju, opts);
   const timeKnown = opts.timeKnown !== false;
+  const P = opts.persona || null;
+  const t = { // 문구 라우터: 페르소나 슬롯 → 없으면 중립(v1)
+    hook: (c) => (P?.hook ? P.hook(c, hookText(c)) : hookText(c)),
+    develop: (c) => (P?.develop ? P.develop(c, developText(c)) : developText(c)),
+    confirm: (c) => (P?.confirm ? P.confirm(c, confirmPrompt(c)) : confirmPrompt(c)),
+    recal: () => (P?.recal ? P.recal(RECAL) : RECAL),
+  };
 
   // 고리 컴파일: 스텝 1→5, 스텝당 대표 1 + (확인 예산 내) 보강
   const queue = [];
   const day = STEMS[saju.pillars.일주.stem];
   const arch = CHEONGAN_ARCHETYPE[day.han];
-  queue.push({ kind: 'say', text: `${day.han}(${day.kor}) 일간 — 판은 다 세워뒀어. 위에서부터 하나씩 짚을게.` });
-  if (arch) queue.push({ kind: 'say', text: `${day.han}은 ${arch.물상}의 결이야 — ${arch.성정서사[0]}. 이게 이 판의 중심 기질이라고 볼 수 있어.` });
+  const introLines = P?.intro ? P.intro(day, arch) : [
+    `${day.han}(${day.kor}) 일간 — 판은 다 세워뒀어. 위에서부터 하나씩 짚을게.`,
+    arch ? `${day.han}은 ${arch.물상}의 결이야 — ${arch.성정서사[0]}. 이게 이 판의 중심 기질이라고 볼 수 있어.` : null,
+  ];
+  introLines.filter(Boolean).forEach((text) => queue.push({ kind: 'say', text }));
 
   let asksLeft = 3; // 템포: 확인 버튼 총예산(§7)
   let firstAsked = false;
@@ -113,14 +125,14 @@ export function createConsult(saju, opts = {}) {
   stepsUsed.forEach((s, idx) => {
     const c = sel.main[s];
     queue.push({ kind: 'step', step: s, title: STEP_TITLES[s] });
-    queue.push({ kind: 'say', text: hookText(c), tone: c.tone, big: c.impact >= 3.6 });
-    queue.push({ kind: 'say', text: developText(c), tone: c.tone });
+    queue.push({ kind: 'say', text: t.hook(c), tone: c.tone, big: c.impact >= 3.6 });
+    queue.push({ kind: 'say', text: t.develop(c), tone: c.tone });
     const isEvent = c.key === 'gyoungi' || c.key.startsWith('daeun_');
     const ask = asksLeft > 0 && (!firstAsked || isEvent || c.impact >= 3.6);
     if (ask) {
       asksLeft--; firstAsked = true;
       const options = isEvent ? answerSheetOf(c) : null; // EVENT = 답변지(계산된 보기), 그 외 = 3버튼
-      queue.push({ kind: 'confirm', prompt: confirmPrompt(c), ring: c, backup: sel.byStep[s][1] || null, options });
+      queue.push({ kind: 'confirm', prompt: t.confirm(c), ring: c, backup: sel.byStep[s][1] || null, options });
     }
     if (idx === stepsUsed.length - 1) queue.push({ kind: 'sep' });
   });
@@ -134,7 +146,8 @@ export function createConsult(saju, opts = {}) {
   const timing = sel.main[5] ? `시간축에선 「${sel.main[5].label}」 — 이 구간을 기억해 둬.` : `큰 전환 신호는 지금 구간엔 뚜렷하지 않아 — 흐름은 완만해.`;
   const heldNote = !timeKnown ? `그리고 정직하게 — 태어난 시(時)를 몰라서 ${ctx.held.join('·')}은 보류했어. 시를 알게 되면 그때 마저 볼게.` : null;
 
-  queue.push({ kind: 'end', ending: { prescription, timing, held: heldNote, cheer: `정해진 건 없어 — 계산은 지도고, 길을 고르는 건 언제나 너야.` } });
+  const endingParts = { prescription, timing, held: heldNote, cheer: `정해진 건 없어 — 계산은 지도고, 길을 고르는 건 언제나 너야.` };
+  queue.push({ kind: 'end', ending: P?.ending ? P.ending(endingParts) : endingParts });
 
   // ── 진행 상태 ──
   let pending = null; // 확인 대기 중인 confirm 이벤트
@@ -154,15 +167,18 @@ export function createConsult(saju, opts = {}) {
       pending = null;
       if (options && options.includes(choice)) {   // 답변지 적중 — 고른 장면을 받아쳐 파고들기(§4)
         api.trust += 2;
-        queue.unshift({ kind: 'say', text: `그래 — ${choice}. ${ring.facts?.palace ? `${ring.facts.palace}가 맡는 자리 일이 그렇게 온 거야.` : `그 흐름이 이 시기의 결이야.`}` });
+        const pickLine = P?.affirmPick ? P.affirmPick(choice, ring)
+          : `그래 — ${choice}. ${ring.facts?.palace ? `${ring.facts.palace}가 맡는 자리 일이 그렇게 온 거야.` : `그 흐름이 이 시기의 결이야.`}`;
+        queue.unshift({ kind: 'say', text: pickLine });
         if (backup) queue.unshift({ kind: 'say', text: `이어서 보면 — ${backup.label}도 같은 결로 붙어 있어.`, tone: backup.tone });
       } else if (choice === '맞아') {
         api.trust += 2;
-        if (backup) queue.unshift({ kind: 'say', text: `역시. 조금 더 파면 — ${backup.label}도 같은 결로 붙어 있어.`, tone: backup.tone });
+        if (backup) queue.unshift({ kind: 'say', text: P?.affirmYes ? P.affirmYes(backup) : `역시. 조금 더 파면 — ${backup.label}도 같은 결로 붙어 있어.`, tone: backup.tone });
+        else if (P?.affirmYes) queue.unshift({ kind: 'say', text: P.affirmYes(null) });
       } else if (choice === '아니야' || choice === '그런 일 없었어') {
         api.trust -= 1;
-        const lines = [{ kind: 'say', text: RECAL }];
-        if (backup) lines.push({ kind: 'say', text: `대신 이건 계산에 분명히 있어 — ${backup.label}. 이쪽 결일 수 있어.`, tone: backup.tone });
+        const lines = [{ kind: 'say', text: t.recal() }];
+        if (backup) lines.push({ kind: 'say', text: P?.denyAlt ? P.denyAlt(backup) : `대신 이건 계산에 분명히 있어 — ${backup.label}. 이쪽 결일 수 있어.`, tone: backup.tone });
         queue.unshift(...lines);
       }
       // '글쎄' 및 그 외 = 그대로 진행(soften)
