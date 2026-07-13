@@ -1,6 +1,8 @@
 name: account-selftest
 on:
   workflow_dispatch:
+  push:
+    branches: [claude/new-session-pl1o21]   # 임시: self-test 1회 실행용(테스트 확인 후 제거 예정)
 permissions:
   contents: read
 jobs:
