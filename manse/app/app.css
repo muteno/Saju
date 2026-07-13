@@ -65,6 +65,8 @@ body[data-tone="red"] #bg {
 .pcell { min-width: 0; text-align: center; border: 1px solid var(--glass-brd); border-radius: 14px;
   padding: 8px 3px; background: rgba(255, 255, 255, 0.04); }
 .pcell .lab { font-size: 10px; color: var(--sub); font-weight: 700; letter-spacing: 0.1em; }
+.pcell .pchar { display: block; width: 44px; height: 44px; margin: 3px auto 1px; object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4)); }
 .pcell .ss { font-size: 10px; color: var(--sub); min-height: 1.1em; }
 .gl { display: block; font-family: 'Noto Serif KR', serif; font-size: 30px; font-weight: 700;
   line-height: 1.25; border-radius: 10px; margin: 3px 2px;
@@ -76,6 +78,8 @@ body[data-tone="red"] #bg {
 .gl[role="button"]:active { transform: scale(0.97); }
 #dict { max-height: 82vh; overflow-y: auto; }
 .d-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.d-head .dchar { width: 60px; height: 60px; flex: none; object-fit: contain;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.45)); }
 .d-head b { font-size: 15px; }
 .d-row { display: grid; grid-template-columns: 64px 1fr; gap: 8px; align-items: start; padding: 5px 0; border-top: 1px solid var(--glass-brd); font-size: 13px; }
 .d-row:first-of-type { border-top: 0; }
