@@ -8,6 +8,7 @@ import { STEMS, BRANCHES, ELEMENTS } from '../../manse/js/knowledge/001-ganji.kn
 import { JIJI_ARCHETYPE, JIJI_ROLE } from '../../manse/js/knowledge/012-jiji-archetype.knowledge.js';
 import { createConsult } from '../knowledge/009-consult-graph.knowledge.js';
 import { kkomiPack } from '../knowledge/011-kkomi-persona.knowledge.js';
+import { createRelationship, loadRel, saveRel } from '../knowledge/012-relationship.knowledge.js';
 
 // 계산 옵션 — 서울·진태양시 보정(만세뷰 기본값 계승). 출생지 선택은 후속.
 const OPTS = {
@@ -204,9 +205,15 @@ function stepChart(auto) {
 
 // ── 5) 상담 고리 (append 로그 · 탭 진행 · 확인 분기) ──
 function stepConsult(r, known, auto) {
-  // 화자 = 꼬미(011 페르소나 팩·D5 도킹). ?plain=1 = 중립 문구 비교 모드(검증용).
+  // 화자 = 꼬미(011 페르소나 팩·D5 도킹). ?plain=1 = 중립 문구 비교 모드(검증·침전 없음).
   const plain = new URLSearchParams(location.search).get('plain') === '1';
-  const consult = createConsult(r, { timeKnown: known, nowYear: new Date().getFullYear(), persona: plain ? null : kkomiPack() });
+  // 관계 침전물(012): 지난 방문의 {LV·방문수}를 접어 게이트·호칭·재방문 인사에 반영. LLM 호출 0.
+  const rel = createRelationship(plain ? null : loadRel());
+  const consult = createConsult(r, {
+    timeKnown: known, nowYear: new Date().getFullYear(),
+    relLV: plain ? null : rel.lv,
+    persona: plain ? null : kkomiPack({ visits: rel.visits, call: rel.call }),
+  });
   box.innerHTML = `<section class="saju-step in">
     <div class="saju-log" id="c-log"></div>
     <button class="saju-btn ghost" id="c-adv">계속 ›</button>
@@ -251,6 +258,7 @@ function stepConsult(r, known, auto) {
       row.querySelector('#c-choices').remove();
       row.insertAdjacentHTML('beforeend', `<p class="ca">→ ${esc(b.dataset.c)}</p>`);
       consult.answer(b.dataset.c);
+      rel.answered(b.dataset.c, ev.ring, ev.options);
       adv.hidden = false;
       advance();
     }));
@@ -260,11 +268,12 @@ function stepConsult(r, known, auto) {
     const ev = consult.next();
     if (ev === null) return;               // 확인 대기
     if (!ev) return;                        // 소진(end에서 이미 마감)
+    rel.observe(ev);                        // 관계 침전(순수 집계 — 진행 개입 0)
     if (ev.kind === 'step') { push(`<span class="cstep">${esc(ev.title)}</span>`, 'step'); advance(); return; }
     if (ev.kind === 'sep') { advance(); return; }
     if (ev.kind === 'say') { push(`<p>${esc(ev.text)}</p>`, ev.big ? 'big' : ''); if (auto) advance(); return; }
-    if (ev.kind === 'confirm') { if (auto) { consult.answer(ev.options?.[0] ?? '맞아'); advance(); } else renderConfirm(ev); return; }
-    if (ev.kind === 'end') { renderEnd(ev.ending); return; }
+    if (ev.kind === 'confirm') { const pick = ev.options?.[0] ?? '맞아'; if (auto) { consult.answer(pick); rel.answered(pick, ev.ring, ev.options); advance(); } else renderConfirm(ev); return; }
+    if (ev.kind === 'end') { if (!plain) saveRel(rel.snapshot()); renderEnd(ev.ending); return; }
   };
 
   adv.addEventListener('click', advance);

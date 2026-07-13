@@ -107,7 +107,12 @@ export function createConsult(saju, opts = {}) {
     develop: (c) => (P?.develop ? P.develop(c, developText(c)) : developText(c)),
     confirm: (c) => (P?.confirm ? P.confirm(c, confirmPrompt(c)) : confirmPrompt(c)),
     recal: () => (P?.recal ? P.recal(RECAL) : RECAL),
+    tease: (n) => (P?.tease ? P.tease(n) : `더 깊은 결도 계산엔 ${n}자리 있어 — 오늘은 여기까지 보고, 다음에 이어볼게.`),
   };
+  // 해금 게이트(012 관계 리듀서 연동 · 가산형): relLV 미지정 = 게이트 없음(기존 그대로).
+  // LV0(첫 만남) = 아픈 깊은 정곡(SOFT·impact≥3.6)을 표면 후보로 대체하고 예고만 남긴다(포터블 ①§5-b·c).
+  const relLV = Number.isInteger(opts.relLV) ? opts.relLV : null;
+  let heldDeep = 0;
 
   // 고리 컴파일: 스텝 1→5, 스텝당 대표 1 + (확인 예산 내) 보강
   const queue = [];
@@ -123,7 +128,11 @@ export function createConsult(saju, opts = {}) {
   let firstAsked = false;
   const stepsUsed = [1, 2, 3, 4, 5].filter((s) => sel.main[s]);
   stepsUsed.forEach((s, idx) => {
-    const c = sel.main[s];
+    let c = sel.main[s];
+    if (relLV === 0 && c.tone === 'SOFT' && c.impact >= 3.6) {
+      const alt = (sel.byStep[s] || []).find((x) => x !== c && !(x.tone === 'SOFT' && x.impact >= 3.6));
+      if (alt) { heldDeep++; c = alt; } // 대체 후보가 있을 때만 보류(빈 스텝 방지)
+    }
     queue.push({ kind: 'step', step: s, title: STEP_TITLES[s] });
     queue.push({ kind: 'say', text: t.hook(c), tone: c.tone, big: c.impact >= 3.6 });
     queue.push({ kind: 'say', text: t.develop(c), tone: c.tone });
@@ -132,10 +141,12 @@ export function createConsult(saju, opts = {}) {
     if (ask) {
       asksLeft--; firstAsked = true;
       const options = isEvent ? answerSheetOf(c) : null; // EVENT = 답변지(계산된 보기), 그 외 = 3버튼
-      queue.push({ kind: 'confirm', prompt: t.confirm(c), ring: c, backup: sel.byStep[s][1] || null, options });
+      const backup = (sel.byStep[s] || []).find((x) => x !== c) || null; // 게이트 대체 시 자기 자신 중복 방지
+      queue.push({ kind: 'confirm', prompt: t.confirm(c), ring: c, backup, options });
     }
     if (idx === stepsUsed.length - 1) queue.push({ kind: 'sep' });
   });
+  if (heldDeep > 0) queue.push({ kind: 'say', text: t.tease(heldDeep) }); // 해금 예고(마무리 직전)
 
   // 엔딩 3종(§6-0: 처방 + 시기 + 격려) — 시간미상은 보류 정직 안내 포함
   const ctx = sel.context;

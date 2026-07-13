@@ -48,20 +48,27 @@ function kkomiHook(c, base) {
 }
 
 // ── 페르소나 팩 팩토리 — 상담 1회분 상태(사이드노트 1회 상한)를 캡슐화 ──
-export function kkomiPack() {
+// opts(012 관계 리듀서 연동): { visits: 이번 포함 방문 수, call: 호칭('손님'|'너') }
+export function kkomiPack(opts = {}) {
   let sideNoteUsed = false;
+  const visits = opts.visits || 1;
 
   return {
     name: '꼬미',
 
-    // 등장 + 일간 소개 (도킹면: 009 인트로 2줄 대체)
+    // 등장 + 일간 소개 (도킹면: 009 인트로 2줄 대체 · 재방문 = 훅 뱅크 [재방문] 결)
     intro(day, arch) {
       const lines = [
-        `왔네. 앉아 봐 — 판은 이미 다 세워뒀어. 너, ${day.han}(${day.kor}) 일간이야.`,
+        visits > 1
+          ? `또 왔어? …흥, 자리는 비워뒀어. ${day.han}(${day.kor}) 일간 — 판은 기억하고 있으니까 바로 가자.`
+          : `왔네. 앉아 봐 — 판은 이미 다 세워뒀어. 너, ${day.han}(${day.kor}) 일간이야.`,
       ];
-      if (arch) lines.push(`${day.han}은 ${arch.물상}의 결이거든 — ${arch.성정서사[0]}. 이게 네 판의 중심 기질이야. 좋은 팔자냐고? 급하긴. 끝까지 들어.`);
+      if (arch) lines.push(`${day.han}은 ${arch.물상}의 결이거든 — ${arch.성정서사[0]}. 이게 네 판의 중심 기질이야. ${visits > 1 ? '지난번에 말했지? 복습이야.' : '좋은 팔자냐고? 급하긴. 끝까지 들어.'}`);
       return lines;
     },
+
+    // 해금 예고(LV0 게이트로 보류된 깊은 정곡 — 조르기엔 안 열림, 다음 방문의 떡밥)
+    tease: (n) => `…더 아픈 자리도 계산엔 ${n}군데 보여. 근데 오늘 처음 본 사이에 그것까진 안 꺼내 — 다음에 와. 그때 마저 봐줄게.`,
 
     hook: (c, base) => kkomiHook(c, base),
 
