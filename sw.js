@@ -12,7 +12,7 @@
 //   CACHE 버전을 올리면(v1→v2) 옛 캐시는 activate 때 청소된다.
 // =========================================================
 
-const CACHE = "yeul-v1";
+const CACHE = "yeul-v2";
 
 const PRECACHE = [
   "/",
@@ -29,12 +29,25 @@ const PRECACHE = [
   "/js/knowledge/005-ui-kit.knowledge.js",
   "/js/knowledge/006-poem-image.knowledge.js",
   "/js/knowledge/007-reveal.knowledge.js",
+  "/js/knowledge/008-saju-characters.knowledge.js",
   "/js/units/001-landing.unit.js",
   "/js/units/002-scene-detail.unit.js",
   "/assets/images/001-hero-poster.webp",
   "/assets/images/005-logo.png",
   "/assets/images/icon-192.png",
   "/assets/images/icon-512.png",
+  "/assets/images/characters/001-tiger.webp",
+  "/assets/images/characters/002-rabbit.webp",
+  "/assets/images/characters/003-dragon.webp",
+  "/assets/images/characters/004-snake.webp",
+  "/assets/images/characters/005-horse.webp",
+  "/assets/images/characters/006-sheep.webp",
+  "/assets/images/characters/007-monkey.webp",
+  "/assets/images/characters/008-rooster.webp",
+  "/assets/images/characters/009-dog.webp",
+  "/assets/images/characters/010-pig.webp",
+  "/assets/images/characters/011-rat.webp",
+  "/assets/images/characters/012-ox.webp",
 ];
 
 self.addEventListener("install", (e) => {

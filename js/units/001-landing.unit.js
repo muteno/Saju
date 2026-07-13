@@ -9,6 +9,7 @@ import { getScenes } from "../knowledge/003-scenes.knowledge.js";
 import { sceneCard, sectionHead, AUDIENCE_ICON, ICON } from "../knowledge/005-ui-kit.knowledge.js";
 import { esc } from "../knowledge/001-formatters.knowledge.js";
 import { observeReveals } from "../knowledge/007-reveal.knowledge.js";
+import { ZODIAC, zodiacImg, zodiacOfYear } from "../knowledge/008-saju-characters.knowledge.js";
 
 const state = { act: "전체" };
 let router;
@@ -37,6 +38,21 @@ function renderScenes(mount) {
     });
   });
   observeReveals(grid);
+}
+
+/** 직장운 결과 카드 */
+function renderSajuResult(host, z) {
+  host.innerHTML = `
+    <article class="saju-card reveal" style="--c:${z.color}">
+      <div class="saju-card-face"><img src="${zodiacImg(z)}" alt="${esc(z.animal)} 캐릭터" /></div>
+      <div class="saju-card-body">
+        <span class="saju-card-eyebrow">${esc(z.season)} ${esc(z.seasonHanja)} · ${esc(z.dir)} · ${esc(z.element)}</span>
+        <h3 class="saju-card-title">${esc(z.animal)} <span>${esc(z.branch)}</span> — ${esc(z.line)}</h3>
+        <div class="saju-tags">${z.traits.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>
+        <p class="saju-card-fortune">${esc(z.work)}</p>
+      </div>
+    </article>`;
+  observeReveals(host);
 }
 
 function render({ mount, router: r }) {
@@ -95,6 +111,26 @@ function render({ mount, router: r }) {
       </div>
     </section>
 
+    <!-- SAJU (십이지 직장운 — 콘텐츠 한 꼭지) -->
+    <section class="band" id="saju">
+      <div>${sectionHead("SAJU · 직장운", "십이지 직장운", "태어난 해를 넣거나 띠를 골라봐 — 네 자리의 운은 어떻게 도는지. (절기 미반영, 재미용)")}</div>
+      <div class="saju-year reveal">
+        <label>태어난 해
+          <input id="saju-year-in" type="number" inputmode="numeric" placeholder="예: 1993" min="1900" max="2026" />
+        </label>
+        <button class="pill-btn" id="saju-year-go" type="button">내 띠 보기 ${ICON.arrow}</button>
+      </div>
+      <div class="saju-grid reveal" role="listbox" aria-label="띠 고르기">
+        ${ZODIAC.map((z) => `
+          <button class="saju-chip" type="button" data-id="${esc(z.id)}" role="option"
+                  aria-label="${esc(z.animal)} 띠" style="--c:${z.color}">
+            <span class="saju-chip-img"><img src="${zodiacImg(z)}" alt="${esc(z.animal)}" loading="lazy" /></span>
+            <span class="saju-chip-name">${esc(z.animal)}<i>${esc(z.branch)}</i></span>
+          </button>`).join("")}
+      </div>
+      <div id="saju-result" class="saju-result" aria-live="polite"></div>
+    </section>
+
     <!-- SCENES -->
     <section class="band" id="scenes">
       <div>${sectionHead("SCENES", "원문과 시, 여섯 개의 장면", "직장의 한 컷이 원문이 되고, 그 옆에 시가 선다. 한 장면을 열어 전문을 읽고, 복사하거나 이미지로 저장하세요.")}</div>
@@ -127,6 +163,7 @@ function render({ mount, router: r }) {
         <div class="footer-col">
           <h4>작품</h4>
           <a href="#synopsis">시놉시스</a>
+          <a href="#saju">직장운</a>
           <a href="#scenes">장면</a>
           <a href="#faq">FAQ</a>
         </div>
@@ -165,6 +202,25 @@ function render({ mount, router: r }) {
       mount.querySelectorAll(".act-tab").forEach((t) => t.classList.toggle("on", t === tab));
       renderScenes(mount);
     }));
+
+  // 십이지 직장운: 칩 선택 · 생년 → 띠
+  const sajuHost = mount.querySelector("#saju-result");
+  const yearIn = mount.querySelector("#saju-year-in");
+  const pickZodiac = (z, scroll) => {
+    if (!z) return;
+    mount.querySelectorAll(".saju-chip").forEach((c) => c.classList.toggle("on", c.dataset.id === z.id));
+    renderSajuResult(sajuHost, z);
+    if (scroll) sajuHost.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  };
+  mount.querySelectorAll(".saju-chip").forEach((chip) =>
+    (chip.onclick = () => pickZodiac(ZODIAC.find((z) => z.id === chip.dataset.id), true)));
+  const byYear = () => {
+    const z = zodiacOfYear(yearIn.value);
+    if (z) pickZodiac(z, true);
+    else sajuHost.innerHTML = `<p class="saju-hint">태어난 해를 네 자리로 넣어줘 — 예: 1993 🐔</p>`;
+  };
+  mount.querySelector("#saju-year-go").onclick = byYear;
+  yearIn.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); byYear(); } });
 
   renderScenes(mount);
   observeReveals(mount);
