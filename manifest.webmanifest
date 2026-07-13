@@ -2,11 +2,11 @@
   "id": "/",
   "name": "어휴게소",
   "short_name": "어휴게소",
-  "description": "어휴게소 — 사주 원국",
+  "description": "어휴게소 — 팔자 읽어주는 언니, 꼬미의 살롱",
   "lang": "ko",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#fdfcfa",
-  "theme_color": "#fdfcfa"
+  "background_color": "#0c0a12",
+  "theme_color": "#0c0a12"
 }

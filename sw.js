@@ -14,7 +14,7 @@
 //   CACHE 버전을 올리면(v5→v6) 옛 캐시는 activate 때 청소된다.
 // =========================================================
 
-const CACHE = "yeul-v6";
+const CACHE = "yeul-v7";
 
 const PRECACHE = [
   "/",
