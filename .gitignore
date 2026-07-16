@@ -12,3 +12,4 @@ dosa-app/engine/tools/de440s.bsp
 
 # L2 파생 산출물 (정제본에서 extract_bodies.py로 재생성, 13.5MB)
 dosa-app/kb/unit_bodies.json
+dosa-app/kb/distill_src/
