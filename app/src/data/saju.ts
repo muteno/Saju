@@ -1,11 +1,12 @@
-import type { OhaengKey } from '../theme'
+import { computeChartUI, todayIljin as engineToday } from '../engine'
 
 /**
- * 샘플 데이터 — dosa-app/engine(computeChart)의 실제 출력값을 그대로 반영.
- * 입력: 1990/01/01 08:24, 여자, 서울 진태양시 보정(-32분) → 07:52.
- * 원국: 기사년 병자월 병인일 임진시 (일간 병火). 대운수 2 순행.
- * ── 실 서비스에선 engine.computeChart()를 그대로 호출해 이 구조를 채운다.
+ * 화면 데이터 = dosa-app L1 만세력 엔진(computeChart)의 실제 계산 결과.
+ * 지금은 샘플 프로필(1990/01/01 08:24 여, 서울)로 고정 호출.
+ * 추후 InfoInput 폼 값으로 computeChartUI(input)를 그대로 호출하면 된다.
  */
+export type { Pillar, OhaengStat, Verdict, DaeunItem } from '../engine'
+
 export interface Profile {
   name: string
   gender: '여자' | '남자'
@@ -24,55 +25,21 @@ export const mockProfile: Profile = {
   marital: '미혼',
 }
 
-export interface Pillar {
-  title: string // 시/일/월/년
-  topStar: string // 천간 십신
-  gan: string // 천간(한자)
-  ganK: string // 천간(한글)
-  ganE: OhaengKey
-  ganPolarity: '+' | '-'
-  ji: string // 지지(한자)
-  jiK: string // 지지(한글)
-  jiE: OhaengKey
-  jiPolarity: '+' | '-'
-  botStar: string // 지지 십신
-  stage: string // 십이운성
-  isDayMaster?: boolean
-}
+// 실제 엔진 계산 (기사·병자·병인·임진 / 일간 병火 / 대운수 2)
+const chart = computeChartUI({ year: 1990, month: 1, day: 1, hour: 8, minute: 24, gender: 'F' })
+export const mockPillars = chart.pillars
+export const mockOhaeng = chart.ohaeng
+export const mockDaeun = chart.daeun
+export const dayMaster = chart.dayMaster
 
-/** 왼→오른: 시주 · 일주 · 월주 · 년주 (engine.saju 출력 순서 재배열) */
-export const mockPillars: Pillar[] = [
-  { title: '시', topStar: '편관', gan: '壬', ganK: '임', ganE: '수', ganPolarity: '+', ji: '辰', jiK: '진', jiE: '토', jiPolarity: '+', botStar: '식신', stage: '관대' },
-  { title: '일', topStar: '일원', gan: '丙', ganK: '병', ganE: '화', ganPolarity: '+', ji: '寅', jiK: '인', jiE: '목', jiPolarity: '+', botStar: '편인', stage: '장생', isDayMaster: true },
-  { title: '월', topStar: '비견', gan: '丙', ganK: '병', ganE: '화', ganPolarity: '+', ji: '子', jiK: '자', jiE: '수', jiPolarity: '-', botStar: '정관', stage: '태' },
-  { title: '년', topStar: '상관', gan: '己', ganK: '기', ganE: '토', ganPolarity: '-', ji: '巳', jiK: '사', jiE: '화', jiPolarity: '+', botStar: '비견', stage: '건록' },
-]
-
-export const dayMaster = { ganK: '병', gan: '丙', element: '화' as OhaengKey }
-
-export type Verdict = '부족' | '적정' | '발달' | '과다'
-export interface OhaengStat {
-  key: OhaengKey
-  pct: number
-  verdict: Verdict
-}
-
-/** 8자 오행 분포 (목1·화3·토2·금0·수2 = 12.5/37.5/25/0/25) */
-export const mockOhaeng: OhaengStat[] = [
-  { key: '목', pct: 12.5, verdict: '적정' },
-  { key: '화', pct: 37.5, verdict: '과다' },
-  { key: '토', pct: 25.0, verdict: '발달' },
-  { key: '금', pct: 0.0, verdict: '부족' },
-  { key: '수', pct: 25.0, verdict: '발달' },
-]
-
-/** 오늘의 일진 — engine.computeChart(오늘)에서 산출. 점수는 서비스 정책값(placeholder) */
+// 오늘의 일진 (엔진 산출) + 점수/문안은 서비스 정책값(placeholder)
+const t = engineToday(2026, 7, 16)
 export const todayIljin = {
   date: '7월 16일 목요일',
-  yearName: '병오',
-  monthName: '을미',
-  dayName: '신묘',
-  dayHanja: '辛卯',
+  yearName: t.yearName,
+  monthName: t.monthName,
+  dayName: t.dayName,
+  dayHanja: t.dayHanja,
   score: 82,
   keyword: '차분한 정리의 날',
   oneLine: '들뜨기보다 하나를 매듭짓기 좋은 흐름이에요.',
@@ -87,7 +54,7 @@ export const homeSummary = {
   ],
 }
 
-/** 결과 화면 대화(아이샤가 읽어주는 사주 풀이) — Figma 결과 케이스 재현 */
+/** 결과 화면 대화(아이샤가 읽어주는 사주 풀이) — 추후 L3/L4 리포트로 대체 */
 export const mockReading = {
   headline: '정리와 절제',
   sections: [
