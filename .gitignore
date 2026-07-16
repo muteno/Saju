@@ -3,6 +3,10 @@
 # 원본은 _압축본_백업/ 의 분할 압축본에 보존됨.
 youtube-tools/raw/
 
+# Node / 빌드 산출물 (app/ 및 루트 위임 빌드)
+node_modules/
+dist/
+
 # Python 캐시
 __pycache__/
 *.pyc

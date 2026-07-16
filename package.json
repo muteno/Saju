@@ -1,0 +1,8 @@
+{
+  "name": "saju",
+  "private": true,
+  "description": "명리학 도사 — 사주풀이 웹앱. 실제 빌드는 app/(Vite+React) 이며, 이 루트 스크립트는 Cloudflare Pages가 저장소 루트에서 빌드할 때 app을 빌드해 dist/로 내보낸다.",
+  "scripts": {
+    "build": "npm --prefix app install && npm --prefix app run build && rm -rf dist && cp -r app/dist dist"
+  }
+}
