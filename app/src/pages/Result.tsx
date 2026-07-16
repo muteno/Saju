@@ -19,7 +19,7 @@ function OhaengStrip() {
         px: 1.5,
         py: 1,
         borderRadius: '16px',
-        bgcolor: 'rgba(255,255,255,0.9)',
+        bgcolor: tokens.color.elev,
         backdropFilter: 'blur(8px)',
         boxShadow: tokens.shadow.card,
         display: 'flex',

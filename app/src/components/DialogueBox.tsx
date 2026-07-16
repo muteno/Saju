@@ -22,10 +22,10 @@ export default function DialogueBox({
             py: 0.5,
             borderRadius: 100,
             bgcolor: tokens.color.primary,
-            color: '#fff',
+            color: tokens.color.onPrimary,
             fontWeight: 800,
             fontSize: 13.5,
-            letterSpacing: '-0.02em',
+            letterSpacing: 'var(--tracking)',
             boxShadow: '0 4px 12px rgba(62,59,224,0.35)',
           }}
         >
@@ -35,9 +35,9 @@ export default function DialogueBox({
       <Box
         sx={{
           position: 'relative',
-          bgcolor: 'rgba(255,255,255,0.94)',
+          bgcolor: tokens.color.elev,
           backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255,255,255,0.7)',
+          border: '1px solid rgba(255,255,255,0.35)',
           borderRadius: '22px',
           p: 2,
           pt: 2.2,

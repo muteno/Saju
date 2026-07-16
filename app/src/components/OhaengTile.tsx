@@ -38,7 +38,7 @@ export default function OhaengTile({
       }}
     >
       <Box sx={{ position: 'relative', display: 'flex', alignItems: 'baseline', gap: '2px' }}>
-        <span style={{ fontSize: size * 0.42, fontWeight: 800, letterSpacing: '-0.03em' }}>{main}</span>
+        <span style={{ fontSize: size * 0.42, fontWeight: 800, letterSpacing: 'var(--tracking)' }}>{main}</span>
         <span style={{ fontSize: size * 0.24, fontWeight: 700, opacity: 0.65 }}>{hanja}</span>
       </Box>
       <span style={{ fontSize: size * 0.19, fontWeight: 700, color: o.label, marginTop: 2 }}>

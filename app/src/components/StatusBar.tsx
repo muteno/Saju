@@ -14,7 +14,7 @@ export default function StatusBar({ dark = false, time = '8:58' }: { dark?: bool
         color: c,
         fontWeight: 700,
         fontSize: 15,
-        letterSpacing: '-0.02em',
+        letterSpacing: 'var(--tracking)',
         userSelect: 'none',
         position: 'relative',
         zIndex: 5,

@@ -1,7 +1,50 @@
 :root {
   --pretendard: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
     'Apple SD Gothic Neo', Roboto, 'Noto Sans KR', system-ui, sans-serif;
+  /* 전역 자간 기준 (자간 -10) */
+  --tracking: -0.03em;
+
+  /* 색 토큰 — 라이트 */
+  --c-page: #f3f3f5;
+  --c-card: #ffffff;
+  --c-ink: #1b1b1f;
+  --c-ink-sub: #6b6b72;
+  --c-ink-faint: #a2a2a9;
+  --c-border: #e7e7ec;
+  --c-border-strong: #d6d6dc;
+  --c-primary: #22409e; /* 코발트+남색 딥 블루 */
+  --c-primary-dark: #17306f;
+  --c-primary-soft: #e7ebf8;
+  --c-on-primary: #ffffff;
+  --c-heading: #2a4bc0;
+  --c-solar: #e85e5e;
+  --c-lunar: #428bff;
+  --c-sky-top: #a9dced;
+  --c-sky-bot: #cfe8ef;
+  --c-elev: rgba(255, 255, 255, 0.92);
   color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  /* 다크 — 니어블랙(레퍼런스 톤) */
+  --c-page: #141416;
+  --c-card: #1f1f22;
+  --c-ink: #f1f1f4;
+  --c-ink-sub: #a0a0a8;
+  --c-ink-faint: #6a6a72;
+  --c-border: #2e2e33;
+  --c-border-strong: #3a3a41;
+  --c-primary: #3ad9c0; /* 틸·민트 (레퍼런스 강조색) */
+  --c-primary-dark: #2bb8a3;
+  --c-primary-soft: #133330;
+  --c-on-primary: #062019;
+  --c-heading: #6fe0c8;
+  --c-solar: #f07777;
+  --c-lunar: #5b9bff;
+  --c-sky-top: #1c2a33;
+  --c-sky-bot: #182027;
+  --c-elev: rgba(32, 32, 36, 0.94);
+  color-scheme: dark;
 }
 
 * {
@@ -18,6 +61,8 @@ body {
 
 body {
   font-family: var(--pretendard);
+  font-weight: 500; /* 기본 Medium */
+  letter-spacing: var(--tracking);
   background: radial-gradient(1200px 800px at 50% -10%, #2a2c3a 0%, #16171f 60%, #0d0e14 100%);
   display: flex;
   align-items: center;
@@ -25,6 +70,10 @@ body {
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+:root[data-theme='dark'] body {
+  background: radial-gradient(1200px 800px at 50% -10%, #101013 0%, #0a0a0c 70%);
 }
 
 #root {
@@ -35,7 +84,6 @@ body {
   justify-content: center;
 }
 
-/* 디바이스 셸: 좁은 뷰포트(스크린샷/모바일)에서는 꽉 채우고, 넓은 화면에선 폰처럼 보이게 */
 .device {
   position: relative;
   width: 100%;
@@ -43,7 +91,7 @@ body {
   height: 100dvh;
   max-height: 844px;
   overflow: hidden;
-  background: #f3f3f5;
+  background: var(--c-page);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
 }
 
@@ -56,4 +104,11 @@ body {
 
 button {
   font-family: inherit;
+}
+
+/* 라이트/다크 토글은 PC 폭에서만 노출 (모바일에선 숨김) */
+@media (max-width: 429px) {
+  .mode-toggle {
+    display: none !important;
+  }
 }

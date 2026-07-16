@@ -6,14 +6,14 @@ import OhaengTile from './OhaengTile'
 /** 사주 원국표 카드 — 열=시/일/월/년, 행=십성·천간·지지·십성 */
 export default function SajuTable({ pillars }: { pillars: Pillar[] }) {
   const star = (t: string) => (
-    <Typography sx={{ fontSize: 11.5, fontWeight: 700, color: tokens.color.inkSub, textAlign: 'center', letterSpacing: '-0.02em' }}>
+    <Typography sx={{ fontSize: 11.5, fontWeight: 700, color: tokens.color.inkSub, textAlign: 'center', letterSpacing: 'var(--tracking)' }}>
       {t}
     </Typography>
   )
   return (
     <Box
       sx={{
-        bgcolor: 'rgba(255,255,255,0.95)',
+        bgcolor: tokens.color.elev,
         backdropFilter: 'blur(8px)',
         borderRadius: '18px',
         p: 1.5,
@@ -31,6 +31,7 @@ export default function SajuTable({ pillars }: { pillars: Pillar[] }) {
             <OhaengTile main={p.ganK} hanja={p.gan} polarity={p.ganPolarity} element={p.ganE} highlight={p.isDayMaster} />
             <OhaengTile main={p.jiK} hanja={p.ji} polarity={p.jiPolarity} element={p.jiE} />
             {star(p.botStar)}
+            <Typography sx={{ fontSize: 10.5, color: tokens.color.inkFaint, textAlign: 'center', fontWeight: 500 }}>{p.stage}</Typography>
           </Box>
         ))}
       </Box>

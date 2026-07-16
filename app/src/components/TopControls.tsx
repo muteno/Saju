@@ -1,4 +1,5 @@
 import { Box } from '@mui/material'
+import { tokens } from '../theme'
 
 const items = [
   { label: '넘기기', icon: '▶▶' },
@@ -20,13 +21,13 @@ export default function TopControls() {
             px: 1.4,
             py: 0.7,
             borderRadius: 100,
-            bgcolor: 'rgba(255,255,255,0.82)',
+            bgcolor: tokens.color.elev,
             backdropFilter: 'blur(8px)',
             boxShadow: '0 2px 10px rgba(0,0,0,0.12)',
             fontSize: 12.5,
             fontWeight: 700,
-            color: '#33343A',
-            letterSpacing: '-0.02em',
+            color: tokens.color.ink,
+            letterSpacing: 'var(--tracking)',
             whiteSpace: 'nowrap',
           }}
         >

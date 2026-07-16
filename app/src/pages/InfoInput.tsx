@@ -10,13 +10,13 @@ import { mockProfile } from '../data/saju'
 function Label({ children, hint }: { children: ReactNode; hint?: ReactNode }) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1, mt: 2.5 }}>
-      <Typography sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.ink, letterSpacing: '-0.02em' }}>{children}</Typography>
+      <Typography sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.ink, letterSpacing: 'var(--tracking)' }}>{children}</Typography>
       {hint}
     </Box>
   )
 }
 
-const selectSx = { bgcolor: '#fff', borderRadius: '12px', fontSize: 15, '& fieldset': { borderColor: tokens.color.border } }
+const selectSx = { bgcolor: 'var(--c-card)', borderRadius: '12px', fontSize: 15, '& fieldset': { borderColor: tokens.color.border } }
 
 function CorrectionChip({ text, on }: { text: string; on: boolean }) {
   return (
@@ -29,7 +29,7 @@ function CorrectionChip({ text, on }: { text: string; on: boolean }) {
         gap: 0.6,
         py: 1.1,
         borderRadius: 100,
-        bgcolor: on ? tokens.color.primarySoft : '#fff',
+        bgcolor: on ? tokens.color.primarySoft : 'var(--c-card)',
         border: `1px solid ${on ? tokens.color.primary : tokens.color.border}`,
         color: on ? tokens.color.primary : tokens.color.inkSub,
         fontSize: 12.5,
@@ -53,13 +53,13 @@ export default function InfoInput() {
     <Screen bg={tokens.color.page}>
       <StatusBar time="8:58" />
       <Box sx={{ flex: 1, overflowY: 'auto', px: 2.5, pb: 2 }}>
-        <Typography sx={{ fontSize: 25, fontWeight: 800, letterSpacing: '-0.03em', mt: 1, mb: 0.5 }}>
+        <Typography sx={{ fontSize: 25, fontWeight: 800, letterSpacing: 'var(--tracking)', mt: 1, mb: 0.5 }}>
           정보를 입력해 주세요.
         </Typography>
 
         <Label>이름과 성별</Label>
         <Stack direction="row" spacing={1}>
-          <OutlinedInput fullWidth value={name} onChange={(e) => setName(e.target.value)} sx={{ borderRadius: '12px', bgcolor: '#fff' }} />
+          <OutlinedInput fullWidth value={name} onChange={(e) => setName(e.target.value)} sx={{ borderRadius: '12px', bgcolor: 'var(--c-card)' }} />
           <Select value={gender} onChange={(e) => setGender(e.target.value as typeof gender)} sx={{ ...selectSx, width: 104 }}>
             <MenuItem value="여자">여자</MenuItem>
             <MenuItem value="남자">남자</MenuItem>
@@ -75,11 +75,11 @@ export default function InfoInput() {
             <MenuItem value="음력">음력</MenuItem>
             <MenuItem value="음력(윤달)">음력(윤달)</MenuItem>
           </Select>
-          <OutlinedInput fullWidth value={mockProfile.birth} readOnly sx={{ borderRadius: '12px', bgcolor: '#fff', color: tokens.color.ink }} />
+          <OutlinedInput fullWidth value={mockProfile.birth} readOnly sx={{ borderRadius: '12px', bgcolor: 'var(--c-card)', color: tokens.color.ink }} />
         </Stack>
 
         <Label>태어난 도시</Label>
-        <OutlinedInput fullWidth value={mockProfile.city} readOnly startAdornment={<span style={{ marginRight: 8, opacity: 0.5 }}>🔍</span>} sx={{ borderRadius: '12px', bgcolor: '#fff' }} />
+        <OutlinedInput fullWidth value={mockProfile.city} readOnly startAdornment={<span style={{ marginRight: 8, opacity: 0.5 }}>🔍</span>} sx={{ borderRadius: '12px', bgcolor: 'var(--c-card)' }} />
 
         <Label>혼인 여부</Label>
         <Select value={marital} onChange={(e) => setMarital(e.target.value as typeof marital)} sx={{ ...selectSx, width: 148 }}>

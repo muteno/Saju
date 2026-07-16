@@ -45,7 +45,7 @@ export default function Loading() {
           ))}
         </Box>
 
-        <Typography sx={{ fontSize: 20, fontWeight: 800, color: tokens.color.heading, textAlign: 'center', lineHeight: 1.45, letterSpacing: '-0.03em' }}>
+        <Typography sx={{ fontSize: 20, fontWeight: 800, color: tokens.color.heading, textAlign: 'center', lineHeight: 1.45, letterSpacing: 'var(--tracking)' }}>
           아이샤가 만세력을
           <br />
           정리 중이에요.
