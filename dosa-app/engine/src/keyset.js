@@ -4,6 +4,7 @@
 import { sexStem, sexBranch, sexName, STEMS, BRANCHES } from './tables.js';
 import { twelveSinsal, auspicious } from './sinsal.js';
 import { detectRelations } from './relations.js';
+import { judgeStructure } from './judge.js';
 
 /**
  * @param {object} chart computeChart() 결과
@@ -16,7 +17,11 @@ export function chartToKeys(chart, opts = {}) {
   const seen = new Set();
   const keys = [];
   const put = (k) => { if (!seen.has(k)) { seen.add(k); keys.push(k); } };
-  const byTopic = { ilju: [], ganji: [], sipsin: [], sibiunseong: [], sinsal: [], hapchung: [], unse: [] };
+  const byTopic = { frame: [], ilju: [], ganji: [], sipsin: [], sibiunseong: [], sinsal: [], hapchung: [], unse: [] };
+
+  // 0) 구조 판정 (통변 순서상 최우선 — 신강신약·조후·부재·체인)
+  const judge = judgeStructure(chart);
+  for (const k of judge.keys) { put(k); byTopic.frame.push(k); }
 
   // 일주 (해석의 중심)
   const ilju = `ilju/${sexName(p.day)}`;
@@ -65,5 +70,5 @@ export function chartToKeys(chart, opts = {}) {
     put(k1); put(k2); byTopic.unse.push(k1, k2);
   }
 
-  return { keys, byTopic, relations: rel };
+  return { keys, byTopic, relations: rel, judge };
 }

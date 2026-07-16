@@ -83,6 +83,25 @@ export function buildReport(chart, keyset, kb) {
     },
   });
 
+  // 1.5) 구조 판정 (보드 통변 순서: 조후·신강신약이 개별 요소보다 먼저)
+  if (keyset.judge) {
+    const j = keyset.judge;
+    const flags = [
+      j.strength.deukryeong ? '득령' : '실령',
+      j.strength.deukji ? '득지' : null,
+      j.strength.deuksi ? '득시' : null,
+      j.strength.deukse ? '득세' : null,
+    ].filter(Boolean);
+    const lines = [
+      `신강신약: **${j.strength.label}** (${j.strength.score}/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · ${flags.join('·')}`,
+      `조후: ${j.johu.season}생${j.johu.need ? ` — ${j.johu.need} 기운 필요, 원국 ${j.johu.satisfied ? '보유' : '**부재**'}` : ' (조후 무난)'}`,
+      `오행: ${Object.entries(j.profile.elements).map(([e, c]) => `${e}${c}`).join(' ')}${j.profile.missing.length ? ` · 부재 [${j.profile.missing.join(',')}]` : ''}${j.profile.excess.length ? ` · 과다 [${j.profile.excess.join(',')}]` : ''}`,
+      j.profile.missingGroups.length ? `십신 부재: ${j.profile.missingGroups.join(', ')}` : null,
+      j.chains.length ? `구조 후보: ${j.chains.join(' · ')} (성립 세부는 문헌 근거로 판단)` : null,
+    ].filter(Boolean);
+    S.push({ id: 'judge', title: '원국 구조 판정', lines });
+  }
+
   // 2) 일주론 (해석의 중심)
   S.push({ id: 'ilju', title: `일주 — ${saju.day.name}일주`, block: topicBlock(keyset.byTopic.ilju[0], kb, { maxUnits: 2, nParas: 6 }) });
 

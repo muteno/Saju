@@ -6,6 +6,7 @@ import { dirname, join } from 'node:path';
 import assert from 'node:assert/strict';
 import { computeChart, zonedToUtc, jdn } from '../src/manseryeok.js';
 import { twelveSinsal, auspicious, gongmang } from '../src/sinsal.js';
+import { judgeStructure } from '../src/judge.js';
 import { detectRelations } from '../src/relations.js';
 import { BRANCHES } from '../src/tables.js';
 
@@ -154,6 +155,37 @@ ok('JDN: 2000-01-01 = 2451545');
   assert.ok(r.hyeong.some((x) => x.name.includes('자묘')), '자묘형');
   assert.ok(r.pa.some((x) => x.name.includes('자유파')) === false);
   ok('합성 케이스: 신자진 완합·자묘형 검출');
+}
+
+// ── 구조 판정 (보드 110점제 — 포스텔러 '신강' 정답 대조) ──────
+{
+  const c = computeChart({ year: 1990, month: 1, day: 1, hour: 12, minute: 0, gender: 'F' }, terms);
+  const j = judgeStructure(c);
+  // 병인일주: 아신10+월간 병10+시간 갑10+년지 사15+일지 인15+시지 오10 = 70점
+  assert.equal(j.strength.score, 70);
+  assert.equal(j.strength.label, '신강'); // 포스텔러: "샘플님은 신강 한 사주입니다"
+  assert.equal(j.strength.deukryeong, false); // 자월 정관 → 실령 (보드: 월령이 식/재/관)
+  assert.equal(j.strength.deukji, true);      // 일지 인 편인
+  assert.equal(j.strength.deuksi, true);      // 시지 오 겁재
+  assert.equal(j.johu.season, '겨울');
+  assert.equal(j.johu.need, '화');
+  assert.equal(j.johu.satisfied, true);       // 화 4개 보유
+  assert.deepEqual(j.profile.missing, ['금']);
+  assert.ok(j.keys.includes('frame/신강'));
+  assert.ok(j.keys.includes('frame/조후'));
+  assert.ok(j.keys.includes('chain/관인상생')); // 관(자) + 인(갑·인)
+  ok('구조 판정: 70/110 신강 (포스텔러 일치), 실령·득지·득시, 겨울생 조후, 금 부재');
+
+  // 1993-11-30 08:00 남 순천 (계유·계해·을묘·경진): 인성3+비겁2 신강, 화 부재 → 무식상
+  const c2 = computeChart({ year: 1993, month: 11, day: 30, hour: 8, minute: 0, gender: 'M', longitude: 127.4872 }, terms);
+  const j2 = judgeStructure(c2);
+  assert.equal(j2.strength.score, 75); // 아신10+년간10+월간10+월지 해30+일지 묘15
+  assert.equal(j2.strength.label, '신강');
+  assert.equal(j2.strength.deukryeong, true); // 해월 정인 → 득령
+  assert.equal(j2.johu.satisfied, false);     // 겨울생인데 화 0
+  assert.ok(j2.keys.includes('frame/무식상'));
+  assert.ok(j2.keys.includes('chain/관인상생'));
+  ok('구조 판정: 계유년 사주 75/110 신강·득령, 겨울생 화 부재(조후 미충족)·무식상');
 }
 
 console.log(`\n전체 ${n}개 검증 통과`);
