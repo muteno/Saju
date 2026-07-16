@@ -1,0 +1,20 @@
+{
+  "_설명": "엔진 방출 키 → 색인 키 별칭/폴백. 조회 계층(L3)은 [원키, ...별칭] 순서로 unit_index.json을 찾는다. 근거 유닛이 하나도 없으면 '소장 문헌에 상세 없음'으로 처리(추측 서술 금지 — 절대 원칙 1).",
+  "sinsal/정록": ["sinsal/십간록", "sibiunseong/건록"],
+  "sinsal/건록": ["sinsal/십간록", "sibiunseong/건록"],
+  "sinsal/현침살": ["sinsal/신살이란?"],
+  "sinsal/겁살": ["sinsal/십이신살"],
+  "sinsal/재살": ["sinsal/십이신살"],
+  "sinsal/천살": ["sinsal/천살", "sinsal/십이신살"],
+  "sinsal/지살": ["sinsal/지살", "sinsal/십이신살"],
+  "sinsal/년살": ["sinsal/년살", "sinsal/도화살", "sinsal/십이신살"],
+  "sinsal/월살": ["sinsal/십이신살"],
+  "sinsal/망신살": ["sinsal/망신살", "sinsal/십이신살"],
+  "sinsal/장성살": ["sinsal/장성살", "sinsal/십이신살"],
+  "sinsal/반안살": ["sinsal/반안살", "sinsal/십이신살"],
+  "sinsal/역마살": ["sinsal/역마살", "sinsal/십이신살"],
+  "sinsal/육해살": ["sinsal/육해살", "sinsal/십이신살"],
+  "sinsal/화개살": ["sinsal/화개살", "sinsal/십이신살"],
+  "sinsal/공망": ["sinsal/공망", "hapchung/공망"],
+  "hapchung/원진": ["hapchung/원진", "sinsal/원진살"]
+}

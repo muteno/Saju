@@ -1,0 +1,77 @@
+[
+ {
+  "slug": "hand_hand001001",
+  "name": "hand-수상학강좌",
+  "url": "http://hand.sajuplus.net/?mnuid=2&idcnt=1&curjong=hand001001&cstyle=4"
+ },
+ {
+  "slug": "hand_hand001003",
+  "name": "hand-지문학",
+  "url": "http://hand.sajuplus.net/?mnuid=2&idcnt=2&curjong=hand001003&cstyle=4"
+ },
+ {
+  "slug": "hand_hand001004",
+  "name": "hand-용어사전",
+  "url": "http://hand.sajuplus.net/?mnuid=2&idcnt=3&curjong=hand001004&cstyle=4"
+ },
+ {
+  "slug": "face_face001001",
+  "name": "face-관상학자료실",
+  "url": "http://face.sajuplus.net/?mnuid=1&idcnt=1&curjong=face001001&cstyle=4"
+ },
+ {
+  "slug": "taro_taro001001",
+  "name": "taro-타로카드",
+  "url": "http://taro.sajuplus.net/?mnuid=1&idcnt=1&curjong=taro001001&cstyle=4"
+ },
+ {
+  "slug": "mehwa_mehwa004001",
+  "name": "mehwa-매화역수자료실",
+  "url": "http://mehwa.sajuplus.net/?mnuid=2&idcnt=1&curjong=mehwa004001&cstyle=4"
+ },
+ {
+  "slug": "gusung_gusung002001",
+  "name": "gusung-구성학자료실",
+  "url": "http://gusung.sajuplus.net/?mnuid=2&idcnt=1&curjong=gusung002001&cstyle=4"
+ },
+ {
+  "slug": "pungsu_pungsu001005",
+  "name": "pungsu-형기풍수",
+  "url": "http://pungsu.sajuplus.net/?mnuid=2&idcnt=1&curjong=pungsu001005&cstyle=4"
+ },
+ {
+  "slug": "pungsu_pungsu001002",
+  "name": "pungsu-이기풍수",
+  "url": "http://pungsu.sajuplus.net/?mnuid=2&idcnt=2&curjong=pungsu001002&cstyle=4"
+ },
+ {
+  "slug": "pungsu_pungsu001001",
+  "name": "pungsu-인테리어풍수",
+  "url": "http://pungsu.sajuplus.net/?mnuid=2&idcnt=3&curjong=pungsu001001&cstyle=4"
+ },
+ {
+  "slug": "pungsu_pungsu001003",
+  "name": "pungsu-풍수택일",
+  "url": "http://pungsu.sajuplus.net/?mnuid=2&idcnt=4&curjong=pungsu001003&cstyle=4"
+ },
+ {
+  "slug": "pungsu_pungsu001004",
+  "name": "pungsu-기타자료",
+  "url": "http://pungsu.sajuplus.net/?mnuid=2&idcnt=5&curjong=pungsu001004&cstyle=4"
+ },
+ {
+  "slug": "tojung_tojung001003",
+  "name": "tojung-토정비결 게시판",
+  "url": "http://tojung.sajuplus.net/?mnuid=2&idcnt=1&curjong=tojung001003&cstyle=4"
+ },
+ {
+  "slug": "dang_dang002001",
+  "name": "dang-당사주자료실",
+  "url": "http://dang.sajuplus.net/?mnuid=2&idcnt=1&curjong=dang002001&cstyle=4"
+ },
+ {
+  "slug": "name_name001002",
+  "name": "name-이름게시판",
+  "url": "http://name.sajuplus.net/?mnuid=3&idcnt=1&curjong=name001002&cstyle=4"
+ }
+]

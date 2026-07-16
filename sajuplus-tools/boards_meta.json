@@ -1,0 +1,12 @@
+[
+ {"slug":"ipmun","name":"명리학입문","jong":"saju001018"},
+ {"slug":"chogeup","name":"명리학탐구(초급)","jong":"saju001011"},
+ {"slug":"junggeup1","name":"명리학탐구(중급1)","jong":"saju001013"},
+ {"slug":"junggeup2","name":"명리학탐구(중급2)","jong":"saju001014"},
+ {"slug":"gogeup1","name":"명리학탐구(고급1)","jong":"saju001015"},
+ {"slug":"gogeup2","name":"명리학탐구(고급2)","jong":"saju001016"},
+ {"slug":"japyeong","name":"자평명리학","jong":"saju001019"},
+ {"slug":"sajupuri","name":"사주풀이","jong":"saju001010"},
+ {"slug":"gita","name":"기타자료","jong":"saju001008"},
+ {"slug":"unse","name":"운세정리게시판","jong":"saju001021"}
+]

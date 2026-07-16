@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>포스텔러 만세력 — 구조·디자인 티어다운</title>
+<style>
+  /* ============ tokens ============ */
+  :root{
+    --ground:#FCFBF9; --surface:#FFFFFF; --surface-2:#F5F1EC;
+    --ink:#453F39; --ink-soft:#746D66; --muted:#9A938B;
+    --border:#E7E1DA; --border-strong:#D5CEC6;
+    --accent:#FFD36E; --accent-line:#EBB444; --accent-ink:#8A6412;
+    --shadow:0 1px 2px rgba(60,50,40,.04), 0 8px 24px rgba(60,50,40,.06);
+    /* 오행 — data colors, theme-independent */
+    --e-wood-text:#4C8093; --e-wood-tile:#70AFC6;
+    --e-fire-text:#E57576; --e-fire-tile:#E57576;
+    --e-earth-text:#CFA05A; --e-earth-tile:#FFCB7F;
+    --e-metal-text:#968F88; --e-metal-tile:#FFFFFF;
+    --e-water-text:#4A4955; --e-water-tile:#B1B0BB;
+    --sans:system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","Consolas","D2Coding",monospace;
+    --maxw:60rem;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#201C18; --surface:#2A2521; --surface-2:#322C26;
+      --ink:#ECE7E0; --ink-soft:#B8B0A6; --muted:#8B8379;
+      --border:#382F29; --border-strong:#4A413A;
+      --accent:#FFD36E; --accent-line:#C99B3A; --accent-ink:#FFDD94;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+      --e-metal-tile:#E9E4DE;
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#FCFBF9; --surface:#FFFFFF; --surface-2:#F5F1EC;
+    --ink:#453F39; --ink-soft:#746D66; --muted:#9A938B;
+    --border:#E7E1DA; --border-strong:#D5CEC6;
+    --accent:#FFD36E; --accent-line:#EBB444; --accent-ink:#8A6412;
+    --shadow:0 1px 2px rgba(60,50,40,.04), 0 8px 24px rgba(60,50,40,.06);
+    --e-metal-tile:#FFFFFF;
+  }
+  :root[data-theme="dark"]{
+    --ground:#201C18; --surface:#2A2521; --surface-2:#322C26;
+    --ink:#ECE7E0; --ink-soft:#B8B0A6; --muted:#8B8379;
+    --border:#382F29; --border-strong:#4A413A;
+    --accent:#FFD36E; --accent-line:#C99B3A; --accent-ink:#FFDD94;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
+    --e-metal-tile:#E9E4DE;
+  }
+
+  /* ============ base ============ */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.72;
+    letter-spacing:-.01em;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(1.1rem,4vw,2rem)}
+  a{color:var(--accent-ink); text-decoration:none; border-bottom:1px solid var(--accent-line)}
+  a:hover{border-bottom-width:2px}
+  code,.mono{font-family:var(--mono); font-size:.86em; font-variant-ligatures:none}
+  code{background:var(--surface-2); border:1px solid var(--border); border-radius:5px; padding:.08em .4em; color:var(--ink)}
+  h2,h3{text-wrap:balance; letter-spacing:-.02em; line-height:1.25}
+  :focus-visible{outline:2px solid var(--accent-line); outline-offset:2px; border-radius:3px}
+
+  /* ============ theme toggle ============ */
+  .toggle{
+    position:fixed; top:.9rem; right:.9rem; z-index:20;
+    font:600 12px/1 var(--mono); letter-spacing:.04em;
+    color:var(--ink-soft); background:var(--surface); border:1px solid var(--border-strong);
+    border-radius:100px; padding:.5rem .8rem; cursor:pointer; box-shadow:var(--shadow);
+    display:inline-flex; align-items:center; gap:.4rem;
+  }
+  .toggle:hover{color:var(--ink); border-color:var(--accent-line)}
+
+  /* ============ masthead ============ */
+  header.mast{padding:clamp(3rem,9vw,5.5rem) 0 clamp(1.6rem,4vw,2.4rem)}
+  .star{width:26px; height:26px; display:block; color:var(--ink)}
+  .eyebrow{
+    font:600 12px/1 var(--mono); letter-spacing:.22em; text-transform:uppercase;
+    color:var(--accent-ink); margin:1.15rem 0 .85rem;
+  }
+  h1{
+    font-size:clamp(2.1rem,6.5vw,3.5rem); line-height:1.04; letter-spacing:-.035em;
+    font-weight:800; margin:0; text-wrap:balance;
+  }
+  h1 .sub{display:block; color:var(--ink-soft); font-weight:650; font-size:.42em; letter-spacing:-.02em; margin-top:.7rem}
+  .lede{font-size:1.08rem; color:var(--ink-soft); max-width:44ch; margin:1.3rem 0 0}
+  .metarow{
+    display:flex; flex-wrap:wrap; gap:.5rem 1.6rem; margin-top:1.8rem;
+    font:500 13px/1.5 var(--mono); color:var(--muted);
+  }
+  .metarow b{color:var(--ink-soft); font-weight:600}
+  .metarow span{display:inline-flex; gap:.5rem}
+
+  /* ============ toc ============ */
+  nav.toc{
+    display:flex; flex-wrap:wrap; gap:.5rem; padding:1.4rem 0 0;
+    border-top:1px solid var(--border); margin-top:2rem;
+  }
+  nav.toc a{
+    font:600 12.5px/1 var(--mono); letter-spacing:.02em; color:var(--ink-soft);
+    background:var(--surface); border:1px solid var(--border); border-radius:100px;
+    padding:.5rem .85rem; border-bottom:1px solid var(--border);
+  }
+  nav.toc a:hover{color:var(--ink); border-color:var(--accent-line); background:var(--surface-2)}
+
+  /* ============ sections ============ */
+  section{padding:clamp(2.4rem,6vw,3.6rem) 0; border-top:1px solid var(--border)}
+  .sec-label{
+    font:600 12px/1 var(--mono); letter-spacing:.18em; text-transform:uppercase;
+    color:var(--accent-ink); margin:0 0 .5rem;
+  }
+  section h2{font-size:clamp(1.5rem,3.6vw,2rem); margin:0 0 1.4rem; font-weight:750}
+  section h2.tight{margin-bottom:.6rem}
+  section > p, .prose p{color:var(--ink-soft); max-width:64ch}
+  h3{font-size:1.06rem; font-weight:700; margin:2rem 0 .8rem; color:var(--ink)}
+  .prose strong{color:var(--ink); font-weight:700}
+
+  /* ============ stack chips ============ */
+  .chips{display:flex; flex-wrap:wrap; gap:.55rem; margin:1.3rem 0 0}
+  .chip{
+    font:600 13px/1 var(--mono); letter-spacing:.01em; color:var(--ink-soft);
+    background:var(--surface-2); border:1px solid var(--border); border-radius:7px; padding:.5rem .7rem;
+  }
+  .chip b{color:var(--ink); font-weight:700}
+
+  /* ============ flow diagram ============ */
+  .flow{display:flex; flex-wrap:wrap; gap:.7rem; align-items:stretch; margin:.4rem 0 0}
+  .step{
+    flex:1 1 12rem; background:var(--surface); border:1px solid var(--border);
+    border-radius:12px; padding:1.1rem 1.15rem; box-shadow:var(--shadow); position:relative;
+  }
+  .step .n{
+    font:700 12px/1 var(--mono); color:var(--accent-ink);
+    display:inline-flex; align-items:center; justify-content:center;
+    width:1.7rem; height:1.7rem; background:var(--accent); border-radius:7px; margin-bottom:.7rem;
+  }
+  .step .rt{font:600 12px/1.3 var(--mono); color:var(--muted); word-break:break-all; display:block; margin-bottom:.35rem}
+  .step h4{margin:.1rem 0 .4rem; font-size:1rem; font-weight:700}
+  .step p{margin:0; font-size:.9rem; color:var(--ink-soft); line-height:1.55}
+  .flow .arrow{align-self:center; color:var(--accent-line); font-size:1.3rem; flex:0 0 auto}
+  @media (max-width:640px){ .flow{flex-direction:column} .flow .arrow{transform:rotate(90deg); align-self:center} }
+
+  .callout{
+    display:flex; gap:.9rem; margin-top:1.5rem; padding:1rem 1.15rem;
+    background:color-mix(in srgb, var(--accent) 16%, var(--surface));
+    border:1px solid var(--accent-line); border-radius:12px;
+  }
+  .callout .k{font:700 12px/1 var(--mono); color:var(--accent-ink); letter-spacing:.08em; text-transform:uppercase; flex:0 0 auto; padding-top:.15rem}
+  .callout p{margin:0; font-size:.94rem; color:var(--ink)}
+  .callout code{background:var(--surface); }
+
+  /* ============ tables ============ */
+  .tbl-wrap{overflow-x:auto; margin:.4rem -.2rem 0; padding:.2rem}
+  table{width:100%; border-collapse:collapse; font-size:.92rem; min-width:30rem}
+  th,td{text-align:left; padding:.7rem .85rem; border-bottom:1px solid var(--border); vertical-align:top}
+  thead th{
+    font:600 11.5px/1.2 var(--mono); letter-spacing:.06em; text-transform:uppercase;
+    color:var(--muted); border-bottom:1px solid var(--border-strong);
+  }
+  tbody tr:hover{background:var(--surface-2)}
+  td.mono,td .path{font-family:var(--mono); font-size:.85rem; color:var(--ink); font-variant-numeric:tabular-nums}
+  td b{color:var(--ink)}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ============ swatches ============ */
+  .swatches{display:grid; grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr)); gap:.7rem; margin:.4rem 0 0}
+  .sw{background:var(--surface); border:1px solid var(--border); border-radius:11px; overflow:hidden; box-shadow:var(--shadow)}
+  .sw .cap{height:4.6rem; display:block}
+  .sw .meta{padding:.6rem .7rem}
+  .sw .nm{font-size:.82rem; font-weight:650; color:var(--ink); line-height:1.3}
+  .sw .hex{font:600 12px/1.4 var(--mono); color:var(--muted); text-transform:uppercase; font-variant-numeric:tabular-nums}
+
+  /* 오행 dual palette */
+  .oh-tbl td{vertical-align:middle}
+  .oh-el{display:flex; align-items:baseline; gap:.5rem}
+  .oh-el .ko{font-weight:800; font-size:1.15rem; color:var(--ink)}
+  .oh-el .hanja{font-size:.95rem; color:var(--ink-soft)}
+  .oh-cell{display:flex; align-items:center; gap:.6rem}
+  .dot{width:1.7rem; height:1.7rem; border-radius:6px; flex:0 0 auto; border:1px solid rgba(120,110,100,.35)}
+  .oh-hex{font:600 12.5px/1 var(--mono); color:var(--ink-soft); text-transform:uppercase; font-variant-numeric:tabular-nums}
+
+  /* ============ type specimen ============ */
+  .spec{display:flex; flex-direction:column; gap:.15rem; margin:.4rem 0 0}
+  .spec .row{
+    display:flex; align-items:baseline; gap:1.2rem; padding:.85rem 0; border-bottom:1px solid var(--border);
+    flex-wrap:wrap;
+  }
+  .spec .row .demo{flex:1 1 15rem; color:var(--ink)}
+  .spec .row .tag{font:600 12px/1.4 var(--mono); color:var(--muted); flex:0 0 auto; text-align:right; min-width:11rem}
+  .d-label{font-size:16px; font-weight:700; letter-spacing:-.02em}
+  .d-title{font-size:1.75rem; font-weight:800; letter-spacing:-.03em; line-height:1.1}
+  .d-name{font-size:24px; font-weight:700; letter-spacing:-.02em}
+  .d-input{font-size:16px; font-weight:400}
+  .d-btn{font-size:20px; font-weight:700}
+  .d-cap{font-size:12px; font-weight:500; line-height:1.6; color:var(--ink-soft)}
+
+  /* ============ generic cards / lists ============ */
+  .grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.7rem; margin:.4rem 0 0}
+  .card{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.05rem 1.15rem; box-shadow:var(--shadow)}
+  .card h4{margin:0 0 .4rem; font-size:.97rem; font-weight:700; display:flex; align-items:center; gap:.5rem}
+  .card h4 .g{font:700 11px/1 var(--mono); color:var(--accent-ink); background:var(--accent); border-radius:5px; padding:.3rem .4rem}
+  .card p{margin:0; font-size:.9rem; color:var(--ink-soft); line-height:1.55}
+  .card p + p{margin-top:.5rem}
+
+  ul.clean{list-style:none; margin:.4rem 0 0; padding:0; display:flex; flex-direction:column; gap:.75rem}
+  ul.clean li{padding-left:1.4rem; position:relative; color:var(--ink-soft); max-width:66ch}
+  ul.clean li::before{content:"›"; position:absolute; left:.2rem; top:-.05rem; color:var(--accent-line); font-weight:700; font-size:1.1rem}
+  ul.clean li b{color:var(--ink); font-weight:700}
+
+  .result-list{counter-reset:r; list-style:none; margin:.4rem 0 0; padding:0; display:flex; flex-direction:column; gap:.5rem}
+  .result-list li{
+    counter-increment:r; display:flex; gap:.9rem; padding:.7rem .9rem;
+    background:var(--surface); border:1px solid var(--border); border-radius:10px;
+  }
+  .result-list li::before{
+    content:counter(r,decimal-leading-zero); font:700 12px/1 var(--mono); color:var(--accent-ink);
+    flex:0 0 auto; padding-top:.2rem; font-variant-numeric:tabular-nums;
+  }
+  .result-list li .t{color:var(--ink); font-weight:650}
+  .result-list li .d{color:var(--ink-soft); font-weight:400}
+
+  footer{padding:3rem 0 4rem; border-top:1px solid var(--border); color:var(--muted); font-size:.86rem}
+  footer .mono{color:var(--ink-soft)}
+
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important; animation:none!important} }
+</style>
+</head>
+<body>
+<button class="toggle" id="tt" type="button" aria-label="테마 전환">◐ THEME</button>
+
+<div class="wrap">
+
+  <header class="mast">
+    <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.6l2.6 6.3 6.8.5-5.2 4.4 1.7 6.6L12 16.9 6.3 19.4l1.7-6.6L2.8 8.4l6.8-.5z"/></svg>
+    <p class="eyebrow">Design &amp; Structure Teardown</p>
+    <h1>포스텔러 만세력<span class="sub">pro.forceteller.com — 입력 폼부터 사주 결과 화면까지 뜯어본 참고자료</span></h1>
+    <p class="lede">React·MUI·Emotion으로 만든 전문가용 무료 만세력 웹앱. 화면 구조, 디자인 토큰, 데이터가 어디서 오는지, 그리고 자동화 시 걸리는 함정까지 정리했다.</p>
+    <div class="metarow">
+      <span><b>조사일</b> 2026-07-13</span>
+      <span><b>대상</b> /profile/edit → /result</span>
+      <span><b>스택</b> React SPA · MUI · Emotion</span>
+    </div>
+    <nav class="toc" aria-label="목차">
+      <a href="#overview">개요</a>
+      <a href="#flow">화면 흐름</a>
+      <a href="#form">입력 화면</a>
+      <a href="#color">색</a>
+      <a href="#ohaeng">오행 팔레트</a>
+      <a href="#type">타이포</a>
+      <a href="#result">결과 화면</a>
+      <a href="#api">API·세션</a>
+      <a href="#interaction">인터랙션</a>
+      <a href="#traps">자동화 함정</a>
+      <a href="#files">파일</a>
+    </nav>
+  </header>
+
+  <!-- 개요 -->
+  <section id="overview" class="prose">
+    <p class="sec-label">01 — Overview</p>
+    <h2>모두의 만세력, 전문가 옵션까지</h2>
+    <p>비로그인으로 만세력 계산 전 기능을 쓸 수 있고, <strong>로그인은 “저장” 기능에만</strong> 필요하다. 모바일 우선 설계라 데스크톱에서는 <code>600px</code> 컬럼을 화면 가운데에 그대로 세운다. 슬로건은 “초심자부터 전문가까지, 모두의 만세력.”</p>
+    <div class="chips">
+      <span class="chip"><b>프레임워크</b> React SPA · Vite</span>
+      <span class="chip"><b>UI</b> MUI + Emotion (CSS-in-JS)</span>
+      <span class="chip"><b>폰트</b> Pretendard Variable</span>
+      <span class="chip"><b>API</b> api.forceteller.com</span>
+      <span class="chip"><b>정적</b> static.forceteller.com</span>
+      <span class="chip"><b>분석</b> Google Analytics</span>
+    </div>
+    <div class="callout">
+      <span class="k">주의</span>
+      <p>Emotion이 <b>speed mode</b>라 <code>&lt;style data-emotion&gt;</code> 태그가 비어 있다 — 페이지를 그냥 저장하면 스타일이 통째로 유실된다. 이 참고자료의 스냅샷 HTML은 <b>CSSOM을 직렬화해 <code>&lt;style&gt;</code>로 주입</b>한 자립형이라 브라우저로 열면 그대로 재현된다.</p>
+    </div>
+  </section>
+
+  <!-- 화면 흐름 -->
+  <section id="flow" class="prose">
+    <p class="sec-label">02 — Screen Flow</p>
+    <h2 class="tight">3단계 위저드</h2>
+    <p style="margin-bottom:1.6rem">입력 → 확인 → 결과. 상태는 클라이언트에 들고 있어서, <code>/result</code>를 직접 새로고침하면 입력 화면으로 튕긴다.</p>
+    <div class="flow">
+      <div class="step">
+        <span class="n">1</span>
+        <span class="rt">/profile/edit</span>
+        <h4>프로필 입력</h4>
+        <p>이름·성별·생년월일시·도시. 필수값이 차면 주 버튼이 회색→옐로로 활성화.</p>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step">
+        <span class="n">2</span>
+        <span class="rt">/profile/confirm</span>
+        <h4>입력 확인</h4>
+        <p>요약 카드 3장 + “지역 정보에 따라 −N분 보정” 안내. 진태양시 보정을 미리 고지.</p>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step">
+        <span class="n">3</span>
+        <span class="rt">/result</span>
+        <h4>만세력 결과</h4>
+        <p>원국표·오행·대운·일진 달력까지. 진입 직후 코치마크 “대운 그래프를 좌우로 슬라이드.”</p>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="k">보정</span>
+      <p>“−N분”은 <b>도시 경도에 따라 값이 다르다</b>(진태양시). 서울 <code>−32분</code>, 순천 <code>−31분</code>. 결과 헤더엔 입력 시각과 보정 후 시각을 함께 찍는다 — 예: <code>08:00</code> 입력 → <code>07:59 (지역시 −31분)</code>가 실제 산출 기준.</p>
+    </div>
+  </section>
+
+  <!-- 입력 화면 -->
+  <section id="form" class="prose">
+    <p class="sec-label">03 — Input Screen</p>
+    <h2>/profile/edit 구조</h2>
+    <p>앱바(60px) + 600px 중앙 컬럼. 네 개의 <code>fieldset</code>이 세로로 쌓이고, 하단에 필(pill) 버튼 두 개.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>필드</th><th>컨트롤</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td><b>이름</b></td><td class="mono">OutlinedInput (text)</td><td>ph “최대 12글자 이내로 입력하세요”, 12자 제한</td></tr>
+          <tr><td><b>성별</b></td><td class="mono">RadioGroup</td><td>여자/남자 세그먼티드 토글 (좌·우 접합형)</td></tr>
+          <tr><td><b>생년월일시</b></td><td class="mono">select + text × 2</td><td>양력 / 음력 / 음력(윤달) · 날짜(ph 2022/04/06) · 시간(ph 19:00)</td></tr>
+          <tr><td><b>ㄴ 옵션</b></td><td class="mono">checkbox × 2</td><td>시간 모름 · 야자시/조자시 (각 ⓠ 설명 팝업)</td></tr>
+          <tr><td><b>도시</b></td><td class="mono">readOnly input + 🔍</td><td>클릭 시 검색 다이얼로그 오픈 (아래 인터랙션 참조)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 색 -->
+  <section id="color" class="prose">
+    <p class="sec-label">04 — Color</p>
+    <h2>웜 뉴트럴 + 단일 옐로 액센트</h2>
+    <p>채도 높은 색은 오행 코딩에만 양보하고, UI 크롬은 브라운-그레이 뉴트럴과 옐로 하나로 정리한다. 명리 콘텐츠와 톤이 잘 맞는 조합.</p>
+    <div class="swatches">
+      <div class="sw"><span class="cap" style="background:#524C46"></span><div class="meta"><div class="nm">본문·브랜드 다크</div><div class="hex">#524C46</div></div></div>
+      <div class="sw"><span class="cap" style="background:#746D66"></span><div class="meta"><div class="nm">보조 브라운</div><div class="hex">#746D66</div></div></div>
+      <div class="sw"><span class="cap" style="background:#B8B2AC"></span><div class="meta"><div class="nm">비활성·플레이스홀더</div><div class="hex">#B8B2AC</div></div></div>
+      <div class="sw"><span class="cap" style="background:#DAD6D2"></span><div class="meta"><div class="nm">라이트 보더·구분선</div><div class="hex">#DAD6D2</div></div></div>
+      <div class="sw"><span class="cap" style="background:#FCFBF9; box-shadow:inset 0 0 0 1px #E7E1DA"></span><div class="meta"><div class="nm">앱 배경 (웜 오프화이트)</div><div class="hex">#FCFBF9</div></div></div>
+      <div class="sw"><span class="cap" style="background:#FFD36E"></span><div class="meta"><div class="nm">주 버튼 (활성)</div><div class="hex">#FFD36E</div></div></div>
+      <div class="sw"><span class="cap" style="background:#FFE6AC"></span><div class="meta"><div class="nm">안내 칩 배경</div><div class="hex">#FFE6AC</div></div></div>
+      <div class="sw"><span class="cap" style="background:#E85E5E"></span><div class="meta"><div class="nm">양력 표기 (강조)</div><div class="hex">#E85E5E</div></div></div>
+      <div class="sw"><span class="cap" style="background:#428BFF"></span><div class="meta"><div class="nm">음력 표기</div><div class="hex">#428BFF</div></div></div>
+      <div class="sw"><span class="cap" style="background:#E8E8E8"></span><div class="meta"><div class="nm">비활성 버튼</div><div class="hex">#E8E8E8</div></div></div>
+    </div>
+  </section>
+
+  <!-- 오행 -->
+  <section id="ohaeng" class="prose">
+    <p class="sec-label">05 — Five Elements</p>
+    <h2>오행 이원 팔레트</h2>
+    <p>같은 오행이라도 <strong>글자색(원국표)</strong>과 <strong>타일 배경(대운·연운·월운 칩)</strong>에 다른 톤을 쓴다. 배경은 연하게 깔아 한자 가독성을 지키고, 금(金)만 관습대로 흰 배경 + 보더로 처리한다.</p>
+    <div class="tbl-wrap">
+      <table class="oh-tbl">
+        <thead><tr><th>오행</th><th>텍스트용 (원국표 글자)</th><th>타일 배경용 (운 칩)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="oh-el"><span class="ko" style="color:var(--e-wood-text)">목</span><span class="hanja">木</span></span></td>
+            <td><div class="oh-cell"><span class="dot" style="background:var(--e-wood-text)"></span><span class="oh-hex">#4C8093</span></div></td>
+            <td><div class="oh-cell"><span class="dot" style="background:var(--e-wood-tile)"></span><span class="oh-hex">#70AFC6</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="oh-el"><span class="ko" style="color:var(--e-fire-text)">화</span><span class="hanja">火</span></span></td>
+            <td><div class="oh-cell"><span class="dot" style="background:var(--e-fire-text)"></span><span class="oh-hex">#E57576</span></div></td>
+            <td><div class="oh-cell"><span class="dot" style="background:var(--e-fire-tile)"></span><span class="oh-hex">#E57576</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="oh-el"><span class="ko" style="color:var(--e-earth-text)">토</span><span class="hanja">土</span></span></td>
+            <td><div class="oh-cell"><span class="dot" style="background:var(--e-earth-text)"></span><span class="oh-hex">#CFA05A</span></div></td>
+            <td><div class="oh-cell"><span class="dot" style="background:var(--e-earth-tile)"></span><span class="oh-hex">#FFCB7F</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="oh-el"><span class="ko" style="color:var(--e-metal-text)">금</span><span class="hanja">金</span></span></td>
+            <td><div class="oh-cell"><span class="dot" style="background:var(--e-metal-text)"></span><span class="oh-hex">#968F88</span></div></td>
+            <td><div class="oh-cell"><span class="dot" style="background:var(--e-metal-tile); border-color:var(--border-strong)"></span><span class="oh-hex">#FFFFFF + 보더</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="oh-el"><span class="ko" style="color:var(--e-water-text)">수</span><span class="hanja">水</span></span></td>
+            <td><div class="oh-cell"><span class="dot" style="background:var(--e-water-text)"></span><span class="oh-hex">#4A4955</span></div></td>
+            <td><div class="oh-cell"><span class="dot" style="background:var(--e-water-tile)"></span><span class="oh-hex">#B1B0BB</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 타이포 -->
+  <section id="type" class="prose">
+    <p class="sec-label">06 — Typography &amp; Shape</p>
+    <h2>Pretendard, 타이트한 자간</h2>
+    <p>한 벌의 Pretendard Variable로 위계를 만든다. 라벨·버튼은 700, 자간 −2% 안팎으로 조여 또렷하게.</p>
+    <div class="spec">
+      <div class="row"><span class="demo d-title">입력하신 프로필을 확인해주세요</span><span class="tag">page title · 28px / 800</span></div>
+      <div class="row"><span class="demo d-name">황세웅 · 갑오(푸른 말)</span><span class="tag">result name · 24px / 700</span></div>
+      <div class="row"><span class="demo d-btn">만세력 보러가기</span><span class="tag">button · 20px / 700 · pill</span></div>
+      <div class="row"><span class="demo d-label">생년월일시</span><span class="tag">form label · 16px / 700 · −.32px</span></div>
+      <div class="row"><span class="demo d-input">최대 12글자 이내로 입력하세요</span><span class="tag">input · 16px / 400</span></div>
+      <div class="row"><span class="demo d-cap">양 1909/11/30 07:59 남자 순천시 (지역시 −31분)</span><span class="tag">caption · 12px / 500 · 1.6</span></div>
+    </div>
+    <h3>형태 &amp; 간격</h3>
+    <div class="chips">
+      <span class="chip"><b>인풋·셀렉트</b> radius 8px · h 40px</span>
+      <span class="chip"><b>버튼</b> radius 100px · h 60px · 전폭</span>
+      <span class="chip"><b>칩</b> radius 100px · 6/16 pad</span>
+      <span class="chip"><b>다이얼로그</b> radius 12px</span>
+      <span class="chip"><b>운 타일</b> radius 6px · 선택 시 2.4px 보더</span>
+      <span class="chip"><b>컬럼</b> max-width 600px</span>
+    </div>
+  </section>
+
+  <!-- 결과 화면 -->
+  <section id="result" class="prose">
+    <p class="sec-label">07 — Result Screen</p>
+    <h2>/result 구성 — 위에서 아래로</h2>
+    <p style="margin-bottom:1.4rem">스크롤 순서 그대로. 대부분 클라이언트 계산이고, 대운만 API를 친다.</p>
+    <ol class="result-list">
+      <li><span class="t">프로필 헤더</span> — 띠 아바타 + 이름 + “병인(붉은 호랑이)” + 양/음/보정 시각 3줄</li>
+      <li><span class="t">사주 원국표</span> — <span class="d">열=생시/생일/생월/생년, 행=천간·십성·지지·십성·지장간·12운성·12신살. 한글 대자 + 한자 첨자 + 오행 부호(+목/−화)</span></li>
+      <li><span class="t">사주 풀이 자세히 보기</span> — <span class="d">칩 필터: 궁성·천간합·지지육합·삼합·방합·천간충·지지충·공망·형·파·해·원진</span></li>
+      <li><span class="t">신살과 길성</span> — <span class="d">보유 신살 나열 + 주(柱)별 매트릭스 표 (없으면 ×)</span></li>
+      <li><span class="t">오행·십성 분석</span> — <span class="d">토글 2개 + 도넛 차트 2개 + 표. 판정어휘 부족/적정/발달/과다</span></li>
+      <li><span class="t">나의 오행</span> — <span class="d">오각형 상생상극 다이어그램, 파랑=생(生)·빨강=극(剋)</span></li>
+      <li><span class="t">신강/신약지수</span> — <span class="d">득령·득지·득시·득세 배지 + 인구 분포 라인차트(극약~극왕 9구간, ‘나’ 마커)</span></li>
+      <li><span class="t">용신</span> — <span class="d">예: 수(억부용신)</span></li>
+      <li><span class="t">대운수 + 대운/연운/월운</span> — <span class="d">가로 슬라이드 타일 레일 3줄 (API 호출 지점)</span></li>
+      <li><span class="t">일진 달력</span> — <span class="d">월 네비 + 간지·음력일·절기 표기, 오늘 테두리</span></li>
+      <li><span class="t">액션 3종</span> — <span class="d">저장하기 · 프로필 재입력 · 불러오기</span></li>
+      <li><span class="t">크로스셀 카드 + 공유</span> — <span class="d">상담소 · 신년운세 · 살풀이 · 총운 풀이</span></li>
+    </ol>
+  </section>
+
+  <!-- API -->
+  <section id="api" class="prose">
+    <p class="sec-label">08 — API &amp; Session</p>
+    <h2>데이터는 어디서 오나</h2>
+    <p>UI는 <code>pro.forceteller.com</code>, 계산·검색은 별도 <code>api.forceteller.com</code> (CORS preflight 사용).</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>엔드포인트</th><th>메서드</th><th>용도</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">/api/pro/cities?q=&lt;검색어&gt;</td><td class="mono">GET</td><td>도시 검색 (시군구 단위, Enter 트리거)</td></tr>
+          <tr><td class="mono">/api/pro/profile/saju/daeun?year=&lt;연도&gt;</td><td class="mono">POST</td><td>대운·사주 계산 (결과 화면 진입 시)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>익명 세션 (localStorage)</h3>
+    <p>비로그인인데도 토큰이 발급돼 있다 — 즉 <strong>익명 세션 기반</strong>. 소셜 로그인은 이 익명 세션을 실계정으로 승격시키는 구조로 보인다.</p>
+    <div class="chips">
+      <span class="chip"><b>__anon_id</b> 익명 식별자</span>
+      <span class="chip"><b>access_token</b> API 액세스</span>
+      <span class="chip"><b>refresh_token</b> 갱신</span>
+    </div>
+    <h3>진태양시 보정값 (도시 경도 기반)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>도시</th><th>보정값</th></tr></thead>
+        <tbody>
+          <tr><td>서울특별시</td><td class="num">−32분</td></tr>
+          <tr><td>전라남도 순천시</td><td class="num">−31분</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 인터랙션 -->
+  <section id="interaction" class="prose">
+    <p class="sec-label">09 — Interaction Patterns</p>
+    <h2>차용할 만한 장치</h2>
+    <div class="grid2">
+      <div class="card">
+        <h4><span class="g">도시</span> readOnly 검색 인풋</h4>
+        <p>인풋 자체는 readOnly. 클릭하면 전폭 시트형 다이얼로그가 열리고, 내부 실검색 input에서 <b>Enter</b> 시 <code>cities?q=</code> 호출 → 결과 선택 → 원 필드에 채움.</p>
+        <p>미입력 헬퍼: “태어난 도시를 모르시면 ‘서울특별시’ 혹은 태어난 국가의 수도를.”</p>
+      </div>
+      <div class="card">
+        <h4><span class="g">ⓠ</span> 12간지 시간표</h4>
+        <p>다크브라운 다이얼로그(radius 12px) + 시간표 이미지 + 팁: “자시라면 01:20, 축시라면 3:20으로 입력 권장.”</p>
+      </div>
+      <div class="card">
+        <h4><span class="g">ⓠ</span> 야자시/조자시</h4>
+        <p>텍스트 팝업. 자시(23:30~)를 둘로 나눠 12시 날짜 변경을 적용하는 현대식 해석 — 23:30~00:00 출생 시 시간은 그대로, 일자만 전날로.</p>
+      </div>
+      <div class="card">
+        <h4><span class="g">☰</span> 우측 드로어 + 광고 모달</h4>
+        <p>드로어 300px, 하단 [앱 다운로드] 다크 필 버튼. 결과 진입 직후 센터 광고 모달이 뜨며 “오늘 보지 않기 | 닫기” — 자동화 시 클릭을 가로챈다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 함정 -->
+  <section id="traps" class="prose">
+    <p class="sec-label">10 — Automation Traps</p>
+    <h2>크롤·자동화 시 함정</h2>
+    <ul class="clean">
+      <li><b>SPA라 <code>curl</code>은 빈 셸만</b> 반환. 렌더 후 DOM이 필요하면 브라우저 경유 + <b>CSSOM 직렬화</b> 필수(Emotion speed mode).</li>
+      <li><b>도시 인풋은 readOnly</b> — 값 주입이 아니라 다이얼로그를 열고 내부 input에 native setter + <code>input</code> 이벤트 + <b>Enter</b>. React 제어 컴포넌트라 단순 <code>.value=</code>는 무효.</li>
+      <li><b>이름·날짜·시간</b>은 native setter + input 이벤트로 주입 가능.</li>
+      <li><b>결과 진입 직후 광고 모달</b>이 클릭을 가로챈다 — “닫기” 필요.</li>
+      <li><b>페이지 전환 간 렌더러가 잠깐 얼어</b> CDP 스크린샷/평가가 간헐 타임아웃 — 재시도로 해결.</li>
+    </ul>
+  </section>
+
+  <!-- 파일 -->
+  <section id="files" class="prose">
+    <p class="sec-label">11 — Deliverables</p>
+    <h2>스크랩 파일 (forceteller-ref/)</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>파일</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">README.md</td><td>분석 문서 본체 (이 HTML의 원본)</td></tr>
+          <tr><td class="mono">snapshot_profile_edit.html</td><td>입력 화면 렌더 DOM 자립 스냅샷 (Emotion CSS 내장)</td></tr>
+          <tr><td class="mono">snapshot_result.html</td><td>결과 화면 자립 스냅샷 (샘플 프로필)</td></tr>
+          <tr><td class="mono">assets/styles_dump.css</td><td>Emotion + 컴포넌트 스타일 전체 덤프 (62KB)</td></tr>
+          <tr><td class="mono">assets/*.css · logo.webp · pro_12_table.webp</td><td>빌드 CSS 4종 + 로고 + 12간지 시간표 이미지</td></tr>
+          <tr><td class="mono">screenshots/mobile_390_default.png</td><td>모바일 입력폼 캡처</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>포스텔러 만세력 구조·디자인 티어다운 · 조사 <span class="mono">2026-07-13</span> · 대상 <span class="mono">pro.forceteller.com/profile/edit → /result</span></p>
+    <p style="margin-top:.4rem">참고자료용 내부 문서. 상호작용 상태는 <span class="mono">snapshot_*.html</span>을 브라우저로 열어 확인.</p>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt'), K='ft-theme';
+    try{ var s=localStorage.getItem(K); if(s) root.setAttribute('data-theme',s); }catch(e){}
+    function cur(){
+      var a=root.getAttribute('data-theme');
+      if(a) return a;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+    }
+    btn.addEventListener('click',function(){
+      var next=cur()==='dark'?'light':'dark';
+      root.setAttribute('data-theme',next);
+      try{ localStorage.setItem(K,next); }catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>
