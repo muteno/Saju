@@ -1,0 +1,51 @@
+# 만세력 엔진 (L1)
+
+생년월일시 → 사주 원국·십신·지장간·십이운성·대운. 순수 JS(ESM) — 브라우저·node 공용, 빌드 불필요.
+
+## 파일
+
+- `src/tables.js` — 간지·오행·지장간·십신·십이운성 상수와 판정 함수
+- `src/manseryeok.js` — `computeChart(input, terms)` 코어 (I/O 없음, 절기표 주입식)
+- `data/solar_terms.json` — 절기표 1900–2100 (4,824건, UTC epoch ms + k). **JPL DE440s 천체력 계산치**
+- `tools/gen_solar_terms.py` — 절기표 재생성기 (skyfield, 최초 1회 de440s.bsp 32MB 다운로드)
+- `test/test_manseryeok.mjs` — 검증 스위트: `node test/test_manseryeok.mjs`
+
+## 검증 상태 (2026-07-16)
+
+포스텔러 만세력 2.2 샘플(`forceteller-ref/snapshot_result.html`, 양력 1990-01-01 12:00 여·서울)과 대조:
+
+| 항목 | 결과 |
+|---|---|
+| 사주팔자 | 기사년 병자월 병인일 갑오시 ✅ |
+| 진태양시 | 12:00 → 11:28 (서울 -32분) ✅ |
+| 십신(천간+지지본기 8자) | 전부 일치 ✅ |
+| 지장간 4지지 | 전부 일치 ✅ |
+| 십이운성 | 제왕·장생·태·건록 ✅ |
+| 대운 | 음년 여 순행, 대운수 2, 정축→…→병술 ✅ |
+| 입춘 경계(2024-02-04 17:27) | 직전 계묘년 축월 / 직후 갑진년 인월 ✅ |
+| 역사 표준시 | 1988 서머타임 +10h, 1954–61 UTC+8:30 자동 반영 ✅ |
+
+## 시간 처리 규약 (정확도의 핵심)
+
+1. 입력 벽시계 → UTC: IANA `Asia/Seoul` (서머타임 1948–60·87–88, UTC+8:30기 1954–61 자동 반영)
+2. 진태양시(LMT) = **UTC + 경도×4분** — 출생 시대의 표준시 제도와 무관하게 성립
+   (KST기엔 -32분, UTC+8:30기엔 -2분이 저절로 나옴). 일주 경계·시진은 LMT로 판정.
+3. 연주·월주는 절입 시각(UTC 절대시각) 비교. 입춘=연 경계, 12절(홀수 k)=월 경계.
+4. 일진 = `(JDN + 49) mod 60` (0=갑자) — 포스텔러 대조 검증 완료.
+5. 자시 규칙 옵션: `midnight23`(기본, 정자시 — LMT 23시부터 다음날 일주) / `keepDay`(야자시).
+
+## 옵션·한계 (알려진 것)
+
+- 대운수 반올림: 현재 `ceil(일수/3)` — 포스텔러 표본(2)과 일치. 유파별(반올림/버림) 옵션은 표본 추가 후.
+- 절기표 범위: 1900년 입춘 이후 ~ 2100년. 그 밖은 예외 발생.
+- 균시차(equation of time) 미적용 — 통상 만세력 관례(경도 보정만). 옵션 추가 여지.
+- 신살·공망·세운/월운 → 다음 단계 (포스텔러 픽스처에 신살 정답 있음: 천덕귀인·정록·역마·도화·학당·문곡·홍염·현침·양인 + 12신살).
+
+## 사용 예
+
+```js
+import { computeChart } from './src/manseryeok.js';
+import terms from './data/solar_terms.json' with { type: 'json' };
+const chart = computeChart({ year: 1990, month: 1, day: 1, hour: 12, minute: 0, gender: 'F' }, terms.terms);
+// chart.saju.day.name === '병인', chart.daeun.su === 2
+```

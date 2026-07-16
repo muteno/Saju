@@ -6,3 +6,6 @@ youtube-tools/raw/
 # Python 캐시
 __pycache__/
 *.pyc
+
+# JPL 천체력 (절기표 재생성 시 skyfield가 자동 다운로드, 32MB)
+dosa-app/engine/tools/de440s.bsp
