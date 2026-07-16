@@ -1,7 +1,8 @@
 // dosa-app L1 만세력 엔진(computeChart) → UI용 데이터로 매핑하는 얇은 어댑터.
 // 엔진은 순수 ESM(브라우저 안전). 절기표는 정적 JSON을 주입.
-import { computeChart } from '../../../dosa-app/engine/src/manseryeok.js'
-import solarTerms from '../../../dosa-app/engine/data/solar_terms.json'
+// dosa-app/engine에서 벤더링한 사본(자립형 빌드용). 원본 갱신 시 vendor/도 동기화.
+import { computeChart } from './vendor/manseryeok.js'
+import solarTerms from './vendor/data/solar_terms.json'
 
 const terms = solarTerms.terms
 
