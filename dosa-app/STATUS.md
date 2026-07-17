@@ -11,7 +11,7 @@
 | L1.5 구조 판정 (`judge.js`) | ✅ 신강신약 110점제(보드 기준)·득령득지득세·조후·오행 편중·십신 체인 | 포스텔러 '신강' 70점 재현 |
 | 운 대입 (`unse.js`) | ✅ 임의 날짜 일진 vs 원국(합충·공망 발동), 지지 도래연도 환산 — **일진 다이어리 심장** | 정유일→일지 묘유충 검증 |
 | L2 색인 | ✅ unit_index(598키/946유닛) + interaction_index(103키/13,641문단) + impression_index(46키/2,969문단) | 스모크: 키 37개 전부 근거, 문헌없음 0 |
-| L2 증류 | ✅ **일주 60/60** (`kb/distilled/ilju/`) — 인용 166건 축자 검증 / 🔄 image 19키 진행 중 | `python3 dosa-app/kb-tools/validate_distilled.py` |
+| L2 증류 | ✅ **일주 60/60** + **image 13/19** (`kb/distilled/`) — 인용 205건 축자 검증 / 🔄 천간 이미지 6키(무·기·경·신·임·계) 남음 | `python3 dosa-app/kb-tools/validate_distilled.py` |
 | L3 리포트 (`report.js` + `cli/saju_report.mjs`) | ✅ 구조판정→일주(증류 렌더)→십신→합충→신살→대운→세운, 출처 병기 | 데모 리포트 2건 사용자 승인 |
 | L4 서술 표준 | ✅ 확정(README) — 일상어→생활장면→시기구체화→대처→▸근거줄. **구현(API 연결)은 미착수** | 사용자 "많이 맞는데?" 피드백 |
 | /feed 스킬 | ✅ 유튜브 링크 검수→주입→색인 갱신→보완 보고 (`check_new_video.py`) | 운명전쟁49 영상으로 시연 |
