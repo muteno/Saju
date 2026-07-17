@@ -24,7 +24,7 @@ python3 dosa-app/kb-tools/validate_distilled.py || fail=1
 python3 dosa-app/kb-tools/replay_exams.py || fail=1
 
 step "5/5 앱 프로덕션 빌드 (tsc + vite → dist/)"
-npm run build >"$BUILD_LOG" 2>&1 && echo "  ✓ 빌드 성공" || { tail -20 "$BUILD_LOG"; fail=1; }
+npm run build >"$BUILD_LOG" 2>&1 && ls app/dist/kb-*.json >/dev/null 2>&1 && echo "  ✓ 빌드 성공(kb 번들 동봉 확인)" || { tail -20 "$BUILD_LOG"; echo "  ✗ 빌드 실패 또는 dist에 kb-*.json 없음"; fail=1; }
 
 echo ""
 if [ "$fail" -eq 0 ]; then echo "✅ 전체 게이트 통과 — 커밋/머지 가능"; else echo "❌ 게이트 실패 — 위 항목 수정 후 재실행"; exit 1; fi

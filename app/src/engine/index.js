@@ -5,18 +5,29 @@ import { computeChart } from './vendor/manseryeok.js'
 import { chartToKeys } from './vendor/keyset.js'
 import { buildReport } from './vendor/report.js'
 import solarTerms from './vendor/data/solar_terms.json'
+import kbRef from './vendor/kb_ref.json'
 
 // KB 번들(1.4MB)은 JS에 인라인하지 않고 정적 파일(/kb.json)을 런타임 fetch — Q05 경량화.
 // 렌더 전 loadKb() 완료가 보장되므로(main.tsx 게이트) 이하 동기 API는 그대로 유지된다.
 let kb = null
-export async function loadKb() {
-  if (kb) return kb
-  const res = await fetch(`${import.meta.env.BASE_URL}kb.json`)
-  if (!res.ok) throw new Error(`KB 로드 실패: HTTP ${res.status}`)
-  kb = await res.json()
-  kbCoverage.distilledKeys = kb.meta?.distilledKeys ?? 0
-  kbCoverage.indexKeys = Object.keys(kb.index || {}).length
-  return kb
+let kbPromise = null
+async function fetchKb() {
+  const ctrl = new AbortController()
+  const timer = setTimeout(() => ctrl.abort(), 20000) // 스톨 → fail-soft (무한 빈 화면 방지)
+  try {
+    const res = await fetch(`${import.meta.env.BASE_URL}${kbRef.file}`, { signal: ctrl.signal })
+    if (!res.ok || !(res.headers.get('content-type') || '').includes('json'))
+      throw new Error(`KB 로드 실패: HTTP ${res.status} (${res.headers.get('content-type')})`) // SPA 폴백 HTML 위장 차단
+    const data = await res.json()
+    if (!data || !data.index || !data.meta) throw new Error('KB 스키마 불일치 — 새로고침 필요')
+    kb = data
+    kbCoverage.distilledKeys = kb.meta?.distilledKeys ?? 0
+    kbCoverage.indexKeys = Object.keys(kb.index || {}).length
+    return kb
+  } finally { clearTimeout(timer) }
+}
+export function loadKb() {
+  return (kbPromise ??= fetchKb().catch((e) => { kbPromise = null; throw e })) // 프로미스 메모(이중 fetch 방지) + 실패 시 재시도 가능
 }
 
 const terms = solarTerms.terms

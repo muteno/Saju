@@ -3,13 +3,15 @@
 // 260717 경량화(Q05): JS 번들 인라인 → 정적 파일 런타임 fetch 분리(번들 파스 비용↓·독립 캐시).
 // unit_bodies.json은 13.5MB라 통째 번들 불가 → 유닛당 앞 BODY_PARAS문단만 실어 웹 경량화.
 //   npm run build:kb
-import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, unlinkSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const KB = join(root, 'dosa-app/kb')
-const OUT = join(root, 'app/public/kb.json')
+const PUB = join(root, 'app/public')
+const REF = join(root, 'app/src/engine/vendor/kb_ref.json')
 const BODY_PARAS = 8 // 유닛당 실어보내는 문단 수(발췌 렌더용)
 
 const load = (p) => JSON.parse(readFileSync(p, 'utf-8'))
@@ -37,6 +39,13 @@ const walk = (d) => {
 walk(join(KB, 'distilled'))
 
 const bundle = { index, aliases, distilled, bodies, meta: { bodyParas: BODY_PARAS, distilledKeys: Object.keys(distilled).length } }
-writeFileSync(OUT, JSON.stringify(bundle))
-const mb = (readFileSync(OUT).length / 1e6).toFixed(2)
-console.log(`KB 번들 생성: 색인 ${Object.keys(index).length}키 · 증류 ${Object.keys(distilled).length} · 본문 ${Object.keys(bodies).length}유닛(앞${BODY_PARAS}문단) → ${mb}MB`)
+const payload = JSON.stringify(bundle)
+// 콘텐츠 해시 파일명(kb-<hash8>.json) = JS처럼 불변 캐시 + 배포 간 JS↔KB 원자성(평의회 Q05 캐시스큐 지적)
+const hash = createHash('sha256').update(payload).digest('hex').slice(0, 8)
+const fname = `kb-${hash}.json`
+for (const f of readdirSync(PUB)) if (/^kb-[0-9a-f]{8}\.json$/.test(f) && f !== fname) unlinkSync(join(PUB, f))
+const OUT = join(PUB, fname)
+writeFileSync(OUT, payload)
+writeFileSync(REF, JSON.stringify({ file: fname }))
+const mb = (Buffer.byteLength(payload) / 1e6).toFixed(2)
+console.log(`KB 번들 생성: 색인 ${Object.keys(index).length}키 · 증류 ${Object.keys(distilled).length} · 본문 ${Object.keys(bodies).length}유닛(앞${BODY_PARAS}문단) → ${fname} ${mb}MB`)

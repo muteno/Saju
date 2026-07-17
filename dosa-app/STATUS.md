@@ -20,7 +20,7 @@
 npm run verify        # 만능 품질 게이트 (커밋 전 필수)
 npm run build         # prebuild(파생물+sync+kb번들) → app tsc+vite → dist/  (Cloudflare가 이걸 씀)
 npm run sync:engine   # dosa-app/engine/src → app/src/engine/vendor 재생성
-npm run build:kb      # kb 번들(app/src/engine/vendor/kb.json) 재생성
+npm run build:kb      # kb 번들(app/public/kb-<hash>.json + vendor/kb_ref.json) 재생성
 # 스킬: /saju <생년월일시> (근거 리포트+풀이) · /feed <유튜브URL> (지식 주입)
 ```
 

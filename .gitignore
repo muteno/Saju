@@ -19,4 +19,5 @@ dosa-app/kb/unit_bodies.json
 dosa-app/kb/distill_src/
 
 # 앱 KB 번들 (scripts/build_kb.mjs가 생성 — prebuild에서 자동)
-app/public/kb.json
+app/public/kb-*.json
+app/src/engine/vendor/kb_ref.json
