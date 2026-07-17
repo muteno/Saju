@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles'
 /**
  * 디자인 토큰. 색은 CSS 변수(index.css의 :root / [data-theme=dark])를 가리켜
  * 라이트/다크가 자동 전환된다. 오행 색은 의미색이라 모드 공통.
- * 강조색: 라이트=코발트+남색 딥블루, 다크=네온 레몬.
+ * 강조색: 라이트=코발트+남색 딥블루(#22409e), 다크=틸·민트(#3ad9c0).
  */
 export const tokens = {
   color: {
