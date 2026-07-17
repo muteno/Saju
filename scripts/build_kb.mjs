@@ -1,5 +1,6 @@
 // 앱용 KB 번들 생성 — 결정론 조회에 필요한 색인·별칭·증류본·(경량)본문을 하나로 묶는다.
-// 원본(dosa-app/kb)에서 생성하는 기계산출물 → app/src/engine/vendor/kb.json (손편집 금지).
+// 원본(dosa-app/kb)에서 생성하는 기계산출물 → app/public/kb.json (손편집 금지 · gitignore).
+// 260717 경량화(Q05): JS 번들 인라인 → 정적 파일 런타임 fetch 분리(번들 파스 비용↓·독립 캐시).
 // unit_bodies.json은 13.5MB라 통째 번들 불가 → 유닛당 앞 BODY_PARAS문단만 실어 웹 경량화.
 //   npm run build:kb
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from 'node:fs'
@@ -8,7 +9,7 @@ import { dirname, join } from 'node:path'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const KB = join(root, 'dosa-app/kb')
-const OUT = join(root, 'app/src/engine/vendor/kb.json')
+const OUT = join(root, 'app/public/kb.json')
 const BODY_PARAS = 8 // 유닛당 실어보내는 문단 수(발췌 렌더용)
 
 const load = (p) => JSON.parse(readFileSync(p, 'utf-8'))

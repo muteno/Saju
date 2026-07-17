@@ -32,7 +32,7 @@ export default function Result() {
   const state = loc.state as { chart?: { pillars: typeof mockPillars; ohaeng: typeof mockOhaeng }; input?: ChartInput } | null
   const pillars = state?.chart?.pillars ?? mockPillars
   const ohaeng = state?.chart?.ohaeng ?? mockOhaeng
-  const reading = state?.input ? toReading(state.input) : groundedReading
+  const reading = state?.input ? toReading(state.input) : groundedReading()
 
   return (
     <Screen>

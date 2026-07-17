@@ -68,5 +68,6 @@ export interface ReportBundle {
     [k: string]: unknown
   }>
 }
+export function loadKb(): Promise<unknown>
 export function buildReading(input: ChartInput, unseYearName?: string): ReportBundle
 export const kbCoverage: { distilledKeys: number; indexKeys: number }

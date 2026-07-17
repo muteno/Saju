@@ -92,4 +92,9 @@ export function toReading(input: ChartInput, unse = '병오'): Reading {
 }
 
 // 샘플 프로필의 실제 근거 리딩 (state로 input이 안 오면 폴백)
-export const groundedReading: Reading = toReading({ year: 1990, month: 1, day: 1, hour: 8, minute: 24, gender: 'F' })
+// 모듈 평가 시점 호출 금지 — KB는 main.tsx의 loadKb() 게이트 이후에만 존재한다(Q05 경량화).
+let _grounded: Reading | null = null
+export function groundedReading(): Reading {
+  if (!_grounded) _grounded = toReading({ year: 1990, month: 1, day: 1, hour: 8, minute: 24, gender: 'F' })
+  return _grounded
+}
