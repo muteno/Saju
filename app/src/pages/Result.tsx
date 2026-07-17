@@ -6,6 +6,7 @@ import CharacterStage from '../components/CharacterStage'
 import TopControls from '../components/TopControls'
 import SajuTable from '../components/SajuTable'
 import DialogueBox from '../components/DialogueBox'
+import GapjaSticker from '../components/GapjaSticker'
 import { tokens } from '../theme'
 import { mockPillars, mockOhaeng, groundedReading, toReading } from '../data/saju'
 import type { ChartInput } from '../engine'
@@ -33,6 +34,9 @@ export default function Result() {
   const pillars = state?.chart?.pillars ?? mockPillars
   const ohaeng = state?.chart?.ohaeng ?? mockOhaeng
   const reading = state?.input ? toReading(state.input) : groundedReading
+  // 일주 = 일간+일지 (그 사람의 60갑자). 지신 스티커로 표시.
+  const ilju = pillars.find((p) => p.isDayMaster)
+  const iljuGanji = ilju ? ilju.ganK + ilju.jiK : undefined
 
   return (
     <Screen>
@@ -51,10 +55,16 @@ export default function Result() {
 
         {/* 아이샤의 사주 풀이 */}
         <DialogueBox speaker="아이샤">
-          <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 0.7, mb: 1 }}>
-            <span style={{ fontSize: 14 }}>🔍</span>
-            <span style={{ fontWeight: 700 }}>일주:</span>
-            <span style={{ fontWeight: 800, color: tokens.color.primary }}>{reading.headline}</span>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+            {iljuGanji && <GapjaSticker ganji={iljuGanji} size={44} showLabel={false} />}
+            <Box sx={{ lineHeight: 1.2 }}>
+              <Typography component="span" sx={{ fontSize: 11.5, fontWeight: 700, color: tokens.color.inkSub, letterSpacing: 'var(--tracking)' }}>
+                일주 {iljuGanji ?? ''}
+              </Typography>
+              <Typography sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.primary, letterSpacing: 'var(--tracking)' }}>
+                {reading.headline}
+              </Typography>
+            </Box>
           </Box>
           {reading.sections.map((s) => (
             <Box key={s.label} sx={{ mb: 0.9 }}>

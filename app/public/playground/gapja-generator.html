@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>60갑자 지신 스티커 생성기 — 나노바나나2</title>
+<style>
+  :root{
+    /* 정본 팔레트 (app/src/theme.ts tokens.ohaeng) — 이 값이 SSOT */
+    --mok:#8FBBA1; --hwa:#E98D8D; --to:#F1CE8C; --geum:#DBDCE0; --su:#8FB0CC;
+    --ink:#1b1b1f; --sub:#5b6070; --faint:#9a9fb0; --line:#e2e4ee; --card:#fff;
+    --primary:#22409e; --warn:#e85e5e;
+    --tracking:-0.03em;
+    --pretendard:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--pretendard);letter-spacing:var(--tracking);color:var(--ink);
+    background:#eef0f6;padding:20px;-webkit-font-smoothing:antialiased}
+  h1{font-size:22px;font-weight:800;margin:0 0 2px}
+  .sub{color:var(--sub);font-size:13px;margin:0 0 16px}
+  .wrap{max-width:1100px;margin:0 auto}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px}
+  .banner{border-radius:12px;padding:10px 14px;font-weight:700;font-size:13px;margin-bottom:16px}
+  .ok{background:#e7f4ec;color:#2f7d51;border:1px solid #b9e0c9}
+  .bad{background:#fdeaea;color:#b13b3b;border:1px solid #f3c2c2}
+  .majors{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .major{border:1px solid var(--line);border-radius:12px;padding:12px}
+  .major h3{font-size:13px;margin:0 0 8px;font-weight:800}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--sub);margin:6px 0}
+  .row input[type=color]{width:34px;height:24px;border:1px solid var(--line);border-radius:6px;padding:0;background:none}
+  .row .def{font-size:10.5px;color:var(--faint)}
+  .swatchwarn{color:var(--warn);font-weight:800;font-size:11px}
+  select,input[type=text]{font-family:inherit;font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:5px 8px;letter-spacing:var(--tracking)}
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .cell{border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center;cursor:pointer;transition:box-shadow .15s,transform .1s;background:#fff}
+  .cell:hover{box-shadow:0 6px 18px rgba(20,22,40,.12);transform:translateY(-1px)}
+  .disc{width:52px;height:52px;border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:26px}
+  .gj{font-size:12px;font-weight:800}
+  .an{font-size:10.5px;color:var(--faint)}
+  .btns{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+  button.act{font-family:inherit;letter-spacing:var(--tracking);border:0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;background:var(--primary);color:#fff}
+  button.ghost{background:#e7ebf8;color:var(--primary)}
+  .colhdr{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:6px}
+  .colhdr div{text-align:center;font-size:11px;font-weight:800;color:var(--sub)}
+  dialog{border:0;border-radius:16px;max-width:560px;width:92%;padding:0}
+  dialog .dh{padding:14px 16px;border-bottom:1px solid var(--line);font-weight:800;display:flex;justify-content:space-between;align-items:center}
+  dialog textarea{width:100%;height:220px;border:0;padding:16px;font-size:12.5px;font-family:ui-monospace,monospace;resize:vertical}
+  dialog .df{padding:12px 16px;border-top:1px solid var(--line);display:flex;gap:8px;justify-content:flex-end}
+  .x{cursor:pointer;color:var(--faint);font-weight:800}
+  small.note{color:var(--faint);font-size:11px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>60갑자 지신 스티커 생성기</h1>
+  <p class="sub">동물 = 지지 · 색 = 천간 오행. 12 동물 × 5 오행 = 60. 칸을 눌러 <b>나노바나나2 프롬프트</b>를 복사 → 생성 → <code>{animal}-{element}.png</code>로 저장.</p>
+
+  <div id="palBanner" class="banner ok">정본 팔레트 준수 중 — 앱 색과 100% 일치</div>
+
+  <!-- 대분류 5 · 소분류 10 -->
+  <div class="panel">
+    <div class="majors">
+      <div class="major">
+        <h3>1. 오행 팔레트(색)*</h3>
+        <div class="row"><span>목/화/토 색</span><span><input type="color" id="c_mok"><input type="color" id="c_hwa"><input type="color" id="c_to"></span></div>
+        <div class="row"><span>금/수 색</span><span><input type="color" id="c_geum"><input type="color" id="c_su"></span></div>
+        <div class="row"><span class="def">정본: 8FBBA1·E98D8D·F1CE8C·DBDCE0·8FB0CC</span><span id="palWarn" class="swatchwarn"></span></div>
+      </div>
+      <div class="major">
+        <h3>2. 아트 스타일*</h3>
+        <div class="row"><span>외곽선</span><select id="outline"><option value="bold">굵은 차콜</option><option value="thin">얇은 차콜</option></select></div>
+        <div class="row"><span>눈</span><select id="eyes"><option value="glossy">글로시 반짝(하이라이트2)</option><option value="simple">심플 도트</option></select></div>
+      </div>
+      <div class="major">
+        <h3>3. 캐릭터 구성</h3>
+        <div class="row"><span>나비넥타이</span><select id="bowtie"><option value="1">파스텔 옐로 ✓</option><option value="0">없음</option></select></div>
+        <div class="row"><span>자세</span><select id="pose"><option value="sit">정면 착석</option><option value="stand">정면 서기</option></select></div>
+      </div>
+      <div class="major">
+        <h3>4. 소품/상징</h3>
+        <div class="row"><span>소품</span><select id="item"><option value="1">동물별 소품 ✓</option><option value="0">없음</option></select></div>
+        <div class="row"><span>발광 효과</span><select id="glow"><option value="1">은은한 발광 ✓</option><option value="0">없음</option></select></div>
+      </div>
+      <div class="major">
+        <h3>5. 출력 규격</h3>
+        <div class="row"><span>배경</span><select id="bg"><option value="transparent">투명</option><option value="white">순백</option></select></div>
+        <div class="row"><span>테두리</span><select id="border"><option value="1">흰 다이컷 테두리 ✓</option><option value="0">없음</option></select></div>
+      </div>
+    </div>
+    <small class="note">* = 문제의 핵심 축(색·스타일). 색을 정본에서 바꾸면 위 배너가 빨갛게 경고합니다([14] 팔레트 준수).</small>
+  </div>
+
+  <div class="btns">
+    <button class="act" id="copyAll">전체 60 프롬프트 복사</button>
+    <button class="ghost" id="resetPal">팔레트 정본으로 되돌리기</button>
+  </div>
+
+  <div class="panel">
+    <div class="colhdr"><div>목 wood</div><div>화 fire</div><div>토 earth</div><div>금 metal</div><div>수 water</div></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</div>
+
+<dialog id="dlg">
+  <div class="dh"><span id="dlgT">프롬프트</span><span class="x" onclick="document.getElementById('dlg').close()">✕</span></div>
+  <textarea id="dlgTx" readonly></textarea>
+  <div class="df"><button class="ghost" onclick="document.getElementById('dlg').close()">닫기</button><button class="act" id="dlgCopy">복사</button></div>
+</dialog>
+
+<script>
+  var DEF={mok:'#8FBBA1',hwa:'#E98D8D',to:'#F1CE8C',geum:'#DBDCE0',su:'#8FB0CC'};
+  var ELEM=[
+    {key:'목',en:'wood',ko:'목',var:'mok',name:'sage green'},
+    {key:'화',en:'fire',ko:'화',var:'hwa',name:'coral red'},
+    {key:'토',en:'earth',ko:'토',var:'to',name:'golden yellow'},
+    {key:'금',en:'metal',ko:'금',var:'geum',name:'silver gray'},
+    {key:'수',en:'water',ko:'수',var:'su',name:'slate blue'}
+  ];
+  // 12 지지: 동물·이모지·소품 (자축인묘진사오미신유술해)
+  var ANI=[
+    {en:'rat',ko:'쥐',em:'🐭',item:'a glowing seed'},
+    {en:'ox',ko:'소',em:'🐮',item:'a small brass bell'},
+    {en:'tiger',ko:'범',em:'🐯',item:'a bamboo stalk'},
+    {en:'rabbit',ko:'토끼',em:'🐰',item:'a four-leaf clover'},
+    {en:'dragon',ko:'용',em:'🐲',item:'a glowing wish orb'},
+    {en:'snake',ko:'뱀',em:'🐍',item:'soft sparkles'},
+    {en:'horse',ko:'말',em:'🐴',item:'a flowing ribbon'},
+    {en:'goat',ko:'양',em:'🐑',item:'a paintbrush'},
+    {en:'monkey',ko:'원숭이',em:'🐵',item:'a peach'},
+    {en:'rooster',ko:'닭',em:'🐔',item:'a pocket watch'},
+    {en:'dog',ko:'개',em:'🐶',item:'a glowing lantern'},
+    {en:'pig',ko:'돼지',em:'🐷',item:'a lucky pouch'}
+  ];
+  // 천간(오행·음양): 갑을병정무기경신임계
+  var STEM=[['갑',0,'양'],['을',0,'음'],['병',1,'양'],['정',1,'음'],['무',2,'양'],['기',2,'음'],['경',3,'양'],['신',3,'음'],['임',4,'양'],['계',4,'음']];
+  // 어떤 (동물,오행)에 오는 60갑자 간지들
+  function ganjiFor(aIdx,eIdx){
+    var out=[];
+    for(var i=0;i<60;i++){ if(i%12===aIdx && STEM[i%10][1]===eIdx) out.push(STEM[i%10][0]+ANI[aIdx].ko.slice(0,0)+['자','축','인','묘','진','사','오','미','신','유','술','해'][i%12]); }
+    return out;
+  }
+  function col(v){return document.getElementById('c_'+v).value;}
+  function ctrl(id){return document.getElementById(id).value;}
+  function hex(v){return col(v).toUpperCase();}
+  function elName(e){return e.name;}
+  function buildPrompt(a,e){
+    var c=hex(e.var);
+    var out = ctrl('outline')==='bold'?'bold':'thin';
+    var eyes = ctrl('eyes')==='glossy'?'huge glossy sparkly eyes with two white highlights':'cute simple dot eyes';
+    var bow = ctrl('bowtie')==='1'?'a small pastel-yellow bow-tie, ':'';
+    var pose = ctrl('pose')==='sit'?'seated front-facing':'standing front-facing';
+    var item = ctrl('item')==='1'?('holding '+a.item+', '):'';
+    var glow = ctrl('glow')==='1'?' with a soft gentle glow':'';
+    var bg = ctrl('bg')==='transparent'?'transparent (PNG alpha)':'pure white';
+    var border = ctrl('border')==='1'?' thick white die-cut sticker border,':'';
+    return 'A single clean die-cut kawaii sticker of one baby '+a.en+', cute Korean sticker illustration, '+out+' dark-charcoal outline, soft flat pastel colors, chibi big-head proportions, '+eyes+', tiny happy smile, '+bow+pose+', '+item
+      +'the whole body colored in soft '+elName(e)+' '+c+' ('+e.en+' element of Korean five-elements)'+glow+'. '+bg+' background,'+border+' uniform lighting, high resolution, single centered mascot, emoji sticker style. No text, no labels, no watermark. Filename: '+a.en+'-'+e.en+'.png';
+  }
+  function checkPal(){
+    var off=[]; ['mok','hwa','to','geum','su'].forEach(function(k){ if(col(k).toUpperCase()!==DEF[k].toUpperCase()) off.push(k); });
+    var b=document.getElementById('palBanner'), w=document.getElementById('palWarn');
+    if(off.length){ b.className='banner bad'; b.textContent='⚠ 정본 팔레트 이탈 ('+off.length+'색 변경됨) — 앱 오행색과 불일치. [14] 위반 위험.'; w.textContent='이탈'; }
+    else { b.className='banner ok'; b.textContent='정본 팔레트 준수 중 — 앱 색과 100% 일치'; w.textContent=''; }
+  }
+  function render(){
+    var g=document.getElementById('grid'); g.innerHTML='';
+    ANI.forEach(function(a,ai){
+      ELEM.forEach(function(e){
+        var d=document.createElement('div'); d.className='cell';
+        d.innerHTML='<div class="disc" style="background:'+col(e.var)+'">'+a.em+'</div>'
+          +'<div class="gj">'+a.ko+' · '+e.ko+'</div><div class="an">'+a.en+'-'+e.en+'.png</div>';
+        d.onclick=function(){ openPrompt(a,e); };
+        g.appendChild(d);
+      });
+    });
+    checkPal();
+  }
+  function openPrompt(a,e){
+    document.getElementById('dlgT').textContent=a.ko+' · '+e.ko+'  ('+a.en+'-'+e.en+'.png)';
+    var tx=document.getElementById('dlgTx'); tx.value=buildPrompt(a,e);
+    var dlg=document.getElementById('dlg'); dlg.showModal();
+    document.getElementById('dlgCopy').onclick=function(){ navigator.clipboard.writeText(tx.value); this.textContent='복사됨 ✓'; var self=this; setTimeout(function(){self.textContent='복사';},1200); };
+  }
+  document.getElementById('copyAll').onclick=function(){
+    var all=[]; ANI.forEach(function(a){ ELEM.forEach(function(e){ all.push('# '+a.en+'-'+e.en+'.png\n'+buildPrompt(a,e)); }); });
+    navigator.clipboard.writeText(all.join('\n\n'));
+    this.textContent='60개 복사됨 ✓'; var self=this; setTimeout(function(){self.textContent='전체 60 프롬프트 복사';},1400);
+  };
+  document.getElementById('resetPal').onclick=function(){ ['mok','hwa','to','geum','su'].forEach(function(k){ document.getElementById('c_'+k).value=DEF[k]; }); render(); };
+  ['mok','hwa','to','geum','su'].forEach(function(k){ var el=document.getElementById('c_'+k); el.value=DEF[k]; el.addEventListener('input',render); });
+  ['outline','eyes','bowtie','pose','item','glow','bg','border'].forEach(function(id){ document.getElementById(id).addEventListener('change',render); });
+  render();
+</script>
+</body>
+</html>
