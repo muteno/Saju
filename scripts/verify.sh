@@ -19,8 +19,9 @@ ENG_LOG=$(mktemp); BUILD_LOG=$(mktemp)
 step "3/5 만세력 엔진 테스트 (포스텔러 픽스처)"
 node dosa-app/engine/test/test_manseryeok.mjs >"$ENG_LOG" 2>/dev/null && tail -1 "$ENG_LOG" || { cat "$ENG_LOG"; fail=1; }
 
-step "4/5 증류 반환각 검증 (인용 축자·출처 실존·elements 엔진 대조)"
+step "4/5 증류 반환각 검증 + 시험은행 리플레이 (PASS 지식이 계속 찾아지는가)"
 python3 dosa-app/kb-tools/validate_distilled.py || fail=1
+python3 dosa-app/kb-tools/replay_exams.py || fail=1
 
 step "5/5 앱 프로덕션 빌드 (tsc + vite → dist/)"
 npm run build >"$BUILD_LOG" 2>&1 && echo "  ✓ 빌드 성공" || { tail -20 "$BUILD_LOG"; fail=1; }

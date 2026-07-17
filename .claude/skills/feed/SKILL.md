@@ -46,7 +46,10 @@ KB(엔진+색인+코퍼스)만으로 같은 수준의 답을 내는지 시험한
     4-b. 질문이 맞다면 왜 격차인가 — 원인 유추(여기가 중요):
          ⓐ 지식 부재  ⓑ 있는데 못 찾음(키·별칭·색인 문제)  ⓒ 관점차이(3의 분기)
     4-c. 원인별 반영 — **정제된 형태로, 다음 모델이 오탐 없이 찾을 키에 걸어서**:
-         ⓐ → check_new_video.py --save 주입 → 색인 3종 재생성(아래) → 얇은 키면 증류까지
+         ⓐ → python3 dosa-app/kb-tools/ingest_transcript.py <vid> --stage <dir> --channel "<채널명>"
+              (stage 자막→fulltext 복사+yt_units 등록. **check_new_video --save 금지** — score<2 무음
+              거부 + 색인 미등록 고아[평의회 260717 발견①, 박제 시트 kb/exams/JMCgXyFr2hg.json])
+              → 색인 3종 재생성(아래) → 얇은 키면 증류까지(prepare_interaction_bundles.py → DISTILL_GUIDE → validate_distilled.py)
          ⓑ → scan_interactions.py(PATTERNS)·scan_impressions.py(ELEMENT_TERMS)·aliases.json 별칭을
               **코드로** 수정 후 재실행 (기계산출물 손편집 금지)
          ⓒ → 해당 유닛 관점차이에 병기 (DISTILL_GUIDE 규칙)

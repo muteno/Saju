@@ -11,7 +11,7 @@ import re, sys, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 # 골격 [N] 줄에 반드시 있어야 할 키워드 — 전파로 번호가 밀리면 여기서 울린다
-MARKER_ANCHORS = {'[4]': '디자인', '[5]': '플레이그라운드', '[6]': '한 수', '[9]': '병렬', '[11]': '미리보기'}
+MARKER_ANCHORS = {'[4]': '디자인', '[5]': '플레이그라운드', '[6]': '보고', '[9]': '병렬', '[11]': '미리보기'}  # [6] '한 수'→'보고': 260717 #51 개정(6단 골격) 동조
 EXTERNAL_REPOS = ('muteno/', 'nomute-editor')  # 타 레포 참조 면제 화이트리스트
 
 

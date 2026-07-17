@@ -6,8 +6,9 @@
 '재현됨' 판정의 필요조건 검사기: 비자기 출처 적중 0이면 그 주장은 '공백 후보'.
 
 사용:
-  python3 probe_coverage.py kb/exams/<vid>.json [--exclude VID ...]
+  python3 probe_coverage.py kb/exams/<vid>.json [--exclude VID ...] [--include-self]
     - 시트의 questions[].patterns(정규식 목록)를 사용. --exclude 생략 시 시트의 vid 자동 제외.
+    - --include-self: 자기 vid 자동 제외 해제 — 주입 후 '찾아지는가' 검증(replay·배관 재시험)용.
   python3 probe_coverage.py claims.json --exclude VID
     - 간이 형식 [{"id","label","patterns":[...]}] 도 허용.
 
@@ -35,12 +36,16 @@ def main():
     args = sys.argv[1:]
     if not args:
         print(__doc__); sys.exit(1)
+    include_self = '--include-self' in args
+    if include_self:
+        args.remove('--include-self')
     sheet = args[0]
     excl = set()
     if '--exclude' in args:
         excl = set(args[args.index('--exclude') + 1:])
     questions, auto_excl = load_questions(sheet)
-    excl |= set(auto_excl)
+    if not include_self:
+        excl |= set(auto_excl)
 
     bodies = json.load(open(os.path.join(KB, 'unit_bodies.json'), encoding='utf-8'))
     board = open(BOARD, encoding='utf-8').read()

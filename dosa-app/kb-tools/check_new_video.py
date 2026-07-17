@@ -8,7 +8,8 @@
   4) 판정 리포트: 수집 가치 (높음/중간/낮음) + 보강되는 키 목록
 
 사용: python check_new_video.py <URL 또는 vid> [--save]
-      --save: 수집 가치가 있으면 자막을 fulltext/에 저장하고 yt_saju.json에 추가
+      --save: 신호 점수≥2일 때만 자막을 fulltext/에 저장. **색인(yt_units/yt_saju) 등록은 하지 않는다**
+              — 정식 주입은 ingest_transcript.py 사용(/feed 4-c ⓐ · 평의회 260717 발견① 참조)
 """
 import json, os, re, subprocess, sys, glob
 
