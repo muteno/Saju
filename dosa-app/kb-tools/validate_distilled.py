@@ -38,10 +38,25 @@ def engine_elements(stem, branch):
         os.remove(tmp)
     return json.loads(out)
 
+ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
+YT_TXT = os.path.join(ROOT, 'youtube-tools', 'book', 'fulltext')
+BOARD = os.path.join(HERE, '..', 'methodology', 'figjam_board_full.md')
+
+def source_text(unit, bodies):
+    """유닛 참조 → 원문 텍스트. 블로그(unit_index 키) / yt:<vid> / board 지원."""
+    if unit == 'board':
+        return open(BOARD, encoding='utf-8').read()
+    if unit.startswith('yt:'):
+        fp = os.path.join(YT_TXT, unit[3:] + '.txt')
+        return open(fp, encoding='utf-8', errors='replace').read() if os.path.exists(fp) else None
+    b = bodies.get(unit)
+    return '\n'.join(b['paras']) if b else None
+
 def main():
     index = json.load(open(os.path.join(KB, 'unit_index.json'), encoding='utf-8'))
     aliases = {k: v for k, v in json.load(open(os.path.join(KB, 'aliases.json'), encoding='utf-8')).items() if not k.startswith('_')}
     bodies = json.load(open(os.path.join(KB, 'unit_bodies.json'), encoding='utf-8'))
+    yt_vids = {x['vid'] for x in json.load(open(os.path.join(KB, 'yt_saju.json'), encoding='utf-8'))}
 
     files = sorted(glob.glob(os.path.join(KB, 'distilled', '**', '*.json'), recursive=True))
     errors, n_quotes = [], 0
@@ -59,6 +74,11 @@ def main():
         src_units = set()
         for s in d['sources']:
             src_units.add(s['unit'])
+            if s['unit'] == 'board':
+                continue  # 방법론 보드 — 항상 유효
+            if s['unit'].startswith('yt:'):
+                if s['unit'][3:] not in yt_vids: err(f"유튜브 출처가 yt_saju에 없음: {s['unit']}")
+                continue
             if s['unit'] not in indexed: err(f"출처가 색인에 없음: {s['unit']}")
             if s['unit'] not in bodies: err(f"출처 본문 없음: {s['unit']}")
 
@@ -66,8 +86,7 @@ def main():
             n_quotes += 1
             if q['src'] not in src_units:
                 err(f"인용 출처가 sources에 없음: {q['src']}")
-            body = bodies.get(q['src'])
-            joined = '\n'.join(body['paras']) if body else ''
+            joined = source_text(q['src'], bodies) or ''
             if q['text'] not in joined:
                 err(f"인용문이 원문에 없음(축자 불일치): {q['text'][:40]}…")
 
