@@ -150,7 +150,7 @@
 - [4] 디자인 진입점 = 확립본 없음 → 웹앱 축 = `dosa-app/README.md` 설계·절대 원칙·L4 서술 표준 + 기존 화면 관례 계승(디자인 참고 스크랩 = `forceteller-ref/` · 방식론 = `docs/디자인방식론_지침.md`, 260717 이식) — 임의 창작 금지는 동일.
 - [5]/[11] 라이브 = Cloudflare Pages "saju02" https://saju02-7n8.pages.dev (260717 배포 확립 — 구 "saju" 프로젝트는 삭제 대상, STATUS 액션 아이템). 딥링크 형식 미확립 → 당분간 결과물 실경로·실행법 병행.
 - [6] 지시 원장 = `docs/요구사항_큐.md` (260717 신설·가동 · 보고 골격 = 최우선 2의 6단 · 예시 블록 폐지).
-- [9] 평의회 대상 예 = `CLAUDE.md` · `dosa-app/STATUS.md` · `dosa-app/README.md` · `.claude/skills/feed/SKILL.md` · `dosa-app/engine` 핵심 로직(만세력 결정론 조회 축) · 상비 게이트 = `npm run verify`(파생물→vendor드리프트→엔진테스트→증류검증→앱빌드 + `shared/check_refs.py` 경로 게이트, 260717 편입).
+- [9] 평의회 대상 예 = `CLAUDE.md` · `dosa-app/STATUS.md` · `dosa-app/README.md` · `.claude/skills/feed/SKILL.md` · `dosa-app/engine` 핵심 로직(만세력 결정론 조회 축) · 상비 게이트 = `npm run verify`(파생물→vendor드리프트→엔진테스트→증류검증+시험은행 리플레이→앱빌드→브라우저 스모크 + `shared/check_refs.py` 경로 게이트, 260717 편입).
 - 세션 인수인계 = `dosa-app/STATUS.md` 선독(위 본문 규정 유지).
 - [11] 완료 기준 = git 산출물 축 한정 — 로컬 Windows 산출물(docx 등) = 파일 실경로 확인으로 갈음.
 - 웹앱 구조(평의회 260717 재이식): `app/` = React+Vite 웹앱(빌드→`dist/`, Cloudflare) — **`app/src/engine/vendor` = 생성물, 직접 수정 금지(`npm run sync:engine`)** · `scripts/` = verify.sh·sync_engine.mjs·build_kb.mjs · `dosa-app/` = 엔진 정본(engine)·지식(kb)·도구(kb-tools)·cli·방법론 보드 · 유튜브 자막 코퍼스 = `youtube-tools/book/fulltext`.

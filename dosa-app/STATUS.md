@@ -11,7 +11,7 @@
 2. **단일 진실 = main.** 작업 브랜치는 짧게 쓰고 빨리 머지. 다른 세션이 main을 전진시켰으면 내 브랜치에 먼저 병합하고 이어간다.
 3. **기계산출물 손편집 금지**: 색인(`kb/*_index.json`)·`kb.json`·`unit_bodies.json`·`app/src/engine/vendor/*`는 전부 생성물. 값 바꾸려면 **생성 스크립트를 고쳐 재실행**한다.
    - 엔진 정본 = `dosa-app/engine/src/`. 앱 사본은 `npm run sync:engine`으로만 갱신.
-4. **커밋 전 `npm run verify` 통과 필수** (5게이트: 파생물→vendor드리프트→엔진테스트→증류검증→앱빌드). 하나라도 빨강이면 커밋 금지.
+4. **커밋 전 `npm run verify` 통과 필수** (6게이트: 파생물→vendor드리프트→엔진테스트→증류검증+리플레이→앱빌드→브라우저 스모크). 하나라도 빨강이면 커밋 금지.
 5. **작업 후 이 STATUS 갱신** (진행표·작업큐). 다음 세션에게 남기는 쪽지다.
 
 ## 명령어 (전부 저장소 루트에서)
@@ -65,6 +65,6 @@ npm run build:kb      # kb 번들(app/public/kb-<hash>.json + vendor/kb_ref.json
 ## 새 세션 부팅 (다른 계정/모델 동일)
 
 ```bash
-npm run verify   # 이 한 줄이 파생물 재생성 + 5게이트 전부 (통과하면 정상)
+npm run verify   # 이 한 줄이 파생물 재생성 + 6게이트 전부 (통과하면 정상)
 # 사주: /saju 1993-11-30 08:00 M 순천   |   지식주입: /feed <유튜브URL>
 ```
