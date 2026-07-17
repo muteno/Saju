@@ -17,8 +17,12 @@ KB(엔진+색인+코퍼스)만으로 같은 수준의 답을 내는지 시험한
 ## 상태 기계 (영상 1편 = 독립 루프)
 
 ```
-0.  [코드] 자막 확보: python3 dosa-app/kb-tools/check_new_video.py "<URL>"
-    (기보유면 그 자막 사용 · 자막 없으면 그 사실 보고 후 종료. 아직 주입 아님)
+0.  [코드·무판단] 자막 전량 수집: python3 dosa-app/kb-tools/fetch_transcripts.py <vid…|--list 파일> --stage <dir>
+    ✱ 수집기는 판단 금지 — 가치·신규성·중복 판정 없음. 영상 내 음성 전량 긁기가 유일 임무.
+      (check_new_video.py는 이 단계에서 쓰지 않는다 — 판정 출력이 하류 에이전트를 오염시킴)
+    ✱ 기보유 영상은 fulltext에서 복사(재수신 생략 = 캐시이지 판단 아님). 아직 주입 아님.
+    ✱ 플래그 = 수집 품질 신호일 뿐: NO_SUBS(자막 자체 없음) · INCOMPLETE(분당 자수<200, 누락 의심)
+      · THROTTLED(유튜브 429/봇확인 — 자막 유무 판정 불가, 쿨다운 후 재실행. **NO_SUBS와 혼동 금지**).
 1.  [추출] 자막 분석 → 이 영상이 대답하는 질문 1~5개 역추론 + 영상의 답 요약 + 축자 근거
     → kb/exams/<vid>.json 시트 생성(스키마 아래). 질문은 시청자가 실제로 물을 형태로.
     기계 보조: python3 dosa-app/kb-tools/probe_coverage.py <시트> --exclude <vid>
@@ -62,6 +66,8 @@ KB(엔진+색인+코퍼스)만으로 같은 수준의 답을 내는지 시험한
 
 - 목록화: `yt-dlp --js-runtimes node --flat-playlist --print "%(id)s|%(title)s" <채널URL>/videos`
   (쇼츠 /shorts·라이브 /streams 탭 별도) → 코퍼스 대조 → 신규만.
+- 유튜브 스로틀 대비: 수집은 fetch_transcripts.py의 페이싱(요청 간 1.5s+영상 간 6s) 기본값 유지,
+  THROTTLED 발생 시 그 파도의 수집을 멈추고 시험·정립부터 진행(수집은 쿨다운 후 재개).
 - **파도(wave) 20편 단위**: 영상 1편 = 독립 루프라 팬아웃 자유. 전체 validate·verify는 조율자가
   파도 끝에 1회(동시 실행 레이스 방지). 파도마다 커밋.
 - 파도 보고 = 사용자 개입을 '예외'로 압축: ①판정표(링크|판정|메운 키|신규 용어)
