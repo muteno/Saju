@@ -17,7 +17,7 @@ export const onRequestPost = withErrors(async ({ request, env }) => {
   const data = JSON.stringify(body.profile || {})
   await db
     .prepare(
-      `INSERT INTO profiles (user_id, data, updated_at) VALUES (?, ?, ?)
+      `INSERT INTO saju_profiles (user_id, data, updated_at) VALUES (?, ?, ?)
        ON CONFLICT(user_id) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at`,
     )
     .bind(user.id, data, Date.now())

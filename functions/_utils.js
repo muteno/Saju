@@ -2,8 +2,10 @@
 // D1 바인딩 이름 = DB (env.DB). 스키마는 첫 호출 시 자동 생성(IF NOT EXISTS).
 
 export async function ensureSchema(db) {
+  // 테이블 접두어 saju_ — 이 D1(muteno_saju_db)은 다른 앱(MANSE·GLASS)과 공유되며
+  // 그쪽 users/sessions/profiles 와 충돌하지 않도록 네임스페이스를 둔다.
   await db.prepare(
-    `CREATE TABLE IF NOT EXISTS users (
+    `CREATE TABLE IF NOT EXISTS saju_users (
        id INTEGER PRIMARY KEY AUTOINCREMENT,
        email TEXT UNIQUE NOT NULL,
        password_hash TEXT NOT NULL,
@@ -12,14 +14,14 @@ export async function ensureSchema(db) {
      )`,
   ).run()
   await db.prepare(
-    `CREATE TABLE IF NOT EXISTS sessions (
+    `CREATE TABLE IF NOT EXISTS saju_sessions (
        token TEXT PRIMARY KEY,
        user_id INTEGER NOT NULL,
        expires_at INTEGER NOT NULL
      )`,
   ).run()
   await db.prepare(
-    `CREATE TABLE IF NOT EXISTS profiles (
+    `CREATE TABLE IF NOT EXISTS saju_profiles (
        user_id INTEGER PRIMARY KEY,
        data TEXT NOT NULL,
        updated_at INTEGER NOT NULL
@@ -76,7 +78,7 @@ export function randomToken() {
 export async function createSession(db, userId) {
   const token = randomToken()
   const expires = Date.now() + SESSION_DAYS * 864e5
-  await db.prepare('INSERT INTO sessions (token, user_id, expires_at) VALUES (?, ?, ?)').bind(token, userId, expires).run()
+  await db.prepare('INSERT INTO saju_sessions (token, user_id, expires_at) VALUES (?, ?, ?)').bind(token, userId, expires).run()
   return token
 }
 export function sessionCookie(token) {
@@ -93,8 +95,8 @@ export function getCookie(request, name) {
 export async function getUser(db, request) {
   const token = getCookie(request, 'session')
   if (!token) return null
-  const s = await db.prepare('SELECT user_id, expires_at FROM sessions WHERE token = ?').bind(token).first()
+  const s = await db.prepare('SELECT user_id, expires_at FROM saju_sessions WHERE token = ?').bind(token).first()
   if (!s || s.expires_at < Date.now()) return null
-  return await db.prepare('SELECT id, email, name FROM users WHERE id = ?').bind(s.user_id).first()
+  return await db.prepare('SELECT id, email, name FROM saju_users WHERE id = ?').bind(s.user_id).first()
 }
 export const normalizeEmail = (e) => (e || '').trim().toLowerCase()

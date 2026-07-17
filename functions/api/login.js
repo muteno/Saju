@@ -14,7 +14,7 @@ export const onRequestPost = withErrors(async ({ request, env }) => {
   const email = normalizeEmail(body.email)
   const password = body.password || ''
 
-  const u = await db.prepare('SELECT id, email, name, password_hash FROM users WHERE email = ?').bind(email).first()
+  const u = await db.prepare('SELECT id, email, name, password_hash FROM saju_users WHERE email = ?').bind(email).first()
   if (!u || !(await verifyPassword(password, u.password_hash))) {
     return json({ error: '이메일 또는 비밀번호가 달라요' }, 401)
   }

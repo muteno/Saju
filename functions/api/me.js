@@ -6,7 +6,7 @@ export const onRequestGet = withErrors(async ({ request, env }) => {
   await ensureSchema(db)
   const user = await getUser(db, request)
   if (!user) return json({ user: null })
-  const p = await db.prepare('SELECT data FROM profiles WHERE user_id = ?').bind(user.id).first()
+  const p = await db.prepare('SELECT data FROM saju_profiles WHERE user_id = ?').bind(user.id).first()
   let profile = null
   if (p) {
     try {
