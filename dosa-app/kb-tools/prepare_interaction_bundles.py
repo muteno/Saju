@@ -97,9 +97,12 @@ def build(key, index, titles):
     print(f'{fn}: {len(text):,}자')
 
 def main():
-    index = json.load(open(os.path.join(KB, 'interaction_index.json'), encoding='utf-8'))
-    titles = yt_title_map()
     args = sys.argv[1:]
+    idx_file = 'interaction_index.json'
+    if args and args[0] == '--index':
+        idx_file = args[1]; args = args[2:]
+    index = json.load(open(os.path.join(KB, idx_file), encoding='utf-8'))
+    titles = yt_title_map()
     if args and args[0] == '--top':
         n = int(args[1]) if len(args) > 1 else 30
         keys = list(index.keys())[:n]
