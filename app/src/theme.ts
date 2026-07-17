@@ -71,9 +71,27 @@ export function makeTheme(mode: Mode) {
       button: { fontSize: 17, fontWeight: 700, textTransform: 'none' },
     },
     components: {
+      // 버튼 단일 규격 — 앱 전반 모든 버튼이 같은 모양·크기·타이포(요구사항: "버튼 다 동일하게").
+      // 변주는 variant(contained=주동작·outlined=보조)뿐, 형태는 한 값.
       MuiButton: {
         defaultProps: { disableElevation: true },
-        styleOverrides: { root: { borderRadius: 14, paddingTop: 14, paddingBottom: 14 } },
+        styleOverrides: {
+          root: {
+            borderRadius: 14,
+            paddingTop: 14,
+            paddingBottom: 14,
+            paddingLeft: 20,
+            paddingRight: 20,
+            fontSize: 17,
+            fontWeight: 700,
+            lineHeight: 1.2,
+            letterSpacing: 'var(--tracking)',
+            textTransform: 'none',
+            transition: 'transform .12s cubic-bezier(0.2,0.7,0.3,1), filter .2s',
+            '&:active': { transform: 'scale(0.985)' },
+          },
+          outlined: { borderWidth: 1.5, '&:hover': { borderWidth: 1.5 } },
+        },
       },
       MuiOutlinedInput: {
         styleOverrides: {

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import Screen from '../components/Screen'
 import StatusBar from '../components/StatusBar'
@@ -51,7 +51,7 @@ export default function Home() {
         <Box sx={{ background: heroBg, px: 2.5, pb: 2 }}>
           <StatusBar time="9:41" />
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pt: 0.5 }}>
-            <Typography sx={{ fontSize: 20, fontWeight: 800, color: tokens.color.primary, letterSpacing: '-0.04em' }}>아이샤</Typography>
+            <Typography sx={{ fontSize: 20, fontWeight: 800, color: tokens.color.primary, letterSpacing: 'var(--tracking)' }}>아이샤</Typography>
             <Box sx={{ display: 'flex', gap: 1.8, fontSize: 19, color: tokens.color.ink }}>
               <span>🔍</span>
               <span>📮</span>
@@ -64,7 +64,7 @@ export default function Home() {
               <Typography sx={{ fontSize: 12, fontWeight: 800, color: tokens.color.inkFaint }}>JUL</Typography>
               <Typography sx={{ fontSize: 24, fontWeight: 800, color: tokens.color.inkSub }}>16</Typography>
             </Box>
-            <Typography sx={{ fontSize: 32, fontWeight: 800, color: tokens.color.ink, letterSpacing: '-0.04em' }}>{mockProfile.name}</Typography>
+            <Typography sx={{ fontSize: 32, fontWeight: 800, color: tokens.color.ink, letterSpacing: 'var(--tracking)' }}>{mockProfile.name}</Typography>
           </Box>
 
           {/* 말풍선 */}
@@ -93,19 +93,16 @@ export default function Home() {
             <Box sx={{ textAlign: 'right' }}>
               <Typography sx={{ fontSize: 12, fontWeight: 700, color: tokens.color.inkSub }}>오늘의 운세</Typography>
               <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: 0.4, justifyContent: 'flex-end' }}>
-                <span style={{ fontSize: 44, fontWeight: 800, color: 'var(--c-ink)', lineHeight: 1, letterSpacing: '-0.04em' }}>{todayIljin.score}</span>
+                <span style={{ fontSize: 44, fontWeight: 800, color: 'var(--c-ink)', lineHeight: 1, letterSpacing: 'var(--tracking)' }}>{todayIljin.score}</span>
                 <span style={{ fontSize: 18, fontWeight: 800, color: 'var(--c-ink-sub)', paddingBottom: 4 }}>점</span>
               </Box>
             </Box>
           </Box>
 
-          {/* 분석 진입 (아기가 태어났나요? 자리) */}
-          <Box
-            onClick={() => nav('/loading')}
-            sx={{ mt: 1.5, textAlign: 'center', py: 1, borderRadius: 100, border: `1.4px solid ${tokens.color.primary}`, color: tokens.color.primary, fontSize: 13.5, fontWeight: 800, cursor: 'pointer' }}
-          >
-            아이샤에게 자세히 물어볼까요? →
-          </Box>
+          {/* 분석 진입 — 단일 버튼 규격(outlined=보조 동작) */}
+          <Button fullWidth variant="outlined" onClick={() => nav('/loading')} sx={{ mt: 1.5 }}>
+            아이샤에게 자세히 물어볼까요?
+          </Button>
         </Box>
 
         {/* 콘텐츠: 사주 원국 + 개요 */}

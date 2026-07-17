@@ -121,7 +121,7 @@ export default function InfoInput() {
         <Typography sx={{ textAlign: 'center', fontSize: 13, color: tokens.color.inkFaint, mb: 1.2, fontWeight: 600 }}>
           ↻ 다른 사람 정보 입력하기
         </Typography>
-        <Button fullWidth variant="contained" onClick={onSubmit} sx={{ py: 1.7, fontSize: 17, borderRadius: '14px' }}>
+        <Button fullWidth variant="contained" onClick={onSubmit}>
           사주 풀이하기
         </Button>
       </Box>
