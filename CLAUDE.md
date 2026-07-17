@@ -1,12 +1,14 @@
 # 프로젝트 메모
 
+**[제1법칙] 새로운 지식·정보(유튜브 링크, 외부 문헌, 사용자 제공 텍스트 등)가 들어오면 반드시 `/feed` 스킬(블라인드 시험 루프)을 발현해 검증·주입한다.** 임의 요약·직접 반영 금지 — 영상/문헌을 답안지 삼아 질문을 역추출하고, 지식 없는 블라인드 학생이 KB만으로 같은 답을 내는지 시험 → 격차 원인 유추 → 정제 반영 → 새 블라인드 학생 재시험(통과까지, 3라운드 후 사용자 승격). 절차 정본: `.claude/skills/feed/SKILL.md` (2026-07-17 사용자 확정).
+
 이 폴더는 사주명리 사이트 글을 워드 파일로 아카이빙하는 작업 공간이다.
 `정제본\`에는 광고·후원·구독 유도·인사말·링크 잔재·이모지를 제거한 정제 docx(원본과 1:1, 글 수 동일)가 있고, 정제 규칙·재실행은 `refine-tools/refine.py`(제거 내역은 `정제본\정제 리포트.md`). 원본을 다시 만들거나 추가 수집하면 `python refine-tools/refine.py`로 정제본 일괄 갱신.
 `사주명리 아카이브 통합본 (정제).docx` = 정제본 76편을 6부(사이트별)로 묶은 단일 문서(2,504글, 8MB) — `refine-tools/merge.py`로 재생성(PARTS 목록에 새 문서 추가 후 실행; 목록·파일 불일치 시 assert로 중단해 누락 방지).
 `사주명리 대전 — 주제별 통합본 (정제).docx` = 같은 2,504글을 **주제별 17장**(음양오행→간지→합충→…→재미로 읽는 사주→기타역학→부록)으로 재분류하고 이론 장은 입문→심화 레벨 순 배열한 책 형태 문서. 분류 자산은 전부 `refine-tools/`에: `units.json`(글 단위 추출), `labels/seg_*.json`(Opus 분류+Fable 검수), `labels_overrides.json`(수동 재판정·가십 이동 — **분류를 고치려면 이 파일에 key→C01~C17 추가**), `levels/CH_*.json`(장별 레벨·진행방향), 재조립은 `python refine-tools/assemble_book.py`(라벨 커버리지·글 수 assert 내장). 글 추가 시: 정제본 갱신 → `extract_units.py` → 새 글만 분류(세그먼트 추가) → `assemble_book.py`.
 소스별 파이프라인: 플러스명리학(saju.sajuplus.net) → `sajuplus-tools/`, 안녕·사주명리 티스토리(yavares.tistory.com) → `tistory-tools/`, 초코서당(chocosd.com) → `chocosd-tools/`, 다시 배우는 사주명리(www.sajustudy.com) → `sajustudy-tools/`, 도화로운(dohwaroun.com, 아임웹) → `dohwaroun-tools/`.
 디자인 참고자료: 포스텔러 만세력(pro.forceteller.com) 구조·디자인 스크랩 → `forceteller-ref/` (README.md에 라우트맵·디자인 토큰·API·자동화 함정 정리; React+MUI+emotion이라 스냅샷은 CSSOM 직렬화 내장본).
-사주풀이 웹앱('명리학 도사' 미연시풍) — **새 세션은 무조건 `dosa-app/STATUS.md`부터 읽을 것**(진행 상태·다음 작업 큐·결정 로그·부팅 절차 = 세션 간 인수인계 문서, 작업 후 갱신 필수). 설계·절대 원칙·L4 서술 표준은 `dosa-app/README.md`. 스킬: **/saju**(생년월일시→근거 리포트+풀이), **/feed**(유튜브 링크 검수→주입→색인 갱신→보완 보고). 파생물(unit_bodies.json 등)은 gitignore — 부팅 시 `python3 dosa-app/kb-tools/extract_bodies.py`로 재생성. **절대 원칙**: 근거는 코퍼스 출처 필수, 자료 선택은 검색(RAG)이 아니라 만세력 계산 결과가 키가 되는 결정론 조회, LLM은 서술층일 뿐(없어도 조립식 리포트로 완결 동작), 지식은 요소별 정제 유닛으로 증류(문헌 이견은 관점차이로 병기).
+사주풀이 웹앱('명리학 도사' 미연시풍) — **새 세션은 무조건 `dosa-app/STATUS.md`부터 읽을 것**(진행 상태·다음 작업 큐·결정 로그·부팅 절차 = 세션 간 인수인계 문서, 작업 후 갱신 필수). 설계·절대 원칙·L4 서술 표준은 `dosa-app/README.md`. 스킬: **/saju**(생년월일시→근거 리포트+풀이), **/feed**(v2 블라인드 시험 루프 — 질문 역추출→블라인드 시험→격차 원인별 정제 주입→재시험; 제1법칙의 실행 절차). 파생물(unit_bodies.json 등)은 gitignore — 부팅 시 `python3 dosa-app/kb-tools/extract_bodies.py`로 재생성. **절대 원칙**: 근거는 코퍼스 출처 필수, 자료 선택은 검색(RAG)이 아니라 만세력 계산 결과가 키가 되는 결정론 조회, LLM은 서술층일 뿐(없어도 조립식 리포트로 완결 동작), 지식은 요소별 정제 유닛으로 증류(문헌 이견은 관점차이로 병기).
 
 ## 파이프라인 (시행착오 없이 바로 실행)
 
