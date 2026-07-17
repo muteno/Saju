@@ -1,6 +1,6 @@
-import { ensureSchema, json, getUser } from '../_utils.js'
+import { ensureSchema, json, getUser, withErrors } from '../_utils.js'
 
-export async function onRequestGet({ request, env }) {
+export const onRequestGet = withErrors(async ({ request, env }) => {
   const db = env.DB
   if (!db) return json({ user: null })
   await ensureSchema(db)
@@ -16,4 +16,4 @@ export async function onRequestGet({ request, env }) {
     }
   }
   return json({ user, profile })
-}
+})

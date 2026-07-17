@@ -34,6 +34,19 @@ export function json(data, status = 200, headers = {}) {
   })
 }
 
+// 핸들러 예외를 원시 1101 대신 JSON으로 노출. ?debug=1 이면 스택까지.
+export function withErrors(handler) {
+  return async (ctx) => {
+    try {
+      return await handler(ctx)
+    } catch (err) {
+      const debug = new URL(ctx.request.url).searchParams.get('debug')
+      const detail = String((err && err.stack) || err)
+      return json({ error: '서버 오류가 났어요', ...(debug ? { detail } : {}) }, 500)
+    }
+  }
+}
+
 const enc = new TextEncoder()
 const toHex = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('')
 function fromHex(hex) {

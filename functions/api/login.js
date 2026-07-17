@@ -1,6 +1,6 @@
-import { ensureSchema, json, verifyPassword, createSession, sessionCookie, normalizeEmail } from '../_utils.js'
+import { ensureSchema, json, verifyPassword, createSession, sessionCookie, normalizeEmail, withErrors } from '../_utils.js'
 
-export async function onRequestPost({ request, env }) {
+export const onRequestPost = withErrors(async ({ request, env }) => {
   const db = env.DB
   if (!db) return json({ error: '서버 DB 미설정' }, 500)
   await ensureSchema(db)
@@ -20,4 +20,4 @@ export async function onRequestPost({ request, env }) {
   }
   const token = await createSession(db, u.id)
   return json({ user: { id: u.id, email: u.email, name: u.name } }, 200, { 'Set-Cookie': sessionCookie(token) })
-}
+})

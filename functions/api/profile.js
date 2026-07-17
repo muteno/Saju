@@ -1,7 +1,7 @@
-import { ensureSchema, json, getUser } from '../_utils.js'
+import { ensureSchema, json, getUser, withErrors } from '../_utils.js'
 
 // 출생 정보(프로필) 저장 — 로그인 필요
-export async function onRequestPost({ request, env }) {
+export const onRequestPost = withErrors(async ({ request, env }) => {
   const db = env.DB
   if (!db) return json({ error: '서버 DB 미설정' }, 500)
   await ensureSchema(db)
@@ -23,4 +23,4 @@ export async function onRequestPost({ request, env }) {
     .bind(user.id, data, Date.now())
     .run()
   return json({ ok: true })
-}
+})
