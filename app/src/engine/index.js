@@ -4,8 +4,10 @@
 import { computeChart } from './vendor/manseryeok.js'
 import { chartToKeys } from './vendor/keyset.js'
 import { buildReport } from './vendor/report.js'
-import { diaryDayInfo } from './vendor/unse.js'
-import { twelveSinsal } from './vendor/sinsal.js'
+import { diaryDayInfo, pillarVsChart } from './vendor/unse.js'
+import { twelveSinsal, gongmang } from './vendor/sinsal.js'
+import { strengthJudge, elementProfile } from './vendor/judge.js'
+import { detectRelations } from './vendor/relations.js'
 import solarTerms from './vendor/data/solar_terms.json'
 import kbRef from './vendor/kb_ref.json'
 
@@ -161,6 +163,52 @@ const SIPSIN_THEME = {
   편재: '기회·활동 재물의 날', 정재: '실속·관리의 날',
   편관: '도전과 압박의 날', 정관: '책임·평가의 날',
   편인: '직감·배움의 날', 정인: '안정·문서의 날',
+}
+
+// ── 정곡(正鵠) 원자료 — 선별 로직은 app/src/data/jeonggok.ts (f6accc4 프로토 계승 포팅) ──
+const STEMS_K = ['갑', '을', '병', '정', '무', '기', '경', '신', '임', '계']
+const BRANCH_K = ['자', '축', '인', '묘', '진', '사', '오', '미', '신', '유', '술', '해']
+function ganjiIdx60(name) {
+  const s = STEMS_K.indexOf(name[0])
+  const b = BRANCH_K.indexOf(name[1])
+  if (s < 0 || b < 0) return -1
+  for (let i = 0; i < 60; i++) if (i % 10 === s && i % 12 === b) return i
+  return -1
+}
+
+export function jeonggokRaw(input) {
+  const chart = computeChart(input, terms)
+  const s = chart.saju
+  const ss = twelveSinsal(chart.pillarsIdx)
+  const prof = elementProfile(chart)
+  const pil = (p, sinsal) => ({
+    stem: p.stem,
+    branch: p.branch,
+    stage: p.twelveStage,
+    sinsal,
+    stemEl: STEM[p.stem][0],
+    branchEl: BRANCH[p.branch][0],
+  })
+  return {
+    pillars: {
+      시: pil(s.hour, ss.hour),
+      일: pil(s.day, ss.day),
+      월: pil(s.month, ss.month),
+      년: pil(s.year, ss.year),
+    },
+    relations: detectRelations(chart.pillarsIdx),
+    strength: strengthJudge(chart),
+    elements: prof.elements,
+    missingGroups: prof.missingGroups,
+    gongmang: gongmang(chart.pillarsIdx.day).map((b) => BRANCH_K[b]),
+    // 대운 크로스조인 — 각 대운 간지를 원국에 대입한 관계(시기 정곡 재료)
+    daeunHits: chart.daeun.list.map((d) => {
+      const idx = ganjiIdx60(d.name)
+      return { age: d.age, name: d.name, relations: idx >= 0 ? pillarVsChart(chart, idx).relations : [] }
+    }),
+    birthYear: input.year,
+    nowYear: todayKST().year,
+  }
 }
 
 export function todayFortune(input) {

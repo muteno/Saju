@@ -4,6 +4,7 @@ import DialogueBox from './DialogueBox'
 import { tokens } from '../theme'
 import { TOPICS, TOPIC_INTROS, topicLines, chartSummaryOf } from '../data/dosaTopics'
 import type { DosaLine, Topic } from '../data/dosaTopics'
+import type { JeonggokPick } from '../data/jeonggok'
 import type { ReportBundle } from '../engine'
 
 /**
@@ -82,12 +83,17 @@ export default function DosaChat({
   report,
   profileName,
   hourUnknown,
+  jeonggok,
 }: {
   report: ReportBundle
   profileName?: string
   hourUnknown?: boolean
+  /** 정곡 오프닝 — 도사가 먼저 맞히는 단정(엔진 결정론 선별, data/jeonggok.ts) */
+  jeonggok?: JeonggokPick | null
 }) {
-  const [phase, setPhase] = useState<'choose' | 'play'>('choose')
+  const [phase, setPhase] = useState<'opening' | 'verdict' | 'choose' | 'play'>(jeonggok ? 'opening' : 'choose')
+  const [verdictText, setVerdictText] = useState('')
+  const [crit, setCrit] = useState(false) // 的中 크리티컬 연출(700ms — 플레이그라운드 D.critMs 정본)
   const [seq, setSeq] = useState<DosaLine[]>([])
   const [idx, setIdx] = useState(0)
   const [seen, setSeen] = useState<ReadonlySet<string>>(new Set())
@@ -96,16 +102,39 @@ export default function DosaChat({
 
   // 다른 사주(리포트)로 바뀌면 처음부터
   useEffect(() => {
-    setPhase('choose')
+    setPhase(jeonggok ? 'opening' : 'choose')
+    setVerdictText('')
+    setCrit(false)
     setSeq([])
     setIdx(0)
     idxRef.current = 0
     topicRef.current = null
     setSeen(new Set())
-  }, [report])
+  }, [report, jeonggok])
 
+  const openingText = jeonggok ? `잠깐 — 판을 보자마자 걸리는 게 하나 있군.\n\n${jeonggok.line}` : ''
   const line = phase === 'play' ? seq[idx] : undefined
-  const tw = useTypewriter(phase === 'play' ? (line?.text ?? '') : CHOOSE_INTRO, TYPE_MS)
+  const tw = useTypewriter(
+    phase === 'play' ? (line?.text ?? '') : phase === 'opening' ? openingText : phase === 'verdict' ? verdictText : CHOOSE_INTRO,
+    TYPE_MS,
+  )
+
+  // 정곡 답 처리 — 的中은 크리티컬, 부정은 리커버리(계산은 안 굽히고, 시기 사건은 접는다 — 플레이그라운드 확정 문법)
+  const onJeonggokAnswer = (hit: boolean) => {
+    if (!jeonggok) return
+    if (hit) {
+      setCrit(true)
+      setTimeout(() => setCrit(false), 700)
+      setVerdictText('그럴 줄 알았지. 판에 그려진 걸 그대가 살아냈을 뿐이야.\n\n자, 이제 제대로 보자.')
+    } else {
+      setVerdictText(
+        jeonggok.layer === 'EVENT'
+          ? '흠 — 그럼 그 시기 이야긴 접어두지. 흐름은 사람마다 다르게 오니까.\n\n다른 데부터 보자.'
+          : '흠 — 계산은 분명 그렇게 나와 있어. 아직 그 기운을 안 쓰고 살았거나, 다르게 눌러 담았을 수도 있지.\n\n이야기를 듣다 보면 알게 될 거야.',
+      )
+    }
+    setPhase('verdict')
+  }
 
   const selectTopic = (t: Topic) => {
     const fallback = topicLines(report, t.key, hourUnknown)
@@ -134,6 +163,10 @@ export default function DosaChat({
       tw.skip() // 탭 = 즉시 전체 표시
       return
     }
+    if (phase === 'verdict') {
+      setPhase('choose') // 판정 대사 → 주제 선택
+      return
+    }
     if (phase !== 'play') return
     if (idx + 1 < seq.length) {
       idxRef.current = idx + 1
@@ -145,8 +178,34 @@ export default function DosaChat({
   }
 
   return (
-    <Box onClick={onTap} sx={{ cursor: 'pointer' }}>
-      <DialogueBox speaker="아이샤" next={phase === 'play' && tw.done}>
+    <Box onClick={onTap} sx={{ cursor: 'pointer', position: 'relative' }}>
+      {/* 的中 크리티컬 — 60px/900 #b0402b 스케일인 0.7s (플레이그라운드 정본 연출) */}
+      {crit && (
+        <Box
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 5,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            pointerEvents: 'none',
+            fontSize: 60,
+            fontWeight: 900,
+            color: '#b0402b',
+            textShadow: '0 2px 18px rgba(176,64,43,0.35)',
+            animation: 'critIn .7s var(--ease) both',
+            '@keyframes critIn': {
+              '0%': { transform: 'scale(1.8)', opacity: 0 },
+              '35%': { transform: 'scale(1)', opacity: 1 },
+              '100%': { transform: 'scale(1)', opacity: 1 },
+            },
+          }}
+        >
+          的中
+        </Box>
+      )}
+      <DialogueBox speaker="아이샤" next={(phase === 'play' || phase === 'verdict') && tw.done}>
         {/* 진행 표지 + 주제 복귀 — play 중에만 (mini 9px 토큰 계승) */}
         {phase === 'play' && (
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 1.2, mb: 0.4 }}>
@@ -170,6 +229,81 @@ export default function DosaChat({
         <Box sx={{ fontSize: 14.5, lineHeight: 1.62, color: tokens.color.ink, whiteSpace: 'pre-line', minHeight: 66 }}>
           {tw.shown}
         </Box>
+
+        {/* 정곡 답변지 — [맞아/아니야] (플레이그라운드 .choice 정본 규격) */}
+        {phase === 'opening' && tw.done && jeonggok && (
+          <Box sx={{ mt: 1.25, display: 'flex', flexDirection: 'column', gap: '7px' }}>
+            {[
+              { label: '그… 맞아', mini: '的中?', hit: true },
+              { label: '아니, 딱히?', mini: '분기', hit: false },
+            ].map((c) => (
+              <Box
+                key={c.label}
+                component="button"
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onJeonggokAnswer(c.hit)
+                }}
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  gap: '8px',
+                  p: '11px 14px',
+                  borderRadius: '12px',
+                  border: '1px solid var(--c-border)',
+                  bgcolor: 'var(--c-card)',
+                  color: c.hit ? tokens.color.ink : tokens.color.inkSub,
+                  fontFamily: 'inherit',
+                  fontSize: 14,
+                  fontWeight: 700,
+                  lineHeight: 1.2,
+                  letterSpacing: 'var(--tracking)',
+                  textAlign: 'left',
+                  cursor: 'pointer',
+                  transition: 'border-color .15s, background .15s, transform .12s var(--ease)',
+                  '&:hover': { borderColor: 'var(--accent)', bgcolor: 'color-mix(in srgb, var(--accent) 6%, var(--c-card))' },
+                  '&:active': { transform: 'scale(0.98)' },
+                }}
+              >
+                <span>{c.label}</span>
+                <Box component="span" sx={{ fontSize: 9, fontWeight: 700, color: tokens.color.inkFaint, flex: '0 0 auto' }}>
+                  {c.mini}
+                </Box>
+              </Box>
+            ))}
+          </Box>
+        )}
+
+        {/* 정곡 근거 — 엔진 판정 명시(콜드리딩과 가르는 선) */}
+        {(phase === 'opening' || phase === 'verdict') && tw.done && jeonggok && (
+          <Box
+            component="details"
+            onClick={(e) => e.stopPropagation()}
+            sx={{
+              mt: 1,
+              fontSize: 11,
+              '& > summary': {
+                cursor: 'pointer',
+                color: tokens.color.inkFaint,
+                fontWeight: 700,
+                listStyle: 'none',
+                minHeight: 24,
+                display: 'flex',
+                alignItems: 'center',
+                '&::-webkit-details-marker': { display: 'none' },
+                '&::before': { content: '"▸ "', color: tokens.color.accent },
+              },
+              '&[open] > summary::before': { content: '"▾ "' },
+            }}
+          >
+            <Box component="summary">근거 보기</Box>
+            <Box sx={{ mt: 0.75, p: '8px 10px', bgcolor: 'var(--c-page)', borderRadius: '8px', color: tokens.color.inkSub, lineHeight: 1.5 }}>
+              — 엔진 판정: {jeonggok.evid} (임팩트 {jeonggok.impact})
+            </Box>
+          </Box>
+        )}
 
         {/* 근거줄 — 기본 닫힘 <details> (플레이그라운드 .grounds 정본) */}
         {phase === 'play' && tw.done && !!line?.grounds?.length && (

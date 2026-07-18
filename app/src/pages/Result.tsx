@@ -10,7 +10,8 @@ import DialogueBox from '../components/DialogueBox'
 import GapjaSticker from '../components/GapjaSticker'
 import DosaChat from '../components/DosaChat'
 import { tokens } from '../theme'
-import { computeChartUI, buildReading, todayKST, type UiChart, type ReportBundle } from '../engine'
+import { computeChartUI, buildReading, jeonggokRaw, todayKST, type UiChart, type ReportBundle } from '../engine'
+import { selectJeonggok, type JeonggokPick } from '../data/jeonggok'
 import { toReading, ohaengWithoutHour, SAMPLE_INPUT, sampleProfileLabel, type Reading, type OhaengStat, type ReadingCard } from '../data/saju'
 import { gapjaByGanji } from '../data/gapja'
 import { activeProfile, parseShare, profileToInput, profileToSearch } from '../data/profiles'
@@ -228,6 +229,15 @@ export default function Result() {
     if (!chart) return null
     try {
       return buildReading(resolved.input)
+    } catch {
+      return null
+    }
+  }, [chart, resolved])
+  // 정곡 오프닝 — 시간 모름이면 스킵(시주 오염 산출물 배제 = 근거 원칙)
+  const jeonggok = useMemo<JeonggokPick | null>(() => {
+    if (!chart || resolved.hourUnknown) return null
+    try {
+      return selectJeonggok(jeonggokRaw(resolved.input))
     } catch {
       return null
     }
@@ -467,7 +477,7 @@ export default function Result() {
 
         {/* L4 도사 대화 — 주제 선택지 → 근거 대사(타이프라이터). LLM 미설정 시 L3 폴백 완결 동작 */}
         <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', pb: 1 }}>
-          {report && <DosaChat report={report} profileName={resolved.name || undefined} hourUnknown={resolved.hourUnknown} />}
+          {report && <DosaChat report={report} profileName={resolved.name || undefined} hourUnknown={resolved.hourUnknown} jeonggok={jeonggok} />}
         </Box>
 
         <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5, pb: 4 }}>

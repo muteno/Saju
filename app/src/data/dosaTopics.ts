@@ -131,7 +131,7 @@ function listLines(items: string[] | undefined, grounds?: GroundRef[]): DosaLine
 }
 
 /** 받침 유무 조사 선택("기질을/기질를" 오류 방지) */
-const josa = (word: string, withBatchim: string, without: string): string => {
+export const josa = (word: string, withBatchim: string, without: string): string => {
   const code = word.charCodeAt(word.length - 1)
   if (code < 0xac00 || code > 0xd7a3) return without
   return (code - 0xac00) % 28 > 0 ? withBatchim : without

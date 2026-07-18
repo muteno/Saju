@@ -105,3 +105,41 @@ export interface TodayFortune {
 }
 /** 오늘의 운세 — 엔진 diaryDayInfo(일진 vs 원국 관계) 기반. 점수=정책 매핑(근거 관계 병기 필수). */
 export function todayFortune(input: ChartInput): TodayFortune
+
+// ── 정곡 원자료(선별은 data/jeonggok.ts) ──
+export interface JeonggokPillar {
+  stem: string
+  branch: string
+  stage: string
+  sinsal: string
+  stemEl: OhaengKey
+  branchEl: OhaengKey
+}
+export interface RelEntry {
+  name: string
+  positions: string[]
+}
+export interface JeonggokRaw {
+  pillars: { 시: JeonggokPillar; 일: JeonggokPillar; 월: JeonggokPillar; 년: JeonggokPillar }
+  relations: {
+    stemHap: RelEntry[]
+    stemChung: RelEntry[]
+    yukhap: RelEntry[]
+    samhap: RelEntry[]
+    banghap: RelEntry[]
+    chung: RelEntry[]
+    hyeong: RelEntry[]
+    pa: RelEntry[]
+    hae: RelEntry[]
+    wonjin: RelEntry[]
+    gongmangHit: unknown[]
+  }
+  strength: { score: number; max: number; label: string; deukryeong: boolean; deukji: boolean; deuksi: boolean; deukse: boolean }
+  elements: Record<string, number>
+  missingGroups: string[]
+  gongmang: string[]
+  daeunHits: { age: number; name: string; relations: DayRelation[] }[]
+  birthYear: number
+  nowYear: number
+}
+export function jeonggokRaw(input: ChartInput): JeonggokRaw
