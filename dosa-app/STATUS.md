@@ -32,7 +32,7 @@ npm run build:kb      # kb 번들(app/public/kb-<hash>.json + vendor/kb_ref.json
 | L2 색인 | ✅ unit_index(598키) + interaction_index(103키/13,641문단) + impression_index(46키/2,969문단) |
 | L2 증류 | ✅ **일주 60/60** + **image 19/19**(2026-07-17 천간 6키 완성, 이미지층 종결) — 인용 223건 축자 검증 |
 | L3 리포트 (`report.js`) | ✅ 구조판정→일주(증류)→십신→합충→신살→대운→세운, 출처 병기 |
-| **앱 (`app/`, React+Vite)** | ✅ **상용화 파도(260718, Q.08) 완료**: 고정 목업 전면 제거 — ①프로필 저장소(localStorage 다중, `data/profiles.ts`) ②입력 검증(조용한 샘플 폴백 제거·시간모름·도시→경도·음력='준비 중' 정직 비활성) ③결과 = URL 딥링크(`/result?y=…` 공유·새로고침 안전) + 전 섹션 리포트(일주 전체·십신 칩·합충·신살·세운) + 대운 가로 레일 ④홈 = 온보딩 분기 + 오늘 일진 실계산 + 운세 점수(엔진 관계 기반, `todayFortune`) ⑤PWA(manifest·아이콘)·OG 메타. KB 번들: 세운 올해 유닛 본문부 56문단(목차 절단 수선) |
+| **앱 (`app/`, React+Vite)** | ✅ **상용화 파도(260718, Q.08~09) 완료**: 고정 목업 전면 제거 — ①프로필 저장소(localStorage 다중, `data/profiles.ts`) ②입력 검증(조용한 샘플 폴백 제거·시간모름·도시→경도·음력='준비 중' 정직 비활성) ③결과 = URL 딥링크 + 7섹션 리포트 + 원국표 7행(지장간·12신살) + 대운 레일 ④홈 = 온보딩 분기 + 오늘 일진 실계산 + 운세 점수(`todayFortune`+근거줄) ⑤PWA·OG. **파도 2(Q.09, PR #62) = UI 15인 병렬 실측 수선**: 발췌 정제기(목차·인사말·남의 사건 발췌 차단 — `saju.ts cleanParas/pickExcerpt`)·공유 루프 봉합(수신자 배너+전환 CTA)·다크 스테이지 스크림(`--stage-scrim`)·오행 라벨 이중 팔레트(`--oh-label-*`, 기존 값 재사용)·접근성(줌 복원·aria·44px·inputMode 버그)·대화 스킵 버그 수선. 전/후 상세 = `docs/보고_20260718_상용화파도_전후.md` |
 | L4 도사 대화(LLM) | ✅ **골격 가동**: 주제 5종 결정론 조회(`data/dosaTopics.ts`) → 타이프라이터 대화(`DosaChat.tsx`, 플레이그라운드 정본 계승) + `functions/api/dosa.ts` Claude 프록시. **키 미설정 시 L3 폴백 완결 동작** — Cloudflare env `ANTHROPIC_API_KEY` 등록 즉시 LLM 서술 켜짐 |
 | 트레이닝/승계 | ✅ `/saju`·`/feed v2`(블라인드 시험 루프 — 루트 CLAUDE.md **제1법칙**) 스킬 + `probe_coverage.py` + STATUS + `npm run verify` 게이트 |
 
