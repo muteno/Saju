@@ -10,7 +10,8 @@ import SajuTable from '../components/SajuTable'
 import DialogueBox from '../components/DialogueBox'
 import GapjaSticker from '../components/GapjaSticker'
 import { tokens } from '../theme'
-import { computeChartUI, todayKST, type UiChart } from '../engine'
+import { computeChartUI, buildReading, todayKST, type UiChart, type ReportBundle } from '../engine'
+import DosaChat from '../components/DosaChat'
 import { toReading, ohaengWithoutHour, SAMPLE_INPUT, sampleProfileLabel, type Reading, type OhaengStat } from '../data/saju'
 import { gapjaByGanji } from '../data/gapja'
 import { activeProfile, parseShare, profileToInput, profileToSearch } from '../data/profiles'
@@ -43,7 +44,10 @@ function DaeunRail({ daeun, birthYear }: { daeun: UiChart['daeun']; birthYear: n
   const activeIdx = daeun.list.reduce((acc, it, i) => (it.age <= curAge ? i : acc), -1)
   const activeRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
-    activeRef.current?.scrollIntoView({ inline: 'center', block: 'nearest' })
+    // 가로 레일만 현재 대운으로 스크롤 — scrollIntoView는 페이지 세로 스크롤까지 끌어서 금지
+    const el = activeRef.current
+    const rail = el?.parentElement
+    if (el && rail) rail.scrollLeft = el.offsetLeft - rail.clientWidth / 2 + el.clientWidth / 2
   }, [])
   return (
     <Box className="glass" sx={{ borderRadius: '18px', p: 1.5 }}>
@@ -103,6 +107,15 @@ export default function Result() {
     if (!chart) return null
     try {
       return toReading(resolved.input, { hourUnknown: resolved.hourUnknown })
+    } catch {
+      return null
+    }
+  }, [chart, resolved])
+  // L4 대화용 원본 리포트 번들(주제 결정론 매핑의 근거 소스)
+  const report = useMemo<ReportBundle | null>(() => {
+    if (!chart) return null
+    try {
+      return buildReading(resolved.input)
     } catch {
       return null
     }
@@ -290,14 +303,23 @@ export default function Result() {
             </>
           )}
 
+          <SectionTitle>아이샤에게 물어보기</SectionTitle>
+        </Box>
+
+        {/* L4 도사 대화 — 주제 선택지 → 근거 대사(타이프라이터). LLM 미설정 시 L3 폴백 완결 동작 */}
+        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', pb: 1 }}>
+          {report && <DosaChat report={report} profileName={resolved.name || undefined} hourUnknown={resolved.hourUnknown} />}
+        </Box>
+
+        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5, pb: 4 }}>
           {!resolved.sample && (
             /* ⚠신규: 결과 공유 — URL로 같은 리포트 재현 */
-            <Button fullWidth variant="outlined" onClick={onShare} sx={{ mt: 3 }}>
+            <Button fullWidth variant="outlined" onClick={onShare} sx={{ mt: 1 }}>
               {copied ? '링크를 복사했어요 ✓' : '리포트 공유하기'}
             </Button>
           )}
           {resolved.sample && (
-            <Button fullWidth variant="contained" onClick={() => nav('/input')} sx={{ mt: 3 }}>
+            <Button fullWidth variant="contained" onClick={() => nav('/input')} sx={{ mt: 1 }}>
               내 사주 입력하기
             </Button>
           )}

@@ -90,7 +90,8 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean } = {
   let headline = '사주 풀이'
 
   const judge = byId('judge')
-  if (!hourUnknown && judge?.lines?.length) dialogue.push({ icon: '🧭', label: '원국 구조', lines: judge.lines })
+  if (!hourUnknown && judge?.lines?.length)
+    dialogue.push({ icon: '🧭', label: '원국 구조', lines: judge.lines.map((l: string) => l.replace(/\*\*/g, '')) })
   if (hourUnknown)
     dialogue.push({
       icon: '🕰️',
