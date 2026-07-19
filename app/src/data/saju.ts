@@ -11,6 +11,7 @@ import {
   type Pillar as PillarT,
   type OhaengStat as OhaengStatT,
 } from '../engine'
+import { enneaLensCard } from './enneaLens'
 
 /**
  * 화면 데이터층 — 전부 dosa-app L1 엔진 실계산 + L3 근거 리포트에서 생성.
@@ -226,6 +227,12 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean } = {
       blocks: [{ lines: unsePick.paras, source: unsePick.src }],
       note: (unsePick.total ?? 0) > unsePick.paras.length ? '이야기의 앞머리만 — 나머지는 도사에게 물어보게.' : undefined,
     })
+  }
+
+  // 성향 확장 렌즈(에니어그램 교차) — 십신 세력 결정론 조회 가설. 기존 7섹션 순서는 동결이라 말미에만 붙인다.
+  if (!hourUnknown) {
+    const lens = enneaLensCard(byId('sipsin')?.distribution)
+    if (lens) cards.push(lens)
   }
 
   return { headline, unseYear, dialogue, cards }
