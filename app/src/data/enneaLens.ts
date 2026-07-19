@@ -5,7 +5,9 @@
 //    검증 동선은 /enneagram/ 테스트(자기보고)로 넘긴다(사주 = 가설 제시 · 에니어그램 = 본인 검증).
 // 매핑 근거 축: 십신 성정 통설(코퍼스 십성 문헌 계열) × 에니어그램 툴킷 TYPES 동기·강점
 // (app/public/enneagram/enneagram_analyzer.html — 강의 50편 증류 · 유형명은 툴킷 표기 그대로).
-import type { ReadingCard } from './saju'
+// 위계(운영자 260719 확정): 메인 = 사주 원국 해석 · 에니어그램 = 보조지표(곁에서 견주는 검증 참고).
+// 보조지표가 원국 풀이를 '판정'하는 프레임 금지 — 일치 = 뒷받침 신호, 불일치 = "참고일 뿐, 중심은 원국".
+import type { ReadingCard, CardBlock } from './saju'
 
 /** 툴킷 TYPES 정본 명칭 (enneagram_analyzer.html n:1~9 — 표기 변경 금지) */
 const ENNEA_NAME: Record<number, string> = {
@@ -32,8 +34,22 @@ const SIPSIN_TO_ENNEA: Record<string, { trait: string; cands: Cand[] }> = {
   편인: { trait: '탐구·직관', cands: [{ t: 5, w: 2, why: '홀로 파고드는 탐구와 관찰' }, { t: 4, w: 1, why: '남다른 내면 세계' }] },
 }
 
-/** 십신 분포(엔진 산출) → 성향 렌즈 카드. 분포가 비면 null(카드 자체를 안 만든다 = 근거 없으면 침묵 원칙). */
-export function enneaLensCard(distribution: Record<string, number> | null | undefined): ReadingCard | null {
+/** 툴킷(에니어그램 앱 — 같은 오리진 /enneagram/) 저장 인물 직독. 부재·파손 = 빈 배열(fail-soft · 기기 로컬 선례 = profiles.ts). */
+interface ToolkitPerson { name: string; type: number; wing?: number }
+function readToolkitPeople(): ToolkitPerson[] {
+  try {
+    const raw = localStorage.getItem('enneagram_people_v1')
+    const arr = raw ? JSON.parse(raw) : []
+    return Array.isArray(arr) ? arr.filter((p) => p && typeof p.name === 'string' && typeof p.type === 'number') : []
+  } catch {
+    return []
+  }
+}
+
+/** 십신 분포(엔진 산출) → 성향 렌즈 카드. 분포가 비면 null(카드 자체를 안 만든다 = 근거 없으면 침묵 원칙).
+ *  profileName이 있고 툴킷에 같은 이름(정확 일치 — 결정론, 유사 매칭 금지)의 테스트 결과가 있으면
+ *  '보조지표' 블록을 덧붙인다. */
+export function enneaLensCard(distribution: Record<string, number> | null | undefined, profileName?: string): ReadingCard | null {
   const dist = Object.entries(distribution ?? {}).filter(([g, n]) => n > 0 && SIPSIN_TO_ENNEA[g])
   if (!dist.length) return null
 
@@ -61,24 +77,43 @@ export function enneaLensCard(distribution: Record<string, number> | null | unde
     return `${t}번 ${ENNEA_NAME[t]} — ${gs} 기운이 가리키는 ${cs[0].why}`
   })
 
+  const blocks: CardBlock[] = [
+    {
+      label: '읽는 법',
+      lines: [
+        '풀이의 중심은 어디까지나 사주 원국일세. 에니어그램은 뿌리가 다른 체계라, 원국이 읽어낸 성향을 곁에서 견줘 보는 보조지표로만 쓴다 — 재미로 보는 실험적 가설이지.',
+        `이 원국은 ${axisLine} 기운이 도드라진다. 힘 있는 십신의 성정을 아홉 유형의 동기와 겹쳐 어울릴 법한 후보를 좁혔고, 여러 기운이 같은 유형을 가리킬수록 후보로 강하게 잡힌다.`,
+      ],
+    },
+    {
+      label: '후보 유형',
+      lines: candLines,
+      source: '에니어그램 툴킷(강의 50편 증류) × 십신 성정 통설',
+    },
+  ]
+
+  // 보조지표 블록 — 본인이 툴킷 테스트로 확인한 유형이 있을 때만(정확 일치·기기 로컬). 판정이 아니라 곁 신호.
+  if (profileName) {
+    const me = readToolkitPeople().find((p) => p.name.trim() === profileName.trim())
+    if (me && ENNEA_NAME[me.type]) {
+      const label = `${me.type}번 ${ENNEA_NAME[me.type]}${me.wing ? ` (날개 ${me.wing})` : ''}`
+      const hit = top.some(([t]) => t === me.type)
+      blocks.push({
+        label: '보조지표 — 내가 테스트로 확인한 유형',
+        lines: [
+          hit
+            ? `${label}. 원국 후보와 겹치는군 — 위 십신 풀이를 곁에서 뒷받침하는 보조 신호로 봐도 되겠네.`
+            : `${label}. 원국 후보와는 겹치지 않네 — 보조지표는 어디까지나 참고일세. 풀이의 중심은 언제나 원국이야.`,
+        ],
+      })
+    }
+  }
+
   return {
     id: 'ennea',
     title: '성향 렌즈 — 에니어그램 교차',
     chips: top.map(([t]) => `후보 · ${t}번 ${ENNEA_NAME[t]}`),
-    blocks: [
-      {
-        label: '읽는 법',
-        lines: [
-          '사주와 에니어그램은 뿌리가 다른 두 체계라, 이 겹침은 재미로 보는 실험적 가설일세.',
-          `이 원국은 ${axisLine} 기운이 도드라진다. 힘 있는 십신의 성정을 아홉 유형의 동기와 겹쳐 어울릴 법한 후보를 좁혔고, 여러 기운이 같은 유형을 가리킬수록 후보로 강하게 잡힌다.`,
-        ],
-      },
-      {
-        label: '후보 유형',
-        lines: candLines,
-        source: '에니어그램 툴킷(강의 50편 증류) × 십신 성정 통설',
-      },
-    ],
-    note: '십신 세력으로 세운 가설일 뿐 확정은 아닐세 — 아래 버튼으로 열고 위쪽 「테스트」 탭에서 직접 맞춰 보게.',
+    blocks,
+    note: '십신 세력으로 세운 가설일 뿐 확정은 아닐세 — 아래 버튼으로 열고 위쪽 「테스트」 탭에서 직접 맞춰 보게. 테스트 결과를 저장해 두면 다음 리포트부터 보조지표로 함께 보여 주지.',
   }
 }

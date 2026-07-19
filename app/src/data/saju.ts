@@ -105,7 +105,7 @@ const pickExcerpt = (excerpts: any[] | undefined, n: number): { paras: string[];
 }
 
 /** 엔진 근거 리포트 → 화면 리딩. 근거 있는 섹션만(없으면 비움 = 소장 문헌 없음). */
-export function toReading(input: ChartInput, opts: { hourUnknown?: boolean } = {}): Reading {
+export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; profileName?: string } = {}): Reading {
   const hourUnknown = !!opts.hourUnknown
   const rep: any = buildReading(input)
   const byId = (id: string) => rep.sections.find((s: any) => s.id === id)
@@ -229,9 +229,10 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean } = {
     })
   }
 
-  // 성향 확장 렌즈(에니어그램 교차) — 십신 세력 결정론 조회 가설. 기존 7섹션 순서는 동결이라 말미에만 붙인다.
+  // 성향 확장 렌즈(에니어그램 교차) — 십신 세력 결정론 조회 가설 + 보조지표(툴킷 테스트 결과, 있을 때만).
+  // 위계: 메인 = 원국 해석 · 에니어그램 = 보조지표(운영자 260719). 기존 7섹션 순서는 동결이라 말미에만 붙인다.
   if (!hourUnknown) {
-    const lens = enneaLensCard(byId('sipsin')?.distribution)
+    const lens = enneaLensCard(byId('sipsin')?.distribution, opts.profileName)
     if (lens) cards.push(lens)
   }
 
