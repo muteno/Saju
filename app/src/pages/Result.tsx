@@ -180,7 +180,7 @@ function ReportCard({ card, onFillHour }: { card: ReadingCard; onFillHour?: () =
         )}
         {card.id === 'ennea' && (
           <Button variant="outlined" size="small" component="a" href="/enneagram/" target="_blank" rel="noopener" sx={{ mt: 1.2, py: 1, fontSize: 14 }}>
-            에니어그램 테스트로 직접 확인하기
+            에니어그램 테스트로 검증하러 가기
           </Button>
         )}
         {docs.length > 0 && (

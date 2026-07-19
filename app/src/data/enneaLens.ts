@@ -15,6 +15,9 @@ const ENNEA_NAME: Record<number, string> = {
 
 interface Cand { t: number; w: number; why: string }
 
+// 설계 노트(평의회 260719): 카드 블록은 4개 이하 유지 — Result.tsx 접힘 규칙(blocks>4 = collapsible)이
+// 발동하면 '읽는 법'의 가설 고지가 접혀 가려진다. 블록 증설 시 이 계약 먼저 확인.
+
 /** 십신 → 성향축·에니어그램 후보 가중표 (값 SSOT — 조정은 이 표에서만) */
 const SIPSIN_TO_ENNEA: Record<string, { trait: string; cands: Cand[] }> = {
   비견: { trait: '주체성·자기 기준', cands: [{ t: 8, w: 2, why: '제 힘으로 정면 돌파하려는 주체성' }, { t: 1, w: 1, why: '스스로 세운 기준을 지키는 고집' }] },
@@ -36,12 +39,12 @@ export function enneaLensCard(distribution: Record<string, number> | null | unde
 
   // 유형 점수 = Σ(십신 개수 × 가중치) — 전 과정 결정론(동률은 유형 번호 오름차순 = 재현 가능)
   const score = new Map<number, number>()
-  const contrib = new Map<number, { g: string; why: string }[]>()
+  const contrib = new Map<number, { g: string; why: string; s: number }[]>()
   for (const [g, n] of dist) {
     for (const c of SIPSIN_TO_ENNEA[g].cands) {
       score.set(c.t, (score.get(c.t) ?? 0) + n * c.w)
       const arr = contrib.get(c.t) ?? []
-      arr.push({ g, why: c.why })
+      arr.push({ g, why: c.why, s: n * c.w })
       contrib.set(c.t, arr)
     }
   }
@@ -51,8 +54,9 @@ export function enneaLensCard(distribution: Record<string, number> | null | unde
   const strongest = [...dist].sort((a, b) => b[1] - a[1]).slice(0, 2)
   const axisLine = strongest.map(([g]) => `${g}(${SIPSIN_TO_ENNEA[g].trait})`).join('과 ')
 
+  // 대표 문구 = 기여(개수×가중치) 최대 십신의 사유 — 점수 논리와 문구 대표성 일치(평의회 위원1)
   const candLines = top.map(([t]) => {
-    const cs = contrib.get(t) ?? []
+    const cs = (contrib.get(t) ?? []).slice().sort((a, b) => b.s - a.s)
     const gs = [...new Set(cs.map((c) => c.g))].join('·')
     return `${t}번 ${ENNEA_NAME[t]} — ${gs} 기운이 가리키는 ${cs[0].why}`
   })
@@ -60,12 +64,13 @@ export function enneaLensCard(distribution: Record<string, number> | null | unde
   return {
     id: 'ennea',
     title: '성향 렌즈 — 에니어그램 교차',
-    chips: top.map(([t]) => `${t}번 ${ENNEA_NAME[t]}`),
+    chips: top.map(([t]) => `후보 · ${t}번 ${ENNEA_NAME[t]}`),
     blocks: [
       {
         label: '읽는 법',
         lines: [
-          `이 원국은 ${axisLine} 기운이 도드라진다. 힘 있는 십신의 성정을 에니어그램 아홉 유형의 동기와 겹쳐 보면, 어울릴 법한 유형이 이렇게 좁혀진다.`,
+          '사주와 에니어그램은 뿌리가 다른 두 체계라, 이 겹침은 재미로 보는 실험적 가설일세.',
+          `이 원국은 ${axisLine} 기운이 도드라진다. 힘 있는 십신의 성정을 아홉 유형의 동기와 겹쳐 어울릴 법한 후보를 좁혔고, 여러 기운이 같은 유형을 가리킬수록 후보로 강하게 잡힌다.`,
         ],
       },
       {
@@ -74,6 +79,6 @@ export function enneaLensCard(distribution: Record<string, number> | null | unde
         source: '에니어그램 툴킷(강의 50편 증류) × 십신 성정 통설',
       },
     ],
-    note: '십신 세력으로 세운 가설일 뿐 확정이 아니야 — 아래 테스트로 직접 맞춰 보게.',
+    note: '십신 세력으로 세운 가설일 뿐 확정은 아닐세 — 아래 버튼으로 열고 위쪽 「테스트」 탭에서 직접 맞춰 보게.',
   }
 }
