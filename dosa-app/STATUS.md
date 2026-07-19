@@ -89,3 +89,7 @@ npm run build:kb      # kb 번들(app/public/kb-<hash>.json + vendor/kb_ref.json
 npm run verify   # 이 한 줄이 파생물 재생성 + 6게이트 전부 (통과하면 정상)
 # 사주: /saju 1993-11-30 08:00 M 순천   |   지식주입: /feed <유튜브URL>
 ```
+
+## 260718 밤 — 에니어그램 툴킷 편입 (외부 이식 · 운영자 지시 Q.11)
+- `app/public/enneagram/` = 자기완결 오프라인 단일 HTML 웹앱(유튜브 강의 50편 증류 · 테스트/개인·그룹 분석/강의/교재 7뷰 · Vite public 통과 = 빌드 무접촉 → 라이브 `/enneagram/`). 원본 스냅샷 = yeulmaru-promo playground(유지) · 노뮤트 사본 = 제거(사용처 0 실측). 후속 계획 정본 = yeulmaru-promo `docs/reports/20260718_172604_애니어그램_노뮤트이식_추후계획_v2.md`(수용처만 사주로 치환).
+- ⚠ 인계 주의: `enneagram_analyzer.html` 이름 렌더 4개소 무이스케이프(현재 자기-XSS 하급) — 서버 동기화·공유 링크 붙이기 전 **새니타이즈 필수**(v2 보고 R9) · 소스 수정 시 `python build/build_merge.py` 재빌드 필수(all.html 직접 편집 금지) · 사주 CLAUDE.md 구조 서술 등재는 차기 기틀 커밋 동승.
