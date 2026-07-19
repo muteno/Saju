@@ -224,7 +224,7 @@ export default function Result() {
   const reading = useMemo<Reading | null>(() => {
     if (!chart) return null
     try {
-      return toReading(resolved.input, { hourUnknown: resolved.hourUnknown })
+      return toReading(resolved.input, { hourUnknown: resolved.hourUnknown, profileName: resolved.name || undefined })
     } catch {
       return null
     }
