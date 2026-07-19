@@ -224,7 +224,8 @@ export default function Result() {
   const reading = useMemo<Reading | null>(() => {
     if (!chart) return null
     try {
-      return toReading(resolved.input, { hourUnknown: resolved.hourUnknown, profileName: resolved.name || undefined })
+      // 공유받은 리포트엔 profileName 미전달 — 수신자 기기 툴킷 데이터가 공유자 이름에 오귀속되는 것 차단(평의회 260719 위원3)
+      return toReading(resolved.input, { hourUnknown: resolved.hourUnknown, profileName: resolved.shared ? undefined : resolved.name || undefined })
     } catch {
       return null
     }

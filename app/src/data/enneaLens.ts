@@ -40,7 +40,16 @@ function readToolkitPeople(): ToolkitPerson[] {
   try {
     const raw = localStorage.getItem('enneagram_people_v1')
     const arr = raw ? JSON.parse(raw) : []
-    return Array.isArray(arr) ? arr.filter((p) => p && typeof p.name === 'string' && typeof p.type === 'number') : []
+    if (!Array.isArray(arr)) return []
+    // 관용 파싱(평의회 260719 위원7): 툴킷 저장 경로에 따라 type이 문자열('8')로 남을 수 있어
+    // Number() 정규화 + 1~9 정수 가드 — 조용한 영구 미표시 사고 차단. 유효 레코드만 남긴다(파손 레코드의 동명 선점 차단).
+    const valid = (v: unknown): number | undefined => {
+      const n = Number(v)
+      return Number.isInteger(n) && n >= 1 && n <= 9 ? n : undefined
+    }
+    return arr
+      .filter((p) => p && typeof p.name === 'string' && valid(p.type) !== undefined)
+      .map((p) => ({ name: p.name as string, type: valid(p.type) as number, wing: valid(p.wing) }))
   } catch {
     return []
   }
@@ -92,18 +101,24 @@ export function enneaLensCard(distribution: Record<string, number> | null | unde
     },
   ]
 
-  // 보조지표 블록 — 본인이 툴킷 테스트로 확인한 유형이 있을 때만(정확 일치·기기 로컬). 판정이 아니라 곁 신호.
+  // 보조지표 블록 — 본인이 툴킷 테스트로 확인한 유형이 있을 때만(기기 로컬·정확 일치·동명 다건 = 최신 저장 우선). 판정이 아니라 곁 신호.
+  let hasAux = false
   if (profileName) {
-    const me = readToolkitPeople().find((p) => p.name.trim() === profileName.trim())
-    if (me && ENNEA_NAME[me.type]) {
+    const people = readToolkitPeople()
+    let me: ToolkitPerson | undefined
+    for (let i = people.length - 1; i >= 0; i--) {
+      if (people[i].name.trim() === profileName.trim()) { me = people[i]; break }
+    }
+    if (me) {
       const label = `${me.type}번 ${ENNEA_NAME[me.type]}${me.wing ? ` (날개 ${me.wing})` : ''}`
       const hit = top.some(([t]) => t === me.type)
+      hasAux = true
       blocks.push({
-        label: '보조지표 — 내가 테스트로 확인한 유형',
+        label: '보조지표',
         lines: [
           hit
-            ? `${label}. 원국 후보와 겹치는군 — 위 십신 풀이를 곁에서 뒷받침하는 보조 신호로 봐도 되겠네.`
-            : `${label}. 원국 후보와는 겹치지 않네 — 보조지표는 어디까지나 참고일세. 풀이의 중심은 언제나 원국이야.`,
+            ? `내가 테스트로 확인한 유형 = ${label}. 원국 후보와 겹치는군 — 위 십신 풀이를 곁에서 뒷받침하는 보조 신호로 봐도 되겠네.`
+            : `내가 테스트로 확인한 유형 = ${label}. 원국 후보와는 겹치지 않네 — 보조지표는 어디까지나 참고일세. 풀이의 중심은 언제나 원국일세.`,
         ],
       })
     }
@@ -114,6 +129,8 @@ export function enneaLensCard(distribution: Record<string, number> | null | unde
     title: '성향 렌즈 — 에니어그램 교차',
     chips: top.map(([t]) => `후보 · ${t}번 ${ENNEA_NAME[t]}`),
     blocks,
-    note: '십신 세력으로 세운 가설일 뿐 확정은 아닐세 — 아래 버튼으로 열고 위쪽 「테스트」 탭에서 직접 맞춰 보게. 테스트 결과를 저장해 두면 다음 리포트부터 보조지표로 함께 보여 주지.',
+    note: hasAux
+      ? '십신 세력으로 세운 가설일 뿐 확정은 아닐세 — 아래 버튼으로 열고 위쪽 「테스트」 탭에서 직접 맞춰 보게.'
+      : '십신 세력으로 세운 가설일 뿐 확정은 아닐세 — 아래 버튼으로 열고 위쪽 「테스트」 탭에서 직접 맞춰 보게. 테스트 결과를 저장해 두면 다음 리포트부터 보조지표로 함께 보여 주지.',
   }
 }
