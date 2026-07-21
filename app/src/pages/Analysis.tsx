@@ -8,8 +8,9 @@ import { tokens } from '../theme'
 import { computeChartUI, jeonggokRaw, type UiChart } from '../engine'
 import { toReading, type Reading } from '../data/saju'
 import { activeProfile, profileToInput, profileToSearch } from '../data/profiles'
+import { chefPlate } from '../data/chefs'
 
-const PLATE = '/assets/dosa-plate.jpg'
+const PLATE = chefPlate()
 
 function GlassChip({ label }: { label: string }) {
   return (

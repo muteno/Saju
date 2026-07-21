@@ -4,8 +4,9 @@ import Screen from '../components/Screen'
 import StatusBar from '../components/StatusBar'
 import { tokens } from '../theme'
 import { setEntered } from '../data/session'
+import { chefPlate } from '../data/chefs'
 
-const PLATE = '/assets/dosa-plate.jpg'
+const PLATE = chefPlate()
 const press = { transition: 'transform .12s var(--ease)', '&:active': { transform: 'scale(0.98)' } }
 
 /** 글래스 입력(목업 v2: h50·r14 / 폼 필드 r12, blur 11) */

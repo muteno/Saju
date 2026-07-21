@@ -8,8 +8,9 @@ import { tokens } from '../theme'
 import { computeChartUI, type UiChart } from '../engine'
 import { todayInfo, myTodayFortune, toReading, type Reading } from '../data/saju'
 import { activeProfile, profileToInput, profileToSearch } from '../data/profiles'
+import { chefPlate } from '../data/chefs'
 
-const PLATE = '/assets/dosa-plate.jpg'
+const PLATE = chefPlate()
 
 function CircleBtn({ children, label, onClick }: { children: ReactNode; label?: string; onClick?: () => void }) {
   return (
