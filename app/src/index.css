@@ -189,3 +189,26 @@ button {
     display: none !important;
   }
 }
+
+/* 유리 표면 — 진한 판(목업 v2: 원국표·총운·프로필 카드 = .55/.75) */
+.glass-strong {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+/* 명식당 목업 v2 모션 — 화면 fadein · 드로어 slidein · 팝오버 popin */
+@keyframes msd-fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes msd-slidein {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+@keyframes msd-popin {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.msd-fadein {
+  animation: msd-fadein 0.3s;
+}

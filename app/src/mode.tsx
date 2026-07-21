@@ -12,13 +12,9 @@ const ModeCtx = createContext<{ mode: Mode; setMode: (m: Mode) => void; toggle: 
 
 export const useMode = () => useContext(ModeCtx)
 
+// 명식당 목업 v2(260721): 라이트 단일 테마 — 다크 모드 폐지(저장값 무시, 토글 UI 미노출).
+// Mode 타입·프로바이더 골격은 유지(소비 코드 무파괴 · 되살릴 땐 이 함수만 복원).
 function initialMode(): Mode {
-  try {
-    const saved = localStorage.getItem('saju-mode')
-    if (saved === 'light' || saved === 'dark') return saved
-  } catch {
-    /* noop */
-  }
   return 'light'
 }
 
