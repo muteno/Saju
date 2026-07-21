@@ -42,7 +42,7 @@ jobs:
             echo "::error::OPENAI_API_KEY_NOMUTE 시크릿이 이 레포(muteno/Saju) Settings→Secrets→Actions에 없음 — 등록 후 재실행"
             exit 1
           fi
-          python .github/scripts/gen_dosa_male_v3.py
+          python .github/scripts/gen_dosa_male_v4.py
 
       - name: Commit results to main
         run: |
