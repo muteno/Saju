@@ -1,0 +1,45 @@
+name: gen-dosa-images
+
+# 남신 도사 시안 생성 레일 (Q.17) — OPENAI_API_KEY_NOMUTE(레포 Actions 시크릿)로
+# gpt-image-1 컷 5종을 뽑아 app/public/reports/dosa-male-v1/ 에 커밋한다.
+# 시크릿 값은 러너 안에서만 산다(세션·로그·파일에 절대 노출 금지 — 260712 보안 철칙).
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install --quiet openai
+
+      - name: Generate 5 cuts (gpt-image-1)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::error::OPENAI_API_KEY_NOMUTE 시크릿이 이 레포(muteno/Saju) Settings→Secrets→Actions에 없음 — 등록 후 재실행"
+            exit 1
+          fi
+          python .github/scripts/gen_dosa_male_v1.py
+
+      - name: Commit results to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/public/reports/dosa-male-v1
+          git commit -m "assets: 남신 도사 시안 컷 5종 생성 (gpt-image-1 · Q.17)"
+          for i in 1 2 3; do
+            git push origin HEAD:main && break || git pull --rebase origin main
+          done
