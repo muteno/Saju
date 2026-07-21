@@ -70,7 +70,7 @@ npm run build:kb      # kb 번들(app/public/kb-<hash>.json + vendor/kb_ref.json
 
 - [ ] **기존 Cloudflare "saju" 프로젝트 삭제/연결해제.** 웹 빌드 없던 시절 대시보드 설정 잔재라 커밋마다 빨간 X를 냄. 정상 배포처는 **"saju02"**(2026-07-17 배포 성공: claude-organize-extracted-fi.saju02-7n8.pages.dev). saju 지우면 노이즈 사라짐.
 - [ ] **Cloudflare Pages(saju02) 환경변수 `ANTHROPIC_API_KEY` 등록** — 등록 즉시 도사 대화가 L3 폴백 → Claude 서술로 승격(코드 변경 불요). 선택: `DOSA_MODEL`(기본 claude-sonnet-5).
-- [ ] (선택) 도사 캐릭터 컨셉·일러스트, 일진 다이어리 UI/UX 제공 → L5 연결. 정식 앱 아이콘 결정(현재 = 템플릿 파비콘 계승).
+- [ ] (선택) 도사 캐릭터 컨셉·일러스트, 일진 다이어리 UI/UX 제공 → L5 연결. 정식 앱 아이콘 결정(현재 = 템플릿 파비콘 계승). **남신 도사(아이샤 짝) 생성용 GPT 프롬프트 팩 준비됨 = `docs/20260721_141213_남신도사_페르소나_GPT이미지프롬프트_v1.md`(← Q.14) — ChatGPT에서 뽑아 제공만 하면 됨.**
 
 ## 결정 로그 (왜 — 뒤집으려면 사용자 승인)
 
