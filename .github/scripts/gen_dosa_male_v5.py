@@ -1,5 +1,7 @@
-# 남신 도사 v5 파일럿 (Q.22) — 운영자 진단: v4 실패 원인 = "클린 라인아트" 지시.
-# 레퍼런스(첨부2) 아트 형식 실측 분석 결과를 스타일 명세로 투입, 파일럿 2컷만 검증.
+# 남신 도사 v5 (Q.22 파일럿 → Q.25 5세트 마감) — 운영자 진단: v4 실패 원인 = "클린 라인아트" 지시.
+# 레퍼런스(첨부2) 아트 형식 실측 분석 결과를 스타일 명세로 투입. 파일럿 2컷(거만·진지) 검증 후
+# 운영자 GO("ㄱ하고 적용해줘")로 나머지 3컷(허당·상담·윙크) 확장 = lineless painterly 5세트 완성.
+# 멱등: 이미 있는 컷은 건너뛴다(파일럿 2컷 보존 + 재실행 비용 0).
 #
 # ◆ 레퍼런스 아트 형식 박제(첨부2 분석 · 260721):
 #   세미리얼 웹툰 디지털 페인팅 — ①하드 아웃라인 없음(윤곽 = 명암 경계, lineless painterly)
@@ -41,6 +43,9 @@ FACE = ("인물은 이 이미지의 캐릭터와 같은 사람: 20대 초반의 
 CUTS = [
     ("cut1_arrogant", FACE + "팔짱을 끼고 접힌 쥘부채로 어깨를 톡톡, 턱을 살짝 들고 한쪽 입꼬리만 올린 자신만만한 미소로 내려다보는 거만하지만 밉지 않은 표정. " + STYLE),
     ("cut2_serious", FACE + "접은 쥘부채 끝을 입가에 대고 시선을 내리깐 채 깊게 생각에 잠긴 진지한 표정, 미소 없음, 눈빛 깊고 차분. " + STYLE),
+    ("cut3_clumsy", FACE + "쥘부채를 놓칠 뻔 허둥대며 눈을 동그랗게 뜨고 어색하게 웃는, 방금 헛소리한 걸 들킨 듯 살짝 무너진 허당 갭 표정. " + STYLE),
+    ("cut4_consult", FACE + "펼친 별자리 두루마리를 한 손으로 짚고 상대를 마주 보며 다정하고 진중하게 설명하는, 상담에 몰입한 옅은 미소의 표정. " + STYLE),
+    ("cut5_wink", FACE + "펼친 쥘부채를 입가에 살짝 대고 한쪽 눈을 찡긋 윙크하며 장난스럽게 웃는, 배너용 경쾌하고 매력적인 표정. " + STYLE),
 ]
 
 
@@ -75,6 +80,9 @@ def with_retry(fn, label: str) -> str:
 
 assert SRC.exists(), f"기준 이미지 없음: {SRC}"
 for name, prompt in CUTS:
+    if (OUT / f"{name}.png").exists():
+        print(f"skip {name} (이미 있음)", flush=True)
+        continue
     save(name, with_retry(lambda p=prompt: gen(p), name))
 
-print("v5 pilot done", flush=True)
+print("v5 5-set done", flush=True)
