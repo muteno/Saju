@@ -74,6 +74,11 @@ npm run build:kb      # kb 번들(app/public/kb-<hash>.json + vendor/kb_ref.json
 - [ ] **Cloudflare Pages(saju02) 환경변수 `ANTHROPIC_API_KEY` 등록** — 등록 즉시 도사 대화가 L3 폴백 → Claude 서술로 승격(코드 변경 불요). 선택: `DOSA_MODEL`(기본 claude-sonnet-5).
 - [ ] (선택) 도사 캐릭터 컨셉·일러스트, 일진 다이어리 UI/UX 제공 → L5 연결. 정식 앱 아이콘 결정(현재 = 템플릿 파비콘 계승). **남신 도사(아이샤 짝) 시각 자산 1차 완성(← Q.17~19, 260721)**: 확정본 = **v3 밤 수채 표정 5세트** `app/public/reports/dosa-male-v3/`(라이브 `/reports/dosa-male-v3/` · 기준 얼굴 = v2 C안 face_c_night · v1 정통 5컷 = 기각 보존 · 재생성 레일 = Actions `gen-dosa-images` 수동 dispatch, 스크립트 v1~v3 = .github/scripts/) — **다음 = 셰프단 체제(260721 캐릭터 체제 결정 로그) 전제의 라인업 설계 + 역할·이름 확정**(v3 남신 = 기본캐·역할 미정 · 연리 관계 = Q.16 미확정 1건과 동조 · 프롬프트 정본 = `docs/20260721_141213_남신도사_페르소나_GPT이미지프롬프트_v1.md`[← Q.14]).
 
+## 사용자 액션 아이템 (세션이 대신 못 하는 것 — 잊지 말 것)
+
+- [ ] **기존 Cloudflare "saju" 프로젝트 삭제/연결해제.** 웹 빌드 없던 시절 대시보드 설정 잔재라 커밋마다 빨간 X를 냄. 정상 배포처는 **"saju02"**(2026-07-17 배포 성공: claude-organize-extracted-fi.saju02-7n8.pages.dev). saju 지우면 노이즈 사라짐.
+- [ ] (선택) 도사 캐릭터 컨셉·일러스트, 일진 다이어리 UI/UX 제공 → L5 연결.
+
 ## 결정 로그 (왜 — 뒤집으려면 사용자 승인)
 
 - **260721 명식당 셸(운영자 목업 핸드오프, ← Q.23)**: 앱 화면 정본 = **운영자 제작 목업 v2**(design_handoff_명식당_앱.zip — 글래스 2단 blur 26/11 · 컨트롤 규격 h52/r14/칩 h36/서클 44 · 도형 4종 · 코발트 CTA 화면당 1개). ①라이트 단일 테마(다크 모드 폐지 — mode.tsx 강제 light, 토글 UI 제거·다크 CSS는 휴면 보존) ②로그인 = 기기 로컬 입장 플래그(`msd-entered-v1` — 계정 서버는 로드맵, 프로필 보유 재방문자·공유 딥링크는 비게이트) ③기본캐 플레이트 = v3 cut4_consult 최적화 사본 `app/public/assets/chef-default.jpg`(정본 원본 = `/reports/dosa-male-v3/` · **셰프단 골격(← Q.24) = `app/src/data/chefs.ts` 레지스트리** — 플레이트 규약 `chef-<id>.jpg`·전환 = `ACTIVE_CHEF_ID` 한 줄·표정 컷 경로 등재, 셰프 추가 = 파일+한 줄) ④총운 점수·월운 차트 = 엔진 미지원이라 비노출(고정 목업 금지 원칙 우선 — 엔진 지원 시 개방) ⑤미구현 기능 = '준비 중' 정직 표기(거짓 액티브 금지). 홈 원국표는 '내 원국' 화면으로 이동(SajuTable compact — 전체 7행은 리포트 유지).
