@@ -23,14 +23,14 @@ export const CHEFS: readonly Chef[] = [
   {
     id: 'default',
     name: '기본캐(이름 미정)',
-    concept: '밤 수채 남신 — 역할 미정(운영자 확정 대기)',
-    plate: '/assets/chef-default.jpg',
+    concept: 'lineless painterly 남신(수채 제거·운영자 260722 확정) — 역할 미정',
+    plate: '/assets/chef-default.jpg', // = v5 cut4_consult 최적화 사본
     cuts: {
-      거만: '/reports/dosa-male-v3/cut1_arrogant.png',
-      진지: '/reports/dosa-male-v3/cut2_serious.png',
-      허당: '/reports/dosa-male-v3/cut3_clumsy.png',
-      상담: '/reports/dosa-male-v3/cut4_consult.png',
-      윙크: '/reports/dosa-male-v3/cut5_wink.png',
+      거만: '/reports/dosa-male-v5/cut1_arrogant.png',
+      진지: '/reports/dosa-male-v5/cut2_serious.png',
+      허당: '/reports/dosa-male-v5/cut3_clumsy.png',
+      상담: '/reports/dosa-male-v5/cut4_consult.png',
+      윙크: '/reports/dosa-male-v5/cut5_wink.png',
     },
   },
 ]
