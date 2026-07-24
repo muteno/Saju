@@ -164,7 +164,7 @@
 
 ##【레포 바인딩】 공통 골격이 참조하는 이 레포의 정본 값 (레포 고유 · 전파 제외)
 - [E1] 서빙 엔트리(실브라우저 현물 확인) = app/index.html · 루트 로컬 서빙(+functions 백엔드/번들 없으면 '아이샤 준비중' 로딩).
-- [E13] QA경로 = 없음(신설 예정 — Vite 빌드 후 ?qa 라우트) · 대표데이터 = 없음(신설 예정: 최장명·7자리·0/빈·경계값).
+- [E13] QA경로 = app `?qa=1`(+`&view=myday|analysis|fun|settings|input|result` 딥링크 · src/data/qa.ts) · 대표데이터 = 같은 파일 시드(최장명 14자·23:59 야자시 경계·12/31) · 로컬 렌더 = app에서 `npm ci && npm run build` 후 dist 서빙(⚠ kb_ref.json·public/kb-*.json = gitignore 생성물이라 클론엔 없음 → 로컬 스텁 필요).
 - [4] 디자인 진입점 = 확립본 없음 → 웹앱 축 = `dosa-app/README.md` 설계·절대 원칙·L4 서술 표준 + 기존 화면 관례 계승(디자인 참고 스크랩 = `forceteller-ref/` · 방식론 = `docs/디자인방식론_지침.md`, 260717 이식) — 임의 창작 금지는 동일.
 - [5]/[11] 라이브 = Cloudflare Pages "saju02" https://saju02-7n8.pages.dev (260717 배포 확립 — 구 "saju" 프로젝트는 삭제 대상, STATUS 액션 아이템). 딥링크 형식 미확립 → 당분간 결과물 실경로·실행법 병행.
 - [6] 지시 원장 = `docs/요구사항_큐.md` (260717 신설·가동 · 보고 골격 = 최우선 2의 6단 · 예시 블록 폐지).

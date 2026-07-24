@@ -5,6 +5,9 @@ import { ModeProvider } from './mode'
 import './index.css'
 import App from './App.tsx'
 import { loadKb } from './engine'
+import { seedQa } from './data/qa'
+
+seedQa() // [E13] ?qa=1 = 무로그인 미리보기(대표데이터 시드 · 실사용 흐름 무변경)
 
 const root = createRoot(document.getElementById('root')!)
 
