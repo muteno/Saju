@@ -9,7 +9,10 @@ import { twelveSinsal, gongmang } from './vendor/sinsal.js'
 import { strengthJudge, elementProfile } from './vendor/judge.js'
 import { detectRelations } from './vendor/relations.js'
 import solarTerms from './vendor/data/solar_terms.json'
-import kbRef from './vendor/kb_ref.json'
+// kb_ref.json = 빌드 산출물(.gitignore 등재) — fresh clone에는 없다.
+// 정적 import면 파일이 없을 때 빌드가 UNRESOLVED_IMPORT로 깨지므로, 선택적 glob으로 읽고 없으면 기본 포인터로 폴백.
+const _kbRefMods = import.meta.glob('./vendor/kb_ref.json', { eager: true })
+const kbRef = _kbRefMods['./vendor/kb_ref.json']?.default ?? { file: 'kb.json' }
 
 // KB 번들(1.4MB)은 JS에 인라인하지 않고 정적 파일(/kb.json)을 런타임 fetch — Q05 경량화.
 // 렌더 전 loadKb() 완료가 보장되므로(main.tsx 게이트) 이하 동기 API는 그대로 유지된다.
@@ -32,6 +35,14 @@ async function fetchKb() {
 }
 export function loadKb() {
   return (kbPromise ??= fetchKb().catch((e) => { kbPromise = null; throw e })) // 프로미스 메모(이중 fetch 방지) + 실패 시 재시도 가능
+}
+// KB 없이도 화면 골격(만세력 차트·레이아웃)을 렌더하기 위한 빈 KB 주입 — [E13] QA 미리보기 전용.
+// 실사용 경로는 쓰지 않는다(KB 미로드 = 기존대로 안내 화면). 풀이 텍스트만 비고 차트·UI는 정상.
+export function useEmptyKb() {
+  kb = { index: {}, meta: { distilledKeys: 0, fallback: true } }
+  kbCoverage.distilledKeys = 0
+  kbCoverage.indexKeys = 0
+  return kb
 }
 
 const terms = solarTerms.terms
