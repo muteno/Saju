@@ -81,6 +81,8 @@ export interface ReportBundle {
   }>
 }
 export function loadKb(): Promise<unknown>
+/** [E13] QA 미리보기 전용 — KB 없이도 화면 골격을 렌더하기 위한 빈 KB 주입(풀이 텍스트만 빔). */
+export function useEmptyKb(): unknown
 export function buildReading(input: ChartInput, unseYearName?: string): ReportBundle
 export const kbCoverage: { distilledKeys: number; indexKeys: number }
 
