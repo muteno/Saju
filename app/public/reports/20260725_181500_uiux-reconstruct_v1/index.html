@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>명식당 화면 재구성 — 전/후 v1</title>
+<style>
+/* 팔레트·타이포 = app/src/index.css 정본 계승(신색 창작 0) */
+:root{
+  --c-page:#eef0f6; --c-card:#fff; --c-ink:#1b1b1f; --c-ink-sub:#5b6070; --c-ink-faint:#9a9fb0;
+  --c-border:#e2e4ee; --c-border-strong:#d3d6e2; --c-primary:#22409e; --c-primary-soft:#e7ebf8;
+  --c-heading:#2a4bc0; --c-solar:#e85e5e; --tracking:-.03em;
+  --shadow-card:0 6px 20px rgba(20,22,40,.08);
+  --pretendard:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',Roboto,'Noto Sans KR',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--pretendard);font-weight:500;letter-spacing:var(--tracking);
+  background:radial-gradient(900px 600px at 12% -5%,#e7eeff 0%,transparent 55%),
+             radial-gradient(820px 600px at 100% 8%,#ffe9ec 0%,transparent 52%),
+             radial-gradient(760px 760px at 50% 108%,#e2f7ef 0%,transparent 55%),var(--c-page);
+  color:var(--c-ink);-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:28px 18px 72px}
+h1{font-size:26px;font-weight:800;margin:0 0 6px;color:var(--c-primary)}
+.sub{font-size:13px;color:var(--c-ink-sub);font-weight:600;line-height:1.6;margin:0 0 4px}
+h2{font-size:20px;font-weight:800;margin:38px 0 10px;padding-top:18px;border-top:1px solid var(--c-border)}
+h3{font-size:16px;font-weight:800;margin:24px 0 8px;color:var(--c-heading)}
+p{font-size:14.5px;line-height:1.65;color:var(--c-ink-sub);margin:0 0 10px}
+b,strong{color:var(--c-ink);font-weight:800}
+.card{background:var(--c-card);border:1px solid var(--c-border);border-radius:18px;box-shadow:var(--shadow-card);padding:16px 18px;margin:12px 0}
+.lead{background:var(--c-primary-soft);border-color:#cdd7f2}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:#f3f4fa;border:1px solid var(--c-border);border-radius:6px;padding:1px 5px;color:var(--c-primary)}
+ul{margin:0 0 10px;padding-left:20px}li{font-size:14.5px;line-height:1.6;color:var(--c-ink-sub);margin-bottom:5px}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border:1px solid var(--c-border);border-radius:14px;background:var(--c-card)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:13px}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--c-border);vertical-align:top;line-height:1.5}
+th{background:#f6f7fc;font-weight:800;color:var(--c-ink);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.v{color:var(--c-ink);font-weight:700}
+/* 전/후 2단 — 폰에서도 나란히 보이게(좁으면 세로) */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 4px}
+@media (max-width:520px){.ba{grid-template-columns:1fr 1fr;gap:8px}}
+.ba figure{margin:0}
+.ba img{width:100%;display:block;border-radius:12px;border:1px solid var(--c-border-strong);background:var(--c-card)}
+.ba figcaption{font-size:11px;font-weight:800;letter-spacing:0;margin-bottom:6px}
+.bef figcaption{color:var(--c-solar)}
+.aft figcaption{color:#2f6b52}
+.note{font-size:13px;color:var(--c-ink-sub);line-height:1.6;margin:2px 0 18px}
+.note b{color:var(--c-ink)}
+.tag{display:inline-block;font-size:11px;font-weight:800;padding:3px 9px;border-radius:100px;white-space:nowrap}
+.t-d{background:#fdf3e2;color:#8a6110}
+.refimg{width:100%;max-width:620px;display:block;border-radius:12px;border:1px solid var(--c-border-strong)}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--c-border);font-size:12px;color:var(--c-ink-faint);font-weight:600;line-height:1.7}
+@media (prefers-color-scheme:dark){
+  :root{--c-page:#131315;--c-card:#1f1f22;--c-ink:#f1f1f4;--c-ink-sub:#a0a0a8;--c-ink-faint:#6a6a72;
+    --c-border:#2e2e33;--c-border-strong:#3a3a41;--c-primary:#8fa8ee;--c-primary-soft:#1c2340;--c-heading:#a8bcf4;--c-solar:#f07777}
+  body{background:radial-gradient(900px 600px at 12% -5%,#16323a 0%,transparent 55%),
+    radial-gradient(760px 600px at 100% 8%,#1a1730 0%,transparent 52%),var(--c-page)}
+  th{background:#26262b}code{background:#26262b}
+  .aft figcaption{color:#8fd3b4}.t-d{background:#33290f;color:#e0bd6a}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>명식당 화면 재구성 — 전 / 후</h1>
+<p class="sub">2026-07-25 · 지시 <code>[Q. 31]</code> "인터넷에서 사주 앱 레퍼런스를 최대한 모은 다음 화면을 재구성"</p>
+<p class="sub">아래 컷은 전부 <b>실제 렌더 화면</b>(헤드리스 390×844 · <code>?qa=1</code> 최장명 대표데이터). 왼쪽 = 전, 오른쪽 = 후.</p>
+
+<div class="card lead">
+<h3 style="margin-top:0">무엇이 바뀌었나 — 한 줄</h3>
+<p style="margin-bottom:0">레퍼런스가 공통으로 지키는 세 가지를 우리만 안 지키고 있었다: <b>① 콘텐츠 뒤에 사진을 깔지 않는다 ② 긴 리포트도 앱 껍데기 안에 둔다 ③ 만세력은 최상위 탭이다.</b> 이 셋을 맞췄고, 값·색·부품은 목업 v2 정본을 그대로 썼다 — <b>새 색·새 값 창작 0</b>.</p>
+</div>
+
+<h2>1. 레퍼런스</h2>
+<h3>1차 — 실렌더로 본 포스텔러 만세력</h3>
+<p>레포에 있던 스크랩(<code>forceteller-ref/</code>)의 자립 스냅샷을 헤드리스로 실제 렌더했다(문서 높이 5,829px). 코드 설명이 아니라 픽셀로 확인한 레퍼런스다.</p>
+<img class="refimg" src="ref/forceteller_result.png" alt="포스텔러 만세력 결과 화면 실렌더 — 단색 배경, 행 라벨이 붙은 원국 표, 접이식 섹션과 칩 필터">
+<p class="note" style="margin-top:8px">배경은 <b>웜 오프화이트 단색</b> — 콘텐츠 뒤에 사진이 없다. 원국 표는 <b>행 라벨(천간·십성·지지·지장간·12운성·12신살)이 왼쪽에 고정</b>된다. 섹션은 접이식 바 + 칩 필터.</p>
+
+<h3>2차 — 소비자 사주 앱 IA</h3>
+<div class="tblwrap"><table>
+<tr><th>앱</th><th>정보구조 관찰</th></tr>
+<tr><td class="v">포스텔러</td><td>오늘의 운세(점수·개운법) · 운세 캘린더(택일) · 46주제 · 12지신 · 신년운세</td></tr>
+<tr><td class="v">점신</td><td>오늘의 운세 → 시간대별 흐름 → 애정·금전·건강 → 인맥 보고서 → 1:1 상담 · 최신 업데이트 = "만세력 오픈"</td></tr>
+<tr><td class="v">헬로우봇</td><td>AI 챗봇 <b>대화형 상담</b>이 축 · 무료 200+ → 유료 상세 보고서</td></tr>
+<tr><td class="v">천을귀인</td><td>사주 계산 → 분석 → 대운/세운 → 일진 달력 → 궁합 · <b>만세력이 최상위</b></td></tr>
+<tr><td class="v">마이파이</td><td>단계가 끊기지 않는 설계 · 리포트형이 아니라 <b>대화식</b></td></tr>
+</table></div>
+<p class="note">→ 우리 L4 도사 대화(대화식)는 방향이 맞다. 문제는 <b>정보구조와 가독</b>이었다.</p>
+
+<h2>2. 전 / 후</h2>
+
+<h3>R1 · 리포트 — 사진 위 텍스트를 걷어냈다</h3>
+<div class="ba">
+  <figure class="bef"><figcaption>전</figcaption><img src="before/result.png" alt="전: 캐릭터 사진이 전면 배경이라 원국표와 본문이 사진 위에 얹혀 안 읽힌다"></figure>
+  <figure class="aft"><figcaption>후</figcaption><img src="after/result.png" alt="후: 스테이지가 상단에서 끝나고 원국표는 단색 배경 위에 놓여 전부 읽힌다"></figure>
+</div>
+<p class="note">전엔 <code>--stage-scrim</code>이 라이트에서 <code>transparent</code>라 보호막이 0이었고, 캐릭터 머리카락 위 회색 글자(지장간·12운성·12신살)가 안 읽혔다. 후엔 스테이지가 <b>높이 300px을 갖고 끝난다</b> → 아래는 단색 위 = <b>스크림 없이 가독 성립</b>. 이 마크업은 창작이 아니라 같은 레포 <code>Analysis.tsx</code>에서 이미 잘 돌던 것을 공용 부품으로 승격한 것이다. 덤으로 <b>행 라벨</b>이 붙어 7행이 뭐가 뭔지 보이고, 화자가 <b>연리</b>로, 얼굴이 <b>남신 셰프</b>로 통일됐다(전엔 아이샤 = 이름 3개·얼굴 2개).</p>
+
+<h3>R5 · 홈 — 긴 이름이 날짜를 덮지 않는다</h3>
+<div class="ba">
+  <figure class="bef"><figcaption>전</figcaption><img src="before/home.png" alt="전: 긴 이름이 두 줄로 넘치며 날짜 블록을 43px 침범해 엉킨다"></figure>
+  <figure class="aft"><figcaption>후</figcaption><img src="after/home.png" alt="후: 날짜 캡션이 위, 이름이 아래로 세로 스택되어 겹치지 않는다"></figure>
+</div>
+<p class="note">한 행 <code>flex-end</code> 정렬을 <b>세로 스택</b>으로 바꿨다(포스텔러 결과 헤더 문법). 이름이 몇 줄이 되든 날짜를 밀지 않는다 — 겹침이 줄어든 게 아니라 <b>구조가 사라졌다</b>. 액션 아이콘도 문자(↗ ✉ ✎)에서 <b>SVG 픽토그램</b>으로 바뀌어 원 정중앙에 앉는다.</p>
+
+<h3>R3·R4 · 네비 — 탭 5개, 그리고 크롬이 크롬처럼</h3>
+<div class="ba">
+  <figure class="bef"><figcaption>전</figcaption><img src="before/analysis.png" alt="전: 반투명 알약 네비 뒤로 본문 글자가 그대로 읽힌다"></figure>
+  <figure class="aft"><figcaption>후</figcaption><img src="after/analysis.png" alt="후: 불투명해진 알약 네비가 뒤 본문을 차단하고 탭이 5개다"></figure>
+</div>
+<p class="note">탭 <b>4 → 5</b>(오늘·원국·분석·재미·설정)로 <b>드로어 5항목과 1:1</b>이 됐다. '내 원국'이 탭에 없어 홈 세그먼트로만 들어가던 2중 문법을 없앴다(레퍼런스 3종 모두 만세력을 최상위에 둔다). 유리는 <code>.28</code> → <code>.92 + saturate(0)</code> — 채도 0으로 뒤 색까지 차단(방식론 §3-c). blur는 유지해 유리감은 그대로.</p>
+
+<h3>R9 · 재미 — 눌러도 되는 것만 선명하게</h3>
+<div class="ba">
+  <figure class="bef"><figcaption>전</figcaption><img src="before/fun.png" alt="전: 준비 중 텍스트와 셰브론이 섞여 있고 비활성 표시가 없어 다 눌러보게 된다"></figure>
+  <figure class="aft"><figcaption>후</figcaption><img src="after/fun.png" alt="후: 준비 중 카드는 흐려지고 배지가 붙어 활성 항목만 선명하다"></figure>
+</div>
+<p class="note"><code>SoonBadge</code> 부품 + 카드 <code>opacity .58</code> + <code>aria-disabled</code>가 한 쌍이 됐다. 활성 항목만 선명하고 SVG 셰브론이 붙는다. 랭킹 섹션은 행마다 '준비 중'을 3번 반복하지 않고 섹션을 흐리고 배지 하나만 둔다.</p>
+
+<h3>R10 · 설정·입력 — 최장 이름과 잘린 섹션</h3>
+<div class="ba">
+  <figure class="bef"><figcaption>전 · 설정</figcaption><img src="before/settings.png" alt="전: 긴 이름이 두 줄로 넘쳐 카드 균형이 깨지고 칩이 행을 다 먹는다"></figure>
+  <figure class="aft"><figcaption>후 · 설정</figcaption><img src="after/settings.png" alt="후: 이름이 말줄임되어 카드 균형이 맞고 칩 폭이 제한된다"></figure>
+</div>
+<div class="ba">
+  <figure class="bef"><figcaption>전 · 입력</figcaption><img src="before/input.png" alt="전: 마지막 보정값 섹션이 잘려 라벨만 보인다"></figure>
+  <figure class="aft"><figcaption>후 · 입력</figcaption><img src="after/input.png" alt="후: 보정값 섹션의 칩과 설명이 CTA 위에 모두 보인다"></figure>
+</div>
+<p class="note">설정: <code>minWidth:0</code> + 말줄임 · 저장칩 <code>maxWidth 230</code>(행 합계폭 315 → <b>296</b>, 가용 350). 입력: 스크롤 하단 여백 16px → <b>40px</b>로 진태양시·야자시 칩과 설명이 전부 보인다. 대운 레일 페이드도 14px → <b>28px</b>(첫·마지막 타일이 반쪽 잘림으로 보였다).</p>
+
+<h2>3. 실측 재검</h2>
+<div class="tblwrap"><table>
+<tr><th>항목</th><th>전</th><th>후</th></tr>
+<tr><td class="v">/result 플레이트</td><td>aisha.png (여성)</td><td>chef-default.jpg = 레지스트리 단일 경유</td></tr>
+<tr><td class="v">/result 이모지</td><td>🐴 🎴 🍀 (3종)</td><td>🐴 (1종 · 띠 동물 = 일러스트 대기 폴백)</td></tr>
+<tr><td class="v">/result 문자 도형</td><td>‹ ↗ ▼ × (4종)</td><td>× (곱셈 표기)만</td></tr>
+<tr><td class="v">홈 이름↔날짜</td><td>43px 침범</td><td>구조 소멸(세로 스택)</td></tr>
+<tr><td class="v">알약 네비 뒤 텍스트</td><td>알약 안쪽까지 읽힘</td><td>차단(실렌더 눈 확인)</td></tr>
+<tr><td class="v">설정 저장칩 행 폭</td><td>315 / 가용 350</td><td>296 / 350</td></tr>
+<tr><td class="v">입력 마지막 섹션</td><td>잘려 라벨만</td><td>전부 보임</td></tr>
+<tr><td class="v">하단 탭 ↔ 드로어</td><td>4 vs 5 (불일치)</td><td>5 vs 5 (1:1)</td></tr>
+<tr><td class="v">/result 이탈로</td><td>1개 (‹ 홈)</td><td>5탭 + 드로어</td></tr>
+</table></div>
+
+<div class="card">
+<h3 style="margin-top:0">⚠ 앞 청사진 수치 정정</h3>
+<ul>
+<li>"알약 뒤 텍스트 3건"·"입력 CTA 뒤 가려진 요소 3건" 판정식은 x축을 안 보고 y구간 겹침만 봐서 <b>과탐</b>이었다. 이번엔 실렌더 눈 대조로 확정했다 — G1 게이트는 이 판정식을 <b>픽셀 대비 샘플링</b>으로 바꿔야 한다.</li>
+<li>설정 "이름 중심Y 197 vs 수정 206 = 9px"은 <b>결함이 아니었다</b>. 이름(위)+캡션(아래) 2줄 스택의 <i>이름 단독</i> 중심과 버튼 중심을 비교한 잘못된 짝짓기다. 실제 결함은 최장 이름의 줄바꿈이었고 그건 고쳤다.</li>
+<li>대운 레일 페이드는 <b>없던 게 아니라 14px로 좁았다</b>.</li>
+</ul>
+</div>
+
+<h2>4. 남은 것</h2>
+<div class="tblwrap"><table>
+<tr><th>항목</th><th>상태</th></tr>
+<tr><td class="v">캐릭터 위계(연리 ↔ 셰프단)</td><td><span class="tag t-d">운영자 결정</span> 코드는 단일 경유로 정리 · 위계는 Q.16 미확정</td></tr>
+<tr><td class="v">분석 ↔ 결과 층위</td><td><span class="tag t-d">운영자 결정</span> 목업 v2 9화면 정본을 깨는 선택이라 손대지 않음</td></tr>
+<tr><td class="v">입력 <code>□ 시간 모름</code> · <code>✓ 진태양시</code></td><td>문자 체크박스 잔존 — 컨트롤 부품 신설 축이라 별건</td></tr>
+<tr><td class="v">로그인/가입 폼 문법 2종</td><td>로그인 = placeholder만 / 가입 = 섹션 라벨</td></tr>
+<tr><td class="v">대화 선택지 <code>的中?</code> <code>분기</code></td><td>플레이그라운드 정본(결정 로그) — 바꾸려면 운영자 확인</td></tr>
+<tr><td class="v">입력 3단 위저드(확인 단계)</td><td>레퍼런스 공통 패턴인데 우리는 없음 — 신규 화면 추가 축</td></tr>
+<tr><td class="v">G1~G3 기계 게이트</td><td>미구축 — 이번 수선이 회귀로 되살아나지 않게 하려면 필요</td></tr>
+</table></div>
+
+<footer>
+정본 = <code>docs/20260725_181500_UIUX재구성_레퍼런스와전후_v1.md</code> · 선행 청사진 = <code>docs/20260725_172039_UIUX보완청사진_v1.md</code><br>
+렌더 조건 = 루트 <code>npm run build</code> → <code>app/dist</code> 서빙 → Chromium headless 390×844 · <code>?qa=1</code> 대표데이터(최장명 14자 · 23:59 야자시 경계 · 1999/12/31)<br>
+<code>npm run verify</code> 게이트 2~6 통과(엔진 19건 · 인용 223건 · 앱 빌드 · 브라우저 스모크) · 게이트 1은 이 작업과 무관한 기존 적색(CLAUDE.md 무접촉)
+</footer>
+
+</div>
+</body>
+</html>

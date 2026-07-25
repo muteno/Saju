@@ -2,9 +2,10 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
-import Screen from '../components/Screen'
+import MyeongShell, { Pict } from '../components/MyeongShell'
 import StatusBar from '../components/StatusBar'
 import CharacterStage from '../components/CharacterStage'
+import { HOST_NAME } from '../data/chefs'
 import SajuTable from '../components/SajuTable'
 import DialogueBox from '../components/DialogueBox'
 import GapjaSticker from '../components/GapjaSticker'
@@ -26,7 +27,8 @@ const OH_LABEL: Record<string, string> = {
 /** 오행 스트립 — 불투명 카드(스테이지 위 가독) + 바 길이 = 비율 인코딩 + 개수·판정 결합 */
 function OhaengStrip({ ohaeng, total }: { ohaeng: OhaengStat[]; total: number }) {
   return (
-    <Box sx={{ mx: 2, mb: 1, px: 1.5, py: 1, borderRadius: '16px', display: 'flex', gap: 0.75, bgcolor: tokens.color.card, boxShadow: 'var(--shadow-card)' }}>
+    /* mx 2.5 = 아래 리포트 시트·위 원국표 캡션과 같은 좌우 축(형제 표면 통일, 방식론 §5) */
+    <Box sx={{ mx: 2.5, mb: 1, px: 1.5, py: 1, borderRadius: '16px', display: 'flex', gap: 0.75, bgcolor: tokens.color.card, boxShadow: 'var(--shadow-card)' }}>
       {ohaeng.map((o) => {
         const count = Math.round((o.pct * total) / 100)
         return (
@@ -76,8 +78,9 @@ function DaeunRail({ daeun, birthYear }: { daeun: UiChart['daeun']; birthYear: n
           gap: 1,
           overflowX: 'auto',
           pb: 0.5,
-          maskImage: 'linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%)',
+          // 페이드 28px — 14px은 너무 좁아 첫·마지막 타일이 '반쪽으로 잘린 것'처럼 보였다(260725 실측).
+          maskImage: 'linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%)',
         }}
       >
         {daeun.list.map((it, i) => {
@@ -272,7 +275,8 @@ export default function Result() {
 
   if (!chart || !reading) {
     return (
-      <Screen>
+      /* 오류 상태도 셸 안 — 여기서 막히면 나갈 길이 없었다 */
+      <MyeongShell active="analysis" gate={false}>
         <StatusBar />
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', px: 3, gap: 2 }}>
           <Typography sx={{ fontSize: 16, fontWeight: 700, color: tokens.color.ink, textAlign: 'center', lineHeight: 1.6 }}>
@@ -292,7 +296,7 @@ export default function Result() {
           </Typography>
           <Button variant="contained" onClick={() => nav('/input')}>정보 입력하기</Button>
         </Box>
-      </Screen>
+      </MyeongShell>
     )
   }
 
@@ -315,36 +319,23 @@ export default function Result() {
   } as const
 
   return (
-    <Screen>
-      <Box sx={{ position: 'relative', flex: 1, minHeight: 0, overflowY: 'auto' }}>
-        {/* 첫 화면(VN) — 스테이지 + 원국표 + 오행 + 도사 한마디. 시트 48px 픽 노출 = 스크롤 어포던스 */}
-        <Box sx={{ position: 'relative', display: 'flex', flexDirection: 'column', minHeight: 'calc(100% - 48px)' }}>
-          <CharacterStage tint="linear-gradient(180deg,#bfe0b8,#e8dfa0)" />
-          <StatusBar />
-          <Box sx={{ position: 'relative', zIndex: 3, display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
-            {/* 상단 유틸 행 — 홈 복귀(인앱 이동 수단) */}
-            <Box sx={{ display: 'flex', px: 2, pt: 0.5 }}>
-              <Box
-                className="glass-soft"
-                onClick={() => nav('/')}
-                role="button"
-                sx={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  px: 1.6,
-                  py: 1,
-                  borderRadius: 100,
-                  fontSize: 12.5,
-                  fontWeight: 700,
-                  color: tokens.color.ink,
-                  cursor: 'pointer',
-                  transition: 'transform .12s var(--ease)',
-                  '&:active': { transform: 'scale(0.98)' },
-                }}
-              >
-                ‹ 홈
-              </Box>
-            </Box>
+    /*
+      리포트는 앱 셸 안에 있다(260725 재구성). 전엔 셸 밖이라 하단 네비가 없고 이탈로가 '‹ 홈'
+      하나뿐인 막다른 길이었다 — 앱 최심부 콘텐츠인데 4탭 어디로도 못 갔다.
+      gate=false: 공유 링크 수신자(프로필 없음)를 로그인으로 튕기지 않는다.
+    */
+    <MyeongShell active="analysis" gate={false}>
+      <Box className="msd-fadein" sx={{ position: 'relative', flex: 1, minHeight: 0, overflowY: 'auto' }}>
+        {/*
+          첫 화면 — '담긴' 스테이지(높이 300) + 그 아래 단색 위 콘텐츠.
+          전엔 CharacterStage를 inset:0 전면 배경으로 깔아 원국표·오행·대화가 사진 위에 얹혔고,
+          라이트 테마에서 --stage-scrim이 transparent라 보호막이 0이었다(260725 실측: 플레이트 위
+          텍스트 65개). 스테이지가 높이를 갖고 끝나면 스크림 없이 가독이 성립한다.
+        */}
+        <CharacterStage height={300}>
+          <StatusBar dark />
+          <Box sx={{ flex: 1 }} />
+          <Box sx={{ position: 'relative', zIndex: 3, display: 'flex', flexDirection: 'column' }}>
             {resolved.sample && (
               /* 샘플 모드 배너 — 남의 샘플을 내 사주로 오인하지 않게 명시 */
               <Box
@@ -391,21 +382,24 @@ export default function Result() {
                 공유받은 사주 — {resolved.name}님의 리포트 · 내 사주도 보기 ›
               </Box>
             )}
-            <Box sx={{ flex: 1 }} />
+          </Box>
+        </CharacterStage>
 
-            <Box sx={{ px: 2, mb: 0.5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <SajuTable pillars={pillars} unknownHour={resolved.hourUnknown} />
-              {showCorrected && (
-                <Typography sx={captionSx}>
-                  진태양시 {String(chart.corrected!.hh).padStart(2, '0')}:{String(chart.corrected!.mm).padStart(2, '0')} (보정 {chart.corrected!.minutes}분 · {resolved.city})
-                </Typography>
-              )}
-              {resolved.hourUnknown && <Typography sx={captionSx}>시간 모름 — 시주 없이 세 기둥으로 풀이</Typography>}
-            </Box>
+        {/* 본문 — 스테이지 아래, 단색 --c-page 위. 여기부터는 뒤에 사진이 없다 */}
+        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)' }}>
+          <Box sx={{ px: 2, pt: 1, mb: 0.5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <SajuTable pillars={pillars} unknownHour={resolved.hourUnknown} />
+            {showCorrected && (
+              <Typography sx={captionSx}>
+                진태양시 {String(chart.corrected!.hh).padStart(2, '0')}:{String(chart.corrected!.mm).padStart(2, '0')} (보정 {chart.corrected!.minutes}분 · {resolved.city})
+              </Typography>
+            )}
+            {resolved.hourUnknown && <Typography sx={captionSx}>시간 모름 — 시주 없이 세 기둥으로 풀이</Typography>}
+          </Box>
 
-            <OhaengStrip ohaeng={ohaeng} total={ohaengTotal} />
+          <OhaengStrip ohaeng={ohaeng} total={ohaengTotal} />
 
-            <DialogueBox speaker="아이샤">
+          <DialogueBox speaker={HOST_NAME}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
                 {iljuGanji && <GapjaSticker ganji={iljuGanji} size={44} showLabel={false} />}
                 <Box sx={{ lineHeight: 1.2 }}>
@@ -432,23 +426,22 @@ export default function Result() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: 17,
                       cursor: 'pointer',
                       flex: '0 0 auto',
                       transition: 'transform .12s var(--ease)',
                       '&:active': { transform: 'scale(0.98)' },
                     }}
                   >
-                    {copied ? '✓' : '↗'}
+                    {copied ? Pict.check(19) : Pict.share(19)}
                   </Box>
                 )}
               </Box>
               {reading.dialogue.map((s) => (
                 <Box key={s.label} sx={{ mb: 0.9 }}>
                   <Typography component="div" sx={{ fontSize: 13.5, color: tokens.color.ink, lineHeight: 1.5 }}>
-                    <b>
-                      {s.icon} {s.label}:
-                    </b>{' '}
+                    {/* 라벨은 텍스트 단독 — 이모지(🎴 🕰️ 🍀)를 라벨 앞에 붙이면 글자와 도형이 한 줄에
+                        섞이고(방식론 §6-b), 🎴는 이 렌더러에서 빨간 사각형으로 나왔다(260725 실측) */}
+                    <b>{s.label}:</b>{' '}
                     {s.lines.map((l, i) => (
                       <span key={i}>
                         {l}
@@ -462,7 +455,6 @@ export default function Result() {
                 </Box>
               ))}
             </DialogueBox>
-          </Box>
         </Box>
 
         {/* 리포트 시트 — 홈 콘텐츠 문법(SectionTitle + glass 카드) 계승 */}
@@ -478,7 +470,7 @@ export default function Result() {
             </>
           )}
 
-          <SectionTitle>아이샤에게 물어보기</SectionTitle>
+          <SectionTitle>{HOST_NAME}에게 물어보기</SectionTitle>
         </Box>
 
         {/* L4 도사 대화 — 주제 선택지 → 근거 대사(타이프라이터). LLM 미설정 시 L3 폴백 완결 동작 */}
@@ -486,7 +478,8 @@ export default function Result() {
           {report && <DosaChat report={report} profileName={resolved.name || undefined} hourUnknown={resolved.hourUnknown} jeonggok={jeonggok} />}
         </Box>
 
-        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5, pb: 4 }}>
+        {/* pb 120px = 하단 알약 네비 회피(다른 셸 화면과 같은 값) */}
+        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5, pb: '120px' }}>
           {resolved.shared && (
             /* 공유 수신자 전환 CTA — 성장 루프의 끝단 */
             <Button fullWidth variant="contained" onClick={() => nav('/input')} sx={{ mt: 1, mb: 1 }}>
@@ -495,7 +488,7 @@ export default function Result() {
           )}
           {!resolved.sample && (
             <Button fullWidth variant="outlined" onClick={onShare} sx={{ mt: resolved.shared ? 0 : 1 }}>
-              {copied ? '링크를 복사했어요 ✓ — 카톡에 붙여넣기' : '리포트 공유하기'}
+              {copied ? '링크를 복사했어요 — 카톡에 붙여넣기' : '리포트 공유하기'}
             </Button>
           )}
           {resolved.sample && (
@@ -505,6 +498,6 @@ export default function Result() {
           )}
         </Box>
       </Box>
-    </Screen>
+    </MyeongShell>
   )
 }

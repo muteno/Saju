@@ -56,9 +56,61 @@ export const Pict = {
       <path d="M4 19.5A2.5 2.5 0 006.5 22H20v-5" />
     </svg>
   ),
+  // ↓ 아래 6종 = 문자 도형(↗ ✉ ✎ ✓ ‹ ▼) 대체분. 표지판성 도형은 폰트 글리프가 원·박스
+  // 정중앙에서 편심돼 정렬이 깨진다(방식론 §2) — 대칭 viewBox path만 정중앙을 보장한다.
+  share: (s = 18) => (
+    <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
+      <path d="M8 16L16 8M16 8H9M16 8v7" />
+    </svg>
+  ),
+  mail: (s = 18) => (
+    <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
+      <rect x="3" y="5" width="18" height="14" rx="2.5" />
+      <path d="M3.5 7.5L12 13l8.5-5.5" />
+    </svg>
+  ),
+  pencil: (s = 18) => (
+    <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
+      <path d="M4 20h4L20 8l-4-4L4 16v4z" />
+      <path d="M14.5 5.5L18.5 9.5" />
+    </svg>
+  ),
+  check: (s = 18) => (
+    <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </svg>
+  ),
+  chevronLeft: (s = 18) => (
+    <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
+      <path d="M14.5 5.5L8 12l6.5 6.5" />
+    </svg>
+  ),
+  chevronDown: (s = 18) => (
+    <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
+      <path d="M5.5 9.5L12 16l6.5-6.5" />
+    </svg>
+  ),
+  chevronRight: (s = 18) => (
+    <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
+      <path d="M9.5 5.5L16 12l-6.5 6.5" />
+    </svg>
+  ),
 }
 
 const press = { transition: 'transform .12s var(--ease)', '&:active': { transform: 'scale(0.98)' } }
+
+/**
+ * 상주 크롬 유리 — 스크롤 콘텐츠·캐릭터 아트 위에 떠 있으므로 '충분히 불투명 + 채도 차단'이다
+ * (방식론 §3-c). 260725 실측: .28 + blur11은 뒤 본문이 그대로 읽혀 크롬이 아니라 얼룩으로 보였다.
+ * blur는 유지 — 유리감은 목업 v2 정본.
+ */
+const chromeGlass = {
+  background: 'rgba(255,255,255,.92)',
+  border: '1px solid rgba(255,255,255,.95)',
+  // 채도 0 = 뒤 '색'까지 차단(§3-c). .78에서는 본문 글자가 알약 안쪽에서도 읽혔다(260725 실렌더 재확인).
+  backdropFilter: 'blur(11px) saturate(0)',
+  WebkitBackdropFilter: 'blur(11px) saturate(0)',
+} as const
 
 /** 좌 드로어 메뉴 행 */
 function DrawerItem({ icon, label, on, onClick }: { icon: ReactNode; label: string; on: boolean; onClick: () => void }) {
@@ -87,14 +139,20 @@ function DrawerItem({ icon, label, on, onClick }: { icon: ReactNode; label: stri
   )
 }
 
-/** 하단 글래스 플로팅 알약 네비 — 목업 v2(YETA .ynav 이식) 규격 그대로 */
+/**
+ * 하단 글래스 플로팅 알약 네비 — 목업 v2(YETA .ynav 이식) 규격 계승.
+ * 탭 = 드로어 메뉴와 1:1 5개. '내 원국'이 탭에 없어 홈 세그먼트로만 들어가던 2중 문법을
+ * 없앴다(260725 — 레퍼런스 실측: 포스텔러·천을귀인·점신 모두 만세력을 최상위 항목으로 둔다).
+ * 5칸이 390px에 들어가도록 좌우 패딩만 17→12로 줄였다(높이·반경·색은 정본 그대로).
+ */
 function PillNav({ active, go }: { active: MenuKey; go: (to: string) => void }) {
   const tabs = [
-    { key: 'today', label: '오늘', to: '/', icon: Pict.calendar(20), on: active === 'home' || active === 'myday' },
-    { key: 'analysis', label: '분석', to: '/analysis', icon: Pict.taegeuk(20, true), on: active === 'analysis' },
-    { key: 'fun', label: '재미', to: '/fun', icon: Pict.heart(20), on: active === 'fun' },
-    { key: 'settings', label: '설정', to: '/settings', icon: Pict.person(20), on: active === 'settings' },
-  ]
+    { key: 'home', label: '오늘', to: '/', icon: Pict.calendar(20) },
+    { key: 'myday', label: '원국', to: '/myday', icon: Pict.chart(20) },
+    { key: 'analysis', label: '분석', to: '/analysis', icon: Pict.taegeuk(20, true) },
+    { key: 'fun', label: '재미', to: '/fun', icon: Pict.heart(20) },
+    { key: 'settings', label: '설정', to: '/settings', icon: Pict.person(20) },
+  ] as const
   return (
     <Box
       sx={{
@@ -104,43 +162,44 @@ function PillNav({ active, go }: { active: MenuKey; go: (to: string) => void }) 
         transform: 'translateX(-50%)',
         zIndex: 7,
         display: 'flex',
-        gap: 1,
+        gap: 0.75,
         p: '6px 10px',
         borderRadius: '999px',
-        background: 'rgba(255,255,255,.28)',
-        border: '1px solid rgba(255,255,255,.6)',
-        backdropFilter: 'blur(11px)',
-        WebkitBackdropFilter: 'blur(11px)',
+        ...chromeGlass,
         boxShadow: 'inset 0 1px 0 rgba(255,255,255,.75), var(--shadow-card)',
       }}
     >
-      {tabs.map((t) => (
-        <Box
-          key={t.key}
-          onClick={() => go(t.to)}
-          role="button"
-          aria-label={t.label}
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            height: 40,
-            px: '17px',
-            borderRadius: '999px',
-            cursor: 'pointer',
-            fontSize: 11,
-            fontWeight: 700,
-            transition: 'background .34s var(--ease), border-color .34s var(--ease), color .34s var(--ease)',
-            bgcolor: t.on ? 'rgba(34,64,158,.14)' : 'transparent',
-            border: `1px solid ${t.on ? 'rgba(34,64,158,.38)' : 'transparent'}`,
-            color: t.on ? tokens.color.primary : tokens.color.inkFaint,
-            boxShadow: t.on ? '0 0 18px rgba(34,64,158,.14)' : 'none',
-            '&:active': { transform: 'scale(0.98)' },
-          }}
-        >
-          {t.icon}
-          {t.on && <span style={{ marginLeft: 6, whiteSpace: 'nowrap' }}>{t.label}</span>}
-        </Box>
-      ))}
+      {tabs.map((t) => {
+        const on = active === t.key
+        return (
+          <Box
+            key={t.key}
+            onClick={() => go(t.to)}
+            role="button"
+            aria-label={t.label}
+            aria-current={on ? 'page' : undefined}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              height: 40,
+              px: '12px',
+              borderRadius: '999px',
+              cursor: 'pointer',
+              fontSize: 11,
+              fontWeight: 700,
+              transition: 'background .34s var(--ease), border-color .34s var(--ease), color .34s var(--ease)',
+              bgcolor: on ? 'rgba(34,64,158,.14)' : 'transparent',
+              border: `1px solid ${on ? 'rgba(34,64,158,.38)' : 'transparent'}`,
+              color: on ? tokens.color.primary : tokens.color.inkFaint,
+              boxShadow: on ? '0 0 18px rgba(34,64,158,.14)' : 'none',
+              '&:active': { transform: 'scale(0.98)' },
+            }}
+          >
+            {t.icon}
+            {on && <span style={{ marginLeft: 6, whiteSpace: 'nowrap' }}>{t.label}</span>}
+          </Box>
+        )
+      })}
     </Box>
   )
 }
@@ -149,7 +208,7 @@ function PillNav({ active, go }: { active: MenuKey; go: (to: string) => void }) 
  * 명식당 셸 — 로그인 후 5개 화면의 상주 크롬(좌 햄버거 드로어 + 우 프로필 팝오버 + 하단 알약 네비).
  * 오버레이는 스크림 탭으로 닫히고 서로 배타. 입장 전(플래그·프로필 모두 없음) = /login 게이트.
  */
-export default function MyeongShell({ active, children }: { active: MenuKey; children: ReactNode }) {
+export default function MyeongShell({ active, gate = true, children }: { active: MenuKey; gate?: boolean; children: ReactNode }) {
   const nav = useNavigate()
   const [drawer, setDrawer] = useState(false)
   const [popover, setPopover] = useState(false)
@@ -166,7 +225,9 @@ export default function MyeongShell({ active, children }: { active: MenuKey; chi
     }
   }, [profile, popover])
 
-  if (!entered() && !profile) return <Navigate to="/login" replace />
+  // gate=false = 공유 딥링크로 들어온 화면(리포트). 프로필 없는 수신자를 로그인으로 튕기면
+  // 공유 루프가 끊긴다 — 크롬(드로어·네비)은 그대로 주고 입장 게이트만 면제한다.
+  if (gate && !entered() && !profile) return <Navigate to="/login" replace />
 
   const go = (to: string) => {
     setDrawer(false)
@@ -203,10 +264,7 @@ export default function MyeongShell({ active, children }: { active: MenuKey; chi
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            background: 'rgba(255,255,255,.28)',
-            border: '1px solid rgba(255,255,255,.6)',
-            backdropFilter: 'blur(11px)',
-            WebkitBackdropFilter: 'blur(11px)',
+            ...chromeGlass,
             boxShadow: 'inset 0 1px 0 rgba(255,255,255,.75)',
             color: tokens.color.ink,
             ...press,

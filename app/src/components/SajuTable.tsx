@@ -36,6 +36,14 @@ export default function SajuTable({ pillars, unknownHour = false, compact = fals
       {t}
     </Typography>
   )
+  // 행 라벨 열 — 전체 7행 모드에서만. 없으면 지장간·12운성·12신살이 라벨 없는 값 더미로 보인다
+  // (레퍼런스 실측: 포스텔러 만세력도 행 라벨을 표 왼쪽에 고정한다).
+  // 높이는 각 행의 셀과 같은 리듬을 쓰되, 타일 행만 타일 높이(46)에 맞춰 중앙 정렬.
+  const rowLabel = (t: string, h: number) => (
+    <Box sx={{ height: h, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+      <Typography sx={{ fontSize: 10, fontWeight: 700, color: tokens.color.inkFaint, letterSpacing: 'var(--tracking)', whiteSpace: 'nowrap' }}>{t}</Typography>
+    </Box>
+  )
   return (
     <Box
       className="glass"
@@ -46,6 +54,18 @@ export default function SajuTable({ pillars, unknownHour = false, compact = fals
       }}
     >
       <Box sx={{ display: 'flex', gap: 1 }}>
+        {!compact && (
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.7, pr: 0.2 }}>
+            {rowLabel('', 15)}
+            {rowLabel('십성', 17)}
+            {rowLabel('천간', 46)}
+            {rowLabel('지지', 46)}
+            {rowLabel('십성', 17)}
+            {rowLabel('지장간', 17)}
+            {rowLabel('12운성', 16)}
+            {rowLabel('12신살', 16)}
+          </Box>
+        )}
         {pillars.map((p, i) =>
           unknownHour && p.title === '시' ? (
             <Box key={i} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.7 }}>

@@ -1,10 +1,12 @@
 import { Box, Typography } from '@mui/material'
 import type { ReactNode } from 'react'
 import { tokens } from '../theme'
+import { Pict } from './MyeongShell'
+import { HOST_NAME } from '../data/chefs'
 
-/** 미연시 스타일 대화 박스 — 화자 이름표 + 본문 + 다음(▼) 인디케이터 */
+/** 미연시 스타일 대화 박스 — 화자 이름표 + 본문 + 다음(아래꺾쇠) 인디케이터 */
 export default function DialogueBox({
-  speaker = '아이샤',
+  speaker = HOST_NAME,
   children,
   next = true,
 }: {
@@ -49,15 +51,15 @@ export default function DialogueBox({
           <Box
             sx={{
               position: 'absolute',
-              right: 14,
-              bottom: 10,
+              right: 12,
+              bottom: 8,
+              display: 'flex',
               color: tokens.color.primary,
-              fontSize: 13,
               animation: 'bob 1.1s ease-in-out infinite',
               '@keyframes bob': { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(3px)' } },
             }}
           >
-            ▼
+            {Pict.chevronDown(16)}
           </Box>
         )}
       </Box>

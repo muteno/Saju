@@ -205,7 +205,7 @@ export default function DosaChat({
           的中
         </Box>
       )}
-      <DialogueBox speaker="아이샤" next={(phase === 'play' || phase === 'verdict') && tw.done}>
+      <DialogueBox next={(phase === 'play' || phase === 'verdict') && tw.done}>
         {/* 진행 표지 + 주제 복귀 — play 중에만 (mini 9px 토큰 계승) */}
         {phase === 'play' && (
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 1.2, mb: 0.4 }}>
@@ -218,7 +218,7 @@ export default function DosaChat({
               }}
               sx={{ fontSize: 9, fontWeight: 700, color: tokens.color.inkFaint, cursor: 'pointer', py: 1, my: -1 }}
             >
-              ‹ 주제로
+              주제 다시 고르기
             </Box>
             <Box component="span" sx={{ fontSize: 9, fontWeight: 700, color: tokens.color.inkFaint }}>
               {idx + 1}/{seq.length}

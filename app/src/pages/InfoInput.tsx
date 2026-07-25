@@ -156,7 +156,8 @@ export default function InfoInput() {
   return (
     <Screen>
       <StatusBar />
-      <Box sx={{ flex: 1, overflowY: 'auto', px: 2.5, pb: 2 }}>
+      {/* pb 40 = 스크롤 끝에서 마지막 섹션(보정값)이 고정 CTA에 붙어 잘려 보이던 것 해소(260725 실측) */}
+      <Box sx={{ flex: 1, overflowY: 'auto', px: 2.5, pb: 5 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.2, mt: 1, mb: 0.5 }}>
           {/* 뒤로가기 — 인앱 이탈 수단(CircleBtn 규격 계승) */}
           <Box

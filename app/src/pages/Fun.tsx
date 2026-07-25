@@ -22,34 +22,59 @@ const RANKING = [
   { no: 3, catch: '묘하게 통하는 그 사람', title: '나에게 마음이 있을까?' },
 ]
 
+/**
+ * '준비 중' 단일 표준 배지 — 미구현 항목의 유일한 표기 부품.
+ * 전엔 같은 리스트에 '준비 중' 텍스트와 셰브론(›)이 섞여 있고 비활성 dim도 없어서
+ * 준비 중 카드까지 눌러보게 됐다(260725 실측 · 방식론 §5). 배지 + 카드 dim이 한 쌍이다.
+ */
+export function SoonBadge() {
+  return (
+    <Typography
+      sx={{
+        flex: '0 0 auto',
+        fontSize: 10.5,
+        fontWeight: 800,
+        color: tokens.color.inkFaint,
+        bgcolor: 'rgba(20,24,45,.05)',
+        border: '1px solid var(--line)',
+        borderRadius: '100px',
+        px: 1,
+        py: 0.3,
+        whiteSpace: 'nowrap',
+      }}
+    >
+      준비 중
+    </Typography>
+  )
+}
+
 function ContentCard({ item }: { item: (typeof CONTENTS)[number] }) {
+  const ready = Boolean(item.href)
   const inner = (
     <Box
       className="glass"
-      role={item.href ? 'button' : undefined}
+      role={ready ? 'button' : undefined}
+      aria-disabled={ready ? undefined : true}
       sx={{
         borderRadius: '18px',
         p: 2,
         display: 'flex',
         alignItems: 'center',
         gap: 1.75,
-        cursor: item.href ? 'pointer' : 'default',
+        cursor: ready ? 'pointer' : 'default',
+        opacity: ready ? 1 : 0.58, // 비활성 dim = 눌러도 안 된다는 걸 어포던스가 말한다
         transition: 'transform .12s var(--ease)',
-        ...(item.href ? { '&:active': { transform: 'scale(0.98)' } } : {}),
+        ...(ready ? { '&:active': { transform: 'scale(0.98)' } } : {}),
       }}
     >
       <Box sx={{ width: 48, height: 48, borderRadius: '14px', bgcolor: tokens.color.primarySoft, color: tokens.color.primary, display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto' }}>
         {item.icon}
       </Box>
-      <Box sx={{ flex: 1 }}>
+      <Box sx={{ flex: 1, minWidth: 0 }}>
         <Typography sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.ink }}>{item.title}</Typography>
         <Typography sx={{ fontSize: 12.5, color: tokens.color.inkSub, fontWeight: 600, mt: 0.3 }}>{item.sub}</Typography>
       </Box>
-      {item.href ? (
-        <Typography sx={{ color: tokens.color.inkFaint, fontWeight: 800 }}>›</Typography>
-      ) : (
-        <Typography sx={{ fontSize: 11, color: tokens.color.inkFaint, fontWeight: 700 }}>준비 중</Typography>
-      )}
+      {ready ? <Box sx={{ flex: '0 0 auto', display: 'flex', color: tokens.color.inkFaint }}>{Pict.chevronRight(18)}</Box> : <SoonBadge />}
     </Box>
   )
   return item.href ? (
@@ -83,16 +108,17 @@ export default function Fun() {
             ))}
           </Box>
 
-          <SectionTitle>실시간 인기 메뉴 — 준비 중</SectionTitle>
-          <Box className="glass" sx={{ borderRadius: '18px', p: '6px 16px' }}>
+          <SectionTitle>실시간 인기 메뉴</SectionTitle>
+          {/* 섹션 전체가 미구현 = 카드 하나를 dim하고 배지 하나만 둔다(행마다 '준비 중'을 3번 반복하지 않는다) */}
+          <Box className="glass" sx={{ borderRadius: '18px', p: '6px 16px', opacity: 0.58 }} aria-disabled>
             {RANKING.map((r, i) => (
               <Box key={r.no} sx={{ display: 'flex', alignItems: 'center', gap: 1.5, py: 1.4, borderBottom: i < RANKING.length - 1 ? '1px solid var(--line)' : 'none' }}>
                 <Typography sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.primary, fontStyle: 'italic', width: 14 }}>{r.no}</Typography>
-                <Box sx={{ flex: 1 }}>
+                <Box sx={{ flex: 1, minWidth: 0 }}>
                   <Typography sx={{ fontSize: 11, fontWeight: 600, color: tokens.color.inkFaint }}>{r.catch}</Typography>
                   <Typography sx={{ fontSize: 13.5, fontWeight: 700, color: tokens.color.ink }}>{r.title}</Typography>
                 </Box>
-                <Typography sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.inkFaint }}>준비 중</Typography>
+                {i === 0 && <SoonBadge />}
               </Box>
             ))}
           </Box>
