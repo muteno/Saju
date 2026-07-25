@@ -6,6 +6,7 @@
  * 딥링크: `?qa=1&view=analysis` = 정적 호스팅(SPA 폴백 없음)에서도 해당 라우트로 진입.
  * 3분할(260725) 이후 3단계 = `view=result`(인트로 = 원국+오늘 점수) → `view=analysis`(분석 풀이)
  * → `view=talk`(미연시 상담 · 운영자 체험용 샘플 경로).
+ * ※ 구 `view=result#chat`(한 화면 시절 상담 착지 해시)은 상담이 독립 화면이 되어 불필요해졌다.
  */
 import { listProfiles, saveProfile, setActiveProfile } from './profiles'
 import { setEntered } from './session'
