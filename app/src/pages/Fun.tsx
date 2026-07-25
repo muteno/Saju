@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import StatusBar from '../components/StatusBar'
 import MyeongShell, { Pict } from '../components/MyeongShell'
-import { SectionTitle } from './Home'
+import { SectionTitle } from '../components/ReportParts'
 import { tokens } from '../theme'
 import type { ReactNode } from 'react'
 
