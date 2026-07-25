@@ -57,6 +57,29 @@ try {
   await pg.waitForTimeout(600)
   if (!((await pg.textContent('body')) || '').includes('상담')) fails.push('/talk에 상담 화면 없음')
 
+  // 차용 기틀 하한 감사(260725) — Apple HIG: 텍스트 11pt(Caption 2) · 탭 타깃 44x44pt.
+  // 값 정본 = app/src/theme.ts tokens.minFont / minTap. 대표데이터(?qa=1) 3화면에서 검사.
+  for (const view of ['result', 'analysis', 'talk']) {
+    await pg.goto(`${base}/?qa=1&view=${view}`, { waitUntil: 'networkidle', timeout: 30000 })
+    await pg.waitForTimeout(900)
+    const bad = await pg.evaluate(() => {
+      const small = new Set(), tiny = new Set()
+      for (const e of document.querySelectorAll('*')) {
+        const cs = getComputedStyle(e), r = e.getBoundingClientRect()
+        if (!r.width || !r.height) continue
+        const own = [...e.childNodes].filter((n) => n.nodeType === 3 && n.textContent.trim()).map((n) => n.textContent.trim()).join('')
+        if (!own) continue
+        if (parseFloat(cs.fontSize) < 11) small.add(`${parseFloat(cs.fontSize)}px "${own.slice(0, 12)}"`)
+        // 탭 타깃: 자기 텍스트를 가진 클릭 요소만(부모가 타깃인 내부 텍스트는 제외)
+        const clickable = e.getAttribute('role') === 'button' || e.tagName === 'BUTTON' || e.tagName === 'A'
+        if (clickable && (r.width < 44 || r.height < 44)) tiny.add(`${Math.round(r.width)}x${Math.round(r.height)} "${own.slice(0, 12)}"`)
+      }
+      return { small: [...small], tiny: [...tiny] }
+    })
+    if (bad.small.length) fails.push(`[${view}] 11px 미만 텍스트 ${bad.small.length}건: ${bad.small.slice(0, 3).join(' / ')}`)
+    if (bad.tiny.length) fails.push(`[${view}] 44px 미달 탭 타깃 ${bad.tiny.length}건: ${bad.tiny.slice(0, 3).join(' / ')}`)
+  }
+
   if (!kbHits.length) fails.push('kb-<hash>.json 요청 자체가 없음(로더 미동작)')
   else if (!kbHits.every((s) => s === 200)) fails.push(`kb 응답 비정상: ${kbHits}`)
   if (pageErrs.length) fails.push(`페이지 JS 에러 ${pageErrs.length}건: ${pageErrs[0]}`)

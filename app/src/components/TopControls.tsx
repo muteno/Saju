@@ -30,7 +30,7 @@ export default function TopControls() {
           }}
         >
           {it.label}
-          <span style={{ fontSize: 10, opacity: 0.7 }}>{it.icon}</span>
+          <span style={{ fontSize: 11, opacity: 0.7 }}>{it.icon}</span>
         </Box>
       ))}
     </Box>

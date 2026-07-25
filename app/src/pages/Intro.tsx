@@ -228,7 +228,7 @@ function ActionCircle({ children, label, onClick }: { children: React.ReactNode;
       >
         {children}
       </Box>
-      <Typography sx={{ fontSize: 10.5, fontWeight: 700, color: tokens.color.inkFaint, mt: 0.5 }}>{label}</Typography>
+      <Typography sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.inkFaint, mt: 0.5 }}>{label}</Typography>
     </Box>
   )
 }

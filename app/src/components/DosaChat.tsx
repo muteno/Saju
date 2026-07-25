@@ -216,11 +216,11 @@ export default function DosaChat({
                 topicRef.current = null
                 setPhase('choose')
               }}
-              sx={{ fontSize: 9, fontWeight: 700, color: tokens.color.inkFaint, cursor: 'pointer', py: 1, my: -1 }}
+              sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.inkFaint, cursor: 'pointer', py: 1, my: -1 }}
             >
               주제 다시 고르기
             </Box>
-            <Box component="span" sx={{ fontSize: 9, fontWeight: 700, color: tokens.color.inkFaint }}>
+            <Box component="span" sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.inkFaint }}>
               {idx + 1}/{seq.length}
             </Box>
           </Box>
@@ -268,7 +268,7 @@ export default function DosaChat({
                 }}
               >
                 <span>{c.label}</span>
-                <Box component="span" sx={{ fontSize: 9, fontWeight: 700, color: tokens.color.inkFaint, flex: '0 0 auto' }}>
+                <Box component="span" sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.inkFaint, flex: '0 0 auto' }}>
                   {c.mini}
                 </Box>
               </Box>
@@ -383,7 +383,7 @@ export default function DosaChat({
                 }}
               >
                 <span>{t.label}</span>
-                <Box component="span" sx={{ fontSize: 9, fontWeight: 700, color: tokens.color.inkFaint, flex: '0 0 auto' }}>
+                <Box component="span" sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.inkFaint, flex: '0 0 auto' }}>
                   {seen.has(t.key) ? '다시 보기' : t.mini}
                 </Box>
               </Box>
