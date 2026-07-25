@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import MyeongShell, { Pict } from '../components/MyeongShell'
 import StatusBar from '../components/StatusBar'
 import CharacterStage from '../components/CharacterStage'
-import { HOST_NAME } from '../data/chefs'
+import { HOST_NAME, hasChef } from '../data/chefs'
 import SajuTable from '../components/SajuTable'
 import DialogueBox from '../components/DialogueBox'
 import GapjaSticker from '../components/GapjaSticker'
@@ -252,10 +252,24 @@ export default function Result() {
     }
   }, [chart, resolved])
 
+  // `#chat` 딥링크 = 상담부터 시작. 스크롤러가 내부 컨테이너라 scrollIntoView 대신 offsetTop을 쓴다
+  // (scrollIntoView는 바깥 뷰포트까지 끌어 셸 크롬이 튄다 — DaeunRail에서 같은 이유로 배제한 방식).
+  const scrollerRef = useRef<HTMLDivElement | null>(null)
+  useEffect(() => {
+    if (location.hash !== '#chat') return
+    const t = setTimeout(() => {
+      const sc = scrollerRef.current
+      const el = sc?.querySelector<HTMLElement>('#chat')
+      // 102 = 상주 크롬 하단(top 50 + h44) + 여유 8. 이만큼 덜 내려야 대화 첫 줄이 햄버거에 안 깔린다
+      if (sc && el) sc.scrollTop = Math.max(0, el.offsetTop - 102)
+    }, 250) // 리딩 조립 후 레이아웃이 잡힌 다음에 내린다
+    return () => clearTimeout(t)
+  }, [])
+
   const [copied, setCopied] = useState(false)
   const onShare = async () => {
     const url = `${location.origin}/result?${resolved.search}`
-    const title = '아이샤 · AI 사주 리포트'
+    const title = `${HOST_NAME} · AI 사주 상담`
     try {
       if (navigator.share) {
         await navigator.share({ title, text: `${resolved.name || '내'} 사주 — ${reading?.headline ?? ''}`, url })
@@ -325,7 +339,7 @@ export default function Result() {
       gate=false: 공유 링크 수신자(프로필 없음)를 로그인으로 튕기지 않는다.
     */
     <MyeongShell active="analysis" gate={false}>
-      <Box className="msd-fadein" sx={{ position: 'relative', flex: 1, minHeight: 0, overflowY: 'auto' }}>
+      <Box ref={scrollerRef} className="msd-fadein" sx={{ position: 'relative', flex: 1, minHeight: 0, overflowY: 'auto' }}>
         {/*
           첫 화면 — '담긴' 스테이지(높이 300) + 그 아래 단색 위 콘텐츠.
           전엔 CharacterStage를 inset:0 전면 배경으로 깔아 원국표·오행·대화가 사진 위에 얹혔고,
@@ -333,8 +347,8 @@ export default function Result() {
           텍스트 65개). 스테이지가 높이를 갖고 끝나면 스크림 없이 가독이 성립한다.
         */}
         <CharacterStage height={300}>
-          <StatusBar dark />
-          <Box sx={{ flex: 1 }} />
+          <StatusBar dark={hasChef()} />
+          {hasChef() && <Box sx={{ flex: 1 }} />}
           <Box sx={{ position: 'relative', zIndex: 3, display: 'flex', flexDirection: 'column' }}>
             {resolved.sample && (
               /* 샘플 모드 배너 — 남의 샘플을 내 사주로 오인하지 않게 명시 */
@@ -385,9 +399,11 @@ export default function Result() {
           </Box>
         </CharacterStage>
 
-        {/* 본문 — 스테이지 아래, 단색 --c-page 위. 여기부터는 뒤에 사진이 없다 */}
+        {/* 본문 — 스테이지 아래, 단색 --c-page 위. 여기부터는 뒤에 사진이 없다.
+            캐릭터 미배정이면 스테이지가 콘텐츠를 밀어주지 않으므로 상주 크롬(top 50 + h44) 아래로
+            본문이 직접 내려간다 — 다른 셸 화면(Myday·Settings)이 쓰는 여백 리듬과 같은 값. */}
         <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)' }}>
-          <Box sx={{ px: 2, pt: 1, mb: 0.5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Box sx={{ px: 2, pt: hasChef() ? 1 : 6.5, mb: 0.5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <SajuTable pillars={pillars} unknownHour={resolved.hourUnknown} />
             {showCorrected && (
               <Typography sx={captionSx}>
@@ -457,8 +473,24 @@ export default function Result() {
             </DialogueBox>
         </Box>
 
-        {/* 리포트 시트 — 홈 콘텐츠 문법(SectionTitle + glass 카드) 계승 */}
+        {/*
+          미연시 상담이 주 동선이다(운영자 260725 "사주 상담은 항상 미연시 방향으로 진행하게 해").
+          전엔 리포트 7섹션 + 대운 레일을 다 지나야 대화가 나왔다 = 대화가 부록이었다.
+          이제 순서 = 원국표 → 연리 인사 → **연리와 상담(정곡 오프닝·주제 선택·타이프라이터)** → 근거 리포트.
+          레퍼런스 정합: 마이파이 "리포트형이 아니라 대화식" · 헬로우봇 = 챗봇 상담이 축.
+        */}
+        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5 }}>
+          <SectionTitle>{HOST_NAME}와 상담하기</SectionTitle>
+        </Box>
+        {/* L4 도사 대화 — 주제 선택지 → 근거 대사(타이프라이터). LLM 미설정 시 L3 폴백 완결 동작.
+            id="chat" = `#chat` 딥링크 착지점(아래 useEffect가 스크롤러를 여기로 내린다) */}
+        <Box id="chat" sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', pb: 1 }}>
+          {report && <DosaChat report={report} profileName={resolved.name || undefined} hourUnknown={resolved.hourUnknown} jeonggok={jeonggok} />}
+        </Box>
+
+        {/* 근거 리포트 — 대화 뒤에 온다. 대화가 결론이면 이건 그 결론의 출처다 */}
         <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5, pb: 1 }}>
+          <SectionTitle>근거 리포트 — 어디서 나온 말인가</SectionTitle>
           {reading.cards.map((card) => (
             <ReportCard key={card.id} card={card} onFillHour={card.id === 'hour-unknown' ? () => nav('/input') : undefined} />
           ))}
@@ -469,13 +501,6 @@ export default function Result() {
               <DaeunRail daeun={chart.daeun} birthYear={resolved.input.year} />
             </>
           )}
-
-          <SectionTitle>{HOST_NAME}에게 물어보기</SectionTitle>
-        </Box>
-
-        {/* L4 도사 대화 — 주제 선택지 → 근거 대사(타이프라이터). LLM 미설정 시 L3 폴백 완결 동작 */}
-        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', pb: 1 }}>
-          {report && <DosaChat report={report} profileName={resolved.name || undefined} hourUnknown={resolved.hourUnknown} jeonggok={jeonggok} />}
         </Box>
 
         {/* pb 120px = 하단 알약 네비 회피(다른 셸 화면과 같은 값) */}

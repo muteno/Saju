@@ -4,6 +4,7 @@
  * 최장 이름(줄바꿈·오버플로) · 경계 시각 23:59(야자시 경계) · 연말 12/31.
  * 안전: 기존 프로필이 하나라도 있으면 시드하지 않는다(실사용자 데이터 무접촉).
  * 딥링크: `?qa=1&view=analysis` = 정적 호스팅(SPA 폴백 없음)에서도 해당 라우트로 진입.
+ *         `?qa=1&view=result#chat` = 리포트의 미연시 상담부터 시작(운영자 체험용 샘플 경로).
  */
 import { listProfiles, saveProfile, setActiveProfile } from './profiles'
 import { setEntered } from './session'
@@ -42,7 +43,8 @@ export function seedQa(): void {
     }
     const v = new URLSearchParams(location.search).get('view')
     if (v && VIEWS.includes(v) && location.pathname === '/') {
-      history.replaceState(null, '', `/${v}${location.search}`)
+      // 해시를 함께 옮긴다 — `?qa=1&view=result#chat`(상담부터 시작) 같은 착지점 딥링크가 살아야 한다
+      history.replaceState(null, '', `/${v}${location.search}${location.hash}`)
     }
     console.log('[QA] saju preview seeded (대표데이터 · 무로그인)')
   } catch (e) {
