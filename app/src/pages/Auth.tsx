@@ -78,9 +78,9 @@ export function Login() {
             </Button>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1.75, mt: 2, fontSize: 13, fontWeight: 700, color: tokens.color.inkSub }}>
-            <Typography onClick={() => nav('/signup')} role="button" sx={{ fontSize: 13, fontWeight: 700, cursor: 'pointer', color: tokens.color.primary }}>회원가입</Typography>
+            <Typography onClick={() => nav('/signup')} role="button" sx={{ display: 'inline-flex', alignItems: 'center', minHeight: 44, px: 1, fontSize: 13, fontWeight: 700, cursor: 'pointer', color: tokens.color.primary }}>회원가입</Typography>
             <Typography sx={{ fontSize: 13, color: 'var(--c-border-strong)' }}>|</Typography>
-            <Typography onClick={() => nav('/find')} role="button" sx={{ fontSize: 13, fontWeight: 700, cursor: 'pointer', color: tokens.color.inkSub }}>아이디·비밀번호 찾기</Typography>
+            <Typography onClick={() => nav('/find')} role="button" sx={{ display: 'inline-flex', alignItems: 'center', minHeight: 44, px: 1, fontSize: 13, fontWeight: 700, cursor: 'pointer', color: tokens.color.inkSub }}>아이디·비밀번호 찾기</Typography>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.2, mt: 3.5 }}>
             <Box sx={{ flex: 1, height: '1px', background: 'rgba(20,24,45,.1)' }} />

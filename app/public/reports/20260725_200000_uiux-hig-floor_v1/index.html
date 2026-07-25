@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>차용 기틀 적용 — Apple HIG 하한 · Liquid Glass 규칙</title>
+<style>
+:root{
+  --c-page:#eef0f6; --c-card:#fff; --c-ink:#1b1b1f; --c-ink-sub:#5b6070; --c-ink-faint:#9a9fb0;
+  --c-border:#e2e4ee; --c-border-strong:#d3d6e2; --c-primary:#22409e; --c-primary-soft:#e7ebf8;
+  --c-heading:#2a4bc0; --c-solar:#e85e5e; --tracking:-.03em;
+  --shadow-card:0 6px 20px rgba(20,22,40,.08);
+  --pretendard:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',Roboto,'Noto Sans KR',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--pretendard);font-weight:500;letter-spacing:var(--tracking);
+  background:radial-gradient(900px 600px at 12% -5%,#e7eeff 0%,transparent 55%),
+             radial-gradient(820px 600px at 100% 8%,#ffe9ec 0%,transparent 52%),
+             radial-gradient(760px 760px at 50% 108%,#e2f7ef 0%,transparent 55%),var(--c-page);
+  color:var(--c-ink);-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:28px 18px 72px}
+h1{font-size:25px;font-weight:800;margin:0 0 6px;color:var(--c-primary)}
+.sub{font-size:13px;color:var(--c-ink-sub);font-weight:600;line-height:1.6;margin:0 0 4px}
+h2{font-size:20px;font-weight:800;margin:36px 0 10px;padding-top:18px;border-top:1px solid var(--c-border)}
+h3{font-size:16px;font-weight:800;margin:24px 0 8px;color:var(--c-heading)}
+p{font-size:14.5px;line-height:1.65;color:var(--c-ink-sub);margin:0 0 10px}
+b,strong{color:var(--c-ink);font-weight:800}
+.card{background:var(--c-card);border:1px solid var(--c-border);border-radius:18px;box-shadow:var(--shadow-card);padding:16px 18px;margin:12px 0}
+.lead{background:var(--c-primary-soft);border-color:#cdd7f2}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:#f3f4fa;border:1px solid var(--c-border);border-radius:6px;padding:1px 5px;color:var(--c-primary)}
+ul{margin:0 0 10px;padding-left:20px}li{font-size:14.5px;line-height:1.6;color:var(--c-ink-sub);margin-bottom:5px}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border:1px solid var(--c-border);border-radius:14px;background:var(--c-card)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:13px}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--c-border);vertical-align:top;line-height:1.5}
+th{background:#f6f7fc;font-weight:800;color:var(--c-ink);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.v{color:var(--c-ink);font-weight:700}
+td.n{color:var(--c-solar);font-weight:800;white-space:nowrap}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 4px}
+.ba figure{margin:0}
+.ba img{width:100%;display:block;border-radius:12px;border:1px solid var(--c-border-strong)}
+.ba figcaption{font-size:11px;font-weight:800;margin-bottom:6px}
+.bef figcaption{color:var(--c-solar)}
+.aft figcaption{color:#2f6b52}
+.note{font-size:13px;color:var(--c-ink-sub);line-height:1.6;margin:2px 0 18px}
+.note b{color:var(--c-ink)}
+.gate{border-left:3px solid var(--c-primary);padding-left:14px;margin:14px 0}
+.pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.8;color:var(--c-ink-sub);background:#f6f7fc;border:1px solid var(--c-border);border-radius:12px;padding:14px;overflow-x:auto;white-space:pre}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--c-border);font-size:12px;color:var(--c-ink-faint);font-weight:600;line-height:1.7}
+@media (prefers-color-scheme:dark){
+  :root{--c-page:#131315;--c-card:#1f1f22;--c-ink:#f1f1f4;--c-ink-sub:#a0a0a8;--c-ink-faint:#6a6a72;
+    --c-border:#2e2e33;--c-border-strong:#3a3a41;--c-primary:#8fa8ee;--c-primary-soft:#1c2340;--c-heading:#a8bcf4;--c-solar:#f07777}
+  body{background:radial-gradient(900px 600px at 12% -5%,#16323a 0%,transparent 55%),
+    radial-gradient(760px 600px at 100% 8%,#1a1730 0%,transparent 52%),var(--c-page)}
+  th{background:#26262b}code{background:#26262b}.pre{background:#26262b}.aft figcaption{color:#8fd3b4}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>차용 기틀 적용 — Apple HIG 하한 · Liquid Glass 규칙</h1>
+<p class="sub">2026-07-25 · 지시: "레포에 uiux 따로 뽑아놓은거 있을수도 있어 봐보셈" + "기틀 같은거 찾아보고 /design 유아이 검색해서 앱 만드는 데 활용해"</p>
+
+<div class="card lead">
+<h3 style="margin-top:0">한 줄</h3>
+<p style="margin-bottom:0">이 레포의 【바인딩】은 <b>디자인 확립본 = 없음</b>이었다. 그 빈칸에 <b>Apple HIG · Liquid Glass · Material 3</b>를 가져와 <b>하한 3종</b>(텍스트 11pt · 탭 44pt · 8/4 그리드)을 박고, 앱이 실제로 미달한 <b>23곳</b>을 고쳤다. 그리고 그 하한을 <b>게이트로</b> 만들었다 — 게이트가 바로 내가 놓친 1건을 잡았다.</p>
+</div>
+
+<h2>1. 레포에 이미 있던 UIUX 산출물</h2>
+<div class="tblwrap"><table>
+<tr><th>산출물</th><th>내용</th><th>상태</th></tr>
+<tr><td class="v">대화형UX 카탈로그 <b>737종</b><br><code>docs/research/</code></td><td>전 세계 대화형·선택형 앱 737종 실데이터(앱명·카테고리·플랫폼·UX·메커닉·출처) + 결론 4절: <b>12 아키타입 · 훔쳐올 Top5 · 안티패턴 5 · 차별화 축 4</b></td><td><b>미활용분 있음</b> ↓§4</td></tr>
+<tr><td class="v">도사 대화 플레이그라운드<br><code>reports/20260717_222938…</code></td><td>DosaChat 연출 원본</td><td>활용 중</td></tr>
+<tr><td class="v">포스텔러 스크랩<br><code>forceteller-ref/</code></td><td>README 251줄 + 자립 스냅샷 2 + CSS 덤프</td><td>활용 중</td></tr>
+<tr><td class="v">방식론·레퍼런스 수집함<br><code>docs/</code></td><td>계승·픽토그램·통일 규율</td><td>활용 중</td></tr>
+</table></div>
+<p class="note">⚠ <b>미확인 1건</b>: 목업 v2 <code>design_handoff_명식당_앱.zip</code>은 STATUS에 화면 정본으로 등재돼 있는데 <b>레포에 파일이 없다</b>. 지금 화면 값의 출처를 파일로 역추적할 수 없다.</p>
+
+<h2>2. 찾아온 외부 기틀</h2>
+<div class="tblwrap"><table>
+<tr><th>기틀</th><th>가져온 규칙·수치</th></tr>
+<tr><td class="v">Apple HIG</td><td>최소 텍스트 <b>Caption 2 = 11pt</b> · 최소 탭 타깃 <b>44×44pt</b> · <b>8pt 그리드(4pt 세분)</b> · 원칙 = Clarity·Deference·Depth · 색은 hex가 아닌 <b>의미 토큰</b>으로 설계</td></tr>
+<tr><td class="v">Liquid Glass<br>(WWDC25)</td><td><b>반투명 판을 두 겹 쌓지 마라</b> · <b>유리 안 버튼은 불투명 채움으로</b> · 컨트롤은 콘텐츠 위에 떠 있고 <b>콘텐츠가 주인</b> · 유리는 장식이 아닌 기능 레이어 · 접근성(투명도 축소·고대비) 존중</td></tr>
+<tr><td class="v">Material 3</td><td>최소 탭 타깃 <b>48dp</b> · <b>8dp</b> 기준 그리드(아이콘·타입 4dp)</td></tr>
+</table></div>
+<p class="note"><b>두 시스템이 합치하는 축만 하한으로 채택</b>했다 — 탭 44(HIG, M3보다 낮은 쪽) · 그리드 8/4 · 텍스트 11pt. 우리 앱은 이미 MUI(spacing 8px) + 44px 원형 버튼이라 <b>구조는 맞고 하한만 새고 있었다.</b></p>
+
+<h2>3. 하한 미달 실측 → 수선</h2>
+<h3>3-1 · 가독 하한(11pt) 미달 19건</h3>
+<div class="tblwrap"><table>
+<tr><th>미달</th><th>어디</th><th>처리</th></tr>
+<tr><td class="n">7.98px</td><td>대운 레일 타일의 극성+오행 첨자(<code>38 × 0.21</code>)</td><td>첨자 <b>끔</b> — 아래에 십신·12운성 텍스트가 이미 있다</td></tr>
+<tr><td class="n">9.12px</td><td>대운 레일 타일 한자(<code>38 × 0.24</code>)</td><td>하한까지 <b>clamp</b>(뜻이 있는 내용)</td></tr>
+<tr><td class="n">9.66px</td><td>원국표 타일 극성+오행(<code>46 × 0.21</code>)</td><td>clamp — <b>색은 오행만 인코딩하고 음양(+/−)은 색으로 표현되지 않아</b> 원국표에선 정보다</td></tr>
+<tr><td class="n">10px</td><td>원국표 행 라벨(십성·천간·지지…)</td><td>→ 11</td></tr>
+<tr><td class="n">10.5px</td><td>출처 줄 · 12운성 · 12신살 · 열 라벨 · 오행 판정 · 준비중 배지</td><td>→ 11</td></tr>
+<tr><td class="n">9px</td><td>대화 진행 표지 · 주제 복귀 · mini 라벨</td><td>→ 11</td></tr>
+</table></div>
+
+<div class="ba">
+  <figure class="bef"><figcaption>전 · 원국표(첨자·라벨이 9.66/10/10.5px)</figcaption><img src="before/intro.png" alt="전: 원국표 행 라벨과 타일 첨자가 작아 흐리게 보인다"></figure>
+  <figure class="aft"><figcaption>후 · 전부 11px 이상</figcaption><img src="after/intro.png" alt="후: 행 라벨과 음양 표기가 또렷하게 읽힌다"></figure>
+</div>
+<div class="ba">
+  <figure class="bef"><figcaption>전 · 대운 레일(첨자 7.98px)</figcaption><img src="before/analysis-daeun.png" alt="전: 대운 타일에 읽을 수 없는 작은 첨자가 있다"></figure>
+  <figure class="aft"><figcaption>후 · 첨자 제거 + 버튼 44px</figcaption><img src="after/2_analysis.png" alt="후: 대운 타일이 정리되고 버튼 높이가 확보됐다"></figure>
+</div>
+<p class="note"><code>theme.ts</code>에 <b><code>tokens.minFont = 11</code> · <code>tokens.minTap = 44</code></b>를 근거 주석과 함께 박았다 — 값의 단일 출처다.</p>
+
+<h3>3-2 · 탭 타깃(44) 미달 4건</h3>
+<div class="tblwrap"><table>
+<tr><th>크기</th><th>어디</th><th>처리</th></tr>
+<tr><td class="n">50×20 · 122×20</td><td>로그인 하단 링크(회원가입 / 아이디·비번 찾기)</td><td><code>minHeight 44</code> + 좌우 패딩(글자 크기 무변경)</td></tr>
+<tr><td class="n">88×26</td><td>리포트 카드 <code>더 보기 / 접기</code> 칩</td><td><code>minHeight: tokens.minTap</code></td></tr>
+<tr><td class="n">259×35</td><td><code>에니어그램 테스트로…</code> · <code>출생 시간 입력하러…</code></td><td>MUI <code>size="small"</code>이 35px로 깎던 것 → 하한 적용</td></tr>
+</table></div>
+<p class="note">오탐 제외: 리스트 행 내부 텍스트(부모 행이 타깃) · 탭 라벨 span · 이름표.</p>
+
+<h2>4. 게이트화 — 그리고 게이트가 바로 잡아냈다</h2>
+<div class="gate">
+<p><code>scripts/smoke.mjs</code>에 <b>하한 감사</b>를 넣었다. 대표데이터(<code>?qa=1</code>) 3화면에서 ① 11px 미만 텍스트 <b>0</b> ② 44px 미달 탭 타깃 <b>0</b>을 assert한다. 값은 <code>theme.ts</code> 토큰이 정본.</p>
+</div>
+<div class="pre">1차 수선 후 verify 실행 →
+❌ 스모크 실패:
+  - [analysis] 44px 미달 탭 타깃 1건: 259x35 "에니어그램 테스트로 검"</div>
+<p class="note">내가 놓친 MUI <code>size="small"</code> 케이스다. 게이트를 문장이 아니라 <b>코드</b>로 두는 이유가 이것 — 사람이 훑어서 놓치는 걸 기계가 커밋 전에 막는다. 수선 후 <b>6/6 전부 통과</b>.</p>
+
+<h2>5. 카탈로그가 지목했는데 아직 안 쓴 것</h2>
+<div class="tblwrap"><table>
+<tr><th>아키타입</th><th>카탈로그 지목</th><th>우리</th></tr>
+<tr><td class="v">④ 스와이프 2지선다 + 자원 미터(Reigns)</td><td>"맞아/아니야 좌우 스와이프 + 오행 게이지 실시간 반응"</td><td>선택지는 탭만 · 게이지 반응 없음</td></tr>
+<tr><td class="v">⑥ 되감기·"X가 기억합니다"(Telltale)</td><td>"맞아/아니야가 트리 갈아탈 때 무게감"</td><td>없음</td></tr>
+<tr><td class="v">⑨ 호감도 미터 언락(오토메)</td><td>"도사 단골이 될수록 깊은 풀이"</td><td>없음</td></tr>
+<tr><td class="v">⑫ 스트릭·데일리(Duolingo·Finch)</td><td>"하루 한 고리·오늘의 기운" 리텐션</td><td>없음(인트로 오늘 점수까지)</td></tr>
+<tr><td class="v">⑧ 습득폰 DB 탐색(Her Story)</td><td>"근거 팔자·오행 펼쳐보기"</td><td>부분(근거 리포트)</td></tr>
+</table></div>
+<p class="note">안티패턴 5개(무한 유료 게이트 · 챗봇 티 · 겁주기 · 콜드리딩 · 규제 리스크)는 <b>현재 위반 없음</b>.</p>
+
+<h2>6. 남은 것</h2>
+<ul>
+<li><b>유리 겹침</b>(Liquid Glass 금지 규칙) — 감사에서 후보가 나왔지만 셸 크롬 1건이 전 화면에 잡혀 <b>오탐 의심</b>. 판정식 정교화 후 별건.</li>
+<li><b>목업 v2 zip 부재</b> — 화면 값의 원본 파일이 레포에 없다.</li>
+<li>【바인딩】 디자인 항목에 <b>차용 기틀 등재 제안</b> — CLAUDE.md는 평의회 대상이라 세션이 임의 편집하지 않았다.</li>
+<li>입력 문자 체크박스 · 로그인↔가입 폼 문법 2종 · 입력 3단 위저드.</li>
+</ul>
+
+<footer>
+정본 = <code>docs/20260725_200000_UIUX_차용기틀_HIG하한_v1.md</code><br>
+선행 = 청사진 <code>…172039…</code> · 재구성 <code>…181500…</code> · 이미지제거 <code>…183000…</code> · 3단계분리 <code>…190000…</code><br>
+렌더 = 레포 루트 <code>npm run build</code> → <code>app/dist</code> 서빙 → Chromium headless 390×844 · <code>?qa=1</code> 대표데이터
+</footer>
+
+</div>
+</body>
+</html>

@@ -41,7 +41,7 @@ export default function SajuTable({ pillars, unknownHour = false, compact = fals
   // 높이는 각 행의 셀과 같은 리듬을 쓰되, 타일 행만 타일 높이(46)에 맞춰 중앙 정렬.
   const rowLabel = (t: string, h: number) => (
     <Box sx={{ height: h, display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-      <Typography sx={{ fontSize: 10, fontWeight: 700, color: tokens.color.inkFaint, letterSpacing: 'var(--tracking)', whiteSpace: 'nowrap' }}>{t}</Typography>
+      <Typography sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.inkFaint, letterSpacing: 'var(--tracking)', whiteSpace: 'nowrap' }}>{t}</Typography>
     </Box>
   )
   return (
@@ -69,18 +69,18 @@ export default function SajuTable({ pillars, unknownHour = false, compact = fals
         {pillars.map((p, i) =>
           unknownHour && p.title === '시' ? (
             <Box key={i} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.7 }}>
-              <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: tokens.color.inkFaint }}>시</Typography>
+              <Typography sx={{ fontSize: 11, fontWeight: 800, color: tokens.color.inkFaint }}>시</Typography>
               {star('모름')}
               <UnknownTile size={compact ? 56 : 46} />
               <UnknownTile size={compact ? 56 : 46} />
               {star('─')}
               {!compact && star('─')}
-              {!compact && <Typography sx={{ fontSize: 10.5, color: tokens.color.inkFaint, textAlign: 'center', fontWeight: 500 }}>─</Typography>}
-              {!compact && <Typography sx={{ fontSize: 10.5, color: tokens.color.inkFaint, textAlign: 'center', fontWeight: 500 }}>─</Typography>}
+              {!compact && <Typography sx={{ fontSize: 11, color: tokens.color.inkFaint, textAlign: 'center', fontWeight: 500 }}>─</Typography>}
+              {!compact && <Typography sx={{ fontSize: 11, color: tokens.color.inkFaint, textAlign: 'center', fontWeight: 500 }}>─</Typography>}
             </Box>
           ) : (
             <Box key={i} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.7 }}>
-              <Typography sx={{ fontSize: 10.5, fontWeight: 800, color: p.isDayMaster ? tokens.color.primary : tokens.color.inkFaint }}>
+              <Typography sx={{ fontSize: 11, fontWeight: 800, color: p.isDayMaster ? tokens.color.primary : tokens.color.inkFaint }}>
                 {p.title}
               </Typography>
               {star(p.topStar)}
@@ -88,8 +88,8 @@ export default function SajuTable({ pillars, unknownHour = false, compact = fals
               <OhaengTile main={p.jiK} hanja={p.ji} polarity={p.jiPolarity} element={p.jiE} size={compact ? 56 : undefined} />
               {star(p.botStar)}
               {!compact && star(p.hidden.join(''))}
-              {!compact && <Typography sx={{ fontSize: 10.5, color: tokens.color.inkFaint, textAlign: 'center', fontWeight: 500 }}>{p.stage}</Typography>}
-              {!compact && <Typography sx={{ fontSize: 10.5, color: tokens.color.inkFaint, textAlign: 'center', fontWeight: 500 }}>{p.sinsal}</Typography>}
+              {!compact && <Typography sx={{ fontSize: 11, color: tokens.color.inkFaint, textAlign: 'center', fontWeight: 500 }}>{p.stage}</Typography>}
+              {!compact && <Typography sx={{ fontSize: 11, color: tokens.color.inkFaint, textAlign: 'center', fontWeight: 500 }}>{p.sinsal}</Typography>}
             </Box>
           ),
         )}

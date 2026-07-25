@@ -32,7 +32,7 @@ export function SoonBadge() {
     <Typography
       sx={{
         flex: '0 0 auto',
-        fontSize: 10.5,
+        fontSize: 11,
         fontWeight: 800,
         color: tokens.color.inkFaint,
         bgcolor: 'rgba(20,24,45,.05)',

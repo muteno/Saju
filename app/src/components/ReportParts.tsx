@@ -66,7 +66,7 @@ export function OhaengStrip({ ohaeng, total }: { ohaeng: OhaengStat[]; total: nu
               <Box sx={{ width: `${Math.min(100, o.pct * 2)}%`, height: '100%', borderRadius: 3, bgcolor: tokens.ohaeng[o.key].bg }} />
             </Box>
             <Typography sx={{ fontSize: 11, fontWeight: 800, color: OH_LABEL[o.key], lineHeight: 1 }}>{o.key}</Typography>
-            <Typography sx={{ fontSize: 10.5, color: verdictColor[o.verdict], fontWeight: 700 }}>
+            <Typography sx={{ fontSize: 11, color: verdictColor[o.verdict], fontWeight: 700 }}>
               {count}개 · {o.verdict}
             </Typography>
           </Box>
@@ -94,7 +94,7 @@ export function DaeunRail({ daeun, birthYear }: { daeun: UiChart['daeun']; birth
         대운수 {daeun.su} — 10년마다 바뀌는 큰 흐름
         {activeIdx >= 0 ? ` · 지금 ${daeun.list[activeIdx].name} 대운` : ' · 아직 첫 대운 전'}
       </Typography>
-      <Typography sx={{ fontSize: 10.5, color: tokens.color.inkSub, mb: 1 }}>
+      <Typography sx={{ fontSize: 11, color: tokens.color.inkSub, mb: 1 }}>
         간지가 {daeun.forward ? '순서대로 도는 순행' : '거꾸로 도는 역행'} · 좌우로 넘겨 보세요
       </Typography>
       <Box
@@ -117,12 +117,12 @@ export function DaeunRail({ daeun, birthYear }: { daeun: UiChart['daeun']; birth
               ref={active ? activeRef : undefined}
               sx={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.5 }}
             >
-              <Typography sx={{ fontSize: 10.5, fontWeight: active ? 800 : 600, color: active ? tokens.color.primary : tokens.color.inkSub }}>
+              <Typography sx={{ fontSize: 11, fontWeight: active ? 800 : 600, color: active ? tokens.color.primary : tokens.color.inkSub }}>
                 {it.age}세 · {birthYear + it.age}
               </Typography>
-              <OhaengTile main={it.name[0]} hanja={g?.hanja[0] ?? ''} polarity={g && !g.yin ? '+' : '-'} element={g?.element ?? '토'} size={38} highlight={active} />
-              <OhaengTile main={it.name[1]} hanja={g?.hanja[1] ?? ''} polarity={it.jiPolarity} element={it.jiE} size={38} highlight={active} />
-              <Typography sx={{ fontSize: 10.5, color: active ? tokens.color.inkSub : tokens.color.inkFaint, lineHeight: 1.2, textAlign: 'center' }}>
+              <OhaengTile main={it.name[0]} hanja={g?.hanja[0] ?? ''} polarity={g && !g.yin ? '+' : '-'} element={g?.element ?? '토'} size={38} highlight={active} showPolarity={false} />
+              <OhaengTile main={it.name[1]} hanja={g?.hanja[1] ?? ''} polarity={it.jiPolarity} element={it.jiE} size={38} highlight={active} showPolarity={false} />
+              <Typography sx={{ fontSize: 11, color: active ? tokens.color.inkSub : tokens.color.inkFaint, lineHeight: 1.2, textAlign: 'center' }}>
                 {it.stemTenGod}
                 <br />
                 {it.twelveStage}
@@ -183,10 +183,12 @@ export function ReportCard({ card, onFillHour }: { card: ReadingCard; onFillHour
           <Box
             onClick={() => setOpen((v) => !v)}
             sx={{
-              display: 'inline-block',
+              // HIG 탭 타깃 하한 44 — 전엔 26px였다(260725 실측)
+              display: 'inline-flex',
+              alignItems: 'center',
+              minHeight: tokens.minTap,
               mt: 1.2,
-              px: 1.2,
-              py: 0.4,
+              px: 1.6,
               borderRadius: 100,
               border: `1px solid ${tokens.color.border}`,
               fontSize: 11.5,
@@ -202,17 +204,17 @@ export function ReportCard({ card, onFillHour }: { card: ReadingCard; onFillHour
         )}
         {card.note && <Typography sx={{ fontSize: 11.5, color: tokens.color.inkSub, mt: 1.2 }}>{card.note}</Typography>}
         {card.id === 'hour-unknown' && onFillHour && (
-          <Button variant="outlined" size="small" onClick={onFillHour} sx={{ mt: 1.2, py: 1, fontSize: 14 }}>
+          <Button variant="outlined" size="small" onClick={onFillHour} sx={{ mt: 1.2, py: 1, minHeight: tokens.minTap, fontSize: 14 }}>
             출생 시간 입력하러 가기
           </Button>
         )}
         {card.id === 'ennea' && (
-          <Button variant="outlined" size="small" component="a" href="/enneagram/" target="_blank" rel="noopener" sx={{ mt: 1.2, py: 1, fontSize: 14 }}>
+          <Button variant="outlined" size="small" component="a" href="/enneagram/" target="_blank" rel="noopener" sx={{ mt: 1.2, py: 1, minHeight: tokens.minTap, fontSize: 14 }}>
             에니어그램 테스트로 검증하러 가기
           </Button>
         )}
         {docs.length > 0 && (
-          <Typography sx={{ fontSize: 10.5, color: tokens.color.inkFaint, mt: 1.4 }}>— 출처: {docs.join(' · ')}</Typography>
+          <Typography sx={{ fontSize: 11, color: tokens.color.inkFaint, mt: 1.4 }}>— 출처: {docs.join(' · ')}</Typography>
         )}
       </Box>
     </Box>

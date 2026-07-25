@@ -33,6 +33,15 @@ export const tokens = {
     금: { key: '금', hanja: '金', bg: '#DBDCE0', ink: '#3A3D45', label: '#7E7E86' },
     수: { key: '수', hanja: '水', bg: '#8FB0CC', ink: '#22364B', label: '#3F6B93' },
   },
+  /**
+   * 차용 기틀의 하한값 — 우리가 만든 값이 아니라 외부 정본에서 가져온 바닥선이다(260725).
+   * · minFont 11 = Apple HIG 최소 텍스트 스타일(Caption 2 = 11pt). 이보다 작으면 렌더하지 말고
+   *   생략한다(읽을 수 없는 글자를 그리는 건 정보가 아니라 노이즈 — "content leads").
+   * · minTap 44 = Apple HIG 최소 탭 타깃 44×44pt (Material 3는 48dp — 둘 중 낮은 쪽을 하한으로).
+   * 이 두 값은 게이트로 검사한다(scripts/smoke.mjs).
+   */
+  minFont: 11,
+  minTap: 44,
   radius: { sm: 8, md: 12, lg: 18, pill: 100 },
   shadow: {
     card: '0 6px 20px rgba(20, 22, 40, 0.08)',
