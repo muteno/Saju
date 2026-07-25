@@ -46,7 +46,16 @@ try {
   await pg.goto(`${base}/result`, { waitUntil: 'networkidle', timeout: 30000 })
   await pg.waitForTimeout(600)
   const result = (await pg.textContent('body')) || ''
-  if (!result.includes('일원')) fails.push('/result에 원국 표(일원) 없음 — 리딩 조립 실패 의심')
+  if (!result.includes('일원')) fails.push('/result(인트로)에 원국 표(일원) 없음 — 리딩 조립 실패 의심')
+
+  // 3분할(260725) 이후 2·3단계도 실렌더 — 라우트 재편이 화면을 빈 셸로 만들지 않았는지
+  await pg.goto(`${base}/analysis`, { waitUntil: 'networkidle', timeout: 30000 })
+  await pg.waitForTimeout(600)
+  if (!((await pg.textContent('body')) || '').includes('사주 분석')) fails.push('/analysis에 분석 제목 없음')
+
+  await pg.goto(`${base}/talk`, { waitUntil: 'networkidle', timeout: 30000 })
+  await pg.waitForTimeout(600)
+  if (!((await pg.textContent('body')) || '').includes('상담')) fails.push('/talk에 상담 화면 없음')
 
   if (!kbHits.length) fails.push('kb-<hash>.json 요청 자체가 없음(로더 미동작)')
   else if (!kbHits.every((s) => s === 200)) fails.push(`kb 응답 비정상: ${kbHits}`)

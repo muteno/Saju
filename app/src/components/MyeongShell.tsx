@@ -6,9 +6,11 @@ import Screen from './Screen'
 import { tokens } from '../theme'
 import { activeProfile, listProfiles, setActiveProfile, profileToInput } from '../data/profiles'
 import { entered, clearEntered } from '../data/session'
+import { HOST_NAME } from '../data/chefs'
 import { computeChartUI } from '../engine'
 
-export type MenuKey = 'home' | 'myday' | 'analysis' | 'fun' | 'settings'
+/** 리포트 3분할(260725) 이후의 탭 축 — 인트로 → 분석 → 상담 + 재미·설정 */
+export type MenuKey = 'intro' | 'analysis' | 'talk' | 'fun' | 'settings'
 
 /** 목업 v2 정본 픽토그램 — 전부 인라인 SVG(stroke 2, round cap/join) */
 const svgProps = { fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' } as const
@@ -95,6 +97,12 @@ export const Pict = {
       <path d="M9.5 5.5L16 12l-6.5 6.5" />
     </svg>
   ),
+  /** 상담 탭 — 말풍선(대칭 viewBox · 꼬리는 좌하단) */
+  chat: (s = 20) => (
+    <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
+      <path d="M20 12a7.5 7.5 0 01-7.5 7.5H8l-4 2.5v-4.6A7.5 7.5 0 0112.5 4.5 7.5 7.5 0 0120 12z" />
+    </svg>
+  ),
 }
 
 const press = { transition: 'transform .12s var(--ease)', '&:active': { transform: 'scale(0.98)' } }
@@ -141,15 +149,15 @@ function DrawerItem({ icon, label, on, onClick }: { icon: ReactNode; label: stri
 
 /**
  * 하단 글래스 플로팅 알약 네비 — 목업 v2(YETA .ynav 이식) 규격 계승.
- * 탭 = 드로어 메뉴와 1:1 5개. '내 원국'이 탭에 없어 홈 세그먼트로만 들어가던 2중 문법을
- * 없앴다(260725 — 레퍼런스 실측: 포스텔러·천을귀인·점신 모두 만세력을 최상위 항목으로 둔다).
+ * 탭 = 드로어 메뉴와 1:1 5개이고, 앞 3칸이 **리포트 3단계 순서 그대로**다
+ * (인트로 = 기본 원국+오늘 점수 → 분석 = 구체 풀이 → 상담 = 미연시. 운영자 260725 확정).
  * 5칸이 390px에 들어가도록 좌우 패딩만 17→12로 줄였다(높이·반경·색은 정본 그대로).
  */
 function PillNav({ active, go }: { active: MenuKey; go: (to: string) => void }) {
   const tabs = [
-    { key: 'home', label: '오늘', to: '/', icon: Pict.calendar(20) },
-    { key: 'myday', label: '원국', to: '/myday', icon: Pict.chart(20) },
+    { key: 'intro', label: '인트로', to: '/result', icon: Pict.chart(20) },
     { key: 'analysis', label: '분석', to: '/analysis', icon: Pict.taegeuk(20, true) },
+    { key: 'talk', label: '상담', to: '/talk', icon: Pict.chat(20) },
     { key: 'fun', label: '재미', to: '/fun', icon: Pict.heart(20) },
     { key: 'settings', label: '설정', to: '/settings', icon: Pict.person(20) },
   ] as const
@@ -235,10 +243,11 @@ export default function MyeongShell({ active, gate = true, children }: { active:
     nav(to)
   }
   const avatarLetter = profile?.name?.[0] ?? '명'
+  // 드로어 = 하단 탭과 1:1(같은 5축·같은 순서). 라벨만 길게 써서 무엇인지 설명한다
   const menu = [
-    { key: 'home', label: '오늘의 운세', to: '/', icon: Pict.calendar(19) },
-    { key: 'myday', label: '내 사주 원국', to: '/myday', icon: Pict.chart(19) },
-    { key: 'analysis', label: '사주분석', to: '/analysis', icon: Pict.taegeuk(19) },
+    { key: 'intro', label: '내 원국 · 오늘 운세', to: '/result', icon: Pict.chart(19) },
+    { key: 'analysis', label: '사주 분석 풀이', to: '/analysis', icon: Pict.taegeuk(19) },
+    { key: 'talk', label: `${HOST_NAME}와 상담하기`, to: '/talk', icon: Pict.chat(19) },
     { key: 'fun', label: '사주 재미', to: '/fun', icon: Pict.heart(19) },
     { key: 'settings', label: '내 설정', to: '/settings', icon: Pict.person(19) },
   ] as const

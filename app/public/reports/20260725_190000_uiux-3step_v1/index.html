@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>명식당 3단계 분리 — 인트로 · 분석 · 상담</title>
+<style>
+:root{
+  --c-page:#eef0f6; --c-card:#fff; --c-ink:#1b1b1f; --c-ink-sub:#5b6070; --c-ink-faint:#9a9fb0;
+  --c-border:#e2e4ee; --c-border-strong:#d3d6e2; --c-primary:#22409e; --c-primary-soft:#e7ebf8;
+  --c-heading:#2a4bc0; --c-solar:#e85e5e; --tracking:-.03em;
+  --shadow-card:0 6px 20px rgba(20,22,40,.08);
+  --pretendard:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',Roboto,'Noto Sans KR',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--pretendard);font-weight:500;letter-spacing:var(--tracking);
+  background:radial-gradient(900px 600px at 12% -5%,#e7eeff 0%,transparent 55%),
+             radial-gradient(820px 600px at 100% 8%,#ffe9ec 0%,transparent 52%),
+             radial-gradient(760px 760px at 50% 108%,#e2f7ef 0%,transparent 55%),var(--c-page);
+  color:var(--c-ink);-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:28px 18px 72px}
+h1{font-size:25px;font-weight:800;margin:0 0 6px;color:var(--c-primary)}
+.sub{font-size:13px;color:var(--c-ink-sub);font-weight:600;line-height:1.6;margin:0 0 4px}
+h2{font-size:20px;font-weight:800;margin:36px 0 10px;padding-top:18px;border-top:1px solid var(--c-border)}
+h3{font-size:16px;font-weight:800;margin:24px 0 8px;color:var(--c-heading)}
+p{font-size:14.5px;line-height:1.65;color:var(--c-ink-sub);margin:0 0 10px}
+b,strong{color:var(--c-ink);font-weight:800}
+.card{background:var(--c-card);border:1px solid var(--c-border);border-radius:18px;box-shadow:var(--shadow-card);padding:16px 18px;margin:12px 0}
+.lead{background:var(--c-primary-soft);border-color:#cdd7f2}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:#f3f4fa;border:1px solid var(--c-border);border-radius:6px;padding:1px 5px;color:var(--c-primary)}
+ul{margin:0 0 10px;padding-left:20px}li{font-size:14.5px;line-height:1.6;color:var(--c-ink-sub);margin-bottom:5px}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border:1px solid var(--c-border);border-radius:14px;background:var(--c-card)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:13px}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--c-border);vertical-align:top;line-height:1.5}
+th{background:#f6f7fc;font-weight:800;color:var(--c-ink);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.v{color:var(--c-ink);font-weight:700}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0 4px}
+.trio figure{margin:0}
+.trio img{width:100%;display:block;border-radius:12px;border:1px solid var(--c-border-strong);background:var(--c-card)}
+.trio figcaption{font-size:11.5px;font-weight:800;margin-bottom:6px;color:var(--c-primary)}
+.trio .n{display:inline-block;width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;background:var(--c-primary);color:#fff;font-size:11px;margin-right:5px}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 4px}
+.ba figure{margin:0}
+.ba img{width:100%;display:block;border-radius:12px;border:1px solid var(--c-border-strong)}
+.ba figcaption{font-size:11px;font-weight:800;margin-bottom:6px}
+.bef figcaption{color:var(--c-solar)}
+.aft figcaption{color:#2f6b52}
+.note{font-size:13px;color:var(--c-ink-sub);line-height:1.6;margin:2px 0 18px}
+.note b{color:var(--c-ink)}
+.flow{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.9;color:var(--c-ink-sub);background:#f6f7fc;border:1px solid var(--c-border);border-radius:12px;padding:14px;overflow-x:auto;white-space:pre}
+.try{display:inline-block;margin:4px 8px 4px 0;padding:11px 16px;border-radius:12px;background:var(--c-primary);color:#fff;font-size:14px;font-weight:800;text-decoration:none}
+.try.alt{background:transparent;border:1.5px solid var(--c-primary);color:var(--c-primary)}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--c-border);font-size:12px;color:var(--c-ink-faint);font-weight:600;line-height:1.7}
+@media (prefers-color-scheme:dark){
+  :root{--c-page:#131315;--c-card:#1f1f22;--c-ink:#f1f1f4;--c-ink-sub:#a0a0a8;--c-ink-faint:#6a6a72;
+    --c-border:#2e2e33;--c-border-strong:#3a3a41;--c-primary:#8fa8ee;--c-primary-soft:#1c2340;--c-heading:#a8bcf4;--c-solar:#f07777}
+  body{background:radial-gradient(900px 600px at 12% -5%,#16323a 0%,transparent 55%),
+    radial-gradient(760px 600px at 100% 8%,#1a1730 0%,transparent 52%),var(--c-page)}
+  th{background:#26262b}code{background:#26262b}.flow{background:#26262b}
+  .aft figcaption{color:#8fd3b4}.try{color:#0f1420}.trio .n{color:#0f1420}
+}
+@media (max-width:560px){.trio{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>3단계 분리 — 인트로 · 분석 · 상담</h1>
+<p class="sub">2026-07-25 · 지시: "기본 개요, 상담하기 이런거는 <b>아예 분리</b>를 하고 / 맨 인트로에 기본 원국이랑 오늘 사주 봐주는 점수 느낌으로. 그 다음에 구체적으로 사주 분석 풀이, 그 다음에는 미연시"</p>
+<p class="sub">아래 컷은 전부 <b>실제 렌더</b>(헤드리스 390×844 · <code>?qa=1</code> 최장명 대표데이터).</p>
+
+<div class="card lead">
+<h3 style="margin-top:0">지금 눌러보기</h3>
+<a class="try" href="https://saju.soong.kr/?qa=1&amp;view=result">① 인트로</a>
+<a class="try" href="https://saju.soong.kr/?qa=1&amp;view=analysis">② 분석</a>
+<a class="try" href="https://saju.soong.kr/?qa=1&amp;view=talk">③ 상담(미연시)</a>
+<p style="margin:8px 0 0">무로그인으로 열린다. 하단 탭 앞 3칸이 <b>이 순서 그대로</b>다.</p>
+</div>
+
+<h2>1. 무엇이 어떻게 갈렸나</h2>
+<div class="flow">전 — 한 화면(/result) 긴 스크롤
+  원국표 → 오행 → 연리 인사 → 상담 → 근거 리포트 7섹션 → 대운 레일 → 공유
+  ↳ 층위 없음. 어디까지가 '기본상'이고 어디부터가 '더 파고들기'인지 안 보임
+
+후 — 세 화면
+  ① 인트로  /result    원국표 7행 + 오행 + 오늘 점수(근거 병기)   → [분석 풀이 보기] [상담하기]
+  ② 분석    /analysis  구조판정·일주·십신·합충·신살·세운 + 대운   → [연리와 상담하기]
+  ③ 상담    /talk      미연시 단독(정곡 단정 → 선택지 → 주제)      → [분석 풀이 보기]
+
+하단 탭 = 인트로 · 분석 · 상담 · 재미 · 설정   (앞 3칸 = 3단계 순서)
+드로어   = 같은 5축 1:1(라벨만 길게)</div>
+
+<div class="trio">
+  <figure><figcaption><span class="n">1</span>인트로</figcaption><img src="after/1_intro.png" alt="인트로: 원국표 7행과 오늘 운세 63점, 아래에 분석·상담 버튼"></figure>
+  <figure><figcaption><span class="n">2</span>분석</figcaption><img src="after/2_analysis.png" alt="분석: 원국 구조 판정과 일주 이야기 등 근거 섹션"></figure>
+  <figure><figcaption><span class="n">3</span>상담</figcaption><img src="after/3_talk.png" alt="상담: 연리의 정곡 단정으로 시작하는 미연시 대화 단독 화면"></figure>
+</div>
+
+<h2>2. ① 인트로 — 기본 원국 + 오늘 점수</h2>
+<div class="ba">
+  <figure class="bef"><figcaption>전 · 한 화면에 다 있던 시절</figcaption><img src="before/onescroll-top.png" alt="전: 원국표 아래로 인사·상담·리포트가 계속 이어진다"></figure>
+  <figure class="aft"><figcaption>후 · 인트로(하단까지)</figcaption><img src="after/1_intro_bottom.png" alt="후: 오늘 점수와 다음 단계 버튼 두 개로 화면이 끝난다"></figure>
+</div>
+<p class="note"><b>여기서 끝내도 되는 화면</b>이다. 확정 태그라인이 「당신의 운명을 위해, 오늘도 한 상」 = 매일 들러 오늘 한 상 받고 나가는 게 핵심 루프라, <b>원국 + 오늘 점수까지가 기본상</b>이고 더 파고들 사람만 아래 두 버튼으로 내려간다. 오늘 점수는 엔진 일진 관계(합충형파해·공망) 산출이라 <b>근거를 함께 적는다</b> — "내 일주와 자오충 · 공망 발동".</p>
+
+<h2>3. ② 분석 — 구체적 풀이</h2>
+<div class="ba">
+  <figure class="aft"><figcaption>분석 · 상단</figcaption><img src="after/2_analysis.png" alt="분석 상단: 이름과 일주·신강 요약, 원국 구조 판정 카드"></figure>
+  <figure class="aft"><figcaption>분석 · 하단</figcaption><img src="after/2_analysis_bottom.png" alt="분석 하단: 대운 흐름 레일과 상담하기 버튼"></figure>
+</div>
+<p class="note">전엔 이 화면이 <b>요약 2섹션만 보여주는 중복 화면</b>이었고, 실제 풀이는 <code>/result</code> 긴 스크롤 뒷부분에 있었다. 이제 분석 탭이 <b>근거 전 섹션 + 대운 레일</b>을 통째로 받는다. 인트로에서 본 원국이 '무엇을 뜻하는가'가 여기다.</p>
+
+<h2>4. ③ 상담 — 미연시 단독</h2>
+<p class="note">탭 하나가 통째로 대화다. 연출(타이프라이터 · 정곡 단정 → [그… 맞아 / 아니, 딱히?] 분기 → 的中 크리티컬·리커버리)은 기존 정본 그대로 — 이 화면은 <b>그걸 담는 그릇만</b> 만들었다. 대화 영역이 남는 높이를 먹도록 flex로 잡아서, 대화가 진행되며 아래로 자라도 하단이 비지 않는다.</p>
+
+<h2>5. 구조 정리 — 코드에서 한 일</h2>
+<div class="tblwrap"><table>
+<tr><th>무엇</th><th>왜</th></tr>
+<tr><td class="v"><code>data/useReport.ts</code> 신설</td><td>세 화면이 같은 원국·리딩·정곡을 쓴다. 데이터 해소 로직(URL 파라미터 → 저장 프로필 → 샘플)이 3중 복제되지 않게 <b>한 곳에만</b> 둔다. <code>stepPath()</code>로 화면을 넘어갈 때 쿼리를 잃지 않는다</td></tr>
+<tr><td class="v"><code>components/ReportParts.tsx</code> 신설</td><td>공유 표시 부품(<code>SectionTitle</code>·<code>OhaengStrip</code>·<code>DaeunRail</code>·<code>ReportCard</code>·<code>GlassButton</code>)을 옮겼다. 마크업·값 변경 <b>0</b></td></tr>
+<tr><td class="v"><code>Home.tsx</code>·<code>Myday.tsx</code> 삭제</td><td>인트로가 둘의 역할을 흡수했다. 남겨두면 죽은 화면이 정본을 흐린다. 구 <code>/</code>·<code>/myday</code> 링크는 쿼리·해시를 보존해 인트로로 넘긴다</td></tr>
+<tr><td class="v">스모크 게이트 확장</td><td><code>npm run verify</code>가 이제 <b>3화면 전부</b>를 실렌더로 확인한다 — 라우트 재편이 화면을 빈 셸로 만들면 커밋 전에 잡힌다</td></tr>
+</table></div>
+
+<h2>6. 게이트</h2>
+<p><code>npm run verify</code> <b>6/6 전부 통과</b>. 6번 스모크는 이번에 확장해 인트로·분석·상담을 각각 실렌더한다. 5화면 활성 탭 일치·JS 에러 0을 별도 실측으로 확인했다.</p>
+
+<footer>
+정본 = <code>docs/20260725_190000_UIUX_3단계분리_v1.md</code> · 선행 = 청사진 <code>…172039…</code> · 재구성 <code>…181500…</code> · 이미지제거 <code>…183000…</code><br>
+렌더 조건 = 레포 루트 <code>npm run build</code> → <code>app/dist</code> 서빙 → Chromium headless 390×844 · <code>?qa=1</code> 대표데이터(최장명 14자 · 23:59 야자시 · 12/31)
+</footer>
+
+</div>
+</body>
+</html>
