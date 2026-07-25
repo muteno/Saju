@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>명식당 UIUX 보완 청사진 v1</title>
+<style>
+/* 팔레트·타이포 = app/src/index.css 정본 계승(신색 창작 0) */
+:root{
+  --c-page:#eef0f6; --c-card:#fff; --c-ink:#1b1b1f; --c-ink-sub:#5b6070; --c-ink-faint:#9a9fb0;
+  --c-border:#e2e4ee; --c-border-strong:#d3d6e2; --c-primary:#22409e; --c-primary-soft:#e7ebf8;
+  --c-heading:#2a4bc0; --c-solar:#e85e5e; --tracking:-.03em;
+  --shadow-card:0 6px 20px rgba(20,22,40,.08);
+  --pretendard:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',Roboto,'Noto Sans KR',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--pretendard);font-weight:500;letter-spacing:var(--tracking);
+  background:radial-gradient(900px 600px at 12% -5%,#e7eeff 0%,transparent 55%),
+             radial-gradient(820px 600px at 100% 8%,#ffe9ec 0%,transparent 52%),
+             radial-gradient(760px 760px at 50% 108%,#e2f7ef 0%,transparent 55%),var(--c-page);
+  color:var(--c-ink);-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:28px 18px 72px}
+h1{font-size:26px;font-weight:800;margin:0 0 6px;color:var(--c-primary)}
+.sub{font-size:13px;color:var(--c-ink-sub);font-weight:600;line-height:1.6;margin:0 0 4px}
+h2{font-size:20px;font-weight:800;margin:38px 0 10px;padding-top:18px;border-top:1px solid var(--c-border)}
+h3{font-size:16px;font-weight:800;margin:22px 0 8px;color:var(--c-heading)}
+p{font-size:14.5px;line-height:1.65;color:var(--c-ink-sub);margin:0 0 10px}
+b,strong{color:var(--c-ink);font-weight:800}
+.card{background:var(--c-card);border:1px solid var(--c-border);border-radius:18px;box-shadow:var(--shadow-card);padding:16px 18px;margin:12px 0}
+.lead{background:var(--c-primary-soft);border-color:#cdd7f2}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:#f3f4fa;border:1px solid var(--c-border);border-radius:6px;padding:1px 5px;color:var(--c-primary)}
+ul{margin:0 0 10px;padding-left:20px}li{font-size:14.5px;line-height:1.6;color:var(--c-ink-sub);margin-bottom:5px}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border:1px solid var(--c-border);border-radius:14px;background:var(--c-card)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:13px}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--c-border);vertical-align:top;line-height:1.5}
+th{background:#f6f7fc;font-weight:800;color:var(--c-ink);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.v{color:var(--c-ink);font-weight:700}
+.tag{display:inline-block;font-size:11px;font-weight:800;padding:3px 9px;border-radius:100px;white-space:nowrap}
+.t-p0{background:#fdeaea;color:#a83232}.t-p1{background:#e7ebf8;color:var(--c-primary)}
+.t-p2{background:#eef0f6;color:var(--c-ink-sub)}.t-p3{background:#e6f4ee;color:#2f6b52}
+.t-d{background:#fdf3e2;color:#8a6110}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:14px 0}
+figure{margin:0}
+figure img{width:100%;display:block;border-radius:14px;border:1px solid var(--c-border-strong);background:var(--c-card)}
+figcaption{font-size:12px;color:var(--c-ink-sub);font-weight:600;line-height:1.5;margin-top:7px}
+figcaption b{color:var(--c-solar)}
+.gate{border-left:3px solid var(--c-primary);padding-left:14px;margin:14px 0}
+.flow{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.9;color:var(--c-ink-sub);background:#f6f7fc;border:1px solid var(--c-border);border-radius:12px;padding:14px;overflow-x:auto;white-space:pre}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--c-border);font-size:12px;color:var(--c-ink-faint);font-weight:600;line-height:1.7}
+@media (prefers-color-scheme:dark){
+  :root{--c-page:#131315;--c-card:#1f1f22;--c-ink:#f1f1f4;--c-ink-sub:#a0a0a8;--c-ink-faint:#6a6a72;
+    --c-border:#2e2e33;--c-border-strong:#3a3a41;--c-primary:#8fa8ee;--c-primary-soft:#1c2340;--c-heading:#a8bcf4;--c-solar:#f07777}
+  body{background:radial-gradient(900px 600px at 12% -5%,#16323a 0%,transparent 55%),
+    radial-gradient(760px 600px at 100% 8%,#1a1730 0%,transparent 52%),var(--c-page)}
+  th{background:#26262b}code{background:#26262b}.flow{background:#26262b}
+  .t-p0{background:#3a1f1f;color:#f0a0a0}.t-p1{background:#1c2340;color:#a8bcf4}
+  .t-p2{background:#26262b;color:#a0a0a8}.t-p3{background:#1b2f27;color:#8fd3b4}.t-d{background:#33290f;color:#e0bd6a}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>명식당 앱 UIUX 보완 청사진 v1</h1>
+<p class="sub">2026-07-25 17:20 KST 착수 · 지시 <code>[Q. 30]</code> "사주 앱 흐름 uiux가 완전 깨져있는데 어떻게 보완할지 청사진"</p>
+<p class="sub">전 11화면 헤드리스 실렌더 + 픽셀 실측 — <b>코드 추정 0건</b>. 아래 컷은 전부 실제 렌더 화면이다.</p>
+
+<div class="card lead">
+<h3 style="margin-top:0">한 줄 진단</h3>
+<p style="margin-bottom:0">깨진 건 취향이 아니라 <b>세 가지 구조</b>다. ① 라이트 단일 테마로 바꿀 때 <b>글자 보호막(스크림)이 고아가 된 회귀</b> ② 리포트 화면이 앱 껍데기 밖에 있어 생긴 <b>막다른 흐름</b> ③ 화면마다 제각각 자란 <b>컨트롤 문법 드리프트</b>. ①②는 지금 바로 고칠 수 있고, ③은 게이트로 못을 박아야 재발이 멈춘다.</p>
+</div>
+
+<h2>1. 눈으로 보는 붕괴</h2>
+
+<div class="shots">
+<figure>
+  <img src="shots/result.png" alt="리포트 화면 — 캐릭터 그림 위에 원국표와 본문이 무보호로 겹쳐 글자가 안 읽힌다">
+  <figcaption><b>A1 · 최악</b> 리포트 화면. <code>--stage-scrim</code>이 <b>transparent</b>라 캐릭터 그림 위에 글자 <b>65개</b>가 맨몸으로 얹혔다. 검은 머리카락 위 회색 지장간·십이운성·신살은 거의 안 보인다. 게다가 이 얼굴은 <b>아이샤(여성)</b> — 홈·분석은 남신 셰프다.</figcaption>
+</figure>
+<figure>
+  <img src="shots/home.png" alt="홈 화면 — 긴 이름이 두 줄로 넘치며 날짜 블록을 침범한다">
+  <figcaption><b>A3</b> 홈 히어로. 이름이 2줄이 되면 <b>43px 위로 침범</b>해 날짜(7월/25)와 엉킨다. 한 행 <code>flex-end</code> 정렬의 구조적 결과 — 3줄이면 세그먼트까지 밀어붙인다.</figcaption>
+</figure>
+<figure>
+  <img src="shots/analysis.png" alt="분석 화면 — 하단 알약 네비 뒤로 본문 글자가 그대로 읽힌다">
+  <figcaption><b>A2</b> 하단 알약 네비가 <code>rgba(255,255,255,.28)</code>로 너무 투명해 뒤 본문("병오년의 환경 변화")이 <b>그대로 읽힌다</b>. 유리는 유지하되 불투명도가 모자란다.</figcaption>
+</figure>
+<figure>
+  <img src="shots/home-mid.png" alt="홈 스크롤 중 — 세그먼트만 사라지고 햄버거와 아바타가 얼굴 위에 고아로 남는다">
+  <figcaption><b>B4</b> 스크롤하면 <b>헤더가 분해된다</b>. 세그먼트·상태바는 스크롤 콘텐츠 소속이라 사라지고, 햄버거·아바타만 셸에 고정돼 캐릭터 얼굴 위에 고아로 남는다. 정지 상태에서도 중앙Y가 <b>2.5px</b> 어긋난다.</figcaption>
+</figure>
+<figure>
+  <img src="shots/input.png" alt="입력 화면 — 마지막 보정값 섹션이 잘려 라벨만 보인다">
+  <figcaption><b>C6</b> 입력 마지막 섹션(보정값 적용)이 스크롤 클립 경계 아래로 잘려 <b>라벨만 빼꼼</b>. 스크롤 힌트가 없어 "여기가 끝"으로 읽힌다 — 진태양시·야자시 선택을 못 본다.</figcaption>
+</figure>
+<figure>
+  <img src="shots/settings.png" alt="설정 화면 — 이름 블록과 수정 버튼의 세로 중앙이 어긋난다">
+  <figcaption><b>C4·C5</b> 프로필 카드 이름 중심Y <b>197</b> vs 수정 버튼 <b>206</b> = <b>9px 이탈</b>([E8] 기준 1px). 아래 저장칩은 249+66=315 / 가용 350 → <b>여유 2자</b>, 16자 이름에서 붕괴.</figcaption>
+</figure>
+<figure>
+  <img src="shots/fun.png" alt="재미 화면 — 준비 중 배지와 셰브론이 한 리스트에 섞여 있고 비활성 표시가 없다">
+  <figcaption><b>C2</b> 한 리스트에 '준비 중' 배지 3 + 셰브론 <code>›</code> 1이 섞였다. 비활성 dim이 없어 <b>다 눌러보게 된다</b>. 8칸 중 7칸이 준비 중 = 탭 하나가 빈 방.</figcaption>
+</figure>
+</div>
+
+<h3>실측 영수증 표</h3>
+<div class="tblwrap"><table>
+<tr><th>#</th><th>화면</th><th>실측값</th><th>판정</th></tr>
+<tr><td>A1</td><td>/result</td><td class="v"><code>--stage-scrim</code> = transparent · 플레이트 = aisha.png · 위 텍스트 65개</td><td>가독 붕괴</td></tr>
+<tr><td>A2</td><td>알약 네비</td><td class="v">rgba(255,255,255,.28) · blur 11px · 텍스트 투과 3건</td><td>§3-c 위반</td></tr>
+<tr><td>A3</td><td>홈 히어로</td><td class="v">월블록 y=155 / 이름 y=111(2줄) → 43px 침범</td><td>레이아웃 붕괴</td></tr>
+<tr><td>B1</td><td>/result</td><td class="v">MyeongShell 미사용 = 하단 네비 없음 · 이탈로 1개</td><td>막다른 길</td></tr>
+<tr><td>B2</td><td>네비</td><td class="v">하단 탭 4 vs 드로어 5 — '내 원국'이 탭에 없음</td><td>문법 2중</td></tr>
+<tr><td>B3</td><td>/result 진입</td><td class="v">홈 서클 · 홈 칩 · 분석 CTA = 3경로</td><td>층위 불명</td></tr>
+<tr><td>B4</td><td>헤더</td><td class="v">유틸=셸 고정 / 세그먼트=스크롤 소속 · 중앙Y 72 vs 74.5</td><td>레이어 분열</td></tr>
+<tr><td>B5</td><td>캐릭터</td><td class="v">연리 · 남신 셰프 · 아이샤 = 이름 3 · 얼굴 2</td><td>정체성 분열</td></tr>
+<tr><td>C1</td><td>전역</td><td class="v">문자 도형 ‹ ↗ ▼ × + 이모지 🐴 🎴 🍀 (🎴 = 빨간 사각형 렌더)</td><td>§2 위반</td></tr>
+<tr><td>C2</td><td>/fun</td><td class="v">배지 3 + 셰브론 1 혼재 · dim 없음</td><td>§5 위반</td></tr>
+<tr><td>C3</td><td>폼</td><td class="v">로그인 = placeholder만 / 가입·입력 = 섹션 라벨</td><td>문법 2종</td></tr>
+<tr><td>C4</td><td>/settings</td><td class="v">이름 중심Y 197 vs 수정 206 = 9px</td><td>[E8] 위반</td></tr>
+<tr><td>C5</td><td>/settings</td><td class="v">저장칩 249 + 추가칩 66 = 315 / 가용 350</td><td>오버플로 임박</td></tr>
+<tr><td>C6</td><td>/input</td><td class="v">마지막 섹션 클립 경계 아래 잘림 · 스크롤 힌트 0</td><td>"끝"으로 오독</td></tr>
+<tr><td>C7</td><td>대운 레일</td><td class="v">첫·마지막 반쪽 잘림("001"·"52") · 마스크 없음</td><td>잘린 인상</td></tr>
+<tr><td>C8</td><td>/settings</td><td class="v">--c-solar(양력 의미색)를 로그아웃 destructive로 재사용</td><td>의미축 충돌</td></tr>
+</table></div>
+
+<h3>A1이 왜 생겼나 — 청사진의 출발점</h3>
+<p><code>--stage-scrim</code>은 260718에 "다크 스테이지 가독"으로 도입돼 <b>다크 전용</b>으로 값이 박혔다(라이트 = <code>transparent</code>). 그 뒤 260721에 <b>다크 모드가 폐지</b>되면서 라이트만 남았고 — 스크림은 영구히 투명이 됐다. 즉 <b>고쳐놨던 것이 테마 축 변경으로 되살아난 회귀</b>다. 지금 값만 바꿔 고치면 다음 축 변경에서 또 되살아난다. 그래서 파도 0과 함께 <b>게이트(§3)가 반드시 동승해야 한다.</b></p>
+
+<h2>2. 보완 청사진 — 4파도</h2>
+<p>파도마다 커밋을 쪼개 <code>git revert</code> 한 줄로 되돌릴 수 있게 한다(방식론 §8). 전부 <b>기존 토큰·부품 계승</b> — 새 색·새 값 창작 0.</p>
+
+<div class="flow">파도 0 (가독)  →  파도 1 (흐름)  →  파도 2 (문법)  →  파도 3 (루프)
+   ↑ 게이트 G1 동승      ↑ D1·D2·D3 선행       ↑ 게이트 G2·G3 동승</div>
+<p>파도 0을 먼저 하는 이유: <b>읽히지 않는 화면 위에서는 흐름 개선의 효과를 눈으로 검증할 수 없다.</b> 파도 1이 결정 대기로 막혀도 파도 0·2는 독립 진행된다.</p>
+
+<h3><span class="tag t-p0">파도 0</span> 가독 복구 — 사용자가 "깨졌다"고 느끼는 그것</h3>
+<div class="tblwrap"><table>
+<tr><th>ID</th><th>할 일</th><th>손댈 곳</th></tr>
+<tr><td class="v">W0-1</td><td>스테이지 스크림을 라이트에도 부여 — 글자가 얹히는 구간만(전면 딤 금지: 캐릭터를 죽이지 않는다)</td><td><code>index.css</code> · <code>CharacterStage.tsx</code></td></tr>
+<tr><td class="v">W0-2</td><td>알약 네비·상단 유틸 유리를 "충분히 불투명 + 채도 차단"으로(§3-c) — blur는 유지</td><td><code>MyeongShell.tsx</code></td></tr>
+<tr><td class="v">W0-3</td><td>홈 히어로 날짜·이름을 2줄 이상에서 안 깨지는 구조로</td><td><code>Home.tsx</code> 247–253</td></tr>
+</table></div>
+
+<h3><span class="tag t-p1">파도 1</span> 흐름 봉합 — "흐름이 깨졌다"의 실체</h3>
+<div class="tblwrap"><table>
+<tr><th>ID</th><th>할 일</th><th>상태</th></tr>
+<tr><td class="v">W1-1</td><td>/result를 앱 셸에 편입 → 하단 네비 상주, 막다른 길 해소</td><td>즉시 가능</td></tr>
+<tr><td class="v">W1-2</td><td>정보구조 단일화: 하단 탭 5개 확장 <b>or</b> 세그먼트 폐지</td><td><span class="tag t-d">D2 결정</span></td></tr>
+<tr><td class="v">W1-3</td><td>분석 ↔ 결과 층위 정리: 1화면 통합 <b>or</b> 두 층 명시 명명</td><td><span class="tag t-d">D3 결정</span></td></tr>
+<tr><td class="v">W1-4</td><td>헤더 3요소를 sticky 단일 행으로(같은 레이어) + 중앙Y 1px 이내</td><td>즉시 가능</td></tr>
+<tr><td class="v">W1-5</td><td>캐릭터 정체성 단일화 — <code>chefs.ts</code> 레지스트리 단일 경유</td><td><span class="tag t-d">D1 결정</span></td></tr>
+</table></div>
+
+<h3><span class="tag t-p2">파도 2</span> 문법 통일 — 누적 부채</h3>
+<ul>
+<li><b>W2-1</b> 문자 도형·이모지 → <code>Pict</code> SVG 레지스트리 편입</li>
+<li><b>W2-2</b> '준비 중' 단일 표준 부품(dim + 배지, 셰브론 제거)</li>
+<li><b>W2-3</b> 폼 문법 = 섹션 라벨 축으로 통일</li>
+<li><b>W2-4</b> 형제 중앙 정렬 실측 스윕(1px 기준)</li>
+<li><b>W2-5</b> 최장 이름 오버플로 방어(max-width + 말줄임)</li>
+<li><b>W2-6</b> 스크롤 경계 어포던스(하단 페이드·안전 패딩) — C6·C7 동시 해소</li>
+<li><b>W2-7</b> 내부 라벨·의미축 정리(<code>solar</code>를 destructive에서 분리)</li>
+</ul>
+<p>⚠ <b>[4-1] 준수</b>: 소급 통일 캠페인이 아니다. 게이트에 등재된 축(토큰·색·공유 부품)만 강제하고, 나머지는 그 파일을 만질 때 곁들인다(touch-then-align).</p>
+
+<h3><span class="tag t-p3">파도 3</span> 재방문 루프 — 브랜드 핵심</h3>
+<p>확정 태그라인은 「당신의 운명을 위해, 오늘도 한 상.」 = <b>매일 들르는 집</b>인데, 지금 매일 올 이유는 '오늘 점수' 하나다.</p>
+<ul>
+<li><b>W3-1</b> 일진 다이어리 기록 UI — 엔진 <code>diaryDayInfo</code>가 이미 배선돼 있어 <b>코드측은 준비 완료</b></li>
+<li><b>W3-2</b> <code>/fun</code> = 8칸 중 7칸 '준비 중'인 빈 방 → 축소 또는 재편</li>
+</ul>
+
+<h2>3. 기계 게이트 — 청사진의 핵심</h2>
+<div class="gate">
+<p style="margin-bottom:6px">문장으로 막지 말고 <b>게이트로 막는다</b>([8] "훅이 문장보다 먼저 막는다"). 기존 <code>npm run verify</code> 6게이트에 렌더 기하 검사를 얹는다 — 스모크가 이미 실브라우저를 띄우고 있어 <b>새 인프라 없이 증분</b>으로 붙는다.</p>
+</div>
+<div class="tblwrap"><table>
+<tr><th>ID</th><th>게이트</th><th>무엇을 assert</th></tr>
+<tr><td class="v">G1</td><td>렌더 기하 회귀</td><td>① 글자가 얹히는 스테이지의 스크림 알파 &gt; 0 ② 유리 크롬 뒤 텍스트 투과 0 ③ 형제 중앙Y 차 ≤ 1px ④ 대표데이터(최장명)에서 오버플로 0 ⑤ 스크롤 클립 경계 아래 잘린 컨트롤 0</td></tr>
+<tr><td class="v">G2</td><td>글리프</td><td>소스에 문자 도형(‹ › ▶ ▼ ✓ ✎ ✉ ↗ □ ×)·이모지 0</td></tr>
+<tr><td class="v">G3</td><td>정체성</td><td>캐릭터 이름·플레이트 참조가 <code>chefs.ts</code> 단일 경유(하드코딩 <code>aisha.png</code> 류 0)</td></tr>
+</table></div>
+
+<h2>4. 운영자 결정 필요 — 파도 1 블로커</h2>
+<p>설명 대신 <b>플레이그라운드로 시안을 나란히 놓고</b> 고르게 한다([5]).</p>
+<div class="tblwrap"><table>
+<tr><th>ID</th><th>갈림길</th><th>지금 상태</th></tr>
+<tr><td class="v">D1</td><td>캐릭터 정체성 — 연리(주인장) · 아이샤 · 셰프단 기본캐(남신)의 관계</td><td>Q.16 미확정 1건과 <b>동일 축</b> — 이게 안 풀리면 W1-5 못 감</td></tr>
+<tr><td class="v">D2</td><td>정보구조 — 하단 탭 5개로 확장 vs 홈 세그먼트 유지</td><td>탭 4 / 드로어 5 불일치</td></tr>
+<tr><td class="v">D3</td><td>분석 ↔ 결과 — 1화면 통합 vs 2층 유지(명명 정리)</td><td>같은 목적지 3경로</td></tr>
+</table></div>
+
+<h2>5. 이 청사진이 안 하는 것</h2>
+<ul>
+<li>코드를 안 고친다 — 청사진 = 계획. 파도 0은 GO 즉시 착수 가능한 상태로 <b>명세만</b> 확정.</li>
+<li>새 색·새 값·새 컴포넌트를 창작하지 않는다 — 파도 전부 기존 토큰·부품 계승.</li>
+<li>D1~D3을 세션이 결정하지 않는다(3조1항 "디자인은 임의로 설계하는 게 아니다").</li>
+</ul>
+
+<footer>
+정본 = <code>docs/20260725_172039_UIUX보완청사진_v1.md</code> · 이 페이지는 폰 열람본(같은 내용)<br>
+렌더 조건 = 루트 <code>npm run build</code> → <code>app/dist</code> 서빙 → Chromium headless 390×844 · <code>?qa=1</code> 대표데이터(최장명 14자 · 23:59 야자시 경계 · 1999/12/31)
+</footer>
+
+</div>
+</body>
+</html>
