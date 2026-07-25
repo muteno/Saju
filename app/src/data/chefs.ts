@@ -43,14 +43,30 @@ export const CHEFS: readonly Chef[] = [
  */
 export const HOST_NAME = '연리'
 
-/** 셰프 전환 스위치 — 캐릭터 교체는 이 한 줄만 바꾼다 */
-export const ACTIVE_CHEF_ID = 'default'
+/**
+ * 셰프 전환 스위치 — 캐릭터 교체는 이 한 줄만 바꾼다.
+ * **`null` = 캐릭터 미배정**(운영자 260725: "기존 여자/남자 이미지는 그냥 없애. 아무 의미가 없음.
+ * 나중에 캐릭터 입힐 때 적용하도록") → 화면들이 이미지 레이어를 아예 렌더하지 않는다.
+ * 레지스트리·플레이트 파일·표정 컷 경로는 그대로 남아 있으니, 캐릭터가 확정되면
+ * 이 값을 `'default'`(또는 새 셰프 id)로 바꾸는 것만으로 3개소가 동시에 되살아난다.
+ */
+export const ACTIVE_CHEF_ID: string | null = null
 
-export function activeChef(): Chef {
-  return CHEFS.find((c) => c.id === ACTIVE_CHEF_ID) ?? CHEFS[0]
+export function activeChef(): Chef | null {
+  if (!ACTIVE_CHEF_ID) return null
+  return CHEFS.find((c) => c.id === ACTIVE_CHEF_ID) ?? null
 }
 
-/** 화면들이 쓰는 현재 플레이트 경로 */
-export function chefPlate(): string {
-  return activeChef().plate
+/** 화면들이 쓰는 현재 플레이트 경로 — null이면 캐릭터를 그리지 않는다 */
+export function chefPlate(): string | null {
+  return activeChef()?.plate ?? null
+}
+
+/**
+ * 캐릭터 아트가 화면에 있나. 레이아웃 분기용 —
+ * 캐릭터가 있으면 스테이지가 상주 크롬(햄버거·아바타) 아래로 콘텐츠를 밀어주지만,
+ * 없으면 본문이 직접 크롬을 피해야 한다(안 피하면 카드가 버튼에 깔린다).
+ */
+export function hasChef(): boolean {
+  return chefPlate() !== null
 }

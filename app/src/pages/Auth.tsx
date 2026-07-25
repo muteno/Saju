@@ -61,7 +61,8 @@ export function Login() {
   return (
     <Screen>
       <Box className="msd-fadein" sx={{ position: 'absolute', inset: 0 }}>
-        <Box sx={{ position: 'absolute', inset: 0, backgroundImage: `url('${PLATE}')`, backgroundSize: 'cover', backgroundPosition: 'top center', opacity: 0.18 }} />
+        {/* 캐릭터 배경은 미배정 시 안 깐다 — 18% 스크림 뒤 얼굴은 유령처럼만 보여 의미가 없었다 */}
+        {PLATE && <Box sx={{ position: 'absolute', inset: 0, backgroundImage: `url('${PLATE}')`, backgroundSize: 'cover', backgroundPosition: 'top center', opacity: 0.18 }} />}
         <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(238,240,246,.3) 0%, rgba(238,240,246,.92) 60%)' }} />
         <Box sx={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', px: 3.5 }}>
           <StatusBar />

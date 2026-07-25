@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>명식당 — 캐릭터 이미지 제거 + 글래스 통일 + 미연시 상담 동선</title>
+<style>
+:root{
+  --c-page:#eef0f6; --c-card:#fff; --c-ink:#1b1b1f; --c-ink-sub:#5b6070; --c-ink-faint:#9a9fb0;
+  --c-border:#e2e4ee; --c-border-strong:#d3d6e2; --c-primary:#22409e; --c-primary-soft:#e7ebf8;
+  --c-heading:#2a4bc0; --c-solar:#e85e5e; --tracking:-.03em;
+  --shadow-card:0 6px 20px rgba(20,22,40,.08);
+  --pretendard:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',Roboto,'Noto Sans KR',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--pretendard);font-weight:500;letter-spacing:var(--tracking);
+  background:radial-gradient(900px 600px at 12% -5%,#e7eeff 0%,transparent 55%),
+             radial-gradient(820px 600px at 100% 8%,#ffe9ec 0%,transparent 52%),
+             radial-gradient(760px 760px at 50% 108%,#e2f7ef 0%,transparent 55%),var(--c-page);
+  color:var(--c-ink);-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:28px 18px 72px}
+h1{font-size:25px;font-weight:800;margin:0 0 6px;color:var(--c-primary)}
+.sub{font-size:13px;color:var(--c-ink-sub);font-weight:600;line-height:1.6;margin:0 0 4px}
+h2{font-size:20px;font-weight:800;margin:36px 0 10px;padding-top:18px;border-top:1px solid var(--c-border)}
+h3{font-size:16px;font-weight:800;margin:24px 0 8px;color:var(--c-heading)}
+p{font-size:14.5px;line-height:1.65;color:var(--c-ink-sub);margin:0 0 10px}
+b,strong{color:var(--c-ink);font-weight:800}
+.card{background:var(--c-card);border:1px solid var(--c-border);border-radius:18px;box-shadow:var(--shadow-card);padding:16px 18px;margin:12px 0}
+.lead{background:var(--c-primary-soft);border-color:#cdd7f2}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:#f3f4fa;border:1px solid var(--c-border);border-radius:6px;padding:1px 5px;color:var(--c-primary)}
+ul{margin:0 0 10px;padding-left:20px}li{font-size:14.5px;line-height:1.6;color:var(--c-ink-sub);margin-bottom:5px}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0;border:1px solid var(--c-border);border-radius:14px;background:var(--c-card)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:13px}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--c-border);vertical-align:top;line-height:1.5}
+th{background:#f6f7fc;font-weight:800;color:var(--c-ink);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.v{color:var(--c-ink);font-weight:700}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 4px}
+.ba figure{margin:0}
+.ba img{width:100%;display:block;border-radius:12px;border:1px solid var(--c-border-strong);background:var(--c-card)}
+.ba figcaption{font-size:11px;font-weight:800;letter-spacing:0;margin-bottom:6px}
+.bef figcaption{color:var(--c-solar)}
+.aft figcaption{color:#2f6b52}
+.note{font-size:13px;color:var(--c-ink-sub);line-height:1.6;margin:2px 0 18px}
+.note b{color:var(--c-ink)}
+.one{max-width:420px;margin:10px 0}
+.one img{width:100%;display:block;border-radius:12px;border:1px solid var(--c-border-strong)}
+.try{display:inline-block;margin:4px 8px 4px 0;padding:11px 16px;border-radius:12px;background:var(--c-primary);color:#fff;font-size:14px;font-weight:800;text-decoration:none}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--c-border);font-size:12px;color:var(--c-ink-faint);font-weight:600;line-height:1.7}
+@media (prefers-color-scheme:dark){
+  :root{--c-page:#131315;--c-card:#1f1f22;--c-ink:#f1f1f4;--c-ink-sub:#a0a0a8;--c-ink-faint:#6a6a72;
+    --c-border:#2e2e33;--c-border-strong:#3a3a41;--c-primary:#8fa8ee;--c-primary-soft:#1c2340;--c-heading:#a8bcf4;--c-solar:#f07777}
+  body{background:radial-gradient(900px 600px at 12% -5%,#16323a 0%,transparent 55%),
+    radial-gradient(760px 600px at 100% 8%,#1a1730 0%,transparent 52%),var(--c-page)}
+  th{background:#26262b}code{background:#26262b}.aft figcaption{color:#8fd3b4}
+  .try{color:#0f1420}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>캐릭터 이미지 제거 · 글래스 통일 · 미연시 상담 동선</h1>
+<p class="sub">2026-07-25 · 지시 3건: "보이는 글자 영역은 글래스모피즘을 쓰되 깔끔하게" / "기존 여자·남자 이미지는 그냥 없애. 아무 의미가 없음. 나중에 캐릭터 입힐 때 적용하도록" / "사주 상담은 항상 미연시 방향으로 진행하게 해"</p>
+<p class="sub">아래 컷은 전부 <b>실제 렌더</b>(헤드리스 390×844 · <code>?qa=1</code>). 왼쪽 = 전(이미지 있던 상태), 오른쪽 = 후.</p>
+
+<div class="card lead">
+<h3 style="margin-top:0">지금 바로 해볼 수 있는 샘플</h3>
+<p>미연시 상담이 <b>첫 화면부터</b> 시작되는 링크다. 연리가 먼저 단정을 던지고 <b>[그… 맞아 / 아니, 딱히?]</b>로 갈린다.</p>
+<a class="try" href="https://saju.soong.kr/?qa=1&amp;view=result#chat">▶ 상담부터 시작해보기</a>
+<a class="try" href="https://saju.soong.kr/?qa=1" style="background:transparent;border:1.5px solid var(--c-primary);color:var(--c-primary)">앱 처음부터 둘러보기</a>
+<p style="margin-bottom:0"><b>로그인 없이</b> 열린다(<code>?qa=1</code> = 대표데이터 시드). 실제 내 사주로 보려면 앱에서 정보만 입력하면 된다.</p>
+</div>
+
+<h2>1. 캐릭터 이미지 제거 — 기제는 남겼다</h2>
+<div class="ba">
+  <figure class="bef"><figcaption>전 · 리포트</figcaption><img src="before/result.png" alt="전: 화면 상단 절반을 남자 캐릭터 그림이 차지한다"></figure>
+  <figure class="aft"><figcaption>후 · 리포트</figcaption><img src="after/result.png" alt="후: 그림이 사라지고 원국표가 첫 화면을 채운다"></figure>
+</div>
+<p class="note">그림이 먹던 300px이 <b>정보로 채워졌다</b> — 원국표 7행이 첫 화면에 다 들어온다. 지운 게 아니라 <b>잠갔다</b>: <code>chefs.ts</code>의 <code>ACTIVE_CHEF_ID = null</code> 한 줄이 스위치이고, 레지스트리·플레이트 파일·표정 컷 경로는 그대로 있다. 캐릭터가 확정되면 그 한 줄만 켜면 <b>3개소(홈 원형·분석 스테이지·로그인 배경)가 동시에 되살아난다.</b></p>
+
+<div class="ba">
+  <figure class="bef"><figcaption>전 · 홈</figcaption><img src="before/home.png" alt="전: 말풍선 아래 원형 캐릭터 그림이 있다"></figure>
+  <figure class="aft"><figcaption>후 · 홈</figcaption><img src="after/home.png" alt="후: 그림이 빠지고 운세 점수와 카드가 위로 올라왔다"></figure>
+</div>
+<p class="note">말풍선 <b>꼬리도 함께 떼어냈다</b> — 가리킬 캐릭터가 없는 꼬리는 허공을 가리킨다. 이것도 같은 스위치에 묶여 있어 캐릭터가 돌아오면 꼬리도 돌아온다.</p>
+
+<h2>2. 글래스모피즘 — 깔끔하게 한 값으로</h2>
+<div class="ba">
+  <figure class="bef"><figcaption>전 · 분석</figcaption><img src="before/analysis.png" alt="전: 카드 배경이 15%로 너무 투명해 경계가 흐리다"></figure>
+  <figure class="aft"><figcaption>후 · 분석</figcaption><img src="after/analysis.png" alt="후: 카드가 선명하게 떠 보이고 글자가 또렷하다"></figure>
+</div>
+<p class="note">글자가 얹히는 표면의 유리 값이 <code>--glass .15</code>와 <code>.glass-strong .55</code> 두 종류로 갈려 있었고, <b>.15는 카드 경계가 사라져 얼룩처럼 보였다</b>. 진한 쪽(<code>.55/.75</code>)으로 <b>수렴</b>시켰다 — 새 값을 만든 게 아니라 <b>이미 정본에 있던 두 값 중 하나를 골랐다</b>. 이제 글자 표면은 문법 1종이다. blur는 그대로라 유리감은 유지된다.</p>
+
+<h2>3. 미연시 상담이 주 동선</h2>
+<div class="one">
+  <img src="after/result-chat.png" alt="후: #chat 링크로 들어가면 연리의 정곡 단정과 선택지 두 개가 첫 화면에 나온다">
+</div>
+<p class="note"><b>전</b>: 리포트 7섹션 + 대운 레일을 다 지나야 대화가 나왔다 = 대화가 <b>부록</b>이었다.<br>
+<b>후</b>: 순서가 <b>원국표 → 연리 인사 → 연리와 상담 → 근거 리포트</b>로 바뀌었다. 상담이 결론이고 리포트는 그 결론의 <b>출처</b>다(섹션 이름도 「근거 리포트 — 어디서 나온 말인가」로).<br>
+<code>#chat</code> 딥링크를 새로 뚫어 링크 하나로 대화에 바로 착지한다(착지점은 상주 크롬 아래 102px — 햄버거에 첫 줄이 깔리지 않게 실측으로 맞췄다). 레퍼런스 정합: <b>마이파이</b>"리포트형이 아니라 대화식" · <b>헬로우봇</b> = 챗봇 상담이 축.</p>
+
+<h2>4. 이미지가 빠지면서 깨진 것 — 같이 고쳤다</h2>
+<div class="tblwrap"><table>
+<tr><th>증상</th><th>원인</th><th>수선</th></tr>
+<tr><td class="v">리포트 원국표가 햄버거·아바타에 깔림</td><td>스테이지가 사라지자 본문이 크롬 높이만큼 위로 올라옴</td><td>캐릭터 미배정일 때만 본문 상단 여백 확보(다른 셸 화면과 같은 리듬)</td></tr>
+<tr><td class="v">말풍선 꼬리가 허공을 가리킴</td><td>꼬리는 캐릭터를 가리키는 장치였음</td><td>같은 스위치에 묶어 함께 잠금</td></tr>
+<tr><td class="v">상태바 글자가 안 보임</td><td>어두운 사진용 밝은 글자(<code>dark</code>)로 고정돼 있었음</td><td>캐릭터 유무에 따라 자동 전환</td></tr>
+<tr><td class="v"><code>#chat</code> 링크가 해시를 잃음</td><td>QA 딥링크가 라우트를 갈아탈 때 해시를 버렸음</td><td>해시 보존</td></tr>
+</table></div>
+
+<h2>5. 게이트</h2>
+<p><code>npm run verify</code> <b>6/6 전부 통과</b>(파생물 → vendor 드리프트 → 엔진 테스트 19건 → 증류 인용 223건·리플레이 → 앱 빌드 → 브라우저 스모크). 경로 게이트의 기존 오탐도 해소돼 처음으로 완전 초록이다.</p>
+
+<footer>
+정본 = <code>docs/20260725_183000_UIUX_이미지제거_글래스_상담동선_v1.md</code> · 선행 = 청사진 <code>…172039…</code> · 재구성 <code>…181500…</code><br>
+렌더 조건 = 레포 루트 <code>npm run build</code> → <code>app/dist</code> 서빙 → Chromium headless 390×844 · <code>?qa=1</code> 대표데이터(최장명 14자 · 23:59 야자시 · 12/31)
+</footer>
+
+</div>
+</body>
+</html>

@@ -77,8 +77,13 @@ function QuickChip({ label, onClick }: { label: string; onClick: () => void }) {
   )
 }
 
-/** 캐릭터 원형 스테이지 — 플레이트 크롭(목업 v2: 230×170, 150% / 50% 22%) */
+/**
+ * 캐릭터 원형 스테이지 — 플레이트 크롭(목업 v2: 230×170, 150% / 50% 22%).
+ * 캐릭터 미배정이면 아무것도 그리지 않는다(빈 원 자리표시 금지 — 그림 없는 원은 의미가 없다).
+ * 캐릭터 확정 시 `chefs.ts`의 `ACTIVE_CHEF_ID`만 켜면 이 원이 그대로 돌아온다.
+ */
 function CharacterCircle() {
+  if (!PLATE) return null
   return (
     <Box sx={{ m: '8px auto 0', width: 230, height: 170, borderRadius: '50%', background: 'radial-gradient(circle at 50% 30%, var(--c-sky-bot), var(--c-sky-top))', position: 'relative', overflow: 'hidden' }}>
       <Box sx={{ position: 'absolute', inset: 0, backgroundImage: `url('${PLATE}')`, backgroundSize: '150%', backgroundPosition: '50% 22%' }} />
@@ -187,7 +192,8 @@ export default function Home() {
                 <Typography sx={{ fontSize: 14, fontWeight: 600, lineHeight: 1.45 }}>
                   오늘 일진은 <b>{today.dayName}</b>일. 생년월일시를 알려주면 그대 사주로 오늘을 차려드리지.
                 </Typography>
-                <Box sx={{ position: 'absolute', bottom: -7, left: 30, width: 0, height: 0, borderLeft: '8px solid transparent', borderRight: '8px solid transparent', borderTop: `9px solid ${tokens.color.primary}` }} />
+                {/* 말풍선 꼬리 — 아래 캐릭터를 가리키는 장치. 캐릭터 미배정이면 가리킬 대상이 없어 떼어낸다 */}
+                {PLATE && <Box sx={{ position: 'absolute', bottom: -7, left: 30, width: 0, height: 0, borderLeft: '8px solid transparent', borderRight: '8px solid transparent', borderTop: `9px solid ${tokens.color.primary}` }} />}
               </Box>
             </Box>
             <CharacterCircle />
@@ -235,7 +241,8 @@ export default function Home() {
               <Typography sx={{ fontSize: 14, fontWeight: 600, lineHeight: 1.45 }}>
                 오늘 일진은 <b>{today.dayName}</b>일. {fortune?.oneLine ?? ''}
               </Typography>
-              <Box sx={{ position: 'absolute', bottom: -7, left: 30, width: 0, height: 0, borderLeft: '8px solid transparent', borderRight: '8px solid transparent', borderTop: `9px solid ${tokens.color.primary}` }} />
+              {/* 말풍선 꼬리 — 아래 캐릭터를 가리키는 장치. 캐릭터 미배정이면 가리킬 대상이 없어 떼어낸다 */}
+              {PLATE && <Box sx={{ position: 'absolute', bottom: -7, left: 30, width: 0, height: 0, borderLeft: '8px solid transparent', borderRight: '8px solid transparent', borderTop: `9px solid ${tokens.color.primary}` }} />}
             </Box>
           </Box>
 
