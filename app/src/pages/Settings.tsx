@@ -68,9 +68,11 @@ export default function Settings() {
             <Box sx={{ width: 52, height: 52, borderRadius: '50%', bgcolor: tokens.color.primary, color: tokens.color.onPrimary, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, fontWeight: 800, flex: '0 0 auto' }}>
               {profile?.name?.[0] ?? '명'}
             </Box>
-            <Box sx={{ flex: 1 }}>
-              <Typography sx={{ fontSize: 16, fontWeight: 800, color: tokens.color.ink }}>{profile?.name ?? '프로필 없음'}</Typography>
-              <Typography sx={{ fontSize: 12, fontWeight: 600, color: tokens.color.inkSub }}>
+            {/* minWidth 0 + 말줄임 = 최장 이름이 카드를 밀어 '수정' 버튼과 세로 중앙을 어긋내던 것 해소
+                (260725 실측: 이름 중심Y 197 vs 수정 206 = 9px · [E8] 기준 1px) */}
+            <Box sx={{ flex: 1, minWidth: 0 }}>
+              <Typography noWrap sx={{ fontSize: 16, fontWeight: 800, color: tokens.color.ink }}>{profile?.name ?? '프로필 없음'}</Typography>
+              <Typography noWrap sx={{ fontSize: 12, fontWeight: 600, color: tokens.color.inkSub }}>
                 {profile
                   ? `양 ${profile.year}/${String(profile.month).padStart(2, '0')}/${String(profile.day).padStart(2, '0')} ${profile.hourUnknown ? '시간 모름' : `${String(profile.hour).padStart(2, '0')}:${String(profile.minute).padStart(2, '0')}`} · ${profile.city}`
                   : '사주를 입력해 주세요'}
@@ -99,7 +101,8 @@ export default function Settings() {
                     }
                   }}
                   role="button"
-                  sx={{ height: 36, display: 'inline-flex', alignItems: 'center', px: 1.6, borderRadius: '100px', fontSize: 12.5, fontWeight: 700, cursor: on ? 'default' : 'pointer', bgcolor: on ? tokens.color.primarySoft : 'rgba(255,255,255,.55)', border: on ? `1px solid ${tokens.color.primary}` : '1px solid rgba(255,255,255,.8)', backdropFilter: 'blur(11px)', WebkitBackdropFilter: 'blur(11px)', color: on ? tokens.color.primary : tokens.color.inkSub, ...press }}
+                  // maxWidth = 최장 이름에서 칩이 행을 다 먹고 '+ 추가'를 밀어내던 것 방어(여유 2자였다)
+                  sx={{ height: 36, maxWidth: 230, display: 'inline-flex', alignItems: 'center', px: 1.6, borderRadius: '100px', fontSize: 12.5, fontWeight: 700, cursor: on ? 'default' : 'pointer', bgcolor: on ? tokens.color.primarySoft : 'rgba(255,255,255,.55)', border: on ? `1px solid ${tokens.color.primary}` : '1px solid rgba(255,255,255,.8)', backdropFilter: 'blur(11px)', WebkitBackdropFilter: 'blur(11px)', color: on ? tokens.color.primary : tokens.color.inkSub, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', ...press }}
                 >
                   {p.name} · {String(p.year).slice(2)}년생
                 </Box>

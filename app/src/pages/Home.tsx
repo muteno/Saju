@@ -43,36 +43,8 @@ function CircleBtn({ children, label, onClick }: { children: ReactNode; label?: 
   )
 }
 
-/** 중앙 세그먼트 [오늘|내 원국] — 목업 v2: w196 알약, 선택 = 솔리드 코발트, 가운데 정렬 */
-export function HomeSegment({ tab, onMyday, onToday }: { tab: 'today' | 'myday'; onMyday?: () => void; onToday?: () => void }) {
-  const seg = (on: boolean, label: string, onClick?: () => void) => (
-    <Box
-      onClick={on ? undefined : onClick}
-      role={on ? undefined : 'button'}
-      sx={{
-        flex: 1,
-        textAlign: 'center',
-        py: '7px',
-        borderRadius: '100px',
-        bgcolor: on ? tokens.color.primary : 'transparent',
-        color: on ? tokens.color.onPrimary : tokens.color.inkSub,
-        fontSize: 12.5,
-        fontWeight: on ? 800 : 700,
-        cursor: on ? 'default' : 'pointer',
-        transition: 'transform .12s var(--ease)',
-        '&:active': on ? {} : { transform: 'scale(0.98)' },
-      }}
-    >
-      {label}
-    </Box>
-  )
-  return (
-    <Box sx={{ display: 'flex', m: '10px auto 0', borderRadius: '100px', background: 'rgba(255,255,255,.5)', border: '1px solid rgba(255,255,255,.7)', p: '3px', width: 196 }}>
-      {seg(tab === 'today', '오늘', onToday)}
-      {seg(tab === 'myday', '내 원국', onMyday)}
-    </Box>
-  )
-}
+/* 중앙 세그먼트 [오늘|내 원국]은 폐지(260725) — '내 원국'을 하단 탭으로 승격해 드로어 5항목과
+   1:1로 맞췄다. 같은 목적지에 진입로가 3개(드로어·세그먼트·버튼)였던 2중 문법 해소. */
 
 /** 바로가기 칩(가로 스크롤 행) — h36 글래스 알약 */
 function QuickChip({ label, onClick }: { label: string; onClick: () => void }) {
@@ -201,11 +173,12 @@ export default function Home() {
         <Box className="msd-fadein" sx={{ flex: 1, overflowY: 'auto' }}>
           <Box sx={{ background: heroBg, px: 2.5, pb: 3, minHeight: '100%', display: 'flex', flexDirection: 'column' }}>
             <StatusBar />
-            <HomeSegment tab="today" onMyday={() => nav('/myday')} />
-            <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: 1.2, mt: 2 }}>
+            {/* 온보딩 히어로도 본 히어로와 같은 세로 스택 문법(형제 화면 통일) */}
+            <Box sx={{ mt: 6 }}>
               <Box sx={{ lineHeight: 1.05 }}>
-                <Typography sx={{ fontSize: 12, fontWeight: 800, color: tokens.color.inkFaint }}>{today.month}월</Typography>
-                <Typography sx={{ fontSize: 24, fontWeight: 800, color: tokens.color.inkSub }}>{today.day}</Typography>
+                <Typography sx={{ fontSize: 12, fontWeight: 800, color: tokens.color.inkFaint }}>
+                  {today.month}월 {today.day}일
+                </Typography>
               </Box>
               <Typography sx={{ fontSize: 32, fontWeight: 800, color: tokens.color.ink }}>어서 오세요</Typography>
             </Box>
@@ -242,14 +215,18 @@ export default function Home() {
         {/* 히어로 */}
         <Box sx={{ background: heroBg, px: 2.5, pb: 2 }}>
           <StatusBar />
-          <HomeSegment tab="today" onMyday={() => nav('/myday')} />
 
-          <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: 1.2, mt: 2 }}>
-            <Box sx={{ lineHeight: 1.05 }}>
-              <Typography sx={{ fontSize: 12, fontWeight: 800, color: tokens.color.inkFaint }}>{today.month}월</Typography>
-              <Typography sx={{ fontSize: 24, fontWeight: 800, color: tokens.color.inkSub }}>{today.day}</Typography>
-            </Box>
-            <Typography sx={{ fontSize: 32, fontWeight: 800, color: tokens.color.ink }}>{profile.name}</Typography>
+          {/*
+            히어로 헤더 — 날짜 캡션 위, 이름 아래의 세로 스택.
+            전(260725 실측): 날짜블록과 이름을 한 행 flex-end로 놓아 이름이 2줄이 되면 43px 위로
+            침범해 엉켰다. 세로 스택은 이름이 몇 줄이 되든 날짜를 밀지 않는다(포스텔러 결과 헤더
+            문법 = 이름 대자 위·캡션 아래 계승). mt는 상주 크롬(top:50 + 44px) 아래로 내린 값.
+          */}
+          <Box sx={{ mt: 6 }}>
+            <Typography sx={{ fontSize: 12, fontWeight: 800, color: tokens.color.inkFaint }}>
+              {today.month}월 {today.day}일
+            </Typography>
+            <Typography sx={{ mt: 0.2, fontSize: 32, fontWeight: 800, color: tokens.color.ink, lineHeight: 1.15 }}>{profile.name}</Typography>
           </Box>
 
           {/* 말풍선 — 오늘 일진 실계산 */}
@@ -267,9 +244,9 @@ export default function Home() {
           {/* 액션 서클 + 오늘의 운세 점수(엔진 관계 기반 정책 점수) */}
           <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', mt: 1.5 }}>
             <Box sx={{ display: 'flex', gap: 1 }}>
-              <CircleBtn label="리포트" onClick={() => nav(`/result?${search}`)}>↗</CircleBtn>
-              <CircleBtn label="공유" onClick={onShareToday}>{sharedToday ? '✓' : '✉'}</CircleBtn>
-              <CircleBtn label="정보수정" onClick={() => nav('/input')}>✎</CircleBtn>
+              <CircleBtn label="리포트" onClick={() => nav(`/result?${search}`)}>{Pict.share(19)}</CircleBtn>
+              <CircleBtn label="공유" onClick={onShareToday}>{sharedToday ? Pict.check(19) : Pict.mail(19)}</CircleBtn>
+              <CircleBtn label="정보수정" onClick={() => nav('/input')}>{Pict.pencil(19)}</CircleBtn>
             </Box>
             {fortune && (
               <Box sx={{ textAlign: 'right' }}>

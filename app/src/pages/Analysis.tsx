@@ -3,14 +3,12 @@ import { Box, Typography } from '@mui/material'
 import { useNavigate, Navigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
 import MyeongShell from '../components/MyeongShell'
+import CharacterStage from '../components/CharacterStage'
 import { GlassButton, SectionTitle } from './Home'
 import { tokens } from '../theme'
 import { computeChartUI, jeonggokRaw, type UiChart } from '../engine'
 import { toReading, type Reading } from '../data/saju'
 import { activeProfile, profileToInput, profileToSearch } from '../data/profiles'
-import { chefPlate } from '../data/chefs'
-
-const PLATE = chefPlate()
 
 function GlassChip({ label }: { label: string }) {
   return (
@@ -68,23 +66,18 @@ export default function Analysis() {
   return (
     <MyeongShell active="analysis">
       <Box className="msd-fadein" sx={{ flex: 1, overflowY: 'auto' }}>
-        {/* 스테이지 — 하늘 그라데이션 + 캐릭터 플레이트 + 하단 페이드 */}
-        <Box sx={{ position: 'relative', minHeight: 380 }}>
-          <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, var(--c-sky-top) 0%, var(--c-sky-mid) 55%, var(--c-sky-bot) 100%)' }} />
-          <Box sx={{ position: 'absolute', inset: 0, backgroundImage: `url('${PLATE}')`, backgroundSize: 'cover', backgroundPosition: 'top center' }} />
-          <Box sx={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: '45%', background: 'linear-gradient(180deg, rgba(238,240,246,0) 0%, var(--c-page) 96%)' }} />
-          <Box sx={{ position: 'relative', display: 'flex', flexDirection: 'column', minHeight: 380 }}>
-            <StatusBar dark />
-            <Box sx={{ flex: 1 }} />
-            <Box sx={{ px: 2.5, pb: 1.75, textAlign: 'center' }}>
-              <Box sx={{ display: 'inline-block', px: 1.6, py: 0.5, borderRadius: '100px', bgcolor: tokens.color.primary, color: tokens.color.onPrimary, fontWeight: 800, fontSize: 13.5, boxShadow: '0 4px 12px rgba(34,64,158,.35)' }}>
-                {profile.name}님의 사주분석
-              </Box>
-              <Typography sx={{ mt: 1.2, fontSize: 26, fontWeight: 800, color: tokens.color.ink }}>{reading.headline}</Typography>
-              <Typography sx={{ mt: 0.5, fontSize: 13, fontWeight: 700, color: tokens.color.inkSub }}>{subline}</Typography>
+        {/* 스테이지 — 공용 부품(CharacterStage) 계승. 이름 알약은 최장 이름에서도 안 터지게 폭 제한 */}
+        <CharacterStage>
+          <StatusBar dark />
+          <Box sx={{ flex: 1 }} />
+          <Box sx={{ px: 2.5, pb: 1.75, textAlign: 'center' }}>
+            <Box sx={{ display: 'inline-block', maxWidth: '100%', px: 1.6, py: 0.5, borderRadius: '100px', bgcolor: tokens.color.primary, color: tokens.color.onPrimary, fontWeight: 800, fontSize: 13.5, boxShadow: '0 4px 12px rgba(34,64,158,.35)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              {profile.name}님의 사주분석
             </Box>
+            <Typography sx={{ mt: 1.2, fontSize: 26, fontWeight: 800, color: tokens.color.ink }}>{reading.headline}</Typography>
+            <Typography sx={{ mt: 0.5, fontSize: 13, fontWeight: 700, color: tokens.color.inkSub }}>{subline}</Typography>
           </Box>
-        </Box>
+        </CharacterStage>
 
         <Box sx={{ px: 2.5, pb: '120px' }}>
           <SectionTitle>타고난 특성</SectionTitle>

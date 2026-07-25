@@ -4,7 +4,7 @@ import { useNavigate, Navigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
 import MyeongShell from '../components/MyeongShell'
 import SajuTable from '../components/SajuTable'
-import { HomeSegment, GlassButton, SectionTitle } from './Home'
+import { GlassButton, SectionTitle } from './Home'
 import { tokens } from '../theme'
 import { computeChartUI, type UiChart } from '../engine'
 import { todayInfo, myTodayFortune, ohaengWithoutHour, type OhaengStat } from '../data/saju'
@@ -67,9 +67,9 @@ export default function Myday() {
       <Box className="msd-fadein" sx={{ flex: 1, overflowY: 'auto' }}>
         <Box sx={{ background: 'linear-gradient(180deg,#e7eeff 0%, var(--c-page) 70%)', px: 2.5, pb: '120px' }}>
           <StatusBar />
-          <HomeSegment tab="myday" onToday={() => nav('/')} />
 
-          <Typography sx={{ mt: 2.2, fontSize: 22, fontWeight: 800, color: tokens.color.ink }}>{profile.name}님의 사주 원국</Typography>
+          {/* 헤더 — 상주 크롬(햄버거·아바타)이 top:50에 떠 있으므로 제목은 그 아래에서 시작한다 */}
+          <Typography sx={{ mt: 6.5, fontSize: 22, fontWeight: 800, color: tokens.color.ink }}>{profile.name}님의 사주 원국</Typography>
           <Typography sx={{ fontSize: 12.5, fontWeight: 600, color: tokens.color.inkSub, mt: 0.4 }}>
             양 {profile.year}/{String(profile.month).padStart(2, '0')}/{String(profile.day).padStart(2, '0')} {timeLabel} · {profile.city}
             {corrected}
