@@ -644,25 +644,40 @@ export default function DosaChat({
         {/* 배경이 보이는 구역 — 인물은 **배경 그 자체**라 여기엔 아무것도 안 세운다.
             화면 위쪽은 통째로 인물 몫이고, 원국만 그 좌상단에 얹힌다. */}
         <Box sx={{ position: 'relative', flex: '1 1 auto', minHeight: 0 }}>
-          {/* 원국 = 우측. 판·띠 없이 글자만 얹는다. ⚠ 위치는 **위쪽 구역의 아래끝**(인물 가슴께,
-              대화 바로 위) — 운영자 260727 스샷 주석으로 내려온 자리다. 얼굴을 비우고 신원과 짝을 이룬다.
-              낭독 대상에서는 뺀다 — 간지 8자를 그냥 읽으면 소음이다. */}
-          <Box aria-hidden sx={{ position: 'absolute', right: 14, bottom: 30, zIndex: 2 }}>
+          {/* 신원 + 원국 = **한 유리 도형 안에 붙여서**(운영자 260727 "둘의 간격이 아주 멀어 거의
+              둘이 붙어있게 · 글래스로 그 두개를 감싸줘 도형으로"). 좌우 끝에 떨어뜨려 놓으니
+              두 개의 딴 물건으로 읽혔다 — 하나로 묶으면 「누구의 어떤 판인가」 한 덩어리가 된다.
+              표면은 말풍선과 같은 유리(검정 베이스 + blur) · 낭독 대상에서는 뺀다. */}
+          <Box
+            aria-hidden
+            sx={{
+              position: 'absolute',
+              left: 16,
+              bottom: 30,
+              zIndex: 2,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '12px',
+              p: '8px 12px',
+              borderRadius: '14px',
+              bgcolor: YG.bubbleBg,
+              border: `1px solid ${YG.line}`,
+              backdropFilter: YG.blurBubble,
+              WebkitBackdropFilter: YG.blurBubble,
+            }}
+          >
+            {who && (
+              <Box>
+                <Typography sx={{ fontSize: 14, fontWeight: 800, color: YG.fg, lineHeight: 1.3, whiteSpace: 'nowrap' }}>
+                  {who.name}
+                </Typography>
+                <Typography sx={{ mt: 0.2, fontSize: 11.5, color: YG.fg2, opacity: 0.9, lineHeight: 1.35, whiteSpace: 'nowrap' }}>
+                  {who.born}
+                </Typography>
+              </Box>
+            )}
             <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
           </Box>
-          {/* 좌상단 신원 — 원국 맞은편(운영자 260727 예시 표기 그대로 · 좌측 정렬) */}
-          {who && (
-            <Box sx={{ position: 'absolute', left: 16, bottom: 30, zIndex: 2, maxWidth: '52%' }}>
-              {/* 사진 위에 바로 얹히는 글자 = 밝게 + 어두운 헤일로(예타 `.ymeter` 문법 계승).
-                  배경 밝기가 인물마다 달라 어느 쪽에서도 읽히게 하려면 헤일로가 필요하다. */}
-              <Typography sx={{ fontSize: 14, fontWeight: 800, color: 'var(--c-card)', lineHeight: 1.3, textShadow: '0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent)' }}>
-                {who.name}
-              </Typography>
-              <Typography sx={{ mt: 0.3, fontSize: 11.5, color: 'var(--c-card)', opacity: 0.9, lineHeight: 1.4, textShadow: '0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent)' }}>
-                {who.born}
-              </Typography>
-            </Box>
-          )}
         </Box>
 
         {/* ── 하단 묶음 = [블라인더] 위에 [대화 → 선택지 → 입력창] ──
