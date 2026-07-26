@@ -13,7 +13,11 @@ export interface Chef {
   name: string
   /** 상담 컨셉 한 줄 — 셰프마다 다르게 채운다 */
   concept: string
-  /** 캐릭터 플레이트 경로(public) — 4인은 **배경 키잉된 투명 PNG**(표정 컷 01번을 플러드필로 딴 것) */
+  /**
+   * 캐릭터 플레이트 = **운영자가 준 원본 레퍼런스 그대로**(`chef-refs/`의 사본).
+   * ⚠ 260726 사고: 생성 컷을 키잉해 플레이트로 썼다가 **화풍이 바뀐 그림**이 화면에 올랐다.
+   * 인물 사진은 손대지 않는다 — 생성물은 파생일 뿐 플레이트가 아니다.
+   */
   plate: string
   /** 표정 컷(선택) — 정본 원본 갤러리. 대화 연출(DosaChat) 배선 시 사용 */
   cuts?: Record<string, string>
@@ -35,13 +39,13 @@ export const CHEFS: readonly Chef[] = [
     id: 'noona',
     name: '홍화동녀',
     concept: '홍화동녀(紅花童女) — 은백발에 붉은 입술, 서늘한 뱀파이어 결의 여성 도사. 남성 사용자 상담. 먼저 찌르고 본다',
-    plate: '/assets/chef-noona.png',
+    plate: '/assets/chef-noona.jpg',
   },
   {
     id: 'baekui',
     name: '단리아',
     concept: '단리아 — 흰 도복에 검은 오비, 정통 일본식 결의 여성 도사. 말수가 적고 정확하다(여성 일반 상담)',
-    plate: '/assets/chef-baekui.png',
+    plate: '/assets/chef-baekui.jpg',
   },
   {
     id: 'doryeong',
@@ -50,7 +54,7 @@ export const CHEFS: readonly Chef[] = [
       '알카사르 발렌타인(Alcazar Valentine · 遏架沙 伐戀泰因) — 계해년 계해월 신유일 정유시의 극음 사주. ' +
       '핏기 없는 피부에 흑발, 목을 감싸는 고풍스러운 의상. 오만하고 냉정하되 격식을 지키는 클래식한 귀족. ' +
       '그림자를 다루는 음(陰)의 술사. 여성 사용자 상담',
-    plate: '/assets/chef-doryeong.png',
+    plate: '/assets/chef-doryeong.jpg',
   },
   {
     id: 'dongja',
@@ -59,7 +63,7 @@ export const CHEFS: readonly Chef[] = [
       '설향 동자(雪響 童子) — 계해년 정축월 임자일 신축시. 귀문관살·백호대살에 해자축 방합이 겹친 빙천 사주. ' +
       '7~8세에 성장이 멈춘 모습, 눈부시게 흰 옷과 초점 없는 백색 눈동자, 붉은 염주. 평소엔 감정이 없다가 ' +
       '접신하면 목소리가 변해 신탁을 내린다. 알카사르 앞에서만 온순하다',
-    plate: '/assets/chef-dongja.png',
+    plate: '/assets/chef-dongja.jpg',
   },
   {
     id: 'default',
