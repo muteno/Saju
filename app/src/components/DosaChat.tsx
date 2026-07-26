@@ -647,18 +647,18 @@ export default function DosaChat({
           {/* 원국 = 우측. 판·띠 없이 글자만 얹는다. ⚠ 위치는 **위쪽 구역의 아래끝**(인물 가슴께,
               대화 바로 위) — 운영자 260727 스샷 주석으로 내려온 자리다. 얼굴을 비우고 신원과 짝을 이룬다.
               낭독 대상에서는 뺀다 — 간지 8자를 그냥 읽으면 소음이다. */}
-          <Box aria-hidden sx={{ position: 'absolute', right: 14, bottom: 10, zIndex: 2 }}>
+          <Box aria-hidden sx={{ position: 'absolute', right: 14, bottom: 30, zIndex: 2 }}>
             <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
           </Box>
           {/* 좌상단 신원 — 원국 맞은편(운영자 260727 예시 표기 그대로 · 좌측 정렬) */}
           {who && (
-            <Box sx={{ position: 'absolute', left: 16, bottom: 10, zIndex: 2, maxWidth: '52%' }}>
+            <Box sx={{ position: 'absolute', left: 16, bottom: 30, zIndex: 2, maxWidth: '52%' }}>
               {/* 사진 위에 바로 얹히는 글자 = 밝게 + 어두운 헤일로(예타 `.ymeter` 문법 계승).
                   배경 밝기가 인물마다 달라 어느 쪽에서도 읽히게 하려면 헤일로가 필요하다. */}
               <Typography sx={{ fontSize: 14, fontWeight: 800, color: 'var(--c-card)', lineHeight: 1.3, textShadow: '0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent)' }}>
                 {who.name}
               </Typography>
-              <Typography sx={{ mt: 1, fontSize: 11.5, color: 'var(--c-card)', opacity: 0.9, lineHeight: 1.4, textShadow: '0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent)' }}>
+              <Typography sx={{ mt: 0.3, fontSize: 11.5, color: 'var(--c-card)', opacity: 0.9, lineHeight: 1.4, textShadow: '0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent)' }}>
                 {who.born}
               </Typography>
             </Box>
