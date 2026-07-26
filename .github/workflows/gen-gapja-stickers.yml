@@ -8,11 +8,11 @@ name: gen-gapja-stickers
 on:
   workflow_dispatch:
     inputs:
-      halmeoni:
-        description: '할머니 도사 컷도 함께 생성 (chef-halmeoni-v1)'
+      chefs:
+        description: '성별 분기 도사 2인도 함께 생성 (기본 no — 운영자 GO 전엔 켜지 말 것)'
         type: choice
         default: 'no'
-        options: ['no', '1컷', '3컷']
+        options: ['no', '대표1컷', '3컷']
 
 jobs:
   generate:
@@ -41,14 +41,14 @@ jobs:
           fi
           python .github/scripts/gen_gapja_stickers.py
 
-      # 할머니 도사(셰프단 후보) — 같은 시크릿·같은 러너를 쓰니 한 dispatch에 얹는다.
-      # 기본 'no' = 스티커만. 컷당 과금이라 선택을 명시로 둔다.
-      - name: Generate 할머니 도사 cuts
-        if: ${{ inputs.halmeoni != 'no' }}
+      # 성별 분기 도사 2인(셰프단 후보) — 같은 시크릿·같은 러너라 한 dispatch에 얹는다.
+      # 기본 'no' = 스티커만. 컷당 과금 + 연령 축 미확정이라 켜는 건 명시 선택으로 둔다.
+      - name: Generate 성별 분기 도사 cuts
+        if: ${{ inputs.chefs != 'no' }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
-          CUTS_ALL: ${{ inputs.halmeoni == '3컷' && '1' || '0' }}
-        run: python .github/scripts/gen_chef_halmeoni_v1.py
+          CUTS_ALL: ${{ inputs.chefs == '3컷' && '1' || '0' }}
+        run: python .github/scripts/gen_chefs_gendered_v1.py
 
       - name: Commit results to main
         run: |
