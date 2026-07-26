@@ -1,0 +1,18 @@
+# OAuth 계정 자동 승격(sticky failover) — GH_VARS_TOKEN PAT 권한 실측용(수동 디스패치).
+# 정본 = nomute-editor 이식팩 §2-d (사주 차용 260726 · 사용법 = docs/oauth_계정로테이션_차용.md).
+# 통과 로그 = 「🎉 PAT 실측 통과」 · 403 = PAT에 Variables: Read and write 권한/레포 접근 누락.
+name: account-selftest
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Variables API PAT 실측(read/write/delete)
+        env:
+          GH_VARS_TOKEN: ${{ secrets.GH_VARS_TOKEN }}
+          ACTIVE_ACCOUNT: ${{ vars.ACTIVE_ACCOUNT || 'MUTENO' }}
+        run: python3 shared/account_failover.py --selftest

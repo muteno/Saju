@@ -70,6 +70,8 @@ npm run build:kb      # kb 번들(app/public/kb-<hash>.json + vendor/kb_ref.json
 
 20. **상담 탭 = 미연시 무대(← Q.41, 260726 · 드래프트 PR — 운영자 지시로 미머지)** — **화면 정본 갱신점(다음 세션 필독)**: ⓐ`/talk` = 무대 문법 단독: 중앙 표제 한 줄(「당신의 사주팔자를 들여다봅니다」 — 제목+부제 2단 폐지) → **도트 캐릭터**(`components/PixelDosa.tsx` — 16×19 도트 맵·색 전량 토큰 참조·**width는 16의 배수만**[도트당 정수 px, crispEdges 우글거림 방지]) → **원국 상시 펼침**(`DosaChat` 내 `VnChart`: 년월일시+간지 8타일·십성 행 비노출) → 글라스 선택지(분류 키워드 mini 폐지·**blur 비장착** = 유리 표면 7장 방지) → 그라데이션 대사 구역. 하단 「사주 분석 풀이 보기」 CTA 제거 ⓑ**대화 시기 표기 = 연도**(`jeonggok.ts` EVENT = `birthYear+age`년 · LLM 프롬프트 동일 지시) — 나이(N세) 표기 금지(운영자 260726) ⓒ정곡 오프닝 = 단정+`ask` 훅(「…그것 때문에 왔지?」) · choose 인사 3형(초면/정곡 경유/재방문) ⓓ**포커스 부상** = `jeonggok.focus`+`TOPIC_FOCUS` → 관련 기둥 translateY·scale(이웃 겹침 zIndex 필수) ⓔ**덜컹 = WAAPI `rumble`** — key 리마운트 금지(근거 details 접힘 소실)·WAAPI는 reduced-motion CSS 밖이라 JS 가드 필수 ⓕ화자명 잔재 소탕: `functions/api/dosa.ts` '아이샤'→'연리'. ⚠대기 = 말투 분열(LLM 존댓말 vs L3 반말 도사체) · 도트캐↔셰프 플레이트 관계(캐릭터 확정 시).
 
+21. **OAuth 계정 로테이션 레일(← Q.42, 260726 · PR #127 드래프트 동승)** — nomute-editor 차용: `shared/claude_transient.sh`·`claude_py.py`(런타임 폴오버 SSOT — 쿼터 시 ALT→ALT2→ALT3 전환·5xx 재시도·preflight) + `shared/account_failover.py`(sticky 승격 — 체인 = **MUTENO→NOMUTEFB→EMS1130G→MUTENONA→EMS1130M→EMS1130N** 6계정 순환) + `account-selftest.yml`. **사용법·완성형 env 블록 = `docs/oauth_계정로테이션_차용.md`**(Claude 호출 워크플로 만들 때 §3 블록 4개 복사 = 즉시 로테이션). 사본 갱신 규약 = 정본(nomute-editor) diff 후 재복사(손편집 금지). ⚠운영자 액션 = `GH_VARS_TOKEN` PAT(Variables: Read and write) 등록 → account-selftest 런 「🎉 PAT 실측 통과」 확인(그전까지 승격만 no-op·폴오버는 동작).
+
 ## 상용화 로드맵 (사용자 결정 필요 — 세션이 임의 진행 금지)
 
 | 축 | 내용 | 선행 조건 |
