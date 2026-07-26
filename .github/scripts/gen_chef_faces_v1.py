@@ -254,7 +254,9 @@ def grid_ok(sheet: Image.Image) -> bool:
 
 
 # ── 생성 ──────────────────────────────────────────────────────────────────────
-def gen_sheet(chef: str, label: str, out: pathlib.Path, prompt: str, stem: str, face: bool) -> Image.Image:
+def gen_sheet(chef: str, label: str, out: pathlib.Path, prompt: str, stem: str, face: bool, lock: bool) -> Image.Image:
+    """lock=True면 input_fidelity=high — 인물을 지켜야 하는 모드(표정·장면)에서만 건다.
+    배경 모드는 인물을 지우는 게 목적이라 걸면 오히려 방해된다."""
     dst = out / f"{stem}.png"
     if dst.exists():
         print(f"  ↷ {chef} {label} 이미 있음")
@@ -263,7 +265,7 @@ def gen_sheet(chef: str, label: str, out: pathlib.Path, prompt: str, stem: str, 
     data = {"model": MODEL, "prompt": prompt, "size": SHEET_SIZE, "quality": QUALITY, "n": "1"}
     # gpt-image-1 계열에서 원본 얼굴을 지키는 유일한 손잡이. gpt-image-2는 항상 고충실도라
     # 이 값을 보내면 요청이 거부된다 → 모델명으로 분기한다.
-    fidelity = not MODEL.startswith("gpt-image-2")
+    fidelity = lock and not MODEL.startswith("gpt-image-2")
     if fidelity:
         data["input_fidelity"] = "high"
     for attempt in range(3):
@@ -304,14 +306,18 @@ def slice_sheet(sheet: Image.Image, out: pathlib.Path, names: list[str], ext: st
 
 def run(chef: str, mode: str) -> None:
     spec = {
-        "faces": ("faces", EXPRESSIONS, face_prompt, "png", "표정", True),
-        "poses": ("poses", POSES, pose_prompt, "png", "장면", False),
-        "bgs": ("bg", BG_THEMES, bg_prompt, "jpg", "배경", False),
+        #        폴더    항목          프롬프트     확장자  이름   얼굴크롭  인물잠금
+        "faces": ("faces", EXPRESSIONS, face_prompt, "png", "표정", True, True),
+        "poses": ("poses", POSES, pose_prompt, "png", "장면", False, True),
+        "bgs": ("bg", BG_THEMES, bg_prompt, "jpg", "배경", False, False),
     }[mode]
-    tag, items, mk, ext, human, face = spec
-    out = ROOT / f"app/public/reports/chef-{chef}-{tag}-v1"
+    tag, items, mk, ext, human, face, lock = spec
+    # v2 = 이 파일의 프롬프트·격자·fidelity 개정판 산출물. 1차 런(v1)은 지우지 않는다 —
+    # 사고 기록이자 대조군이고, 같은 폴더에 쓰면 기존 01.png 때문에 새 시트가 영영 안 돈다.
+    out = ROOT / f"app/public/reports/chef-{chef}-{tag}-{os.environ.get('VER', 'v2')}"
     out.mkdir(parents=True, exist_ok=True)
-    limit = int(os.environ.get("SHEETS", "0")) or len(items) // PER
+    limit = int(os.environ.get("SHEETS", "").strip() or 0) or len(items) // PER
+    limit = min(limit, len(items) // PER)
     print(f"▶ {chef} {human} — 시트 {limit}장 × {PER}칸 = {limit * PER}컷")
     for s in range(limit):
         batch = items[s * PER : (s + 1) * PER]
@@ -320,7 +326,7 @@ def run(chef: str, mode: str) -> None:
             print(f"  ↷ 시트 {s + 1} {PER}컷 전부 존재 — 건너뜀")
             continue
         prompt = mk(batch) if mode == "bgs" else mk(CHEFS[chef], batch)
-        sheet = gen_sheet(chef, f"{human} 시트 {s + 1}", out, prompt, f"{tag}-sheet{s + 1}", face)
+        sheet = gen_sheet(chef, f"{human} 시트 {s + 1}", out, prompt, f"{tag}-sheet{s + 1}", face, lock)
         slice_sheet(sheet, out, names, ext)
         print(f"    · {names[0]}~{names[-1]}.{ext}")
     (out / "INDEX.md").write_text(
