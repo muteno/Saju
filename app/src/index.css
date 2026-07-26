@@ -370,3 +370,23 @@ button {
     -webkit-text-fill-color: color-mix(in srgb, var(--c-card) 58%, transparent);
   }
 }
+
+/**
+ * 기운 테두리 — 원국의 오행 분포가 도형을 감싸고 **시계 반대 방향**으로 돈다
+ * (운영자 260727 "각각의 기운이 섞인 색이 나오게 · 특정 색이 강하면 그 오행 색이 감싸게 ·
+ *  비슷하면 2가지까지 섞여서 디밍 · 시계 반대방향으로 이징하면서 자연스럽게").
+ *
+ * ⚠ 회전 자체는 `linear`다 — 360° 순환에 ease를 걸면 한 바퀴마다 **이음매에서 멈칫**한다.
+ * 「자연스럽게」는 밝기 호흡(`--ease`)이 맡는다: 도는 건 고르게, 숨은 부드럽게.
+ * `reverse` = 시계 반대 방향.
+ */
+@keyframes msd-orbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes msd-breathe {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .msd-aura { animation: none !important; }
+}

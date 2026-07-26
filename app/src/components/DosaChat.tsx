@@ -4,6 +4,7 @@ import { Box, Typography } from '@mui/material'
 import MiniChart from './MiniChart'
 import { Pict } from './MyeongShell'
 import { tokens } from '../theme'
+import type { OhaengKey } from '../theme'
 import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, chartSummaryOf } from '../data/dosaTopics'
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
@@ -42,6 +43,31 @@ const TYPE_MS = 28
 const LOG_H = 330
 /** 자유 질문 길이 상한 — 서버(functions/api/dosa.ts MAX_QUESTION)와 같은 값 */
 const MAX_ASK = 300
+
+/**
+ * 기운 색 — 원국 여덟 자의 오행을 세어 **감싸는 색**을 고른다(운영자 260727).
+ * · 한 기운이 뚜렷하면 그 색 하나로 감싼다
+ * · 1·2위가 비슷하면(차이 1 이하) **두 색까지 섞는다** — 세 개 넘게 섞으면 그냥 무지개가 된다
+ * 색은 오행 라벨 토큰(`--oh-label-*`) 계승 = 신규 색 0.
+ */
+const OH_VAR: Record<OhaengKey, string> = {
+  목: 'var(--oh-label-mok)',
+  화: 'var(--oh-label-hwa)',
+  토: 'var(--oh-label-to)',
+  금: 'var(--oh-label-geum)',
+  수: 'var(--oh-label-su)',
+}
+function auraColors(pillars: Pillar[]): string[] {
+  const n = new Map<OhaengKey, number>()
+  for (const p of pillars) {
+    for (const el of [p.ganE, p.jiE]) if (el) n.set(el, (n.get(el) ?? 0) + 1)
+  }
+  const rank = [...n.entries()].sort((a, b) => b[1] - a[1])
+  if (!rank.length) return [OH_VAR.금]
+  const top = rank[0]
+  const second = rank[1]
+  return second && top[1] - second[1] <= 1 ? [OH_VAR[top[0]], OH_VAR[second[0]]] : [OH_VAR[top[0]]]
+}
 
 /**
  * 채팅 표면 = **예타 값 그대로**(운영자 260727 "그냥 예타에 있는 값을 그대로 가져오는게 어때?").
@@ -603,6 +629,9 @@ export default function DosaChat({
           ? TOPICS.map((t) => ({ key: t.key, label: t.label, seen: seen.has(t.key), onPick: () => selectTopic(t) }))
           : []
 
+  /** 감싸는 기운 색 — 원국이 바뀌지 않으면 다시 세지 않는다 */
+  const aura = useMemo(() => auraColors(pillars), [pillars])
+
   /** 다음 메시지가 남아 있나 — 진행 버튼을 띄울지 가른다 */
   const hasNext = !tw.done || queue.length > 0 || stage === 'play'
 
@@ -652,20 +681,41 @@ export default function DosaChat({
             aria-hidden
             sx={{
               position: 'absolute',
-              left: 16,
+              right: 16, // 운영자 260727 — 도형 자체를 우측 정렬
               bottom: 30,
               zIndex: 2,
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '12px',
-              p: '8px 12px',
               borderRadius: '14px',
-              bgcolor: YG.bubbleBg,
-              border: `1px solid ${YG.line}`,
-              backdropFilter: YG.blurBubble,
-              WebkitBackdropFilter: YG.blurBubble,
+              p: '1px', // 테두리 두께 = 이 여백만큼만 기운 색이 드러난다
+              overflow: 'hidden',
+              isolation: 'isolate',
             }}
           >
+            {/* 기운 테두리 — 원국 오행이 섞인 원뿔 그라데이션이 **시계 반대**로 돈다.
+                흰색을 한 스톱 섞어 은은하게 디밍되고, 안쪽 유리 판이 가운데를 덮어 1px 링만 남는다. */}
+            <Box
+              className="msd-aura"
+              sx={{
+                position: 'absolute',
+                inset: '-60%',
+                background: `conic-gradient(from 0deg, ${aura
+                  .map((c, i) => `color-mix(in srgb, ${c} 78%, transparent) ${(i * 360) / aura.length}deg`)
+                  .join(', ')}, color-mix(in srgb, var(--c-card) 55%, transparent) ${360 / (aura.length * 2) + 180}deg, color-mix(in srgb, ${aura[0]} 78%, transparent) 360deg)`,
+                animation: 'msd-orbit 16s linear infinite reverse, msd-breathe 5.5s var(--ease) infinite',
+              }}
+            />
+            <Box
+              sx={{
+                position: 'relative',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                p: '8px 12px',
+                borderRadius: '13px',
+                bgcolor: YG.bubbleBg,
+                backdropFilter: YG.blurBubble,
+                WebkitBackdropFilter: YG.blurBubble,
+              }}
+            >
             {who && (
               <Box>
                 <Typography sx={{ fontSize: 14, fontWeight: 800, color: YG.fg, lineHeight: 1.3, whiteSpace: 'nowrap' }}>
@@ -676,7 +726,8 @@ export default function DosaChat({
                 </Typography>
               </Box>
             )}
-            <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
+              <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
+            </Box>
           </Box>
         </Box>
 
