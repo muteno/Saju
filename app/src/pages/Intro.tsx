@@ -86,6 +86,21 @@ export default function Intro() {
   // 운세 한 줄 = 엔진 REL_PHRASE 정본이 전부 「사건 — 처방」 2절 구조다(index.js 160~170).
   // 운영자 260726: "문단 맺음때마다 줄바뀌게" → 절 경계에서만 끊고 문안 자체는 손대지 않는다.
   const fortuneLines = fortune ? fortune.oneLine.split(' — ').map((s, i) => (i === 0 ? s : `— ${s}`)) : []
+  // 원국 카드 머리 — "누구의, 어떤 입력으로 뽑은 표인가"를 표 위에 한 줄로(운영자 260726).
+  // 순서 = 생년월일 · 시각+시주 · 보정 · (야자시) · 출생지. 유파 보정은 출생지 앞이 운영자 지정.
+  // 값은 전부 입력·엔진 산출 실값 — 화면 어디에도 없던 정보가 아니라 흩어져 있던 것의 집약이다.
+  const pad = (n: number) => String(n).padStart(2, '0')
+  const birthMeta = (() => {
+    const b = resolved.input
+    const hourJi = pillars.find((p) => p.title === '시')?.jiK
+    // 날짜+시각+시주는 '언제 태어났나' 한 덩어리 → 공백으로 이어 붙이고, 유파·장소만 ' · '로 끊는다
+    const when = `${b.year}. ${b.month}. ${b.day}.${resolved.hourUnknown ? ' 시간 모름' : ` ${pad(b.hour)}:${pad(b.minute)}${hourJi ? ` ${hourJi}시` : ''}`}`
+    const out = [when]
+    if (showCorrected) out.push(`보정 ${chart.corrected!.minutes}분`)
+    if (b.lateZiRule === 'keepDay') out.push('야자시')
+    out.push(resolved.city)
+    return out.join(' · ')
+  })()
   // 근거 라벨 칩 — ReportCard의 chips 규격 그대로 계승(값 신설 0)
   const chipSx = {
     display: 'inline-block',
@@ -189,6 +204,20 @@ export default function Intro() {
             표는 fluid = 형제 카드와 같은 폭(전엔 279px로 혼자 좁았다 — 390 화면 실측). */}
         <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5 }}>
           <Box className="glass" sx={{ mt: 2.5, borderRadius: '18px', p: 2 }}>
+            {/* ⚠ 신규 요소(§B4) — 표 위 1줄. 이름만 굵게, 괄호 안은 캡션 굵기로 이어 흘린다
+                (최장명 14자에서도 한 문단 안에서 자연 줄바꿈되게 inline span) */}
+            <Typography sx={{ fontSize: 11.5, fontWeight: 600, color: tokens.color.inkSub, lineHeight: 1.55, mb: 1.4 }}>
+              {resolved.name ? (
+                <>
+                  <Box component="span" sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.ink }}>
+                    {resolved.name}
+                  </Box>{' '}
+                  ({birthMeta})
+                </>
+              ) : (
+                birthMeta
+              )}
+            </Typography>
             <SajuTable pillars={pillars} unknownHour={resolved.hourUnknown} fluid />
             <Box sx={{ mt: 1.6 }}>
               <OhaengStrip ohaeng={ohaeng} total={ohaengTotal} bare />
