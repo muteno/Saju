@@ -93,7 +93,7 @@ export function makeTheme(mode: Mode) {
     },
     shape: { borderRadius: 12 },
     typography: {
-      fontFamily: 'var(--pretendard)',
+      fontFamily: 'var(--font-sans)',
       fontWeightRegular: 500, // 기본 Medium
       allVariants: { letterSpacing: 'var(--tracking)' },
       h1: { fontSize: 26, fontWeight: 800 },

@@ -22,6 +22,7 @@
     "--c-sky-top",
     "--c-solar",
     "--ease",
+    "--font-sans",
     "--glass",
     "--glass-inset",
     "--glass-line",
@@ -32,13 +33,12 @@
     "--oh-label-mok",
     "--oh-label-su",
     "--oh-label-to",
-    "--pretendard",
     "--shadow-card",
     "--stage-scrim",
     "--tracking"
   ],
   "baseline": {
-    "hex": 37,
+    "hex": 36,
     "rgba": 42
   }
 }

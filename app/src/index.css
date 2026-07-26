@@ -1,5 +1,47 @@
+/* 페이퍼로지(Paperlogy) — 앱 본문 서체(운영자 260726 지정 · 원본 TTF = assets/fonts/paperlogy/).
+   ttf(1.3MB/웨이트)는 모바일에 못 올린다 → woff2 재인코딩(≈420KB/웨이트, fontTools).
+   **쓰는 웨이트만 5장**: 400·500(본문 기본)·600·700·800. 900 요청은 CSS 매칭이 800으로 내려앉고
+   300 이하는 400으로 올라앉는다(파일 4장 = 1.7MB 절약).
+   ⚠ 이 서체엔 간지 한자 14자(庚壬癸辰卯亥酉 등)가 **없다** — cmap 실측. 없는 글자는 뒤 스택으로
+   자동 폴백하므로 명식은 지금처럼 그대로 뜬다(폴백 제거 금지). swap = 글자가 먼저 보이고 뒤에 갈린다. */
+@font-face {
+  font-family: 'Paperlogy';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Paperlogy-4Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Paperlogy';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Paperlogy-5Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Paperlogy';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Paperlogy-6SemiBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Paperlogy';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Paperlogy-7Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Paperlogy';
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Paperlogy-8ExtraBold.woff2') format('woff2');
+}
+
 :root {
-  --pretendard: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+  --font-sans: Paperlogy, 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
     'Apple SD Gothic Neo', Roboto, 'Noto Sans KR', system-ui, sans-serif;
   /* 전역 자간 기준 (자간 -10) */
   --tracking: -0.03em;
@@ -108,7 +150,7 @@ body {
 }
 
 body {
-  font-family: var(--pretendard);
+  font-family: var(--font-sans);
   font-weight: 500; /* 기본 Medium */
   letter-spacing: var(--tracking);
   background: radial-gradient(1200px 800px at 50% -10%, #2a2c3a 0%, #16171f 60%, #0d0e14 100%);
