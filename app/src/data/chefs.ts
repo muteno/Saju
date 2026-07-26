@@ -1,5 +1,5 @@
 /**
- * 셰프단 캐릭터 레지스트리(골격) — 명식당 상담 캐릭터 = 수셰프·셰프들 멀티 페르소나
+ * 셰프단 캐릭터 레지스트리(골격) — 연식당 상담 캐릭터 = 수셰프·셰프들 멀티 페르소나
  * (STATUS 결정 로그 「260721 캐릭터 체제」: 셰프마다 컨셉·상담 스타일이 다름).
  *
  * 규약: 플레이트 = `app/public/assets/chef-<id>.jpg` — 셰프당 1파일, 화면 3개소
@@ -19,7 +19,40 @@ export interface Chef {
   cuts?: Record<string, string>
 }
 
+/**
+ * 두 상담 도사의 이름은 **아직 없다**(운영자 미확정). 화자 이름표를 비울 수는 없어서
+ * 미연시 관례대로 `???`로 뜬다 — 이름이 정해지면 각 항목의 `name`만 갈아 끼운다
+ * (§B4 신규 요소 · 확인 대상).
+ */
+const UNNAMED = '???'
+
 export const CHEFS: readonly Chef[] = [
+  /**
+   * 260726 체제 확장(운영자 구술) — **상담 상대의 성별로 도사가 갈린다.**
+   * 남성 사용자 = `noona`(은백발 기센 언니) · 여성 사용자 = `doryeong`(갓 쓴 흑발 도령).
+   * 플레이트·표정 컷은 아직 0장이라 화면은 폴백 카드로 뜬다(`ChefCard`) — 파일이 들어오면
+   * 경로만 실물로 바뀌고 코드는 그대로다.
+   */
+  {
+    id: 'noona',
+    name: UNNAMED,
+    concept: '은백발 기센 언니 도사 — 남성 사용자 상담. 서늘하게 단정하고 먼저 찔러 본다',
+    plate: '/assets/chef-noona.jpg',
+  },
+  {
+    id: 'doryeong',
+    name: UNNAMED,
+    concept: '갓 쓴 흑발 도령 도사 — 여성 사용자 상담. 능청스럽게 웃으며 파고든다',
+    plate: '/assets/chef-doryeong.jpg',
+  },
+  {
+    // 260726 3인째(운영자 첨부 3컷) — 백발 동자승. 백사를 두른 흰 도복 정본 + 캐주얼 변주 1컷.
+    // 배정 축 미정: 성별 분기 2인의 '곁'인지 독립 상담역인지 운영자 확정 대기.
+    id: 'dongja',
+    name: UNNAMED,
+    concept: '백발 동자승 — 백사를 두른 흰 도복. 어리지만 말은 어른보다 정확하다',
+    plate: '/assets/chef-dongja.jpg',
+  },
   {
     id: 'default',
     name: '기본캐(이름 미정)',
@@ -36,7 +69,7 @@ export const CHEFS: readonly Chef[] = [
 ]
 
 /**
- * 명식당 주인장 도사 이름 — 화자 이름표의 단일 출처.
+ * 연식당 주인장 도사 이름 — 화자 이름표의 단일 출처.
  * 260721 브랜드 확정값(緣理). 드로어("주인 연리")·홈 카피("연리에게 물어볼까요")가 이미 쓰는 이름이라
  * 리포트·대화 화자도 여기에 맞춘다(그 전엔 리포트만 구 이름 '아이샤'로 남아 한 앱에 이름이 2개였다).
  * ⚠ 연리 ↔ 셰프단(기본캐 포함)의 배치·총칭 관계는 Q.16 미확정 — 확정되면 이 상수와 CHEFS의 관계를 정리한다.
@@ -69,4 +102,25 @@ export function chefPlate(): string | null {
  */
 export function hasChef(): boolean {
   return chefPlate() !== null
+}
+
+/**
+ * 상담 상대의 성별 → 무대에 서는 도사(운영자 260726: "남자를 상대할땐 이 캐릭터 / 여자를 상대할땐 이 캐릭터").
+ * 성별 값은 사주 입력의 `gender`(대운 순역 계산에 쓰는 그 값)를 그대로 읽는다.
+ */
+export const chefForGender = (g?: 'M' | 'F'): Chef => CHEFS.find((c) => c.id === (g === 'M' ? 'noona' : 'doryeong'))!
+
+/** 맞은편 도사 — 빗맞혔을 때 밀고 들어오는 쪽(교체 연출) */
+export const counterpartChef = (id: string): Chef => CHEFS.find((c) => c.id === (id === 'noona' ? 'doryeong' : 'noona'))!
+
+/**
+ * 교체 난입 대사 — 운영자 구술 정본:
+ * "다른 애가 자연스럽게 촤르륵하면서 사진 보이면서 끼어들면서 '거 보쇼 쉬고 계시오 내가 하려니까'"
+ * (여→남 교체의 경우). 반대 방향은 같은 뜻을 언니 말투로 뒤집었다.
+ */
+export const BARGE_LINE: Record<string, string> = {
+  // 도령이 밀고 들어옴(언니가 빗맞힌 뒤)
+  doryeong: '거 보쇼. 쉬고 계시오, 내가 하려니까.',
+  // 언니가 밀고 들어옴(도령이 빗맞힌 뒤)
+  noona: '됐고. 비켜 봐, 내가 볼게.',
 }
