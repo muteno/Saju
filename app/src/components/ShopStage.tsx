@@ -35,8 +35,26 @@ export default function ShopStage({
   children?: ReactNode
 }) {
   const [broken, setBroken] = useState(false)
+  const [bgBroken, setBgBroken] = useState(false)
   return (
     <Box sx={{ position: 'relative', minHeight: height, overflow: 'hidden' }}>
+      {/* ⓪ 배경 — 벚꽃 흩날리는 목조 상담방(운영자 260726 무드 정본). 없으면 하늘 토큰 그라데이션으로
+          폴백해 무대가 비지 않는다. 위에 유리·글자가 얹히므로 살짝 눌러(밝기·채도) 깐다. */}
+      {!bgBroken ? (
+        <Box
+          component="img"
+          src="/assets/shop-bg.jpg"
+          alt=""
+          aria-hidden
+          onError={() => setBgBroken(true)}
+          sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(.85) brightness(1.06)' }}
+        />
+      ) : (
+        <Box
+          aria-hidden
+          sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, var(--c-sky-top) 0%, var(--c-sky-mid) 55%, var(--c-sky-bot) 100%)', opacity: 0.5 }}
+        />
+      )}
       {/* ① 간판 — 「緣食堂」. 뒤에 눌러앉아 공간의 이름을 말한다(장식이라 aria-hidden) */}
       <Box
         aria-hidden

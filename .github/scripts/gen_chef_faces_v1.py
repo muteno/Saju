@@ -35,18 +35,39 @@ SIZE = "1536x1024"
 QUALITY = "high"
 CELL = 512
 
+# 캐릭터 4인(운영자 260726 확정 — 첨부 레퍼런스 7컷 실측)
 CHEFS = {
-    # 남성 사용자 상대 — 은백발 기센 언니
-    "noona": "은백색 땋은 머리에 호박색 눈, 붉은 눈꼬리 화장과 진한 레드 립, 검정 민소매 하이넥을 입은 여성 도사",
-    # 여성 사용자 상대 — 갓 쓴 흑발 도령(운영자 "메인이 1번")
-    "doryeong": "챙 넓은 검정 갓을 쓰고 흑발에 형광 호박색 눈, 창백한 피부에 옅은 보랏빛 실금 문양이 있는 검정 도포 차림의 남성 도사",
-    # 3인째 — 백발 동자승(운영자 260726 첨부)
-    "dongja": "새하얀 단발머리에 큰 눈, 흰 도복과 회색 하카마를 입고 흰 뱀을 곁에 둔 어린 동자승",
+    # ① 여성 A — "좀 뱀파이어 느낌"(운영자). 남성 사용자 상담 배정
+    "noona": "은백색 긴 땋은 머리에 호박색 눈, 붉은 눈꼬리 화장과 진한 레드 립, 검정 매니큐어, "
+             "검정 민소매 하이넥 니트에 금 체인 보석 펜던트를 한 창백하고 서늘한 여성 도사",
+    # ② 여성 B — "정통 일본식"(운영자). 흰 도복 + 검은 오비 + 올림머리
+    "baekui": "은백색 머리를 높이 틀어 올리고 잔머리가 흘러내리는, 흰 기모노풍 도복에 검은 오비를 두른 "
+              "단정하고 기품 있는 성인 여성 도사. 역광이 드는 목조 실내가 어울리는 정통 일본식 인상",
+    # ③ 남성 — 갓 쓴 흑발 도령(운영자 "메인이 1번")
+    "doryeong": "챙 넓은 검정 갓을 쓰고 흑발에 형광 호박색 눈, 창백한 피부에 옅은 보랏빛 실금 문양이 번진 "
+                "검정 도포 차림의 남성 도사. 옷깃은 가슴이 드러나지 않게 여며 입는다",
+    # ④ 동자 — 음양(흑백) 동자승. 운영자 260726 이미지 교체본
+    "dongja": "머리 절반은 새하얗고 절반은 새까만 음양 대비의 어린 동자승. 흰쪽 눈과 검은쪽 눈 색이 다르고, "
+              "왼쪽은 흰 도복 오른쪽은 검은 도복인 흑백 반반 한복을 입었다. 태극 문양이 늘 곁에 있다",
 }
 
 # 상황 시트(전신·배경 포함) — 운영자 260726: "배경이나 관련된 전신 모습도 하나뽑을때 16개 또는 20개
 # 뽑아서 잘라서 쓰는거로". 표정 시트가 얼굴이라면 이쪽은 **장면 카드**다(대사창 위에 깔리는 그림).
-POSE_COLS, POSE_ROWS = 4, 4  # 16칸(=SHEET_20=1이면 5×4=20칸)
+POSE_COLS, POSE_ROWS = 4, 4  # 세로 1024x1536 시트를 4×4 = 16칸(256×384 = 2:3 세로) — 전신이 안 눌린다
+POSE_SIZE = "1024x1536"
+
+# 배경 시트 — 운영자 260726: "10번 뽑지말고 한 페이지에 여러개 … 더 많이 뽑아서 다채롭게".
+# 세로 1024x1536을 2열×3행 = 6칸(512×512)으로 자르고 시트 2장 = **캐릭터당 12배경**(요청은 2번).
+# 1:1을 고른 이유: 무대(ShopStage)가 가로로 넓은 판이라 세로 셀은 좌우가 잘리고, 정사각은
+# object-fit: cover로 어느 비율에도 손실이 가장 적다.
+BG_COLS, BG_ROWS, BG_SHEETS = 2, 3, 2
+BG_SIZE = "1024x1536"
+BG_THEMES = [
+    "이른 아침, 마당에 옅은 안개와 이슬", "한낮의 볕이 마루에 길게 드는 시간", "벚꽃이 만개해 꽃잎이 흩날리는 마당",
+    "비 내리는 처마 밑, 물방울이 떨어지는 툇마루", "노을이 격자문을 물들이는 저녁", "달빛과 등불이 켜진 밤 마당",
+    "첫눈이 내려 앉은 우물가", "바람에 대나무가 흔들리는 뒷마당", "연못에 연꽃이 핀 여름 마루",
+    "낙엽이 쌓인 가을 툇마루", "새벽 미명, 아직 불이 꺼지지 않은 방", "장맛비 갠 뒤 무지개가 걸린 하늘",
+]
 POSES = [
     "상담석에 앉아 손님을 맞이함", "만세력을 펼쳐 짚어 봄", "붓으로 무언가를 적음", "찻잔을 내밂",
     "일어서서 창밖을 봄", "팔짱을 끼고 내려다봄", "손끝으로 허공에 괘를 그림", "고개를 숙여 인사",
@@ -96,13 +117,14 @@ def gen_sheet(chef: str, idx: int, out: pathlib.Path, prompt: str, stem: str) ->
     if dst.exists():
         print(f"  ↷ {chef} 시트 {idx} 이미 있음")
         return Image.open(dst).convert("RGBA")
-    ref = REFS / f"{chef}.png"
-    if not ref.exists():
-        sys.exit(f"::error::레퍼런스 없음 — {ref.relative_to(ROOT)} 를 먼저 올려라(운영자 첨부본)")
-    data = {"model": "gpt-image-1", "prompt": prompt, "size": SIZE, "quality": QUALITY, "n": "1"}
+    cands = sorted(q for q in REFS.glob(f"{chef}.*") if q.suffix.lower() in (".png", ".jpg", ".jpeg", ".jfif", ".webp"))
+    if not cands:
+        sys.exit(f"::error::레퍼런스 없음 — app/public/reports/chef-refs/{chef}.* 를 먼저 올려라")
+    ref = cands[0]
+    data = {"model": "gpt-image-1", "prompt": prompt, "size": os.environ.get("_SIZE", SIZE), "quality": QUALITY, "n": "1"}
     for attempt in range(3):
         with ref.open("rb") as fh:
-            r = requests.post(API, headers=AUTH, data=data, files={"image": (ref.name, fh, "image/png")}, timeout=900)
+            r = requests.post(API, headers=AUTH, data=data, files={"image": (ref.name, fh, "image/jpeg" if ref.suffix.lower() in (".jpg", ".jpeg", ".jfif") else "image/png")}, timeout=900)
         if r.status_code == 200:
             raw = base64.b64decode(r.json()["data"][0]["b64_json"])
             dst.write_bytes(raw)
@@ -133,11 +155,60 @@ def pose_prompt(who: str, poses: list[str], cols: int, rows: int) -> str:
     )
 
 
+def bg_prompt(who: str, themes: list[str], cols: int, rows: int) -> str:
+    """캐릭터의 '테마 배경' 시트 — **인물은 그리지 않는다**(위에 스탠딩이 얹힌다).
+
+    무드 정본(운영자 260726): "이게 진짜 식당이 아니라 사쿠라 피는 곳에 마당에 우물 있을 법한
+    목재 가옥 느낌 전통과 음양조화 느낌 물씬". 그래서 간판·식당 소품이 아니라 **가옥과 마당**이다.
+    """
+    cells = " ".join(f"{i}번 칸: {t}." for i, t in enumerate(themes, start=1))
+    return (
+        f"한국·일본 전통 목조 가옥과 그 마당을 그린 배경 일러스트 {cols * rows}장을, "
+        f"가로 {cols}칸 × 세로 {rows}칸의 **정확히 균등한 격자**로 한 장에 담아라. "
+        "**모든 칸에 인물이 한 명도 없어야 한다.** 각 칸은 독립된 배경화다. "
+        "공통 무대: 벚나무가 선 안마당, 돌로 두른 오래된 우물, 격자 미닫이문과 툇마루가 있는 목조 가옥, "
+        "낮은 돌담과 이끼. 식당·간판·상점 요소는 넣지 마라 — 이곳은 가게가 아니라 **오래된 집**이다. "
+        "전체를 관통하는 정서는 **음양의 조화**다: 밝음과 어둠, 흰빛과 먹빛, 물과 돌이 한 화면에서 짝을 이룬다. "
+        f"칸마다 시간·계절·날씨만 다르게 한다. {cells} "
+        "아트 스타일: 비주얼노벨 배경 일러스트 — 또렷한 원근, 부드러운 셀 채색, 수묵의 여백감. "
+        "채도와 대비는 낮게 가라앉힌다(위에 흰 유리 카드와 글자가 얹힌다). 화면 중앙은 비교적 비워 둔다. "
+        "화면에 글자·간판·로고·워터마크·격자선·프레임을 그리지 말 것."
+    )
+
+
 def main() -> None:
     want = os.environ.get("CHEFS", "all")
     keys = list(CHEFS) if want in ("all", "both") else [want]
     mode = os.environ.get("MODE", "faces")  # faces = 표정 15×N · poses = 장면 16 또는 20
+    if mode == "bgs":
+        os.environ["_SIZE"] = BG_SIZE
+        n = BG_COLS * BG_ROWS
+        for chef in keys:
+            out = ROOT / f"app/public/reports/chef-{chef}-bg-v1"
+            out.mkdir(parents=True, exist_ok=True)
+            print(f"▶ {chef} 배경 — 시트 {BG_SHEETS}장 × {n}칸 = {BG_SHEETS * n}배경")
+            for sh in range(BG_SHEETS):
+                themes = BG_THEMES[sh * n : (sh + 1) * n]
+                if all((out / f"{sh * n + i + 1:02d}.jpg").exists() for i in range(n)):
+                    print(f"  ↷ 시트 {sh + 1} 전부 존재 — 건너뜀")
+                    continue
+                sheet = gen_sheet(chef, sh + 1, out, bg_prompt(CHEFS[chef], themes, BG_COLS, BG_ROWS), f"bg-sheet{sh + 1}")
+                cw, ch = sheet.width / BG_COLS, sheet.height / BG_ROWS
+                for i in range(n):
+                    r, c = divmod(i, BG_COLS)
+                    dst = out / f"{sh * n + i + 1:02d}.jpg"
+                    if dst.exists():
+                        continue
+                    sheet.crop((round(c * cw), round(r * ch), round((c + 1) * cw), round((r + 1) * ch))).convert("RGB").save(dst, quality=88)
+            (out / "INDEX.md").write_text(
+                "# 배경 인덱스\n\n" + "\n".join(f"- `{i + 1:02d}.jpg` — {t}" for i, t in enumerate(BG_THEMES[: BG_SHEETS * n])) + "\n",
+                encoding="utf-8",
+            )
+            print(f"  → {out} 에 {len(list(out.glob('*.jpg')))}장")
+        return
+
     if mode == "poses":
+        os.environ["_SIZE"] = POSE_SIZE
         cols, rows = (5, 4) if os.environ.get("SHEET_20") == "1" else (POSE_COLS, POSE_ROWS)
         for chef in keys:
             out = ROOT / f"app/public/reports/chef-{chef}-poses-v1"

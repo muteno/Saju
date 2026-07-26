@@ -28,29 +28,33 @@ const UNNAMED = '???'
 
 export const CHEFS: readonly Chef[] = [
   /**
-   * 260726 체제 확장(운영자 구술) — **상담 상대의 성별로 도사가 갈린다.**
-   * 남성 사용자 = `noona`(은백발 기센 언니) · 여성 사용자 = `doryeong`(갓 쓴 흑발 도령).
-   * 플레이트·표정 컷은 아직 0장이라 화면은 폴백 카드로 뜬다(`ChefCard`) — 파일이 들어오면
-   * 경로만 실물로 바뀌고 코드는 그대로다.
+   * 260726 캐릭터 4인 확정(운영자 첨부 레퍼런스 7컷 실측 · `app/public/reports/chef-refs/`).
+   * 배정 = 상담 상대의 성별. 여성 도사 2인은 결이 다르다 — noona는 "좀 뱀파이어 느낌",
+   * baekui는 "정통 일본식"(운영자 구술). 플레이트는 아직 0장이라 화면은 폴백으로 뜨고,
+   * `chef-<id>.jpg`가 들어오면 코드 변경 없이 그림으로 바뀐다.
    */
   {
     id: 'noona',
     name: UNNAMED,
-    concept: '은백발 기센 언니 도사 — 남성 사용자 상담. 서늘하게 단정하고 먼저 찔러 본다',
+    concept: '은백발 · 서늘한 뱀파이어 결의 여성 도사 — 남성 사용자 상담. 먼저 찌르고 본다',
     plate: '/assets/chef-noona.jpg',
+  },
+  {
+    id: 'baekui',
+    name: UNNAMED,
+    concept: '흰 도복 · 정통 일본식 결의 여성 도사 — 단정하고 기품 있다. 말수가 적고 정확하다',
+    plate: '/assets/chef-baekui.jpg',
   },
   {
     id: 'doryeong',
     name: UNNAMED,
-    concept: '갓 쓴 흑발 도령 도사 — 여성 사용자 상담. 능청스럽게 웃으며 파고든다',
+    concept: '갓 쓴 흑발 도령 — 여성 사용자 상담. 능청스럽게 웃으며 파고든다',
     plate: '/assets/chef-doryeong.jpg',
   },
   {
-    // 260726 3인째(운영자 첨부 3컷) — 백발 동자승. 백사를 두른 흰 도복 정본 + 캐주얼 변주 1컷.
-    // 배정 축 미정: 성별 분기 2인의 '곁'인지 독립 상담역인지 운영자 확정 대기.
     id: 'dongja',
     name: UNNAMED,
-    concept: '백발 동자승 — 백사를 두른 흰 도복. 어리지만 말은 어른보다 정확하다',
+    concept: '음양 반반(흑백) 동자승 — 어리지만 말은 어른보다 정확하다. 흑백 어느 쪽도 편들지 않는다',
     plate: '/assets/chef-dongja.jpg',
   },
   {
