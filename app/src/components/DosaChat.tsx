@@ -298,6 +298,7 @@ export default function DosaChat({
   onChef,
   who,
   onNav,
+  onBeat,
 }: {
   report: ReportBundle
   /** 좌상단 미니 명식에 박히는 원국(UiChart.pillars — 시일월년 순) */
@@ -312,6 +313,11 @@ export default function DosaChat({
   onChef?: (chef: Chef) => void
   /** 좌상단 신원 두 줄 — 이름(별명) / 생년월일·시주 */
   who?: { name: string; born: string }
+  /**
+   * 지금 화자가 **무얼 하고 있나**를 한 줄로 알린다(운영자 260727 "행위자의 감정이나 열중하는
+   * 작업 이런 것들이 간접적으로 나타나게"). 상단 미터줄이 이 문장을 빛 스윕으로 흘린다.
+   */
+  onBeat?: (text: string) => void
   /** 입력행 좌측 도크의 메뉴 이동(예타 `.ydock` 문법 — 하단 바가 곧 입력행이라 여기가 유일한 출구) */
   onNav?: (to: string) => void
 }) {
@@ -514,6 +520,27 @@ export default function DosaChat({
     }
   }
 
+  /**
+   * 상황 한 줄 — **직접 감정을 말하지 않고** 하는 짓으로 비춘다(간접 표현).
+   * 정곡을 던지는 중 = 판을 짚는 손 · 답을 기다림 = 눈을 들어 봄 · 풀이 중 = 붓을 놀림 ·
+   * 자유 질문 대기 = 판을 다시 들여다봄.
+   */
+  const beat = asking
+    ? '판을 다시 들여다봅니다'
+    : // ⚠ 정곡은 **타이핑 판정보다 먼저** 본다 — 이 국면은 늘 말이 흐르는 중이라
+      // 뒤에 두면 「판을 짚어 내려갑니다」가 한 번도 안 뜬다(260727 실측).
+      stage === 'jeonggok'
+      ? '판을 짚어 내려갑니다'
+      : queue.length || !tw.done
+        ? '천천히 말을 고릅니다'
+        : stage === 'play'
+          ? '풀이를 이어갑니다'
+          : '당신의 사주를 봅니다'
+  useEffect(() => {
+    onBeat?.(beat)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [beat])
+
   const onTap = () => {
     if (!tw.done) {
       tw.skip()
@@ -598,14 +625,15 @@ export default function DosaChat({
         {/* 배경이 보이는 구역 — 인물은 **배경 그 자체**라 여기엔 아무것도 안 세운다.
             화면 위쪽은 통째로 인물 몫이고, 원국만 그 좌상단에 얹힌다. */}
         <Box sx={{ position: 'relative', flex: '1 1 auto', minHeight: 0 }}>
-          {/* 원국 = **우상단**(운영자 260727 최종). 판·띠 없이 글자만 얹는다.
+          {/* 원국 = 우측. 판·띠 없이 글자만 얹는다. ⚠ 위치는 **위쪽 구역의 아래끝**(인물 가슴께,
+              대화 바로 위) — 운영자 260727 스샷 주석으로 내려온 자리다. 얼굴을 비우고 신원과 짝을 이룬다.
               낭독 대상에서는 뺀다 — 간지 8자를 그냥 읽으면 소음이다. */}
-          <Box aria-hidden sx={{ position: 'absolute', right: 14, top: 2, zIndex: 2 }}>
+          <Box aria-hidden sx={{ position: 'absolute', right: 14, bottom: 10, zIndex: 2 }}>
             <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
           </Box>
           {/* 좌상단 신원 — 원국 맞은편(운영자 260727 예시 표기 그대로 · 좌측 정렬) */}
           {who && (
-            <Box sx={{ position: 'absolute', left: 16, top: 2, zIndex: 2, maxWidth: '52%' }}>
+            <Box sx={{ position: 'absolute', left: 16, bottom: 10, zIndex: 2, maxWidth: '52%' }}>
               {/* 사진 위에 바로 얹히는 글자 = 밝게 + 어두운 헤일로(예타 `.ymeter` 문법 계승).
                   배경 밝기가 인물마다 달라 어느 쪽에서도 읽히게 하려면 헤일로가 필요하다. */}
               <Typography sx={{ fontSize: 14, fontWeight: 800, color: 'var(--c-card)', lineHeight: 1.3, textShadow: '0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent)' }}>

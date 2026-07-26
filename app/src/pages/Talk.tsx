@@ -29,6 +29,8 @@ export default function Talk() {
    * 교체(barge)가 일어나면 이 값이 바뀌며 배경이 통째로 갈린다 — 그래서 DosaChat이 알려 준다.
    */
   const [chef, setChef] = useState<Chef>(() => chefForGender(resolved.input.gender))
+  /** 미터줄 문장 — 화자가 지금 뭘 하고 있나(DosaChat이 알려 준다) */
+  const [beat, setBeat] = useState('당신의 사주를 봅니다')
 
   if (!chart || !report) {
     return (
@@ -168,17 +170,18 @@ export default function Talk() {
               상황 설명을 넣는다). 10px · mut 컬러 · 기울임 · 고정형. 여기까지가 대화창 상단 nav다. */}
           <Typography
             sx={{
-              mt: 0.6,
+              mt: 0.9, // 운영자 260727 "위에 간격 1.5배" — 0.6 → 0.9
               textAlign: 'center',
               fontSize: 11, // HIG 하한 = 11px(예타 미터는 10이지만 우리 게이트 하한이 11이다)
               fontStyle: 'italic',
-              color: 'var(--c-card)',
-              opacity: 0.86,
               letterSpacing: '.02em',
-              textShadow: '0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent)',
             }}
           >
-            당신의 사주를 봅니다
+            {/* 빛이 글자를 한 번 훑고 지나간다 — 노뮤트에디터 `.nm-shim` 이식(픽토그램 제외).
+                문장은 화자가 지금 하는 짓이라 국면마다 바뀐다(감정을 직접 말하지 않는다). */}
+            <Box component="span" className="msd-shim">
+              {beat}…
+            </Box>
           </Typography>
         </Box>
 
@@ -192,6 +195,7 @@ export default function Talk() {
             gender={resolved.input.gender}
             onChef={setChef}
             who={who}
+            onBeat={setBeat}
             onNav={(to) => nav(to === '/result' ? stepPath('intro', resolved.search) : to === '/analysis' ? stepPath('analysis', resolved.search) : to)}
           />
         </Box>
