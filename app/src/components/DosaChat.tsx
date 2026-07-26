@@ -6,6 +6,7 @@ import { TOPICS, TOPIC_INTROS, topicLines, chartSummaryOf } from '../data/dosaTo
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import type { JeonggokPick } from '../data/jeonggok'
 import type { ReportBundle } from '../engine'
+import { useReducedMotion } from './Motion'
 
 /**
  * 미연시 대화 패널 — 아이샤가 주제 선택지 → 근거 대사 시퀀스를 타이프라이터로 출력.
@@ -22,6 +23,11 @@ function useTypewriter(text: string, speedMs: number) {
   useEffect(() => {
     setN(0)
     if (!text) return
+    // 모션 감소 = 한 글자씩 찍는 연출 자체를 건너뛴다(setInterval은 CSS 미디어쿼리가 못 잡는다)
+    if (speedMs <= 0) {
+      setN(text.length)
+      return
+    }
     let i = 0
     timerRef.current = setInterval(() => {
       i += 1
@@ -114,9 +120,11 @@ export default function DosaChat({
 
   const openingText = jeonggok ? `잠깐 — 판을 보자마자 걸리는 게 하나 있군.\n\n${jeonggok.line}` : ''
   const line = phase === 'play' ? seq[idx] : undefined
+  // 모션 감소면 속도 0 = 타이핑 연출을 건너뛰고 전문을 즉시 보여준다
+  const reduceMotion = useReducedMotion()
   const tw = useTypewriter(
     phase === 'play' ? (line?.text ?? '') : phase === 'opening' ? openingText : phase === 'verdict' ? verdictText : CHOOSE_INTRO,
-    TYPE_MS,
+    reduceMotion ? 0 : TYPE_MS,
   )
 
   // 정곡 답 처리 — 的中은 크리티컬, 부정은 리커버리(계산은 안 굽히고, 시기 사건은 접는다 — 플레이그라운드 확정 문법)
