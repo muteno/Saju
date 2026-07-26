@@ -3,18 +3,17 @@ import { useNavigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
 import MyeongShell from '../components/MyeongShell'
 import DosaChat from '../components/DosaChat'
-import { GlassButton, SectionTitle } from '../components/ReportParts'
 import { tokens } from '../theme'
 import { HOST_NAME } from '../data/chefs'
-import { useReport, stepPath } from '../data/useReport'
+import { useReport } from '../data/useReport'
 
 /**
- * 3단계 · 상담 — 미연시 단독 화면.
+ * 3단계 · 상담 — 미연시 단독 화면(운영자 260726 재확정).
  *
- * 260725 3분할의 마지막 칸. 전엔 리포트 7섹션과 대운 레일을 다 지나야 대화가 나왔고
- * 그 전엔 리포트 안에 섞여 있었다 — 이제 탭 하나가 통째로 대화다.
- * 연출(타이프라이터·정곡 단정 → [맞아/아니야] 분기 → 的中 크리티컬/리커버리)은
- * DosaChat 정본 그대로 — 이 화면은 그걸 담는 그릇만 만든다.
+ * 이 화면은 앱 문법(제목·부제·섹션·CTA)을 버리고 무대 문법만 쓴다: 중앙 한 줄 표제 아래
+ * [도트 캐릭터 → 원국 상시 펼침 → 글라스 선택지 → 그라데이션 대화]가 화면 전부다.
+ * 하단 「사주 분석 풀이 보기」 되돌아가기 칸도 같은 지시로 제거 — 이동은 탭·드로어가 담당한다.
+ * 연출(타이프라이터·정곡 「…때문에 왔지?」 → [맞아/아니야] → 的中/리커버리)은 DosaChat.
  */
 export default function Talk() {
   const nav = useNavigate()
@@ -38,26 +37,40 @@ export default function Talk() {
 
   return (
     <MyeongShell active="talk" gate={false}>
-      {/* flex column = 대화가 화면의 주인. 대화 영역이 남는 높이를 먹고 CTA는 아래로 밀린다
-          (미연시 단독 화면인데 대화 카드만 위에 뜨고 하단이 400px 비는 걸 막는다) */}
-      <Box className="msd-fadein" sx={{ flex: 1, minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ px: 2.5 }}>
+      {/* overflowX hidden — 덜컹(translateX)이 가로 스크롤 흔적을 만들지 않게 */}
+      <Box className="msd-fadein" sx={{ position: 'relative', flex: 1, minHeight: 0, overflowY: 'auto', overflowX: 'hidden', display: 'flex', flexDirection: 'column' }}>
+        {/* 하늘 — 캐릭터·원국이 서는 무대 배경(CharacterStage 그라데 값 계승, 사진 플레이트 없이 분위기만) */}
+        <Box
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 350,
+            pointerEvents: 'none',
+            background: 'linear-gradient(180deg, var(--c-sky-top) 0%, var(--c-sky-mid) 55%, var(--c-sky-bot) 100%)',
+          }}
+        >
+          <Box sx={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: '55%', background: 'linear-gradient(180deg, transparent 0%, var(--c-page) 96%)' }} />
+        </Box>
+
+        <Box sx={{ position: 'relative', px: 2.5 }}>
           <StatusBar />
-          {/* 260726-b: 상단 햄버거가 사라져 피할 크롬이 없다 → 6.5(=52px)를 1.5로 되돌림 */}
-          <Typography sx={{ mt: 1.5, fontSize: 22, fontWeight: 800, color: tokens.color.ink }}>{HOST_NAME}와 상담하기</Typography>
-          <Typography sx={{ fontSize: 12.5, fontWeight: 600, color: tokens.color.inkSub, mt: 0.4 }}>
-            {resolved.name ? `${resolved.name}님의 판을 보고 이야기해요` : '판을 보고 이야기해요'}
+          {/* 표제는 중앙 한 줄로 끝 — 제목+부제 2단은 그룹웨어 문법(운영자 260726 폐지) */}
+          <Typography sx={{ mt: 0.5, textAlign: 'center', fontSize: 14.5, fontWeight: 700, color: tokens.color.ink, opacity: 0.82 }}>
+            당신의 사주팔자를 들여다봅니다
           </Typography>
         </Box>
 
-        <Box sx={{ mt: 1.5, flex: 1 }}>
-          <DosaChat report={report} profileName={resolved.name || undefined} hourUnknown={resolved.hourUnknown} jeonggok={jeonggok} />
-        </Box>
-
-        {/* 되돌아가기 — 상담이 마지막 칸이라 앞 단계로 가는 길을 남긴다 */}
-        <Box sx={{ px: 2.5, pb: '120px' }}>
-          <SectionTitle>근거 확인</SectionTitle>
-          <GlassButton onClick={() => nav(stepPath('analysis', resolved.search))}>사주 분석 풀이 보기</GlassButton>
+        <Box sx={{ position: 'relative', mt: 1.5, flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+          <DosaChat
+            report={report}
+            pillars={chart.pillars}
+            profileName={resolved.name || undefined}
+            hourUnknown={resolved.hourUnknown}
+            jeonggok={jeonggok}
+          />
         </Box>
       </Box>
     </MyeongShell>
