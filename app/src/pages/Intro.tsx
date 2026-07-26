@@ -95,16 +95,35 @@ export default function Intro() {
       return null
     }
   })()
-  const captionSx = {
-    fontSize: 11.5,
-    bgcolor: tokens.color.card,
-    color: tokens.color.inkSub,
+  // 운세 한 줄 = 엔진 REL_PHRASE 정본이 전부 「사건 — 처방」 2절 구조다(index.js 160~170).
+  // 운영자 260726: "문단 맺음때마다 줄바뀌게" → 절 경계에서만 끊고 문안 자체는 손대지 않는다.
+  const fortuneLines = fortune ? fortune.oneLine.split(' — ').map((s, i) => (i === 0 ? s : `— ${s}`)) : []
+  // 원국 카드 머리 — "누구의, 어떤 입력으로 뽑은 표인가"를 표 위에 한 줄로(운영자 260726).
+  // 순서 = 생년월일 · 시각+시주 · 보정 · (야자시) · 출생지. 유파 보정은 출생지 앞이 운영자 지정.
+  // 값은 전부 입력·엔진 산출 실값 — 화면 어디에도 없던 정보가 아니라 흩어져 있던 것의 집약이다.
+  const pad = (n: number) => String(n).padStart(2, '0')
+  const birthMeta = (() => {
+    const b = resolved.input
+    const hourJi = pillars.find((p) => p.title === '시')?.jiK
+    // 날짜+시각+시주는 '언제 태어났나' 한 덩어리 → 공백으로 이어 붙이고, 유파·장소만 ' · '로 끊는다
+    const when = `${b.year}. ${b.month}. ${b.day}.${resolved.hourUnknown ? ' 시간 모름' : ` ${pad(b.hour)}:${pad(b.minute)}${hourJi ? ` ${hourJi}시` : ''}`}`
+    const out = [when]
+    if (showCorrected) out.push(`보정 ${chart.corrected!.minutes}분`)
+    if (b.lateZiRule === 'keepDay') out.push('야자시')
+    out.push(resolved.city)
+    return out.join(' · ')
+  })()
+  // 근거 라벨 칩 — ReportCard의 chips 규격 그대로 계승(값 신설 0)
+  const chipSx = {
+    display: 'inline-block',
     px: 1.2,
     py: 0.4,
     borderRadius: 100,
-    display: 'inline-block',
-    mt: 0.6,
-    fontWeight: 600,
+    bgcolor: 'var(--c-card)',
+    border: `1px solid ${tokens.color.border}`,
+    fontSize: 11.5,
+    fontWeight: 700,
+    color: tokens.color.inkSub,
   } as const
   // 배너 — 캐릭터가 없으면 스테이지가 콘텐츠를 밀어주지 않아 상주 크롬(top 50 + h44) 아래로
   // 직접 내려가야 한다. 알약이 아니라 카드 모양인 이유: 샘플 라벨은 날짜까지 들어가 한 줄에 안 맞는다
@@ -147,83 +166,121 @@ export default function Intro() {
           </Box>
         </CharacterStage>
 
-        {/* 기본 원국 — 캐릭터 미배정이면 본문이 상주 크롬 아래로 직접 내려간다 */}
-        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)' }}>
-          {/* 배너가 이미 크롬을 피해 내려왔으면 원국표는 평소 여백만 쓴다(이중 여백 방지) */}
-          <Box sx={{ px: 2, pt: hasChef() || hasBanner ? 1 : 6.5, mb: 0.5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <SajuTable pillars={pillars} unknownHour={resolved.hourUnknown} />
-            {showCorrected && (
-              <Typography sx={captionSx}>
-                진태양시 {String(chart.corrected!.hh).padStart(2, '0')}:{String(chart.corrected!.mm).padStart(2, '0')} (보정 {chart.corrected!.minutes}분 · {resolved.city})
-              </Typography>
-            )}
-            {resolved.hourUnknown && <Typography sx={captionSx}>시간 모름 — 시주 없이 세 기둥으로 풀이</Typography>}
-          </Box>
-
-          <OhaengStrip ohaeng={ohaeng} total={ohaengTotal} />
-        </Box>
-
-        {/* 오늘 사주 점수 — 엔진 일진 관계(합충형파해·공망)의 결정론 정책 점수 + 근거 병기 */}
-        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5 }}>
+        {/* ① 오늘 사주 점수 — 엔진 일진 관계(합충형파해·공망)의 결정론 정책 점수 + 근거 병기.
+            260726 운영자 지시로 화면 맨 위. 매일 들러 오늘 한 상 받고 나가는 게 브랜드 핵심 루프라
+            첫 화면이 먼저 답해야 하는 건 '내 원국이 뭔가'가 아니라 '오늘 어떤가'다.
+            pt = 배너가 이미 크롬을 피해 내려왔으면 여기선 평소 여백만(이중 여백 방지, ← Q.36 #118). */}
+        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5, pt: hasChef() || hasBanner ? 0 : 5.5 }}>
           {/*
-            제목 줄에 연속 방문 배지 — 브랜드 루프가 「매일 들러 오늘 한 상」인데
-            앱이 어제 온 걸 기억하지 않으면 매일 올 이유가 점수 하나뿐이다(카탈로그 ⑫ 스트릭·데일리).
-            2일차부터 나온다(1일에 "1일 연속"은 아무 말도 아니다).
+            날짜 머리 = 가운데 정렬(운영자 260726). 연속 방문 배지(← #118)는 제목 오른쪽이 아니라
+            **바로 아래 중앙**이다 — 같은 줄에 놓으면 배지 폭(59px)만큼 제목이 밀려 중심이
+            195 → 161.58로 33px 어긋난다(실측). 제목을 좁혀 좌우 대칭 스페이서를 넣는 안은
+            남는 폭이 216px < 제목 257px이라 제목이 2줄로 깨진다. 둘 다 중앙축에 앉히는 게 답.
+            (배지는 2일차부터만 나온다 — 1일에 "1일 연속"은 아무 말도 아니다.)
           */}
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <SectionTitle>
-              오늘 · {today.month}월 {today.day}일 {today.dayName}일
-            </SectionTitle>
-            {account && account.streak > 1 && (
-              <Typography
-                sx={{
-                  mt: 2.5,
-                  mb: 1.2,
-                  flex: '0 0 auto',
-                  fontSize: 11,
-                  fontWeight: 800,
-                  color: tokens.color.primary,
-                  bgcolor: tokens.color.primarySoft,
-                  borderRadius: '100px',
-                  px: 1,
-                  py: 0.3,
-                }}
-              >
-                {account.streak}일 연속
-              </Typography>
-            )}
-          </Box>
+          <SectionTitle align="center">
+            오늘 {today.year}년 {today.month}월 {today.day}일({today.dayName}일 · {today.dayHanja})
+          </SectionTitle>
+          {account && account.streak > 1 && (
+            <Typography
+              sx={{
+                mt: -1.2, // SectionTitle의 mb 상쇄 = 제목 바로 아래에 붙는다
+                mb: 1.2,
+                mx: 'auto',
+                width: 'fit-content',
+                fontSize: 11,
+                fontWeight: 800,
+                color: tokens.color.primary,
+                bgcolor: tokens.color.primarySoft,
+                borderRadius: '100px',
+                px: 1,
+                py: 0.3,
+              }}
+            >
+              {account.streak}일 연속
+            </Typography>
+          )}
           <Box className="glass" sx={{ borderRadius: '18px', p: 2 }}>
             {fortune ? (
               <>
-                <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-                  <Box>
-                    <Typography sx={{ fontSize: 12, fontWeight: 700, color: tokens.color.inkSub }}>
-                      오늘의 운세{fortune.theme ? ` · ${fortune.theme}` : ''}
-                    </Typography>
-                    <Typography sx={{ fontSize: 14.5, fontWeight: 800, color: tokens.color.primary, mt: 0.4, maxWidth: 230, lineHeight: 1.45 }}>
-                      {fortune.oneLine}
-                    </Typography>
-                  </Box>
+                {/* 점수(좌·강조색) | 본문 칸 — 선 없는 두 칸(운영자: "마치 선이 없는것처럼 div영역이 구분") */}
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2.5 }}>
                   <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: 0.4, flex: '0 0 auto' }}>
-                    <span style={{ fontSize: 44, fontWeight: 800, color: 'var(--c-ink)', lineHeight: 1, letterSpacing: 'var(--tracking)' }}>{fortune.score}</span>
+                    <span style={{ fontSize: 44, fontWeight: 800, color: 'var(--c-primary)', lineHeight: 1, letterSpacing: 'var(--tracking)' }}>{fortune.score}</span>
                     <span style={{ fontSize: 18, fontWeight: 800, color: 'var(--c-ink-sub)', paddingBottom: 4 }}>점</span>
+                  </Box>
+                  <Box sx={{ flex: 1, minWidth: 0 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 1 }}>
+                      <Typography sx={{ fontSize: 12, fontWeight: 700, color: tokens.color.inkSub, flex: '0 0 auto' }}>오늘의 운세</Typography>
+                      {fortune.theme && (
+                        <Typography sx={{ fontSize: 12, fontWeight: 700, color: tokens.color.inkSub, textAlign: 'right', minWidth: 0 }}>
+                          {fortune.theme}
+                        </Typography>
+                      )}
+                    </Box>
+                    {fortuneLines.map((l, i) => (
+                      <Typography key={i} sx={{ fontSize: 14.5, fontWeight: 800, color: tokens.color.primary, mt: i === 0 ? 0.4 : 0.2, lineHeight: 1.45 }}>
+                        {l}
+                      </Typography>
+                    ))}
                   </Box>
                 </Box>
                 {fortune.basis.length > 0 && (
-                  <Typography sx={{ fontSize: 11.5, color: tokens.color.inkSub, fontWeight: 600, mt: 1 }}>
-                    — 근거: {fortune.basis.join(' · ')}
-                  </Typography>
+                  <Box sx={{ mt: 1.6 }}>
+                    <Box sx={chipSx}>근거</Box>
+                    <Box sx={{ mt: 0.8 }}>
+                      {fortune.basis.map((b, i) => (
+                        <Typography key={i} sx={{ fontSize: 11.5, color: tokens.color.inkSub, fontWeight: 600, lineHeight: 1.7 }}>
+                          {b}
+                        </Typography>
+                      ))}
+                    </Box>
+                  </Box>
                 )}
               </>
             ) : (
               <Typography sx={{ fontSize: 13.5, color: tokens.color.inkSub }}>오늘 일진 계산에 필요한 값이 부족해요.</Typography>
             )}
           </Box>
+        </Box>
+
+        {/* ② 사주 원국 — 표·오행·진태양시를 한 카드로(운영자: "너무 많이 분할되어있으면 어지러움").
+            표는 fluid = 형제 카드와 같은 폭(전엔 279px로 혼자 좁았다 — 390 화면 실측). */}
+        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5 }}>
+          <Box className="glass" sx={{ mt: 2.5, borderRadius: '18px', p: 2 }}>
+            {/* ⚠ 신규 요소(§B4) — 표 위 1줄. 이름만 굵게, 괄호 안은 캡션 굵기로 이어 흘린다
+                (최장명 14자에서도 한 문단 안에서 자연 줄바꿈되게 inline span) */}
+            <Typography sx={{ fontSize: 11.5, fontWeight: 600, color: tokens.color.inkSub, lineHeight: 1.55, mb: 1.4 }}>
+              {resolved.name ? (
+                <>
+                  <Box component="span" sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.ink }}>
+                    {resolved.name}
+                  </Box>{' '}
+                  ({birthMeta})
+                </>
+              ) : (
+                birthMeta
+              )}
+            </Typography>
+            <SajuTable pillars={pillars} unknownHour={resolved.hourUnknown} fluid />
+            <Box sx={{ mt: 1.6 }}>
+              <OhaengStrip ohaeng={ohaeng} total={ohaengTotal} bare />
+            </Box>
+            {/* 산출값 캡션 — 오행 아래 우측 하단에 글자만(운영자 260726). 입력값(보정량·출생지)은 위 헤더 */}
+            {showCorrected && (
+              <Typography sx={{ mt: 1, textAlign: 'right', fontSize: 11.5, fontWeight: 600, color: tokens.color.inkFaint }}>
+                진태양시 {String(chart.corrected!.hh).padStart(2, '0')}:{String(chart.corrected!.mm).padStart(2, '0')}
+              </Typography>
+            )}
+            {resolved.hourUnknown && (
+              <Typography sx={{ mt: 1, textAlign: 'right', fontSize: 11.5, fontWeight: 600, color: tokens.color.inkFaint }}>
+                시간 모름 — 시주 없이 세 기둥으로 풀이
+              </Typography>
+            )}
+          </Box>
 
           {/* 다음 단계 — 여기서 끝내도 되고, 파고들 사람만 내려간다 */}
-          <SectionTitle>더 파고들기</SectionTitle>
-          <Button fullWidth variant="contained" onClick={() => nav(stepPath('analysis', resolved.search))}>
+          <Button fullWidth variant="contained" sx={{ mt: 2.5 }} onClick={() => nav(stepPath('analysis', resolved.search))}>
             사주 분석 풀이 보기
           </Button>
           <GlassButton onClick={() => nav(stepPath('talk', resolved.search))} sx={{ mt: 1.2 }}>
