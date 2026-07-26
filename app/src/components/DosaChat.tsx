@@ -81,7 +81,19 @@ const DOCK = [
 interface Msg {
   who: 'ai' | 'me'
   text: string
+  /**
+   * 지문 — **말이 아니라 하는 짓**(운영자 260727 "글자 위에 상황·생각·작업을 알려주는 걸
+   * 대화창에서 실물로"). 미터줄이 한 줄로 요약해 주던 것을 대화 안에서 직접 보여준다.
+   * 예타 `.yb i.yn` 문법 계승 = 같은 유리 말풍선에 **이탤릭 + 톤다운**.
+   */
+  narration?: true
 }
+
+/** 지문 표기 — 이 접두가 붙은 줄은 말이 아니라 동작이다(큐를 통과해도 표시가 안 지워진다) */
+const NAR = '\u200b' // 폭 0 문자라 화면엔 안 보이고 문자열에만 남는다
+const nar = (t: string) => NAR + t
+const isNar = (t: string) => t.startsWith(NAR)
+const narText = (t: string) => t.slice(NAR.length)
 
 function useTypewriter(text: string, speedMs: number) {
   const [n, setN] = useState(0)
@@ -185,10 +197,13 @@ const toMsgs = (text: string): string[] => {
 /** 말풍선 — 캐릭터(좌·글래스) / 나(우·강조색). 이름표 없음(무대의 인물이 화자다) */
 function Bubble({
   who,
+  narration,
   children,
   'aria-hidden': ariaHidden,
 }: {
   who: 'ai' | 'me'
+  /** 지문 = 말이 아니라 동작 — 예타 `.yb i.yn`(이탤릭 + 톤다운) 문법 계승 */
+  narration?: true
   children: ReactNode
   'aria-hidden'?: true
 }) {
@@ -219,13 +234,14 @@ function Bubble({
         letterSpacing: 'var(--tracking)',
         whiteSpace: 'pre-line',
         wordBreak: 'break-word',
+        ...(narration && { fontStyle: 'italic', color: YG.fg2, opacity: 0.75 }),
       }}
       aria-hidden={ariaHidden}
     >
       {/* 화자 표지는 **낭독 전용** — 화면엔 이름표를 안 띄운다(운영자 "이름은 제외")지만,
           좌/우 정렬은 스크린리더에 전달되지 않아 도사 말과 내 답이 한 줄기로 섞여 읽힌다. */}
       <Box component="span" sx={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
-        {me ? '나: ' : '도사: '}
+        {me ? '나: ' : narration ? '(지문) ' : '도사: '}
       </Box>
       {children}
     </Box>
@@ -343,7 +359,7 @@ export default function DosaChat({
   /** 캐릭터 메시지 묶음을 흘려보낸다 — 첫 줄은 바로 뜨고 나머지는 탭을 기다린다 */
   const say = (msgs: string[]) => {
     if (!msgs.length) return
-    setLog((l) => [...l, { who: 'ai', text: msgs[0] }])
+    setLog((l) => [...l, { who: 'ai', text: msgs[0], ...(isNar(msgs[0]) ? { narration: true as const } : {}) }])
     setQueue(msgs.slice(1))
   }
   const answer = (text: string) => setLog((l) => [...l, { who: 'me', text }])
@@ -396,8 +412,10 @@ export default function DosaChat({
     setStage(jeonggok ? 'jeonggok' : 'menu')
     onChef?.(c)
     const v = voiceOf(c.id)
-    const first = jeonggok ? [v.opening, jeonggok.line, jeonggok.ask] : ['뭐가 궁금해서 오셨는가?']
-    setLog([{ who: 'ai', text: first[0] }])
+    const first = jeonggok
+      ? [nar('판을 펼쳐 손끝으로 짚어 내려간다.'), v.opening, jeonggok.line, jeonggok.ask]
+      : [nar('찻잔을 내려놓고 고개를 든다.'), '뭐가 궁금해서 오셨는가?']
+    setLog([{ who: 'ai', text: first[0], ...(isNar(first[0]) ? { narration: true as const } : {}) }])
     setQueue(first.slice(1))
     rumble('jolt')
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -444,14 +462,14 @@ export default function DosaChat({
       setTimeout(() => setCrit(false), 700)
       rumble('shake')
       setStage('menu')
-      say([...toMsgs(voiceOf(chef.id).hit), '그래서, 뭐가 궁금한가?'])
+      say([nar('입꼬리를 살짝 올린다.'), ...toMsgs(voiceOf(chef.id).hit), '그래서, 뭐가 궁금한가?'])
     } else {
       // 빗맞힘 = 사과가 아니라 **교체**(운영자 260726) — 맞은편 도사가 밀고 들어와 판을 받아 간다
       const next = counterpartChef(chef.id)
       setChef(next)
       onChef?.(next)
       setStage('menu')
-      say([bargeLineOf(next.id), ...toMsgs(voiceOf(next.id).miss), '그래서, 뭐가 궁금한가?'])
+      say([nar('자리를 물리자 다른 이가 판 앞에 앉는다.'), bargeLineOf(next.id), ...toMsgs(voiceOf(next.id).miss), '그래서, 뭐가 궁금한가?'])
     }
   }
 
@@ -471,6 +489,7 @@ export default function DosaChat({
     // 정제된 줄이 하나도 없으면 아는 척하지 않고 그렇게 말한다.
     const spoken = fallback.filter((l) => !l.raw).map((l) => l.text)
     say([
+      nar('붓을 들어 판 위에 한 획을 긋는다.'),
       ...(intro ? [intro] : []),
       ...(ready ?? (spoken.length ? spoken : ['이 대목은 아직 내가 제대로 풀어 둔 게 없군. 분석 탭의 근거를 직접 보게.'])),
     ])
@@ -547,7 +566,7 @@ export default function DosaChat({
       return
     }
     if (queue.length) {
-      setLog((l) => [...l, { who: 'ai', text: queue[0] }])
+      setLog((l) => [...l, { who: 'ai', text: queue[0], ...(isNar(queue[0]) ? { narration: true as const } : {}) }])
       setQueue((q) => q.slice(1))
       if (stage === 'play') readRef.current += 1
       return
@@ -684,8 +703,8 @@ export default function DosaChat({
             return (
               // ⚠ 타이핑 중인 말풍선은 낭독에서 뺀다 — 라이브 리전 안에서 28ms마다 글자가 갈리면
               // 스크린리더가 부분 문장을 초 36회 되읽는다(검토자 260726). 완성된 뒤에 읽힌다.
-              <Bubble key={i} who={m.who} aria-hidden={typing || undefined}>
-                {typing ? tw.shown : m.text}
+              <Bubble key={i} who={m.who} narration={m.narration} aria-hidden={typing || undefined}>
+                {isNar(typing ? tw.shown : m.text) ? narText(typing ? tw.shown : m.text) : typing ? tw.shown : m.text}
               </Bubble>
             )
           })}
