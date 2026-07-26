@@ -6,6 +6,7 @@ import { SectionTitle } from '../components/ReportParts'
 import { tokens } from '../theme'
 import { activeProfile, listProfiles, setActiveProfile } from '../data/profiles'
 import { clearEntered } from '../data/session'
+import { currentAccount, forgetAccount } from '../data/account'
 
 const press = { transition: 'transform .12s var(--ease)', '&:active': { transform: 'scale(0.98)' } }
 
@@ -22,6 +23,7 @@ export default function Settings() {
   const nav = useNavigate()
   const profile = activeProfile()
   const profiles = listProfiles()
+  const account = currentAccount()
 
   const onExport = () => {
     const kst = new Date().toLocaleString('sv-SE', { timeZone: 'Asia/Seoul' }).replace(/[-: ]/g, '').slice(0, 14)
@@ -125,12 +127,29 @@ export default function Settings() {
 
           <SectionTitle>계정</SectionTitle>
           <Box sx={{ borderRadius: '14px', background: 'rgba(255,255,255,.55)', border: '1px solid rgba(255,255,255,.8)', backdropFilter: 'blur(11px)', WebkitBackdropFilter: 'blur(11px)', px: 2, py: 0.5 }}>
+            {account &&
+              row(`로그인 계정 · ${account.loginId}`, {
+                right: (
+                  <Typography sx={{ fontSize: 11.5, fontWeight: 700, color: tokens.color.inkSub }}>
+                    {account.streak > 1 ? `${account.streak}일 연속` : `${account.totalVisits}일째`}
+                  </Typography>
+                ),
+              })}
             {row('구매 내역', { soon: true })}
             {row('데이터 내보내기', { onClick: onExport })}
+            {/* 로그아웃 = 입장만 해제. 기억(아이디·스트릭)은 남겨 다음에 버튼 하나로 돌아온다 */}
             {row('로그아웃', {
+              onClick: () => {
+                clearEntered()
+                nav('/login')
+              },
+            })}
+            {/* 기억 삭제는 별도 행 — 되돌릴 수 없으니 로그아웃과 섞지 않는다 */}
+            {row('이 기기에서 기억 지우기', {
               color: tokens.color.solar,
               last: true,
               onClick: () => {
+                forgetAccount()
                 clearEntered()
                 nav('/login')
               },

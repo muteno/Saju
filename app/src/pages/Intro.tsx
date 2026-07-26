@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
@@ -10,6 +10,7 @@ import { tokens } from '../theme'
 import { ohaengWithoutHour, todayInfo, myTodayFortune, sampleProfileLabel } from '../data/saju'
 import { HOST_NAME, hasChef } from '../data/chefs'
 import { useReport, stepPath } from '../data/useReport'
+import { currentAccount, markVisit } from '../data/account'
 
 /**
  * 1단계 · 인트로 — 「기본 원국 + 오늘 사주 점수」.
@@ -26,6 +27,17 @@ export default function Intro() {
   const { resolved, chart, reading } = useReport()
   const today = todayInfo()
   const [copied, setCopied] = useState(false)
+
+  // 방문 기록 — 인트로가 앱의 첫 화면이라 여기서 하루 한 번 찍는다(같은 날 재진입은 무증가).
+  // 제외는 **공유받은 남의 리포트**뿐이다. 사주를 아직 안 넣어 샘플을 보는 중이어도 그 사람은
+  // '오늘 앱에 온 사람'이다 — 여기서 sample까지 빼면 로그인만 한 사용자는 방문이 영영 안 찍힌다
+  // (260725 시나리오 실검증에서 lastVisit·totalVisits가 멈춰 있는 걸로 잡혔다).
+  const [account, setAccount] = useState(currentAccount)
+  useEffect(() => {
+    if (resolved.shared) return
+    const a = markVisit()
+    if (a) setAccount(a)
+  }, [resolved.shared])
 
   const onShare = async () => {
     const url = `${location.origin}${stepPath('intro', resolved.search)}`
@@ -113,21 +125,26 @@ export default function Intro() {
     fontWeight: 700,
     color: tokens.color.inkSub,
   } as const
+  // 배너 — 캐릭터가 없으면 스테이지가 콘텐츠를 밀어주지 않아 상주 크롬(top 50 + h44) 아래로
+  // 직접 내려가야 한다. 알약이 아니라 카드 모양인 이유: 샘플 라벨은 날짜까지 들어가 한 줄에 안 맞는다
+  // (260725 실렌더에서 크롬에 깔리고 좌우로 잘리는 걸로 잡혔다).
   const bannerSx = {
-    alignSelf: 'center',
-    mt: 1,
+    mx: 2.5,
+    mt: hasChef() ? 1 : 6.5,
     px: 1.6,
-    py: 0.9,
-    borderRadius: 100,
+    py: 1,
+    borderRadius: '14px',
     bgcolor: tokens.color.primarySoft,
     border: `1px solid ${tokens.color.primary}`,
     color: tokens.color.primary,
     fontSize: 12.5,
     fontWeight: 700,
+    lineHeight: 1.45,
     cursor: 'pointer',
     transition: 'transform .12s var(--ease)',
     '&:active': { transform: 'scale(0.98)' },
   } as const
+  const hasBanner = resolved.sample || resolved.shared
 
   return (
     <MyeongShell active="intro" gate={false}>
@@ -151,11 +168,38 @@ export default function Intro() {
 
         {/* ① 오늘 사주 점수 — 엔진 일진 관계(합충형파해·공망)의 결정론 정책 점수 + 근거 병기.
             260726 운영자 지시로 화면 맨 위. 매일 들러 오늘 한 상 받고 나가는 게 브랜드 핵심 루프라
-            첫 화면이 먼저 답해야 하는 건 '내 원국이 뭔가'가 아니라 '오늘 어떤가'다. */}
-        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5, pt: hasChef() ? 0 : 5.5 }}>
+            첫 화면이 먼저 답해야 하는 건 '내 원국이 뭔가'가 아니라 '오늘 어떤가'다.
+            pt = 배너가 이미 크롬을 피해 내려왔으면 여기선 평소 여백만(이중 여백 방지, ← Q.36 #118). */}
+        <Box sx={{ position: 'relative', zIndex: 3, bgcolor: 'var(--c-page)', px: 2.5, pt: hasChef() || hasBanner ? 0 : 5.5 }}>
+          {/*
+            날짜 머리 = 가운데 정렬(운영자 260726). 연속 방문 배지(← #118)는 제목 오른쪽이 아니라
+            **바로 아래 중앙**이다 — 같은 줄에 놓으면 배지 폭(59px)만큼 제목이 밀려 중심이
+            195 → 161.58로 33px 어긋난다(실측). 제목을 좁혀 좌우 대칭 스페이서를 넣는 안은
+            남는 폭이 216px < 제목 257px이라 제목이 2줄로 깨진다. 둘 다 중앙축에 앉히는 게 답.
+            (배지는 2일차부터만 나온다 — 1일에 "1일 연속"은 아무 말도 아니다.)
+          */}
           <SectionTitle align="center">
             오늘 {today.year}년 {today.month}월 {today.day}일({today.dayName}일 · {today.dayHanja})
           </SectionTitle>
+          {account && account.streak > 1 && (
+            <Typography
+              sx={{
+                mt: -1.2, // SectionTitle의 mb 상쇄 = 제목 바로 아래에 붙는다
+                mb: 1.2,
+                mx: 'auto',
+                width: 'fit-content',
+                fontSize: 11,
+                fontWeight: 800,
+                color: tokens.color.primary,
+                bgcolor: tokens.color.primarySoft,
+                borderRadius: '100px',
+                px: 1,
+                py: 0.3,
+              }}
+            >
+              {account.streak}일 연속
+            </Typography>
+          )}
           <Box className="glass" sx={{ borderRadius: '18px', p: 2 }}>
             {fortune ? (
               <>
