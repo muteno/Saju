@@ -631,6 +631,8 @@ export default function DosaChat({
 
   /** 감싸는 기운 색 — 원국이 바뀌지 않으면 다시 세지 않는다 */
   const aura = useMemo(() => auraColors(pillars), [pillars])
+  const a0 = `color-mix(in srgb, ${aura[0]} 78%, transparent)`
+  const a1 = `color-mix(in srgb, ${aura[1] ?? aura[0]} 78%, transparent)`
 
   /** 다음 메시지가 남아 있나 — 진행 버튼을 띄울지 가른다 */
   const hasNext = !tw.done || queue.length > 0 || stage === 'play'
@@ -697,10 +699,18 @@ export default function DosaChat({
               sx={{
                 position: 'absolute',
                 inset: '-60%',
-                background: `conic-gradient(from 0deg, ${aura
-                  .map((c, i) => `color-mix(in srgb, ${c} 78%, transparent) ${(i * 360) / aura.length}deg`)
-                  .join(', ')}, color-mix(in srgb, var(--c-card) 55%, transparent) ${360 / (aura.length * 2) + 180}deg, color-mix(in srgb, ${aura[0]} 78%, transparent) 360deg)`,
-                animation: 'msd-orbit 16s linear infinite reverse, msd-breathe 5.5s var(--ease) infinite',
+                // ⚠ **흰 스톱을 넣지 않는다** — 넣었더니 그게 두 번째 빛으로 읽혀 화면에서
+                // 「빛이 여러 개로 쪼개져 움직인다」로 보였다(운영자 260727). 기운 링은 **색 밭**이고,
+                // 도는 빛은 아래 `.msd-sheen` **하나뿐**이다.
+                // 색이 둘이면 양쪽에서 만나 부드럽게 섞이도록 4스톱으로 순환시킨다(경계선 0).
+                background:
+                  aura.length > 1
+                    ? `conic-gradient(from 0deg, ${a0} 0deg, ${a1} 120deg, ${a0} 240deg, ${a1} 300deg, ${a0} 360deg)`
+                    : `conic-gradient(from 0deg, ${a0} 0deg, color-mix(in srgb, ${aura[0]} 34%, transparent) 180deg, ${a0} 360deg)`,
+                // ⚠ **기운 링은 돌지 않는다.** 색 밭과 빛이 각각 다른 속도로 돌면 밝은 지점이 둘이 되어
+                // 「빛이 여러 개로 쪼개져 움직인다」가 된다(운영자 260727 실사용 지적).
+                // 기운은 그 사람의 판이라 제자리에 있는 게 맞고, 도는 건 아래 빛 **하나뿐**이다.
+                animation: 'msd-breathe 5.5s var(--ease) infinite',
               }}
             />
             {/* 겉 라인 빛 — 좁은 흰 호 하나가 링을 따라 돈다. 기운 링(16s reverse)과 **다른 속도·방향**
@@ -710,9 +720,12 @@ export default function DosaChat({
               sx={{
                 position: 'absolute',
                 inset: '-60%',
+                // 빛은 **하나**다. 가장자리를 여러 단으로 떨어뜨려(56→76→90→104→124) 점이 아니라
+                // 한 덩어리 glow로 읽히게 한다 — 딱 끊으면 조각처럼 보인다.
                 background:
-                  'conic-gradient(from 0deg, transparent 0deg, transparent 76deg, color-mix(in srgb, var(--c-card) 62%, transparent) 90deg, transparent 104deg, transparent 360deg)',
-                animation: 'msd-orbit 9s linear infinite',
+                  'conic-gradient(from 0deg, transparent 0deg, transparent 56deg, color-mix(in srgb, var(--c-card) 14%, transparent) 76deg, color-mix(in srgb, var(--c-card) 62%, transparent) 90deg, color-mix(in srgb, var(--c-card) 14%, transparent) 104deg, transparent 124deg, transparent 360deg)',
+                // 반시계(운영자 지시) — 이 화면에서 도는 유일한 것이다.
+                animation: 'msd-orbit 9s linear infinite reverse',
               }}
             />
             <Box

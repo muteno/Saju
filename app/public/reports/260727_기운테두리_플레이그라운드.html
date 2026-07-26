@@ -34,11 +34,11 @@
       color-mix(in srgb,var(--a2) var(--aura-a),transparent) 180deg,
       color-mix(in srgb,var(--c-card) 55%,transparent) 270deg,
       color-mix(in srgb,var(--a1) var(--aura-a),transparent) 360deg);
-    animation:orbit var(--spin) linear infinite reverse, breathe var(--breathe) var(--ease) infinite;}
+    animation:breathe var(--breathe) var(--ease) infinite;}   /* 기운 링은 안 돈다 — 도는 게 둘이면 빛이 쪼개져 보인다 */
   .sheen{background:conic-gradient(from 0deg,transparent 0deg,transparent calc(90deg - var(--sheen-w)),
       color-mix(in srgb,var(--c-card) var(--sheen-a),transparent) 90deg,
       transparent calc(90deg + var(--sheen-w)),transparent 360deg);
-    animation:orbit var(--sheen-spin) linear infinite;}
+    animation:orbit var(--sheen-spin) linear infinite reverse;}
   @keyframes orbit{to{transform:rotate(360deg)}}
   @keyframes breathe{0%,100%{opacity:var(--breathe-lo)}50%{opacity:1}}
   .inner{position:relative;display:inline-flex;align-items:center;gap:12px;padding:8px 12px;border-radius:13px;
@@ -97,8 +97,8 @@
   <div class="axis" data-var="--aura-a"><h2>B. 기운 색 진하기</h2><p class="why">오행 색의 불투명도. 낮추면 색이 암시만 된다.</p><div class="opts"></div></div>
   <div class="axis" data-var="--sheen-a"><h2>C. 겉 라인 빛 세기</h2><p class="why">링을 도는 흰 호의 불투명도. 이게 «아주 살짝 빛이 도는» 그 축이다.</p><div class="opts"></div></div>
   <div class="axis" data-var="--sheen-w"><h2>D. 빛 폭</h2><p class="why">호의 각도. 좁으면 점처럼 스치고, 넓으면 면이 밝아진다.</p><div class="opts"></div></div>
-  <div class="axis" data-var="--spin"><h2>E. 기운 회전 주기</h2><p class="why">한 바퀴 도는 시간(반시계). 길수록 눈에 안 띈다.</p><div class="opts"></div></div>
-  <div class="axis" data-var="--sheen-spin"><h2>F. 빛 회전 주기</h2><p class="why">기운과 <b>다른 주기</b>여야 둘이 스칠 때만 밝아진다. 같으면 굵은 링으로 붙어 보인다.</p><div class="opts"></div></div>
+  <div class="axis" data-var="--spin"><h2>E. 기운 회전 주기</h2><p class="why">⚠ 지금 기운 링은 <b>안 돈다</b>(도는 게 둘이면 빛이 쪼개져 보인다). 이 축은 참고용으로 남겨 둔다.</p><div class="opts"></div></div>
+  <div class="axis" data-var="--sheen-spin"><h2>F. 빛 회전 주기</h2><p class="why">이 화면에서 <b>도는 유일한 것</b>. 한 바퀴 도는 시간(반시계).</p><div class="opts"></div></div>
   <div class="axis" data-var="--breathe"><h2>G. 호흡 주기</h2><p class="why">밝기가 오르내리는 간격. 회전에 ease를 걸면 이음매에서 멈칫해서, 이징은 여기가 맡는다.</p><div class="opts"></div></div>
   <div class="axis" data-var="--breathe-lo"><h2>H. 호흡 최저 밝기</h2><p class="why">가장 어두워질 때. 1에 가까울수록 숨이 얕다.</p><div class="opts"></div></div>
 
