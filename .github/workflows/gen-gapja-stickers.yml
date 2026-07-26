@@ -14,10 +14,20 @@ on:
         default: 'no'
         options: ['no', '대표1컷', '3컷']
       sheets:
-        description: '레퍼런스 첨부 시트 (chef-refs/*.png 필요) — faces=표정 60 · poses=장면 16/20'
+        description: '레퍼런스 첨부 시트 — faces=표정60 · poses=전신16 · bgs=테마배경12 · all=셋 다'
         type: choice
         default: 'no'
-        options: ['no', 'faces', 'poses', 'poses20']
+        options: ['no', 'faces', 'poses', 'bgs', 'all']
+      who:
+        description: '대상 캐릭터 (all = noona·baekui·doryeong·dongja 4인 전부)'
+        type: choice
+        default: 'all'
+        options: ['all', 'noona', 'baekui', 'doryeong', 'dongja']
+      shopbg:
+        description: '연식당 무대 배경 1장 (assets/shop-bg.jpg · 이미 있으면 건너뜀)'
+        type: choice
+        default: 'no'
+        options: ['no', 'yes']
       stickers:
         description: '60갑자 스티커 생성'
         type: choice
@@ -62,20 +72,32 @@ jobs:
         run: python .github/scripts/gen_chefs_gendered_v1.py
 
       # 레퍼런스 첨부 시트(표정·장면) — chef-refs/{id}.png 가 있어야 돈다(없으면 스크립트가 명시 중단)
-      - name: Generate 표정·장면 시트
+      # 시트 3종 — faces(표정 60) · poses(전신 16) · bgs(테마 배경 12). all이면 순서대로 전부.
+      - name: Generate 시트(표정·전신·배경)
         if: ${{ inputs.sheets != 'no' }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
-          MODE: ${{ startsWith(inputs.sheets, 'poses') && 'poses' || 'faces' }}
-          SHEET_20: ${{ inputs.sheets == 'poses20' && '1' || '0' }}
-        run: python .github/scripts/gen_chef_faces_v1.py
+          CHEFS: ${{ inputs.who }}
+        run: |
+          for m in faces poses bgs; do
+            if [ "${{ inputs.sheets }}" = "all" ] || [ "${{ inputs.sheets }}" = "$m" ]; then
+              echo "== MODE=$m =="
+              MODE=$m python .github/scripts/gen_chef_faces_v1.py
+            fi
+          done
+
+      - name: Generate 연식당 배경
+        if: ${{ inputs.shopbg == 'yes' }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
+        run: python .github/scripts/gen_shop_bg.py
 
       - name: Commit results to main
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # 두 경로만 — 둘 다 실존 디렉터리라 pathspec 실패가 없다(신규 하위폴더는 -A가 잡는다)
-          git add -A app/public/assets/gapja app/public/reports
+          git add -A app/public/assets app/public/reports
           git diff --cached --quiet && echo "변경 없음(전부 기존 파일) — 커밋 생략" && exit 0
           git commit -m "assets: 60갑자 지신 스티커 생성 (gpt-image-1 시트 4장 · gen-gapja-stickers)"
           for i in 1 2 3; do

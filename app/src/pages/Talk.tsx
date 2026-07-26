@@ -43,9 +43,9 @@ export default function Talk() {
       <Box className="msd-fadein" sx={{ flex: 1, minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
         <Box sx={{ px: 2.5 }}>
           <StatusBar />
-          {/* 260726-b: 상단 햄버거가 사라져 피할 크롬이 없다 → 6.5(=52px)를 1.5로 되돌림 */}
-          <Typography sx={{ mt: 1.5, fontSize: 22, fontWeight: 800, color: tokens.color.ink }}>연식당, 자리에 앉다</Typography>
-          <Typography sx={{ fontSize: 12.5, fontWeight: 600, color: tokens.color.inkSub, mt: 0.4 }}>
+          {/* 화면 제목은 없앴다(운영자 260726 "자리에 앉다 필요없음") — 무대 그림이 여기가 어디인지
+              이미 말한다. 남긴 건 '누구의 판인가' 한 줄뿐이다. */}
+          <Typography sx={{ mt: 1.5, fontSize: 12.5, fontWeight: 600, color: tokens.color.inkSub }}>
             {resolved.name ? `${resolved.name}님의 판을 보고 이야기해요` : '판을 보고 이야기해요'}
           </Typography>
         </Box>
