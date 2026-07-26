@@ -79,6 +79,18 @@ export const Pict = {
       <path d="M5 12.5l4.5 4.5L19 7.5" />
     </svg>
   ),
+  /**
+   * 복채 주머니 — 상담 헤더 우측(운영자 260727 "전화·문자 없애고 복채 주머니 픽토그램 하나").
+   * 지금은 **자리만** 잡는다. 뒤에 퀘스트/보상 축이 붙을 자리다.
+   * 형태 = 주둥이를 끈으로 묶은 복주머니(둥근 몸통 + 목 + 매듭 끈).
+   */
+  pouch: (s = 18) => (
+    <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
+      <path d="M9 7.5h6l2.2 3.1a6.2 6.2 0 0 1-5.2 9.6h0a6.2 6.2 0 0 1-5.2-9.6z" />
+      <path d="M8.6 7.5c1.2-.9 5.6-.9 6.8 0" />
+      <path d="M10.4 4.2c.6 1 .6 2.3 0 3.3M13.6 4.2c-.6 1-.6 2.3 0 3.3" />
+    </svg>
+  ),
   /** 전송 — 예타 `.yeta-send` 아이콘 그대로 계승(같은 종이비행기 패스) */
   send: (s = 18) => (
     <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
@@ -205,7 +217,22 @@ function PillNav({ active, go }: { active: MenuKey; go: (to: string) => void }) 
  *
  * ⚠ 되살릴 땐 각 화면의 상단 여백(현재 pt 0.5~1)도 함께 되돌려야 한다 — 크롬이 없다는 전제로 줄였다.
  */
-export default function MyeongShell({ active, gate = true, children }: { active: MenuKey; gate?: boolean; children: ReactNode }) {
+export default function MyeongShell({
+  active,
+  gate = true,
+  /**
+   * 하단 알약 네비를 띄울지. **채팅 화면은 `false`** — 예타처럼 **입력행이 하단 바를 대신하고**
+   * 그 좌측 버튼이 전 메뉴로 되돌린다(운영자 260727: "채팅 입력하는 게 네비랑 섞여 있다").
+   * 네비와 입력행이 같은 자리에 둘 다 뜨면 손가락이 갈 곳을 잃는다.
+   */
+  nav: showNav = true,
+  children,
+}: {
+  active: MenuKey
+  gate?: boolean
+  nav?: boolean
+  children: ReactNode
+}) {
   const nav = useNavigate()
   const profile = activeProfile()
 
@@ -216,7 +243,7 @@ export default function MyeongShell({ active, gate = true, children }: { active:
   return (
     <Screen>
       {children}
-      <PillNav active={active} go={(to) => nav(to)} />
+      {showNav && <PillNav active={active} go={(to) => nav(to)} />}
     </Screen>
   )
 }

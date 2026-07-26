@@ -48,17 +48,10 @@ function MiniChart({
   return (
     <Box
       sx={{
-        // ⚠ 유리 카드로 감싸지 않는다(운영자 260727 "붕떠서 배경하고 이질감 있으면 안되고").
-        // 테두리·반경이 있으면 인물 배경 위에 **카드 한 장이 얹힌 것**으로 읽힌다.
-        // 대신 왼쪽에서 시작해 오른쪽으로 사라지는 그라데이션 띠 위에 글자만 얹어 배경에 녹인다.
+        // ⚠ 판·띠 없이 **글자만** 얹는다(운영자 260727: 유리 카드로 감싸면 붕 뜨고,
+        // 그라데이션 띠를 깔았더니 그것도 군더더기였다). 배경 위에 여덟 자만 있으면 된다.
         display: 'inline-flex',
         gap: '4px',
-        pl: 2,
-        pr: 5,
-        py: '7px',
-        ml: -2, // 화면 왼쪽 끝까지 띠가 닿게(잘린 카드처럼 안 보이도록)
-        background:
-          'linear-gradient(90deg, color-mix(in srgb, var(--c-page) 80%, transparent) 0%, color-mix(in srgb, var(--c-page) 62%, transparent) 46%, transparent 100%)',
       }}
     >
       {pillars.map((p) => {

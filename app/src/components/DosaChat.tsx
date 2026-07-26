@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import MiniChart from './MiniChart'
 import { Pict } from './MyeongShell'
 import { tokens } from '../theme'
@@ -8,6 +8,7 @@ import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, chartSummaryOf } from '.
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
 import { chefForGender, counterpartChef, bargeLineOf, voiceOf } from '../data/chefs'
+import type { Chef } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
 import type { Pillar } from '../data/saju'
 import type { ReportBundle } from '../engine'
@@ -33,13 +34,22 @@ const TYPE_MS = 28
  * 그중 300을 대화가 쓰고 나머지 위쪽은 **배경 인물이 보이는 자리**로 비워 둔다.
  */
 /**
- * 대화 구역 높이 — 인물 배경이 화면 위쪽을 다 쓰고, 원국이 중단부에 깔린 뒤 남는 몫.
- * 운영자 260727: "대화창이 얼마 안남아서 2~3줄이나 왓다갓다 하겠지" — 그게 의도한 결과다.
- * 14.5px / 1.62 = 한 줄 23.5px → 말풍선 패딩까지 치면 이 높이가 대략 2~3줄이다.
+ * 대화 구역 높이 — **화면 중앙부에서 시작해 아래로** 흐른다(운영자 260727:
+ * "사람이 가려지면 안되네, 중앙부 부터 대화가 내려가게 하자").
+ * 프레임 844에서 입력행(하단 ~80)을 빼고 역산하면 이 높이의 윗변이 대략 화면 절반이다 —
+ * 인물의 **얼굴은 그 위**라 안 가린다. 상자 높이는 고정이라 대화는 위→아래로만 채워진다.
  */
-const LOG_H = 128
+const LOG_H = 330
 /** 자유 질문 길이 상한 — 서버(functions/api/dosa.ts MAX_QUESTION)와 같은 값 */
 const MAX_ASK = 300
+
+/** 입력행 좌측 도크 = 상담을 뺀 나머지 메뉴(하단 알약 네비가 없으므로 여기가 이동 수단이다) */
+const DOCK = [
+  { to: '/result', label: '인트로', icon: Pict.chart(19) },
+  { to: '/analysis', label: '분석', icon: Pict.taegeuk(19, true) },
+  { to: '/fun', label: '재미', icon: Pict.heart(19) },
+  { to: '/settings', label: '설정', icon: Pict.person(19) },
+]
 
 interface Msg {
   who: 'ai' | 'me'
@@ -258,6 +268,8 @@ export default function DosaChat({
   jeonggok,
   gender,
   onChef,
+  who,
+  onNav,
 }: {
   report: ReportBundle
   /** 좌상단 미니 명식에 박히는 원국(UiChart.pillars — 시일월년 순) */
@@ -268,8 +280,12 @@ export default function DosaChat({
   jeonggok?: JeonggokPick | null
   /** 상담 상대의 성별 — 무대에 서는 도사를 가른다(운영자 260726) */
   gender?: 'M' | 'F'
-  /** 화자가 정해지거나 바뀔 때 알린다 — 인물이 곧 배경이라 호출부가 배경을 갈아야 한다 */
-  onChef?: (plate: string) => void
+  /** 화자가 정해지거나 바뀔 때 알린다 — 호출부가 배경(인물 컷)과 상단 헤더(이름·프사)를 갈아 끼운다 */
+  onChef?: (chef: Chef) => void
+  /** 좌상단 신원 두 줄 — 이름(별명) / 생년월일·시주 */
+  who?: { name: string; born: string }
+  /** 입력행 좌측 도크의 메뉴 이동(예타 `.ydock` 문법 — 하단 바가 곧 입력행이라 여기가 유일한 출구) */
+  onNav?: (to: string) => void
 }) {
   const [chef, setChef] = useState(() => chefForGender(gender))
   /** 대화 로그 — 위에서 아래로 쌓인다(질문이 위에 남는다) */
@@ -344,7 +360,7 @@ export default function DosaChat({
     topicRef.current = null
     llmCache.current = new Map()
     setStage(jeonggok ? 'jeonggok' : 'menu')
-    onChef?.(c.plate)
+    onChef?.(c)
     const v = voiceOf(c.id)
     const first = jeonggok ? [v.opening, jeonggok.line, jeonggok.ask] : ['뭐가 궁금해서 오셨는가?']
     setLog([{ who: 'ai', text: first[0] }])
@@ -399,7 +415,7 @@ export default function DosaChat({
       // 빗맞힘 = 사과가 아니라 **교체**(운영자 260726) — 맞은편 도사가 밀고 들어와 판을 받아 간다
       const next = counterpartChef(chef.id)
       setChef(next)
-      onChef?.(next.plate)
+      onChef?.(next)
       setStage('menu')
       say([bargeLineOf(next.id), ...toMsgs(voiceOf(next.id).miss), '그래서, 뭐가 궁금한가?'])
     }
@@ -554,18 +570,31 @@ export default function DosaChat({
         {/* 배경이 보이는 구역 — 인물은 **배경 그 자체**라 여기엔 아무것도 안 세운다.
             화면 위쪽은 통째로 인물 몫이고, 원국만 그 좌상단에 얹힌다. */}
         <Box sx={{ position: 'relative', flex: '1 1 auto', minHeight: 0 }}>
-          {/* 원국 = **좌상단**(운영자 260727 재확정). 유리 카드가 아니라 배경에 녹는 그라데이션 띠다.
+          {/* 원국 = **우상단**(운영자 260727 최종). 판·띠 없이 글자만 얹는다.
               낭독 대상에서는 뺀다 — 간지 8자를 그냥 읽으면 소음이다. */}
-          <Box aria-hidden sx={{ position: 'absolute', left: 16, top: 2, zIndex: 2 }}>
+          <Box aria-hidden sx={{ position: 'absolute', right: 14, top: 2, zIndex: 2 }}>
             <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
           </Box>
+          {/* 좌상단 신원 — 원국 맞은편(운영자 260727 예시 표기 그대로 · 좌측 정렬) */}
+          {who && (
+            <Box sx={{ position: 'absolute', left: 16, top: 2, zIndex: 2, maxWidth: '52%' }}>
+              {/* 사진 위에 바로 얹히는 글자 = 밝게 + 어두운 헤일로(예타 `.ymeter` 문법 계승).
+                  배경 밝기가 인물마다 달라 어느 쪽에서도 읽히게 하려면 헤일로가 필요하다. */}
+              <Typography sx={{ fontSize: 14, fontWeight: 800, color: 'var(--c-card)', lineHeight: 1.3, textShadow: '0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent)' }}>
+                {who.name}
+              </Typography>
+              <Typography sx={{ mt: 1, fontSize: 11.5, color: 'var(--c-card)', opacity: 0.9, lineHeight: 1.4, textShadow: '0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent)' }}>
+                {who.born}
+              </Typography>
+            </Box>
+          )}
         </Box>
 
         {/* ── 하단 묶음 = [블라인더] 위에 [대화 → 선택지 → 입력창] ──
             운영자 260727 "배경에 묻히지 않게 가시성 유지하도록 블라인더 적당히 블러 처리해서
             깔면서 그 위에 대화 이어지게". 인물 컷이 배경 전면이라 그 위에 글자를 바로 얹으면
             옷·문양의 대비가 제각각이라 문장이 끊겨 읽힌다. */}
-        <Box sx={{ position: 'relative', flex: '0 0 auto' }}>
+        <Box sx={{ position: 'relative', flex: '0 0 auto', pb: '68px' }}>
           {/* 블라인더 — 위쪽 경계를 마스크로 녹여 '띠 하나 붙인 것'으로 안 보이게 한다.
               blur는 여기 한 장만 건다(말풍선마다 걸면 대화 길이에 비례해 유리 층이 늘어난다). */}
           <Box
@@ -574,12 +603,14 @@ export default function DosaChat({
               position: 'absolute',
               inset: 0,
               pointerEvents: 'none',
-              backdropFilter: 'blur(14px) saturate(1.05)',
-              WebkitBackdropFilter: 'blur(14px) saturate(1.05)',
+              // 색으로 덮지 않고 **블러로 누른다** — 오버레이를 진하게 하면 인물이 죽는다.
+              // 유리 너머로 무대가 비쳐야 글래스모피즘이다(운영자 260727).
+              backdropFilter: 'blur(22px) saturate(1.15)',
+              WebkitBackdropFilter: 'blur(22px) saturate(1.15)',
               background:
-                'linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--c-page) 38%, transparent) 22%, color-mix(in srgb, var(--c-page) 62%, transparent) 100%)',
-              maskImage: 'linear-gradient(180deg, transparent 0%, black 20%)',
-              WebkitMaskImage: 'linear-gradient(180deg, transparent 0%, black 20%)',
+                'linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--c-page) 14%, transparent) 22%, color-mix(in srgb, var(--c-page) 28%, transparent) 100%)',
+              maskImage: 'linear-gradient(180deg, transparent 0%, black 34%)',
+              WebkitMaskImage: 'linear-gradient(180deg, transparent 0%, black 34%)',
             }}
           />
 
@@ -692,81 +723,124 @@ export default function DosaChat({
           </Box>
         )}
 
-        {/* 입력행 — **맨 아래**(운영자 260726 "대화 쓸수있는 장소도 있어야함(예타처럼)").
-            예타 `.yeta-in` 문법 계승 = 떠 있는 알약 캡슐 + [입력][전송], 전송은 픽토그램-온리
-            강조색. 유리 표면값만 쓰고 blur는 안 건다(말풍선과 같은 규율 · blur 상한 유지). */}
+        {/* 입력행 = 예타 `.yeta-in` **실측값 그대로**(운영자 260727 "예타꺼 거의 그대로 가져온다고
+            생각해줘"): 떠 있는 알약 · bottom 12 · 좌우 10 · 반경 999 · padding 5/6 · gap 4 ·
+            `blur(11px) saturate(1)` · 유리 표면 + 1px 라인. 색만 우리 라이트 토큰이다.
+            좌측 `.ydock` = 메뉴(운영자 "대화 창 겸 메뉴만 보존") — **입력을 시작하면 접힌다**
+            (예타 `.yeta-in:focus-within .ydock { max-width:0 }` 그대로). */}
         <Box
           onClick={(e) => e.stopPropagation()}
-          sx={{ position: 'relative', zIndex: 2, px: 2, pt: 1, pb: '82px', flex: '0 0 auto' }}
+          sx={{
+            position: 'absolute',
+            left: '10px',
+            right: '10px',
+            bottom: '12px',
+            zIndex: 4,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            p: '5px 6px',
+            borderRadius: '999px',
+            bgcolor: 'var(--glass)',
+            border: '1px solid var(--glass-line)',
+            backdropFilter: 'blur(11px) saturate(1)',
+            WebkitBackdropFilter: 'blur(11px) saturate(1)',
+            boxShadow: 'inset 0 1px 0 var(--glass-inset), var(--shadow-card)',
+            '&:focus-within .msd-dock': { maxWidth: 0, opacity: 0 },
+          }}
         >
           <Box
+            className="msd-dock"
             sx={{
+              flex: 'none',
               display: 'flex',
-              alignItems: 'flex-end',
-              gap: '6px',
-              p: '6px 6px 6px 14px',
-              borderRadius: '22px',
-              bgcolor: 'var(--glass)',
-              border: '1px solid var(--glass-line)',
-              boxShadow: 'inset 0 1px 0 var(--glass-inset)',
+              alignItems: 'center',
+              gap: '2px',
+              maxWidth: '150px',
+              overflow: 'hidden',
+              transition: 'max-width .34s var(--ease), opacity .25s var(--ease)',
             }}
           >
-            <Box
-              component="textarea"
-              rows={1}
-              value={draft}
-              placeholder={asking ? '판을 보는 중…' : '궁금한 걸 직접 물어봐도 된다'}
-              disabled={asking}
-              aria-label="도사에게 직접 묻기"
-              onChange={(e: { target: { value: string } }) => setDraft(e.target.value.slice(0, MAX_ASK))}
-              onKeyDown={(e: { key: string; shiftKey: boolean; preventDefault: () => void }) => {
-                // Enter = 전송 · Shift+Enter = 줄바꿈(예타와 같은 결)
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault()
-                  void askFree()
-                }
-              }}
-              sx={{
-                flex: 1,
-                minWidth: 0,
-                resize: 'none',
-                background: 'none',
-                border: 'none',
-                outline: 'none',
-                color: tokens.color.ink,
-                fontFamily: 'inherit',
-                fontSize: 14.5,
-                lineHeight: 1.5,
-                letterSpacing: 'var(--tracking)',
-                py: '11px',
-                maxHeight: 88,
-                '&::placeholder': { color: tokens.color.inkFaint },
-              }}
-            />
-            <Box
-              component="button"
-              type="button"
-              aria-label="보내기"
-              disabled={asking || !draft.trim()}
-              onClick={() => void askFree()}
-              sx={{
-                flex: 'none',
-                width: 44,
-                height: 44,
-                display: 'grid',
-                placeItems: 'center',
-                border: 'none',
-                background: 'none',
-                color: tokens.color.primary,
-                cursor: 'pointer',
-                borderRadius: '50%',
-                transition: 'transform .12s var(--ease)',
-                '&:active': { transform: 'scale(0.9)' },
-                '&:disabled': { opacity: 0.4, pointerEvents: 'none' },
-              }}
-            >
-              {Pict.send(22)}
-            </Box>
+            {DOCK.map((d) => (
+              <Box
+                key={d.to}
+                component="button"
+                type="button"
+                aria-label={d.label}
+                onClick={() => onNav?.(d.to)}
+                sx={{
+                  flex: 'none',
+                  width: 34,
+                  height: 44,
+                  display: 'grid',
+                  placeItems: 'center',
+                  background: 'none',
+                  border: 'none',
+                  color: tokens.color.inkFaint,
+                  cursor: 'pointer',
+                  transition: 'transform .28s var(--ease)',
+                  '&:active': { transform: 'scale(0.9)' },
+                }}
+              >
+                {d.icon}
+              </Box>
+            ))}
+          </Box>
+          <Box
+            component="textarea"
+            rows={1}
+            value={draft}
+            placeholder={asking ? '판을 보는 중…' : '메시지'}
+            disabled={asking}
+            aria-label="도사에게 직접 묻기"
+            onChange={(e: { target: { value: string } }) => setDraft(e.target.value.slice(0, MAX_ASK))}
+            onKeyDown={(e: { key: string; shiftKey: boolean; preventDefault: () => void }) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault()
+                void askFree()
+              }
+            }}
+            sx={{
+              flex: 1,
+              minWidth: 0,
+              resize: 'none',
+              background: 'none',
+              border: 'none',
+              outline: 'none',
+              color: tokens.color.ink,
+              fontFamily: 'inherit',
+              fontSize: 14.5,
+              lineHeight: 1.5,
+              letterSpacing: 'var(--tracking)',
+              py: '11px',
+              px: '4px',
+              maxHeight: 88,
+              '&::placeholder': { color: tokens.color.inkFaint },
+            }}
+          />
+          <Box
+            component="button"
+            type="button"
+            aria-label="보내기"
+            disabled={asking || !draft.trim()}
+            onClick={() => void askFree()}
+            sx={{
+              flex: 'none',
+              width: 44,
+              height: 44,
+              display: 'grid',
+              placeItems: 'center',
+              border: 'none',
+              background: 'none',
+              color: tokens.color.primary,
+              cursor: 'pointer',
+              borderRadius: '50%',
+              transition: 'transform .12s var(--ease)',
+              '&:active': { transform: 'scale(0.9)' },
+              '&:disabled': { opacity: 0.4, pointerEvents: 'none' },
+            }}
+          >
+            {Pict.send(22)}
           </Box>
         </Box>
         </Box>

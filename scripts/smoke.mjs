@@ -55,7 +55,9 @@ try {
 
   await pg.goto(`${base}/talk`, { waitUntil: 'networkidle', timeout: 30000 })
   await pg.waitForTimeout(600)
-  if (!((await pg.textContent('body')) || '').includes('상담')) fails.push('/talk에 상담 화면 없음')
+  // 상담 화면 식별자 — 예전엔 하단 네비 탭 라벨('상담')을 봤는데, 채팅 화면은 네비 대신
+  // 입력행이 하단을 맡게 바뀌어 그 글자가 사라졌다. 화면 고유의 것(입력행)으로 바꿔 본다.
+  if (!(await pg.$('textarea[aria-label="도사에게 직접 묻기"]'))) fails.push('/talk에 상담 입력행 없음')
 
   // 차용 기틀 하한 감사(260725) — Apple HIG: 텍스트 11pt(Caption 2) · 탭 타깃 44x44pt.
   // 값 정본 = app/src/theme.ts tokens.minFont / minTap. 대표데이터(?qa=1) 3화면에서 검사.

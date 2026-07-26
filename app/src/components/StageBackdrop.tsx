@@ -13,8 +13,10 @@ import { Box } from '@mui/material'
  * 인물을 따로 세우는 층(ShopStage)이 사라지고 배경 한 장이 곧 무대다.
  *
  * 구조: ⓪사진(cover) → ①스크림(아래로 갈수록 페이지색) → 그 위에 호출부의 콘텐츠.
- * 스크림이 필요한 이유: 사진 위에 바로 글자를 얹으면 밝은 하늘·창틀에서 대비가 무너진다.
- * 위쪽은 비워 두고(무대가 보여야 한다) 대사·선택지가 앉는 아래쪽만 페이지색으로 눌러 깐다.
+ * ⚠ 260727 운영자: "이미지가 위에 까지 이어지면서 아래까지 보여야함 · 그라데이션 오버레이를 좀 더
+ * 투명하게 하고 **블러로 대체**해서 글래스모피즘을 살려야함" → 스크림은 **바닥 끝 살짝만** 남기고
+ * 가시성은 대화 뒤 블라인더의 `backdrop-filter`가 맡는다. 색으로 덮으면 사진이 죽고,
+ * 블러로 눌러야 유리 너머로 무대가 비친다.
  *
  * 값은 전량 계승 — 색은 `--c-page`/하늘 토큰의 파생(color-mix)만 쓴다(신규 색 0).
  * 사진이 없으면 하늘 그라데이션으로 폴백해 화면이 비지 않는다.
@@ -22,7 +24,7 @@ import { Box } from '@mui/material'
 export default function StageBackdrop({
   src = '/assets/shop-bg.jpg',
   /** 스크림 시작 위치(%) — 이 아래부터 페이지색이 올라온다 */
-  scrimFrom = 46,
+  scrimFrom = 100,
 }: {
   src?: string
   scrimFrom?: number
@@ -48,7 +50,7 @@ export default function StageBackdrop({
         sx={{
           position: 'absolute',
           inset: 0,
-          background: `linear-gradient(180deg, transparent 0%, transparent ${scrimFrom}%, color-mix(in srgb, var(--c-page) 62%, transparent) ${scrimFrom + 22}%, color-mix(in srgb, var(--c-page) 92%, transparent) 100%)`,
+          background: `linear-gradient(180deg, transparent 0%, transparent ${scrimFrom}%, color-mix(in srgb, var(--c-page) 18%, transparent) ${scrimFrom + 14}%, color-mix(in srgb, var(--c-page) 34%, transparent) 100%)`,
         }}
       />
     </Box>

@@ -90,6 +90,16 @@ export const CHEFS: readonly Chef[] = [
  * 리포트·대화 화자도 여기에 맞춘다(그 전엔 리포트만 구 이름 '아이샤'로 남아 한 앱에 이름이 2개였다).
  * ⚠ 연리 ↔ 셰프단(기본캐 포함)의 배치·총칭 관계는 Q.16 미확정 — 확정되면 이 상수와 CHEFS의 관계를 정리한다.
  */
+/**
+ * 헤더 이름 옆 **부제 한 줄** — 예타 `.yh-tag`(상대 설명) 자리 계승.
+ * ⚠ 새 문안을 짓지 않는다 — `concept`에 이미 있는 설명절을 잘라 쓴다(정본 1개 유지).
+ * `이름(한자) — 설명. 배정. 성격` 꼴이라 `—` 뒤 첫 문장만 취한다.
+ */
+export const taglineOf = (c: Chef): string => {
+  const after = c.concept.split('—').slice(1).join('—').trim() || c.concept
+  return after.split('.')[0].trim()
+}
+
 export const HOST_NAME = '연리'
 
 /**
