@@ -4,8 +4,17 @@
 // @cloudflare/workers-types 미설치 — 전역 타입 import 없이 로컬 타입만 사용(런타임 전역 Request/Response/fetch).
 
 interface Env {
+  /** 레거시 API 키 경로 — OAuth 체인이 하나도 없을 때의 폴백 */
   ANTHROPIC_API_KEY?: string
   DOSA_MODEL?: string
+  // OAuth 구독 계정 체인(운영자 260726 "사주 앱 안에 있는 oauth키를 사용") — Actions 시크릿과
+  // 동일 명명을 CF Pages env로도 등록해서 쓴다. 체인 순서 = shared/account_failover.py CHAIN 동기.
+  CLAUDE_CODE_OAUTH_TOKEN_MUTENO?: string
+  CLAUDE_CODE_OAUTH_TOKEN_NOMUTEFB?: string
+  CLAUDE_CODE_OAUTH_TOKEN_EMS1130G?: string
+  CLAUDE_CODE_OAUTH_TOKEN_MUTENONA?: string
+  CLAUDE_CODE_OAUTH_TOKEN_EMS1130M?: string
+  CLAUDE_CODE_OAUTH_TOKEN_EMS1130N?: string
 }
 
 interface GroundRef {
@@ -21,6 +30,8 @@ interface DosaRequest {
   chartSummary?: string
   grounds?: GroundLine[]
   profileName?: string
+  /** 클라이언트 모델 선택(app/src/data/prefs.ts) — 화이트리스트 밖이면 기본값 */
+  model?: string
 }
 
 interface AnthropicContentBlock {
@@ -33,6 +44,24 @@ interface AnthropicResponse {
 
 /** 주제 화이트리스트 — app/src/data/dosaTopics.ts TOPICS와 동일 키 */
 const TOPIC_WHITELIST = ['성격', '올해', '직업', '관계', '주의']
+
+/**
+ * 모델 화이트리스트 — app/src/data/prefs.ts DOSA_MODELS와 키 동기(운영자 260726 확정 2종).
+ * ⚠ claude-api 정본 실측: `speed:"fast"`는 Opus 5/4.8 전용(베타 fast-mode-2026-02-01) —
+ * 소넷5엔 빠름 모드가 없어 표준 호출(그 자체로 빠른 축). effort는 소넷 = low(속도 우선,
+ * 운영자 "대답속도가 빨라야"), 오퍼스 빠름 = 기본(high, 깊이 축이라 낮추지 않는다).
+ */
+const MODELS: Record<string, { model: string; speed?: 'fast'; effort?: string }> = {
+  sonnet: { model: 'claude-sonnet-5', effort: 'low' },
+  'opus-fast': { model: 'claude-opus-5', speed: 'fast' },
+}
+const DEFAULT_MODEL_KEY = 'sonnet'
+
+/** OAuth 계정 체인 — shared/account_failover.py CHAIN과 동일 순서(막히면 다음 계정) */
+const CHAIN = ['MUTENO', 'NOMUTEFB', 'EMS1130G', 'MUTENONA', 'EMS1130M', 'EMS1130N'] as const
+
+/** 쿼터·한도 판정 — shared/claude_transient.sh is_quota 정규식의 서버판(전환 트리거) */
+const QUOTA_RE = /usage limit|weekly limit|hit your .{0,40}limit|rate.?limit|rate_limit|too many requests|quota|limit reached|limit.{0,40}reset|resets? (at|in)|credit balance|insufficient (credit|fund)|out of (credit|token)s?|billing (issue|error|problem)/i
 
 const MAX_BODY_BYTES = 64 * 1024
 const MAX_GROUND_LINES = 40
@@ -87,11 +116,72 @@ function buildUserMessage(body: DosaRequest): string {
   ].join('\n')
 }
 
+/** 자격 1개(OAuth 토큰 또는 API 키)로 1회 호출 — 성공 텍스트 / 'rotate'(다음 자격) / 'fallback'(체인 중단) */
+async function callOnce(
+  cred: { kind: 'oauth' | 'apikey'; token: string },
+  modelCfg: { model: string; speed?: 'fast'; effort?: string },
+  body: DosaRequest,
+): Promise<{ ok: true; text: string } | { ok: false; next: 'rotate' | 'fallback' }> {
+  // OAuth 구독 토큰 = Authorization: Bearer + oauth 베타 헤더(x-api-key 아님 — claude-api 정본).
+  // 빠름 모드 = fast-mode 베타 헤더 + 본문 speed:"fast"(Opus 5/4.8 전용).
+  const betas = ['oauth-2025-04-20', ...(modelCfg.speed ? ['fast-mode-2026-02-01'] : [])]
+  const headers: Record<string, string> = {
+    'anthropic-version': '2023-06-01',
+    'content-type': 'application/json',
+    ...(cred.kind === 'oauth'
+      ? { authorization: `Bearer ${cred.token}`, 'anthropic-beta': betas.join(',') }
+      : { 'x-api-key': cred.token, ...(modelCfg.speed ? { 'anthropic-beta': 'fast-mode-2026-02-01' } : {}) }),
+  }
+  let apiRes: Response
+  try {
+    apiRes = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        model: modelCfg.model,
+        max_tokens: 700,
+        ...(modelCfg.speed ? { speed: modelCfg.speed } : {}),
+        ...(modelCfg.effort ? { output_config: { effort: modelCfg.effort } } : {}),
+        // 시스템 = 안정 프리픽스 → 캐시 브레이크포인트(같은 세션 프리페치 5건이 프리픽스 공유)
+        system: [{ type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } }],
+        messages: [{ role: 'user', content: buildUserMessage(body) }],
+      }),
+    })
+  } catch {
+    return { ok: false, next: 'rotate' } // 네트워크 오류 = 다음 자격 시도(무해)
+  }
+
+  if (!apiRes.ok) {
+    // 한도·인증 계열 = 계정 국한일 수 있어 다음 계정으로 로테이션(claude_transient.sh 폴오버 경계 계승:
+    // 401/403은 활성 계정 국한 인증죽음 사례가 실측돼 전환이 정확한 처방 · 5xx/529 과부하도 계정 편차가 있어 전환 시도).
+    if ([401, 403, 429, 500, 502, 503, 529].includes(apiRes.status)) return { ok: false, next: 'rotate' }
+    // 400 등 요청 자체 문제 = 어느 계정으로 가도 같다 — 본문에 한도 문구가 있을 때만 로테이션
+    const errText = await apiRes.text().catch(() => '')
+    return { ok: false, next: QUOTA_RE.test(errText.slice(0, 500)) ? 'rotate' : 'fallback' }
+  }
+
+  const data = (await apiRes.json().catch(() => null)) as AnthropicResponse | null
+  if (!data) return { ok: false, next: 'rotate' }
+  if ((data as { stop_reason?: string }).stop_reason === 'refusal') return { ok: false, next: 'fallback' }
+  const text = (data.content ?? [])
+    .filter((b) => b?.type === 'text' && typeof b.text === 'string')
+    .map((b) => b.text as string)
+    .join('\n\n')
+    .trim()
+  if (!text) return { ok: false, next: 'fallback' } // 거절·빈 응답 → 클라이언트 L3 폴백
+  return { ok: true, text }
+}
+
 export async function onRequestPost(ctx: { request: Request; env: Env }): Promise<Response> {
   const { request, env } = ctx
 
-  // 키 미설정 = LLM 층 꺼짐 — 클라이언트는 L3 폴백으로 완결 동작
-  if (!env.ANTHROPIC_API_KEY) return json({ fallback: true }, 503)
+  // 자격 사다리 = OAuth 체인(등록된 것만, CHAIN 순서) → 레거시 API 키. 전부 없으면 LLM 층 꺼짐.
+  const creds: { kind: 'oauth' | 'apikey'; token: string }[] = CHAIN.map((name) => ({
+    kind: 'oauth' as const,
+    token: ((env as Record<string, string | undefined>)[`CLAUDE_CODE_OAUTH_TOKEN_${name}`] ?? '').trim(),
+  })).filter((c) => c.token)
+  if (env.ANTHROPIC_API_KEY) creds.push({ kind: 'apikey', token: env.ANTHROPIC_API_KEY })
+  if (!creds.length) return json({ fallback: true }, 503)
 
   let raw: string
   try {
@@ -110,33 +200,16 @@ export async function onRequestPost(ctx: { request: Request; env: Env }): Promis
   if (typeof body.topic !== 'string' || !TOPIC_WHITELIST.includes(body.topic)) {
     return json({ error: 'invalid topic' }, 400)
   }
+  const modelCfg = MODELS[typeof body.model === 'string' && body.model in MODELS ? body.model : DEFAULT_MODEL_KEY]
 
   try {
-    const apiRes = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'x-api-key': env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: env.DOSA_MODEL ?? 'claude-sonnet-5',
-        max_tokens: 700,
-        system: SYSTEM_PROMPT,
-        messages: [{ role: 'user', content: buildUserMessage(body) }],
-      }),
-    })
-    if (!apiRes.ok) return json({ fallback: true }, 502)
-
-    const data = (await apiRes.json()) as AnthropicResponse
-    const text = (data.content ?? [])
-      .filter((b) => b?.type === 'text' && typeof b.text === 'string')
-      .map((b) => b.text as string)
-      .join('\n\n')
-      .trim()
-    if (!text) return json({ fallback: true }, 502) // 거절·빈 응답 → 클라이언트 L3 폴백
-
-    return json({ text })
+    for (const cred of creds) {
+      const r = await callOnce(cred, modelCfg, body)
+      if (r.ok) return json({ text: r.text })
+      if (r.next === 'fallback') return json({ fallback: true }, 502)
+      // rotate = 다음 자격으로 계속
+    }
+    return json({ fallback: true }, 502) // 체인 소진 → 클라이언트 L3 폴백
   } catch {
     return json({ fallback: true }, 502)
   }

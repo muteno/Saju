@@ -7,6 +7,7 @@ import { Pict } from './MyeongShell'
 import { tokens } from '../theme'
 import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, chartSummaryOf } from '../data/dosaTopics'
 import type { DosaLine, Topic } from '../data/dosaTopics'
+import { dosaModel } from '../data/prefs'
 import type { JeonggokPick } from '../data/jeonggok'
 import type { Pillar } from '../data/saju'
 import type { ReportBundle } from '../engine'
@@ -61,21 +62,26 @@ function useTypewriter(text: string, speedMs: number) {
   }
 }
 
-/** /api/dosa 시도 — 200 & {text}만 채택, 그 외(에러·비200·5초 타임아웃)는 null(조용한 폴백) */
+/**
+ * /api/dosa 시도 — 200 & {text}만 채택, 그 외(에러·비200·타임아웃)는 null(조용한 폴백).
+ * 프리페치(사용자 대기 없음)는 타임아웃을 길게 잡는다 — 선택 시점엔 이미 도착해 있는 게 목적.
+ */
 async function fetchDosaText(
   topic: string,
   report: ReportBundle,
   lines: DosaLine[],
   profileName?: string,
+  timeoutMs = 5000,
 ): Promise<string | null> {
   const ctrl = new AbortController()
-  const timer = setTimeout(() => ctrl.abort(), 5000)
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs)
   try {
     const res = await fetch('/api/dosa', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
         topic,
+        model: dosaModel(), // 설정에서 고른 응답 모델(소넷5/오퍼스5 빠름 — data/prefs.ts)
         chartSummary: chartSummaryOf(report),
         grounds: lines.map((l) => ({ text: l.text, grounds: l.grounds ?? [] })),
         ...(profileName ? { profileName } : {}),
@@ -256,7 +262,27 @@ export default function DosaChat({
   const topicRef = useRef<string | null>(null) // LLM 응답 도착 시 아직 같은 주제인지 검증
   const idxRef = useRef(0) // 인트로를 지나쳤으면 늦게 온 LLM 응답은 버림(대사 점프 방지)
   const stageRef = useRef<HTMLDivElement | null>(null) // 덜컹 연출 대상
+  // 선반응 캐시(운영자 260726 "다음 말 뉘앙스를 반쯤 생각") — 주제별 LLM 응답을 미리 받아 둔다.
+  // 값: 진행 중 promise + 완료 시 text(성공 문자열/실패 null). 리포트가 바뀌면 통째로 리셋.
+  const llmCache = useRef<Map<string, { promise: Promise<string | null>; text?: string | null }>>(new Map())
   const reduceMotion = useReducedMotion()
+
+  /** 주제 응답을 캐시에서 얻거나 지금 발사(1회만) — 프리페치·실선택이 같은 경로를 쓴다.
+   *  키에 모델을 포함 = 설정에서 모델을 바꾼 직후 옛 모델 응답을 주지 않는다. */
+  const ensureLlm = (topicKey: string) => {
+    const key = `${dosaModel()}:${topicKey}`
+    const hit = llmCache.current.get(key)
+    if (hit) return hit
+    const fallback = topicLines(report, topicKey, hourUnknown)
+    const entry: { promise: Promise<string | null>; text?: string | null } = {
+      promise: fetchDosaText(topicKey, report, fallback, profileName, 20000).then((text) => {
+        entry.text = text
+        return text
+      }),
+    }
+    llmCache.current.set(key, entry)
+    return entry
+  }
 
   /**
    * 화면 덜컹 — key 리마운트가 아니라 WAAPI로 튼다(리마운트는 근거 <details> 접힘·연출
@@ -292,11 +318,23 @@ export default function DosaChat({
     setTopicKey(null)
     setSeen(new Set())
     setHop(0)
+    llmCache.current = new Map()
   }, [report, jeonggok])
 
   // 정곡 단정이 착지하는 순간 화면이 한 번 덜컹 — "잠깐 —"의 무게
   useEffect(() => {
     if (phase === 'opening') rumble('jolt')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase])
+
+  // 선반응 프리페치 — 선택지가 뜨는 순간(사용자가 읽고 고르는 동안) 미본 주제의 응답을
+  // 미리 생성해 둔다(250ms 시차 = 동시 폭주 방지). 탭 시점엔 대개 이미 도착 = 즉답.
+  useEffect(() => {
+    if (phase !== 'choose') return
+    const timers = TOPICS.filter((t) => !llmCache.current.has(`${dosaModel()}:${t.key}`)).map((t, i) =>
+      setTimeout(() => ensureLlm(t.key), i * 250),
+    )
+    return () => timers.forEach(clearTimeout)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase])
 
@@ -331,28 +369,37 @@ export default function DosaChat({
     setPhase('verdict')
   }
 
+  const toLlmLines = (text: string): DosaLine[] =>
+    text
+      .split(/\n{2,}/)
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .map((p) => ({ text: p }))
+
   const selectTopic = (t: Topic) => {
     const fallback = topicLines(report, t.key, hourUnknown)
     const intro = TOPIC_INTROS[t.key]
-    const base: DosaLine[] = intro ? [{ text: intro }, ...fallback] : fallback
+    const entry = ensureLlm(t.key)
+    // 프리페치가 이미 끝났으면 LLM 대사로 바로 시작(선반응 적중 = 대기 0),
+    // 아니면 L3 조립 대사로 먼저 시작하고 도착 시 교체(기존 문법 그대로)
+    const llmReady = typeof entry.text === 'string' && entry.text ? toLlmLines(entry.text) : null
+    const base: DosaLine[] = llmReady ?? fallback
+    const seqInit = intro ? [{ text: intro }, ...base] : base
     topicRef.current = t.key
     setTopicKey(t.key)
-    setSeq(base)
+    setSeq(seqInit)
     setIdx(0)
     idxRef.current = 0
     setPhase('play')
     setHop((h) => h + 1)
     setSeen((prev) => new Set(prev).add(t.key))
-    void fetchDosaText(t.key, report, fallback, profileName).then((text) => {
-      if (!text || topicRef.current !== t.key || idxRef.current > 0) return
-      const paras = text
-        .split(/\n{2,}/)
-        .map((s) => s.trim())
-        .filter(Boolean)
-      if (!paras.length) return
-      const llmLines: DosaLine[] = paras.map((p) => ({ text: p }))
-      setSeq(intro ? [{ text: intro }, ...llmLines] : llmLines)
-    })
+    if (!llmReady)
+      void entry.promise.then((text) => {
+        if (!text || topicRef.current !== t.key || idxRef.current > 0) return
+        const llmLines = toLlmLines(text)
+        if (!llmLines.length) return
+        setSeq(intro ? [{ text: intro }, ...llmLines] : llmLines)
+      })
   }
 
   const onTap = () => {

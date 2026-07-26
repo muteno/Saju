@@ -72,6 +72,8 @@ npm run build:kb      # kb 번들(app/public/kb-<hash>.json + vendor/kb_ref.json
 
 21. **OAuth 계정 로테이션 레일(← Q.42, 260726 · PR #127 드래프트 동승)** — nomute-editor 차용: `shared/claude_transient.sh`·`claude_py.py`(런타임 폴오버 SSOT — 쿼터 시 ALT→ALT2→ALT3 전환·5xx 재시도·preflight) + `shared/account_failover.py`(sticky 승격 — 체인 = **MUTENO→NOMUTEFB→EMS1130G→MUTENONA→EMS1130M→EMS1130N** 6계정 순환) + `account-selftest.yml`. **사용법·완성형 env 블록 = `docs/oauth_계정로테이션_차용.md`**(Claude 호출 워크플로 만들 때 §3 블록 4개 복사 = 즉시 로테이션). 사본 갱신 규약 = 정본(nomute-editor) diff 후 재복사(손편집 금지). ⚠운영자 액션 = `GH_VARS_TOKEN` PAT(Variables: Read and write) 등록 → account-selftest 런 「🎉 PAT 실측 통과」 확인(그전까지 승격만 no-op·폴오버는 동작).
 
+22. **상담 LLM = OAuth 체인 + 모델 전환 + 선반응(← Q.43, 260726)** — **다음 세션 필독**: ⓐ`functions/api/dosa.ts` = OAuth 6계정 로테이션(`Bearer` + `oauth-2025-04-20` 베타 · 401/403/429/5xx·한도 문구 = 다음 계정) → `ANTHROPIC_API_KEY` → L3 폴백. **CF Pages env 등록 = 운영자 액션**(`CLAUDE_CODE_OAUTH_TOKEN_<계정명>` 6개 — `docs/oauth_계정로테이션_차용.md` §3-e) ⓑ모델 화이트리스트 = `sonnet`(소넷5·effort low·기본)/`opus-fast`(오퍼스5+`speed:"fast"`+`fast-mode-2026-02-01`) — ⚠**빠름 모드는 Opus 전용**(소넷5엔 없음 = 표준이 곧 빠른 축, claude-api 정본 실측) · 선택 = `data/prefs.ts`(로컬 단일 출처) + 설정 화면 상담 섹션 ⓒ**선반응 프리페치** = DosaChat `llmCache`(선택지 노출 시 미본 주제 5건 250ms 시차 발사 · 캐시 키 = 모델:주제 · 적중 시 LLM 대사 즉시 시작) ⓓ시스템 프롬프트 `cache_control` 배선(프리픽스 캐시 — ⚠소넷5 최소 1024토큰이라 짧으면 무음 미캐시).
+
 ## 상용화 로드맵 (사용자 결정 필요 — 세션이 임의 진행 금지)
 
 | 축 | 내용 | 선행 조건 |

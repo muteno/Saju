@@ -113,6 +113,17 @@ p, rc, err = run_claude(["claude", "-p", "--model", "claude-sonnet-5"], prompt, 
         run: python3 shared/account_failover.py
 ```
 
+## 3-e. 상담 LLM(Cloudflare Pages Function)에서 쓰기 — Q.43 배선 완료
+
+`functions/api/dosa.ts`가 같은 체인을 **서버 런타임 로테이션**으로 쓴다(연리 상담 응답):
+- 자격 사다리 = OAuth 6계정(CHAIN 순서·등록된 것만) → 레거시 `ANTHROPIC_API_KEY` → 전부 없으면 L3 폴백.
+- 호출 = `Authorization: Bearer` + `anthropic-beta: oauth-2025-04-20`(구독 OAuth 정식 문법) ·
+  한도/401/403/429/5xx = 다음 계정 전환(`is_quota` 정규식 서버판).
+- 모델 = 화이트리스트 2종(`sonnet`=claude-sonnet-5 effort low · `opus-fast`=claude-opus-5 +
+  `speed:"fast"` + 베타 `fast-mode-2026-02-01`) — 선택은 앱 설정(`data/prefs.ts`).
+- **운영자 액션**: CF Pages(saju02) → Settings → Environment variables에
+  `CLAUDE_CODE_OAUTH_TOKEN_<계정명>` 6개를 등록(Actions 시크릿과 같은 값). 등록 즉시 가동.
+
 ## 4. 현황 (260726)
 
 - 이 레포엔 아직 Claude를 부르는 워크플로가 없다 — 이 이식은 **레일 선설치**다. 배치 트레이닝(/feed 파도)
