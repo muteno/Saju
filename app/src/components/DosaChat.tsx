@@ -9,7 +9,7 @@ import { tokens } from '../theme'
 import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, chartSummaryOf } from '../data/dosaTopics'
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
-import { chefForGender, counterpartChef, BARGE_LINE, voiceOf } from '../data/chefs'
+import { chefForGender, counterpartChef, BARGE_LINE, voiceOf, FACE } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
 import type { Pillar } from '../data/saju'
 import type { ReportBundle } from '../engine'
@@ -367,6 +367,24 @@ export default function DosaChat({
       })
   }
 
+  /**
+   * 상황 → 표정(결정론 · 병렬 파도 PR 134 계승, 단계 축만 메신저에 맞춰 갈아 끼움).
+   * ⚠ 주석에 `#`+세 자리를 쓰면 토큰 게이트가 3자리 hex로 계수한다(A.44 실측 · 표기 주의).
+   * 랜덤이면 같은 장면에서 얼굴이 매번 달라져 인물이 흔들린다.
+   * 정곡을 던지는 중 = 꿰뚫어봄 · 的中 = 서늘한 미소 · 난입 = 의미심장 · 빗맞힘 = 어이없음 ·
+   * 주제 풀이 중 = 진지 · 그 밖(용건 묻기) = 기본.
+   * ⚠ 컷이 아직 없으면 ShopStage가 조용히 플레이트로 내려간다(에셋 유무로 화면이 안 깨진다).
+   */
+  const faceFor = (): number => {
+    if (stage === 'jeonggok') return FACE.꿰뚫어봄
+    // 반응은 `mood`에 실려 다음 주제를 고를 때까지 남는다 — `crit`(700ms)에 걸면 대사가 아직
+    // 흐르는 중에 얼굴만 먼저 평정으로 돌아온다(구버전은 verdict 단계가 이걸 붙들고 있었다).
+    if (mood === 'happy') return FACE.서늘한미소
+    if (mood === 'hmm') return barge ? FACE.의미심장 : FACE.어이없음
+    if (stage === 'play') return FACE.진지
+    return FACE.기본
+  }
+
   const onTap = () => {
     if (!tw.done) {
       tw.skip()
@@ -436,6 +454,7 @@ export default function DosaChat({
         <Box aria-hidden sx={{ position: 'absolute', left: 0, right: 0, top: 0, height: 300, pointerEvents: 'none', zIndex: 0 }}>
           <ShopStage
             chef={chef}
+            face={faceFor()}
             enter={barge ? 'right' : 'none'}
             height={300}
             bare

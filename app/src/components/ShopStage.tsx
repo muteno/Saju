@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { Box } from '@mui/material'
 import { tokens } from '../theme'
-import type { Chef } from '../data/chefs'
+import { faceUrl, type Chef } from '../data/chefs'
 
 /**
  * 연식당 무대 — **간판 → 글래스 판 → 인물** 3층(운영자 260726 구술).
@@ -22,6 +22,8 @@ import type { Chef } from '../data/chefs'
  */
 export default function ShopStage({
   chef,
+  /** 표정 컷 번호(FACE 상수) — 있으면 이걸 먼저 쓰고, 파일이 없으면 플레이트로 폴백한다 */
+  face,
   /** 등장 방향 — 'right' = 오른쪽에서 촤르륵 밀고 들어옴(교체 난입) */
   enter = 'none',
   /** 무대 높이(px) */
@@ -39,6 +41,7 @@ export default function ShopStage({
   fallback,
 }: {
   chef: Chef
+  face?: number
   enter?: 'none' | 'right' | 'left'
   height?: number
   bare?: boolean
@@ -47,6 +50,21 @@ export default function ShopStage({
 }) {
   const [broken, setBroken] = useState(false)
   const [bgBroken, setBgBroken] = useState(false)
+  // 표정 컷이 아직 안 들어온 캐릭터는 조용히 플레이트로 내려간다(에셋 유무로 화면이 안 깨진다)
+  const [faceBroken, setFaceBroken] = useState(false)
+  /**
+   * 그림이 바뀌면 '깨짐' 기억을 버린다 — 이 컴포넌트는 캐릭터 교체(barge)에도 **언마운트되지 않아서**,
+   * 앞 캐릭터의 컷이 404로 한 번 깨지면 그 상태가 남아 **다음 캐릭터의 컷은 시도조차 안 하게 된다**
+   * (컷이 전량 도착해도 영원히 플레이트만 뜬다). 렌더 중 상태 조정 = 리액트 공식 패턴.
+   */
+  const idKey = `${chef.id}:${face ?? 0}`
+  const [seenKey, setSeenKey] = useState(idKey)
+  if (seenKey !== idKey) {
+    setSeenKey(idKey)
+    setFaceBroken(false)
+    setBroken(false)
+  }
+  const src = face && !faceBroken ? faceUrl(chef.id, face) : chef.plate
   return (
     <Box sx={{ position: 'relative', minHeight: height, overflow: 'hidden' }}>
       {/* ⓪ 배경 — 벚꽃 흩날리는 목조 상담방(운영자 260726 무드 정본). 없으면 하늘 토큰 그라데이션으로
@@ -130,9 +148,12 @@ export default function ShopStage({
         {!broken ? (
           <Box
             component="img"
-            src={chef.plate}
+            key={src}
+            src={src}
             alt=""
-            onError={() => setBroken(true)}
+            // 표정 컷이 없으면 **한 단만** 내려간다(컷 → 플레이트 → 폴백 대역). 한 번에 폴백까지
+            // 떨어뜨리면 컷 하나 빠졌다고 인물이 통째로 사라진다.
+            onError={() => (face && !faceBroken ? setFaceBroken(true) : setBroken(true))}
             // 그림자 색도 토큰 계승(--line) — 키잉된 인물이 유리 판에서 떠 보이게만 하는 최소치.
             // bare = 아래를 마스크로 녹인다: 유리 판이 인물을 덮는 경계가 '싹둑 잘림'이 아니라
             // '무대 안개로 스며듦'이 된다(미연시 스탠딩 관례 · 색 아닌 알파라 토큰 무관).
