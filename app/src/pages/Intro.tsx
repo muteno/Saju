@@ -5,7 +5,7 @@ import StatusBar from '../components/StatusBar'
 import MyeongShell, { Pict } from '../components/MyeongShell'
 import CharacterStage from '../components/CharacterStage'
 import SajuTable from '../components/SajuTable'
-import { OhaengStrip, SectionTitle, GlassButton } from '../components/ReportParts'
+import { OhaengSegBar, SectionTitle, GlassButton } from '../components/ReportParts'
 import { tokens } from '../theme'
 import { ohaengWithoutHour, todayInfo, myTodayFortune, sampleProfileLabel } from '../data/saju'
 import { HOST_NAME, hasChef } from '../data/chefs'
@@ -237,6 +237,12 @@ export default function Intro() {
                     </Box>
                   </Box>
                 )}
+                {/* 오행 세그먼트 바 — 레퍼런스 카드 문법의 마지막 단(운영자 260726 F2안).
+                    점수와 한 카드에 두는 이유: 오늘의 점수는 내 오행 균형 위에서 나온 값이라
+                    「무엇이 넘치고 무엇이 없는가」가 같은 시야에 있어야 근거가 이어진다. */}
+                <Box sx={{ mt: 1.6 }}>
+                  <OhaengSegBar ohaeng={ohaeng} total={ohaengTotal} />
+                </Box>
               </>
             ) : (
               <Typography sx={{ fontSize: 13.5, color: tokens.color.inkSub }}>오늘 일진 계산에 필요한 값이 부족해요.</Typography>
@@ -263,10 +269,8 @@ export default function Intro() {
               )}
             </Typography>
             <SajuTable pillars={pillars} unknownHour={resolved.hourUnknown} fluid />
-            <Box sx={{ mt: 1.6 }}>
-              <OhaengStrip ohaeng={ohaeng} total={ohaengTotal} bare />
-            </Box>
-            {/* 산출값 캡션 — 오행 아래 우측 하단에 글자만(운영자 260726). 입력값(보정량·출생지)은 위 헤더 */}
+            {/* 산출값 캡션 — 표 아래 우측에 글자만(운영자 260726). 입력값(보정량·출생지)은 위 헤더.
+                오행은 점수 카드로 올라갔다(F2 세그먼트 바) — 여기 두면 같은 값이 두 번 나온다 */}
             {showCorrected && (
               <Typography sx={{ mt: 1, textAlign: 'right', fontSize: 11.5, fontWeight: 600, color: tokens.color.inkFaint }}>
                 진태양시 {String(chart.corrected!.hh).padStart(2, '0')}:{String(chart.corrected!.mm).padStart(2, '0')}

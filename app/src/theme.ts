@@ -52,20 +52,44 @@ export const tokens = {
 export type OhaengKey = keyof typeof tokens.ohaeng
 export type Mode = 'light' | 'dark'
 
-const modeColors = {
-  light: { primary: '#22409e', onPrimary: '#ffffff', page: '#f3f3f5', card: '#ffffff', ink: '#1b1b1f', sub: '#6b6b72', border: '#e7e7ec' },
-  dark: { primary: '#3ad9c0', onPrimary: '#062019', page: '#141416', card: '#1f1f22', ink: '#f1f1f4', sub: '#a0a0a8', border: '#2e2e33' },
+/**
+ * MUI palette — **CSS 토큰을 그대로 참조한다**(거울 = 무손실).
+ *
+ * 260726 이전엔 여기에 hex 복사본(`modeColors`)이 있었고, `index.css`가 갱신돼도 조용히 옛 값을
+ * 유지해 **같은 화면에 두 팔레트가 공존**했다 — 실렌더 적발: body 배경이 palette의 `#f3f3f5`로
+ * 칠해지는데 `--c-page`는 `#eef0f6`였다(다른 값). `text.secondary` `#6b6b72` vs `--c-ink-sub`
+ * `#5b6070`, `divider` `#e7e7ec` vs `--c-border` `#e2e4ee`도 같은 축.
+ * 값을 맞추는 대신 **참조로 바꿔** 드리프트가 재발할 자리 자체를 없앴다(게이트 T2가 감시한다).
+ *
+ * 라이트/다크 전환은 CSS 변수(`:root` / `[data-theme='dark']`)가 담당하므로 mode별 분기가 없다.
+ * ⚠ MUI가 색 연산(`alpha()`·`lighten()`)을 돌리는 경로에는 CSS 변수를 못 넘긴다 — 그런 자리가
+ * 생기면 토큰을 새로 파생시키고 게이트 락을 갱신할 것(값 복사 금지).
+ */
+/**
+ * CSS 토큰 실값 읽기 — palette는 `var(--x)` 문자열을 못 받는다(MUI가 alpha·darken을 계산해야 해서
+ * 파싱에 실패한다: 260726 실렌더에서 error #9로 앱이 통째로 죽었다). 그래서 **문자열 참조 대신
+ * 읽어서 채운다** — 값의 출처는 여전히 `index.css :root` 하나뿐이라 거울은 무손실로 유지된다.
+ * 못 읽으면 `undefined`를 돌려 MUI 기본값으로 두고, hex 복사본은 두지 않는다(그게 드리프트의 씨앗).
+ */
+function cssToken(name: string): string | undefined {
+  if (typeof document === 'undefined') return undefined
+  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  return /^(#|rgb|hsl|color\()/.test(v) ? v : undefined
 }
 
 export function makeTheme(mode: Mode) {
-  const m = modeColors[mode]
+  // ⚠ 다크를 되살릴 땐 호출 시점에 `data-theme`가 이미 붙어 있어야 한다(현재는 라이트 단일이라 무관)
+  const t = cssToken
+  const primary = t('--c-primary')
+  const divider = t('--c-border')
   return createTheme({
+    // 못 읽은 축은 키 자체를 넘기지 않는다 = MUI 기본값 유지(hex 복사본을 두지 않기 위함)
     palette: {
       mode,
-      primary: { main: m.primary, contrastText: m.onPrimary },
-      background: { default: m.page, paper: m.card },
-      text: { primary: m.ink, secondary: m.sub },
-      divider: m.border,
+      ...(primary ? { primary: { main: primary, contrastText: t('--c-on-primary') } } : {}),
+      background: { default: t('--c-page'), paper: t('--c-card') },
+      text: { primary: t('--c-ink'), secondary: t('--c-ink-sub') },
+      ...(divider ? { divider } : {}),
     },
     shape: { borderRadius: 12 },
     typography: {

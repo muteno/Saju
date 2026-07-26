@@ -7,6 +7,7 @@
     "sync:engine": "node scripts/sync_engine.mjs",
     "build:kb": "node scripts/build_kb.mjs",
     "prebuild": "python3 dosa-app/kb-tools/extract_bodies.py && node scripts/sync_engine.mjs && node scripts/build_kb.mjs",
-    "build": "npm --prefix app install --include=dev --no-audit --no-fund && npm --prefix app run build && rm -rf dist && cp -r app/dist dist"
+    "build": "npm --prefix app install --include=dev --no-audit --no-fund && npm --prefix app run build && rm -rf dist && cp -r app/dist dist",
+    "lock:tokens": "node scripts/check_tokens.mjs lock"
   }
 }
