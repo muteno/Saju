@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Box } from '@mui/material'
 import { tokens } from '../theme'
 import type { Pillar } from '../data/saju'
@@ -13,7 +14,7 @@ import type { Pillar } from '../data/saju'
  * 폭 = 4열 × 20 + 간격 = 약 99px ≈ 프레임(390)의 25%. 글자 12px(HIG 하한 11 이상).
  * 말하는 내용과 관련된 기둥은 살짝 들린다(focus — 대화가 어디를 짚는지 눈으로 잇는 유일한 끈).
  */
-export default function MiniChart({
+function MiniChart({
   pillars,
   unknownHour,
   focus,
@@ -78,3 +79,9 @@ export default function MiniChart({
     </Box>
   )
 }
+
+/**
+ * `memo` — 타이프라이터가 부모(DosaChat)를 28ms마다 리렌더한다(초당 ~36회).
+ * props가 안 바뀌면 여기서 끊는다(PixelDosa가 memo인 것과 같은 축).
+ */
+export default memo(MiniChart)

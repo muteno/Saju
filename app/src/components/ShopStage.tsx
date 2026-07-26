@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Box } from '@mui/material'
 import { tokens } from '../theme'
@@ -20,7 +20,7 @@ import { faceUrl, type Chef } from '../data/chefs'
  * 값은 전량 계승: 글래스 = `.glass`(index.css) · 색 = `tokens.color.*` · 반경 14 · 곡선 `--ease`.
  * 등장 안무 %값은 토큰 대상이 아니다(제1핵심명령 §⛔ 애니 키프레임 예외).
  */
-export default function ShopStage({
+function ShopStage({
   chef,
   /** 표정 컷 번호(FACE 상수) — 있으면 이걸 먼저 쓰고, 파일이 없으면 플레이트로 폴백한다 */
   face,
@@ -53,18 +53,22 @@ export default function ShopStage({
   // 표정 컷이 아직 안 들어온 캐릭터는 조용히 플레이트로 내려간다(에셋 유무로 화면이 안 깨진다)
   const [faceBroken, setFaceBroken] = useState(false)
   /**
-   * 그림이 바뀌면 '깨짐' 기억을 버린다 — 이 컴포넌트는 캐릭터 교체(barge)에도 **언마운트되지 않아서**,
-   * 앞 캐릭터의 컷이 404로 한 번 깨지면 그 상태가 남아 **다음 캐릭터의 컷은 시도조차 안 하게 된다**
-   * (컷이 전량 도착해도 영원히 플레이트만 뜬다). 렌더 중 상태 조정 = 리액트 공식 패턴.
+   * 캐릭터가 바뀌면 '깨짐' 기억을 버린다 — 이 컴포넌트는 교체(barge)에도 **언마운트되지 않아서**,
+   * 앞 캐릭터에서 한 번 깨진 상태가 남으면 **다음 캐릭터는 시도조차 안 하게 된다**
+   * (에셋이 전량 도착해도 영원히 폴백만 뜬다). 렌더 중 상태 조정 = 리액트 공식 패턴.
+   *
+   * ⚠ **표정(face)이 바뀔 때는 리셋하지 않는다.** 리셋하면 컷이 없는 캐릭터에서 매 감정 전이마다
+   * 404를 다시 쏘고 그때마다 인물이 깜빡인다(검토자 260726 적발). 애초에 컷이 없는 캐릭터는
+   * `faceUrl`이 null이라 여기까지 오지도 않는다.
    */
-  const idKey = `${chef.id}:${face ?? 0}`
-  const [seenKey, setSeenKey] = useState(idKey)
-  if (seenKey !== idKey) {
-    setSeenKey(idKey)
+  const [seenChef, setSeenChef] = useState(chef.id)
+  if (seenChef !== chef.id) {
+    setSeenChef(chef.id)
     setFaceBroken(false)
     setBroken(false)
   }
-  const src = face && !faceBroken ? faceUrl(chef.id, face) : chef.plate
+  const cut = face ? faceUrl(chef.id, face) : null
+  const src = cut && !faceBroken ? cut : chef.plate
   return (
     <Box sx={{ position: 'relative', minHeight: height, overflow: 'hidden' }}>
       {/* ⓪ 배경 — 벚꽃 흩날리는 목조 상담방(운영자 260726 무드 정본). 없으면 하늘 토큰 그라데이션으로
@@ -148,12 +152,14 @@ export default function ShopStage({
         {!broken ? (
           <Box
             component="img"
-            key={src}
             src={src}
             alt=""
-            // 표정 컷이 없으면 **한 단만** 내려간다(컷 → 플레이트 → 폴백 대역). 한 번에 폴백까지
+            // ⚠ `key={src}`를 걸지 않는다 — 걸면 표정이 바뀔 때마다 <img>가 새로 마운트돼
+            // **새 그림이 도착할 때까지 무대가 빈다**. src만 갈면 브라우저가 새 그림을 다 받을 때까지
+            // 옛 그림을 계속 띄운다(전환이 끊기지 않는다).
+            // 컷이 깨지면 **한 단만** 내려간다(컷 → 플레이트 → 폴백 대역). 한 번에 폴백까지
             // 떨어뜨리면 컷 하나 빠졌다고 인물이 통째로 사라진다.
-            onError={() => (face && !faceBroken ? setFaceBroken(true) : setBroken(true))}
+            onError={() => (cut && !faceBroken ? setFaceBroken(true) : setBroken(true))}
             // 그림자 색도 토큰 계승(--line) — 키잉된 인물이 유리 판에서 떠 보이게만 하는 최소치.
             // bare = 아래를 마스크로 녹인다: 유리 판이 인물을 덮는 경계가 '싹둑 잘림'이 아니라
             // '무대 안개로 스며듦'이 된다(미연시 스탠딩 관례 · 색 아닌 알파라 토큰 무관).
@@ -199,3 +205,9 @@ export default function ShopStage({
     </Box>
   )
 }
+
+/**
+ * `memo` — 타이프라이터가 부모(DosaChat)를 28ms마다 리렌더한다(초당 ~36회).
+ * props가 안 바뀌면 여기서 끊는다(PixelDosa가 memo인 것과 같은 축).
+ */
+export default memo(ShopStage)

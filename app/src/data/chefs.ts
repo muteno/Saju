@@ -267,28 +267,32 @@ ${PERSONA_SAFETY}`,
 
 /**
  * 표정 컷 — 생성 시트를 잘라 만든 `/reports/chef-<id>-faces-v2/NN.png`.
- * 번호는 생성 스크립트의 `EXPRESSIONS` 순서다(1부터). **원본 화풍을 지킨 v2만 쓴다**
- * (v1은 화풍 오염본 · `app/public/reports/POLYGON_v1_폐기.md`).
+ * **원본 화풍을 지킨 v2만 쓴다**(v1은 화풍 오염본 · `app/public/reports/POLYGON_v1_폐기.md`).
  *
  * 왜 상수로 두나: 대사 상황에 맞는 표정을 **결정론으로** 고르기 위해서다. 랜덤이면 같은 장면에서
- * 매번 얼굴이 달라져 인물이 흔들린다. 없으면 컴포넌트가 플레이트로 조용히 폴백한다.
+ * 매번 얼굴이 달라져 인물이 흔들린다.
+ *
+ * ⚠ **번호는 v2 시트 실물이다**(260726 검토자 적발·실측으로 정정). 앞선 표는 7~48번을 쓰고 있었는데
+ * 그건 **폐기된 v1(72장 시트) 번호**라 v2 폴더엔 그런 파일이 없다 — 표정 배선이 통째로 404였다.
+ * v2 = 시트당 2×3 여섯 칸이라 **캐릭터당 01~06이 전부**이고, 이름은
+ * `chef-doryeong-faces-v2/INDEX.md`의 실제 기재를 그대로 옮긴 것이다.
  */
 export const FACE = {
-  기본: 1,
+  무표정: 1,
   옅은미소: 2,
   환한웃음: 3,
-  서늘한미소: 4,
+  한쪽입꼬리: 4,
+  눈감고웃음: 5,
   수긍: 6,
-  흥미: 7,
-  의아: 8,
-  놀람: 9,
-  진지: 16,
-  꿰뚫어봄: 17,
-  단호: 19,
-  냉소: 30,
-  어이없음: 29,
-  의미심장: 48,
 } as const
 
-export const faceUrl = (id: string, n: number): string =>
-  `/reports/chef-${id}-faces-v2/${String(n).padStart(2, '0')}.png`
+/**
+ * v2 시트가 실제로 들어온 캐릭터 — 없는 캐릭터에 컷 URL을 만들면 **매 표정 전이마다 404를 쏘고**
+ * 그때마다 인물이 한 번씩 깜빡인다(검토자 260726 지적). 그래서 URL 자체를 안 만든다.
+ * 시트가 도착하면 이 집합에 id 한 줄 추가 = 코드 변경 끝.
+ */
+const HAS_FACES: ReadonlySet<string> = new Set(['doryeong'])
+
+/** 표정 컷 경로 — 시트가 없는 캐릭터면 **null**(호출부가 플레이트로 간다) */
+export const faceUrl = (id: string, n: number): string | null =>
+  HAS_FACES.has(id) ? `/reports/chef-${id}-faces-v2/${String(n).padStart(2, '0')}.png` : null

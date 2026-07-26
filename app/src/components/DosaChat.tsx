@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Box } from '@mui/material'
 import PixelDosa, { type DosaMood } from './PixelDosa'
@@ -232,6 +232,7 @@ export default function DosaChat({
   const [topicKey, setTopicKey] = useState<string | null>(null)
   const [hop, setHop] = useState(0) // 캐릭터 폴짝
   const topicRef = useRef<string | null>(null)
+  const readRef = useRef(0) // 지금 주제에서 이미 읽어 내린 말풍선 수(늦게 온 LLM 응답을 이어 붙일 지점)
   const stageRef = useRef<HTMLDivElement | null>(null) // 덜컹 연출 대상
   const logRef = useRef<HTMLDivElement | null>(null) // 로그 스크롤러
   const llmCache = useRef<Map<string, { promise: Promise<string | null>; text?: string | null }>>(new Map())
@@ -312,15 +313,21 @@ export default function DosaChat({
     if (el) el.scrollTop = el.scrollHeight
   }, [log, tw.shown, stage])
 
-  // 선반응 프리페치 — 내 차례(메뉴)일 때 미본 주제를 미리 생성해 둔다(250ms 시차)
+  /**
+   * 선반응 프리페치 — 미본 주제를 미리 생성해 둔다(250ms 시차).
+   * ⚠ 게이트가 `menu && idle`이던 때는 **정곡 국면 내내 한 건도 안 나갔다**(검토자 260726 적발):
+   * 오프닝 3통을 다 탭해 메뉴가 뜨는 그 순간에야 발사되니 첫 주제는 거의 항상 폴백이었다.
+   * 지금은 화면에 들어온 순간부터 굽는다 — 사용자가 정곡을 읽는 몇 초가 곧 생성 시간이다.
+   * 풀이 중에는 안 건다(그때 필요한 건 이미 손에 있다).
+   */
   useEffect(() => {
-    if (stage !== 'menu' || !idle) return
+    if (stage === 'play') return
     const timers = TOPICS.filter((t) => !llmCache.current.has(`${dosaModel()}:${chef.id}:${t.key}`)).map((t, i) =>
       setTimeout(() => ensureLlm(t.key), i * 250),
     )
     return () => timers.forEach(clearTimeout)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stage, idle, chef.id])
+  }, [stage, chef.id])
 
   const onJeonggokAnswer = (hit: boolean, label: string) => {
     if (!jeonggok) return
@@ -359,11 +366,17 @@ export default function DosaChat({
     setSeen((prev) => new Set(prev).add(t.key))
     // 프리페치 적중 = LLM 대사로 바로, 미도착 = L3 조립 대사로 먼저 시작(완결 동작 원칙)
     say([...(intro ? [intro] : []), ...(ready ?? fallback.map((l) => l.text))])
+    readRef.current = 0
     if (!ready)
       void entry.promise.then((text) => {
         if (!text || topicRef.current !== t.key) return
-        // 늦게 온 LLM 응답은 **남은 분량만** 교체한다(이미 읽은 말풍선은 건드리지 않는다)
-        setQueue((q) => (q.length ? toMsgs(text).slice(-q.length) : q))
+        // ⚠ 앞서는 `slice(-남은개수)`로 **꼬리만** 갈아 끼웠는데, 그러면 LLM 문단이 남은 큐보다
+        // 많을 때 **서두가 통째로 잘려 결론만** 남는다(검토자 260726 적발 — 폴백 2통 + 맥락 없는
+        // LLM 결론 1통을 읽게 된다). 그래서 **읽은 개수만큼만** 건너뛰고 이어 붙인다.
+        // 이미 LLM 분량보다 많이 읽었으면 갈아치우지 않는다(중간에 말이 되감기지 않게).
+        const msgs = toMsgs(text)
+        if (readRef.current >= msgs.length) return
+        setQueue(msgs.slice(readRef.current))
       })
   }
 
@@ -371,18 +384,25 @@ export default function DosaChat({
    * 상황 → 표정(결정론 · 병렬 파도 PR 134 계승, 단계 축만 메신저에 맞춰 갈아 끼움).
    * ⚠ 주석에 `#`+세 자리를 쓰면 토큰 게이트가 3자리 hex로 계수한다(A.44 실측 · 표기 주의).
    * 랜덤이면 같은 장면에서 얼굴이 매번 달라져 인물이 흔들린다.
-   * 정곡을 던지는 중 = 꿰뚫어봄 · 的中 = 서늘한 미소 · 난입 = 의미심장 · 빗맞힘 = 어이없음 ·
-   * 주제 풀이 중 = 진지 · 그 밖(용건 묻기) = 기본.
-   * ⚠ 컷이 아직 없으면 ShopStage가 조용히 플레이트로 내려간다(에셋 유무로 화면이 안 깨진다).
+   *
+   * ⚠ **쓸 수 있는 얼굴은 v2 여섯 장이 전부다**(260726 검토자 적발 후 실측 정정). 앞선 매핑은
+   * 「꿰뚫어봄·진지·의미심장」 같은 폐기 v1 번호를 불러 전량 404였다. 여섯 장 안에서
+   * 각 국면이 겹치지 않게 배정한다 — 표정이 부족해 못 쓰는 국면은 무표정으로 둔다(창작 금지).
+   *
+   * 정곡을 던지는 중 = 한쪽 입꼬리(이미 답을 알고 있는 얼굴) · 的中 = 환한 웃음 ·
+   * 난입 = 옅은 미소 · 주제 풀이 중 = 수긍(고개 끄덕임) · 그 밖 = 무표정.
+   * 컷이 없는 캐릭터는 `faceUrl`이 null이라 URL조차 안 만든다(404·깜빡임 0).
    */
   const faceFor = (): number => {
-    if (stage === 'jeonggok') return FACE.꿰뚫어봄
+    if (stage === 'jeonggok') return FACE.한쪽입꼬리
     // 반응은 `mood`에 실려 다음 주제를 고를 때까지 남는다 — `crit`(700ms)에 걸면 대사가 아직
     // 흐르는 중에 얼굴만 먼저 평정으로 돌아온다(구버전은 verdict 단계가 이걸 붙들고 있었다).
-    if (mood === 'happy') return FACE.서늘한미소
-    if (mood === 'hmm') return barge ? FACE.의미심장 : FACE.어이없음
-    if (stage === 'play') return FACE.진지
-    return FACE.기본
+    if (mood === 'happy') return FACE.환한웃음
+    // 빗맞힘은 **언제나 교체를 동반**한다(같은 배치에서 barge가 켜진다) — 무대에 선 얼굴은
+    // 밀고 들어온 쪽이므로 '어이없음'이 아니라 옅은 미소다. barge 분기는 도달 불가라 뺐다.
+    if (mood === 'hmm') return FACE.옅은미소
+    if (stage === 'play') return FACE.수긍
+    return FACE.무표정
   }
 
   const onTap = () => {
@@ -393,6 +413,7 @@ export default function DosaChat({
     if (queue.length) {
       setLog((l) => [...l, { who: 'ai', text: queue[0] }])
       setQueue((q) => q.slice(1))
+      if (stage === 'play') readRef.current += 1
       return
     }
     // 이야기 한 바퀴가 끝나면 다시 메뉴로 — 질문도 한 통의 메시지다
@@ -404,9 +425,16 @@ export default function DosaChat({
     }
   }
 
-  // 미니 명식 포커스 — 지금 말하는 내용이 짚는 기둥
-  const focus: string[] =
-    stage === 'jeonggok' ? (jeonggok?.focus ?? []) : stage === 'play' && topicKey ? (TOPIC_FOCUS[topicKey] ?? []) : []
+  /**
+   * 미니 명식 포커스 — 지금 말하는 내용이 짚는 기둥.
+   * `useMemo`로 identity를 고정한다 — 안 하면 타이프라이터가 28ms마다 새 배열을 만들어
+   * MiniChart의 `memo`가 매번 뚫린다(검토자 260726 지적).
+   */
+  const focus: string[] = useMemo(
+    () =>
+      stage === 'jeonggok' ? (jeonggok?.focus ?? []) : stage === 'play' && topicKey ? (TOPIC_FOCUS[topicKey] ?? []) : [],
+    [stage, jeonggok, topicKey],
+  )
 
   const choices =
     !idle
@@ -420,8 +448,23 @@ export default function DosaChat({
           ? TOPICS.map((t) => ({ key: t.key, label: t.label, seen: seen.has(t.key), onPick: () => selectTopic(t) }))
           : []
 
+  /**
+   * 폴백 대역(도트 캐릭터) — `useMemo`로 element identity를 고정한다.
+   * 인라인으로 두면 매 렌더 새 element라 ShopStage의 `memo`가 그냥 뚫린다(28ms마다).
+   */
+  const fallbackDosa = useMemo(
+    () => <PixelDosa mood={mood} talking={!tw.done} hopKey={hop} width={112} />,
+    [mood, tw.done, hop],
+  )
+
+  /** 다음 메시지가 남아 있나 — 진행 버튼을 띄울지 가른다 */
+  const hasNext = !tw.done || queue.length > 0 || stage === 'play'
+
   return (
-    <Box onClick={onTap} sx={{ cursor: 'pointer', position: 'relative', flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+    <Box
+      onClick={onTap}
+      sx={{ cursor: 'pointer', position: 'relative', flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}
+    >
       {/* 的中 크리티컬 — 60px/900 스케일인 0.7s (플레이그라운드 정본 연출) */}
       {crit && (
         <Box
@@ -458,7 +501,7 @@ export default function DosaChat({
             enter={barge ? 'right' : 'none'}
             height={300}
             bare
-            fallback={<PixelDosa mood={mood} talking={!tw.done} hopKey={hop} width={112} />}
+            fallback={fallbackDosa}
           />
         </Box>
 
@@ -470,6 +513,9 @@ export default function DosaChat({
         {/* 대화 로그 — 위에서 아래로 쌓이고, 넘치면 아래로 흐른다 */}
         <Box
           ref={logRef}
+          role="log"
+          aria-live="polite"
+          aria-label="상담 대화"
           sx={{
             position: 'relative',
             zIndex: 1,
@@ -497,6 +543,49 @@ export default function DosaChat({
           )}
         </Box>
 
+        {/* 진행 — 큐가 남아 있는 동안엔 선택지가 안 뜨므로, 이게 없으면 키보드·스크린리더
+          사용자는 오프닝 세 통에서 영구히 멈춘다(검토자 260726 적발). 화면상으로는 어디를
+          눌러도 진행되니 이건 **보조 경로**라 자리를 안 먹는다(포커스될 때만 나타난다).
+          ⚠ 로그 스크롤러 **밖**에 둔다 — 안에 두면 스크롤과 함께 화면 밖으로 밀린다(실측). */}
+        {hasNext && (
+          <Box
+            component="button"
+            type="button"
+            onClick={(e: { stopPropagation: () => void }) => {
+              e.stopPropagation()
+              onTap()
+            }}
+            sx={{
+              position: 'absolute',
+              width: 1,
+              height: 1,
+              p: 0,
+              m: '-1px',
+              overflow: 'hidden',
+              clip: 'rect(0 0 0 0)',
+              whiteSpace: 'nowrap',
+              border: 0,
+              '&:focus-visible': {
+                position: 'static',
+                width: 'auto',
+                height: 'auto',
+                clip: 'auto',
+                m: 0,
+                p: '8px 12px',
+                minHeight: 44,
+                borderRadius: '12px',
+                bgcolor: 'var(--glass)',
+                border: '1px solid var(--glass-line)',
+                color: tokens.color.ink,
+                fontFamily: 'inherit',
+                fontSize: 14,
+                fontWeight: 700,
+              },
+            }}
+          >
+            다음 이야기 듣기
+          </Box>
+        )}
         {/* 내 차례 — 답을 고른다(고른 답은 내 말풍선으로 로그에 남는다) */}
         {choices.length > 0 && (
           <Box sx={{ position: 'relative', zIndex: 1, px: 2, pt: 1, pb: '76px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
