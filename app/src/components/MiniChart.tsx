@@ -35,7 +35,9 @@ function MiniChart({
         fontSize: 12,
         fontWeight: 800,
         lineHeight: 1,
-        bgcolor: el ? tokens.ohaeng[el].bg : 'var(--c-card)',
+        // 오행 의미색은 그대로 계승하되 **살짝 투명**하게 — 꽉 찬 색 블록 8개가 나란히 서면
+        // 그 자체가 카드처럼 보인다. 배경이 비쳐야 무대에 얹힌 표식으로 읽힌다.
+        bgcolor: el ? `color-mix(in srgb, ${tokens.ohaeng[el].bg} 82%, transparent)` : 'transparent',
         color: el ? tokens.ohaeng[el].ink : tokens.color.inkFaint,
         border: el ? 'none' : `1px dashed ${tokens.color.border}`,
       }}
@@ -44,7 +46,21 @@ function MiniChart({
     </Box>
   )
   return (
-    <Box className="glass" sx={{ display: 'inline-flex', gap: '3px', p: '5px', borderRadius: '10px' }}>
+    <Box
+      sx={{
+        // ⚠ 유리 카드로 감싸지 않는다(운영자 260727 "붕떠서 배경하고 이질감 있으면 안되고").
+        // 테두리·반경이 있으면 인물 배경 위에 **카드 한 장이 얹힌 것**으로 읽힌다.
+        // 대신 왼쪽에서 시작해 오른쪽으로 사라지는 그라데이션 띠 위에 글자만 얹어 배경에 녹인다.
+        display: 'inline-flex',
+        gap: '4px',
+        pl: 2,
+        pr: 5,
+        py: '7px',
+        ml: -2, // 화면 왼쪽 끝까지 띠가 닿게(잘린 카드처럼 안 보이도록)
+        background:
+          'linear-gradient(90deg, color-mix(in srgb, var(--c-page) 80%, transparent) 0%, color-mix(in srgb, var(--c-page) 62%, transparent) 46%, transparent 100%)',
+      }}
+    >
       {pillars.map((p) => {
         const on = focus.includes(p.title)
         const unknown = unknownHour && p.title === '시'

@@ -32,8 +32,12 @@ const TYPE_MS = 28
  * 프레임 844에서 [상태바+표제 ~92]·[네비 76]·[입력창 ~60]을 빼면 약 616이 남고,
  * 그중 300을 대화가 쓰고 나머지 위쪽은 **배경 인물이 보이는 자리**로 비워 둔다.
  */
-/** 대화 구역 높이 — 화면 중하단(운영자 260726 "캐릭터 위에 중하단정도에 대화가 있게") */
-const LOG_H = 300
+/**
+ * 대화 구역 높이 — 인물 배경이 화면 위쪽을 다 쓰고, 원국이 중단부에 깔린 뒤 남는 몫.
+ * 운영자 260727: "대화창이 얼마 안남아서 2~3줄이나 왓다갓다 하겠지" — 그게 의도한 결과다.
+ * 14.5px / 1.62 = 한 줄 23.5px → 말풍선 패딩까지 치면 이 높이가 대략 2~3줄이다.
+ */
+const LOG_H = 128
 /** 자유 질문 길이 상한 — 서버(functions/api/dosa.ts MAX_QUESTION)와 같은 값 */
 const MAX_ASK = 300
 
@@ -547,15 +551,37 @@ export default function DosaChat({
       )}
 
       <Box ref={stageRef} sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
-        {/* 배경이 보이는 구역 — 인물은 이제 **배경 그 자체**라 여기엔 아무것도 안 세운다
-            (운영자 260726 "아예 저 이미지를 배경으로 깔아버릴래?"). 대화는 이 아래(중하단)부터다. */}
+        {/* 배경이 보이는 구역 — 인물은 **배경 그 자체**라 여기엔 아무것도 안 세운다.
+            화면 위쪽은 통째로 인물 몫이고, 원국만 그 좌상단에 얹힌다. */}
         <Box sx={{ position: 'relative', flex: '1 1 auto', minHeight: 0 }}>
-          {/* 미니 명식 — 좌측 상단 표식(운영자 "사주 원국표는 좋고" = 자리 유지).
+          {/* 원국 = **좌상단**(운영자 260727 재확정). 유리 카드가 아니라 배경에 녹는 그라데이션 띠다.
               낭독 대상에서는 뺀다 — 간지 8자를 그냥 읽으면 소음이다. */}
-          <Box aria-hidden sx={{ position: 'absolute', left: 0, top: 4, zIndex: 2 }}>
+          <Box aria-hidden sx={{ position: 'absolute', left: 16, top: 2, zIndex: 2 }}>
             <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
           </Box>
         </Box>
+
+        {/* ── 하단 묶음 = [블라인더] 위에 [대화 → 선택지 → 입력창] ──
+            운영자 260727 "배경에 묻히지 않게 가시성 유지하도록 블라인더 적당히 블러 처리해서
+            깔면서 그 위에 대화 이어지게". 인물 컷이 배경 전면이라 그 위에 글자를 바로 얹으면
+            옷·문양의 대비가 제각각이라 문장이 끊겨 읽힌다. */}
+        <Box sx={{ position: 'relative', flex: '0 0 auto' }}>
+          {/* 블라인더 — 위쪽 경계를 마스크로 녹여 '띠 하나 붙인 것'으로 안 보이게 한다.
+              blur는 여기 한 장만 건다(말풍선마다 걸면 대화 길이에 비례해 유리 층이 늘어난다). */}
+          <Box
+            aria-hidden
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              pointerEvents: 'none',
+              backdropFilter: 'blur(14px) saturate(1.05)',
+              WebkitBackdropFilter: 'blur(14px) saturate(1.05)',
+              background:
+                'linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--c-page) 38%, transparent) 22%, color-mix(in srgb, var(--c-page) 62%, transparent) 100%)',
+              maskImage: 'linear-gradient(180deg, transparent 0%, black 20%)',
+              WebkitMaskImage: 'linear-gradient(180deg, transparent 0%, black 20%)',
+            }}
+          />
 
         {/* 대화 로그 — 위에서 아래로 쌓이고, 넘치면 아래로 흐른다 */}
         <Box
@@ -566,9 +592,11 @@ export default function DosaChat({
           sx={{
             position: 'relative',
             zIndex: 1,
-            // 중하단 고정 구역 — 화면을 다 먹지 않는다(위는 배경 인물 몫).
-            flex: '0 0 auto',
-            maxHeight: LOG_H,
+            // ⚠ **고정 높이**다. `maxHeight`로 두면 내용이 늘 때 상자가 **아래에서 위로 자라
+            // 대화가 밑에서 솟는 것처럼** 보인다(운영자 260727 지적). 높이를 못 박아야
+            // 위에서부터 아래로 채워지고, 넘치면 그 안에서 스크롤된다.
+            flex: `0 0 ${LOG_H}px`,
+            height: LOG_H,
             minHeight: 0,
             overflowY: 'auto',
             overflowX: 'hidden',
@@ -740,6 +768,7 @@ export default function DosaChat({
               {Pict.send(22)}
             </Box>
           </Box>
+        </Box>
         </Box>
       </Box>
     </Box>
