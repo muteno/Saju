@@ -68,59 +68,68 @@ export function GlassButton({ children, onClick, sx: sxOver }: { children: React
  */
 export function OhaengSegBar({ ohaeng, total }: { ohaeng: OhaengStat[]; total: number }) {
   const counts = ohaeng.map((o) => ({ ...o, n: Math.round((o.pct * total) / 100) }))
-  const empty = counts.filter((o) => o.n === 0)
   return (
-    <Box>
-      <Box sx={{ display: 'flex', height: 40, borderRadius: 100, overflow: 'hidden', boxShadow: 'inset 0 1px 2px var(--line)' }}>
-        {counts.map((o) => {
-          const zero = o.n === 0
-          return (
-            <Box
-              key={o.key}
-              // 0칸도 자리를 갖되(순서 학습) 가장 좁게 — 1개짜리의 약 절반
-              sx={{
-                flex: zero ? 0.55 : o.n,
-                minWidth: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 0.4,
-                fontSize: 12,
-                fontWeight: 800,
-                color: zero ? tokens.color.inkFaint : tokens.ohaeng[o.key].ink,
-                background: zero
-                  ? `repeating-linear-gradient(45deg, var(--c-border) 0 4px, var(--c-page) 4px 8px)`
-                  : tokens.ohaeng[o.key].bg,
-                '& + &': { boxShadow: 'inset 1.5px 0 0 var(--c-card)' },
-              }}
-            >
-              {zero ? (
-                <span>0</span>
-              ) : (
-                <>
-                  {o.key}
-                  <span style={{ opacity: 0.85, fontSize: 11, fontWeight: 700 }}>{o.n}</span>
-                </>
-              )}
-            </Box>
-          )
-        })}
-      </Box>
-      {/* 판정(과다·부족)은 바 안에 못 넣는다 — 좁은 칸에서 잘린다. 특이 판정만 아래 한 줄로 */}
-      <Box sx={{ display: 'flex', gap: 1.2, mt: 0.9, flexWrap: 'wrap' }}>
-        {empty.map((o) => (
-          <Typography key={o.key} sx={{ fontSize: 11, fontWeight: 700, color: OH_LABEL[o.key] }}>
-            {o.key} 없음
-          </Typography>
-        ))}
-        {counts
-          .filter((o) => o.verdict === '과다')
-          .map((o) => (
-            <Typography key={o.key} sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.solar }}>
-              {o.key} {o.n}개 · 과다
-            </Typography>
-          ))}
-      </Box>
+    <Box sx={{ display: 'flex', height: 40, borderRadius: '12px', overflow: 'hidden', boxShadow: 'inset 0 1px 2px var(--line)' }}>
+      {counts.map((o) => {
+        const zero = o.n === 0
+        const c = tokens.ohaeng[o.key]
+        return (
+          <Box
+            key={o.key}
+            // 0칸도 자리를 갖되(순서 학습) 좁게 — 다만 「화 0」 두 글자가 들어갈 만큼은 준다.
+            // 260726-b 운영자: "없어서 빗금인 것도 화라는 말은 있어야" + "화도 빨간색은 있어야".
+            // 그래서 빗금은 남기되(=0의 표식) 실 오행 색으로 긋고, 글자도 그 오행 색으로 쓴다.
+            sx={{
+              flex: zero ? 0 : o.n,
+              flexBasis: zero ? 40 : 0,
+              flexShrink: 0,
+              minWidth: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 0.3,
+              fontSize: 12,
+              fontWeight: 800,
+              color: zero ? OH_LABEL[o.key] : c.ink,
+              background: zero ? `repeating-linear-gradient(45deg, ${c.bg} 0 4px, var(--c-card) 4px 8px)` : c.bg,
+              // 빗금 위 글자는 줄무늬가 획을 끊어 읽힌다 — 카드색 후광으로 글자만 띄운다(색 신설 0)
+              textShadow: zero ? '0 0 3px var(--c-card), 0 0 3px var(--c-card)' : 'none',
+              '& + &': { boxShadow: 'inset 1.5px 0 0 var(--c-card)' },
+            }}
+          >
+            {o.key}
+            <span style={{ opacity: zero ? 1 : 0.85, fontSize: 11, fontWeight: 700 }}>{o.n}</span>
+          </Box>
+        )
+      })}
+    </Box>
+  )
+}
+
+/**
+ * 오행 판정 한 줄 — 없음·과다만 골라 쓴다(적정은 말할 게 없다).
+ *
+ * 260726-b 운영자 지시로 **바에서 떼어내 원국 카드 12신살 아래**로 옮겼다("그 이름 해석 나온
+ * 다음에 … 12신살 아래 부분에"). 바 밑에 붙어 있을 땐 점수 카드가 판정까지 떠안아 길었고,
+ * 판정은 원국(표)을 보고 나서 읽어야 뜻이 통한다.
+ */
+export function OhaengVerdicts({ ohaeng, total }: { ohaeng: OhaengStat[]; total: number }) {
+  const counts = ohaeng.map((o) => ({ ...o, n: Math.round((o.pct * total) / 100) }))
+  const empty = counts.filter((o) => o.n === 0)
+  const over = counts.filter((o) => o.verdict === '과다')
+  if (!empty.length && !over.length) return null
+  return (
+    <Box sx={{ display: 'flex', gap: 1.2, flexWrap: 'wrap' }}>
+      {over.map((o) => (
+        <Typography key={o.key} sx={{ fontSize: 11.5, fontWeight: 700, color: tokens.color.solar }}>
+          {o.key} {o.n}개 · 과다
+        </Typography>
+      ))}
+      {empty.map((o) => (
+        <Typography key={o.key} sx={{ fontSize: 11.5, fontWeight: 700, color: OH_LABEL[o.key] }}>
+          {o.key} 없음
+        </Typography>
+      ))}
     </Box>
   )
 }
@@ -170,7 +179,7 @@ export function DaeunRail({ daeun, birthYear }: { daeun: UiChart['daeun']; birth
     if (el && rail) rail.scrollLeft = el.offsetLeft - rail.clientWidth / 2 + el.clientWidth / 2
   }, [])
   return (
-    <Box className="glass" sx={{ borderRadius: '18px', p: 1.5 }}>
+    <Box className="glass" sx={{ borderRadius: '14px', p: 1.5 }}>
       <Typography sx={{ fontSize: 11.5, fontWeight: 700, color: tokens.color.inkSub, mb: 0.3 }}>
         대운수 {daeun.su} — 10년마다 바뀌는 큰 흐름
         {activeIdx >= 0 ? ` · 지금 ${daeun.list[activeIdx].name} 대운` : ' · 아직 첫 대운 전'}
@@ -225,7 +234,7 @@ export function ReportCard({ card, onFillHour }: { card: ReadingCard; onFillHour
   return (
     <Box>
       <SectionTitle>{card.title}</SectionTitle>
-      <Box className="glass" sx={{ borderRadius: '18px', p: 2 }}>
+      <Box className="glass" sx={{ borderRadius: '14px', p: 2 }}>
         {card.chips && card.chips.length > 0 && (
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.7, mb: card.blocks.length ? 1.2 : 0 }}>
             {card.chips.map((c) => (

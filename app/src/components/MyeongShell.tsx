@@ -1,12 +1,10 @@
-import { useState } from 'react'
 import type { ReactNode } from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import { useNavigate, Navigate } from 'react-router-dom'
 import Screen from './Screen'
 import { tokens } from '../theme'
 import { activeProfile } from '../data/profiles'
 import { entered } from '../data/session'
-import { HOST_NAME } from '../data/chefs'
 
 /** 리포트 3분할(260725) 이후의 탭 축 — 인트로 → 분석 → 상담 + 재미·설정 */
 export type MenuKey = 'intro' | 'analysis' | 'talk' | 'fun' | 'settings'
@@ -104,8 +102,6 @@ export const Pict = {
   ),
 }
 
-const press = { transition: 'transform .12s var(--ease)', '&:active': { transform: 'scale(0.98)' } }
-
 /**
  * 상주 크롬 유리 — 스크롤 콘텐츠·캐릭터 아트 위에 떠 있으므로 '충분히 불투명 + 채도 차단'이다
  * (방식론 §3-c). 260725 실측: .28 + blur11은 뒤 본문이 그대로 읽혀 크롬이 아니라 얼룩으로 보였다.
@@ -118,33 +114,6 @@ const chromeGlass = {
   backdropFilter: 'blur(11px) saturate(0)',
   WebkitBackdropFilter: 'blur(11px) saturate(0)',
 } as const
-
-/** 좌 드로어 메뉴 행 */
-function DrawerItem({ icon, label, on, onClick }: { icon: ReactNode; label: string; on: boolean; onClick: () => void }) {
-  return (
-    <Box
-      onClick={onClick}
-      role="button"
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 1.5,
-        px: 1.2,
-        py: 1.5,
-        borderRadius: '12px',
-        cursor: 'pointer',
-        bgcolor: on ? tokens.color.primarySoft : 'transparent',
-        color: on ? tokens.color.primary : tokens.color.ink,
-        fontSize: 14.5,
-        fontWeight: on ? 800 : 700,
-        ...press,
-      }}
-    >
-      {icon}
-      {label}
-    </Box>
-  )
-}
 
 /**
  * 하단 글래스 플로팅 알약 네비 — 목업 v2(YETA .ynav 이식) 규격 계승.
@@ -212,106 +181,28 @@ function PillNav({ active, go }: { active: MenuKey; go: (to: string) => void }) 
 }
 
 /**
- * 명식당 셸 — 로그인 후 5개 화면의 상주 크롬(좌 햄버거 드로어 + 하단 알약 네비).
- * 오버레이는 스크림 탭으로 닫힌다. 입장 전(플래그·프로필 모두 없음) = /login 게이트.
+ * 명식당 셸 — 로그인 후 5개 화면의 상주 크롬. 이제 **하단 알약 네비 하나뿐**이다.
+ * 입장 전(플래그·프로필 모두 없음) = /login 게이트.
  *
- * 260726 운영자 지시로 **우상단 프로필 아바타·팝오버를 제거**했다 — 팝오버가 담던 4기능
- * (프로필 전환·내 설정·구매 내역·로그아웃)이 이미 '내 설정' 화면(탭 5번)에 전부 실재해
- * 상단 유틸이 순수 중복이었다. 계정 축 진입점 = 설정 한 곳(§5 통일).
+ * 260726-b 운영자 지시로 **좌상단 햄버거와 드로어를 제거**했다 — 드로어 5행이 하단 탭 5칸과
+ * 1:1 같은 축·같은 순서라 순수 중복이었고("아래에 메뉴들이 있어서"), 상단 44px 유틸이 차지하던
+ * 만큼 모든 화면의 본문이 아래로 밀려 있었다. 같은 판정으로 우상단 프로필 팝오버가 먼저
+ * 제거됐다(Q.37) — 상단 유틸은 이제 0개고, 화면 본문은 상태바 바로 아래에서 시작한다.
+ *
+ * ⚠ 되살릴 땐 각 화면의 상단 여백(현재 pt 0.5~1)도 함께 되돌려야 한다 — 크롬이 없다는 전제로 줄였다.
  */
 export default function MyeongShell({ active, gate = true, children }: { active: MenuKey; gate?: boolean; children: ReactNode }) {
   const nav = useNavigate()
-  const [drawer, setDrawer] = useState(false)
   const profile = activeProfile()
 
   // gate=false = 공유 딥링크로 들어온 화면(리포트). 프로필 없는 수신자를 로그인으로 튕기면
-  // 공유 루프가 끊긴다 — 크롬(드로어·네비)은 그대로 주고 입장 게이트만 면제한다.
+  // 공유 루프가 끊긴다 — 크롬(네비)은 그대로 주고 입장 게이트만 면제한다.
   if (gate && !entered() && !profile) return <Navigate to="/login" replace />
-
-  const go = (to: string) => {
-    setDrawer(false)
-    nav(to)
-  }
-  // 드로어 = 하단 탭과 1:1(같은 5축·같은 순서). 라벨만 길게 써서 무엇인지 설명한다
-  const menu = [
-    { key: 'intro', label: '내 원국 · 오늘 운세', to: '/result', icon: Pict.chart(19) },
-    { key: 'analysis', label: '사주 분석 풀이', to: '/analysis', icon: Pict.taegeuk(19) },
-    { key: 'talk', label: `${HOST_NAME}와 상담하기`, to: '/talk', icon: Pict.chat(19) },
-    { key: 'fun', label: '사주 재미', to: '/fun', icon: Pict.heart(19) },
-    { key: 'settings', label: '내 설정', to: '/settings', icon: Pict.person(19) },
-  ] as const
 
   return (
     <Screen>
       {children}
-
-      {/* 상단 유틸 — 햄버거(좌) */}
-      <Box sx={{ position: 'absolute', top: 50, left: 16, zIndex: 8 }}>
-        <Box
-          onClick={() => setDrawer((v) => !v)}
-          role="button"
-          aria-label="메뉴"
-          sx={{
-            width: 44,
-            height: 44,
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            ...chromeGlass,
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,.75)',
-            color: tokens.color.ink,
-            ...press,
-          }}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            <path d="M3 6h18M3 12h18M3 18h18" />
-          </svg>
-        </Box>
-      </Box>
-
-      {/* 드로어 */}
-      {drawer && (
-        <>
-          <Box onClick={() => setDrawer(false)} sx={{ position: 'absolute', inset: 0, zIndex: 9, background: 'rgba(13,14,20,.35)' }} />
-          <Box
-            sx={{
-              position: 'absolute',
-              top: 0,
-              bottom: 0,
-              left: 0,
-              width: 280,
-              zIndex: 10,
-              animation: 'msd-slidein .25s var(--ease)',
-              background: 'rgba(255,255,255,.85)',
-              borderRight: '1px solid rgba(255,255,255,.9)',
-              backdropFilter: 'blur(26px) saturate(1.3)',
-              WebkitBackdropFilter: 'blur(26px) saturate(1.3)',
-              boxShadow: '20px 0 50px rgba(28,38,78,.2)',
-              p: '60px 20px 20px',
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
-            <Typography sx={{ fontSize: 20, fontWeight: 800, color: tokens.color.primary }}>명식당</Typography>
-            <Typography sx={{ fontSize: 11.5, fontWeight: 600, color: tokens.color.inkFaint, mt: 0.3 }}>운명을 차려내는 식당 · 주인 연리</Typography>
-            <Box sx={{ mt: 2.7, display: 'flex', flexDirection: 'column', gap: 0.3 }}>
-              {menu.map((m) => (
-                <DrawerItem key={m.key} icon={m.icon} label={m.label} on={active === m.key} onClick={() => go(m.to)} />
-              ))}
-            </Box>
-            <Box sx={{ flex: 1 }} />
-            <Typography sx={{ borderTop: '1px solid rgba(20,24,45,.08)', pt: 1.8, fontSize: 12, color: tokens.color.inkFaint, fontWeight: 600, lineHeight: 1.6 }}>
-              근거 문헌 2,504편 기반
-              <br />
-              명식당 v0.1
-            </Typography>
-          </Box>
-        </>
-      )}
-
-      <PillNav active={active} go={go} />
+      <PillNav active={active} go={(to) => nav(to)} />
     </Screen>
   )
 }
