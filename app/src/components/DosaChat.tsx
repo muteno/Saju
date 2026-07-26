@@ -179,11 +179,14 @@ function Bubble({
           : {
               borderTopLeftRadius: '6px',
               color: tokens.color.ink,
-              // 유리 **표면값만** 계승하고 blur는 안 건다 — 말풍선은 대화가 길어질수록 늘어나므로
-              // 각자 backdrop-filter를 들면 한 화면에 유리 층이 열 장 넘게 쌓인다(검토자 260726).
-              // VnChoice가 같은 이유로 이미 blur를 뺐다. blur는 미니명식·네비 두 장으로 상한.
-              bgcolor: 'var(--glass)',
+              // 예타 `.yb.ai` 그대로 — **채움은 거의 0, 블러가 주역**이다.
+              // (예타: `background: var(--glass-2)` = 완전 투명 + `blur(--blur-m)` + 1px 라인 + inset 림)
+              // 우리 `.glass`는 흰색 55% 채움이라 유리가 아니라 **판**으로 보였다 — 그게 수준 차이의 정체.
+              // 다만 우리 잉크는 검정이라 채움 0이면 어두운 배경에서 안 읽힌다 → 최소치(38%)만 깐다.
+              bgcolor: 'color-mix(in srgb, var(--c-card) 38%, transparent)',
               border: '1px solid var(--glass-line)',
+              backdropFilter: 'blur(29px) saturate(1.1)',
+              WebkitBackdropFilter: 'blur(29px) saturate(1.1)',
               boxShadow: 'inset 0 1px 0 var(--glass-inset)',
             }),
         fontSize: 14.5,
@@ -232,10 +235,11 @@ function VnChoice({
         minHeight: 46,
         p: '12px 16px',
         borderRadius: '14px',
-        // 유리 표면값만 계승하고 blur는 안 건다 — 선택지가 각자 backdrop-filter를 들면 화면에
-        // 유리 표면이 여러 장이라 모바일 컴포짓이 무겁다(검토자 260726 지적 반영).
-        bgcolor: 'var(--glass)',
+        // 말풍선과 같은 유리(예타 `.yb.ai` 문법) — 채움 최소 + 블러가 주역.
+        bgcolor: 'color-mix(in srgb, var(--c-card) 38%, transparent)',
         border: '1px solid var(--glass-line)',
+        backdropFilter: 'blur(29px) saturate(1.1)',
+        WebkitBackdropFilter: 'blur(29px) saturate(1.1)',
         boxShadow: 'inset 0 1px 0 var(--glass-inset)',
         color: seen ? tokens.color.inkSub : tokens.color.ink,
         fontFamily: 'inherit',
@@ -591,29 +595,10 @@ export default function DosaChat({
         </Box>
 
         {/* ── 하단 묶음 = [블라인더] 위에 [대화 → 선택지 → 입력창] ──
-            운영자 260727 "배경에 묻히지 않게 가시성 유지하도록 블라인더 적당히 블러 처리해서
-            깔면서 그 위에 대화 이어지게". 인물 컷이 배경 전면이라 그 위에 글자를 바로 얹으면
-            옷·문양의 대비가 제각각이라 문장이 끊겨 읽힌다. */}
+            ⚠ 처음엔 하단을 띠 하나로 덮었는데(블라인더), 레퍼런스(예타)엔 **그런 층이 없다** —
+            유리는 **말풍선이 각자** 든다. 띠로 덮으면 인물이 통째로 뿌예지고 '판 한 장'이 된다
+            (운영자 260727 "블러 처리만 하면되는데, 글래스모피즘 수준차이가 엄청나"). */}
         <Box sx={{ position: 'relative', flex: '0 0 auto', pb: '68px' }}>
-          {/* 블라인더 — 위쪽 경계를 마스크로 녹여 '띠 하나 붙인 것'으로 안 보이게 한다.
-              blur는 여기 한 장만 건다(말풍선마다 걸면 대화 길이에 비례해 유리 층이 늘어난다). */}
-          <Box
-            aria-hidden
-            sx={{
-              position: 'absolute',
-              inset: 0,
-              pointerEvents: 'none',
-              // 색으로 덮지 않고 **블러로 누른다** — 오버레이를 진하게 하면 인물이 죽는다.
-              // 유리 너머로 무대가 비쳐야 글래스모피즘이다(운영자 260727).
-              backdropFilter: 'blur(22px) saturate(1.15)',
-              WebkitBackdropFilter: 'blur(22px) saturate(1.15)',
-              background:
-                'linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--c-page) 14%, transparent) 22%, color-mix(in srgb, var(--c-page) 28%, transparent) 100%)',
-              maskImage: 'linear-gradient(180deg, transparent 0%, black 34%)',
-              WebkitMaskImage: 'linear-gradient(180deg, transparent 0%, black 34%)',
-            }}
-          />
-
         {/* 대화 로그 — 위에서 아래로 쌓이고, 넘치면 아래로 흐른다 */}
         <Box
           ref={logRef}
