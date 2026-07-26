@@ -35,6 +35,12 @@ function ShopStage({
    * 껍데기가 없으니 인물은 프레임 폭을 더 쓴다(가운데 정렬·크게).
    */
   bare = false,
+  /**
+   * 아트가 **자기 배경을 갖고 있나**. 'full' = 운영자 원본 레퍼런스(방·창·조명이 그려진 상반신 컷) →
+   * 밴드를 꽉 채우고(cover) 가장자리를 녹여 무대에 스며들게 한다. 'keyed' = 배경이 지워진 스탠딩 →
+   * 종전대로 통째로 보여준다(contain).
+   */
+  art = 'keyed',
   /** 인물 앞에 얹을 것(대사창 등) */
   children,
   /** 플레이트 부재 시 인물 자리에 세울 것(예: 도트 캐릭터) — 미지정이면 자리 표시 실루엣 */
@@ -45,6 +51,7 @@ function ShopStage({
   enter?: 'none' | 'right' | 'left'
   height?: number
   bare?: boolean
+  art?: 'keyed' | 'full'
   children?: ReactNode
   fallback?: ReactNode
 }) {
@@ -163,16 +170,36 @@ function ShopStage({
             // 그림자 색도 토큰 계승(--line) — 키잉된 인물이 유리 판에서 떠 보이게만 하는 최소치.
             // bare = 아래를 마스크로 녹인다: 유리 판이 인물을 덮는 경계가 '싹둑 잘림'이 아니라
             // '무대 안개로 스며듦'이 된다(미연시 스탠딩 관례 · 색 아닌 알파라 토큰 무관).
-            sx={{
-              maxHeight: '100%',
-              maxWidth: '100%',
-              objectFit: 'contain',
-              filter: 'drop-shadow(0 8px 18px var(--line))',
-              ...(bare && {
-                maskImage: 'linear-gradient(180deg, black 58%, transparent 96%)',
-                WebkitMaskImage: 'linear-gradient(180deg, black 58%, transparent 96%)',
-              }),
-            }}
+            sx={
+              art === 'full'
+                ? {
+                    // 배경째 그려진 원본 컷(세로로 긴 상반신) — **통째로** 넣는다.
+                    // cover로 밴드를 채우면 가로 밴드가 세로 그림을 잘라 상반신이 사라진다
+                    // (운영자 260726 "캐릭터 크기 줄여서 저기에 넣고 상반신까지 다 보일텐데?").
+                    // 사각형 경계가 그대로 보이면 '사진을 붙인 것'이 되므로 가장자리를 마스크로 녹인다.
+                    height: '100%',
+                    width: 'auto',
+                    maxWidth: '100%',
+                    objectFit: 'contain',
+                    borderRadius: '18px',
+                    maskImage:
+                      'linear-gradient(180deg, black 0%, black 78%, transparent 100%), linear-gradient(90deg, transparent 0%, black 9%, black 91%, transparent 100%)',
+                    WebkitMaskImage:
+                      'linear-gradient(180deg, black 0%, black 78%, transparent 100%), linear-gradient(90deg, transparent 0%, black 9%, black 91%, transparent 100%)',
+                    maskComposite: 'intersect',
+                    WebkitMaskComposite: 'source-in',
+                  }
+                : {
+                    maxHeight: '100%',
+                    maxWidth: '100%',
+                    objectFit: 'contain',
+                    filter: 'drop-shadow(0 8px 18px var(--line))',
+                    ...(bare && {
+                      maskImage: 'linear-gradient(180deg, black 58%, transparent 96%)',
+                      WebkitMaskImage: 'linear-gradient(180deg, black 58%, transparent 96%)',
+                    }),
+                  }
+            }
           />
         ) : (
           // 폴백 — 호출부가 준 대역(도트 캐릭터 등)이 있으면 그가 무대를 지키고,

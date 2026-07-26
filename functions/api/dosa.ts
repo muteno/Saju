@@ -30,6 +30,8 @@ interface GroundLine {
 }
 interface DosaRequest {
   topic?: string
+  /** 자유 질문(입력창) — 화이트리스트 주제 대신 손님이 직접 쓴 말 */
+  question?: string
   chartSummary?: string
   grounds?: GroundLine[]
   profileName?: string
@@ -49,6 +51,8 @@ interface AnthropicResponse {
 
 /** 주제 화이트리스트 — app/src/data/dosaTopics.ts TOPICS와 동일 키 */
 const TOPIC_WHITELIST = ['성격', '올해', '직업', '관계', '주의']
+/** 자유 질문 상한 — 프롬프트 주입 면적을 좁게 유지한다(본문 길이는 MAX_BODY_BYTES가 따로 막는다) */
+const MAX_QUESTION = 300
 
 /**
  * 모델 화이트리스트 — app/src/data/prefs.ts DOSA_MODELS와 키 동기(운영자 260726 확정 2종).
@@ -120,7 +124,9 @@ function buildUserMessage(body: DosaRequest): string {
     .join('\n')
   return [
     `호칭: ${name}`,
-    `질문 주제: ${body.topic}`,
+    typeof body.question === 'string' && body.question.trim()
+      ? `손님이 직접 물었다: ${body.question.trim().slice(0, MAX_QUESTION)}`
+      : `질문 주제: ${body.topic}`,
     '',
     '[사주 요약]',
     chartSummary || '(요약 없음)',
@@ -212,7 +218,11 @@ export async function onRequestPost(ctx: { request: Request; env: Env }): Promis
   } catch {
     return json({ error: 'invalid JSON' }, 400)
   }
-  if (typeof body.topic !== 'string' || !TOPIC_WHITELIST.includes(body.topic)) {
+  // 주제 선택(화이트리스트) **또는** 자유 질문 — 둘 중 하나는 있어야 한다.
+  // 자유 질문은 임의 문자열이라 길이만 자르고 그대로 넘긴다(시스템 프롬프트가 범위를 잡는다).
+  const freeQ = typeof body.question === 'string' ? body.question.trim() : ''
+  const okTopic = typeof body.topic === 'string' && TOPIC_WHITELIST.includes(body.topic)
+  if (!okTopic && !(freeQ && freeQ.length <= MAX_QUESTION)) {
     return json({ error: 'invalid topic' }, 400)
   }
   const modelCfg = MODELS[typeof body.model === 'string' && body.model in MODELS ? body.model : DEFAULT_MODEL_KEY]

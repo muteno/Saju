@@ -79,6 +79,12 @@ export const Pict = {
       <path d="M5 12.5l4.5 4.5L19 7.5" />
     </svg>
   ),
+  /** 전송 — 예타 `.yeta-send` 아이콘 그대로 계승(같은 종이비행기 패스) */
+  send: (s = 18) => (
+    <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
+      <path d="M22 2 11 13M22 2 15 22 11 13 2 9z" />
+    </svg>
+  ),
   chevronLeft: (s = 18) => (
     <svg width={s} height={s} viewBox="0 0 24 24" {...svgProps}>
       <path d="M14.5 5.5L8 12l6.5 6.5" />

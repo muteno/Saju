@@ -30,6 +30,14 @@ import { useReducedMotion } from './Motion'
  * 타이핑 28ms·的中 700ms 등 연출 값은 플레이그라운드 정본 그대로.
  */
 const TYPE_MS = 28
+/**
+ * 인물 밴드 높이 — 운영자 260726 "캐릭터 크기 줄여서 저기에 넣고 상반신까지 다 보일텐데?
+ * 그 상반신 아래에 글이 보여야하는거임". 프레임 844에서 [상태바+표제 ~92]와 [네비 76]을 빼면
+ * 676이 남고, 그중 300을 인물이 갖고 나머지를 대화·선택지·입력창이 나눈다.
+ */
+const CHAR_H = 300
+/** 자유 질문 길이 상한 — 서버(functions/api/dosa.ts MAX_QUESTION)와 같은 값 */
+const MAX_ASK = 300
 
 interface Msg {
   who: 'ai' | 'me'
@@ -83,6 +91,7 @@ async function fetchDosaText(
   chefId: string,
   profileName?: string,
   timeoutMs = 5000,
+  question?: string,
 ): Promise<string | null> {
   const ctrl = new AbortController()
   const timer = setTimeout(() => ctrl.abort(), timeoutMs)
@@ -97,6 +106,7 @@ async function fetchDosaText(
         chartSummary: chartSummaryOf(report),
         grounds: lines.map((l) => ({ text: l.text, grounds: l.grounds ?? [] })),
         ...(profileName ? { profileName } : {}),
+        ...(question ? { question } : {}),
       }),
       signal: ctrl.signal,
     })
@@ -271,6 +281,8 @@ export default function DosaChat({
   const [hop, setHop] = useState(0) // 캐릭터 폴짝
   const topicRef = useRef<string | null>(null)
   const readRef = useRef(0) // 지금 주제에서 이미 읽어 내린 말풍선 수(늦게 온 LLM 응답을 이어 붙일 지점)
+  const [draft, setDraft] = useState('') // 입력창에 쓰는 중인 말
+  const [asking, setAsking] = useState(false) // 자유 질문 왕복 중
   const stageRef = useRef<HTMLDivElement | null>(null) // 덜컹 연출 대상
   const logRef = useRef<HTMLDivElement | null>(null) // 로그 스크롤러
   const llmCache = useRef<Map<string, { promise: Promise<string | null>; text?: string | null }>>(new Map())
@@ -449,6 +461,40 @@ export default function DosaChat({
     return FACE.무표정
   }
 
+  /**
+   * 자유 질문 — 선택지 말고 **직접 쓴 말**을 보낸다(운영자 260726 "대화 쓸수있는 장소도 있어야함").
+   * 내 말풍선을 먼저 찍고(보낸 게 눈에 보여야 한다), 답이 오면 말풍선으로 이어 붙인다.
+   * LLM이 꺼져 있거나 실패하면 **조용히 실패로 두지 않고** 그 사실을 도사 입으로 말한다.
+   */
+  const askFree = async () => {
+    const q = draft.trim()
+    if (!q || asking) return
+    setDraft('')
+    setAsking(true)
+    answer(q)
+    setStage('play')
+    setTopicKey(null)
+    topicRef.current = null
+    readRef.current = 0
+    setMood('idle')
+    setBarge(false)
+    try {
+      const text = await fetchDosaText(
+        '성격', // 화이트리스트 자리채움 — 서버는 question이 있으면 그걸 먼저 읽는다
+        report,
+        topicLines(report, '성격', hourUnknown),
+        chef.id,
+        profileName,
+        25000,
+        q,
+      )
+      if (text) say(toMsgs(text))
+      else say(['…지금은 판을 더 못 읽겠군. 잠시 뒤에 다시 물어보게.'])
+    } finally {
+      setAsking(false)
+    }
+  }
+
   const onTap = () => {
     if (!tw.done) {
       tw.skip()
@@ -539,23 +585,24 @@ export default function DosaChat({
       )}
 
       <Box ref={stageRef} sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
-        {/* 인물 — 흐름 밖 절대 레이어. 말풍선이 그 앞을 흐른다(유리라 실루엣이 비친다) */}
-        <Box aria-hidden sx={{ position: 'absolute', left: 0, right: 0, top: 0, height: 300, pointerEvents: 'none', zIndex: 0 }}>
-          <ShopStage
-            chef={chef}
-            face={faceFor()}
-            enter={barge ? 'right' : 'none'}
-            height={300}
-            bare
-            fallback={fallbackDosa}
-          />
-        </Box>
-
-        {/* 미니 명식 — 좌측 상단 표식(운영자: 사용자는 사실 볼 필요 없게) */}
-        <Box sx={{ position: 'relative', zIndex: 1, px: 2, pt: 0.5 }}>
-          {/* 운영자 "사용자는 사실 볼 필요 없게" — 낭독 대상에서도 뺀다(간지 8자를 그냥 읽으면 소음).
-              근거가 필요한 사람에겐 분석 탭이 따로 있다. */}
-          <Box aria-hidden>
+        {/* 인물 밴드 — **흐름 안**에 둔다(운영자 260726 "상반신 아래에 글이 보여야 하는 거임").
+            절대 레이어로 띄우면 말풍선이 인물 위를 지나가 상반신을 덮는다. 높이를 고정해
+            그 아래 전부가 대화 몫이 된다. */}
+        <Box sx={{ position: 'relative', flex: `0 0 ${CHAR_H}px`, height: CHAR_H }}>
+          <Box aria-hidden sx={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+            <ShopStage
+              chef={chef}
+              face={faceFor()}
+              enter={barge ? 'right' : 'none'}
+              height={CHAR_H}
+              bare
+              art="full"
+              fallback={fallbackDosa}
+            />
+          </Box>
+          {/* 미니 명식 — 인물 밴드의 좌측 상단에 박힌다(운영자: 사용자는 사실 볼 필요 없게).
+              낭독 대상에서도 뺀다 — 간지 8자를 그냥 읽으면 소음이다. */}
+          <Box aria-hidden sx={{ position: 'absolute', left: 16, top: 4, zIndex: 2 }}>
             <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
           </Box>
         </Box>
@@ -646,7 +693,7 @@ export default function DosaChat({
         )}
         {/* 내 차례 — 답을 고른다(고른 답은 내 말풍선으로 로그에 남는다) */}
         {choices.length > 0 && (
-          <Box sx={{ position: 'relative', zIndex: 1, px: 2, pt: 1, pb: '76px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <Box sx={{ position: 'relative', zIndex: 1, px: 2, pt: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {choices.map((c, i) => (
               <VnChoice
                 key={c.key}
@@ -661,7 +708,84 @@ export default function DosaChat({
             ))}
           </Box>
         )}
-        {choices.length === 0 && <Box sx={{ flex: '0 0 auto', height: 76 }} />}
+
+        {/* 입력행 — **맨 아래**(운영자 260726 "대화 쓸수있는 장소도 있어야함(예타처럼)").
+            예타 `.yeta-in` 문법 계승 = 떠 있는 알약 캡슐 + [입력][전송], 전송은 픽토그램-온리
+            강조색. 유리 표면값만 쓰고 blur는 안 건다(말풍선과 같은 규율 · blur 상한 유지). */}
+        <Box
+          onClick={(e) => e.stopPropagation()}
+          sx={{ position: 'relative', zIndex: 2, px: 2, pt: 1, pb: '82px', flex: '0 0 auto' }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'flex-end',
+              gap: '6px',
+              p: '6px 6px 6px 14px',
+              borderRadius: '22px',
+              bgcolor: 'var(--glass)',
+              border: '1px solid var(--glass-line)',
+              boxShadow: 'inset 0 1px 0 var(--glass-inset)',
+            }}
+          >
+            <Box
+              component="textarea"
+              rows={1}
+              value={draft}
+              placeholder={asking ? '판을 보는 중…' : '궁금한 걸 직접 물어봐도 된다'}
+              disabled={asking}
+              aria-label="도사에게 직접 묻기"
+              onChange={(e: { target: { value: string } }) => setDraft(e.target.value.slice(0, MAX_ASK))}
+              onKeyDown={(e: { key: string; shiftKey: boolean; preventDefault: () => void }) => {
+                // Enter = 전송 · Shift+Enter = 줄바꿈(예타와 같은 결)
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault()
+                  void askFree()
+                }
+              }}
+              sx={{
+                flex: 1,
+                minWidth: 0,
+                resize: 'none',
+                background: 'none',
+                border: 'none',
+                outline: 'none',
+                color: tokens.color.ink,
+                fontFamily: 'inherit',
+                fontSize: 14.5,
+                lineHeight: 1.5,
+                letterSpacing: 'var(--tracking)',
+                py: '11px',
+                maxHeight: 88,
+                '&::placeholder': { color: tokens.color.inkFaint },
+              }}
+            />
+            <Box
+              component="button"
+              type="button"
+              aria-label="보내기"
+              disabled={asking || !draft.trim()}
+              onClick={() => void askFree()}
+              sx={{
+                flex: 'none',
+                width: 44,
+                height: 44,
+                display: 'grid',
+                placeItems: 'center',
+                border: 'none',
+                background: 'none',
+                color: tokens.color.primary,
+                cursor: 'pointer',
+                borderRadius: '50%',
+                transition: 'transform .12s var(--ease)',
+                '&:active': { transform: 'scale(0.9)' },
+                '&:disabled': { opacity: 0.4, pointerEvents: 'none' },
+              }}
+            >
+              {Pict.send(22)}
+            </Box>
+          </Box>
+        </Box>
       </Box>
     </Box>
   )

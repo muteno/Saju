@@ -33,20 +33,23 @@ export const CHEFS: readonly Chef[] = [
    * 260726 캐릭터 4인 확정(운영자 첨부 레퍼런스 7컷 실측 · `app/public/reports/chef-refs/`).
    * 배정 = 상담 상대의 성별. 여성 도사 2인은 결이 다르다 — noona는 "좀 뱀파이어 느낌",
    * baekui는 "정통 일본식"(운영자 구술). 플레이트는 아직 0장이라 화면은 폴백으로 뜨고,
-   * 플레이트는 **알파 보존 WebP**만 쓴다 — jpg 사본은 투명 배경을 흰 판으로 뭉개 인물이 무대 위에
-   * '사진 상자'로 얹힌다(260726 헤드리스 실측). 원본 = 같은 이름의 `.png`(512² RGBA).
+   * ⚠ 플레이트 = **운영자 원본 레퍼런스 풀 컷**(`chef-refs/*.jfif` → `chef-<id>-full.webp`, 736px 세로).
+   * 260726 운영자: "최근에 작업한 내역에 풀로 만들어진 거 있을거야 그거 다시 가져와봐" —
+   * 그전에 쓰던 `chef-<id>.webp`는 **512² 얼굴 크롭**이라 상반신이 파일에 아예 없었다(줄여도 작은 얼굴).
+   * 풀 컷은 배경(방·창·조명)째라 무대에선 `art="full"`로 가장자리를 녹여 얹는다. 얼굴 크롭 사본은
+   * 남겨 둔다 — 원형 스테이지처럼 얼굴만 필요한 자리가 따로 있다.
    */
   {
     id: 'noona',
     name: '홍화동녀',
     concept: '홍화동녀(紅花童女) — 은백발에 붉은 입술, 서늘한 뱀파이어 결의 여성 도사. 남성 사용자 상담. 먼저 찌르고 본다',
-    plate: '/assets/chef-noona.webp',
+    plate: '/assets/chef-noona-full.webp',
   },
   {
     id: 'baekui',
     name: '단리아',
     concept: '단리아 — 흰 도복에 검은 오비, 정통 일본식 결의 여성 도사. 말수가 적고 정확하다(여성 일반 상담)',
-    plate: '/assets/chef-baekui.webp',
+    plate: '/assets/chef-baekui-full.webp',
   },
   {
     id: 'doryeong',
@@ -55,7 +58,7 @@ export const CHEFS: readonly Chef[] = [
       '알카사르 발렌타인(Alcazar Valentine · 遏架沙 伐戀泰因) — 계해년 계해월 신유일 정유시의 극음 사주. ' +
       '핏기 없는 피부에 흑발, 목을 감싸는 고풍스러운 의상. 오만하고 냉정하되 격식을 지키는 클래식한 귀족. ' +
       '그림자를 다루는 음(陰)의 술사. 여성 사용자 상담',
-    plate: '/assets/chef-doryeong.webp',
+    plate: '/assets/chef-doryeong-full.webp',
   },
   {
     id: 'dongja',
@@ -64,7 +67,7 @@ export const CHEFS: readonly Chef[] = [
       '설향 동자(雪響 童子) — 계해년 정축월 임자일 신축시. 귀문관살·백호대살에 해자축 방합이 겹친 빙천 사주. ' +
       '7~8세에 성장이 멈춘 모습, 눈부시게 흰 옷과 초점 없는 백색 눈동자, 붉은 염주. 평소엔 감정이 없다가 ' +
       '접신하면 목소리가 변해 신탁을 내린다. 알카사르 앞에서만 온순하다',
-    plate: '/assets/chef-dongja.webp',
+    plate: '/assets/chef-dongja-full.webp',
   },
   {
     id: 'default',
@@ -121,10 +124,15 @@ export function hasChef(): boolean {
  * 상담 상대의 성별 → 무대에 서는 도사(운영자 260726: "남자를 상대할땐 이 캐릭터 / 여자를 상대할땐 이 캐릭터").
  * 성별 값은 사주 입력의 `gender`(대운 순역 계산에 쓰는 그 값)를 그대로 읽는다.
  */
-export const chefForGender = (g?: 'M' | 'F'): Chef => CHEFS.find((c) => c.id === (g === 'M' ? 'noona' : 'doryeong'))!
+/**
+ * 상담 상대 배정 — 남성 사용자 = 단리아(baekui) · 여성 사용자 = 알카사르(doryeong).
+ * ⚠ 남성 쪽은 원래 홍화동녀(noona)였는데 운영자 260726 "쟤 말고 다른애로 해봐"로 교체했다.
+ */
+export const chefForGender = (g?: 'M' | 'F'): Chef => CHEFS.find((c) => c.id === (g === 'M' ? 'baekui' : 'doryeong'))!
 
 /** 맞은편 도사 — 빗맞혔을 때 밀고 들어오는 쪽(교체 연출) */
-export const counterpartChef = (id: string): Chef => CHEFS.find((c) => c.id === (id === 'noona' ? 'doryeong' : 'noona'))!
+export const counterpartChef = (id: string): Chef =>
+  CHEFS.find((c) => c.id === (id === 'doryeong' ? 'baekui' : 'doryeong'))!
 
 /**
  * 교체 난입 대사 — 운영자 구술 정본:
@@ -136,7 +144,12 @@ export const BARGE_LINE: Record<string, string> = {
   doryeong: '거 보쇼. 쉬고 계시오, 내가 하려니까.',
   // 홍화가 밀고 들어옴(알카사르가 빗맞힌 뒤) — 키득거리며 냉큼
   noona: '아이, 오빠 비켜 봐. 내가 볼래.',
+  // 단리아가 밀고 들어옴 — 말수가 적고 정확하다는 컨셉대로 짧게 자른다
+  baekui: '비키시지요. 제가 보겠습니다.',
 }
+
+/** 난입 대사 — 등재 안 된 캐릭터도 무대가 비지 않게(문안 없는 화자가 `undefined`로 찍히던 축 차단) */
+export const bargeLineOf = (id: string): string => BARGE_LINE[id] ?? '이쪽은 내가 보지.'
 
 /**
  * 보이스 팩 — 화자마다 **같은 상황에서 다른 말**을 한다(운영자 260726 말투 정본).
