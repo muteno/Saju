@@ -83,10 +83,13 @@ CHEFS = {
 # 레퍼런스 얼굴 크롭 박스(원본 비율 좌표 · 세션이 실물 4장을 열어 잰 값).
 # 표정 시트는 얼굴이 전부라 전신 컷을 통째로 넘기면 얼굴 화소가 1/6로 줄어든다.
 # 크롭 후 정사각으로 펴서 1024로 올려 첨부한다(정사각 = input_fidelity 토큰 가산도 최소).
+# ⚠ noona·doryeong은 원본에서 손(과 담배)이 얼굴 옆에 있다 — 그대로 첨부하면 60컷 전부에
+#   그 손이 따라 붙는다. 그래서 크롭을 얼굴 쪽으로 밀어 손을 잘라 낸다.
+#   (담배는 운영자 260726 "스토어 심사·연령 축" 판단으로 뺀 것 — 되살리려면 noona 박스를 왼쪽으로 넓힌다.)
 FACE_CROP = {
-    "noona": (0.16, 0.02, 0.84, 0.44),
+    "noona": (0.30, 0.02, 0.98, 0.40),
     "baekui": (0.18, 0.14, 0.84, 0.50),
-    "doryeong": (0.12, 0.01, 0.88, 0.42),
+    "doryeong": (0.20, 0.02, 0.94, 0.42),
     "dongja": (0.22, 0.15, 0.78, 0.58),
 }
 
@@ -200,19 +203,15 @@ def ref_path(chef: str) -> pathlib.Path:
 
 
 def ref_bytes(chef: str, face: bool) -> bytes:
-    """첨부용 PNG 바이트. face=True면 얼굴 박스를 정사각으로 펴서 1024로 올린다."""
+    """첨부용 PNG 바이트. face=True면 얼굴 박스만 떼어 긴 변 1024로 올린다(얼굴 화소를 벌어 준다)."""
     im = Image.open(ref_path(chef)).convert("RGB")
     if face and chef in FACE_CROP and os.environ.get("REF_CROP", "1") != "0":
         w, h = im.size
         x0, y0, x1, y1 = FACE_CROP[chef]
-        box = [x0 * w, y0 * h, x1 * w, y1 * h]
-        side = max(box[2] - box[0], box[3] - box[1])
-        cx, cy = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2
-        # 이미지 밖으로 안 나가게 중심을 당긴다
-        cx = min(max(cx, side / 2), w - side / 2) if side <= w else w / 2
-        cy = min(max(cy, side / 2), h - side / 2) if side <= h else h / 2
-        im = im.crop((round(cx - side / 2), round(cy - side / 2), round(cx + side / 2), round(cy + side / 2)))
-        im = im.resize((1024, 1024), Image.LANCZOS)
+        im = im.crop((round(x0 * w), round(y0 * h), round(x1 * w), round(y1 * h)))
+    if max(im.size) < 1024:
+        k = 1024 / max(im.size)
+        im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
     buf = io.BytesIO()
     im.save(buf, format="PNG")
     return buf.getvalue()
@@ -230,19 +229,27 @@ def _profile(img: Image.Image, vertical: bool) -> list[float]:
 
 
 def grid_ok(sheet: Image.Image) -> bool:
-    """요청한 COLS×ROWS 위치에 실제로 이음매가 있나. 1차 런에서 이걸 안 봐서 어긋난 조각을 60개씩 저장했다."""
+    """요청한 COLS×ROWS 격자가 실제로 그려졌나. 1차 런에서 이걸 안 봐서 어긋난 조각을 60개씩 저장했다.
+
+    두 가지를 같이 본다 — 이음매가 **있어야 할 자리에 있고**(격자 준수),
+    **칸 한가운데엔 없어야 한다**(모델이 더 잘게 쪼개지 않았나). 뒤엣것을 안 보면
+    4열 시트가 2열 검사를 그냥 통과한다(4열 이음매가 2열 이음매를 포함하니까).
+    """
     for vertical, n, total in ((True, COLS, sheet.width), (False, ROWS, sheet.height)):
         p = _profile(sheet, vertical)
         if not p:
             return False
         mean = sum(p) / len(p)
-        var = sum((v - mean) ** 2 for v in p) / len(p)
-        thr = mean + 2.0 * (var ** 0.5)
-        for k in range(1, n):
-            pos = round(total * k / n)
+        thr = mean + 2.0 * ((sum((v - mean) ** 2 for v in p) / len(p)) ** 0.5)
+
+        def peak(pos: int) -> float:
             lo, hi = max(0, pos - 8), min(len(p), pos + 9)
-            if max(p[lo:hi], default=0) < thr:
-                return False
+            return max(p[lo:hi], default=0.0)
+
+        if any(peak(round(total * k / n)) < thr for k in range(1, n)):
+            return False  # 있어야 할 이음매가 없다
+        if any(peak(round(total * (2 * k + 1) / (2 * n))) >= thr for k in range(n)):
+            return False  # 칸 한가운데에 이음매가 있다 = 더 잘게 쪼갰다
     return True
 
 
