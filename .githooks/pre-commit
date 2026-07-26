@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# 커밋 전 품질 게이트 — 세션이 기억해서 돌리는 게 아니라 기계가 문다.
+#
+# 활성화(clone·기기마다 1회):  git config core.hooksPath .githooks
+#   → 이 설정은 .git/config에 들어가므로 clone하면 다시 해야 한다. 안 하면 훅은
+#     **조용히 미실행**되고 "게이트가 지켜지는 줄" 착각만 남는다(디자인 문서 §5 graceful-skip 함정).
+#     확인:  git config core.hooksPath   # .githooks 가 나와야 함
+#
+# 우회(정말 필요할 때만):  git commit --no-verify
+#   — 우회했으면 그 사실을 보고에 적는다. 게이트 초록 ≠ 규칙 준수(문서 §6).
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+echo "▶ pre-commit: npm run verify"
+if ! npm run verify; then
+  echo ""
+  echo "❌ 게이트 실패 — 커밋 중단. 위 항목을 고치고 다시 커밋해라."
+  echo "   (토큰을 늘렸고 승인받았다면: npm run lock:tokens)"
+  exit 1
+fi

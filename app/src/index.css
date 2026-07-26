@@ -215,3 +215,43 @@ button {
 .msd-fadein {
   animation: msd-fadein 0.3s;
 }
+/* popin은 정의만 있고 쓰는 데가 없었다(260726 실측) — 유틸을 열어 되살린다. 신설 0. */
+.msd-popin {
+  animation: msd-popin 0.3s var(--ease) both;
+}
+
+/* 단어 리빌 — 문장을 단어로 쪼개 시차 등장. `--i`(0부터)가 순서, 지연은 60ms 간격.
+   blur를 섞는 이유: opacity만으로는 '켜짐'인데 blur가 붙으면 '초점이 맞아 들어옴'이 된다. */
+@keyframes msd-wordin {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+.msd-wordin > .w {
+  display: inline-block;
+  animation: msd-wordin 0.7s var(--ease) both;
+  animation-delay: calc(var(--i) * 60ms);
+}
+
+/*
+  모션 감소 — OS가 요청한 사용자에겐 전역으로 강등한다(260726 신설. 그전엔 대응이 0건이었다).
+  무한 루프(bob·floaty)까지 1회로 잘라 세우는 게 핵심이라 iteration-count도 함께 건다.
+  ⚠ 이 블록은 CSS만 잡는다 — setInterval 타이프라이터는 JS에서 꺼야 한다(useReducedMotion).
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

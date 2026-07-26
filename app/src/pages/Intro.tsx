@@ -6,6 +6,7 @@ import MyeongShell, { Pict } from '../components/MyeongShell'
 import CharacterStage from '../components/CharacterStage'
 import SajuTable from '../components/SajuTable'
 import { OhaengSegBar, SectionTitle, GlassButton } from '../components/ReportParts'
+import { DigitRoll, WordReveal, wordOffsets } from '../components/Motion'
 import { tokens } from '../theme'
 import { ohaengWithoutHour, todayInfo, myTodayFortune, sampleProfileLabel } from '../data/saju'
 import { HOST_NAME, hasChef } from '../data/chefs'
@@ -98,6 +99,7 @@ export default function Intro() {
   // 운세 한 줄 = 엔진 REL_PHRASE 정본이 전부 「사건 — 처방」 2절 구조다(index.js 160~170).
   // 운영자 260726: "문단 맺음때마다 줄바뀌게" → 절 경계에서만 끊고 문안 자체는 손대지 않는다.
   const fortuneLines = fortune ? fortune.oneLine.split(' — ').map((s, i) => (i === 0 ? s : `— ${s}`)) : []
+  const lineOffsets = wordOffsets(fortuneLines)
   // 원국 카드 머리 — "누구의, 어떤 입력으로 뽑은 표인가"를 표 위에 한 줄로(운영자 260726).
   // 순서 = 생년월일 · 시각+시주 · 보정 · (야자시) · 출생지. 유파 보정은 출생지 앞이 운영자 지정.
   // 값은 전부 입력·엔진 산출 실값 — 화면 어디에도 없던 정보가 아니라 흩어져 있던 것의 집약이다.
@@ -205,8 +207,9 @@ export default function Intro() {
               <>
                 {/* 점수(좌·강조색) | 본문 칸 — 선 없는 두 칸(운영자: "마치 선이 없는것처럼 div영역이 구분") */}
                 <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2.5 }}>
+                  {/* 하루 한 번 보는 주인공 숫자 — 굴러 올라오게(transform만 쓰므로 합성 비용뿐) */}
                   <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: 0.4, flex: '0 0 auto' }}>
-                    <span style={{ fontSize: 44, fontWeight: 800, color: 'var(--c-primary)', lineHeight: 1, letterSpacing: 'var(--tracking)' }}>{fortune.score}</span>
+                    <DigitRoll value={fortune.score} fontSize={44} color="var(--c-primary)" />
                     <span style={{ fontSize: 18, fontWeight: 800, color: 'var(--c-ink-sub)', paddingBottom: 4 }}>점</span>
                   </Box>
                   <Box sx={{ flex: 1, minWidth: 0 }}>
@@ -218,9 +221,10 @@ export default function Intro() {
                         </Typography>
                       )}
                     </Box>
+                    {/* 문안은 단어 단위로 시차 등장 — 2절이 절을 넘어 한 파도로 이어지게 offset 누적 */}
                     {fortuneLines.map((l, i) => (
                       <Typography key={i} sx={{ fontSize: 14.5, fontWeight: 800, color: tokens.color.primary, mt: i === 0 ? 0.4 : 0.2, lineHeight: 1.45 }}>
-                        {l}
+                        <WordReveal text={l} from={lineOffsets[i]} />
                       </Typography>
                     ))}
                   </Box>
@@ -228,9 +232,15 @@ export default function Intro() {
                 {fortune.basis.length > 0 && (
                   <Box sx={{ mt: 1.6 }}>
                     <Box sx={chipSx}>근거</Box>
+                    {/* 근거는 줄 단위 스태거 — 되살린 msd-popin(정의만 있고 사용처가 0이었다) */}
                     <Box sx={{ mt: 0.8 }}>
                       {fortune.basis.map((b, i) => (
-                        <Typography key={i} sx={{ fontSize: 11.5, color: tokens.color.inkSub, fontWeight: 600, lineHeight: 1.7 }}>
+                        <Typography
+                          key={i}
+                          className="msd-popin"
+                          style={{ animationDelay: `${400 + i * 90}ms` }}
+                          sx={{ fontSize: 11.5, color: tokens.color.inkSub, fontWeight: 600, lineHeight: 1.7 }}
+                        >
                           {b}
                         </Typography>
                       ))}
