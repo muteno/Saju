@@ -10,6 +10,12 @@ export interface DosaLine {
   grounds?: { doc: string; title: string }[]
   /** calc=엔진 산출(결정론) · hedge=문헌 경향(단정 금지 톤) */
   tone?: 'calc' | 'hedge'
+  /**
+   * **정제 안 된 KB 원문**(증류본이 없어 발췌 문단을 그대로 실은 줄).
+   * 도사 입으로 읽으면 문서 제목("乙(을목)이란?")이나 유튜브 채널 인사("…도화도르입니다")가
+   * 그대로 대사가 된다(260726 버그체킹 실측) → 말풍선에서는 빼고, 근거를 보는 자리에서만 쓴다.
+   */
+  raw?: true
 }
 
 export interface Topic {
@@ -117,6 +123,7 @@ function excerptLine(ex: Excerpt | undefined, nParas: number, tone?: DosaLine['t
   return {
     text: ex.paras.slice(0, nParas).join('\n\n'),
     grounds: [ex.source],
+    raw: true, // 발췌 원문 = 정제 전 — 대사로는 안 쓴다
     ...(tone ? { tone } : {}),
   }
 }
@@ -180,7 +187,7 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
       if (ex?.paras?.length) {
         const paras = ex.paras.slice(0, 8) // 첫 6~8문단
         for (let i = 0; i < paras.length; i += 3) {
-          out.push({ text: paras.slice(i, i + 3).join('\n\n'), grounds: [ex.source] })
+          out.push({ text: paras.slice(i, i + 3).join('\n\n'), grounds: [ex.source], raw: true })
         }
       }
       break

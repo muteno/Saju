@@ -182,7 +182,7 @@ function Bubble({
     >
       {/* 화자 표지는 **낭독 전용** — 화면엔 이름표를 안 띄운다(운영자 "이름은 제외")지만,
           좌/우 정렬은 스크린리더에 전달되지 않아 도사 말과 내 답이 한 줄기로 섞여 읽힌다. */}
-      <Box component="span" sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
+      <Box component="span" sx={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
         {me ? '나: ' : '도사: '}
       </Box>
       {children}
@@ -411,8 +411,15 @@ export default function DosaChat({
     setTopicKey(t.key)
     setStage('play')
     setSeen((prev) => new Set(prev).add(t.key))
-    // 프리페치 적중 = LLM 대사로 바로, 미도착 = L3 조립 대사로 먼저 시작(완결 동작 원칙)
-    say([...(intro ? [intro] : []), ...(ready ?? fallback.map((l) => l.text))])
+    // 프리페치 적중 = LLM 대사로 바로, 미도착 = L3 조립 대사로 먼저 시작(완결 동작 원칙).
+    // ⚠ **정제 안 된 발췌(raw)는 뺀다** — 그대로 읽으면 문서 제목이나 유튜브 채널 인사가
+    // 도사 대사가 된다(260726 버그체킹 실측: "乙(을목)이란?", "…도화도르입니다").
+    // 정제된 줄이 하나도 없으면 아는 척하지 않고 그렇게 말한다.
+    const spoken = fallback.filter((l) => !l.raw).map((l) => l.text)
+    say([
+      ...(intro ? [intro] : []),
+      ...(ready ?? (spoken.length ? spoken : ['이 대목은 아직 내가 제대로 풀어 둔 게 없군. 분석 탭의 근거를 직접 보게.'])),
+    ])
     readRef.current = 0
     if (!ready)
       void entry.promise.then((text) => {
@@ -607,9 +614,11 @@ export default function DosaChat({
               onTap()
             }}
             sx={{
+              // ⚠ MUI sx에서 숫자 `1`은 **100%**다(px 아님) — 앞서 `width: 1`로 적어 이 숨김 버튼이
+              // 대화 구역을 통째로 덮고 있었다(260726 실측 rect 390×762). 반드시 단위를 붙인다.
               position: 'absolute',
-              width: 1,
-              height: 1,
+              width: '1px',
+              height: '1px',
               p: 0,
               m: '-1px',
               overflow: 'hidden',

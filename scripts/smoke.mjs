@@ -67,6 +67,9 @@ try {
       for (const e of document.querySelectorAll('*')) {
         const cs = getComputedStyle(e), r = e.getBoundingClientRect()
         if (!r.width || !r.height) continue
+        // 시각적 숨김(sr-only/스킵링크) = 화면에 자리를 안 먹는 접근성 보조 경로다.
+        // 포커스되면 규격대로 펼쳐지므로 하한 검사 대상이 아니다(clip으로 잘려 있으면 건너뛴다).
+        if (cs.clip === 'rect(0px, 0px, 0px, 0px)' || cs.clipPath === 'inset(50%)') continue
         const own = [...e.childNodes].filter((n) => n.nodeType === 3 && n.textContent.trim()).map((n) => n.textContent.trim()).join('')
         if (!own) continue
         if (parseFloat(cs.fontSize) < 11) small.add(`${parseFloat(cs.fontSize)}px "${own.slice(0, 12)}"`)
