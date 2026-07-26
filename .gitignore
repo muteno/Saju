@@ -33,3 +33,6 @@ _압축본_백업/
 # 압축을 푼 자막본이 레포에 생기는 것도 차단(파도 작업 중 실수 방어)
 *_자막/
 dohwadore_saju_자막/
+
+# OAuth 계정 로테이션(sticky failover) 신호 파일 — 실수 커밋 방지(이식팩 §2-e)
+.nomute_active_quota

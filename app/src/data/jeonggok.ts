@@ -15,6 +15,13 @@ export interface JeonggokPick {
   evid: string
   /** 도사 발화(반말 도사체 — 프로토 문안 계승) */
   line: string
+  /**
+   * 단정 뒤에 붙는 마무리 질문(운영자 260726: 메뉴판을 내밀지 말고 「OO 때문에 왔지?」로 연다).
+   * 기본 = 지나온·현재 판 이야기, 미래 대운만 화법이 다르다.
+   */
+  ask: string
+  /** 이 단정과 관련된 원국 기둥(년·월·일·시) — 상담 무대의 원국표가 이 열을 살짝 들어 올린다 */
+  focus?: string[]
 }
 
 const impact = (c: { rarity: number; felt: number; safety: number }) => c.rarity * 0.35 + c.felt * 0.4 + c.safety * 0.25
@@ -22,10 +29,12 @@ const impact = (c: { rarity: number; felt: number; safety: number }) => c.rarity
 const GUNG: Record<string, string> = { 일: '배우자궁', 월: '사회궁', 시: '자식·말년궁', 년: '조상·부모궁' }
 const EL5 = ['목', '화', '토', '금', '수']
 
-interface Cand extends JeonggokPick {
+interface Cand extends Omit<JeonggokPick, 'ask'> {
   rarity: number
   felt: number
   safety: number
+  /** 후보별 마무리 질문 재정의(미지정 = 기본 훅) */
+  ask?: string
 }
 
 export function selectJeonggok(raw: JeonggokRaw): JeonggokPick | null {
@@ -65,6 +74,7 @@ export function selectJeonggok(raw: JeonggokRaw): JeonggokPick | null {
       token: `${pos}지 충`, layer: 'CALC', rarity: 0.5, felt: pos === '일' ? 0.95 : 0.8, safety: 0.5,
       evid: `${r.positions.join('↔')} ${r.name}`,
       line: `${pos}지가 충이야 — ${GUNG[pos]} 자리가 부딪히는 판이지.`,
+      focus: r.positions,
     })
   }
   for (const r of raw.relations.wonjin)
@@ -72,23 +82,25 @@ export function selectJeonggok(raw: JeonggokRaw): JeonggokPick | null {
       token: '원진', layer: 'CALC', rarity: 0.5, felt: 0.9, safety: 0.5,
       evid: `${r.positions.join('↔')} ${r.name}`,
       line: '원진이 걸렸어. 이유 없이 밉고 그리운, 그 묘한 기운 말이야.',
+      focus: r.positions,
     })
   for (const r of raw.relations.hyeong)
     push({
       token: '형(刑)', layer: 'CALC', rarity: 0.72, felt: 0.88, safety: 0.42,
       evid: `${r.positions.join('↔')} ${r.name}`,
       line: `${r.name}${josa(r.name, '이', '가')} 있어 — 다듬어지느라 아픈 자리지.`,
+      focus: r.positions,
     })
 
   // D. 신살: 도화(년살)·역마·화개 — CALC(이름)
   for (const k of ['시', '일', '월', '년'] as const) {
     const ss = raw.pillars[k].sinsal
     if (ss === '년살')
-      push({ token: '도화', layer: 'CALC', rarity: 0.3, felt: 0.6, safety: 0.7, evid: `${k}주 년살(도화)`, line: '신살에 도화가 떴어. 어딜 가도 눈에 띄는 팔자야.' })
+      push({ token: '도화', layer: 'CALC', rarity: 0.3, felt: 0.6, safety: 0.7, evid: `${k}주 년살(도화)`, line: '신살에 도화가 떴어. 어딜 가도 눈에 띄는 팔자야.', focus: [k] })
     if (ss === '역마살')
-      push({ token: '역마', layer: 'CALC', rarity: 0.3, felt: 0.6, safety: 0.72, evid: `${k}주 역마살`, line: '역마살이 떴네. 한자리에 오래 묶여 있으면 병나는 사람이지.' })
+      push({ token: '역마', layer: 'CALC', rarity: 0.3, felt: 0.6, safety: 0.72, evid: `${k}주 역마살`, line: '역마살이 떴네. 한자리에 오래 묶여 있으면 병나는 사람이지.', focus: [k] })
     if (ss === '화개살')
-      push({ token: '화개', layer: 'CALC', rarity: 0.42, felt: 0.55, safety: 0.75, evid: `${k}주 화개살`, line: '화개살이 있어 — 혼자 파고드는 정신의 창고지.' })
+      push({ token: '화개', layer: 'CALC', rarity: 0.42, felt: 0.55, safety: 0.75, evid: `${k}주 화개살`, line: '화개살이 있어 — 혼자 파고드는 정신의 창고지.', focus: [k] })
   }
 
   // E. 일지 공망 — CALC
@@ -97,6 +109,7 @@ export function selectJeonggok(raw: JeonggokRaw): JeonggokPick | null {
       token: '일지 공망', layer: 'CALC', rarity: 0.55, felt: 0.75, safety: 0.6,
       evid: `공망 ${raw.gongmang.join('·')} — 일지 ${raw.pillars.일.branch}`,
       line: '일지가 공망이야. 채워도 채워도 어딘가 빈 듯한 자리지.',
+      focus: ['일'],
     })
 
   // F. 신강/신약 극단 — INFER (라벨은 통설·보드 판정)
@@ -119,6 +132,7 @@ export function selectJeonggok(raw: JeonggokRaw): JeonggokPick | null {
       token: '간여지동', layer: 'CALC', rarity: 0.62, felt: 0.78, safety: 0.58,
       evid: `일주 천간·지지 동일 오행(${raw.pillars.일.stemEl})`,
       line: '일주가 간여지동이야 — 천간과 지지가 통째로 한 기운. 뜻이 서면 꺾기 어려운 배열이지.',
+      focus: ['일'],
     })
 
   // H. 일지 운성 극단(제왕·절) — INFER
@@ -128,6 +142,7 @@ export function selectJeonggok(raw: JeonggokRaw): JeonggokPick | null {
       token: `일지 운성·${un}`, layer: 'INFER', rarity: 0.5, felt: 0.6, safety: 0.65,
       evid: `일지 십이운성 = ${un}`,
       line: un === '제왕' ? '일지 운성이 제왕이야. 스스로 왕 노릇 해야 직성이 풀리지.' : '일지 운성이 절이야. 끊고 다시 시작하는 힘이 유난한 자리지.',
+      focus: ['일'],
     })
 
   // T. 시기 특정 — EVENT (원국 × 대운 크로스, 최강 정곡: 충>원진>자형 × 현재 나이 근접도)
@@ -141,13 +156,18 @@ export function selectJeonggok(raw: JeonggokRaw): JeonggokPick | null {
       if (!best || w > best.w) best = { w, age: d.age, name: d.name, type: r.type, withPos: r.with }
     }
   if (best) {
+    // 시기는 나이가 아니라 연도로 말한다(운영자 260726 — 만나이·세는나이가 갈려 나이 표기는
+    // 사람마다 다르게 읽힌다). 연도 = 출생연도 + age(만나이 관례) — 대운 레일 표기와 같은 환산.
+    const year = raw.birthYear + best.age
     const past = best.age <= curAge
     push({
-      token: `시기 특정·${best.age}세`, layer: 'EVENT', rarity: 0.6, felt: 0.95, safety: 0.6,
-      evid: `${best.withPos}지 × ${best.age}세 대운(${best.name}) ${best.type}`,
+      token: `시기 특정·${year}년`, layer: 'EVENT', rarity: 0.6, felt: 0.95, safety: 0.6,
+      evid: `${best.withPos}지 × ${year}년~ 대운(${best.name}) ${best.type}`,
       line: past
-        ? `${best.age}세 무렵부터 큰 흐름이 원국과 ${best.type}으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데.`
-        : `${best.age}세부터 큰 흐름이 원국과 ${best.type}으로 걸려. 미리 알고 맞는 파도는 무섭지 않지.`,
+        ? `${year}년 무렵부터 큰 흐름이 원국과 ${best.type}으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데.`
+        : `${year}년부터 큰 흐름이 원국과 ${best.type}으로 걸려. 미리 알고 맞는 파도는 무섭지 않지.`,
+      ...(past ? {} : { ask: '…미리 보러 온 셈이지?' }),
+      focus: [best.withPos],
     })
   }
 
@@ -160,5 +180,13 @@ export function selectJeonggok(raw: JeonggokRaw): JeonggokPick | null {
   const ranked = [...bestByToken.values()].sort((a, b) => b.impact - a.impact)
   if (!ranked.length) return null
   const top = ranked[0]
-  return { token: top.token, layer: top.layer, impact: top.impact, evid: top.evid, line: top.line }
+  return {
+    token: top.token,
+    layer: top.layer,
+    impact: top.impact,
+    evid: top.evid,
+    line: top.line,
+    ask: top.ask ?? '…그것 때문에 왔지?',
+    ...(top.focus ? { focus: top.focus } : {}),
+  }
 }

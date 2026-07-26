@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
@@ -7,6 +8,7 @@ import { tokens } from '../theme'
 import { activeProfile, listProfiles, setActiveProfile } from '../data/profiles'
 import { clearEntered } from '../data/session'
 import { currentAccount, forgetAccount } from '../data/account'
+import { DOSA_MODELS, dosaModel, setDosaModel } from '../data/prefs'
 
 const press = { transition: 'transform .12s var(--ease)', '&:active': { transform: 'scale(0.98)' } }
 
@@ -24,6 +26,7 @@ export default function Settings() {
   const profile = activeProfile()
   const profiles = listProfiles()
   const account = currentAccount()
+  const [model, setModel] = useState(dosaModel())
 
   const onExport = () => {
     const kst = new Date().toLocaleString('sv-SE', { timeZone: 'Asia/Seoul' }).replace(/[-: ]/g, '').slice(0, 14)
@@ -118,6 +121,35 @@ export default function Settings() {
             >
               + 추가
             </Box>
+          </Box>
+
+          {/* 상담 — 연리 응답 모델(운영자 260726: 소넷5/오퍼스5 빠름 2종, 설정에서 전환) */}
+          <SectionTitle>상담</SectionTitle>
+          <Box sx={{ borderRadius: '14px', background: 'var(--glass)', border: '1px solid var(--glass-line)', backdropFilter: 'blur(11px)', WebkitBackdropFilter: 'blur(11px)', px: 2, py: 1.6 }}>
+            <Typography sx={{ fontSize: 14, fontWeight: 600, color: tokens.color.ink }}>{`연리 응답 모델`}</Typography>
+            <Box sx={{ mt: 1.2, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+              {DOSA_MODELS.map((m) => {
+                const on = model === m.key
+                return (
+                  <Box
+                    key={m.key}
+                    onClick={() => {
+                      setDosaModel(m.key)
+                      setModel(m.key)
+                    }}
+                    role="button"
+                    aria-pressed={on}
+                    // 칩 규격 = 저장된 사주 칩 계승(h36 알약 · primarySoft 선택 문법)
+                    sx={{ height: 36, display: 'inline-flex', alignItems: 'center', px: 1.6, borderRadius: '100px', fontSize: 12.5, fontWeight: 700, cursor: on ? 'default' : 'pointer', bgcolor: on ? tokens.color.primarySoft : 'var(--glass)', border: on ? `1px solid ${tokens.color.primary}` : '1px solid var(--glass-line)', color: on ? tokens.color.primary : tokens.color.inkSub, whiteSpace: 'nowrap', ...press }}
+                  >
+                    {m.label}
+                  </Box>
+                )
+              })}
+            </Box>
+            <Typography sx={{ mt: 1, fontSize: 11.5, fontWeight: 600, color: tokens.color.inkFaint }}>
+              {DOSA_MODELS.find((m) => m.key === model)?.desc}
+            </Typography>
           </Box>
 
           <SectionTitle>알림</SectionTitle>

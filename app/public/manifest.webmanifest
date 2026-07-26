@@ -1,7 +1,7 @@
 {
-  "name": "아이샤 — AI 사주 상담",
-  "short_name": "아이샤",
-  "description": "생년월일시로 만세력을 계산하고, 근거 문헌 2,504편에서 찾은 풀이를 도사 아이샤가 들려주는 사주 앱",
+  "name": "연식당 — AI 사주 상담",
+  "short_name": "연식당",
+  "description": "생년월일시로 만세력을 계산하고, 근거 문헌 2,504편에서 찾은 풀이를 연식당 도사가 들려주는 사주 앱",
   "lang": "ko",
   "start_url": "/",
   "display": "standalone",

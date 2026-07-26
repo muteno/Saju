@@ -1,23 +1,46 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
 import { Box } from '@mui/material'
-import DialogueBox from './DialogueBox'
+import MiniChart from './MiniChart'
+import { Pict } from './MyeongShell'
 import { tokens } from '../theme'
-import { TOPICS, TOPIC_INTROS, topicLines, chartSummaryOf } from '../data/dosaTopics'
+import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, chartSummaryOf } from '../data/dosaTopics'
 import type { DosaLine, Topic } from '../data/dosaTopics'
+import { dosaModel } from '../data/prefs'
+import { chefForGender, counterpartChef, bargeLineOf, voiceOf } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
-import ShopStage from './ShopStage'
-import { chefForGender, counterpartChef, BARGE_LINE, voiceOf } from '../data/chefs'
+import type { Pillar } from '../data/saju'
 import type { ReportBundle } from '../engine'
 import { useReducedMotion } from './Motion'
 
 /**
- * 미연시 대화 패널 — 아이샤가 주제 선택지 → 근거 대사 시퀀스를 타이프라이터로 출력.
- * 값 정본 = 머지된 플레이그라운드(public/reports/20260717_222938_dosa-talk-playground_v1.html):
- * 타이핑 28ms/자 · 본문 14.5px/1.62 · 선택지 gap 7px·padding 11px 14px·radius 12 · mini 9px · 누름 scale(0.98).
- * LLM(/api/dosa) 성공 시 그 텍스트를 대사로, 실패·미설정 시 조용히 L3 폴백(완결 동작 원칙).
+ * 상담 = **메신저**(운영자 260726 · YETA 캐릭터챗 문법 계승).
+ *
+ * > "질문은 메세지 안에 통으로 들어가는게 아니라, 이름은 제외하고, 메세지 하나당 하나씩,
+ * >  예타에 있는 캐릭터가 메세지 나한테 보내는 느낌으로 물어봐야 해. 그 다음에 내가 대답하는 거고."
+ *
+ * 그래서 대사창(한 상자에 전문) → **말풍선 로그**로 바꿨다. 한 말풍선 = 한 마디, 질문은 그 자체로
+ * 하나의 메시지, 내가 고른 답은 내 말풍선으로 로그에 남는다(대화가 쌓이는 게 보인다).
+ * 화자 이름표는 뗀다 — 무대에 인물이 서 있으니 누가 말하는지는 그림이 말한다.
+ *
+ * 값 계승: 말풍선 표면 = `.glass`(YETA `.yb.ai`가 글래스인 것과 같은 축) · 내 말풍선 = `--c-primary`
+ * (YETA `--bubble-me` = 브랜드색과 동형) · 꼬리쪽 모서리만 각지게(YETA `border-top-*-radius:--r-s`).
+ * 타이핑 28ms·的中 700ms 등 연출 값은 플레이그라운드 정본 그대로.
  */
 const TYPE_MS = 28
-const CHOOSE_INTRO = '궁금한 걸 골라 보게.'
+/**
+ * 프레임 844에서 [상태바+표제 ~92]·[네비 76]·[입력창 ~60]을 빼면 약 616이 남고,
+ * 그중 300을 대화가 쓰고 나머지 위쪽은 **배경 인물이 보이는 자리**로 비워 둔다.
+ */
+/** 대화 구역 높이 — 화면 중하단(운영자 260726 "캐릭터 위에 중하단정도에 대화가 있게") */
+const LOG_H = 300
+/** 자유 질문 길이 상한 — 서버(functions/api/dosa.ts MAX_QUESTION)와 같은 값 */
+const MAX_ASK = 300
+
+interface Msg {
+  who: 'ai' | 'me'
+  text: string
+}
 
 function useTypewriter(text: string, speedMs: number) {
   const [n, setN] = useState(0)
@@ -55,26 +78,33 @@ function useTypewriter(text: string, speedMs: number) {
   }
 }
 
-/** /api/dosa 시도 — 200 & {text}만 채택, 그 외(에러·비200·5초 타임아웃)는 null(조용한 폴백) */
+/**
+ * /api/dosa 시도 — 200 & {text}만 채택, 그 외(에러·비200·타임아웃)는 null(조용한 폴백).
+ * 프리페치(사용자 대기 없음)는 타임아웃을 길게 잡는다 — 선택 시점엔 이미 도착해 있는 게 목적.
+ */
 async function fetchDosaText(
   topic: string,
   report: ReportBundle,
   lines: DosaLine[],
   chefId: string,
   profileName?: string,
+  timeoutMs = 5000,
+  question?: string,
 ): Promise<string | null> {
   const ctrl = new AbortController()
-  const timer = setTimeout(() => ctrl.abort(), 5000)
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs)
   try {
     const res = await fetch('/api/dosa', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
         topic,
+        model: dosaModel(), // 설정에서 고른 응답 모델(소넷5/오퍼스5 빠름 — data/prefs.ts)
+        chefId, // 무대에 선 화자 — 서버가 chefs.ts PERSONA를 시스템 프롬프트에 합성
         chartSummary: chartSummaryOf(report),
         grounds: lines.map((l) => ({ text: l.text, grounds: l.grounds ?? [] })),
-        chefId, // 무대에 선 화자 — 서버가 chefs.ts PERSONA를 시스템 프롬프트에 합성
         ...(profileName ? { profileName } : {}),
+        ...(question ? { question } : {}),
       }),
       signal: ctrl.signal,
     })
@@ -89,122 +119,405 @@ async function fetchDosaText(
   }
 }
 
+/**
+ * 말풍선 분해 — 운영자 "메세지 하나당 하나씩".
+ *
+ * ⚠ 문단(`\n{2,}`)으로만 자르면 **통짜 한 통**이 된다(검토자 260726 실측: LLM·L3 대사엔 빈 줄이
+ * 거의 없어 두 문장이 한 말풍선에 들어갔다 — 운영자가 고치라고 한 게 정확히 그 "통으로"였다).
+ * 그래서 문단을 먼저 자르고, 문장 경계(`.` `?` `!` `…`)로 한 번 더 쪼갠다.
+ * 다만 **한 통 최대 2문장**으로 묶는다 — 한 문장씩 다 끊으면 짧은 토막이 우수수 쏟아져
+ * 탭을 그만큼 더 해야 한다(메신저가 아니라 자막이 된다).
+ */
+const MAX_SENT = 2
+const toMsgs = (text: string): string[] => {
+  const out: string[] = []
+  for (const para of text.split(/\n{2,}/)) {
+    const body = para.trim()
+    if (!body) continue
+    // 문장 끝 부호 + 공백을 경계로 자른다(부호는 앞 문장에 남긴다)
+    const sents = body.split(/(?<=[.?!…])\s+/).filter(Boolean)
+    for (let i = 0; i < sents.length; i += MAX_SENT) out.push(sents.slice(i, i + MAX_SENT).join(' '))
+  }
+  return out
+}
+
+/** 말풍선 — 캐릭터(좌·글래스) / 나(우·강조색). 이름표 없음(무대의 인물이 화자다) */
+function Bubble({
+  who,
+  children,
+  'aria-hidden': ariaHidden,
+}: {
+  who: 'ai' | 'me'
+  children: ReactNode
+  'aria-hidden'?: true
+}) {
+  const me = who === 'me'
+  return (
+    <Box
+      className="msd-popin"
+      sx={{
+        alignSelf: me ? 'flex-end' : 'flex-start',
+        maxWidth: '82%',
+        p: '10px 13px',
+        borderRadius: '14px',
+        ...(me
+          ? { borderTopRightRadius: '6px', bgcolor: tokens.color.primary, color: tokens.color.onPrimary }
+          : {
+              borderTopLeftRadius: '6px',
+              color: tokens.color.ink,
+              // 유리 **표면값만** 계승하고 blur는 안 건다 — 말풍선은 대화가 길어질수록 늘어나므로
+              // 각자 backdrop-filter를 들면 한 화면에 유리 층이 열 장 넘게 쌓인다(검토자 260726).
+              // VnChoice가 같은 이유로 이미 blur를 뺐다. blur는 미니명식·네비 두 장으로 상한.
+              bgcolor: 'var(--glass)',
+              border: '1px solid var(--glass-line)',
+              boxShadow: 'inset 0 1px 0 var(--glass-inset)',
+            }),
+        fontSize: 14.5,
+        lineHeight: 1.62,
+        letterSpacing: 'var(--tracking)',
+        whiteSpace: 'pre-line',
+        wordBreak: 'break-word',
+      }}
+      aria-hidden={ariaHidden}
+    >
+      {/* 화자 표지는 **낭독 전용** — 화면엔 이름표를 안 띄운다(운영자 "이름은 제외")지만,
+          좌/우 정렬은 스크린리더에 전달되지 않아 도사 말과 내 답이 한 줄기로 섞여 읽힌다. */}
+      <Box component="span" sx={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
+        {me ? '나: ' : '도사: '}
+      </Box>
+      {children}
+    </Box>
+  )
+}
+
+/** 글라스 선택지 — 분류 키워드 없이 질문만(운영자 260726). seen = 우측에 체크 픽토그램 */
+function VnChoice({
+  label,
+  seen = false,
+  delay,
+  onClick,
+}: {
+  label: string
+  seen?: boolean
+  delay: number
+  onClick: (e: { stopPropagation: () => void }) => void
+}) {
+  return (
+    <Box
+      component="button"
+      type="button"
+      onClick={onClick}
+      className="msd-popin"
+      style={{ animationDelay: `${delay}ms` }}
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: '8px',
+        width: '100%',
+        minHeight: 46,
+        p: '12px 16px',
+        borderRadius: '14px',
+        // 유리 표면값만 계승하고 blur는 안 건다 — 선택지가 각자 backdrop-filter를 들면 화면에
+        // 유리 표면이 여러 장이라 모바일 컴포짓이 무겁다(검토자 260726 지적 반영).
+        bgcolor: 'var(--glass)',
+        border: '1px solid var(--glass-line)',
+        boxShadow: 'inset 0 1px 0 var(--glass-inset)',
+        color: seen ? tokens.color.inkSub : tokens.color.ink,
+        fontFamily: 'inherit',
+        fontSize: 14.5,
+        fontWeight: 700,
+        lineHeight: 1.25,
+        letterSpacing: 'var(--tracking)',
+        textAlign: 'left',
+        cursor: 'pointer',
+        transition: 'border-color .15s, transform .12s var(--ease)',
+        '&:hover': { borderColor: 'var(--accent)' },
+        '&:active': { transform: 'scale(0.98)' },
+      }}
+    >
+      <span>{label}</span>
+      {seen && (
+        <Box component="span" aria-label="이미 들은 이야기" sx={{ display: 'flex', color: tokens.color.inkFaint, flex: '0 0 auto' }}>
+          {Pict.check(14)}
+        </Box>
+      )}
+    </Box>
+  )
+}
+
 export default function DosaChat({
   report,
+  pillars,
   profileName,
   hourUnknown,
   jeonggok,
   gender,
+  onChef,
 }: {
   report: ReportBundle
+  /** 좌상단 미니 명식에 박히는 원국(UiChart.pillars — 시일월년 순) */
+  pillars: Pillar[]
   profileName?: string
   hourUnknown?: boolean
   /** 정곡 오프닝 — 도사가 먼저 맞히는 단정(엔진 결정론 선별, data/jeonggok.ts) */
   jeonggok?: JeonggokPick | null
   /** 상담 상대의 성별 — 무대에 서는 도사를 가른다(운영자 260726) */
   gender?: 'M' | 'F'
+  /** 화자가 정해지거나 바뀔 때 알린다 — 인물이 곧 배경이라 호출부가 배경을 갈아야 한다 */
+  onChef?: (plate: string) => void
 }) {
-  // 무대에 선 도사 — 기본은 사용자 성별로 배정, 빗맞히면 맞은편이 밀고 들어와 교체된다
   const [chef, setChef] = useState(() => chefForGender(gender))
-  const [barge, setBarge] = useState(false) // 난입 연출 1회(등장 애니 트리거)
-  const [phase, setPhase] = useState<'opening' | 'verdict' | 'choose' | 'play'>(jeonggok ? 'opening' : 'choose')
-  const [verdictText, setVerdictText] = useState('')
+  /** 대화 로그 — 위에서 아래로 쌓인다(질문이 위에 남는다) */
+  const [log, setLog] = useState<Msg[]>([])
+  /** 아직 안 뜬 캐릭터 메시지 — 탭할 때마다 하나씩 로그로 내려온다 */
+  const [queue, setQueue] = useState<string[]>([])
+  /** 지금 무엇을 물을 차례인가 — 정곡 답변지 / 주제 메뉴 / 이야기 재생 */
+  const [stage, setStage] = useState<'jeonggok' | 'menu' | 'play'>(jeonggok ? 'jeonggok' : 'menu')
   const [crit, setCrit] = useState(false) // 的中 크리티컬 연출(700ms — 플레이그라운드 D.critMs 정본)
-  const [seq, setSeq] = useState<DosaLine[]>([])
-  const [idx, setIdx] = useState(0)
   const [seen, setSeen] = useState<ReadonlySet<string>>(new Set())
-  const topicRef = useRef<string | null>(null) // LLM 응답 도착 시 아직 같은 주제인지 검증
-  const idxRef = useRef(0) // 인트로를 지나쳤으면 늦게 온 LLM 응답은 버림(대사 점프 방지)
+  const [topicKey, setTopicKey] = useState<string | null>(null)
+  const topicRef = useRef<string | null>(null)
+  const readRef = useRef(0) // 지금 주제에서 이미 읽어 내린 말풍선 수(늦게 온 LLM 응답을 이어 붙일 지점)
+  const [draft, setDraft] = useState('') // 입력창에 쓰는 중인 말
+  const [asking, setAsking] = useState(false) // 자유 질문 왕복 중
+  const stageRef = useRef<HTMLDivElement | null>(null) // 덜컹 연출 대상
+  const logRef = useRef<HTMLDivElement | null>(null) // 로그 스크롤러
+  const llmCache = useRef<Map<string, { promise: Promise<string | null>; text?: string | null }>>(new Map())
+  const reduceMotion = useReducedMotion()
 
-  // 다른 사주(리포트)로 바뀌면 처음부터
+  /** 캐릭터 메시지 묶음을 흘려보낸다 — 첫 줄은 바로 뜨고 나머지는 탭을 기다린다 */
+  const say = (msgs: string[]) => {
+    if (!msgs.length) return
+    setLog((l) => [...l, { who: 'ai', text: msgs[0] }])
+    setQueue(msgs.slice(1))
+  }
+  const answer = (text: string) => setLog((l) => [...l, { who: 'me', text }])
+
+  /** 주제 응답을 캐시에서 얻거나 지금 발사(1회만) — 키 = 모델:화자:주제 */
+  const ensureLlm = (key2: string) => {
+    const key = `${dosaModel()}:${chef.id}:${key2}`
+    const hit = llmCache.current.get(key)
+    if (hit) return hit
+    const fallback = topicLines(report, key2, hourUnknown)
+    const entry: { promise: Promise<string | null>; text?: string | null } = {
+      promise: fetchDosaText(key2, report, fallback, chef.id, profileName, 20000).then((text) => {
+        entry.text = text
+        return text
+      }),
+    }
+    llmCache.current.set(key, entry)
+    return entry
+  }
+
+  /**
+   * 화면 덜컹 — WAAPI로 튼다(key 리마운트는 로그·접힘 상태를 날린다). step-end = 8비트 스냅.
+   * ⚠ WAAPI는 전역 reduced-motion CSS 블록 밖이라 JS 가드를 직접 건다.
+   */
+  const rumble = (kind: 'jolt' | 'shake') => {
+    if (reduceMotion) return
+    const amp = kind === 'shake' ? [-6, 3, 6, -3, -4, 2, 3, -1] : [-4, 2, 4, -2, -2, 1, 0, 0]
+    stageRef.current?.animate(
+      [
+        { transform: 'translate(0,0)', easing: 'step-end' },
+        { transform: `translate(${amp[0]}px,${amp[1]}px)`, easing: 'step-end' },
+        { transform: `translate(${amp[2]}px,${amp[3]}px)`, easing: 'step-end' },
+        { transform: `translate(${amp[4]}px,${amp[5]}px)`, easing: 'step-end' },
+        { transform: `translate(${amp[6]}px,${amp[7]}px)`, easing: 'step-end' },
+        { transform: 'translate(0,0)' },
+      ],
+      { duration: kind === 'shake' ? 480 : 320 },
+    )
+  }
+
+  // 첫 대사 — 정곡이 있으면 [화자 인사 → 단정 → 질문] 세 통, 없으면 용건 묻기 한 통
   useEffect(() => {
-    setPhase(jeonggok ? 'opening' : 'choose')
-    setVerdictText('')
+    const c = chefForGender(gender)
+    setChef(c)
     setCrit(false)
-    setSeq([])
-    setIdx(0)
-    idxRef.current = 0
-    topicRef.current = null
     setSeen(new Set())
-    setChef(chefForGender(gender))
-    setBarge(false)
+    setTopicKey(null)
+    topicRef.current = null
+    llmCache.current = new Map()
+    setStage(jeonggok ? 'jeonggok' : 'menu')
+    onChef?.(c.plate)
+    const v = voiceOf(c.id)
+    const first = jeonggok ? [v.opening, jeonggok.line, jeonggok.ask] : ['뭐가 궁금해서 오셨는가?']
+    setLog([{ who: 'ai', text: first[0] }])
+    setQueue(first.slice(1))
+    rumble('jolt')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [report, jeonggok, gender])
 
-  // 오프닝 머리말은 화자 것 — 같은 단정도 알카사르가 하면 반말이고 단리아가 하면 존댓말이다
-  const openingText = jeonggok ? `${voiceOf(chef.id).opening}\n\n${jeonggok.line}` : ''
-  const line = phase === 'play' ? seq[idx] : undefined
-  // 모션 감소면 속도 0 = 타이핑 연출을 건너뛰고 전문을 즉시 보여준다
-  const reduceMotion = useReducedMotion()
-  const tw = useTypewriter(
-    phase === 'play' ? (line?.text ?? '') : phase === 'opening' ? openingText : phase === 'verdict' ? verdictText : CHOOSE_INTRO,
-    reduceMotion ? 0 : TYPE_MS,
-  )
+  const last = log[log.length - 1]
+  const typing = last?.who === 'ai' ? last.text : ''
+  const tw = useTypewriter(typing, reduceMotion ? 0 : TYPE_MS)
+  const idle = tw.done && queue.length === 0 // 말이 끝났고 남은 메시지도 없다 = 내 차례
 
-  // 정곡 답 처리 — 的中은 크리티컬, 부정은 리커버리(계산은 안 굽히고, 시기 사건은 접는다 — 플레이그라운드 확정 문법)
-  const onJeonggokAnswer = (hit: boolean) => {
+  /**
+   * 새 말풍선을 따라 로그가 아래로 흐른다(메신저 관례).
+   * ⚠ **이미 바닥 근처일 때만** 따라간다 — 무조건 끌어내리면 사용자가 앞 대화를 되읽으려 올린 순간
+   * 타이핑이 28ms마다 바닥으로 도로 끌어내린다(검토자 260726 · 되읽기 불가 + 매 틱 강제 리플로우).
+   * 진짜 메신저가 하는 것과 같다 — 위를 보고 있으면 따라가지 않는다.
+   */
+  useEffect(() => {
+    const el = logRef.current
+    if (!el) return
+    if (el.scrollHeight - el.scrollTop - el.clientHeight < 60) el.scrollTop = el.scrollHeight
+  }, [log, tw.shown, stage])
+
+  /**
+   * 선반응 프리페치 — 미본 주제를 미리 생성해 둔다(250ms 시차).
+   * ⚠ 게이트가 `menu && idle`이던 때는 **정곡 국면 내내 한 건도 안 나갔다**(검토자 260726 적발):
+   * 오프닝 3통을 다 탭해 메뉴가 뜨는 그 순간에야 발사되니 첫 주제는 거의 항상 폴백이었다.
+   * 지금은 화면에 들어온 순간부터 굽는다 — 사용자가 정곡을 읽는 몇 초가 곧 생성 시간이다.
+   * 풀이 중에는 안 건다(그때 필요한 건 이미 손에 있다).
+   */
+  useEffect(() => {
+    if (stage === 'play') return
+    const timers = TOPICS.filter((t) => !llmCache.current.has(`${dosaModel()}:${chef.id}:${t.key}`)).map((t, i) =>
+      setTimeout(() => ensureLlm(t.key), i * 250),
+    )
+    return () => timers.forEach(clearTimeout)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stage, chef.id])
+
+  const onJeonggokAnswer = (hit: boolean, label: string) => {
     if (!jeonggok) return
+    answer(label)
     if (hit) {
       setCrit(true)
       setTimeout(() => setCrit(false), 700)
-      setVerdictText(voiceOf(chef.id).hit)
+      rumble('shake')
+      setStage('menu')
+      say([...toMsgs(voiceOf(chef.id).hit), '그래서, 뭐가 궁금한가?'])
     } else {
-      // 빗맞힘 = 사과가 아니라 **교체**다(운영자 260726 구술) — 맞은편 도사가 촤르륵 밀고 들어와
-      // "거 보쇼, 쉬고 계시오. 내가 하려니까" 하고 판을 받아 간다. 계산은 굽히지 않고,
-      // 말하는 사람만 바뀐다 — 콜드리딩처럼 말을 주워 담는 대신 화자를 갈아 끼우는 쪽이
-      // 게임 세상의 문법이고, 사용자가 "아니다"라고 말할 부담도 준다.
+      // 빗맞힘 = 사과가 아니라 **교체**(운영자 260726) — 맞은편 도사가 밀고 들어와 판을 받아 간다
       const next = counterpartChef(chef.id)
       setChef(next)
-      setBarge(true)
-      // 들어온 쪽의 난입 대사 + 그 화자의 리커버리 문안(계산은 안 굽히고 입만 바뀐다)
-      setVerdictText(`${BARGE_LINE[next.id]}\n\n${voiceOf(next.id).miss}`)
+      onChef?.(next.plate)
+      setStage('menu')
+      say([bargeLineOf(next.id), ...toMsgs(voiceOf(next.id).miss), '그래서, 뭐가 궁금한가?'])
     }
-    setPhase('verdict')
   }
 
   const selectTopic = (t: Topic) => {
     const fallback = topicLines(report, t.key, hourUnknown)
     const intro = TOPIC_INTROS[t.key]
-    const base: DosaLine[] = intro ? [{ text: intro }, ...fallback] : fallback
+    const entry = ensureLlm(t.key)
+    const ready = typeof entry.text === 'string' && entry.text ? toMsgs(entry.text) : null
+    answer(t.label)
     topicRef.current = t.key
-    setSeq(base)
-    setIdx(0)
-    idxRef.current = 0
-    setPhase('play')
+    setTopicKey(t.key)
+    setStage('play')
     setSeen((prev) => new Set(prev).add(t.key))
-    void fetchDosaText(t.key, report, fallback, chef.id, profileName).then((text) => {
-      if (!text || topicRef.current !== t.key || idxRef.current > 0) return
-      const paras = text
-        .split(/\n{2,}/)
-        .map((s) => s.trim())
-        .filter(Boolean)
-      if (!paras.length) return
-      const llmLines: DosaLine[] = paras.map((p) => ({ text: p }))
-      setSeq(intro ? [{ text: intro }, ...llmLines] : llmLines)
-    })
+    // 프리페치 적중 = LLM 대사로 바로, 미도착 = L3 조립 대사로 먼저 시작(완결 동작 원칙).
+    // ⚠ **정제 안 된 발췌(raw)는 뺀다** — 그대로 읽으면 문서 제목이나 유튜브 채널 인사가
+    // 도사 대사가 된다(260726 버그체킹 실측: "乙(을목)이란?", "…도화도르입니다").
+    // 정제된 줄이 하나도 없으면 아는 척하지 않고 그렇게 말한다.
+    const spoken = fallback.filter((l) => !l.raw).map((l) => l.text)
+    say([
+      ...(intro ? [intro] : []),
+      ...(ready ?? (spoken.length ? spoken : ['이 대목은 아직 내가 제대로 풀어 둔 게 없군. 분석 탭의 근거를 직접 보게.'])),
+    ])
+    readRef.current = 0
+    if (!ready)
+      void entry.promise.then((text) => {
+        if (!text || topicRef.current !== t.key) return
+        // ⚠ 앞서는 `slice(-남은개수)`로 **꼬리만** 갈아 끼웠는데, 그러면 LLM 문단이 남은 큐보다
+        // 많을 때 **서두가 통째로 잘려 결론만** 남는다(검토자 260726 적발 — 폴백 2통 + 맥락 없는
+        // LLM 결론 1통을 읽게 된다). 그래서 **읽은 개수만큼만** 건너뛰고 이어 붙인다.
+        // 이미 LLM 분량보다 많이 읽었으면 갈아치우지 않는다(중간에 말이 되감기지 않게).
+        const msgs = toMsgs(text)
+        if (readRef.current >= msgs.length) return
+        setQueue(msgs.slice(readRef.current))
+      })
+  }
+
+  /**
+   * 자유 질문 — 선택지 말고 **직접 쓴 말**을 보낸다(운영자 260726 "대화 쓸수있는 장소도 있어야함").
+   * 내 말풍선을 먼저 찍고(보낸 게 눈에 보여야 한다), 답이 오면 말풍선으로 이어 붙인다.
+   * LLM이 꺼져 있거나 실패하면 **조용히 실패로 두지 않고** 그 사실을 도사 입으로 말한다.
+   */
+  const askFree = async () => {
+    const q = draft.trim()
+    if (!q || asking) return
+    setDraft('')
+    setAsking(true)
+    answer(q)
+    setStage('play')
+    setTopicKey(null)
+    topicRef.current = null
+    readRef.current = 0
+    try {
+      const text = await fetchDosaText(
+        '성격', // 화이트리스트 자리채움 — 서버는 question이 있으면 그걸 먼저 읽는다
+        report,
+        topicLines(report, '성격', hourUnknown),
+        chef.id,
+        profileName,
+        25000,
+        q,
+      )
+      if (text) say(toMsgs(text))
+      else say(['…지금은 판을 더 못 읽겠군. 잠시 뒤에 다시 물어보게.'])
+    } finally {
+      setAsking(false)
+    }
   }
 
   const onTap = () => {
     if (!tw.done) {
-      tw.skip() // 탭 = 즉시 전체 표시
+      tw.skip()
       return
     }
-    if (phase === 'verdict') {
-      setPhase('choose') // 판정 대사 → 주제 선택
+    if (queue.length) {
+      setLog((l) => [...l, { who: 'ai', text: queue[0] }])
+      setQueue((q) => q.slice(1))
+      if (stage === 'play') readRef.current += 1
       return
     }
-    if (phase !== 'play') return
-    if (idx + 1 < seq.length) {
-      idxRef.current = idx + 1
-      setIdx(idx + 1)
-    } else {
+    // 이야기 한 바퀴가 끝나면 다시 메뉴로 — 질문도 한 통의 메시지다
+    if (stage === 'play') {
+      setStage('menu')
+      setTopicKey(null)
       topicRef.current = null
-      setPhase('choose') // 시퀀스 끝 → 선택지 재노출
+      say(['또 궁금한 것이 있는가?'])
     }
   }
 
+  /**
+   * 미니 명식 포커스 — 지금 말하는 내용이 짚는 기둥.
+   * `useMemo`로 identity를 고정한다 — 안 하면 타이프라이터가 28ms마다 새 배열을 만들어
+   * MiniChart의 `memo`가 매번 뚫린다(검토자 260726 지적).
+   */
+  const focus: string[] = useMemo(
+    () =>
+      stage === 'jeonggok' ? (jeonggok?.focus ?? []) : stage === 'play' && topicKey ? (TOPIC_FOCUS[topicKey] ?? []) : [],
+    [stage, jeonggok, topicKey],
+  )
+
+  const choices =
+    !idle
+      ? []
+      : stage === 'jeonggok' && jeonggok
+        ? [
+            { key: 'yes', label: '그… 맞아', seen: false, onPick: () => onJeonggokAnswer(true, '그… 맞아') },
+            { key: 'no', label: '아니, 딱히?', seen: false, onPick: () => onJeonggokAnswer(false, '아니, 딱히?') },
+          ]
+        : stage === 'menu'
+          ? TOPICS.map((t) => ({ key: t.key, label: t.label, seen: seen.has(t.key), onPick: () => selectTopic(t) }))
+          : []
+
+  /** 다음 메시지가 남아 있나 — 진행 버튼을 띄울지 가른다 */
+  const hasNext = !tw.done || queue.length > 0 || stage === 'play'
+
   return (
-    <Box onClick={onTap} sx={{ cursor: 'pointer', position: 'relative' }}>
-      {/* 的中 크리티컬 — 60px/900 #b0402b 스케일인 0.7s (플레이그라운드 정본 연출) */}
+    <Box
+      onClick={onTap}
+      sx={{ cursor: 'pointer', position: 'relative', flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}
+    >
+      {/* 的中 크리티컬 — 60px/900 스케일인 0.7s (플레이그라운드 정본 연출) */}
       {crit && (
         <Box
           sx={{
@@ -217,8 +530,10 @@ export default function DosaChat({
             pointerEvents: 'none',
             fontSize: 60,
             fontWeight: 900,
-            color: '#b0402b',
-            textShadow: '0 2px 18px rgba(176,64,43,0.35)',
+            // 창작색이던 것을 토큰 계승으로 되돌린다(제1핵심명령 ① 가장 가까운 토큰 자동 계승).
+            // 그림자는 같은 토큰에서 color-mix로 파생 — 신규 색 0.
+            color: 'var(--oh-label-hwa)',
+            textShadow: '0 2px 18px color-mix(in srgb, var(--oh-label-hwa) 35%, transparent)',
             animation: 'critIn .7s var(--ease) both',
             '@keyframes critIn': {
               '0%': { transform: 'scale(1.8)', opacity: 0 },
@@ -230,197 +545,203 @@ export default function DosaChat({
           的中
         </Box>
       )}
-      {/* 무대 — 간판(緣食堂) → 글래스 → 인물. 대사창은 그 아래에 붙어 한 덩어리로 읽힌다.
-          교체가 일어난 직후에는 인물이 오른쪽에서 촤르륵 밀고 들어온다(barge). */}
-      <ShopStage chef={chef} enter={barge ? 'right' : 'none'} height={200} />
-      <DialogueBox speaker={chef.name} next={(phase === 'play' || phase === 'verdict') && tw.done}>
-        {/* 진행 표지 + 주제 복귀 — play 중에만 (mini 9px 토큰 계승) */}
-        {phase === 'play' && (
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 1.2, mb: 0.4 }}>
-            <Box
-              component="span"
-              onClick={(e) => {
-                e.stopPropagation()
-                topicRef.current = null
-                setPhase('choose')
-              }}
-              sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.inkFaint, cursor: 'pointer', py: 1, my: -1 }}
-            >
-              주제 다시 고르기
-            </Box>
-            <Box component="span" sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.inkFaint }}>
-              {idx + 1}/{seq.length}
-            </Box>
+
+      <Box ref={stageRef} sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
+        {/* 배경이 보이는 구역 — 인물은 이제 **배경 그 자체**라 여기엔 아무것도 안 세운다
+            (운영자 260726 "아예 저 이미지를 배경으로 깔아버릴래?"). 대화는 이 아래(중하단)부터다. */}
+        <Box sx={{ position: 'relative', flex: '1 1 auto', minHeight: 0 }}>
+          {/* 미니 명식 — 좌측 상단 표식(운영자 "사주 원국표는 좋고" = 자리 유지).
+              낭독 대상에서는 뺀다 — 간지 8자를 그냥 읽으면 소음이다. */}
+          <Box aria-hidden sx={{ position: 'absolute', left: 0, top: 4, zIndex: 2 }}>
+            <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
           </Box>
-        )}
-        {/* 본문 — 14.5px / 1.62 (플레이그라운드 .line 정본) */}
-        <Box sx={{ fontSize: 14.5, lineHeight: 1.62, color: tokens.color.ink, whiteSpace: 'pre-line', minHeight: 66 }}>
-          {tw.shown}
         </Box>
 
-        {/* 정곡 답변지 — [맞아/아니야] (플레이그라운드 .choice 정본 규격) */}
-        {phase === 'opening' && tw.done && jeonggok && (
-          <Box sx={{ mt: 1.25, display: 'flex', flexDirection: 'column', gap: '7px' }}>
-            {[
-              // 운영자 260726: "구체화하게 대답하게 유도하진 말고 … 속마음 뭐 이런식으로
-              // 실제 사주보는 사람의 입장을 좀 대변하게". 그래서 답이 아니라 **혼잣말**이다.
-              { label: '음… 그랬던 거 같아요', mini: '(어떻게 알았지)', hit: true },
-              { label: '아닌 거 같은데…?', mini: '(반은 맞는 것도 같고)', hit: false },
-            ].map((c) => (
-              <Box
-                key={c.label}
-                component="button"
-                type="button"
+        {/* 대화 로그 — 위에서 아래로 쌓이고, 넘치면 아래로 흐른다 */}
+        <Box
+          ref={logRef}
+          role="log"
+          aria-live="polite"
+          aria-label="상담 대화"
+          sx={{
+            position: 'relative',
+            zIndex: 1,
+            // 중하단 고정 구역 — 화면을 다 먹지 않는다(위는 배경 인물 몫).
+            flex: '0 0 auto',
+            maxHeight: LOG_H,
+            minHeight: 0,
+            overflowY: 'auto',
+            overflowX: 'hidden',
+            px: 2,
+            pt: 1.5,
+            display: 'flex',
+            flexDirection: 'column',
+            // ⚠ **위에서부터 아래로** 쌓인다(운영자 260726 "대화 아래서부터 올라오는거 아냐,
+            // 위에서부터 내려가지"). 앞서 하단 앵커를 썼다가 되돌린 자리다 —
+            // 이제 대화 구역 자체가 중하단에 고정돼 있어 상단 정렬이어도 화면이 안 빈다.
+            justifyContent: 'flex-start',
+            gap: '8px',
+          }}
+        >
+          {log.map((m, i) => {
+            const typing = i === log.length - 1 && m.who === 'ai' && !tw.done
+            return (
+              // ⚠ 타이핑 중인 말풍선은 낭독에서 뺀다 — 라이브 리전 안에서 28ms마다 글자가 갈리면
+              // 스크린리더가 부분 문장을 초 36회 되읽는다(검토자 260726). 완성된 뒤에 읽힌다.
+              <Bubble key={i} who={m.who} aria-hidden={typing || undefined}>
+                {typing ? tw.shown : m.text}
+              </Bubble>
+            )
+          })}
+          {/* 아직 할 말이 남았다 = 다음 메시지 대기(탭하면 온다) */}
+          {tw.done && queue.length > 0 && (
+            <Box aria-hidden sx={{ alignSelf: 'flex-start', color: tokens.color.inkFaint, display: 'flex', animation: 'bob 1.1s ease-in-out infinite', '@keyframes bob': { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(3px)' } } }}>
+              {Pict.chevronDown(18)}
+            </Box>
+          )}
+        </Box>
+
+        {/* 진행 — 큐가 남아 있는 동안엔 선택지가 안 뜨므로, 이게 없으면 키보드·스크린리더
+          사용자는 오프닝 세 통에서 영구히 멈춘다(검토자 260726 적발). 화면상으로는 어디를
+          눌러도 진행되니 이건 **보조 경로**라 자리를 안 먹는다(포커스될 때만 나타난다).
+          ⚠ 로그 스크롤러 **밖**에 둔다 — 안에 두면 스크롤과 함께 화면 밖으로 밀린다(실측). */}
+        {hasNext && (
+          <Box
+            component="button"
+            type="button"
+            onClick={(e: { stopPropagation: () => void }) => {
+              e.stopPropagation()
+              onTap()
+            }}
+            sx={{
+              // ⚠ MUI sx에서 숫자 `1`은 **100%**다(px 아님) — 앞서 `width: 1`로 적어 이 숨김 버튼이
+              // 대화 구역을 통째로 덮고 있었다(260726 실측 rect 390×762). 반드시 단위를 붙인다.
+              position: 'absolute',
+              width: '1px',
+              height: '1px',
+              p: 0,
+              m: '-1px',
+              overflow: 'hidden',
+              clip: 'rect(0 0 0 0)',
+              whiteSpace: 'nowrap',
+              border: 0,
+              '&:focus-visible': {
+                position: 'static',
+                width: 'auto',
+                height: 'auto',
+                clip: 'auto',
+                m: 0,
+                p: '8px 12px',
+                minHeight: 44,
+                borderRadius: '12px',
+                bgcolor: 'var(--glass)',
+                border: '1px solid var(--glass-line)',
+                color: tokens.color.ink,
+                fontFamily: 'inherit',
+                fontSize: 14,
+                fontWeight: 700,
+              },
+            }}
+          >
+            다음 이야기 듣기
+          </Box>
+        )}
+        {/* 내 차례 — 답을 고른다(고른 답은 내 말풍선으로 로그에 남는다) */}
+        {choices.length > 0 && (
+          <Box sx={{ position: 'relative', zIndex: 1, px: 2, pt: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {choices.map((c, i) => (
+              <VnChoice
+                key={c.key}
+                label={c.label}
+                seen={c.seen}
+                delay={i * 45}
                 onClick={(e) => {
                   e.stopPropagation()
-                  onJeonggokAnswer(c.hit)
+                  c.onPick()
                 }}
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  gap: '8px',
-                  p: '11px 14px',
-                  borderRadius: '12px',
-                  border: '1px solid var(--c-border)',
-                  bgcolor: 'var(--c-card)',
-                  color: c.hit ? tokens.color.ink : tokens.color.inkSub,
-                  fontFamily: 'inherit',
-                  fontSize: 14,
-                  fontWeight: 700,
-                  lineHeight: 1.2,
-                  letterSpacing: 'var(--tracking)',
-                  textAlign: 'left',
-                  cursor: 'pointer',
-                  transition: 'border-color .15s, background .15s, transform .12s var(--ease)',
-                  '&:hover': { borderColor: 'var(--accent)', bgcolor: 'color-mix(in srgb, var(--accent) 6%, var(--c-card))' },
-                  '&:active': { transform: 'scale(0.98)' },
-                }}
-              >
-                <span>{c.label}</span>
-                <Box component="span" sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.inkFaint, flex: '0 0 auto' }}>
-                  {c.mini}
-                </Box>
-              </Box>
+              />
             ))}
           </Box>
         )}
 
-        {/* 정곡 근거 — 엔진 판정 명시(콜드리딩과 가르는 선) */}
-        {(phase === 'opening' || phase === 'verdict') && tw.done && jeonggok && (
+        {/* 입력행 — **맨 아래**(운영자 260726 "대화 쓸수있는 장소도 있어야함(예타처럼)").
+            예타 `.yeta-in` 문법 계승 = 떠 있는 알약 캡슐 + [입력][전송], 전송은 픽토그램-온리
+            강조색. 유리 표면값만 쓰고 blur는 안 건다(말풍선과 같은 규율 · blur 상한 유지). */}
+        <Box
+          onClick={(e) => e.stopPropagation()}
+          sx={{ position: 'relative', zIndex: 2, px: 2, pt: 1, pb: '82px', flex: '0 0 auto' }}
+        >
           <Box
-            component="details"
-            onClick={(e) => e.stopPropagation()}
             sx={{
-              mt: 1,
-              fontSize: 11,
-              '& > summary': {
-                cursor: 'pointer',
-                color: tokens.color.inkFaint,
-                fontWeight: 700,
-                listStyle: 'none',
-                minHeight: 24,
-                display: 'flex',
-                alignItems: 'center',
-                '&::-webkit-details-marker': { display: 'none' },
-                '&::before': { content: '"▸ "', color: tokens.color.accent },
-              },
-              '&[open] > summary::before': { content: '"▾ "' },
+              display: 'flex',
+              alignItems: 'flex-end',
+              gap: '6px',
+              p: '6px 6px 6px 14px',
+              borderRadius: '22px',
+              bgcolor: 'var(--glass)',
+              border: '1px solid var(--glass-line)',
+              boxShadow: 'inset 0 1px 0 var(--glass-inset)',
             }}
           >
-            <Box component="summary">근거 보기</Box>
-            <Box sx={{ mt: 0.75, p: '8px 10px', bgcolor: 'var(--c-page)', borderRadius: '8px', color: tokens.color.inkSub, lineHeight: 1.5 }}>
-              — 엔진 판정: {jeonggok.evid} (임팩트 {jeonggok.impact})
-            </Box>
-          </Box>
-        )}
-
-        {/* 근거줄 — 기본 닫힘 <details> (플레이그라운드 .grounds 정본) */}
-        {phase === 'play' && tw.done && !!line?.grounds?.length && (
-          <Box
-            component="details"
-            onClick={(e) => e.stopPropagation()}
-            sx={{
-              mt: 1,
-              mb: 0.25,
-              fontSize: 11,
-              '& > summary': {
-                cursor: 'pointer',
-                color: tokens.color.inkFaint,
-                fontWeight: 700,
-                listStyle: 'none',
-                minHeight: 24,
-                display: 'flex',
-                alignItems: 'center',
-                '&::-webkit-details-marker': { display: 'none' },
-                '&::before': { content: '"▸ "', color: tokens.color.accent },
-              },
-              '&[open] > summary::before': { content: '"▾ "' },
-            }}
-          >
-            <Box component="summary">근거 보기</Box>
             <Box
+              component="textarea"
+              rows={1}
+              value={draft}
+              placeholder={asking ? '판을 보는 중…' : '궁금한 걸 직접 물어봐도 된다'}
+              disabled={asking}
+              aria-label="도사에게 직접 묻기"
+              onChange={(e: { target: { value: string } }) => setDraft(e.target.value.slice(0, MAX_ASK))}
+              onKeyDown={(e: { key: string; shiftKey: boolean; preventDefault: () => void }) => {
+                // Enter = 전송 · Shift+Enter = 줄바꿈(예타와 같은 결)
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault()
+                  void askFree()
+                }
+              }}
               sx={{
-                mt: 0.75,
-                p: '8px 10px',
-                bgcolor: 'var(--c-page)',
-                borderRadius: '8px',
-                color: tokens.color.inkSub,
+                flex: 1,
+                minWidth: 0,
+                resize: 'none',
+                background: 'none',
+                border: 'none',
+                outline: 'none',
+                color: tokens.color.ink,
+                fontFamily: 'inherit',
+                fontSize: 14.5,
                 lineHeight: 1.5,
+                letterSpacing: 'var(--tracking)',
+                py: '11px',
+                maxHeight: 88,
+                '&::placeholder': { color: tokens.color.inkFaint },
+              }}
+            />
+            <Box
+              component="button"
+              type="button"
+              aria-label="보내기"
+              disabled={asking || !draft.trim()}
+              onClick={() => void askFree()}
+              sx={{
+                flex: 'none',
+                width: 44,
+                height: 44,
+                display: 'grid',
+                placeItems: 'center',
+                border: 'none',
+                background: 'none',
+                color: tokens.color.primary,
+                cursor: 'pointer',
+                borderRadius: '50%',
+                transition: 'transform .12s var(--ease)',
+                '&:active': { transform: 'scale(0.9)' },
+                '&:disabled': { opacity: 0.4, pointerEvents: 'none' },
               }}
             >
-              {line.grounds.map((g, i) => (
-                <Box key={i}>
-                  — {g.doc} · {g.title}
-                </Box>
-              ))}
+              {Pict.send(22)}
             </Box>
           </Box>
-        )}
-
-        {/* 주제 선택지 — 세로 리스트 (플레이그라운드 .choices/.choice 정본 · MUI Button 비사용) */}
-        {phase === 'choose' && tw.done && (
-          <Box sx={{ mt: 1.25, display: 'flex', flexDirection: 'column', gap: '7px' }}>
-            {TOPICS.map((t) => (
-              <Box
-                key={t.key}
-                component="button"
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  selectTopic(t)
-                }}
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  gap: '8px',
-                  p: '11px 14px',
-                  borderRadius: '12px',
-                  border: '1px solid var(--c-border)',
-                  bgcolor: 'var(--c-card)',
-                  color: tokens.color.ink,
-                  fontFamily: 'inherit',
-                  fontSize: 14,
-                  fontWeight: 700,
-                  lineHeight: 1.2,
-                  letterSpacing: 'var(--tracking)',
-                  textAlign: 'left',
-                  cursor: 'pointer',
-                  transition: 'border-color .15s, background .15s, transform .12s var(--ease)',
-                  '&:hover': { borderColor: 'var(--accent)', bgcolor: 'color-mix(in srgb, var(--accent) 6%, var(--c-card))' },
-                  '&:active': { transform: 'scale(0.98)' },
-                }}
-              >
-                <span>{t.label}</span>
-                <Box component="span" sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.inkFaint, flex: '0 0 auto' }}>
-                  {seen.has(t.key) ? '다시 보기' : t.mini}
-                </Box>
-              </Box>
-            ))}
-          </Box>
-        )}
-      </DialogueBox>
+        </Box>
+      </Box>
     </Box>
   )
 }

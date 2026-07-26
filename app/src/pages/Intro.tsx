@@ -377,7 +377,7 @@ export default function Intro() {
             사주 분석 풀이 보기
           </Button>
           <GlassButton onClick={() => nav(stepPath('talk', resolved.search))} sx={{ mt: 1.2 }}>
-            {HOST_NAME}와 상담하기
+            연식당, 자리에 앉다
           </GlassButton>
         </Box>
 

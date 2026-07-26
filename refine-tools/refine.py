@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 r"""글모음 docx 정제기 — 원본은 그대로 두고 ..\정제본\ 에 정제본 생성.
 
+입력 = ..\원본\*.docx (260726 이전엔 레포 최상위였다 — 루트에 76장이 널려 있어
+아카이브로 옮기면서 이 글롭도 같이 옮겼다. 파일명은 파이프라인 계약이라 그대로).
+
 제거 대상(본문 문단만; 표지/목차/글제목(Heading1)/소제목(Heading2)/메타줄은 유지):
   greeting  반복 인사말·맺음말 (안녕하세요/현묘 올림/에디터 초명/감사합니다 등)
   donate    후원·기부 안내 블록 (계좌/기부명세서/정성 호소)
@@ -20,6 +23,7 @@ from collections import Counter, defaultdict
 sys.stdout.reconfigure(encoding='utf-8')
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.dirname(HERE)                     # ...\새 폴더
+RAW = os.path.join(SRC, '원본')                 # 정제 전 원본 docx(파이프라인 입력)
 OUT = os.path.join(SRC, '정제본')
 REPORT = os.path.join(OUT, '정제 리포트.md')
 
@@ -144,7 +148,7 @@ def refine_doc(path, light=False, exclude=()):
 def main():
     dry = '--dry' in sys.argv
     os.makedirs(OUT, exist_ok=True)
-    docs = sorted(glob.glob(os.path.join(SRC, '*.docx')))
+    docs = sorted(glob.glob(os.path.join(RAW, '*.docx')))
     rows, flagged = [], []
     global_samples = defaultdict(Counter)
     for path in docs:

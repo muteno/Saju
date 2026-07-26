@@ -10,6 +10,12 @@ export interface DosaLine {
   grounds?: { doc: string; title: string }[]
   /** calc=엔진 산출(결정론) · hedge=문헌 경향(단정 금지 톤) */
   tone?: 'calc' | 'hedge'
+  /**
+   * **정제 안 된 KB 원문**(증류본이 없어 발췌 문단을 그대로 실은 줄).
+   * 도사 입으로 읽으면 문서 제목("乙(을목)이란?")이나 유튜브 채널 인사("…도화도르입니다")가
+   * 그대로 대사가 된다(260726 버그체킹 실측) → 말풍선에서는 빼고, 근거를 보는 자리에서만 쓴다.
+   */
+  raw?: true
 }
 
 export interface Topic {
@@ -35,6 +41,20 @@ export const TOPIC_INTROS: Record<string, string> = {
   직업: '일복이 어디에 있는지 보자꾸나.',
   관계: '인연의 자리를 들여다보자.',
   주의: '미리 알아 두면 좋은 것들이야.',
+}
+
+/**
+ * 주제 → 관련 원국 기둥(상담 무대의 원국표가 이 열을 살짝 들어 올린다 — 운영자 260726
+ * "설명할 때 관련 있는 사주팔자 부분이 툭 튀어나오는 느낌").
+ * 근거 소스와 같은 축의 결정론 매핑: 성격·관계 = 일주(일간·일지=배우자궁), 직업 = 월주(사회궁).
+ * 올해(세운)·주의(관점차이)는 특정 기둥이 아니라 비운다.
+ */
+export const TOPIC_FOCUS: Record<string, string[]> = {
+  성격: ['일'],
+  올해: [],
+  직업: ['월'],
+  관계: ['일'],
+  주의: [],
 }
 
 /** 시간 모름 안내(시주 의존 근거를 뺐을 때 1줄) */
@@ -103,6 +123,7 @@ function excerptLine(ex: Excerpt | undefined, nParas: number, tone?: DosaLine['t
   return {
     text: ex.paras.slice(0, nParas).join('\n\n'),
     grounds: [ex.source],
+    raw: true, // 발췌 원문 = 정제 전 — 대사로는 안 쓴다
     ...(tone ? { tone } : {}),
   }
 }
@@ -166,7 +187,7 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
       if (ex?.paras?.length) {
         const paras = ex.paras.slice(0, 8) // 첫 6~8문단
         for (let i = 0; i < paras.length; i += 3) {
-          out.push({ text: paras.slice(i, i + 3).join('\n\n'), grounds: [ex.source] })
+          out.push({ text: paras.slice(i, i + 3).join('\n\n'), grounds: [ex.source], raw: true })
         }
       }
       break
