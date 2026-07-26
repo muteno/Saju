@@ -44,14 +44,14 @@ export default function Talk() {
         <Box sx={{ px: 2.5 }}>
           <StatusBar />
           {/* 260726-b: 상단 햄버거가 사라져 피할 크롬이 없다 → 6.5(=52px)를 1.5로 되돌림 */}
-          <Typography sx={{ mt: 1.5, fontSize: 22, fontWeight: 800, color: tokens.color.ink }}>{HOST_NAME}와 상담하기</Typography>
+          <Typography sx={{ mt: 1.5, fontSize: 22, fontWeight: 800, color: tokens.color.ink }}>연식당, 자리에 앉다</Typography>
           <Typography sx={{ fontSize: 12.5, fontWeight: 600, color: tokens.color.inkSub, mt: 0.4 }}>
             {resolved.name ? `${resolved.name}님의 판을 보고 이야기해요` : '판을 보고 이야기해요'}
           </Typography>
         </Box>
 
         <Box sx={{ mt: 1.5, flex: 1 }}>
-          <DosaChat report={report} profileName={resolved.name || undefined} hourUnknown={resolved.hourUnknown} jeonggok={jeonggok} />
+          <DosaChat report={report} profileName={resolved.name || undefined} hourUnknown={resolved.hourUnknown} jeonggok={jeonggok} gender={resolved.input.gender} />
         </Box>
 
         {/* 되돌아가기 — 상담이 마지막 칸이라 앞 단계로 가는 길을 남긴다 */}

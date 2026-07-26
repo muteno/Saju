@@ -76,7 +76,7 @@ export function Login() {
           <StatusBar />
           <Box sx={{ mt: 12, textAlign: 'center' }}>
             <Typography sx={{ fontSize: 14, fontWeight: 700, color: tokens.color.inkSub }}>당신의 운명을 위한 오늘의 한 상</Typography>
-            <Typography sx={{ fontSize: 44, fontWeight: 800, color: tokens.color.primary, mt: 1 }}>명식당</Typography>
+            <Typography sx={{ fontSize: 44, fontWeight: 800, color: tokens.color.primary, mt: 1 }}>연식당</Typography>
           </Box>
           {/*
             원탭 재로그인 — 로그인한 적이 있으면 아이디를 다시 칠 필요가 없다

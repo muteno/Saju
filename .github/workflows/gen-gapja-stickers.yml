@@ -9,10 +9,20 @@ on:
   workflow_dispatch:
     inputs:
       chefs:
-        description: '성별 분기 도사 2인도 함께 생성 (기본 no — 운영자 GO 전엔 켜지 말 것)'
+        description: '도사 스탠딩 컷 (기본 no — 운영자 GO 전엔 켜지 말 것)'
         type: choice
         default: 'no'
         options: ['no', '대표1컷', '3컷']
+      sheets:
+        description: '레퍼런스 첨부 시트 (chef-refs/*.png 필요) — faces=표정 60 · poses=장면 16/20'
+        type: choice
+        default: 'no'
+        options: ['no', 'faces', 'poses', 'poses20']
+      stickers:
+        description: '60갑자 스티커 생성'
+        type: choice
+        default: 'yes'
+        options: ['yes', 'no']
 
 jobs:
   generate:
@@ -32,6 +42,7 @@ jobs:
         run: pip install --quiet requests pillow
 
       - name: Generate 4 sheets → cut 60 stickers
+        if: ${{ inputs.stickers != 'no' }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
         run: |
@@ -49,6 +60,15 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
           CUTS_ALL: ${{ inputs.chefs == '3컷' && '1' || '0' }}
         run: python .github/scripts/gen_chefs_gendered_v1.py
+
+      # 레퍼런스 첨부 시트(표정·장면) — chef-refs/{id}.png 가 있어야 돈다(없으면 스크립트가 명시 중단)
+      - name: Generate 표정·장면 시트
+        if: ${{ inputs.sheets != 'no' }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
+          MODE: ${{ startsWith(inputs.sheets, 'poses') && 'poses' || 'faces' }}
+          SHEET_20: ${{ inputs.sheets == 'poses20' && '1' || '0' }}
+        run: python .github/scripts/gen_chef_faces_v1.py
 
       - name: Commit results to main
         run: |

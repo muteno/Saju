@@ -5,6 +5,8 @@ import { tokens } from '../theme'
 import { TOPICS, TOPIC_INTROS, topicLines, chartSummaryOf } from '../data/dosaTopics'
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import type { JeonggokPick } from '../data/jeonggok'
+import ShopStage from './ShopStage'
+import { chefForGender, counterpartChef, BARGE_LINE } from '../data/chefs'
 import type { ReportBundle } from '../engine'
 import { useReducedMotion } from './Motion'
 
@@ -90,13 +92,19 @@ export default function DosaChat({
   profileName,
   hourUnknown,
   jeonggok,
+  gender,
 }: {
   report: ReportBundle
   profileName?: string
   hourUnknown?: boolean
   /** 정곡 오프닝 — 도사가 먼저 맞히는 단정(엔진 결정론 선별, data/jeonggok.ts) */
   jeonggok?: JeonggokPick | null
+  /** 상담 상대의 성별 — 무대에 서는 도사를 가른다(운영자 260726) */
+  gender?: 'M' | 'F'
 }) {
+  // 무대에 선 도사 — 기본은 사용자 성별로 배정, 빗맞히면 맞은편이 밀고 들어와 교체된다
+  const [chef, setChef] = useState(() => chefForGender(gender))
+  const [barge, setBarge] = useState(false) // 난입 연출 1회(등장 애니 트리거)
   const [phase, setPhase] = useState<'opening' | 'verdict' | 'choose' | 'play'>(jeonggok ? 'opening' : 'choose')
   const [verdictText, setVerdictText] = useState('')
   const [crit, setCrit] = useState(false) // 的中 크리티컬 연출(700ms — 플레이그라운드 D.critMs 정본)
@@ -116,7 +124,9 @@ export default function DosaChat({
     idxRef.current = 0
     topicRef.current = null
     setSeen(new Set())
-  }, [report, jeonggok])
+    setChef(chefForGender(gender))
+    setBarge(false)
+  }, [report, jeonggok, gender])
 
   const openingText = jeonggok ? `잠깐 — 판을 보자마자 걸리는 게 하나 있군.\n\n${jeonggok.line}` : ''
   const line = phase === 'play' ? seq[idx] : undefined
@@ -135,10 +145,18 @@ export default function DosaChat({
       setTimeout(() => setCrit(false), 700)
       setVerdictText('그럴 줄 알았지. 판에 그려진 걸 그대가 살아냈을 뿐이야.\n\n자, 이제 제대로 보자.')
     } else {
+      // 빗맞힘 = 사과가 아니라 **교체**다(운영자 260726 구술) — 맞은편 도사가 촤르륵 밀고 들어와
+      // "거 보쇼, 쉬고 계시오. 내가 하려니까" 하고 판을 받아 간다. 계산은 굽히지 않고,
+      // 말하는 사람만 바뀐다 — 콜드리딩처럼 말을 주워 담는 대신 화자를 갈아 끼우는 쪽이
+      // 게임 세상의 문법이고, 사용자가 "아니다"라고 말할 부담도 준다.
+      const next = counterpartChef(chef.id)
+      setChef(next)
+      setBarge(true)
       setVerdictText(
-        jeonggok.layer === 'EVENT'
-          ? '흠 — 그럼 그 시기 이야긴 접어두지. 흐름은 사람마다 다르게 오니까.\n\n다른 데부터 보자.'
-          : '흠 — 계산은 분명 그렇게 나와 있어. 아직 그 기운을 안 쓰고 살았거나, 다르게 눌러 담았을 수도 있지.\n\n이야기를 듣다 보면 알게 될 거야.',
+        `${BARGE_LINE[next.id]}\n\n` +
+          (jeonggok.layer === 'EVENT'
+            ? '그 시기 얘긴 접어두고. 흐름은 사람마다 다르게 오니까 — 다른 데부터 봅시다.'
+            : '계산은 분명 그렇게 나와 있소. 아직 그 기운을 안 쓰고 살았거나, 다르게 눌러 담았거나 — 이야기를 듣다 보면 알게 되지.'),
       )
     }
     setPhase('verdict')
@@ -213,7 +231,10 @@ export default function DosaChat({
           的中
         </Box>
       )}
-      <DialogueBox next={(phase === 'play' || phase === 'verdict') && tw.done}>
+      {/* 무대 — 간판(緣食堂) → 글래스 → 인물. 대사창은 그 아래에 붙어 한 덩어리로 읽힌다.
+          교체가 일어난 직후에는 인물이 오른쪽에서 촤르륵 밀고 들어온다(barge). */}
+      <ShopStage chef={chef} enter={barge ? 'right' : 'none'} height={200} />
+      <DialogueBox speaker={chef.name} next={(phase === 'play' || phase === 'verdict') && tw.done}>
         {/* 진행 표지 + 주제 복귀 — play 중에만 (mini 9px 토큰 계승) */}
         {phase === 'play' && (
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 1.2, mb: 0.4 }}>
@@ -242,8 +263,10 @@ export default function DosaChat({
         {phase === 'opening' && tw.done && jeonggok && (
           <Box sx={{ mt: 1.25, display: 'flex', flexDirection: 'column', gap: '7px' }}>
             {[
-              { label: '그… 맞아', mini: '的中?', hit: true },
-              { label: '아니, 딱히?', mini: '분기', hit: false },
+              // 운영자 260726: "구체화하게 대답하게 유도하진 말고 … 속마음 뭐 이런식으로
+              // 실제 사주보는 사람의 입장을 좀 대변하게". 그래서 답이 아니라 **혼잣말**이다.
+              { label: '음… 그랬던 거 같아요', mini: '(어떻게 알았지)', hit: true },
+              { label: '아닌 거 같은데…?', mini: '(반은 맞는 것도 같고)', hit: false },
             ].map((c) => (
               <Box
                 key={c.label}
