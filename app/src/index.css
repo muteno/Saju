@@ -387,6 +387,10 @@ button {
   0%, 100% { opacity: 0.55; }
   50% { opacity: 1; }
 }
+/** 겉 테두리 빛 — 좁은 흰 호(弧) 하나가 링을 따라 돈다(운영자 260727 "겉에 테두리 라인도
+    아주 살짝 빛이 돌아야돼"). 기운 링과 **다른 속도**로 돌려 둘이 겹칠 때만 잠깐 밝아진다 —
+    같은 속도면 두 겹이 붙어 다녀 그냥 굵은 링으로 보인다. */
 @media (prefers-reduced-motion: reduce) {
-  .msd-aura { animation: none !important; }
+  .msd-aura,
+  .msd-sheen { animation: none !important; }
 }

@@ -703,6 +703,18 @@ export default function DosaChat({
                 animation: 'msd-orbit 16s linear infinite reverse, msd-breathe 5.5s var(--ease) infinite',
               }}
             />
+            {/* 겉 라인 빛 — 좁은 흰 호 하나가 링을 따라 돈다. 기운 링(16s reverse)과 **다른 속도·방향**
+                이라 둘이 스칠 때만 잠깐 밝아진다(같은 속도면 두 겹이 붙어 다녀 굵은 링이 된다). */}
+            <Box
+              className="msd-sheen"
+              sx={{
+                position: 'absolute',
+                inset: '-60%',
+                background:
+                  'conic-gradient(from 0deg, transparent 0deg, transparent 76deg, color-mix(in srgb, var(--c-card) 62%, transparent) 90deg, transparent 104deg, transparent 360deg)',
+                animation: 'msd-orbit 9s linear infinite',
+              }}
+            />
             <Box
               sx={{
                 position: 'relative',
