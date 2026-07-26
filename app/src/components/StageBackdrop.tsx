@@ -24,7 +24,7 @@ import { Box } from '@mui/material'
 export default function StageBackdrop({
   src = '/assets/shop-bg.jpg',
   /** 스크림 시작 위치(%) — 이 아래부터 페이지색이 올라온다 */
-  scrimFrom = 100,
+  scrimFrom = 44,   // 대화 라인(y446 ≈ 53%) 바로 위에서 시작해 그 지점에 20%가 오게 잡는다
 }: {
   src?: string
   scrimFrom?: number
@@ -50,7 +50,10 @@ export default function StageBackdrop({
         sx={{
           position: 'absolute',
           inset: 0,
-          background: `linear-gradient(180deg, transparent 0%, transparent ${scrimFrom}%, color-mix(in srgb, var(--c-page) 18%, transparent) ${scrimFrom + 14}%, color-mix(in srgb, var(--c-page) 34%, transparent) 100%)`,
+          // ⚠ **검정** 그라데이션이다(운영자 260727 지시값 그대로): 대화 라인에서 **20%**,
+          // 맨 아래에서 **50%**. 이 화면은 글자가 흰색이라 페이지색(밝은 회색)으로 깔면 거꾸로
+          // 안 읽힌다. 배경 위에 검정 오버레이가 없던 게 결함이었다.
+          background: `linear-gradient(180deg, transparent 0%, transparent ${scrimFrom}%, color-mix(in srgb, var(--c-ink) 20%, transparent) 53%, color-mix(in srgb, var(--c-ink) 50%, transparent) 100%)`,
         }}
       />
     </Box>

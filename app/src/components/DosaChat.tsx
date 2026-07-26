@@ -43,6 +43,33 @@ const LOG_H = 330
 /** 자유 질문 길이 상한 — 서버(functions/api/dosa.ts MAX_QUESTION)와 같은 값 */
 const MAX_ASK = 300
 
+/**
+ * 채팅 표면 = **예타 값 그대로**(운영자 260727 "그냥 예타에 있는 값을 그대로 가져오는게 어때?").
+ * 예타 실측: `.yb.ai` = `background: var(--glass-2)`(**완전 투명**) + `blur(--blur-m = 29px) saturate(1)`
+ * + `1px solid var(--glass-line)`(= 흰색 알파 .08).
+ * ⚠ 여기 알파는 **불투명도**다(투명도가 아니라 — 260727 운영자 주의). inset 림라이트는 **뺐다**(운영자 260727 "도형 위에도 하이라이트 준 거 같은데? 그럴 필요 있음?") —
+ * 채움이 0인 유리에 흰 선을 두 겹(테두리+림) 두르면 그 자체가 밝은 판으로 읽힌다.
+ * 알약(헤더·입력행) = `var(--glass)`(= 흰색 알파 .005) + `blur(--blur-l = 11px)`.
+ *
+ * ⚠ **값만 가져오면 안 된다** — 예타는 다크 테마라 글자가 흰색이다. 채움이 0인 유리에 우리 검정
+ * 잉크를 얹으면 어두운 인물 컷 위에서 한 글자도 안 읽힌다. 그래서 **이 화면의 글자도 흰색**으로
+ * 같이 가져온다(무대가 사진이라 이 화면만 다크로 읽히는 게 맞다).
+ * rgba를 직접 쓰지 않고 `--c-card`(흰) color-mix 파생으로 적어 raw 증가 0.
+ */
+const YG = {
+  // ⚠ 말풍선 채움은 **검정 베이스**다(운영자 260727 "대화창 자체의 불투명도를 검정색 베이스로
+  // 만들어서 투명도를 올려봐"). 흰색에 알파를 주면 밝은 판이 되고, 흰 글자가 그 위에서 죽는다.
+  // 검정 베이스면 뒤가 비치면서도 흰 글자가 뜬다 — 이게 예타 화면에서 보이는 그 결이다.
+  bubbleBg: 'color-mix(in srgb, var(--c-ink) 22%, transparent)',
+  pillBg: 'color-mix(in srgb, var(--c-ink) 18%, transparent)',
+  line: 'color-mix(in srgb, var(--c-card) 8%, transparent)',
+  blurBubble: 'blur(29px) saturate(1)',
+  blurPill: 'blur(11px) saturate(1)',
+  fg: 'var(--c-card)',
+  fg2: 'color-mix(in srgb, var(--c-card) 90%, transparent)',
+  mut: 'color-mix(in srgb, var(--c-card) 58%, transparent)',
+} as const
+
 /** 입력행 좌측 도크 = 상담을 뺀 나머지 메뉴(하단 알약 네비가 없으므로 여기가 이동 수단이다) */
 const DOCK = [
   { to: '/result', label: '인트로', icon: Pict.chart(19) },
@@ -178,16 +205,14 @@ function Bubble({
           ? { borderTopRightRadius: '6px', bgcolor: tokens.color.primary, color: tokens.color.onPrimary }
           : {
               borderTopLeftRadius: '6px',
-              color: tokens.color.ink,
-              // 예타 `.yb.ai` 그대로 — **채움은 거의 0, 블러가 주역**이다.
-              // (예타: `background: var(--glass-2)` = 완전 투명 + `blur(--blur-m)` + 1px 라인 + inset 림)
-              // 우리 `.glass`는 흰색 55% 채움이라 유리가 아니라 **판**으로 보였다 — 그게 수준 차이의 정체.
-              // 다만 우리 잉크는 검정이라 채움 0이면 어두운 배경에서 안 읽힌다 → 최소치(38%)만 깐다.
-              bgcolor: 'color-mix(in srgb, var(--c-card) 38%, transparent)',
-              border: '1px solid var(--glass-line)',
-              backdropFilter: 'blur(29px) saturate(1.1)',
-              WebkitBackdropFilter: 'blur(29px) saturate(1.1)',
-              boxShadow: 'inset 0 1px 0 var(--glass-inset)',
+              // ⚠ 이 화면만 **글자가 흰색**이다 — 무대가 어두운 인물 사진이고 유리가 검정 베이스라
+              // 검정 잉크는 한 글자도 안 읽힌다(260727 실측: 색이 잉크값 그대로 남아 있었다).
+              color: YG.fg,
+              // 예타 `.yb.ai` 값 그대로(YG 참조) — 채움 0 · 블러가 전부 · 라인 8% · inset 림.
+              bgcolor: YG.bubbleBg,
+              border: `1px solid ${YG.line}`,
+              backdropFilter: YG.blurBubble,
+              WebkitBackdropFilter: YG.blurBubble,
             }),
         fontSize: 14.5,
         lineHeight: 1.62,
@@ -235,13 +260,12 @@ function VnChoice({
         minHeight: 46,
         p: '12px 16px',
         borderRadius: '14px',
-        // 말풍선과 같은 유리(예타 `.yb.ai` 문법) — 채움 최소 + 블러가 주역.
-        bgcolor: 'color-mix(in srgb, var(--c-card) 38%, transparent)',
-        border: '1px solid var(--glass-line)',
-        backdropFilter: 'blur(29px) saturate(1.1)',
-        WebkitBackdropFilter: 'blur(29px) saturate(1.1)',
-        boxShadow: 'inset 0 1px 0 var(--glass-inset)',
-        color: seen ? tokens.color.inkSub : tokens.color.ink,
+        // 말풍선과 같은 유리 = 예타 값 그대로(YG).
+        bgcolor: YG.bubbleBg,
+        border: `1px solid ${YG.line}`,
+        backdropFilter: YG.blurBubble,
+        WebkitBackdropFilter: YG.blurBubble,
+        color: seen ? YG.mut : YG.fg,
         fontFamily: 'inherit',
         fontSize: 14.5,
         fontWeight: 700,
@@ -250,13 +274,13 @@ function VnChoice({
         textAlign: 'left',
         cursor: 'pointer',
         transition: 'border-color .15s, transform .12s var(--ease)',
-        '&:hover': { borderColor: 'var(--accent)' },
+        '&:hover': { borderColor: YG.fg2 },
         '&:active': { transform: 'scale(0.98)' },
       }}
     >
       <span>{label}</span>
       {seen && (
-        <Box component="span" aria-label="이미 들은 이야기" sx={{ display: 'flex', color: tokens.color.inkFaint, flex: '0 0 auto' }}>
+        <Box component="span" aria-label="이미 들은 이야기" sx={{ display: 'flex', color: YG.mut, flex: '0 0 auto' }}>
           {Pict.check(14)}
         </Box>
       )}
@@ -639,7 +663,7 @@ export default function DosaChat({
           })}
           {/* 아직 할 말이 남았다 = 다음 메시지 대기(탭하면 온다) */}
           {tw.done && queue.length > 0 && (
-            <Box aria-hidden sx={{ alignSelf: 'flex-start', color: tokens.color.inkFaint, display: 'flex', animation: 'bob 1.1s ease-in-out infinite', '@keyframes bob': { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(3px)' } } }}>
+            <Box aria-hidden sx={{ alignSelf: 'flex-start', color: YG.mut, display: 'flex', animation: 'bob 1.1s ease-in-out infinite', '@keyframes bob': { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(3px)' } } }}>
               {Pict.chevronDown(18)}
             </Box>
           )}
@@ -678,9 +702,9 @@ export default function DosaChat({
                 p: '8px 12px',
                 minHeight: 44,
                 borderRadius: '12px',
-                bgcolor: 'var(--glass)',
-                border: '1px solid var(--glass-line)',
-                color: tokens.color.ink,
+                bgcolor: YG.pillBg,
+                border: `1px solid ${YG.line}`,
+                color: YG.fg,
                 fontFamily: 'inherit',
                 fontSize: 14,
                 fontWeight: 700,
@@ -726,11 +750,11 @@ export default function DosaChat({
             gap: '4px',
             p: '5px 6px',
             borderRadius: '999px',
-            bgcolor: 'var(--glass)',
-            border: '1px solid var(--glass-line)',
-            backdropFilter: 'blur(11px) saturate(1)',
-            WebkitBackdropFilter: 'blur(11px) saturate(1)',
-            boxShadow: 'inset 0 1px 0 var(--glass-inset), var(--shadow-card)',
+            bgcolor: YG.pillBg,
+            border: `1px solid ${YG.line}`,
+            backdropFilter: YG.blurPill,
+            WebkitBackdropFilter: YG.blurPill,
+            boxShadow: 'var(--shadow-card)',
             '&:focus-within .msd-dock': { maxWidth: 0, opacity: 0 },
           }}
         >
@@ -761,7 +785,7 @@ export default function DosaChat({
                   placeItems: 'center',
                   background: 'none',
                   border: 'none',
-                  color: tokens.color.inkFaint,
+                  color: YG.mut,
                   cursor: 'pointer',
                   transition: 'transform .28s var(--ease)',
                   '&:active': { transform: 'scale(0.9)' },
@@ -792,7 +816,7 @@ export default function DosaChat({
               background: 'none',
               border: 'none',
               outline: 'none',
-              color: tokens.color.ink,
+              color: YG.fg,
               fontFamily: 'inherit',
               fontSize: 14.5,
               lineHeight: 1.5,
@@ -800,7 +824,7 @@ export default function DosaChat({
               py: '11px',
               px: '4px',
               maxHeight: 88,
-              '&::placeholder': { color: tokens.color.inkFaint },
+              '&::placeholder': { color: YG.mut },
             }}
           />
           <Box

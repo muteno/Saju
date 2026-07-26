@@ -89,11 +89,12 @@ export default function Talk() {
               gap: '8px',
               p: '7px 9px',
               borderRadius: '999px',
-              bgcolor: 'var(--glass)',
-              border: '1px solid var(--glass-line)',
+              // 예타 `.yeta-h` 값 그대로 — 채움 0.5% · 라인 8% · blur 11
+              bgcolor: 'color-mix(in srgb, var(--c-ink) 18%, transparent)',
+              border: '1px solid color-mix(in srgb, var(--c-card) 8%, transparent)',
               backdropFilter: 'blur(11px) saturate(1)',
               WebkitBackdropFilter: 'blur(11px) saturate(1)',
-              boxShadow: 'inset 0 1px 0 var(--glass-inset), var(--shadow-card)',
+              boxShadow: 'var(--shadow-card)',
             }}
           >
             <Box
@@ -109,7 +110,7 @@ export default function Talk() {
                 placeItems: 'center',
                 border: 'none',
                 background: 'none',
-                color: tokens.color.inkSub,
+                color: 'color-mix(in srgb, var(--c-card) 90%, transparent)',
                 cursor: 'pointer',
                 borderRadius: '50%',
                 '&:active': { transform: 'scale(0.9)' },
@@ -128,16 +129,16 @@ export default function Talk() {
                 backgroundImage: `url(${chef.plate})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center 18%',
-                border: '1px solid var(--glass-line)',
+                border: '1px solid color-mix(in srgb, var(--c-card) 22%, transparent)',
               }}
             />
-            <Typography sx={{ flex: 'none', fontSize: 15, fontWeight: 800, color: tokens.color.ink, whiteSpace: 'nowrap' }}>
+            <Typography sx={{ flex: 'none', fontSize: 15, fontWeight: 800, color: 'var(--c-card)', whiteSpace: 'nowrap' }}>
               {chef.name}
             </Typography>
             {/* 부제 = 예타 `.yh-tag`(상대 설명) 자리. **남는 공간만큼**만 보이고 넘치면 말줄임 —
                 이름은 줄바꿈 없이 지키고 설명이 양보한다(예타와 같은 규칙). */}
             <Typography
-              sx={{ minWidth: 0, flex: 1, fontSize: 11, color: tokens.color.inkSub, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+              sx={{ minWidth: 0, flex: 1, fontSize: 11, color: 'color-mix(in srgb, var(--c-card) 62%, transparent)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
             >
               {taglineOf(chef)}
             </Typography>
@@ -154,7 +155,7 @@ export default function Talk() {
                 placeItems: 'center',
                 border: 'none',
                 background: 'none',
-                color: tokens.color.inkSub,
+                color: 'color-mix(in srgb, var(--c-card) 90%, transparent)',
                 cursor: 'pointer',
                 borderRadius: '50%',
                 '&:active': { transform: 'scale(0.9)' },
