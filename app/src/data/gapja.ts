@@ -38,6 +38,20 @@ const BRANCHES: { ko: string; ch: string; animal: string; en: string; emoji: str
 
 const ELEMENT_EN: Record<OhaengKey, string> = { 목: 'wood', 화: 'fire', 토: 'earth', 금: 'metal', 수: 'water' }
 
+/** 오방색 이름 — 스티커 별명("초록토끼")의 색 자리(운영자 260727 예시 표기 정본) */
+const ELEMENT_COLOR_KO: Record<OhaengKey, string> = { 목: '초록', 화: '빨강', 토: '노랑', 금: '하양', 수: '검정' }
+
+/**
+ * 일주 별명 — 색(일간 오행) + 동물(일지). 예: 을묘 → **초록토끼**.
+ * 스티커 파일명 규칙(`{animal}-{element}.png`)과 **같은 축**이라 그림과 이름이 어긋나지 않는다.
+ */
+export function iljuNickname(ganKo: string, jiKo: string): string | null {
+  const st = STEMS.find((x) => x.ko === ganKo)
+  const br = BRANCHES.find((x) => x.ko === jiKo)
+  if (!st || !br) return null
+  return `${ELEMENT_COLOR_KO[st.el]}${br.animal}`
+}
+
 export interface Gapja {
   idx: number // 1..60
   ganji: string // '갑자'

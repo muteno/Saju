@@ -35,7 +35,9 @@ function MiniChart({
         fontSize: 12,
         fontWeight: 800,
         lineHeight: 1,
-        bgcolor: el ? tokens.ohaeng[el].bg : 'var(--c-card)',
+        // 오행 의미색은 그대로 계승하되 **살짝 투명**하게 — 꽉 찬 색 블록 8개가 나란히 서면
+        // 그 자체가 카드처럼 보인다. 배경이 비쳐야 무대에 얹힌 표식으로 읽힌다.
+        bgcolor: el ? `color-mix(in srgb, ${tokens.ohaeng[el].bg} 82%, transparent)` : 'transparent',
         color: el ? tokens.ohaeng[el].ink : tokens.color.inkFaint,
         border: el ? 'none' : `1px dashed ${tokens.color.border}`,
       }}
@@ -44,7 +46,14 @@ function MiniChart({
     </Box>
   )
   return (
-    <Box className="glass" sx={{ display: 'inline-flex', gap: '3px', p: '5px', borderRadius: '10px' }}>
+    <Box
+      sx={{
+        // ⚠ 판·띠 없이 **글자만** 얹는다(운영자 260727: 유리 카드로 감싸면 붕 뜨고,
+        // 그라데이션 띠를 깔았더니 그것도 군더더기였다). 배경 위에 여덟 자만 있으면 된다.
+        display: 'inline-flex',
+        gap: '4px',
+      }}
+    >
       {pillars.map((p) => {
         const on = focus.includes(p.title)
         const unknown = unknownHour && p.title === '시'

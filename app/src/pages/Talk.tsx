@@ -6,8 +6,11 @@ import MyeongShell from '../components/MyeongShell'
 import DosaChat from '../components/DosaChat'
 import StageBackdrop from '../components/StageBackdrop'
 import { tokens } from '../theme'
-import { HOST_NAME, chefForGender } from '../data/chefs'
-import { useReport } from '../data/useReport'
+import { HOST_NAME, chefForGender, taglineOf } from '../data/chefs'
+import type { Chef } from '../data/chefs'
+import { Pict } from '../components/MyeongShell'
+import { useReport, stepPath } from '../data/useReport'
+import { iljuNickname } from '../data/gapja'
 
 /**
  * 3단계 · 상담 — 미연시 단독 화면(운영자 260726 재확정 + 병렬 연식당 파도 합류).
@@ -25,7 +28,9 @@ export default function Talk() {
    * 깔아버릴래?" · "키잉이라기보다는 그냥 캐릭터에 배경을 일단 깔게"). 인물을 따로 세우지 않으니
    * 교체(barge)가 일어나면 이 값이 바뀌며 배경이 통째로 갈린다 — 그래서 DosaChat이 알려 준다.
    */
-  const [bg, setBg] = useState(() => chefForGender(resolved.input.gender).plate)
+  const [chef, setChef] = useState<Chef>(() => chefForGender(resolved.input.gender))
+  /** 미터줄 문장 — 화자가 지금 뭘 하고 있나(DosaChat이 알려 준다) */
+  const [beat, setBeat] = useState('당신의 사주를 봅니다')
 
   if (!chart || !report) {
     return (
@@ -43,42 +48,140 @@ export default function Talk() {
     )
   }
 
+  /**
+   * 좌상단 신원 두 줄(운영자 260727 예시 그대로):
+   *   황세웅(초록토끼)
+   *   1993. 11. 30. 진시.
+   * 별명 = 일주 스티커와 **같은 축**(색=일간 오행 · 동물=일지)이라 그림·이름이 안 어긋난다.
+   */
+  const who = (() => {
+    const ilju = chart.pillars.find((p) => p.title === '일')
+    const nick = ilju ? iljuNickname(ilju.ganK, ilju.jiK) : null
+    const hourPillar = chart.pillars.find((p) => p.title === '시')
+    const hour = resolved.hourUnknown ? '시간 모름' : hourPillar ? `${hourPillar.jiK}시` : ''
+    return {
+      name: `${resolved.name || '손님'}${nick ? `(${nick})` : ''}`,
+      born: `${resolved.input.year}. ${resolved.input.month}. ${resolved.input.day}.${hour ? ` ${hour}` : ''}`,
+    }
+  })()
+
   return (
-    <MyeongShell active="talk" gate={false}>
+    <MyeongShell active="talk" gate={false} nav={false}>
       {/* 전역 배경 — 프레임 전체(9:16)를 덮는다. 스크롤 컨테이너 **밖**에 두어야 대사를 따라
           같이 흐르지 않고 무대처럼 고정된다(운영자 260726 "배경이 전역으로 깔려야된다"). */}
-      <StageBackdrop src={bg} />
+      <StageBackdrop src={chef.plate} />
       {/* overflowX hidden — 덜컹(translateX)이 가로 스크롤 흔적을 만들지 않게 */}
       {/* 스크롤은 무대 구역이 자체로 갖는다(DosaChat) — 여기서 또 스크롤하면 대사창 붙박이가 풀린다 */}
       <Box className="msd-fadein" sx={{ position: 'relative', flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
         {/* ⚠ 여기에 px를 걸면 StatusBar가 자체 px를 또 먹어 시계만 24px 안쪽으로 밀린다
             (검토자 260726 실측 x=40 · 명식·말풍선·선택지는 전부 x=16). 좌측 레일을 하나로 둔다. */}
-        <Box sx={{ position: 'relative' }}>
-          <StatusBar />
-          {/* 표제 뒤 얇은 스크림 — 전역 배경이 사진이라 표제가 맨살로 앉으면 어두운 처마 위에서
-              대비가 1.87:1까지 떨어진다(검토자 260726 실측 · WCAG AA 4.5:1 미달).
-              색은 `--c-page` color-mix 파생이라 신규 색 0. */}
+        <Box sx={{ position: 'relative', zIndex: 3 }}>
+          {/* 배경이 인물 사진이라 검정 잉크는 안 보인다 — 무대 위 글자는 밝게 간다 */}
+          <StatusBar dark />
+          {/* ── 대화창 상단 nav ── 예타 `.yeta-h` 문법 그대로 계승(운영자 260727 "그 네비 그대로
+              가져와볼래?"): **떠 있는 알약** [←뒤로][프사+이름]. 기하(top/left/right 10 · 알약 반경 ·
+              inset 림라이트 · blur)는 예타 값을 옮기고, **색만 우리 라이트 토큰**으로 바꾼다
+              (예타는 다크라 그대로 쓰면 화면이 안 맞는다). */}
           <Box
-            aria-hidden
             sx={{
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: -28,
-              pointerEvents: 'none',
-              // ⚠ 그라데이션 정지점은 **표제가 앉는 위치**에 맞춘다 — 앞서 55%에서 흐려지게 뒀더니
-              // 표제(컨테이너의 68~100% 구간)가 이미 거의 투명한 자리에 앉아 어두운 갓 위에서
-              // 대비 1.28:1까지 떨어졌다(260726 실측 · AA 4.5:1 미달). 표제 아래까지 꽉 채우고 뺀다.
-              background:
-                'linear-gradient(180deg, var(--c-page) 0%, var(--c-page) 62%, color-mix(in srgb, var(--c-page) 78%, transparent) 84%, transparent 100%)',
+              mt: 0.5,
+              mx: '10px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              p: '7px 9px',
+              borderRadius: '999px',
+              // 예타 `.yeta-h` 값 그대로 — 채움 0.5% · 라인 8% · blur 11
+              bgcolor: 'color-mix(in srgb, var(--c-ink) 18%, transparent)',
+              border: '1px solid color-mix(in srgb, var(--c-card) 8%, transparent)',
+              backdropFilter: 'blur(11px) saturate(1)',
+              WebkitBackdropFilter: 'blur(11px) saturate(1)',
+              boxShadow: 'var(--shadow-card)',
             }}
-          />
-          {/* 표제는 중앙 한 줄로 끝 — 제목+부제 2단은 그룹웨어 문법(운영자 260726 폐지) */}
-          <Typography
-            sx={{ position: 'relative', mt: 0.5, textAlign: 'center', fontSize: 14.5, fontWeight: 700, color: tokens.color.ink, opacity: 0.82 }}
           >
-            당신의 사주팔자를 들여다봅니다
+            <Box
+              component="button"
+              type="button"
+              aria-label="뒤로 — 내 사주로"
+              onClick={() => nav(-1)}
+              sx={{
+                flex: 'none',
+                width: 32,
+                height: 32,
+                display: 'grid',
+                placeItems: 'center',
+                border: 'none',
+                background: 'none',
+                color: 'color-mix(in srgb, var(--c-card) 90%, transparent)',
+                cursor: 'pointer',
+                borderRadius: '50%',
+                '&:active': { transform: 'scale(0.9)' },
+              }}
+            >
+              {Pict.chevronLeft(20)}
+            </Box>
+            {/* 프사 = 지금 무대에 선 인물의 컷을 원형으로 잘라 쓴다(얼굴이 위쪽이라 18%에서 잡는다) */}
+            <Box
+              aria-hidden
+              sx={{
+                flex: 'none',
+                width: 32,
+                height: 32,
+                borderRadius: '50%',
+                backgroundImage: `url(${chef.plate})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center 18%',
+                border: '1px solid color-mix(in srgb, var(--c-card) 22%, transparent)',
+              }}
+            />
+            <Typography sx={{ flex: 'none', fontSize: 15, fontWeight: 800, color: 'var(--c-card)', whiteSpace: 'nowrap' }}>
+              {chef.name}
+            </Typography>
+            {/* 부제 = 예타 `.yh-tag`(상대 설명) 자리. **남는 공간만큼**만 보이고 넘치면 말줄임 —
+                이름은 줄바꿈 없이 지키고 설명이 양보한다(예타와 같은 규칙). */}
+            <Typography
+              sx={{ minWidth: 0, flex: 1, fontSize: 11, color: 'color-mix(in srgb, var(--c-card) 62%, transparent)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+            >
+              {taglineOf(chef)}
+            </Typography>
+            {/* 복채 주머니 — 전화·문자 대신(운영자 260727). 지금은 자리만, 뒤에 퀘스트가 붙는다 */}
+            <Box
+              component="button"
+              type="button"
+              aria-label="복채 주머니 — 준비 중"
+              sx={{
+                flex: 'none',
+                width: 32,
+                height: 32,
+                display: 'grid',
+                placeItems: 'center',
+                border: 'none',
+                background: 'none',
+                color: 'color-mix(in srgb, var(--c-card) 90%, transparent)',
+                cursor: 'pointer',
+                borderRadius: '50%',
+                '&:active': { transform: 'scale(0.9)' },
+              }}
+            >
+              {Pict.pouch(19)}
+            </Box>
+          </Box>
+          {/* 미터 자리 — 예타에선 「opus 4.8 00.0tok」이 뜨는 줄이다(운영자 260727 지시로 그 자리에
+              상황 설명을 넣는다). 10px · mut 컬러 · 기울임 · 고정형. 여기까지가 대화창 상단 nav다. */}
+          <Typography
+            sx={{
+              mt: 0.9, // 운영자 260727 "위에 간격 1.5배" — 0.6 → 0.9
+              textAlign: 'center',
+              fontSize: 11, // HIG 하한 = 11px(예타 미터는 10이지만 우리 게이트 하한이 11이다)
+              fontStyle: 'italic',
+              letterSpacing: '.02em',
+            }}
+          >
+            {/* 빛이 글자를 한 번 훑고 지나간다 — 노뮤트에디터 `.nm-shim` 이식(픽토그램 제외).
+                문장은 화자가 지금 하는 짓이라 국면마다 바뀐다(감정을 직접 말하지 않는다). */}
+            <Box component="span" className="msd-shim">
+              {beat}…
+            </Box>
           </Typography>
         </Box>
 
@@ -90,7 +193,10 @@ export default function Talk() {
             hourUnknown={resolved.hourUnknown}
             jeonggok={jeonggok}
             gender={resolved.input.gender}
-            onChef={setBg}
+            onChef={setChef}
+            who={who}
+            onBeat={setBeat}
+            onNav={(to) => nav(to === '/result' ? stepPath('intro', resolved.search) : to === '/analysis' ? stepPath('analysis', resolved.search) : to)}
           />
         </Box>
       </Box>

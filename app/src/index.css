@@ -336,3 +336,37 @@ button {
     scroll-behavior: auto !important;
   }
 }
+
+/**
+ * 글자 위 빛 스윕 — 노뮤트에디터 `viewer/nm-loader.js`의 `.nm-shim` **그대로 이식**
+ * (운영자 260727: "노뮤트에디터에 최근에 넣은 효과 있거든? 솔빙 이런 거 · 픽토그램만 빼고").
+ * 정본 값: `linear-gradient(100deg, …)` · `background-size:220% 100%` · `background-clip:text` ·
+ * `nmshim 1.9s linear infinite` · 진행 방향 120% → -120%. **픽토그램(orb)은 안 가져왔다.**
+ * 색만 우리 토큰 파생 — 어두운 무대 위 흰 글자라 `--c-card`의 알파 사다리로 적는다.
+ */
+.msd-shim {
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--c-card) 58%, transparent) 0%,
+    color-mix(in srgb, var(--c-card) 58%, transparent) 38%,
+    var(--c-card) 50%,
+    color-mix(in srgb, var(--c-card) 58%, transparent) 62%,
+    color-mix(in srgb, var(--c-card) 58%, transparent) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: msd-shim 1.9s linear infinite;
+}
+@keyframes msd-shim {
+  from { background-position: 120% 0; }
+  to { background-position: -120% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .msd-shim {
+    animation: none;
+    color: color-mix(in srgb, var(--c-card) 58%, transparent);
+    -webkit-text-fill-color: color-mix(in srgb, var(--c-card) 58%, transparent);
+  }
+}
