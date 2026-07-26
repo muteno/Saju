@@ -6,7 +6,7 @@ import { TOPICS, TOPIC_INTROS, topicLines, chartSummaryOf } from '../data/dosaTo
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import type { JeonggokPick } from '../data/jeonggok'
 import ShopStage from './ShopStage'
-import { chefForGender, counterpartChef, BARGE_LINE } from '../data/chefs'
+import { chefForGender, counterpartChef, BARGE_LINE, voiceOf } from '../data/chefs'
 import type { ReportBundle } from '../engine'
 import { useReducedMotion } from './Motion'
 
@@ -60,6 +60,7 @@ async function fetchDosaText(
   topic: string,
   report: ReportBundle,
   lines: DosaLine[],
+  chefId: string,
   profileName?: string,
 ): Promise<string | null> {
   const ctrl = new AbortController()
@@ -72,6 +73,7 @@ async function fetchDosaText(
         topic,
         chartSummary: chartSummaryOf(report),
         grounds: lines.map((l) => ({ text: l.text, grounds: l.grounds ?? [] })),
+        chefId, // 무대에 선 화자 — 서버가 chefs.ts PERSONA를 시스템 프롬프트에 합성
         ...(profileName ? { profileName } : {}),
       }),
       signal: ctrl.signal,
@@ -128,7 +130,8 @@ export default function DosaChat({
     setBarge(false)
   }, [report, jeonggok, gender])
 
-  const openingText = jeonggok ? `잠깐 — 판을 보자마자 걸리는 게 하나 있군.\n\n${jeonggok.line}` : ''
+  // 오프닝 머리말은 화자 것 — 같은 단정도 알카사르가 하면 반말이고 단리아가 하면 존댓말이다
+  const openingText = jeonggok ? `${voiceOf(chef.id).opening}\n\n${jeonggok.line}` : ''
   const line = phase === 'play' ? seq[idx] : undefined
   // 모션 감소면 속도 0 = 타이핑 연출을 건너뛰고 전문을 즉시 보여준다
   const reduceMotion = useReducedMotion()
@@ -143,7 +146,7 @@ export default function DosaChat({
     if (hit) {
       setCrit(true)
       setTimeout(() => setCrit(false), 700)
-      setVerdictText('그럴 줄 알았지. 판에 그려진 걸 그대가 살아냈을 뿐이야.\n\n자, 이제 제대로 보자.')
+      setVerdictText(voiceOf(chef.id).hit)
     } else {
       // 빗맞힘 = 사과가 아니라 **교체**다(운영자 260726 구술) — 맞은편 도사가 촤르륵 밀고 들어와
       // "거 보쇼, 쉬고 계시오. 내가 하려니까" 하고 판을 받아 간다. 계산은 굽히지 않고,
@@ -152,12 +155,8 @@ export default function DosaChat({
       const next = counterpartChef(chef.id)
       setChef(next)
       setBarge(true)
-      setVerdictText(
-        `${BARGE_LINE[next.id]}\n\n` +
-          (jeonggok.layer === 'EVENT'
-            ? '그 시기 얘긴 접어두고. 흐름은 사람마다 다르게 오니까 — 다른 데부터 봅시다.'
-            : '계산은 분명 그렇게 나와 있소. 아직 그 기운을 안 쓰고 살았거나, 다르게 눌러 담았거나 — 이야기를 듣다 보면 알게 되지.'),
-      )
+      // 들어온 쪽의 난입 대사 + 그 화자의 리커버리 문안(계산은 안 굽히고 입만 바뀐다)
+      setVerdictText(`${BARGE_LINE[next.id]}\n\n${voiceOf(next.id).miss}`)
     }
     setPhase('verdict')
   }
@@ -172,7 +171,7 @@ export default function DosaChat({
     idxRef.current = 0
     setPhase('play')
     setSeen((prev) => new Set(prev).add(t.key))
-    void fetchDosaText(t.key, report, fallback, profileName).then((text) => {
+    void fetchDosaText(t.key, report, fallback, chef.id, profileName).then((text) => {
       if (!text || topicRef.current !== t.key || idxRef.current > 0) return
       const paras = text
         .split(/\n{2,}/)
