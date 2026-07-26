@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
@@ -5,7 +6,7 @@ import MyeongShell from '../components/MyeongShell'
 import DosaChat from '../components/DosaChat'
 import StageBackdrop from '../components/StageBackdrop'
 import { tokens } from '../theme'
-import { HOST_NAME } from '../data/chefs'
+import { HOST_NAME, chefForGender } from '../data/chefs'
 import { useReport } from '../data/useReport'
 
 /**
@@ -19,6 +20,12 @@ import { useReport } from '../data/useReport'
 export default function Talk() {
   const nav = useNavigate()
   const { resolved, chart, report, jeonggok } = useReport()
+  /**
+   * 전역 배경 = **지금 무대에 선 도사의 컷 그대로**(운영자 260726 "아예 저 이미지를 배경으로
+   * 깔아버릴래?" · "키잉이라기보다는 그냥 캐릭터에 배경을 일단 깔게"). 인물을 따로 세우지 않으니
+   * 교체(barge)가 일어나면 이 값이 바뀌며 배경이 통째로 갈린다 — 그래서 DosaChat이 알려 준다.
+   */
+  const [bg, setBg] = useState(() => chefForGender(resolved.input.gender).plate)
 
   if (!chart || !report) {
     return (
@@ -40,7 +47,7 @@ export default function Talk() {
     <MyeongShell active="talk" gate={false}>
       {/* 전역 배경 — 프레임 전체(9:16)를 덮는다. 스크롤 컨테이너 **밖**에 두어야 대사를 따라
           같이 흐르지 않고 무대처럼 고정된다(운영자 260726 "배경이 전역으로 깔려야된다"). */}
-      <StageBackdrop />
+      <StageBackdrop src={bg} />
       {/* overflowX hidden — 덜컹(translateX)이 가로 스크롤 흔적을 만들지 않게 */}
       {/* 스크롤은 무대 구역이 자체로 갖는다(DosaChat) — 여기서 또 스크롤하면 대사창 붙박이가 풀린다 */}
       <Box className="msd-fadein" sx={{ position: 'relative', flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
@@ -58,10 +65,13 @@ export default function Talk() {
               left: 0,
               right: 0,
               top: 0,
-              bottom: -8,
+              bottom: -28,
               pointerEvents: 'none',
+              // ⚠ 그라데이션 정지점은 **표제가 앉는 위치**에 맞춘다 — 앞서 55%에서 흐려지게 뒀더니
+              // 표제(컨테이너의 68~100% 구간)가 이미 거의 투명한 자리에 앉아 어두운 갓 위에서
+              // 대비 1.28:1까지 떨어졌다(260726 실측 · AA 4.5:1 미달). 표제 아래까지 꽉 채우고 뺀다.
               background:
-                'linear-gradient(180deg, color-mix(in srgb, var(--c-page) 86%, transparent) 0%, color-mix(in srgb, var(--c-page) 62%, transparent) 62%, transparent 100%)',
+                'linear-gradient(180deg, var(--c-page) 0%, var(--c-page) 62%, color-mix(in srgb, var(--c-page) 78%, transparent) 84%, transparent 100%)',
             }}
           />
           {/* 표제는 중앙 한 줄로 끝 — 제목+부제 2단은 그룹웨어 문법(운영자 260726 폐지) */}
@@ -80,6 +90,7 @@ export default function Talk() {
             hourUnknown={resolved.hourUnknown}
             jeonggok={jeonggok}
             gender={resolved.input.gender}
+            onChef={setBg}
           />
         </Box>
       </Box>

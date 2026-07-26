@@ -1,15 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Box } from '@mui/material'
-import PixelDosa, { type DosaMood } from './PixelDosa'
 import MiniChart from './MiniChart'
-import ShopStage from './ShopStage'
 import { Pict } from './MyeongShell'
 import { tokens } from '../theme'
 import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, chartSummaryOf } from '../data/dosaTopics'
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
-import { chefForGender, counterpartChef, BARGE_LINE, voiceOf, FACE } from '../data/chefs'
+import { chefForGender, counterpartChef, bargeLineOf, voiceOf } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
 import type { Pillar } from '../data/saju'
 import type { ReportBundle } from '../engine'
@@ -31,11 +29,11 @@ import { useReducedMotion } from './Motion'
  */
 const TYPE_MS = 28
 /**
- * 인물 밴드 높이 — 운영자 260726 "캐릭터 크기 줄여서 저기에 넣고 상반신까지 다 보일텐데?
- * 그 상반신 아래에 글이 보여야하는거임". 프레임 844에서 [상태바+표제 ~92]와 [네비 76]을 빼면
- * 676이 남고, 그중 300을 인물이 갖고 나머지를 대화·선택지·입력창이 나눈다.
+ * 프레임 844에서 [상태바+표제 ~92]·[네비 76]·[입력창 ~60]을 빼면 약 616이 남고,
+ * 그중 300을 대화가 쓰고 나머지 위쪽은 **배경 인물이 보이는 자리**로 비워 둔다.
  */
-const CHAR_H = 300
+/** 대화 구역 높이 — 화면 중하단(운영자 260726 "캐릭터 위에 중하단정도에 대화가 있게") */
+const LOG_H = 300
 /** 자유 질문 길이 상한 — 서버(functions/api/dosa.ts MAX_QUESTION)와 같은 값 */
 const MAX_ASK = 300
 
@@ -255,6 +253,7 @@ export default function DosaChat({
   hourUnknown,
   jeonggok,
   gender,
+  onChef,
 }: {
   report: ReportBundle
   /** 좌상단 미니 명식에 박히는 원국(UiChart.pillars — 시일월년 순) */
@@ -265,9 +264,10 @@ export default function DosaChat({
   jeonggok?: JeonggokPick | null
   /** 상담 상대의 성별 — 무대에 서는 도사를 가른다(운영자 260726) */
   gender?: 'M' | 'F'
+  /** 화자가 정해지거나 바뀔 때 알린다 — 인물이 곧 배경이라 호출부가 배경을 갈아야 한다 */
+  onChef?: (plate: string) => void
 }) {
   const [chef, setChef] = useState(() => chefForGender(gender))
-  const [barge, setBarge] = useState(false) // 난입 연출 1회(등장 애니 트리거)
   /** 대화 로그 — 위에서 아래로 쌓인다(질문이 위에 남는다) */
   const [log, setLog] = useState<Msg[]>([])
   /** 아직 안 뜬 캐릭터 메시지 — 탭할 때마다 하나씩 로그로 내려온다 */
@@ -275,10 +275,8 @@ export default function DosaChat({
   /** 지금 무엇을 물을 차례인가 — 정곡 답변지 / 주제 메뉴 / 이야기 재생 */
   const [stage, setStage] = useState<'jeonggok' | 'menu' | 'play'>(jeonggok ? 'jeonggok' : 'menu')
   const [crit, setCrit] = useState(false) // 的中 크리티컬 연출(700ms — 플레이그라운드 D.critMs 정본)
-  const [mood, setMood] = useState<DosaMood>('idle')
   const [seen, setSeen] = useState<ReadonlySet<string>>(new Set())
   const [topicKey, setTopicKey] = useState<string | null>(null)
-  const [hop, setHop] = useState(0) // 캐릭터 폴짝
   const topicRef = useRef<string | null>(null)
   const readRef = useRef(0) // 지금 주제에서 이미 읽어 내린 말풍선 수(늦게 온 LLM 응답을 이어 붙일 지점)
   const [draft, setDraft] = useState('') // 입력창에 쓰는 중인 말
@@ -336,14 +334,13 @@ export default function DosaChat({
   useEffect(() => {
     const c = chefForGender(gender)
     setChef(c)
-    setBarge(false)
     setCrit(false)
-    setMood(jeonggok ? 'shock' : 'idle')
     setSeen(new Set())
     setTopicKey(null)
     topicRef.current = null
     llmCache.current = new Map()
     setStage(jeonggok ? 'jeonggok' : 'menu')
+    onChef?.(c.plate)
     const v = voiceOf(c.id)
     const first = jeonggok ? [v.opening, jeonggok.line, jeonggok.ask] : ['뭐가 궁금해서 오셨는가?']
     setLog([{ who: 'ai', text: first[0] }])
@@ -390,20 +387,17 @@ export default function DosaChat({
     answer(label)
     if (hit) {
       setCrit(true)
-      setMood('happy')
       setTimeout(() => setCrit(false), 700)
       rumble('shake')
-      setHop((h) => h + 1)
       setStage('menu')
       say([...toMsgs(voiceOf(chef.id).hit), '그래서, 뭐가 궁금한가?'])
     } else {
       // 빗맞힘 = 사과가 아니라 **교체**(운영자 260726) — 맞은편 도사가 밀고 들어와 판을 받아 간다
       const next = counterpartChef(chef.id)
       setChef(next)
-      setBarge(true)
-      setMood('hmm')
+      onChef?.(next.plate)
       setStage('menu')
-      say([BARGE_LINE[next.id], ...toMsgs(voiceOf(next.id).miss), '그래서, 뭐가 궁금한가?'])
+      say([bargeLineOf(next.id), ...toMsgs(voiceOf(next.id).miss), '그래서, 뭐가 궁금한가?'])
     }
   }
 
@@ -416,9 +410,6 @@ export default function DosaChat({
     topicRef.current = t.key
     setTopicKey(t.key)
     setStage('play')
-    setMood('idle')
-    setBarge(false)
-    setHop((h) => h + 1)
     setSeen((prev) => new Set(prev).add(t.key))
     // 프리페치 적중 = LLM 대사로 바로, 미도착 = L3 조립 대사로 먼저 시작(완결 동작 원칙)
     say([...(intro ? [intro] : []), ...(ready ?? fallback.map((l) => l.text))])
@@ -437,31 +428,6 @@ export default function DosaChat({
   }
 
   /**
-   * 상황 → 표정(결정론 · 병렬 파도 PR 134 계승, 단계 축만 메신저에 맞춰 갈아 끼움).
-   * ⚠ 주석에 `#`+세 자리를 쓰면 토큰 게이트가 3자리 hex로 계수한다(A.44 실측 · 표기 주의).
-   * 랜덤이면 같은 장면에서 얼굴이 매번 달라져 인물이 흔들린다.
-   *
-   * ⚠ **쓸 수 있는 얼굴은 v2 여섯 장이 전부다**(260726 검토자 적발 후 실측 정정). 앞선 매핑은
-   * 「꿰뚫어봄·진지·의미심장」 같은 폐기 v1 번호를 불러 전량 404였다. 여섯 장 안에서
-   * 각 국면이 겹치지 않게 배정한다 — 표정이 부족해 못 쓰는 국면은 무표정으로 둔다(창작 금지).
-   *
-   * 정곡을 던지는 중 = 한쪽 입꼬리(이미 답을 알고 있는 얼굴) · 的中 = 환한 웃음 ·
-   * 난입 = 옅은 미소 · 주제 풀이 중 = 수긍(고개 끄덕임) · 그 밖 = 무표정.
-   * 컷이 없는 캐릭터는 `faceUrl`이 null이라 URL조차 안 만든다(404·깜빡임 0).
-   */
-  const faceFor = (): number => {
-    if (stage === 'jeonggok') return FACE.한쪽입꼬리
-    // 반응은 `mood`에 실려 다음 주제를 고를 때까지 남는다 — `crit`(700ms)에 걸면 대사가 아직
-    // 흐르는 중에 얼굴만 먼저 평정으로 돌아온다(구버전은 verdict 단계가 이걸 붙들고 있었다).
-    if (mood === 'happy') return FACE.환한웃음
-    // 빗맞힘은 **언제나 교체를 동반**한다(같은 배치에서 barge가 켜진다) — 무대에 선 얼굴은
-    // 밀고 들어온 쪽이므로 '어이없음'이 아니라 옅은 미소다. barge 분기는 도달 불가라 뺐다.
-    if (mood === 'hmm') return FACE.옅은미소
-    if (stage === 'play') return FACE.수긍
-    return FACE.무표정
-  }
-
-  /**
    * 자유 질문 — 선택지 말고 **직접 쓴 말**을 보낸다(운영자 260726 "대화 쓸수있는 장소도 있어야함").
    * 내 말풍선을 먼저 찍고(보낸 게 눈에 보여야 한다), 답이 오면 말풍선으로 이어 붙인다.
    * LLM이 꺼져 있거나 실패하면 **조용히 실패로 두지 않고** 그 사실을 도사 입으로 말한다.
@@ -476,8 +442,6 @@ export default function DosaChat({
     setTopicKey(null)
     topicRef.current = null
     readRef.current = 0
-    setMood('idle')
-    setBarge(false)
     try {
       const text = await fetchDosaText(
         '성격', // 화이트리스트 자리채움 — 서버는 question이 있으면 그걸 먼저 읽는다
@@ -538,15 +502,6 @@ export default function DosaChat({
           ? TOPICS.map((t) => ({ key: t.key, label: t.label, seen: seen.has(t.key), onPick: () => selectTopic(t) }))
           : []
 
-  /**
-   * 폴백 대역(도트 캐릭터) — `useMemo`로 element identity를 고정한다.
-   * 인라인으로 두면 매 렌더 새 element라 ShopStage의 `memo`가 그냥 뚫린다(28ms마다).
-   */
-  const fallbackDosa = useMemo(
-    () => <PixelDosa mood={mood} talking={!tw.done} hopKey={hop} width={112} />,
-    [mood, tw.done, hop],
-  )
-
   /** 다음 메시지가 남아 있나 — 진행 버튼을 띄울지 가른다 */
   const hasNext = !tw.done || queue.length > 0 || stage === 'play'
 
@@ -585,24 +540,12 @@ export default function DosaChat({
       )}
 
       <Box ref={stageRef} sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
-        {/* 인물 밴드 — **흐름 안**에 둔다(운영자 260726 "상반신 아래에 글이 보여야 하는 거임").
-            절대 레이어로 띄우면 말풍선이 인물 위를 지나가 상반신을 덮는다. 높이를 고정해
-            그 아래 전부가 대화 몫이 된다. */}
-        <Box sx={{ position: 'relative', flex: `0 0 ${CHAR_H}px`, height: CHAR_H }}>
-          <Box aria-hidden sx={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
-            <ShopStage
-              chef={chef}
-              face={faceFor()}
-              enter={barge ? 'right' : 'none'}
-              height={CHAR_H}
-              bare
-              art="full"
-              fallback={fallbackDosa}
-            />
-          </Box>
-          {/* 미니 명식 — 인물 밴드의 좌측 상단에 박힌다(운영자: 사용자는 사실 볼 필요 없게).
-              낭독 대상에서도 뺀다 — 간지 8자를 그냥 읽으면 소음이다. */}
-          <Box aria-hidden sx={{ position: 'absolute', left: 16, top: 4, zIndex: 2 }}>
+        {/* 배경이 보이는 구역 — 인물은 이제 **배경 그 자체**라 여기엔 아무것도 안 세운다
+            (운영자 260726 "아예 저 이미지를 배경으로 깔아버릴래?"). 대화는 이 아래(중하단)부터다. */}
+        <Box sx={{ position: 'relative', flex: '1 1 auto', minHeight: 0 }}>
+          {/* 미니 명식 — 좌측 상단 표식(운영자 "사주 원국표는 좋고" = 자리 유지).
+              낭독 대상에서는 뺀다 — 간지 8자를 그냥 읽으면 소음이다. */}
+          <Box aria-hidden sx={{ position: 'absolute', left: 0, top: 4, zIndex: 2 }}>
             <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
           </Box>
         </Box>
@@ -616,7 +559,9 @@ export default function DosaChat({
           sx={{
             position: 'relative',
             zIndex: 1,
-            flex: 1,
+            // 중하단 고정 구역 — 화면을 다 먹지 않는다(위는 배경 인물 몫).
+            flex: '0 0 auto',
+            maxHeight: LOG_H,
             minHeight: 0,
             overflowY: 'auto',
             overflowX: 'hidden',
@@ -624,9 +569,10 @@ export default function DosaChat({
             pt: 1.5,
             display: 'flex',
             flexDirection: 'column',
-            // 시간순은 그대로 두되 **짧을 때만 아래에 붙는다** — 상단 정렬이면 초반 화면 중앙이
-            // 300px 넘게 비어 대화가 화면과 분리돼 보인다(검토자 260726). 메신저는 하단 앵커다.
-            justifyContent: 'flex-end',
+            // ⚠ **위에서부터 아래로** 쌓인다(운영자 260726 "대화 아래서부터 올라오는거 아냐,
+            // 위에서부터 내려가지"). 앞서 하단 앵커를 썼다가 되돌린 자리다 —
+            // 이제 대화 구역 자체가 중하단에 고정돼 있어 상단 정렬이어도 화면이 안 빈다.
+            justifyContent: 'flex-start',
             gap: '8px',
           }}
         >
