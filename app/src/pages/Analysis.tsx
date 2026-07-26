@@ -8,7 +8,7 @@ import TopicAccordion from '../components/TopicAccordion'
 
 import { tokens } from '../theme'
 import { jeonggokRaw } from '../engine'
-import { HOST_NAME, hasChef } from '../data/chefs'
+import { hasChef } from '../data/chefs'
 import { buildTopicGroups } from '../data/analysisGroups'
 import { useReport, stepPath } from '../data/useReport'
 
@@ -88,7 +88,7 @@ export default function Analysis() {
 
           {/* 다음 단계 = 3단계 상담 */}
           <SectionTitle>더 물어보기</SectionTitle>
-          <GlassButton onClick={() => nav(stepPath('talk', resolved.search))}>{HOST_NAME}와 상담하기</GlassButton>
+          <GlassButton onClick={() => nav(stepPath('talk', resolved.search))}>연식당, 자리에 앉다</GlassButton>
         </Box>
       </Box>
     </MyeongShell>
