@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>인트로 배치 플레이그라운드 v1 — 명식당</title>
+<style>
+/* 값은 전부 앱 정본(app/src/index.css :root · theme.ts tokens) 계승 — 이 파일에서 새로 만든 색·반경 없음 */
+:root{
+  --pretendard:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',Roboto,'Noto Sans KR',system-ui,sans-serif;
+  --tracking:-0.03em;
+  --ease:cubic-bezier(0.2,0.7,0.3,1);
+  --c-page:#eef0f6; --c-card:#ffffff; --c-ink:#1b1b1f; --c-ink-sub:#5b6070; --c-ink-faint:#9a9fb0;
+  --c-border:#e2e4ee; --c-border-strong:#d3d6e2;
+  --c-primary:#22409e; --c-primary-dark:#17306f; --c-primary-soft:#e7ebf8; --c-on-primary:#ffffff;
+  --c-solar:#e85e5e;
+  --oh-label-mok:#3c7059; --oh-label-hwa:#c85b5b; --oh-label-to:#b98a38; --oh-label-geum:#7e7e86; --oh-label-su:#3f6b93;
+  --glass:rgba(255,255,255,.55); --glass-line:rgba(255,255,255,.75); --glass-inset:rgba(255,255,255,.75);
+  --blur-m:26px; --shadow-card:0 20px 50px rgba(28,38,78,.16); --line:rgba(20,24,45,.06);
+  --oh-mok:#8FBBA1; --oh-hwa:#E98D8D; --oh-to:#F1CE8C; --oh-geum:#DBDCE0; --oh-su:#8FB0CC;
+  --oh-ink-mok:#284B39; --oh-ink-hwa:#5F2323; --oh-ink-to:#6A4C1C; --oh-ink-geum:#3A3D45; --oh-ink-su:#22364B;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--pretendard);letter-spacing:var(--tracking);background:#f5f6fa;color:var(--c-ink);-webkit-font-smoothing:antialiased}
+
+/* ── 레이아웃: PC = 좌 미리보기(고정) / 우 컨트롤 · 모바일 = 상 미리보기 / 하 컨트롤 ── */
+.wrap{display:grid;grid-template-columns:430px 1fr;gap:28px;max-width:1420px;margin:0 auto;padding:24px}
+.stageCol{position:sticky;top:24px;align-self:start}
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr;gap:16px;padding:14px}
+  .stageCol{position:sticky;top:0;z-index:20;background:#f5f6fa;padding-bottom:10px;box-shadow:0 10px 20px -14px rgba(20,24,45,.35)}
+  .phone{transform:scale(.72);transform-origin:top center;margin-bottom:-230px}
+}
+h1{font-size:19px;font-weight:800;margin:0 0 4px}
+.sub{font-size:12.5px;color:var(--c-ink-sub);font-weight:600;line-height:1.65;margin:0 0 14px}
+.sub code{background:#fff;border:1px solid var(--c-border);border-radius:6px;padding:1px 5px;font-size:11.5px}
+
+/* ── 폰 미리보기 ── */
+.phone{width:390px;height:800px;border-radius:34px;background:var(--c-page);overflow:hidden;position:relative;
+  box-shadow:0 30px 70px rgba(28,38,78,.28),0 0 0 9px #16171c,0 0 0 10px #33353f}
+.scroll{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;padding-bottom:130px}
+.statusbar{height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:13.5px;font-weight:800}
+.burger{position:absolute;top:50px;left:16px;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.95);backdrop-filter:blur(11px) saturate(0);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75);z-index:8}
+.pillnav{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:7;display:flex;gap:6px;padding:6px 10px;border-radius:999px;
+  background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.95);backdrop-filter:blur(11px) saturate(0);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75),var(--shadow-card)}
+.pillnav i{width:40px;height:40px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:11px;font-weight:700;color:var(--c-ink-faint)}
+.pillnav i.on{background:rgba(34,64,158,.14);border:1px solid rgba(34,64,158,.38);color:var(--c-primary);width:auto;padding:0 12px}
+.glass{background:var(--glass);border:1px solid var(--glass-line);backdrop-filter:blur(var(--blur-m)) saturate(1.3);
+  box-shadow:inset 0 1px 0 var(--glass-inset),var(--shadow-card);border-radius:18px}
+.body{padding:0 20px}
+
+/* 섹션 머리 */
+.sect{font-size:15px;font-weight:800;color:var(--c-ink);margin:20px 0 10px}
+.sect.center{text-align:center}
+.sect.chip{display:inline-block;background:var(--c-card);border:1px solid var(--c-border);border-radius:100px;padding:4px 12px;font-size:12.5px}
+
+/* 오늘 카드 */
+.today{padding:16px}
+.trow{display:flex;align-items:flex-start;gap:20px}
+.score{display:flex;align-items:flex-end;gap:3px;flex:0 0 auto}
+.score b{font-size:44px;font-weight:800;color:var(--c-primary);line-height:1;letter-spacing:var(--tracking)}
+.score s{font-size:18px;font-weight:800;color:var(--c-ink-sub);padding-bottom:4px;text-decoration:none}
+.tbody{flex:1;min-width:0}
+.tlabels{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.tlabels span{font-size:12px;font-weight:700;color:var(--c-ink-sub)}
+.oneline{font-size:14.5px;font-weight:800;color:var(--c-primary);line-height:1.45;margin-top:3px}
+.oneline+.oneline{margin-top:2px}
+.chip{display:inline-block;padding:3px 10px;border-radius:100px;background:var(--c-card);border:1px solid var(--c-border);font-size:11.5px;font-weight:700;color:var(--c-ink-sub)}
+.basis{margin-top:13px}
+.basis p{margin:0;font-size:11.5px;color:var(--c-ink-sub);font-weight:600;line-height:1.7}
+
+/* 원국 카드 */
+.natal{padding:16px}
+.nhead{font-size:11.5px;font-weight:600;color:var(--c-ink-sub);line-height:1.55;margin:0 0 11px}
+.nhead b{font-size:15px;font-weight:800;color:var(--c-ink)}
+.table{display:flex;gap:8px;width:100%}
+.rowlab{display:flex;flex-direction:column;gap:6px;flex:0 0 auto;padding-right:2px}
+.rowlab div{display:flex;align-items:center;justify-content:flex-end;font-size:11px;font-weight:700;color:var(--c-ink-faint);white-space:nowrap}
+.col{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px}
+.col>.h{font-size:11px;font-weight:800;color:var(--c-ink-faint)}
+.col>.h.day{color:var(--c-primary)}
+.col>.st{font-size:11.5px;font-weight:700;color:var(--c-ink-sub);text-align:center}
+.col>.sm{font-size:11px;font-weight:500;color:var(--c-ink-faint);text-align:center}
+.tile{width:56px;height:56px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.tile u{text-decoration:none;font-size:21px;font-weight:800}
+.tile u i{font-style:normal;font-size:12px;font-weight:700}
+.tile em{font-style:normal;font-size:10.5px;font-weight:700;margin-top:2px;opacity:.8}
+.tile.hl{outline:2px solid var(--c-primary);outline-offset:-2px}
+.ohstrip{display:flex;gap:6px}
+.ohstrip.card{background:var(--c-card);box-shadow:var(--shadow-card);border-radius:16px;padding:8px 12px}
+.oh{flex:1;text-align:center}
+.oh .bar{height:5px;border-radius:3px;background:var(--c-border);margin-bottom:5px;overflow:hidden}
+.oh .bar i{display:block;height:100%;border-radius:3px}
+.oh .k{font-size:11px;font-weight:800;line-height:1}
+.oh .v{font-size:11px;font-weight:700}
+.solarcap{margin-top:8px;text-align:right;font-size:11.5px;font-weight:600;color:var(--c-ink-faint)}
+.divider{height:1px;background:var(--line);margin:12px 0}
+
+/* 버튼 */
+.btn{height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;margin-top:20px}
+.btn.primary{background:var(--c-primary);color:var(--c-on-primary)}
+.btn.glassbtn{background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.8);color:var(--c-primary);backdrop-filter:blur(11px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75);margin-top:10px}
+.btnrow{display:flex;gap:10px}
+.btnrow .btn{flex:1;font-size:15px}
+.circles{display:flex;gap:12px;justify-content:center;margin-top:16px}
+.circles div{width:44px;height:44px;border-radius:50%;background:var(--c-primary-soft);color:var(--c-primary);display:flex;align-items:center;justify-content:center;font-size:17px}
+
+/* ── 컨트롤 ── */
+.axis{background:#fff;border:1px solid var(--c-border);border-radius:16px;padding:14px 16px;margin-bottom:14px}
+.axis h2{font-size:14.5px;font-weight:800;margin:0 0 2px}
+.axis .why{font-size:11.5px;color:var(--c-ink-sub);font-weight:600;margin:0 0 10px;line-height:1.6}
+.opts{display:flex;flex-wrap:wrap;gap:7px}
+.opt{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 12px;border-radius:100px;border:1px solid var(--c-border);
+  background:#fbfbfe;font-size:12px;font-weight:700;color:var(--c-ink-sub);cursor:pointer;transition:all .14s var(--ease);user-select:none}
+.opt:hover{border-color:var(--c-border-strong)}
+.opt.on{background:var(--c-primary-soft);border-color:var(--c-primary);color:var(--c-primary)}
+.opt .n{font-size:10.5px;opacity:.65}
+.fixed{display:inline-block;margin-left:4px;padding:1px 6px;border-radius:100px;background:var(--c-primary);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:0}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.act{height:36px;padding:0 14px;border-radius:100px;border:1px solid var(--c-border);background:#fff;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--c-ink);cursor:pointer;letter-spacing:var(--tracking)}
+.act.solid{background:var(--c-primary);border-color:var(--c-primary);color:#fff}
+.code{margin-top:4px;background:#fff;border:1px solid var(--c-border);border-radius:12px;padding:10px 12px;font-size:11.5px;color:var(--c-ink-sub);font-weight:600;word-break:break-all}
+.code b{color:var(--c-primary)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ══ 좌: 고정 미리보기 ══ -->
+  <div class="stageCol">
+    <div class="phone">
+      <div class="scroll" id="scroll">
+        <div class="statusbar"><span>10:23</span><span>▮▮▮ ⌁ ▰</span></div>
+        <div class="body" id="stack"></div>
+      </div>
+      <div class="burger"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1b1b1f" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></div>
+      <div class="pillnav"><i class="on">인트로</i><i>◍</i><i>◌</i><i>♡</i><i>ᐤ</i></div>
+    </div>
+  </div>
+
+  <!-- ══ 우: 컨트롤 ══ -->
+  <div>
+    <h1>인트로 배치 플레이그라운드 v1</h1>
+    <p class="sub">
+      대상 = <code>/result</code> 인트로 화면. <b>5축 × 축당 10안</b> — 조합 10<sup>5</sup>가지.<br>
+      <span class="fixed">고정</span> = 260726 운영자 지시로 이미 확정·반영된 안(현행 라이브). 나머지는 후보다.<br>
+      값(색·반경·글래스·타일)은 앱 정본 토큰 계승 — 이 파일에서 만든 새 값 0. 데이터는 황세웅 실값 고정.
+    </p>
+    <div class="bar">
+      <button class="act solid" onclick="reset()">현행(고정안)으로</button>
+      <button class="act" onclick="rand()">무작위 조합</button>
+      <button class="act" onclick="copy()">이 조합 복사</button>
+      <span id="combo" style="font-size:12px;font-weight:700;color:var(--c-ink-sub)"></span>
+    </div>
+    <div id="axes"></div>
+    <div class="code" id="pick"></div>
+  </div>
+</div>
+
+<script>
+/* ═══ 데이터 = 황세웅 1993.11.30 08:00 순천 실값(엔진 산출 그대로 박제) ═══ */
+const D = {
+  name:'황세웅', birth:'1993. 11. 30. 08:00 진시', corr:'보정 -30분', city:'순천', solar:'진태양시 07:30',
+  y:2026, m:7, d:26, dayK:'신축', dayH:'辛丑', dow:'일',
+  score:65, label:'오늘의 운세', theme:'도전과 압박의 날',
+  lines:['생각이 흔들리기 쉬운 날','— 결정은 한 번 더 검토해요'],
+  basis:['내 년주와 유축 삼합 기운','내 일주와 을신충','내 시주와 진축파','공망 발동'],
+  cols:[
+    {h:'시',top:'정관',gan:['경','庚','+금','geum'],ji:['진','辰','+토','to'],bot:'정재',hid:'을계무',stage:'관대',sin:'천살'},
+    {h:'일',top:'일원',gan:['을','乙','-목','mok'],ji:['묘','卯','-목','mok'],bot:'비견',hid:'갑을',stage:'건록',sin:'재살',day:1},
+    {h:'월',top:'편인',gan:['계','癸','-수','su'],ji:['해','亥','-수','su'],bot:'정인',hid:'무갑임',stage:'사',sin:'역마살'},
+    {h:'년',top:'편인',gan:['계','癸','-수','su'],ji:['유','酉','-금','geum'],bot:'편관',hid:'경신',stage:'절',sin:'재살'},
+  ],
+  oh:[{k:'목',n:2,v:'발달',p:25},{k:'화',n:0,v:'부족',p:0},{k:'토',n:1,v:'적정',p:12.5},{k:'금',n:2,v:'발달',p:25},{k:'수',n:3,v:'과다',p:37.5}],
+}
+
+/* ═══ 5축 × 10안 ═══ */
+const AXES = [
+  { id:'A', name:'오늘 카드 조판', why:'점수·라벨·한 줄 문안이 카드 안에서 어떻게 앉는가. 고정안 = 점수 맨 왼쪽·강조색 + 라벨 좌/우 + 문안 절 단위 줄바꿈.', fixed:0,
+    opts:['점수 좌 · 라벨 좌우 · 문안 줄바꿈','점수 좌(세로 중앙 정렬)','라벨 2줄 쌓기(좌측만)','점수 원형 배지','점수 칸에 세로 구분선','점수 우측(구안 복귀)','점수 단독 행(맨 위)','테마를 칩으로','문안 한 줄(줄바꿈 없음)','문안 크게(16.5px)'] },
+  { id:'B', name:'근거 블록', why:'무엇을 근거로 이 점수가 나왔는지. 고정안 = 「근거」 칩 라벨 + 관계 한 건씩 줄바꿈.', fixed:0,
+    opts:['칩 라벨 + 줄 목록','칩 + 불릿(·) 목록','한 줄 압축(구안)','2열 그리드','관계마다 칩','라벨 없이 구분선 + 목록','칩 좌 · 내용 우(2단)','번호 목록','근거를 서브카드로','근거 접기(첫 2건만)'] },
+  { id:'C', name:'원국 카드 구성', why:'헤더·표·오행·진태양시의 결합. 고정안 = 넷을 한 카드로(분할 3→1) + 표 풀폭.', fixed:0,
+    opts:['헤더+표+오행+캡션 한 카드','헤더를 카드 밖 위로','오행을 표 위로','오행 별도 카드(구안)','진태양시를 헤더 줄에 합침','표만 카드 · 나머지 밖','헤더 2줄(이름/생년월일)','표↔오행 사이 구분선','오행 라벨 크게','표 폭 좁게(구안 279px)'] },
+  { id:'D', name:'날짜 머리', why:'오늘이 무슨 날인지. 고정안 = 「오늘 2026년 7월 26일(신축일 · 辛丑)」 가운데 정렬.', fixed:0,
+    opts:['가운데 · 년월일(간지·한자)','좌측 정렬','한자를 앞으로','2줄(오늘 / 날짜)','칩 형태','요일 병기','「오늘」 생략','년도 생략(구안)','한자만(한글 간지 생략)','카드 안으로 편입'] },
+  { id:'E', name:'화면 순서 · 다음 단계', why:'섹션 순서와 CTA. 고정안 = 오늘 → 원국 → 버튼 2개(「더 파고들기」 머리 없음).', fixed:0,
+    opts:['오늘 → 원국 → 버튼2','원국 → 오늘 → 버튼2(구안)','오늘 → 버튼2 → 원국','오늘 → 원국 → 분석 버튼만','「더 파고들기」 머리 복원','버튼 가로 2분할','버튼을 원국 카드 안으로','상담 버튼 먼저','오늘 → 원국 → 액션서클 → 버튼','버튼 하단 고정(sticky)'] },
+]
+const state = { A:0, B:0, C:0, D:0, E:0 }
+
+/* ═══ 조각 렌더러 ═══ */
+const esc = s => String(s)
+const ohColor = k => ({목:'--oh-mok',화:'--oh-hwa',토:'--oh-to',금:'--oh-geum',수:'--oh-su'})[k]
+const ohLabel = k => ({목:'--oh-label-mok',화:'--oh-label-hwa',토:'--oh-label-to',금:'--oh-label-geum',수:'--oh-label-su'})[k]
+const verdictColor = v => v==='과다'?'var(--c-solar)':v==='발달'?'var(--c-primary)':v==='적정'?'var(--oh-label-mok)':'var(--c-ink-sub)'
+
+function tile(t, hl){
+  const [ko,ha,pol,el] = t
+  return `<div class="tile${hl?' hl':''}" style="background:var(--oh-${el});color:var(--oh-ink-${el})">
+    <u>${ko}<i>${ha}</i></u><em>${pol}</em></div>`
+}
+function head(){
+  const A = state.D
+  const core = A===2 ? `오늘 ${D.y}년 ${D.m}월 ${D.d}일(${D.dayH} · ${D.dayK}일)`
+    : A===5 ? `오늘 ${D.y}년 ${D.m}월 ${D.d}일 ${D.dow}요일(${D.dayK}일 · ${D.dayH})`
+    : A===6 ? `${D.y}년 ${D.m}월 ${D.d}일(${D.dayK}일 · ${D.dayH})`
+    : A===7 ? `오늘 ${D.m}월 ${D.d}일(${D.dayK}일 · ${D.dayH})`
+    : A===8 ? `오늘 ${D.y}년 ${D.m}월 ${D.d}일(${D.dayH})`
+    : `오늘 ${D.y}년 ${D.m}월 ${D.d}일(${D.dayK}일 · ${D.dayH})`
+  if (A===3) return `<div class="sect center">오늘<br>${D.y}년 ${D.m}월 ${D.d}일(${D.dayK}일 · ${D.dayH})</div>`
+  if (A===4) return `<div style="text-align:center;margin:20px 0 10px"><span class="sect chip">${core}</span></div>`
+  if (A===9) return ''
+  return `<div class="sect${A===1?'':' center'}">${core}</div>`
+}
+function scoreEl(){ return `<div class="score"><b>${D.score}</b><s>점</s></div>` }
+function labels(){
+  const A = state.A
+  if (A===2) return `<div><span style="font-size:12px;font-weight:700;color:var(--c-ink-sub)">${D.label}</span><br>
+    <span style="font-size:12px;font-weight:700;color:var(--c-ink-sub)">${D.theme}</span></div>`
+  if (A===7) return `<div class="tlabels"><span>${D.label}</span><span class="chip">${D.theme}</span></div>`
+  return `<div class="tlabels"><span>${D.label}</span><span style="text-align:right">${D.theme}</span></div>`
+}
+function oneLines(){
+  const A = state.A
+  const size = A===9 ? 16.5 : 14.5
+  if (A===8) return `<div class="oneline" style="font-size:${size}px">${D.lines.join(' ')}</div>`
+  return D.lines.map(l=>`<div class="oneline" style="font-size:${size}px">${l}</div>`).join('')
+}
+function basisBlock(){
+  const B = state.B
+  const items = D.basis
+  const label = `<span class="chip">근거</span>`
+  if (B===2) return `<p class="basis" style="margin-top:13px">— 근거: ${items.join(' · ')}</p>`
+  if (B===3) return `<div class="basis">${label}<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px 10px;margin-top:8px">
+    ${items.map(t=>`<p>${t}</p>`).join('')}</div></div>`
+  if (B===4) return `<div class="basis">${label}<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+    ${items.map(t=>`<span class="chip">${t}</span>`).join('')}</div></div>`
+  if (B===5) return `<div class="basis"><div class="divider"></div>${items.map(t=>`<p>${t}</p>`).join('')}</div>`
+  if (B===6) return `<div class="basis" style="display:flex;gap:12px;align-items:flex-start">${label}
+    <div style="flex:1">${items.map(t=>`<p>${t}</p>`).join('')}</div></div>`
+  if (B===7) return `<div class="basis">${label}<div style="margin-top:8px">${items.map((t,i)=>`<p>${i+1}. ${t}</p>`).join('')}</div></div>`
+  if (B===8) return `<div class="basis">${label}<div style="margin-top:8px;background:var(--c-card);border-radius:12px;padding:10px 12px">
+    ${items.map(t=>`<p>${t}</p>`).join('')}</div></div>`
+  if (B===9) return `<div class="basis">${label}<div style="margin-top:8px">${items.slice(0,2).map(t=>`<p>${t}</p>`).join('')}
+    <p style="color:var(--c-primary)">더 보기 (+${items.length-2})</p></div></div>`
+  const bullet = B===1 ? '· ' : ''
+  return `<div class="basis">${label}<div style="margin-top:8px">${items.map(t=>`<p>${bullet}${t}</p>`).join('')}</div></div>`
+}
+function todayCard(){
+  const A = state.A
+  let inner
+  if (A===3){
+    inner = `<div class="trow"><div style="flex:0 0 auto;width:62px;height:62px;border-radius:50%;background:var(--c-primary-soft);
+      display:flex;align-items:baseline;justify-content:center;gap:2px;padding-top:18px">
+      <b style="font-size:26px;font-weight:800;color:var(--c-primary);line-height:1">${D.score}</b>
+      <s style="font-size:12px;font-weight:800;color:var(--c-primary);text-decoration:none">점</s></div>
+      <div class="tbody">${labels()}${oneLines()}</div></div>`
+  } else if (A===4){
+    inner = `<div class="trow">${scoreEl()}<div style="width:1px;align-self:stretch;background:var(--line)"></div>
+      <div class="tbody">${labels()}${oneLines()}</div></div>`
+  } else if (A===5){
+    inner = `<div class="trow" style="align-items:flex-end"><div class="tbody">${labels()}${oneLines()}</div>${scoreEl()}</div>`
+  } else if (A===6){
+    inner = `<div>${scoreEl()}<div class="tbody" style="margin-top:8px">${labels()}${oneLines()}</div></div>`
+  } else if (A===1){
+    inner = `<div class="trow" style="align-items:center">${scoreEl()}<div class="tbody">${labels()}${oneLines()}</div></div>`
+  } else {
+    inner = `<div class="trow">${scoreEl()}<div class="tbody">${labels()}${oneLines()}</div></div>`
+  }
+  // D10 = 날짜 머리를 카드 밖 머리로 두지 않고 카드 안 첫 줄로 편입
+  const inCard = state.D===9 ? `<div style="font-size:12.5px;font-weight:800;color:var(--c-ink-sub);margin-bottom:11px">
+    오늘 ${D.y}년 ${D.m}월 ${D.d}일(${D.dayK}일 · ${D.dayH})</div>` : ''
+  return `<div class="glass today">${inCard}${inner}${basisBlock()}</div>`
+}
+function tableEl(narrow){
+  const rows = ['십성','천간','지지','십성','지장간','12운성','12신살']
+  const hs = [15,17,56,56,17,17,16,16]
+  const lab = `<div class="rowlab">
+    <div style="height:15px"></div>
+    <div style="height:17px">십성</div>
+    <div style="height:56px">천간</div>
+    <div style="height:56px">지지</div>
+    <div style="height:17px">십성</div>
+    <div style="height:17px">지장간</div>
+    <div style="height:16px">12운성</div>
+    <div style="height:16px">12신살</div></div>`
+  const cols = D.cols.map(c=>`<div class="col">
+    <div class="h${c.day?' day':''}">${c.h}</div>
+    <div class="st">${c.top}</div>
+    ${tile(c.gan,c.day)}
+    ${tile(c.ji)}
+    <div class="st">${c.bot}</div>
+    <div class="st">${c.hid}</div>
+    <div class="sm">${c.stage}</div>
+    <div class="sm">${c.sin}</div></div>`).join('')
+  return `<div class="table" style="${narrow?'width:auto;justify-content:center':''}">${lab}${cols}</div>`
+}
+function ohStrip(asCard, big){
+  return `<div class="ohstrip${asCard?' card':''}">${D.oh.map(o=>`<div class="oh">
+    <div class="bar"><i style="width:${Math.min(100,o.p*2)}%;background:var(--oh-${ohColor(o.k).slice(5)})"></i></div>
+    <div class="k" style="color:var(${ohLabel(o.k)});font-size:${big?13:11}px">${o.k}</div>
+    <div class="v" style="color:${verdictColor(o.v)}">${o.n}개 · ${o.v}</div></div>`).join('')}</div>`
+}
+function nheadEl(withSolar, twoLine){
+  if (twoLine) return `<p class="nhead"><b>${D.name}</b><br>${D.birth} · ${D.corr} · ${D.city}</p>`
+  const tail = withSolar ? ` · ${D.solar}` : ''
+  return `<p class="nhead"><b>${D.name}</b> (${D.birth} · ${D.corr} · ${D.city}${tail})</p>`
+}
+function natalBlock(){
+  const C = state.C
+  const cap = `<p class="solarcap">${D.solar}</p>`
+  if (C===1) return nheadEl().replace('class="nhead"','class="nhead" style="padding:0 4px"')
+    + `<div class="glass natal">${tableEl()}<div style="margin-top:13px">${ohStrip()}</div>${cap}</div>`
+  if (C===2) return `<div class="glass natal">${nheadEl()}<div style="margin-bottom:13px">${ohStrip()}</div>${tableEl()}${cap}</div>`
+  if (C===3) return `<div class="glass natal">${nheadEl()}${tableEl()}${cap}</div>` + `<div style="margin-top:10px">${ohStrip(true)}</div>`
+  if (C===4) return `<div class="glass natal">${nheadEl(true)}${tableEl()}<div style="margin-top:13px">${ohStrip()}</div></div>`
+  if (C===5) return `<div class="glass natal">${nheadEl()}${tableEl()}</div>`+`<div style="margin-top:10px">${ohStrip(true)}</div>`+cap
+  if (C===6) return `<div class="glass natal">${nheadEl(false,true)}${tableEl()}<div style="margin-top:13px">${ohStrip()}</div>${cap}</div>`
+  if (C===7) return `<div class="glass natal">${nheadEl()}${tableEl()}<div class="divider"></div>${ohStrip()}${cap}</div>`
+  if (C===8) return `<div class="glass natal">${nheadEl()}${tableEl()}<div style="margin-top:13px">${ohStrip(false,true)}</div>${cap}</div>`
+  if (C===9) return `<div class="glass natal" style="text-align:center">${nheadEl()}${tableEl(true)}<div style="margin-top:13px">${ohStrip()}</div>${cap}</div>`
+  return `<div class="glass natal">${nheadEl()}${tableEl()}<div style="margin-top:13px">${ohStrip()}</div>${cap}</div>`
+}
+function ctaBlock(){
+  const E = state.E
+  const a = `<div class="btn primary">사주 분석 풀이 보기</div>`
+  const b = `<div class="btn glassbtn">연리와 상담하기</div>`
+  const circles = `<div class="circles"><div>✉</div><div>✎</div></div>`
+  if (E===3) return a
+  if (E===4) return `<div class="sect">더 파고들기</div>${a}${b}`
+  if (E===5) return `<div class="btnrow" style="margin-top:20px"><div class="btn primary" style="margin-top:0">분석 풀이</div><div class="btn glassbtn" style="margin-top:0">연리 상담</div></div>`
+  if (E===6) return '' // 버튼은 원국 카드 안(natalBlock)에서 그려진다
+  if (E===7) return `<div class="btn primary" style="background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.8);color:var(--c-primary)">연리와 상담하기</div><div class="btn primary">사주 분석 풀이 보기</div>`
+  if (E===8) return a+b+circles
+  // E10 = 스크롤과 무관하게 하단에 붙어 따라오는 CTA(알약 네비 위)
+  if (E===9) return `<div style="position:sticky;bottom:0;margin-top:20px;padding:10px 0 8px;
+    background:linear-gradient(180deg,rgba(238,240,246,0) 0%,var(--c-page) 34%)">
+    <div class="btn primary" style="margin-top:0">사주 분석 풀이 보기</div></div>`
+  return a+b
+}
+function render(){
+  const E = state.E
+  const today = head()+todayCard()
+  const natal = natalBlock()
+  const cta = ctaBlock()
+  let html
+  if (E===1) html = `<div style="height:36px"></div>`+natal+`<div style="margin-top:6px">${today}</div>`+cta
+  else if (E===2) html = `<div style="height:36px"></div>`+today+cta+`<div style="margin-top:20px">${natal}</div>`
+  else html = `<div style="height:36px"></div>`+today+`<div style="margin-top:20px">${natal}</div>`+cta
+  document.getElementById('stack').innerHTML = html
+  // E7 = 버튼을 원국 카드 '안'으로. C축이 어떤 카드 구조를 고르든 무너지지 않게
+  // 렌더 뒤 실제 카드 노드에 주입한다(문자열 조립으로 하면 C축 10안마다 삽입점이 달라진다).
+  if (E===6){
+    const card = document.querySelector('#stack .natal')
+    if (card) card.insertAdjacentHTML('beforeend',
+      `<div class="divider"></div>
+       <div class="btn primary" style="margin-top:0">사주 분석 풀이 보기</div>
+       <div class="btn glassbtn">연리와 상담하기</div>`)
+  }
+  // 조합 표시
+  const key = AXES.map(a=>a.id+(state[a.id]+1)).join('-')
+  document.getElementById('combo').textContent = key
+  document.getElementById('pick').innerHTML = AXES.map(a=>
+    `<b>${a.id}${state[a.id]+1}</b> ${a.name} — ${a.opts[state[a.id]]}${state[a.id]===a.fixed?' <span class="fixed">고정</span>':''}`).join('<br>')
+}
+function buildAxes(){
+  document.getElementById('axes').innerHTML = AXES.map(a=>`
+    <div class="axis">
+      <h2>축 ${a.id} · ${a.name}</h2>
+      <p class="why">${a.why}</p>
+      <div class="opts">${a.opts.map((o,i)=>
+        `<span class="opt${state[a.id]===i?' on':''}" data-ax="${a.id}" data-i="${i}">
+          <span class="n">${a.id}${i+1}</span>${o}${i===a.fixed?'<span class="fixed">고정</span>':''}</span>`).join('')}</div>
+    </div>`).join('')
+  document.querySelectorAll('.opt').forEach(el=>el.onclick=()=>{
+    state[el.dataset.ax] = +el.dataset.i
+    document.querySelectorAll(`.opt[data-ax="${el.dataset.ax}"]`).forEach(x=>x.classList.remove('on'))
+    el.classList.add('on'); render()
+  })
+}
+function reset(){ AXES.forEach(a=>state[a.id]=a.fixed); buildAxes(); render() }
+function rand(){ AXES.forEach(a=>state[a.id]=Math.floor(Math.random()*a.opts.length)); buildAxes(); render() }
+function copy(){
+  const t = AXES.map(a=>`${a.id}${state[a.id]+1} ${a.opts[state[a.id]]}`).join(' / ')
+  navigator.clipboard?.writeText(t)
+  document.getElementById('combo').textContent = '복사됨 — ' + AXES.map(a=>a.id+(state[a.id]+1)).join('-')
+}
+buildAxes(); render()
+</script>
+</body>
+</html>

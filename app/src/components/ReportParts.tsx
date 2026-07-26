@@ -16,8 +16,8 @@ const OH_LABEL: Record<string, string> = {
   목: 'var(--oh-label-mok)', 화: 'var(--oh-label-hwa)', 토: 'var(--oh-label-to)', 금: 'var(--oh-label-geum)', 수: 'var(--oh-label-su)',
 }
 
-export function SectionTitle({ children }: { children: ReactNode }) {
-  return <Typography sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.ink, mb: 1.2, mt: 2.5 }}>{children}</Typography>
+export function SectionTitle({ children, align }: { children: ReactNode; align?: 'left' | 'center' }) {
+  return <Typography sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.ink, mb: 1.2, mt: 2.5, textAlign: align ?? 'left' }}>{children}</Typography>
 }
 
 /**
@@ -54,10 +54,91 @@ export function GlassButton({ children, onClick, sx: sxOver }: { children: React
   )
 }
 
-/** 오행 스트립 — 불투명 카드 + 바 길이 = 비율 인코딩 + 개수·판정 결합 */
-export function OhaengStrip({ ohaeng, total }: { ohaeng: OhaengStat[]; total: number }) {
+/**
+ * 오행 세그먼트 바 — 한 줄을 **개수 비율대로 분할**해 편중을 한눈에 보인다(운영자 260726 레퍼런스 = 경로 카드 문법).
+ *
+ * 왜 바꿨나: 기존 `OhaengStrip`은 5칸 **균등 폭**이라 화 0개와 수 3개가 같은 넓이를 차지했다 —
+ * 정작 사주에서 제일 중요한 '편중'이 안 보였다.
+ *
+ * 0개 처리(F2안): 0인 오행도 **빗금 최소 조각으로 바에 남긴다**. 목화토금수 순서가 항상 고정돼
+ * 매일 보는 화면에서 위치가 학습되고, 결핍이 '빠진 것'이 아니라 '비어 있는 자리'로 읽힌다.
+ * (0을 빼는 안은 비율이 정직한 대신 오행 순서가 사람마다 달라져 기각.)
+ *
+ * 색은 전량 오행 의미색 계승 — 채움 = `tokens.ohaeng[].bg`, 글자 = `.ink`, 빈 칸 = 중립 토큰.
+ */
+export function OhaengSegBar({ ohaeng, total }: { ohaeng: OhaengStat[]; total: number }) {
+  const counts = ohaeng.map((o) => ({ ...o, n: Math.round((o.pct * total) / 100) }))
+  const empty = counts.filter((o) => o.n === 0)
   return (
-    <Box sx={{ mx: 2.5, mb: 1, px: 1.5, py: 1, borderRadius: '16px', display: 'flex', gap: 0.75, bgcolor: tokens.color.card, boxShadow: 'var(--shadow-card)' }}>
+    <Box>
+      <Box sx={{ display: 'flex', height: 40, borderRadius: 100, overflow: 'hidden', boxShadow: 'inset 0 1px 2px var(--line)' }}>
+        {counts.map((o) => {
+          const zero = o.n === 0
+          return (
+            <Box
+              key={o.key}
+              // 0칸도 자리를 갖되(순서 학습) 가장 좁게 — 1개짜리의 약 절반
+              sx={{
+                flex: zero ? 0.55 : o.n,
+                minWidth: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 0.4,
+                fontSize: 12,
+                fontWeight: 800,
+                color: zero ? tokens.color.inkFaint : tokens.ohaeng[o.key].ink,
+                background: zero
+                  ? `repeating-linear-gradient(45deg, var(--c-border) 0 4px, var(--c-page) 4px 8px)`
+                  : tokens.ohaeng[o.key].bg,
+                '& + &': { boxShadow: 'inset 1.5px 0 0 var(--c-card)' },
+              }}
+            >
+              {zero ? (
+                <span>0</span>
+              ) : (
+                <>
+                  {o.key}
+                  <span style={{ opacity: 0.85, fontSize: 11, fontWeight: 700 }}>{o.n}</span>
+                </>
+              )}
+            </Box>
+          )
+        })}
+      </Box>
+      {/* 판정(과다·부족)은 바 안에 못 넣는다 — 좁은 칸에서 잘린다. 특이 판정만 아래 한 줄로 */}
+      <Box sx={{ display: 'flex', gap: 1.2, mt: 0.9, flexWrap: 'wrap' }}>
+        {empty.map((o) => (
+          <Typography key={o.key} sx={{ fontSize: 11, fontWeight: 700, color: OH_LABEL[o.key] }}>
+            {o.key} 없음
+          </Typography>
+        ))}
+        {counts
+          .filter((o) => o.verdict === '과다')
+          .map((o) => (
+            <Typography key={o.key} sx={{ fontSize: 11, fontWeight: 700, color: tokens.color.solar }}>
+              {o.key} {o.n}개 · 과다
+            </Typography>
+          ))}
+      </Box>
+    </Box>
+  )
+}
+
+/**
+ * 오행 스트립(구안) — 불투명 카드 + 바 길이 = 비율 인코딩 + 개수·판정 결합.
+ * bare=카드 껍데기(배경·그림자·바깥 여백) 없이 상위 카드 안에 담기는 모드(260726 원국 카드 통합).
+ * ※ 인트로는 `OhaengSegBar`로 옮겼다. 이 부품은 분석 화면 등 5축 판정을 다 보여야 하는 자리용으로 남긴다.
+ */
+export function OhaengStrip({ ohaeng, total, bare = false }: { ohaeng: OhaengStat[]; total: number; bare?: boolean }) {
+  return (
+    <Box
+      sx={
+        bare
+          ? { display: 'flex', gap: 0.75 }
+          : { mx: 2.5, mb: 1, px: 1.5, py: 1, borderRadius: '16px', display: 'flex', gap: 0.75, bgcolor: tokens.color.card, boxShadow: 'var(--shadow-card)' }
+      }
+    >
       {ohaeng.map((o) => {
         const count = Math.round((o.pct * total) / 100)
         return (
