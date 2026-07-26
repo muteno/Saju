@@ -21,3 +21,15 @@ dosa-app/kb/distill_src/
 # 앱 KB 번들 (scripts/build_kb.mjs가 생성 — prebuild에서 자동)
 app/public/kb-*.json
 app/src/engine/vendor/kb_ref.json
+
+# ── 블라인드 격리(260726) — /feed 시험의 '답안지'는 레포에 두지 않는다 ──
+# 왜: SKILL.md §23 "답안지가 레포에 있으면 학생이 grep으로 주울 수 있다".
+#     zip은 파일명을 압축 없이 저장해 261개 영상 제목이 평문으로 노출된다(실측) = 제목이 곧 답.
+# 삭제가 아니라 추적 해제다 — 파일은 디스크에 남고, git 히스토리에도 남는다.
+#   복구: git show 0e266c1:'노뮤트_전사본_20260718.zip' > 노뮤트_전사본_20260718.zip
+# 주입은 경로 인자로 돌아간다: python3 dosa-app/kb-tools/ingest_transcript.py <경로>
+노뮤트_전사본_*.zip
+_압축본_백업/
+# 압축을 푼 자막본이 레포에 생기는 것도 차단(파도 작업 중 실수 방어)
+*_자막/
+dohwadore_saju_자막/
