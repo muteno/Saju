@@ -119,7 +119,7 @@
   const root = document.documentElement, out = document.getElementById('out'), state = {}
   function paint(){
     out.textContent = Object.entries(state).map(([k,v])=>k+': '+v).join('  ·  ')
-      + "\n\n// 기운 링\nanimation: `msd-orbit " + state['--spin'] + " linear infinite reverse, msd-breathe " + state['--breathe'] + " var(--ease) infinite`"
+      + "\n\n// 기운 링 — 안 돈다(도는 게 둘이면 빛이 쪼개진다). 호흡만.\nanimation: 'msd-breathe " + state['--breathe'] + " var(--ease) infinite'"
       + "\np: '" + state['--ring'] + "'   // 링 두께"
       + "\n오행 스톱: color-mix(in srgb, <오행색> " + state['--aura-a'] + ", transparent)"
       + "\n\n// 겉 라인 빛\n호 폭 ±" + state['--sheen-w'] + " · 흰색 " + state['--sheen-a']

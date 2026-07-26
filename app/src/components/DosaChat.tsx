@@ -710,7 +710,7 @@ export default function DosaChat({
                 // ⚠ **기운 링은 돌지 않는다.** 색 밭과 빛이 각각 다른 속도로 돌면 밝은 지점이 둘이 되어
                 // 「빛이 여러 개로 쪼개져 움직인다」가 된다(운영자 260727 실사용 지적).
                 // 기운은 그 사람의 판이라 제자리에 있는 게 맞고, 도는 건 아래 빛 **하나뿐**이다.
-                animation: 'msd-breathe 5.5s var(--ease) infinite',
+                animation: 'msd-breathe 8s var(--ease) infinite',   // 운영자 260727 플레이그라운드 채택값
               }}
             />
             {/* 겉 라인 빛 — 좁은 흰 호 하나가 링을 따라 돈다. 기운 링(16s reverse)과 **다른 속도·방향**
@@ -722,10 +722,12 @@ export default function DosaChat({
                 inset: '-60%',
                 // 빛은 **하나**다. 가장자리를 여러 단으로 떨어뜨려(56→76→90→104→124) 점이 아니라
                 // 한 덩어리 glow로 읽히게 한다 — 딱 끊으면 조각처럼 보인다.
+                // 운영자 260727 플레이그라운드 채택값 — 흰색 100% · 호 폭 ±34deg.
+                // 가장자리는 폭의 절반 지점(±17deg)에서 한 단 떨어뜨려 한 덩어리 glow로 읽히게 한다.
                 background:
-                  'conic-gradient(from 0deg, transparent 0deg, transparent 56deg, color-mix(in srgb, var(--c-card) 14%, transparent) 76deg, color-mix(in srgb, var(--c-card) 62%, transparent) 90deg, color-mix(in srgb, var(--c-card) 14%, transparent) 104deg, transparent 124deg, transparent 360deg)',
+                  'conic-gradient(from 0deg, transparent 0deg, transparent 56deg, color-mix(in srgb, var(--c-card) 22%, transparent) 73deg, var(--c-card) 90deg, color-mix(in srgb, var(--c-card) 22%, transparent) 107deg, transparent 124deg, transparent 360deg)',
                 // 반시계(운영자 지시) — 이 화면에서 도는 유일한 것이다.
-                animation: 'msd-orbit 9s linear infinite reverse',
+                animation: 'msd-orbit 5s linear infinite reverse',   // 운영자 260727 채택값
               }}
             />
             <Box
