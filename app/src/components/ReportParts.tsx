@@ -16,8 +16,8 @@ const OH_LABEL: Record<string, string> = {
   목: 'var(--oh-label-mok)', 화: 'var(--oh-label-hwa)', 토: 'var(--oh-label-to)', 금: 'var(--oh-label-geum)', 수: 'var(--oh-label-su)',
 }
 
-export function SectionTitle({ children }: { children: ReactNode }) {
-  return <Typography sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.ink, mb: 1.2, mt: 2.5 }}>{children}</Typography>
+export function SectionTitle({ children, align }: { children: ReactNode; align?: 'left' | 'center' }) {
+  return <Typography sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.ink, mb: 1.2, mt: 2.5, textAlign: align ?? 'left' }}>{children}</Typography>
 }
 
 /**
@@ -54,10 +54,19 @@ export function GlassButton({ children, onClick, sx: sxOver }: { children: React
   )
 }
 
-/** 오행 스트립 — 불투명 카드 + 바 길이 = 비율 인코딩 + 개수·판정 결합 */
-export function OhaengStrip({ ohaeng, total }: { ohaeng: OhaengStat[]; total: number }) {
+/**
+ * 오행 스트립 — 불투명 카드 + 바 길이 = 비율 인코딩 + 개수·판정 결합.
+ * bare=카드 껍데기(배경·그림자·바깥 여백) 없이 상위 카드 안에 담기는 모드(260726 원국 카드 통합).
+ */
+export function OhaengStrip({ ohaeng, total, bare = false }: { ohaeng: OhaengStat[]; total: number; bare?: boolean }) {
   return (
-    <Box sx={{ mx: 2.5, mb: 1, px: 1.5, py: 1, borderRadius: '16px', display: 'flex', gap: 0.75, bgcolor: tokens.color.card, boxShadow: 'var(--shadow-card)' }}>
+    <Box
+      sx={
+        bare
+          ? { display: 'flex', gap: 0.75 }
+          : { mx: 2.5, mb: 1, px: 1.5, py: 1, borderRadius: '16px', display: 'flex', gap: 0.75, bgcolor: tokens.color.card, boxShadow: 'var(--shadow-card)' }
+      }
+    >
       {ohaeng.map((o) => {
         const count = Math.round((o.pct * total) / 100)
         return (

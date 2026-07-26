@@ -1,13 +1,12 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { Box, Typography } from '@mui/material'
 import { useNavigate, Navigate } from 'react-router-dom'
 import Screen from './Screen'
 import { tokens } from '../theme'
-import { activeProfile, listProfiles, setActiveProfile, profileToInput } from '../data/profiles'
-import { entered, clearEntered } from '../data/session'
+import { activeProfile } from '../data/profiles'
+import { entered } from '../data/session'
 import { HOST_NAME } from '../data/chefs'
-import { computeChartUI } from '../engine'
 
 /** 리포트 3분할(260725) 이후의 탭 축 — 인트로 → 분석 → 상담 + 재미·설정 */
 export type MenuKey = 'intro' | 'analysis' | 'talk' | 'fun' | 'settings'
@@ -213,25 +212,17 @@ function PillNav({ active, go }: { active: MenuKey; go: (to: string) => void }) 
 }
 
 /**
- * 명식당 셸 — 로그인 후 5개 화면의 상주 크롬(좌 햄버거 드로어 + 우 프로필 팝오버 + 하단 알약 네비).
- * 오버레이는 스크림 탭으로 닫히고 서로 배타. 입장 전(플래그·프로필 모두 없음) = /login 게이트.
+ * 명식당 셸 — 로그인 후 5개 화면의 상주 크롬(좌 햄버거 드로어 + 하단 알약 네비).
+ * 오버레이는 스크림 탭으로 닫힌다. 입장 전(플래그·프로필 모두 없음) = /login 게이트.
+ *
+ * 260726 운영자 지시로 **우상단 프로필 아바타·팝오버를 제거**했다 — 팝오버가 담던 4기능
+ * (프로필 전환·내 설정·구매 내역·로그아웃)이 이미 '내 설정' 화면(탭 5번)에 전부 실재해
+ * 상단 유틸이 순수 중복이었다. 계정 축 진입점 = 설정 한 곳(§5 통일).
  */
 export default function MyeongShell({ active, gate = true, children }: { active: MenuKey; gate?: boolean; children: ReactNode }) {
   const nav = useNavigate()
   const [drawer, setDrawer] = useState(false)
-  const [popover, setPopover] = useState(false)
   const profile = activeProfile()
-  const profiles = listProfiles()
-
-  const ilju = useMemo(() => {
-    if (!profile || !popover) return ''
-    try {
-      const p = computeChartUI(profileToInput(profile)).pillars.find((x) => x.title === '일')
-      return p ? `${p.ganK}${p.jiK}` : ''
-    } catch {
-      return ''
-    }
-  }, [profile, popover])
 
   // gate=false = 공유 딥링크로 들어온 화면(리포트). 프로필 없는 수신자를 로그인으로 튕기면
   // 공유 루프가 끊긴다 — 크롬(드로어·네비)은 그대로 주고 입장 게이트만 면제한다.
@@ -239,10 +230,8 @@ export default function MyeongShell({ active, gate = true, children }: { active:
 
   const go = (to: string) => {
     setDrawer(false)
-    setPopover(false)
     nav(to)
   }
-  const avatarLetter = profile?.name?.[0] ?? '명'
   // 드로어 = 하단 탭과 1:1(같은 5축·같은 순서). 라벨만 길게 써서 무엇인지 설명한다
   const menu = [
     { key: 'intro', label: '내 원국 · 오늘 운세', to: '/result', icon: Pict.chart(19) },
@@ -259,10 +248,7 @@ export default function MyeongShell({ active, gate = true, children }: { active:
       {/* 상단 유틸 — 햄버거(좌) */}
       <Box sx={{ position: 'absolute', top: 50, left: 16, zIndex: 8 }}>
         <Box
-          onClick={() => {
-            setDrawer((v) => !v)
-            setPopover(false)
-          }}
+          onClick={() => setDrawer((v) => !v)}
           role="button"
           aria-label="메뉴"
           sx={{
@@ -282,36 +268,6 @@ export default function MyeongShell({ active, gate = true, children }: { active:
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             <path d="M3 6h18M3 12h18M3 18h18" />
           </svg>
-        </Box>
-      </Box>
-
-      {/* 상단 유틸 — 프로필(우) */}
-      <Box sx={{ position: 'absolute', top: 50, right: 16, zIndex: 8 }}>
-        <Box
-          onClick={() => {
-            setPopover((v) => !v)
-            setDrawer(false)
-          }}
-          role="button"
-          aria-label="프로필"
-          sx={{
-            width: 44,
-            height: 44,
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            bgcolor: tokens.color.primary,
-            color: tokens.color.onPrimary,
-            fontSize: 16,
-            fontWeight: 800,
-            border: '2px solid rgba(255,255,255,.7)',
-            boxShadow: '0 4px 12px rgba(34,64,158,.35)',
-            ...press,
-          }}
-        >
-          {avatarLetter}
         </Box>
       </Box>
 
@@ -351,100 +307,6 @@ export default function MyeongShell({ active, gate = true, children }: { active:
               <br />
               명식당 v0.1
             </Typography>
-          </Box>
-        </>
-      )}
-
-      {/* 프로필 팝오버 */}
-      {popover && (
-        <>
-          <Box onClick={() => setPopover(false)} sx={{ position: 'absolute', inset: 0, zIndex: 9, background: 'rgba(13,14,20,.2)' }} />
-          <Box
-            sx={{
-              position: 'absolute',
-              top: 102,
-              right: 16,
-              width: 250,
-              zIndex: 10,
-              animation: 'msd-popin .22s var(--ease)',
-              borderRadius: '20px',
-              background: 'rgba(255,255,255,.9)',
-              border: '1px solid rgba(255,255,255,.9)',
-              backdropFilter: 'blur(26px) saturate(1.3)',
-              WebkitBackdropFilter: 'blur(26px) saturate(1.3)',
-              boxShadow: '0 20px 50px rgba(28,38,78,.25)',
-              p: 2,
-            }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.2 }}>
-              <Box sx={{ width: 44, height: 44, borderRadius: '50%', bgcolor: tokens.color.primary, color: tokens.color.onPrimary, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, fontWeight: 800 }}>
-                {avatarLetter}
-              </Box>
-              <Box>
-                <Typography sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.ink }}>{profile?.name ?? '프로필 없음'}</Typography>
-                <Typography sx={{ fontSize: 11, fontWeight: 600, color: tokens.color.inkSub }}>
-                  {profile ? `양 ${profile.year}/${String(profile.month).padStart(2, '0')}/${String(profile.day).padStart(2, '0')}${ilju ? ` · ${ilju}일주` : ''}` : '사주를 입력해 주세요'}
-                </Typography>
-              </Box>
-            </Box>
-            <Box sx={{ mt: 1.5, borderTop: '1px solid var(--line)', pt: 1.2 }}>
-              <Typography sx={{ fontSize: 11, fontWeight: 800, color: tokens.color.inkFaint, mb: 0.8 }}>프로필 전환</Typography>
-              <Box sx={{ display: 'flex', gap: 0.7, flexWrap: 'wrap' }}>
-                {profiles.map((p) => {
-                  const on = p.id === profile?.id
-                  return (
-                    <Box
-                      key={p.id}
-                      onClick={() => {
-                        if (!on) {
-                          setActiveProfile(p.id)
-                          nav(0)
-                        }
-                      }}
-                      role="button"
-                      sx={{
-                        height: 32,
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        px: 1.5,
-                        borderRadius: '100px',
-                        fontSize: 12,
-                        fontWeight: 700,
-                        cursor: on ? 'default' : 'pointer',
-                        bgcolor: on ? tokens.color.primarySoft : 'rgba(255,255,255,.55)',
-                        border: on ? `1px solid ${tokens.color.primary}` : '1px solid rgba(255,255,255,.8)',
-                        color: on ? tokens.color.primary : tokens.color.inkSub,
-                        ...press,
-                      }}
-                    >
-                      {p.name}
-                    </Box>
-                  )
-                })}
-                <Box
-                  onClick={() => go('/input')}
-                  role="button"
-                  aria-label="프로필 추가"
-                  sx={{ height: 32, display: 'inline-flex', alignItems: 'center', px: 1.5, borderRadius: '100px', fontSize: 12, fontWeight: 700, cursor: 'pointer', bgcolor: 'rgba(255,255,255,.4)', border: '1px dashed var(--c-border-strong)', color: tokens.color.inkFaint, ...press }}
-                >
-                  +
-                </Box>
-              </Box>
-            </Box>
-            <Box sx={{ mt: 1.5, borderTop: '1px solid var(--line)', pt: 0.7 }}>
-              <Typography onClick={() => go('/settings')} role="button" sx={{ py: 1.2, px: 0.5, fontSize: 13.5, fontWeight: 700, color: tokens.color.ink, cursor: 'pointer' }}>내 설정</Typography>
-              <Typography onClick={() => go('/settings')} role="button" sx={{ py: 1.2, px: 0.5, fontSize: 13.5, fontWeight: 700, color: tokens.color.ink, cursor: 'pointer' }}>구매 내역</Typography>
-              <Typography
-                onClick={() => {
-                  clearEntered()
-                  go('/login')
-                }}
-                role="button"
-                sx={{ py: 1.2, px: 0.5, fontSize: 13.5, fontWeight: 700, color: tokens.color.solar, cursor: 'pointer' }}
-              >
-                로그아웃
-              </Typography>
-            </Box>
           </Box>
         </>
       )}
