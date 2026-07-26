@@ -151,7 +151,14 @@ function PillNav({ active, go }: { active: MenuKey; go: (to: string) => void }) 
           <Box
             key={t.key}
             onClick={() => go(t.to)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                go(t.to)
+              }
+            }}
             role="button"
+            tabIndex={0}
             aria-label={t.label}
             aria-current={on ? 'page' : undefined}
             sx={{
@@ -166,7 +173,8 @@ function PillNav({ active, go }: { active: MenuKey; go: (to: string) => void }) 
               transition: 'background .34s var(--ease), border-color .34s var(--ease), color .34s var(--ease)',
               bgcolor: on ? 'rgba(34,64,158,.14)' : 'transparent',
               border: `1px solid ${on ? 'rgba(34,64,158,.38)' : 'transparent'}`,
-              color: on ? tokens.color.primary : tokens.color.inkFaint,
+              // 비활성 탭 = inkFaint(유리 위 실측 2.5:1 = WCAG 비텍스트 3:1 미달) → inkSub(5.9:1) 근접 계승
+              color: on ? tokens.color.primary : tokens.color.inkSub,
               boxShadow: on ? '0 0 18px rgba(34,64,158,.14)' : 'none',
               '&:active': { transform: 'scale(0.98)' },
             }}
@@ -181,7 +189,7 @@ function PillNav({ active, go }: { active: MenuKey; go: (to: string) => void }) 
 }
 
 /**
- * 명식당 셸 — 로그인 후 5개 화면의 상주 크롬. 이제 **하단 알약 네비 하나뿐**이다.
+ * 연식당 셸 — 로그인 후 5개 화면의 상주 크롬. 이제 **하단 알약 네비 하나뿐**이다.
  * 입장 전(플래그·프로필 모두 없음) = /login 게이트.
  *
  * 260726-b 운영자 지시로 **좌상단 햄버거와 드로어를 제거**했다 — 드로어 5행이 하단 탭 5칸과

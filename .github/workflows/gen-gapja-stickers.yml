@@ -1,0 +1,105 @@
+name: gen-gapja-stickers
+
+# 60갑자 지신 스티커 생성 레일 (Q.40 · 운영자 260726 승인 = "시트 4장").
+# 시트 4장(각 15칸 = 3동물 × 5오행) → 기하 격자로 잘라 app/public/assets/gapja/*.png 60장.
+# 시크릿 OPENAI_API_KEY_NOMUTE는 러너 안에서만 산다(세션·로그·파일 노출 금지 — 260712 보안 철칙).
+# 멱등: 이미 있는 PNG·시트는 건너뛴다 → 재실행해도 과금이 늘지 않는다.
+
+on:
+  workflow_dispatch:
+    inputs:
+      chefs:
+        description: '도사 스탠딩 컷 (기본 no — 운영자 GO 전엔 켜지 말 것)'
+        type: choice
+        default: 'no'
+        options: ['no', '대표1컷', '3컷']
+      sheets:
+        description: '레퍼런스 첨부 시트 — faces=표정60 · poses=전신16 · bgs=테마배경12 · all=셋 다'
+        type: choice
+        default: 'no'
+        options: ['no', 'faces', 'poses', 'bgs', 'all']
+      who:
+        description: '대상 캐릭터 (all = noona·baekui·doryeong·dongja 4인 전부)'
+        type: choice
+        default: 'all'
+        options: ['all', 'noona', 'baekui', 'doryeong', 'dongja']
+      shopbg:
+        description: '연식당 무대 배경 1장 (assets/shop-bg.jpg · 이미 있으면 건너뜀)'
+        type: choice
+        default: 'no'
+        options: ['no', 'yes']
+      stickers:
+        description: '60갑자 스티커 생성'
+        type: choice
+        default: 'yes'
+        options: ['yes', 'no']
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install --quiet requests pillow
+
+      - name: Generate 4 sheets → cut 60 stickers
+        if: ${{ inputs.stickers != 'no' }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::error::OPENAI_API_KEY_NOMUTE 시크릿이 이 레포(muteno/Saju) Settings→Secrets→Actions에 없음 — 등록 후 재실행"
+            exit 1
+          fi
+          python .github/scripts/gen_gapja_stickers.py
+
+      # 성별 분기 도사 2인(셰프단 후보) — 같은 시크릿·같은 러너라 한 dispatch에 얹는다.
+      # 기본 'no' = 스티커만. 컷당 과금 + 연령 축 미확정이라 켜는 건 명시 선택으로 둔다.
+      - name: Generate 성별 분기 도사 cuts
+        if: ${{ inputs.chefs != 'no' }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
+          CUTS_ALL: ${{ inputs.chefs == '3컷' && '1' || '0' }}
+        run: python .github/scripts/gen_chefs_gendered_v1.py
+
+      # 레퍼런스 첨부 시트(표정·장면) — chef-refs/{id}.png 가 있어야 돈다(없으면 스크립트가 명시 중단)
+      # 시트 3종 — faces(표정 60) · poses(전신 16) · bgs(테마 배경 12). all이면 순서대로 전부.
+      - name: Generate 시트(표정·전신·배경)
+        if: ${{ inputs.sheets != 'no' }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
+          CHEFS: ${{ inputs.who }}
+        run: |
+          for m in faces poses bgs; do
+            if [ "${{ inputs.sheets }}" = "all" ] || [ "${{ inputs.sheets }}" = "$m" ]; then
+              echo "== MODE=$m =="
+              MODE=$m python .github/scripts/gen_chef_faces_v1.py
+            fi
+          done
+
+      - name: Generate 연식당 배경
+        if: ${{ inputs.shopbg == 'yes' }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
+        run: python .github/scripts/gen_shop_bg.py
+
+      - name: Commit results to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # 두 경로만 — 둘 다 실존 디렉터리라 pathspec 실패가 없다(신규 하위폴더는 -A가 잡는다)
+          git add -A app/public/assets app/public/reports
+          git diff --cached --quiet && echo "변경 없음(전부 기존 파일) — 커밋 생략" && exit 0
+          git commit -m "assets: 60갑자 지신 스티커 생성 (gpt-image-1 시트 4장 · gen-gapja-stickers)"
+          for i in 1 2 3; do
+            git push origin HEAD:main && break || git pull --rebase origin main
+          done

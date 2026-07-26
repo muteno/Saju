@@ -199,7 +199,7 @@ button {
   border-color: rgba(255, 255, 255, 0.75);
 }
 
-/* 명식당 목업 v2 모션 — 화면 fadein · 드로어 slidein · 팝오버 popin */
+/* 연식당 목업 v2 모션 — 화면 fadein · 드로어 slidein · 팝오버 popin */
 @keyframes msd-fadein {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -218,6 +218,42 @@ button {
 /* popin은 정의만 있고 쓰는 데가 없었다(260726 실측) — 유틸을 열어 되살린다. 신설 0. */
 .msd-popin {
   animation: msd-popin 0.3s var(--ease) both;
+}
+
+
+/* 키보드 포커스 링 — 실측 0건이었다(260726 조사: role="button" 16개 vs :focus-visible 0).
+   WCAG 2.2에서 Focus Visible은 A 등급이다. --c-primary는 카드 위 9.15:1이라 3:1 요건을 넘는다.
+   전부 var() 계승이라 raw 총량(T3)은 안 늘어난다. */
+:where(a, button, [role='button'], input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+  border-radius: inherit;
+}
+
+/* 도사 난입(교체) — 운영자 260726 "촤르륵하면서 사진 보이면서 끼어들면서".
+   그래서 페이드가 아니라 **밀고 들어오는 가로 이동**이다: 화면 밖에서 들어와 살짝 지나쳤다가
+   제자리에 앉는다(오버슈트). transform·opacity만 써서 합성만으로 끝난다.
+   모션 감소는 아래 전역 블록이 자동으로 강등한다. */
+@keyframes msd-barge-r {
+  from { opacity: 0; transform: translateX(120%); }
+  70% { opacity: 1; transform: translateX(-4%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes msd-barge-l {
+  from { opacity: 0; transform: translateX(-120%); }
+  70% { opacity: 1; transform: translateX(4%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* 투명도 줄이기(OS 설정) — 글래스를 불투명 카드로 강등한다.
+   모션 감소 대응은 있는데 투명도 짝이 없었다(260726 조사). 미지원 브라우저는 원래 모습 그대로라
+   순수 점진 향상이다. 토큰 계승만 — 신설 0. */
+@media (prefers-reduced-transparency: reduce) {
+  .glass {
+    background: var(--c-card);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 /* 단어 리빌 — 문장을 단어로 쪼개 시차 등장. `--i`(0부터)가 순서, 지연은 60ms 간격.

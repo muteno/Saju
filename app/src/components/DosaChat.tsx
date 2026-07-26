@@ -3,22 +3,25 @@ import { Box, Typography } from '@mui/material'
 import DialogueBox from './DialogueBox'
 import PixelDosa, { type DosaMood } from './PixelDosa'
 import OhaengTile from './OhaengTile'
+import ShopStage from './ShopStage'
 import { Pict } from './MyeongShell'
 import { tokens } from '../theme'
 import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, chartSummaryOf } from '../data/dosaTopics'
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
+import { chefForGender, counterpartChef, BARGE_LINE } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
 import type { Pillar } from '../data/saju'
 import type { ReportBundle } from '../engine'
 import { useReducedMotion } from './Motion'
 
 /**
- * 미연시 상담 무대 — 위에서부터 [도트 캐릭터 → 원국(항상 펼침) → 글라스 선택지 → 대사 상자].
- * 운영자 260726 확정 문법: 캐릭터가 있고 그 아래 사주원국이 펼쳐져 있고, 그 아래 대화가
- * 그라데이션으로 이어진다. 설명 중 관련 기둥은 살짝 들려 올라온다(focus).
- * 선택지는 분류 키워드(일주론 따위) 없이 질문만 — 진입도 메뉴판이 아니라
- * 정곡이 있으면 「…때문에 왔지?」, 없으면 「뭐가 궁금해서 오셨는가?」로 연다.
+ * 미연시 상담 무대 — 위에서부터 [연식당 무대(간판·인물) → 원국(항상 펼침) → 글라스 선택지 → 대사 상자].
+ *
+ * 두 파도의 합류점(260726): ①VN 무대 문법(Q.41 — 원국 상시·관련 기둥 부상·연도 화법·덜컹 WAAPI)
+ * ②연식당 세계관(병렬 128·130 — ShopStage 간판·배경 무드 · 도사 = 상담 상대 성별로 배정 ·
+ * 정곡을 빗맞히면 맞은편 도사가 촤르륵 난입해 판을 받아 가는 교체 연출). 인물 플레이트가
+ * 아직 없는 도사는 도트 캐릭터(PixelDosa)가 그 자리를 지킨다(표정·입모양 연출 유지).
  *
  * 연출 값 정본 = 머지된 플레이그라운드(public/reports/20260717_222938_dosa-talk-playground_v1.html):
  * 타이핑 28ms/자 · 본문 14.5px/1.62 · 선택지 gap·padding·radius · 누름 scale(0.98) · 的中 700ms.
@@ -241,6 +244,7 @@ export default function DosaChat({
   profileName,
   hourUnknown,
   jeonggok,
+  gender,
 }: {
   report: ReportBundle
   /** 무대에 항상 펼쳐 둘 원국(UiChart.pillars — 시일월년 순 = SajuTable과 동일) */
@@ -249,7 +253,12 @@ export default function DosaChat({
   hourUnknown?: boolean
   /** 정곡 오프닝 — 도사가 먼저 맞히는 단정(엔진 결정론 선별, data/jeonggok.ts) */
   jeonggok?: JeonggokPick | null
+  /** 상담 상대의 성별 — 무대에 서는 도사를 가른다(운영자 260726) */
+  gender?: 'M' | 'F'
 }) {
+  // 무대에 선 도사 — 기본은 사용자 성별로 배정, 빗맞히면 맞은편이 밀고 들어와 교체된다
+  const [chef, setChef] = useState(() => chefForGender(gender))
+  const [barge, setBarge] = useState(false) // 난입 연출 1회(등장 애니 트리거)
   const [phase, setPhase] = useState<'opening' | 'verdict' | 'choose' | 'play'>(jeonggok ? 'opening' : 'choose')
   const [verdictText, setVerdictText] = useState('')
   const [verdictHit, setVerdictHit] = useState(false)
@@ -269,13 +278,13 @@ export default function DosaChat({
 
   /** 주제 응답을 캐시에서 얻거나 지금 발사(1회만) — 프리페치·실선택이 같은 경로를 쓴다.
    *  키에 모델을 포함 = 설정에서 모델을 바꾼 직후 옛 모델 응답을 주지 않는다. */
-  const ensureLlm = (topicKey: string) => {
-    const key = `${dosaModel()}:${topicKey}`
+  const ensureLlm = (topicKey2: string) => {
+    const key = `${dosaModel()}:${topicKey2}`
     const hit = llmCache.current.get(key)
     if (hit) return hit
-    const fallback = topicLines(report, topicKey, hourUnknown)
+    const fallback = topicLines(report, topicKey2, hourUnknown)
     const entry: { promise: Promise<string | null>; text?: string | null } = {
-      promise: fetchDosaText(topicKey, report, fallback, profileName, 20000).then((text) => {
+      promise: fetchDosaText(topicKey2, report, fallback, profileName, 20000).then((text) => {
         entry.text = text
         return text
       }),
@@ -318,8 +327,10 @@ export default function DosaChat({
     setTopicKey(null)
     setSeen(new Set())
     setHop(0)
+    setChef(chefForGender(gender))
+    setBarge(false)
     llmCache.current = new Map()
-  }, [report, jeonggok])
+  }, [report, jeonggok, gender])
 
   // 정곡 단정이 착지하는 순간 화면이 한 번 덜컹 — "잠깐 —"의 무게
   useEffect(() => {
@@ -360,10 +371,16 @@ export default function DosaChat({
       setHop((h) => h + 1)
       setVerdictText('그럴 줄 알았지. 판에 그려진 걸 그대가 살아냈을 뿐이야.\n\n자, 이제 제대로 보자.')
     } else {
+      // 빗맞힘 = 사과가 아니라 **교체**다(운영자 260726 구술 · 병렬 128 정본) — 맞은편 도사가
+      // 촤르륵 밀고 들어와 판을 받아 간다. 계산은 굽히지 않고 말하는 사람만 바뀐다.
+      const next = counterpartChef(chef.id)
+      setChef(next)
+      setBarge(true)
       setVerdictText(
-        jeonggok.layer === 'EVENT'
-          ? '흠 — 그럼 그 시기 이야긴 접어두지. 흐름은 사람마다 다르게 오니까.\n\n다른 데부터 보자.'
-          : '흠 — 계산은 분명 그렇게 나와 있어. 아직 그 기운을 안 쓰고 살았거나, 다르게 눌러 담았을 수도 있지.\n\n이야기를 듣다 보면 알게 될 거야.',
+        `${BARGE_LINE[next.id]}\n\n` +
+          (jeonggok.layer === 'EVENT'
+            ? '그 시기 얘긴 접어두고. 흐름은 사람마다 다르게 오니까 — 다른 데부터 봅시다.'
+            : '계산은 분명 그렇게 나와 있소. 아직 그 기운을 안 쓰고 살았거나, 다르게 눌러 담았거나 — 이야기를 듣다 보면 알게 되지.'),
       )
     }
     setPhase('verdict')
@@ -408,6 +425,7 @@ export default function DosaChat({
       return
     }
     if (phase === 'verdict') {
+      setBarge(false) // 난입 연출은 1회 — 다음 렌더부턴 제자리
       setPhase('choose') // 판정 대사 → 용건 묻기
       return
     }
@@ -490,12 +508,16 @@ export default function DosaChat({
           flexDirection: 'column',
         }}
       >
-        {/* 캐릭터 — 무대 중앙 */}
-        <Box sx={{ display: 'flex', justifyContent: 'center', pt: 0.5 }}>
-          <PixelDosa mood={mood} talking={talking} hopKey={hop} />
-        </Box>
+        {/* 연식당 무대 — 간판·배경 무드·인물(성별 배정, 빗맞히면 맞은편이 난입 교체 = 병렬 128·130 정본).
+            인물 플레이트가 아직 없으면 도트 캐릭터가 그 자리를 지킨다(Q.41 표정 연출 유지) */}
+        <ShopStage
+          chef={chef}
+          enter={barge ? 'right' : 'none'}
+          height={200}
+          fallback={<PixelDosa mood={mood} talking={talking} hopKey={hop} width={112} />}
+        />
 
-        {/* 원국 — 캐릭터 아래 항상 펼침, 관련 기둥은 살짝 부상 */}
+        {/* 원국 — 무대 아래 항상 펼침, 관련 기둥은 살짝 부상 */}
         <VnChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
 
         {/* 선택지 — 원국 아래 글라스(운영자: "사주 봐주는 사람 아래로 글라스 느낌으로 선택지") */}
@@ -526,7 +548,7 @@ export default function DosaChat({
               'linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--c-primary-soft) 55%, transparent) 30%, var(--c-primary-soft) 100%)',
           }}
         >
-          <DialogueBox next={(phase === 'play' || phase === 'verdict') && tw.done}>
+          <DialogueBox speaker={chef.name} next={(phase === 'play' || phase === 'verdict') && tw.done}>
             {/* 진행 표지 + 주제 복귀 — play 중에만 (mini 11px 하한) */}
             {phase === 'play' && (
               <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 1.2, mb: 0.4 }}>

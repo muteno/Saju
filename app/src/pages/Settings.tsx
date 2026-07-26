@@ -31,10 +31,10 @@ export default function Settings() {
   const onExport = () => {
     const kst = new Date().toLocaleString('sv-SE', { timeZone: 'Asia/Seoul' }).replace(/[-: ]/g, '').slice(0, 14)
     const stamp = `${kst.slice(0, 8)}_${kst.slice(8)}`
-    const blob = new Blob([JSON.stringify({ app: '명식당', exportedAt: new Date().toISOString(), profiles }, null, 2)], { type: 'application/json' })
+    const blob = new Blob([JSON.stringify({ app: '연식당', exportedAt: new Date().toISOString(), profiles }, null, 2)], { type: 'application/json' })
     const a = document.createElement('a')
     a.href = URL.createObjectURL(blob)
-    a.download = `${stamp}_명식당프로필_v1.json`
+    a.download = `${stamp}_연식당프로필_v1.json`
     a.click()
     URL.revokeObjectURL(a.href)
   }
@@ -190,7 +190,7 @@ export default function Settings() {
           </Box>
 
           <Typography sx={{ textAlign: 'center', fontSize: 11, color: tokens.color.inkFaint, mt: 2.75 }}>
-            명식당 v0.1 · 입력 정보는 이 기기에만 저장돼요
+            연식당 v0.1 · 입력 정보는 이 기기에만 저장돼요
           </Typography>
         </Box>
       </Box>
