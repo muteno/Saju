@@ -4,6 +4,7 @@ import { Box, Typography } from '@mui/material'
 import MiniChart from './MiniChart'
 import { Pict } from './MyeongShell'
 import { tokens } from '../theme'
+import type { OhaengKey } from '../theme'
 import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, chartSummaryOf } from '../data/dosaTopics'
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
@@ -44,6 +45,31 @@ const LOG_H = 330
 const MAX_ASK = 300
 
 /**
+ * 기운 색 — 원국 여덟 자의 오행을 세어 **감싸는 색**을 고른다(운영자 260727).
+ * · 한 기운이 뚜렷하면 그 색 하나로 감싼다
+ * · 1·2위가 비슷하면(차이 1 이하) **두 색까지 섞는다** — 세 개 넘게 섞으면 그냥 무지개가 된다
+ * 색은 오행 라벨 토큰(`--oh-label-*`) 계승 = 신규 색 0.
+ */
+const OH_VAR: Record<OhaengKey, string> = {
+  목: 'var(--oh-label-mok)',
+  화: 'var(--oh-label-hwa)',
+  토: 'var(--oh-label-to)',
+  금: 'var(--oh-label-geum)',
+  수: 'var(--oh-label-su)',
+}
+function auraColors(pillars: Pillar[]): string[] {
+  const n = new Map<OhaengKey, number>()
+  for (const p of pillars) {
+    for (const el of [p.ganE, p.jiE]) if (el) n.set(el, (n.get(el) ?? 0) + 1)
+  }
+  const rank = [...n.entries()].sort((a, b) => b[1] - a[1])
+  if (!rank.length) return [OH_VAR.금]
+  const top = rank[0]
+  const second = rank[1]
+  return second && top[1] - second[1] <= 1 ? [OH_VAR[top[0]], OH_VAR[second[0]]] : [OH_VAR[top[0]]]
+}
+
+/**
  * 채팅 표면 = **예타 값 그대로**(운영자 260727 "그냥 예타에 있는 값을 그대로 가져오는게 어때?").
  * 예타 실측: `.yb.ai` = `background: var(--glass-2)`(**완전 투명**) + `blur(--blur-m = 29px) saturate(1)`
  * + `1px solid var(--glass-line)`(= 흰색 알파 .08).
@@ -81,7 +107,19 @@ const DOCK = [
 interface Msg {
   who: 'ai' | 'me'
   text: string
+  /**
+   * 지문 — **말이 아니라 하는 짓**(운영자 260727 "글자 위에 상황·생각·작업을 알려주는 걸
+   * 대화창에서 실물로"). 미터줄이 한 줄로 요약해 주던 것을 대화 안에서 직접 보여준다.
+   * 예타 `.yb i.yn` 문법 계승 = 같은 유리 말풍선에 **이탤릭 + 톤다운**.
+   */
+  narration?: true
 }
+
+/** 지문 표기 — 이 접두가 붙은 줄은 말이 아니라 동작이다(큐를 통과해도 표시가 안 지워진다) */
+const NAR = '\u200b' // 폭 0 문자라 화면엔 안 보이고 문자열에만 남는다
+const nar = (t: string) => NAR + t
+const isNar = (t: string) => t.startsWith(NAR)
+const narText = (t: string) => t.slice(NAR.length)
 
 function useTypewriter(text: string, speedMs: number) {
   const [n, setN] = useState(0)
@@ -185,10 +223,13 @@ const toMsgs = (text: string): string[] => {
 /** 말풍선 — 캐릭터(좌·글래스) / 나(우·강조색). 이름표 없음(무대의 인물이 화자다) */
 function Bubble({
   who,
+  narration,
   children,
   'aria-hidden': ariaHidden,
 }: {
   who: 'ai' | 'me'
+  /** 지문 = 말이 아니라 동작 — 예타 `.yb i.yn`(이탤릭 + 톤다운) 문법 계승 */
+  narration?: true
   children: ReactNode
   'aria-hidden'?: true
 }) {
@@ -219,13 +260,14 @@ function Bubble({
         letterSpacing: 'var(--tracking)',
         whiteSpace: 'pre-line',
         wordBreak: 'break-word',
+        ...(narration && { fontStyle: 'italic', color: YG.fg2, opacity: 0.75 }),
       }}
       aria-hidden={ariaHidden}
     >
       {/* 화자 표지는 **낭독 전용** — 화면엔 이름표를 안 띄운다(운영자 "이름은 제외")지만,
           좌/우 정렬은 스크린리더에 전달되지 않아 도사 말과 내 답이 한 줄기로 섞여 읽힌다. */}
       <Box component="span" sx={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
-        {me ? '나: ' : '도사: '}
+        {me ? '나: ' : narration ? '(지문) ' : '도사: '}
       </Box>
       {children}
     </Box>
@@ -343,7 +385,7 @@ export default function DosaChat({
   /** 캐릭터 메시지 묶음을 흘려보낸다 — 첫 줄은 바로 뜨고 나머지는 탭을 기다린다 */
   const say = (msgs: string[]) => {
     if (!msgs.length) return
-    setLog((l) => [...l, { who: 'ai', text: msgs[0] }])
+    setLog((l) => [...l, { who: 'ai', text: msgs[0], ...(isNar(msgs[0]) ? { narration: true as const } : {}) }])
     setQueue(msgs.slice(1))
   }
   const answer = (text: string) => setLog((l) => [...l, { who: 'me', text }])
@@ -396,8 +438,10 @@ export default function DosaChat({
     setStage(jeonggok ? 'jeonggok' : 'menu')
     onChef?.(c)
     const v = voiceOf(c.id)
-    const first = jeonggok ? [v.opening, jeonggok.line, jeonggok.ask] : ['뭐가 궁금해서 오셨는가?']
-    setLog([{ who: 'ai', text: first[0] }])
+    const first = jeonggok
+      ? [nar('판을 펼쳐 손끝으로 짚어 내려간다.'), v.opening, jeonggok.line, jeonggok.ask]
+      : [nar('찻잔을 내려놓고 고개를 든다.'), '뭐가 궁금해서 오셨는가?']
+    setLog([{ who: 'ai', text: first[0], ...(isNar(first[0]) ? { narration: true as const } : {}) }])
     setQueue(first.slice(1))
     rumble('jolt')
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -444,14 +488,14 @@ export default function DosaChat({
       setTimeout(() => setCrit(false), 700)
       rumble('shake')
       setStage('menu')
-      say([...toMsgs(voiceOf(chef.id).hit), '그래서, 뭐가 궁금한가?'])
+      say([nar('입꼬리를 살짝 올린다.'), ...toMsgs(voiceOf(chef.id).hit), '그래서, 뭐가 궁금한가?'])
     } else {
       // 빗맞힘 = 사과가 아니라 **교체**(운영자 260726) — 맞은편 도사가 밀고 들어와 판을 받아 간다
       const next = counterpartChef(chef.id)
       setChef(next)
       onChef?.(next)
       setStage('menu')
-      say([bargeLineOf(next.id), ...toMsgs(voiceOf(next.id).miss), '그래서, 뭐가 궁금한가?'])
+      say([nar('자리를 물리자 다른 이가 판 앞에 앉는다.'), bargeLineOf(next.id), ...toMsgs(voiceOf(next.id).miss), '그래서, 뭐가 궁금한가?'])
     }
   }
 
@@ -471,6 +515,7 @@ export default function DosaChat({
     // 정제된 줄이 하나도 없으면 아는 척하지 않고 그렇게 말한다.
     const spoken = fallback.filter((l) => !l.raw).map((l) => l.text)
     say([
+      nar('붓을 들어 판 위에 한 획을 긋는다.'),
       ...(intro ? [intro] : []),
       ...(ready ?? (spoken.length ? spoken : ['이 대목은 아직 내가 제대로 풀어 둔 게 없군. 분석 탭의 근거를 직접 보게.'])),
     ])
@@ -547,7 +592,7 @@ export default function DosaChat({
       return
     }
     if (queue.length) {
-      setLog((l) => [...l, { who: 'ai', text: queue[0] }])
+      setLog((l) => [...l, { who: 'ai', text: queue[0], ...(isNar(queue[0]) ? { narration: true as const } : {}) }])
       setQueue((q) => q.slice(1))
       if (stage === 'play') readRef.current += 1
       return
@@ -583,6 +628,11 @@ export default function DosaChat({
         : stage === 'menu'
           ? TOPICS.map((t) => ({ key: t.key, label: t.label, seen: seen.has(t.key), onPick: () => selectTopic(t) }))
           : []
+
+  /** 감싸는 기운 색 — 원국이 바뀌지 않으면 다시 세지 않는다 */
+  const aura = useMemo(() => auraColors(pillars), [pillars])
+  const a0 = `color-mix(in srgb, ${aura[0]} 78%, transparent)`
+  const a1 = `color-mix(in srgb, ${aura[1] ?? aura[0]} 78%, transparent)`
 
   /** 다음 메시지가 남아 있나 — 진행 버튼을 띄울지 가른다 */
   const hasNext = !tw.done || queue.length > 0 || stage === 'play'
@@ -625,25 +675,87 @@ export default function DosaChat({
         {/* 배경이 보이는 구역 — 인물은 **배경 그 자체**라 여기엔 아무것도 안 세운다.
             화면 위쪽은 통째로 인물 몫이고, 원국만 그 좌상단에 얹힌다. */}
         <Box sx={{ position: 'relative', flex: '1 1 auto', minHeight: 0 }}>
-          {/* 원국 = 우측. 판·띠 없이 글자만 얹는다. ⚠ 위치는 **위쪽 구역의 아래끝**(인물 가슴께,
-              대화 바로 위) — 운영자 260727 스샷 주석으로 내려온 자리다. 얼굴을 비우고 신원과 짝을 이룬다.
-              낭독 대상에서는 뺀다 — 간지 8자를 그냥 읽으면 소음이다. */}
-          <Box aria-hidden sx={{ position: 'absolute', right: 14, bottom: 10, zIndex: 2 }}>
-            <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
-          </Box>
-          {/* 좌상단 신원 — 원국 맞은편(운영자 260727 예시 표기 그대로 · 좌측 정렬) */}
-          {who && (
-            <Box sx={{ position: 'absolute', left: 16, bottom: 10, zIndex: 2, maxWidth: '52%' }}>
-              {/* 사진 위에 바로 얹히는 글자 = 밝게 + 어두운 헤일로(예타 `.ymeter` 문법 계승).
-                  배경 밝기가 인물마다 달라 어느 쪽에서도 읽히게 하려면 헤일로가 필요하다. */}
-              <Typography sx={{ fontSize: 14, fontWeight: 800, color: 'var(--c-card)', lineHeight: 1.3, textShadow: '0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent)' }}>
-                {who.name}
-              </Typography>
-              <Typography sx={{ mt: 1, fontSize: 11.5, color: 'var(--c-card)', opacity: 0.9, lineHeight: 1.4, textShadow: '0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent)' }}>
-                {who.born}
-              </Typography>
+          {/* 신원 + 원국 = **한 유리 도형 안에 붙여서**(운영자 260727 "둘의 간격이 아주 멀어 거의
+              둘이 붙어있게 · 글래스로 그 두개를 감싸줘 도형으로"). 좌우 끝에 떨어뜨려 놓으니
+              두 개의 딴 물건으로 읽혔다 — 하나로 묶으면 「누구의 어떤 판인가」 한 덩어리가 된다.
+              표면은 말풍선과 같은 유리(검정 베이스 + blur) · 낭독 대상에서는 뺀다. */}
+          <Box
+            aria-hidden
+            sx={{
+              position: 'absolute',
+              right: 16, // 운영자 260727 — 도형 자체를 우측 정렬
+              bottom: 30,
+              zIndex: 2,
+              borderRadius: '14px',
+              p: '1px', // 테두리 두께 = 이 여백만큼만 기운 색이 드러난다
+              overflow: 'hidden',
+              isolation: 'isolate',
+            }}
+          >
+            {/* 기운 테두리 — 원국 오행이 섞인 원뿔 그라데이션이 **시계 반대**로 돈다.
+                흰색을 한 스톱 섞어 은은하게 디밍되고, 안쪽 유리 판이 가운데를 덮어 1px 링만 남는다. */}
+            <Box
+              className="msd-aura"
+              sx={{
+                position: 'absolute',
+                inset: '-60%',
+                // ⚠ **흰 스톱을 넣지 않는다** — 넣었더니 그게 두 번째 빛으로 읽혀 화면에서
+                // 「빛이 여러 개로 쪼개져 움직인다」로 보였다(운영자 260727). 기운 링은 **색 밭**이고,
+                // 도는 빛은 아래 `.msd-sheen` **하나뿐**이다.
+                // 색이 둘이면 양쪽에서 만나 부드럽게 섞이도록 4스톱으로 순환시킨다(경계선 0).
+                background:
+                  aura.length > 1
+                    ? `conic-gradient(from 0deg, ${a0} 0deg, ${a1} 120deg, ${a0} 240deg, ${a1} 300deg, ${a0} 360deg)`
+                    : `conic-gradient(from 0deg, ${a0} 0deg, color-mix(in srgb, ${aura[0]} 34%, transparent) 180deg, ${a0} 360deg)`,
+                // ⚠ **기운 링은 돌지 않는다.** 색 밭과 빛이 각각 다른 속도로 돌면 밝은 지점이 둘이 되어
+                // 「빛이 여러 개로 쪼개져 움직인다」가 된다(운영자 260727 실사용 지적).
+                // 기운은 그 사람의 판이라 제자리에 있는 게 맞고, 도는 건 아래 빛 **하나뿐**이다.
+                animation: 'msd-breathe 8s var(--ease) infinite',   // 운영자 260727 플레이그라운드 채택값
+              }}
+            />
+            {/* 겉 라인 빛 — 좁은 흰 호 하나가 링을 따라 돈다. 기운 링(16s reverse)과 **다른 속도·방향**
+                이라 둘이 스칠 때만 잠깐 밝아진다(같은 속도면 두 겹이 붙어 다녀 굵은 링이 된다). */}
+            <Box
+              className="msd-sheen"
+              sx={{
+                position: 'absolute',
+                inset: '-60%',
+                // 빛은 **하나**다. 가장자리를 여러 단으로 떨어뜨려(56→76→90→104→124) 점이 아니라
+                // 한 덩어리 glow로 읽히게 한다 — 딱 끊으면 조각처럼 보인다.
+                // 운영자 260727 플레이그라운드 채택값 — 흰색 100% · 호 폭 ±34deg.
+                // 가장자리는 폭의 절반 지점(±17deg)에서 한 단 떨어뜨려 한 덩어리 glow로 읽히게 한다.
+                background:
+                  'conic-gradient(from 0deg, transparent 0deg, transparent 56deg, color-mix(in srgb, var(--c-card) 22%, transparent) 73deg, var(--c-card) 90deg, color-mix(in srgb, var(--c-card) 22%, transparent) 107deg, transparent 124deg, transparent 360deg)',
+                // 반시계(운영자 지시) — 이 화면에서 도는 유일한 것이다.
+                animation: 'msd-orbit 5s linear infinite reverse',   // 운영자 260727 채택값
+              }}
+            />
+            <Box
+              sx={{
+                position: 'relative',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                p: '8px 12px',
+                borderRadius: '13px',
+                bgcolor: YG.bubbleBg,
+                backdropFilter: YG.blurBubble,
+                WebkitBackdropFilter: YG.blurBubble,
+              }}
+            >
+            {who && (
+              <Box>
+                <Typography sx={{ fontSize: 14, fontWeight: 800, color: YG.fg, lineHeight: 1.3, whiteSpace: 'nowrap' }}>
+                  {who.name}
+                </Typography>
+                <Typography sx={{ mt: 0.2, fontSize: 11.5, color: YG.fg2, opacity: 0.9, lineHeight: 1.35, whiteSpace: 'nowrap' }}>
+                  {who.born}
+                </Typography>
+              </Box>
+            )}
+              <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
             </Box>
-          )}
+          </Box>
         </Box>
 
         {/* ── 하단 묶음 = [블라인더] 위에 [대화 → 선택지 → 입력창] ──
@@ -684,8 +796,8 @@ export default function DosaChat({
             return (
               // ⚠ 타이핑 중인 말풍선은 낭독에서 뺀다 — 라이브 리전 안에서 28ms마다 글자가 갈리면
               // 스크린리더가 부분 문장을 초 36회 되읽는다(검토자 260726). 완성된 뒤에 읽힌다.
-              <Bubble key={i} who={m.who} aria-hidden={typing || undefined}>
-                {typing ? tw.shown : m.text}
+              <Bubble key={i} who={m.who} narration={m.narration} aria-hidden={typing || undefined}>
+                {isNar(typing ? tw.shown : m.text) ? narText(typing ? tw.shown : m.text) : typing ? tw.shown : m.text}
               </Bubble>
             )
           })}
