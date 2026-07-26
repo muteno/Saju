@@ -9,7 +9,7 @@ import { tokens } from '../theme'
 import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, chartSummaryOf } from '../data/dosaTopics'
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
-import { chefForGender, counterpartChef, BARGE_LINE } from '../data/chefs'
+import { chefForGender, counterpartChef, BARGE_LINE, voiceOf } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
 import type { Pillar } from '../data/saju'
 import type { ReportBundle } from '../engine'
@@ -19,9 +19,9 @@ import { useReducedMotion } from './Motion'
  * 미연시 상담 무대 — 위에서부터 [연식당 무대(간판·인물) → 원국(항상 펼침) → 글라스 선택지 → 대사 상자].
  *
  * 두 파도의 합류점(260726): ①VN 무대 문법(Q.41 — 원국 상시·관련 기둥 부상·연도 화법·덜컹 WAAPI)
- * ②연식당 세계관(병렬 128·130 — ShopStage 간판·배경 무드 · 도사 = 상담 상대 성별로 배정 ·
- * 정곡을 빗맞히면 맞은편 도사가 촤르륵 난입해 판을 받아 가는 교체 연출). 인물 플레이트가
- * 아직 없는 도사는 도트 캐릭터(PixelDosa)가 그 자리를 지킨다(표정·입모양 연출 유지).
+ * ②연식당 세계관(병렬 128·130·131 — ShopStage 간판·배경 무드 · 도사 = 상담 상대 성별로 배정 ·
+ * 화자별 보이스팩(voiceOf) · 정곡을 빗맞히면 맞은편 도사가 촤르륵 난입해 판을 받아 가는 교체 연출).
+ * 인물 플레이트가 없는 도사는 도트 캐릭터(PixelDosa)가 그 자리를 지킨다(표정·입모양 연출 유지).
  *
  * 연출 값 정본 = 머지된 플레이그라운드(public/reports/20260717_222938_dosa-talk-playground_v1.html):
  * 타이핑 28ms/자 · 본문 14.5px/1.62 · 선택지 gap·padding·radius · 누름 scale(0.98) · 的中 700ms.
@@ -73,6 +73,7 @@ async function fetchDosaText(
   topic: string,
   report: ReportBundle,
   lines: DosaLine[],
+  chefId: string,
   profileName?: string,
   timeoutMs = 5000,
 ): Promise<string | null> {
@@ -85,6 +86,7 @@ async function fetchDosaText(
       body: JSON.stringify({
         topic,
         model: dosaModel(), // 설정에서 고른 응답 모델(소넷5/오퍼스5 빠름 — data/prefs.ts)
+        chefId, // 무대에 선 화자 — 서버가 chefs.ts PERSONA를 시스템 프롬프트에 합성
         chartSummary: chartSummaryOf(report),
         grounds: lines.map((l) => ({ text: l.text, grounds: l.grounds ?? [] })),
         ...(profileName ? { profileName } : {}),
@@ -277,14 +279,14 @@ export default function DosaChat({
   const reduceMotion = useReducedMotion()
 
   /** 주제 응답을 캐시에서 얻거나 지금 발사(1회만) — 프리페치·실선택이 같은 경로를 쓴다.
-   *  키에 모델을 포함 = 설정에서 모델을 바꾼 직후 옛 모델 응답을 주지 않는다. */
+   *  키 = 모델:화자:주제 — 설정에서 모델을 바꾸거나 난입 교체로 화자가 바뀌면 새로 생성한다. */
   const ensureLlm = (topicKey2: string) => {
-    const key = `${dosaModel()}:${topicKey2}`
+    const key = `${dosaModel()}:${chef.id}:${topicKey2}`
     const hit = llmCache.current.get(key)
     if (hit) return hit
     const fallback = topicLines(report, topicKey2, hourUnknown)
     const entry: { promise: Promise<string | null>; text?: string | null } = {
-      promise: fetchDosaText(topicKey2, report, fallback, profileName, 20000).then((text) => {
+      promise: fetchDosaText(topicKey2, report, fallback, chef.id, profileName, 20000).then((text) => {
         entry.text = text
         return text
       }),
@@ -342,14 +344,16 @@ export default function DosaChat({
   // 미리 생성해 둔다(250ms 시차 = 동시 폭주 방지). 탭 시점엔 대개 이미 도착 = 즉답.
   useEffect(() => {
     if (phase !== 'choose') return
-    const timers = TOPICS.filter((t) => !llmCache.current.has(`${dosaModel()}:${t.key}`)).map((t, i) =>
+    const timers = TOPICS.filter((t) => !llmCache.current.has(`${dosaModel()}:${chef.id}:${t.key}`)).map((t, i) =>
       setTimeout(() => ensureLlm(t.key), i * 250),
     )
     return () => timers.forEach(clearTimeout)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase])
+  }, [phase, chef.id])
 
-  const openingText = jeonggok ? `잠깐 — 판을 보자마자 걸리는 게 하나 있군.\n\n${jeonggok.line}\n\n${jeonggok.ask}` : ''
+  // 오프닝 머리말은 화자 것(보이스팩) — 같은 단정도 알카사르가 하면 반말이고 홍화가 하면 하이 텐션이다.
+  // 끝은 「…때문에 왔지?」 훅(운영자 260726 — 메뉴판 대신 용건 단정).
+  const openingText = jeonggok ? `${voiceOf(chef.id).opening}\n\n${jeonggok.line}\n\n${jeonggok.ask}` : ''
   // 메뉴판 화법 금지(운영자 260726) — 첫 진입은 용건을 묻고, 한 바퀴 돈 뒤엔 다음 궁금증을 묻는다.
   // 정곡 문답을 이미 거쳤으면 초면 인사("오셨는가")를 되풀이하지 않는다(검토자 지적).
   const chooseText = seen.size ? '또 궁금한 것이 있는가?' : jeonggok ? '뭐가 궁금한가?' : '뭐가 궁금해서 오셨는가?'
@@ -369,19 +373,15 @@ export default function DosaChat({
       setTimeout(() => setCrit(false), 700)
       rumble('shake')
       setHop((h) => h + 1)
-      setVerdictText('그럴 줄 알았지. 판에 그려진 걸 그대가 살아냈을 뿐이야.\n\n자, 이제 제대로 보자.')
+      setVerdictText(voiceOf(chef.id).hit)
     } else {
       // 빗맞힘 = 사과가 아니라 **교체**다(운영자 260726 구술 · 병렬 128 정본) — 맞은편 도사가
       // 촤르륵 밀고 들어와 판을 받아 간다. 계산은 굽히지 않고 말하는 사람만 바뀐다.
       const next = counterpartChef(chef.id)
       setChef(next)
       setBarge(true)
-      setVerdictText(
-        `${BARGE_LINE[next.id]}\n\n` +
-          (jeonggok.layer === 'EVENT'
-            ? '그 시기 얘긴 접어두고. 흐름은 사람마다 다르게 오니까 — 다른 데부터 봅시다.'
-            : '계산은 분명 그렇게 나와 있소. 아직 그 기운을 안 쓰고 살았거나, 다르게 눌러 담았거나 — 이야기를 듣다 보면 알게 되지.'),
-      )
+      // 들어온 쪽의 난입 대사 + 그 화자의 리커버리 문안(계산은 안 굽히고 입만 바뀐다)
+      setVerdictText(`${BARGE_LINE[next.id]}\n\n${voiceOf(next.id).miss}`)
     }
     setPhase('verdict')
   }
@@ -508,8 +508,8 @@ export default function DosaChat({
           flexDirection: 'column',
         }}
       >
-        {/* 연식당 무대 — 간판·배경 무드·인물(성별 배정, 빗맞히면 맞은편이 난입 교체 = 병렬 128·130 정본).
-            인물 플레이트가 아직 없으면 도트 캐릭터가 그 자리를 지킨다(Q.41 표정 연출 유지) */}
+        {/* 연식당 무대 — 간판·배경 무드·인물(성별 배정, 빗맞히면 맞은편이 난입 교체 = 병렬 파도 정본).
+            인물 플레이트가 없으면 도트 캐릭터가 그 자리를 지킨다(Q.41 표정 연출 유지) */}
         <ShopStage
           chef={chef}
           enter={barge ? 'right' : 'none'}

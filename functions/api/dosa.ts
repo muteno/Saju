@@ -2,6 +2,9 @@
 // L4 도사 대화층 프록시(dosa-app/README.md): 키는 서버측 환경변수, 클라이언트 노출 금지.
 // LLM은 서술층일 뿐 — 미설정·실패 시 {fallback:true}를 돌려주고 클라이언트는 L3 조립 대사로 완결 동작한다.
 // @cloudflare/workers-types 미설치 — 전역 타입 import 없이 로컬 타입만 사용(런타임 전역 Request/Response/fetch).
+// 페르소나 단일 출처 = app/src/data/chefs.ts PERSONA(캐릭터 4인 말투 규칙 + 안전 경계) —
+// 여기서 복제하지 않고 import(Pages Functions는 esbuild 번들이라 functions/ 밖 상대 import 허용).
+import { PERSONA } from '../../app/src/data/chefs'
 
 interface Env {
   /** 레거시 API 키 경로 — OAuth 체인이 하나도 없을 때의 폴백 */
@@ -32,6 +35,8 @@ interface DosaRequest {
   profileName?: string
   /** 클라이언트 모델 선택(app/src/data/prefs.ts) — 화이트리스트 밖이면 기본값 */
   model?: string
+  /** 무대에 선 화자 id(chefs.ts CHEFS) — 미전송·미등록이면 중립 페르소나로 폴백 */
+  chefId?: string
 }
 
 interface AnthropicContentBlock {
@@ -67,11 +72,11 @@ const MAX_BODY_BYTES = 64 * 1024
 const MAX_GROUND_LINES = 40
 const MAX_GROUND_TEXT = 2000
 
-// 도사 페르소나 + L4 서술 표준 6원칙(사용자 확정 원문, dosa-app/README.md 2026-07-16) + 근거 밖 주장 금지.
-// 화자명 = '연리'(브랜드 확정 260721 — 앱측 정본은 app/src/data/chefs.ts HOST_NAME).
-const SYSTEM_PROMPT = `당신은 '연리' — 따뜻하고 담백한 존댓말을 쓰는 사주 도사입니다. 미연시풍 대화 화면에서 사용자의 사주를 풀이합니다.
+// 페르소나(화자별 말투 계약, chefs.ts PERSONA) + L4 서술 표준 6원칙(사용자 확정 원문,
+// dosa-app/README.md 2026-07-16) + 근거 밖 주장 금지. 화자 미지정·미등록이면 중립 페르소나.
+const NEUTRAL_PERSONA = `당신은 연식당의 사주 도사입니다. 따뜻하고 담백한 존댓말로, 미연시풍 대화 화면에서 사용자의 사주를 풀이합니다.`
 
-서술 표준 6원칙(반드시 지킬 것):
+const CORE_RULES = `서술 표준 6원칙(반드시 지킬 것):
 1. 일상어 풀이가 본문 — 전문용어는 비유·생활어로 번역 (예: 일지 = '나의 안방'). "일지 비견이라…"처럼 전문용어 나열로 문장을 시작하지 말 것 — 용어는 근거줄로
 2. 생활 장면으로 번역 — 언제, 어떤 상황에서, 어떻게 나타나는지
 3. 시기 구체화 — '유년'이 아니라 '2029년 기유년' (엔진이 환산). 시기는 나이("28세 무렵")가 아니라 연도("2021년 무렵")로 말할 것(만나이·세는나이 혼동 방지)
@@ -79,8 +84,17 @@ const SYSTEM_PROMPT = `당신은 '연리' — 따뜻하고 담백한 존댓말�
 5. 단락 끝에 ▸근거줄: 전문용어 + 출처(보드/문헌/엔진) 병기
 6. 단정 금지 — 경향 표현("~하기 쉽습니다", "패턴이 반복될 수 있습니다")
 
+6원칙과 캐릭터 말투가 부딪히면 **내용 규칙(근거 병기·경향 표현·대처 제시)이 우선**하고,
+어미·말끝만 캐릭터 말투를 따른다(예시 어미의 존댓말은 캐릭터에 맞게 바꿔도 된다).
+
 절대 규칙: 아래 '근거 자료' 밖의 주장은 절대 하지 마라. 근거에 없으면 "소장 문헌에 없다"고 말하라.
 답변은 2~4개 문단으로, 문단 사이는 빈 줄로 구분한다.`
+
+/** 화자 페르소나 + 공통 규칙 합성 — PERSONA에 안전 경계가 이미 박혀 있다(chefs.ts) */
+function systemPromptFor(chefId?: string): string {
+  const persona = (typeof chefId === 'string' && PERSONA[chefId]) || NEUTRAL_PERSONA
+  return `${persona}\n\n${CORE_RULES}`
+}
 
 function json(data: unknown, status = 200): Response {
   return Response.json(data, { status })
@@ -142,8 +156,9 @@ async function callOnce(
         max_tokens: 700,
         ...(modelCfg.speed ? { speed: modelCfg.speed } : {}),
         ...(modelCfg.effort ? { output_config: { effort: modelCfg.effort } } : {}),
-        // 시스템 = 안정 프리픽스 → 캐시 브레이크포인트(같은 세션 프리페치 5건이 프리픽스 공유)
-        system: [{ type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } }],
+        // 시스템 = 화자 페르소나(chefs.ts PERSONA) + 공통 규칙 — 안정 프리픽스라 캐시 브레이크포인트
+        // (같은 세션 프리페치 5건이 화자별 프리픽스 공유)
+        system: [{ type: 'text', text: systemPromptFor(body.chefId), cache_control: { type: 'ephemeral' } }],
         messages: [{ role: 'user', content: buildUserMessage(body) }],
       }),
     })
