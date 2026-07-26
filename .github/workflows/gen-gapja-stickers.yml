@@ -14,7 +14,7 @@ on:
         default: 'no'
         options: ['no', '대표1컷', '3컷']
       sheets:
-        description: '레퍼런스 첨부 시트 — faces=표정60 · poses=전신16 · bgs=테마배경12 · all=셋 다'
+        description: '레퍼런스 첨부 시트 — faces=표정60(10시트) · poses=전신12(2시트) · bgs=배경12(2시트) · all=셋 다'
         type: choice
         default: 'no'
         options: ['no', 'faces', 'poses', 'bgs', 'all']
@@ -23,6 +23,15 @@ on:
         type: choice
         default: 'all'
         options: ['all', 'noona', 'baekui', 'doryeong', 'dongja']
+      sheet_limit:
+        description: '시트 수 상한 — 파일럿은 1(캐릭터·모드당 1시트 = $0.25). 0=전량'
+        type: string
+        default: '0'
+      image_model:
+        description: '이미지 모델 — gpt-image-1(검증됨·input_fidelity high) / gpt-image-2(항상 고충실도·요청당 더 쌈, 미검증)'
+        type: choice
+        default: 'gpt-image-1'
+        options: ['gpt-image-1', 'gpt-image-2']
       shopbg:
         description: '연식당 무대 배경 1장 (assets/shop-bg.jpg · 이미 있으면 건너뜀)'
         type: choice
@@ -71,13 +80,16 @@ jobs:
           CUTS_ALL: ${{ inputs.chefs == '3컷' && '1' || '0' }}
         run: python .github/scripts/gen_chefs_gendered_v1.py
 
-      # 레퍼런스 첨부 시트(표정·장면) — chef-refs/{id}.png 가 있어야 돈다(없으면 스크립트가 명시 중단)
-      # 시트 3종 — faces(표정 60) · poses(전신 16) · bgs(테마 배경 12). all이면 순서대로 전부.
+      # 레퍼런스 첨부 시트(표정·장면·배경) — chef-refs/{id}.* 가 있어야 돈다(없으면 스크립트가 명시 중단)
+      # 시트 3종 — faces(표정 60 = 6칸 × 10시트) · poses(전신 12 = 2시트) · bgs(배경 12 = 2시트).
+      # 산출 경로는 chef-{id}-{tag}-v2 — 1차 런(v1, 260726 화풍 사고)은 대조군으로 남겨 둔다.
       - name: Generate 시트(표정·전신·배경)
         if: ${{ inputs.sheets != 'no' }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
           CHEFS: ${{ inputs.who }}
+          SHEETS: ${{ inputs.sheet_limit }}
+          MODEL: ${{ inputs.image_model }}
         run: |
           for m in faces poses bgs; do
             if [ "${{ inputs.sheets }}" = "all" ] || [ "${{ inputs.sheets }}" = "$m" ]; then
@@ -90,6 +102,7 @@ jobs:
         if: ${{ inputs.shopbg == 'yes' }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_NOMUTE }}
+          MODEL: ${{ inputs.image_model }}
         run: python .github/scripts/gen_shop_bg.py
 
       - name: Commit results to main
