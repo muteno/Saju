@@ -89,6 +89,17 @@ npm run build:kb      # kb 번들(app/public/kb-<hash>.json + vendor/kb_ref.json
 
 ## 결정 로그 (왜 — 뒤집으려면 사용자 승인)
 
+- **260726 자산 3축(운영자 확정) — "보존/삭제"가 아니라 "다시 만들 수 있나 · 얼마에"로 가른다.** 「이건 어디 넣지」가 안 생기는 유일한 축이다.
+  | 축 | 뜻 | 처리 | 해당(실측) |
+  |---|---|---|---|
+  | **A. 다시 못 만듦** | 잃으면 끝 | 무조건 커밋 | 증류 결과·시험은행(`kb/distilled`·`kb/exams`) · 규범 문서(CLAUDE.md·STATUS·README·docs) · 앱/엔진 코드 · 운영자가 직접 준 것 |
+  | **B. 재생성되나 비쌈** | 시간·돈·재수집 | 보존하되 **레포 밖 가능** | 유튜브 전사본 · 스크래핑 원본(docx 155·수집 json 54) · 캐릭터 이미지(≈$3.3) · KB 색인 3종 |
+  | **C. 공짜 재생성** | 스크립트가 만듦 | **레포에 둘 이유 없음** | `unit_bodies.json` · `dist/` · `kb-*.json` · `vendor/kb_ref.json` · `youtube-tools/raw/` |
+  - **C 정리는 이미 완료 상태**(위 5종 전부 `.gitignore` 등재 확인, 260726 실측). 남은 추적분 2건은 **뺄 수 없는 이유가 있어 유지**: ⓐ`vendor/*` = 빼면 `app/` 단독 빌드가 tsc 실패(바인딩이 명시한 경로) + verify 게이트2(드리프트 검사)의 검사 대상 소멸 ⓑ색인 3종(`unit_index`·`interaction_index`·`impression_index`) = **prebuild 체인에 생성 단계 없음**(`map_units.py`·`scan_interactions.py`·`scan_impressions.py` 별도 실행) → 빼면 fresh clone에서 verify 불가. **= C가 아니라 B다.**
+  - **B의 유일한 예외 = 답안지는 레포 밖**(블라인드 격리). 근거 = `/feed` SKILL.md §23. **실측 증명(260726)**: zip은 파일명을 압축 없이 저장해 **261개 영상 제목이 평문 바이트로 노출** → `grep`/`strings` 한 번에 답안지 목록이 나온다(본문은 압축돼 안 샘). 조치 = `노뮤트_전사본_*.zip`·`_압축본_백업/`·`*_자막/` **추적 해제 + gitignore**(삭제 아님 — 디스크·히스토리 유지). **복구** = `git show 0e266c1:'노뮤트_전사본_20260718.zip' > 노뮤트_전사본_20260718.zip`. 주입은 경로 인자로 무관하게 돈다(`ingest_transcript.py <경로>`).
+  - ⚠ **"저품질 구 전사본 삭제"는 조건 미충족 = 보류**: 자동자막 175편(멤버십 71 포함, 쿠키 런으로 회수)의 **재전사본이 아직 도착하지 않았다.** 지금 지우면 대체물 없이 소실 — 재전사본 도착 후 교체 삭제.
+  - ⚠ **레포는 public**(260726 확인). 위 조치는 격리(시험 신뢰도) 축이고, 공개 노출 자체는 운영자가 "그럴 필요 없다"고 판단한 별개 축.
+
 - **⚠260722 배포 구조(운영자 강제푸시 허용, ← Q.27) — 다음 세션 필독**: 프로덕션 = **Cloudflare Pages `saju02`**(도메인 `saju.soong.kr` = CNAME→saju02-7n8.pages.dev · `soong.kr` 루트는 별개 프로젝트 yeta). **프로덕션 브랜치 = `app-deploy`(main 아님!)** → `main` 머지분은 **Preview로만** 배포됨(main 브랜치 별칭 = `main.saju02-7n8.pages.dev` = 상시 최신 검수용). `app-deploy`엔 main에 없는 **이메일+비번 계정 시스템(Pages Functions + D1)** 커밋 5개 = 분기 → **함부로 강제푸시 금지**(파괴). 260722 운영자 허가로 main(18c8a14)→app-deploy 강제 동기화 = 명식당 프로덕션 라이브 확정. 구 app-deploy(계정 시스템) = **`backup/app-deploy-accounts-260722` 브랜치 보존**(복구 가능). **⚠미해결**: 프로덕션 브랜치가 여전히 app-deploy → 이후 main 머지는 프로덕션 자동반영 안 됨. **영구해법 = CF saju02 설정→프로덕션 브랜치를 `main`으로 변경(운영자 액션)** 또는 매 머지 후 `git push origin main:app-deploy`(하니스 가드 = 운영자 채팅 허가 필요).
 
 - **260721 명식당 셸(운영자 목업 핸드오프, ← Q.23)**: 앱 화면 정본 = **운영자 제작 목업 v2**(design_handoff_명식당_앱.zip — 글래스 2단 blur 26/11 · 컨트롤 규격 h52/r14/칩 h36/서클 44 · 도형 4종 · 코발트 CTA 화면당 1개). ①라이트 단일 테마(다크 모드 폐지 — mode.tsx 강제 light, 토글 UI 제거·다크 CSS는 휴면 보존) ②로그인 = 기기 로컬 입장 플래그(`msd-entered-v1` — 계정 서버는 로드맵, 프로필 보유 재방문자·공유 딥링크는 비게이트) ③기본캐 플레이트 = v3 cut4_consult 최적화 사본 `app/public/assets/chef-default.jpg`(정본 원본 = `/reports/dosa-male-v3/` · **셰프단 골격(← Q.24) = `app/src/data/chefs.ts` 레지스트리** — 플레이트 규약 `chef-<id>.jpg`·전환 = `ACTIVE_CHEF_ID` 한 줄·표정 컷 경로 등재, 셰프 추가 = 파일+한 줄) ④총운 점수·월운 차트 = 엔진 미지원이라 비노출(고정 목업 금지 원칙 우선 — 엔진 지원 시 개방) ⑤미구현 기능 = '준비 중' 정직 표기(거짓 액티브 금지). 홈 원국표는 '내 원국' 화면으로 이동(SajuTable compact — 전체 7행은 리포트 유지).
