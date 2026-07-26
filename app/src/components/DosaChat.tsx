@@ -134,7 +134,10 @@ function UnknownMini() {
  */
 function VnChart({ pillars, unknownHour, focus }: { pillars: Pillar[]; unknownHour?: boolean; focus: string[] }) {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mt: 1.5, px: 2.5 }}>
+    // 전역 배경 위에 뜨는 **유리 판**(운영자 260726 "그 위에 글래스모피즘으로 명식·대화창이 올라와야").
+    // 판 값은 `.glass` 계승 — 사진 위에서 blur가 실제로 일하므로 여기서 처음 유리다워진다.
+    <Box className="glass" sx={{ mx: 2.5, mt: 1.5, borderRadius: '14px', p: 1.25 }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
       {pillars.map((p) => {
         const on = focus.includes(p.title)
         const unknown = unknownHour && p.title === '시'
@@ -179,6 +182,7 @@ function VnChart({ pillars, unknownHour, focus }: { pillars: Pillar[]; unknownHo
           </Box>
         )
       })}
+    </Box>
     </Box>
   )
 }
@@ -273,6 +277,7 @@ export default function DosaChat({
   const topicRef = useRef<string | null>(null) // LLM 응답 도착 시 아직 같은 주제인지 검증
   const idxRef = useRef(0) // 인트로를 지나쳤으면 늦게 온 LLM 응답은 버림(대사 점프 방지)
   const stageRef = useRef<HTMLDivElement | null>(null) // 덜컹 연출 대상
+  const textRef = useRef<HTMLDivElement | null>(null) // 대사 본문 — 타이핑을 따라 아래로 흐른다
   // 선반응 캐시(운영자 260726 "다음 말 뉘앙스를 반쯤 생각") — 주제별 LLM 응답을 미리 받아 둔다.
   // 값: 진행 중 promise + 완료 시 text(성공 문자열/실패 null). 리포트가 바뀌면 통째로 리셋.
   const llmCache = useRef<Map<string, { promise: Promise<string | null>; text?: string | null }>>(new Map())
@@ -340,6 +345,7 @@ export default function DosaChat({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase])
 
+
   // 선반응 프리페치 — 선택지가 뜨는 순간(사용자가 읽고 고르는 동안) 미본 주제의 응답을
   // 미리 생성해 둔다(250ms 시차 = 동시 폭주 방지). 탭 시점엔 대개 이미 도착 = 즉답.
   useEffect(() => {
@@ -363,6 +369,12 @@ export default function DosaChat({
     phase === 'play' ? (line?.text ?? '') : phase === 'opening' ? openingText : phase === 'verdict' ? verdictText : chooseText,
     reduceMotion ? 0 : TYPE_MS,
   )
+
+  // 타이핑이 상한을 넘으면 마지막 줄을 따라 내려간다(상자는 안 자라고 글이 흐른다)
+  useEffect(() => {
+    const el = textRef.current
+    if (el) el.scrollTop = el.scrollHeight
+  }, [tw.shown])
 
   // 정곡 답 처리 — 的中은 크리티컬, 부정은 리커버리(계산은 안 굽히고, 시기 사건은 접는다 — 플레이그라운드 확정 문법)
   const onJeonggokAnswer = (hit: boolean) => {
@@ -508,44 +520,59 @@ export default function DosaChat({
           flexDirection: 'column',
         }}
       >
-        {/* 연식당 무대 — 간판·배경 무드·인물(성별 배정, 빗맞히면 맞은편이 난입 교체 = 병렬 파도 정본).
-            인물 플레이트가 없으면 도트 캐릭터가 그 자리를 지킨다(Q.41 표정 연출 유지) */}
-        <ShopStage
-          chef={chef}
-          enter={barge ? 'right' : 'none'}
-          height={200}
-          fallback={<PixelDosa mood={mood} talking={talking} hopKey={hop} width={112} />}
-        />
+        {/* 연식당 무대 — 인물만(성별 배정, 빗맞히면 맞은편이 난입 교체 = 병렬 파도 정본).
+            배경은 화면 전역(`StageBackdrop`)이 깔므로 `bare` — 무대 카드가 사라져 인물이 프레임에
+            직접 선다. 플레이트가 없으면 도트 캐릭터가 그 자리를 지킨다(Q.41 표정 연출 유지) */}
+        {/* 인물 — **흐름 밖 절대 레이어**. 유리 판(원국·선택지·대사)이 그 앞을 덮으며 깊이가 생긴다
+            (미연시 정석 = 인물은 무대에 붙박이, UI가 그 위로 흐른다). 흐름에서 빼야 인물이
+            세로 예산을 안 먹어 크게 설 수 있다 — 실측 260726: 흐름에 두면 176px가 한계였다. */}
+        <Box aria-hidden sx={{ position: 'absolute', left: 0, right: 0, top: 0, height: 268, pointerEvents: 'none', zIndex: 0 }}>
+          <ShopStage
+            chef={chef}
+            enter={barge ? 'right' : 'none'}
+            height={268}
+            bare
+            fallback={<PixelDosa mood={mood} talking={talking} hopKey={hop} width={112} />}
+          />
+        </Box>
 
-        {/* 원국 — 무대 아래 항상 펼침, 관련 기둥은 살짝 부상 */}
-        <VnChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
+        {/* 인물이 드러나는 빈 무대 — 유리 스택이 아래에서 올라오고, 남는 위쪽은 전부 인물 몫이다.
+            (실측 260726: 원국을 흐름 위쪽에 두면 판이 인물 얼굴을 정통으로 덮었다) */}
+        <Box sx={{ flex: 1, minHeight: 0 }} />
 
-        {/* 선택지 — 원국 아래 글라스(운영자: "사주 봐주는 사람 아래로 글라스 느낌으로 선택지") */}
-        {choices.length > 0 && (
-          <Box sx={{ px: 2.5, mt: 2, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {choices.map((c, i) => (
-              <VnChoice
-                key={c.key}
-                label={c.label}
-                seen={c.seen}
-                delay={i * 45}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  c.onPick()
-                }}
-              />
-            ))}
-          </Box>
-        )}
+        {/* 유리 스택 — 원국 → 선택지 → 대사. 전부 바닥 붙박이라 어느 국면에서도 안 잘린다
+            (미연시 관례: 텍스트 상자는 화면 바닥, 인물은 그 뒤에 선다).
+            바닥 그라데이션은 전역 배경(`StageBackdrop`) 스크림이 담당 — 여기서 또 깔면 사진이 죽는다. */}
+        <Box sx={{ position: 'relative', zIndex: 1, flex: '0 0 auto' }}>
+          {/* 원국 — 인물 아래 항상 펼침, 관련 기둥은 살짝 부상 */}
+          <VnChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
 
-        {/* 대화 — 그라데이션 바닥에서 피어오른다(운영자: "그 아래에 대화가 그라데이션으로") */}
+          {/* 선택지 — 원국 아래 글라스(운영자: "사주 봐주는 사람 아래로 글라스 느낌으로 선택지") */}
+          {choices.length > 0 && (
+            <Box sx={{ px: 2.5, mt: 1.5, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {choices.map((c, i) => (
+                <VnChoice
+                  key={c.key}
+                  label={c.label}
+                  seen={c.seen}
+                  delay={i * 45}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    c.onPick()
+                  }}
+                />
+              ))}
+            </Box>
+          )}
+        </Box>
+
         <Box
           sx={{
-            mt: 'auto',
-            pt: 5,
+            position: 'relative',
+            zIndex: 1,
+            flex: '0 0 auto', // 바닥 붙박이
+            pt: 1.5,
             pb: '76px', // 하단 알약 네비(bottom 14 + h52) 회피
-            background:
-              'linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--c-primary-soft) 55%, transparent) 30%, var(--c-primary-soft) 100%)',
           }}
         >
           <DialogueBox speaker={chef.name} next={(phase === 'play' || phase === 'verdict') && tw.done}>
@@ -569,8 +596,16 @@ export default function DosaChat({
                 </Box>
               </Box>
             )}
-            {/* 본문 — 14.5px / 1.62 (플레이그라운드 .line 정본) */}
-            <Box sx={{ fontSize: 14.5, lineHeight: 1.62, color: tokens.color.ink, whiteSpace: 'pre-line', minHeight: 66 }}>{tw.shown}</Box>
+            {/* 본문 — 14.5px / 1.62 (플레이그라운드 .line 정본).
+                maxHeight = **미연시 텍스트 상자 관례**: 상자 높이가 대사 길이를 따라 자라면 무대가
+                밀려 인물 얼굴이 유리에 잘린다(260726 실측 — 오프닝 3문단에서 턱까지 덮였다).
+                상한을 두고 타이핑을 따라 자동으로 아래로 흐르게 한다. */}
+            <Box
+              ref={textRef}
+              sx={{ fontSize: 14.5, lineHeight: 1.62, color: tokens.color.ink, whiteSpace: 'pre-line', minHeight: 66, maxHeight: 120, overflowY: 'auto' }}
+            >
+              {tw.shown}
+            </Box>
 
             {/* 정곡 근거 — 엔진 판정 명시(콜드리딩과 가르는 선) */}
             {(phase === 'opening' || phase === 'verdict') && tw.done && jeonggok && (

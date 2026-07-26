@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
 import MyeongShell from '../components/MyeongShell'
 import DosaChat from '../components/DosaChat'
+import StageBackdrop from '../components/StageBackdrop'
 import { tokens } from '../theme'
 import { HOST_NAME } from '../data/chefs'
 import { useReport } from '../data/useReport'
@@ -37,8 +38,12 @@ export default function Talk() {
 
   return (
     <MyeongShell active="talk" gate={false}>
+      {/* 전역 배경 — 프레임 전체(9:16)를 덮는다. 스크롤 컨테이너 **밖**에 두어야 대사를 따라
+          같이 흐르지 않고 무대처럼 고정된다(운영자 260726 "배경이 전역으로 깔려야된다"). */}
+      <StageBackdrop />
       {/* overflowX hidden — 덜컹(translateX)이 가로 스크롤 흔적을 만들지 않게 */}
-      <Box className="msd-fadein" sx={{ position: 'relative', flex: 1, minHeight: 0, overflowY: 'auto', overflowX: 'hidden', display: 'flex', flexDirection: 'column' }}>
+      {/* 스크롤은 무대 구역이 자체로 갖는다(DosaChat) — 여기서 또 스크롤하면 대사창 붙박이가 풀린다 */}
+      <Box className="msd-fadein" sx={{ position: 'relative', flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
         <Box sx={{ position: 'relative', px: 2.5 }}>
           <StatusBar />
           {/* 표제는 중앙 한 줄로 끝 — 제목+부제 2단은 그룹웨어 문법(운영자 260726 폐지) */}
