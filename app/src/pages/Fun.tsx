@@ -56,7 +56,7 @@ function ContentCard({ item }: { item: (typeof CONTENTS)[number] }) {
       role={ready ? 'button' : undefined}
       aria-disabled={ready ? undefined : true}
       sx={{
-        borderRadius: '18px',
+        borderRadius: '14px',
         p: 2,
         display: 'flex',
         alignItems: 'center',
@@ -92,7 +92,8 @@ export default function Fun() {
       <Box className="msd-fadein" sx={{ flex: 1, overflowY: 'auto' }}>
         <Box sx={{ px: 2.5, pb: '120px' }}>
           <StatusBar />
-          <Typography sx={{ mt: 7, fontSize: 25, fontWeight: 800, color: tokens.color.ink }}>사주 재미</Typography>
+          {/* 260726-b: 상단 햄버거 제거로 피할 크롬이 없다 → 7(=56px, 크롬 회피분)을 1.5로 되돌림 */}
+          <Typography sx={{ mt: 1.5, fontSize: 25, fontWeight: 800, color: tokens.color.ink }}>사주 재미</Typography>
           <Typography sx={{ fontSize: 13, color: tokens.color.inkSub, fontWeight: 600, mt: 0.5 }}>가볍게 즐기는 사주 콘텐츠 모음</Typography>
 
           {/* 검색바 — 콘텐츠 검색은 준비 중(시각 자리) */}
@@ -110,7 +111,7 @@ export default function Fun() {
 
           <SectionTitle>실시간 인기 메뉴</SectionTitle>
           {/* 섹션 전체가 미구현 = 카드 하나를 dim하고 배지 하나만 둔다(행마다 '준비 중'을 3번 반복하지 않는다) */}
-          <Box className="glass" sx={{ borderRadius: '18px', p: '6px 16px', opacity: 0.58 }} aria-disabled>
+          <Box className="glass" sx={{ borderRadius: '14px', p: '6px 16px', opacity: 0.58 }} aria-disabled>
             {RANKING.map((r, i) => (
               <Box key={r.no} sx={{ display: 'flex', alignItems: 'center', gap: 1.5, py: 1.4, borderBottom: i < RANKING.length - 1 ? '1px solid var(--line)' : 'none' }}>
                 <Typography sx={{ fontSize: 15, fontWeight: 800, color: tokens.color.primary, fontStyle: 'italic', width: 14 }}>{r.no}</Typography>
@@ -124,7 +125,7 @@ export default function Fun() {
           </Box>
 
           <SectionTitle>친구와 함께</SectionTitle>
-          <Box sx={{ borderRadius: '18px', p: 2, bgcolor: tokens.color.primarySoft, border: '1px solid rgba(34,64,158,.2)' }}>
+          <Box sx={{ borderRadius: '14px', p: 2, bgcolor: tokens.color.primarySoft, border: '1px solid rgba(34,64,158,.2)' }}>
             <Typography sx={{ fontSize: 14, fontWeight: 800, color: tokens.color.primary }}>궁합 리포트 공유하기</Typography>
             <Typography sx={{ fontSize: 12.5, color: tokens.color.inkSub, fontWeight: 600, mt: 0.4, lineHeight: 1.55 }}>
               친구의 생년월일만 알면 둘의 궁합 리포트를 만들어 보낼 수 있어요. (준비 중)

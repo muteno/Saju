@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
 import MyeongShell from '../components/MyeongShell'
 import CharacterStage from '../components/CharacterStage'
-import { ReportCard, DaeunRail, SectionTitle, GlassButton } from '../components/ReportParts'
+import { DaeunRail, SectionTitle, GlassButton } from '../components/ReportParts'
+import TopicAccordion from '../components/TopicAccordion'
 
 import { tokens } from '../theme'
 import { jeonggokRaw } from '../engine'
 import { HOST_NAME, hasChef } from '../data/chefs'
+import { buildTopicGroups } from '../data/analysisGroups'
 import { useReport, stepPath } from '../data/useReport'
 
 /**
@@ -17,6 +19,10 @@ import { useReport, stepPath } from '../data/useReport'
  * 여기서 근거를 다 본 사람이 상담(3단계)으로 간다.
  * 내용 = 리포트 전 섹션(구조판정·일주·십신·합충·신살·세운·에니어그램 보조지표) + 대운 레일.
  * 전엔 이게 /result 긴 스크롤의 뒷부분이었고, 이 화면은 요약 2섹션만 보여주는 중복 화면이었다.
+ *
+ * 260726 재편: 카드를 술사의 도구축 그대로 나열하던 것을 독자의 관심축(성향·관계·일·주의·올해)
+ * 아코디언으로 묶었다 — 주제를 누르면 그 주제의 근거(기존 ReportCard 원형)만 펼쳐진다.
+ * 매핑 = data/analysisGroups.ts(원문·출처 재배치 전용 · 남는 카드는 '그 밖의 근거'로 수렴).
  */
 export default function Analysis() {
   const nav = useNavigate()
@@ -56,7 +62,8 @@ export default function Analysis() {
         <CharacterStage>
           <StatusBar dark={hasChef()} />
           {hasChef() && <Box sx={{ flex: 1 }} />}
-          <Box sx={{ px: 2.5, pb: hasChef() ? 1.75 : 0, pt: hasChef() ? 0 : 6.5, textAlign: hasChef() ? 'center' : 'left' }}>
+          {/* 260726-b: 상단 햄버거 제거로 피할 크롬이 없다 → 6.5(=52px, 크롬 회피분)를 1.5로 되돌림 */}
+          <Box sx={{ px: 2.5, pb: hasChef() ? 1.75 : 0, pt: hasChef() ? 0 : 1.5, textAlign: hasChef() ? 'center' : 'left' }}>
             <Typography sx={{ fontSize: 22, fontWeight: 800, color: tokens.color.ink }}>
               {resolved.name ? `${resolved.name}님의 사주 분석` : '사주 분석'}
             </Typography>
@@ -67,9 +74,9 @@ export default function Analysis() {
         </CharacterStage>
 
         <Box sx={{ px: 2.5, pb: '120px' }}>
-          {/* 근거 리포트 전 섹션 — 인트로에서 본 원국이 '무엇을 뜻하는가' */}
-          {reading.cards.map((card) => (
-            <ReportCard key={card.id} card={card} onFillHour={card.id === 'hour-unknown' ? () => nav('/input') : undefined} />
+          {/* 근거 리포트 — 독자 관심축 주제 아코디언(접힘 기본 · 누르면 그 주제의 근거만) */}
+          {buildTopicGroups(reading).map((group) => (
+            <TopicAccordion key={group.id} group={group} onFillHour={() => nav('/input')} />
           ))}
 
           {!resolved.hourUnknown && (

@@ -43,8 +43,8 @@ export default function Talk() {
       <Box className="msd-fadein" sx={{ flex: 1, minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
         <Box sx={{ px: 2.5 }}>
           <StatusBar />
-          {/* 제목은 상주 크롬(top 50 + h44) 아래에서 시작 — 다른 셸 화면과 같은 여백 리듬 */}
-          <Typography sx={{ mt: 6.5, fontSize: 22, fontWeight: 800, color: tokens.color.ink }}>{HOST_NAME}와 상담하기</Typography>
+          {/* 260726-b: 상단 햄버거가 사라져 피할 크롬이 없다 → 6.5(=52px)를 1.5로 되돌림 */}
+          <Typography sx={{ mt: 1.5, fontSize: 22, fontWeight: 800, color: tokens.color.ink }}>{HOST_NAME}와 상담하기</Typography>
           <Typography sx={{ fontSize: 12.5, fontWeight: 600, color: tokens.color.inkSub, mt: 0.4 }}>
             {resolved.name ? `${resolved.name}님의 판을 보고 이야기해요` : '판을 보고 이야기해요'}
           </Typography>

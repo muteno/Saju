@@ -63,10 +63,11 @@ export default function Settings() {
       <Box className="msd-fadein" sx={{ flex: 1, overflowY: 'auto' }}>
         <Box sx={{ px: 2.5, pb: '120px' }}>
           <StatusBar />
-          <Typography sx={{ mt: 7, fontSize: 25, fontWeight: 800, color: tokens.color.ink }}>내 설정</Typography>
+          {/* 260726-b: 상단 햄버거 제거로 피할 크롬이 없다 → 7(=56px, 크롬 회피분)을 1.5로 되돌림 */}
+          <Typography sx={{ mt: 1.5, fontSize: 25, fontWeight: 800, color: tokens.color.ink }}>내 설정</Typography>
 
           {/* 프로필 카드 */}
-          <Box className="glass" sx={{ mt: 2, borderRadius: '18px', p: 2, display: 'flex', alignItems: 'center', gap: 1.5 }}>
+          <Box className="glass" sx={{ mt: 2, borderRadius: '14px', p: 2, display: 'flex', alignItems: 'center', gap: 1.5 }}>
             <Box sx={{ width: 52, height: 52, borderRadius: '50%', bgcolor: tokens.color.primary, color: tokens.color.onPrimary, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, fontWeight: 800, flex: '0 0 auto' }}>
               {profile?.name?.[0] ?? '명'}
             </Box>

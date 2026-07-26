@@ -113,7 +113,7 @@ export default function SajuTable({
     <Box
       className="glass"
       sx={{
-        borderRadius: '18px',
+        borderRadius: '14px',
         p: 1.5,
         display: 'inline-block',
       }}
