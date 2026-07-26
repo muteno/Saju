@@ -111,34 +111,72 @@ async function fetchDosaText(
   }
 }
 
-/** 문단 분해 — 한 문단 = 한 말풍선(운영자 "메세지 하나당 하나씩") */
-const toMsgs = (text: string): string[] =>
-  text
-    .split(/\n{2,}/)
-    .map((s) => s.trim())
-    .filter(Boolean)
+/**
+ * 말풍선 분해 — 운영자 "메세지 하나당 하나씩".
+ *
+ * ⚠ 문단(`\n{2,}`)으로만 자르면 **통짜 한 통**이 된다(검토자 260726 실측: LLM·L3 대사엔 빈 줄이
+ * 거의 없어 두 문장이 한 말풍선에 들어갔다 — 운영자가 고치라고 한 게 정확히 그 "통으로"였다).
+ * 그래서 문단을 먼저 자르고, 문장 경계(`.` `?` `!` `…`)로 한 번 더 쪼갠다.
+ * 다만 **한 통 최대 2문장**으로 묶는다 — 한 문장씩 다 끊으면 짧은 토막이 우수수 쏟아져
+ * 탭을 그만큼 더 해야 한다(메신저가 아니라 자막이 된다).
+ */
+const MAX_SENT = 2
+const toMsgs = (text: string): string[] => {
+  const out: string[] = []
+  for (const para of text.split(/\n{2,}/)) {
+    const body = para.trim()
+    if (!body) continue
+    // 문장 끝 부호 + 공백을 경계로 자른다(부호는 앞 문장에 남긴다)
+    const sents = body.split(/(?<=[.?!…])\s+/).filter(Boolean)
+    for (let i = 0; i < sents.length; i += MAX_SENT) out.push(sents.slice(i, i + MAX_SENT).join(' '))
+  }
+  return out
+}
 
 /** 말풍선 — 캐릭터(좌·글래스) / 나(우·강조색). 이름표 없음(무대의 인물이 화자다) */
-function Bubble({ who, children }: { who: 'ai' | 'me'; children: ReactNode }) {
+function Bubble({
+  who,
+  children,
+  'aria-hidden': ariaHidden,
+}: {
+  who: 'ai' | 'me'
+  children: ReactNode
+  'aria-hidden'?: true
+}) {
   const me = who === 'me'
   return (
     <Box
-      className={me ? 'msd-popin' : 'glass msd-popin'}
+      className="msd-popin"
       sx={{
         alignSelf: me ? 'flex-end' : 'flex-start',
         maxWidth: '82%',
         p: '10px 13px',
-        borderRadius: '16px',
+        borderRadius: '14px',
         ...(me
           ? { borderTopRightRadius: '6px', bgcolor: tokens.color.primary, color: tokens.color.onPrimary }
-          : { borderTopLeftRadius: '6px', color: tokens.color.ink }),
+          : {
+              borderTopLeftRadius: '6px',
+              color: tokens.color.ink,
+              // 유리 **표면값만** 계승하고 blur는 안 건다 — 말풍선은 대화가 길어질수록 늘어나므로
+              // 각자 backdrop-filter를 들면 한 화면에 유리 층이 열 장 넘게 쌓인다(검토자 260726).
+              // VnChoice가 같은 이유로 이미 blur를 뺐다. blur는 미니명식·네비 두 장으로 상한.
+              bgcolor: 'var(--glass)',
+              border: '1px solid var(--glass-line)',
+              boxShadow: 'inset 0 1px 0 var(--glass-inset)',
+            }),
         fontSize: 14.5,
         lineHeight: 1.62,
         letterSpacing: 'var(--tracking)',
         whiteSpace: 'pre-line',
         wordBreak: 'break-word',
       }}
+      aria-hidden={ariaHidden}
     >
+      {/* 화자 표지는 **낭독 전용** — 화면엔 이름표를 안 띄운다(운영자 "이름은 제외")지만,
+          좌/우 정렬은 스크린리더에 전달되지 않아 도사 말과 내 답이 한 줄기로 섞여 읽힌다. */}
+      <Box component="span" sx={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
+        {me ? '나: ' : '도사: '}
+      </Box>
       {children}
     </Box>
   )
@@ -307,10 +345,16 @@ export default function DosaChat({
   const tw = useTypewriter(typing, reduceMotion ? 0 : TYPE_MS)
   const idle = tw.done && queue.length === 0 // 말이 끝났고 남은 메시지도 없다 = 내 차례
 
-  // 새 말풍선·타이핑을 따라 로그가 아래로 흐른다(메신저 관례)
+  /**
+   * 새 말풍선을 따라 로그가 아래로 흐른다(메신저 관례).
+   * ⚠ **이미 바닥 근처일 때만** 따라간다 — 무조건 끌어내리면 사용자가 앞 대화를 되읽으려 올린 순간
+   * 타이핑이 28ms마다 바닥으로 도로 끌어내린다(검토자 260726 · 되읽기 불가 + 매 틱 강제 리플로우).
+   * 진짜 메신저가 하는 것과 같다 — 위를 보고 있으면 따라가지 않는다.
+   */
   useEffect(() => {
     const el = logRef.current
-    if (el) el.scrollTop = el.scrollHeight
+    if (!el) return
+    if (el.scrollHeight - el.scrollTop - el.clientHeight < 60) el.scrollTop = el.scrollHeight
   }, [log, tw.shown, stage])
 
   /**
@@ -478,8 +522,10 @@ export default function DosaChat({
             pointerEvents: 'none',
             fontSize: 60,
             fontWeight: 900,
-            color: '#b0402b',
-            textShadow: '0 2px 18px rgba(176,64,43,0.35)',
+            // 창작색이던 것을 토큰 계승으로 되돌린다(제1핵심명령 ① 가장 가까운 토큰 자동 계승).
+            // 그림자는 같은 토큰에서 color-mix로 파생 — 신규 색 0.
+            color: 'var(--oh-label-hwa)',
+            textShadow: '0 2px 18px color-mix(in srgb, var(--oh-label-hwa) 35%, transparent)',
             animation: 'critIn .7s var(--ease) both',
             '@keyframes critIn': {
               '0%': { transform: 'scale(1.8)', opacity: 0 },
@@ -507,7 +553,11 @@ export default function DosaChat({
 
         {/* 미니 명식 — 좌측 상단 표식(운영자: 사용자는 사실 볼 필요 없게) */}
         <Box sx={{ position: 'relative', zIndex: 1, px: 2, pt: 0.5 }}>
-          <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
+          {/* 운영자 "사용자는 사실 볼 필요 없게" — 낭독 대상에서도 뺀다(간지 8자를 그냥 읽으면 소음).
+              근거가 필요한 사람에겐 분석 탭이 따로 있다. */}
+          <Box aria-hidden>
+            <MiniChart pillars={pillars} unknownHour={hourUnknown} focus={focus} />
+          </Box>
         </Box>
 
         {/* 대화 로그 — 위에서 아래로 쌓이고, 넘치면 아래로 흐른다 */}
@@ -527,14 +577,22 @@ export default function DosaChat({
             pt: 1.5,
             display: 'flex',
             flexDirection: 'column',
+            // 시간순은 그대로 두되 **짧을 때만 아래에 붙는다** — 상단 정렬이면 초반 화면 중앙이
+            // 300px 넘게 비어 대화가 화면과 분리돼 보인다(검토자 260726). 메신저는 하단 앵커다.
+            justifyContent: 'flex-end',
             gap: '8px',
           }}
         >
-          {log.map((m, i) => (
-            <Bubble key={i} who={m.who}>
-              {i === log.length - 1 && m.who === 'ai' ? tw.shown : m.text}
-            </Bubble>
-          ))}
+          {log.map((m, i) => {
+            const typing = i === log.length - 1 && m.who === 'ai' && !tw.done
+            return (
+              // ⚠ 타이핑 중인 말풍선은 낭독에서 뺀다 — 라이브 리전 안에서 28ms마다 글자가 갈리면
+              // 스크린리더가 부분 문장을 초 36회 되읽는다(검토자 260726). 완성된 뒤에 읽힌다.
+              <Bubble key={i} who={m.who} aria-hidden={typing || undefined}>
+                {typing ? tw.shown : m.text}
+              </Bubble>
+            )
+          })}
           {/* 아직 할 말이 남았다 = 다음 메시지 대기(탭하면 온다) */}
           {tw.done && queue.length > 0 && (
             <Box aria-hidden sx={{ alignSelf: 'flex-start', color: tokens.color.inkFaint, display: 'flex', animation: 'bob 1.1s ease-in-out infinite', '@keyframes bob': { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(3px)' } } }}>

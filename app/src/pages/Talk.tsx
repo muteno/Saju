@@ -44,10 +44,30 @@ export default function Talk() {
       {/* overflowX hidden — 덜컹(translateX)이 가로 스크롤 흔적을 만들지 않게 */}
       {/* 스크롤은 무대 구역이 자체로 갖는다(DosaChat) — 여기서 또 스크롤하면 대사창 붙박이가 풀린다 */}
       <Box className="msd-fadein" sx={{ position: 'relative', flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ position: 'relative', px: 2.5 }}>
+        {/* ⚠ 여기에 px를 걸면 StatusBar가 자체 px를 또 먹어 시계만 24px 안쪽으로 밀린다
+            (검토자 260726 실측 x=40 · 명식·말풍선·선택지는 전부 x=16). 좌측 레일을 하나로 둔다. */}
+        <Box sx={{ position: 'relative' }}>
           <StatusBar />
+          {/* 표제 뒤 얇은 스크림 — 전역 배경이 사진이라 표제가 맨살로 앉으면 어두운 처마 위에서
+              대비가 1.87:1까지 떨어진다(검토자 260726 실측 · WCAG AA 4.5:1 미달).
+              색은 `--c-page` color-mix 파생이라 신규 색 0. */}
+          <Box
+            aria-hidden
+            sx={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: -8,
+              pointerEvents: 'none',
+              background:
+                'linear-gradient(180deg, color-mix(in srgb, var(--c-page) 86%, transparent) 0%, color-mix(in srgb, var(--c-page) 62%, transparent) 62%, transparent 100%)',
+            }}
+          />
           {/* 표제는 중앙 한 줄로 끝 — 제목+부제 2단은 그룹웨어 문법(운영자 260726 폐지) */}
-          <Typography sx={{ mt: 0.5, textAlign: 'center', fontSize: 14.5, fontWeight: 700, color: tokens.color.ink, opacity: 0.82 }}>
+          <Typography
+            sx={{ position: 'relative', mt: 0.5, textAlign: 'center', fontSize: 14.5, fontWeight: 700, color: tokens.color.ink, opacity: 0.82 }}
+          >
             당신의 사주팔자를 들여다봅니다
           </Typography>
         </Box>
