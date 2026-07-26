@@ -1,0 +1,268 @@
+<meta charset="utf-8" />
+<title>유리 투명도·블러 플레이그라운드 — 260727</title>
+<style>
+  :root {
+    --c-page: #eef0f6;
+    --c-card: #ffffff;
+    --c-ink: #1b1b1f;
+    --c-ink-sub: #5b6070;
+    --c-primary: #22409e;
+    --glass-line: rgba(255, 255, 255, 0.8);
+    --glass-inset: rgba(255, 255, 255, 0.75);
+    --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+    --tracking: -0.03em;
+
+    /* ── 만지는 값(축) ── */
+    --fill: 38%;      /* A 채움 */
+    --blur: 29px;     /* B 블러 */
+    --sat: 1.1;       /* C 채도 */
+    --line: 1px;      /* D 테두리 */
+    --dim: 0%;        /* E 배경 딤 */
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #16171f;
+    color: #e8e9ee;
+    font: 500 14px/1.6 Paperlogy, Pretendard, -apple-system, 'Apple SD Gothic Neo', system-ui, sans-serif;
+    letter-spacing: var(--tracking);
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+  /* PC = 좌 미리보기 / 우 컨트롤 · 모바일 = 상 미리보기 / 하 컨트롤 */
+  @media (min-width: 900px) { body { flex-direction: row; } }
+
+  .stage-wrap {
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px;
+    position: sticky;
+    top: 0;
+    background: #16171f;
+    z-index: 2;
+  }
+  @media (min-width: 900px) { .stage-wrap { height: 100dvh; align-items: center; } }
+
+  /* 390×844 프레임 = 앱 실제 규격 */
+  .frame {
+    position: relative;
+    width: 390px;
+    height: 844px;
+    border-radius: 34px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    transform-origin: top center;
+  }
+  @media (max-height: 900px) { .frame { transform: scale(0.62); margin-bottom: -320px; } }
+  @media (min-width: 900px) and (max-height: 900px) { .frame { transform: scale(0.72); margin-bottom: 0; } }
+
+  .bg { position: absolute; inset: 0; }
+  .bg img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(0.9) brightness(1.04); }
+  .bg .dim { position: absolute; inset: 0; background: color-mix(in srgb, var(--c-ink) var(--dim), transparent); }
+
+  .halo { text-shadow: 0 1px 3px color-mix(in srgb, var(--c-ink) 88%, transparent), 0 0 10px color-mix(in srgb, var(--c-ink) 62%, transparent); }
+
+  /* 상단 nav = 예타 .yeta-h 이식본 */
+  .head {
+    position: absolute; left: 10px; right: 10px; top: 46px; z-index: 3;
+    display: flex; align-items: center; gap: 8px; padding: 7px 9px; border-radius: 999px;
+    background: color-mix(in srgb, var(--c-card) var(--fill), transparent);
+    border: var(--line) solid var(--glass-line);
+    backdrop-filter: blur(var(--blur)) saturate(var(--sat));
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(var(--sat));
+    box-shadow: inset 0 1px 0 var(--glass-inset), 0 10px 30px rgba(0, 0, 0, 0.18);
+    color: var(--c-ink);
+  }
+  .head .ava { width: 32px; height: 32px; border-radius: 50%; background: url(/assets/chef-doryeong-full.webp) center 18%/cover; border: 1px solid var(--glass-line); flex: none; }
+  .head b { font-size: 15px; font-weight: 800; white-space: nowrap; }
+  .head .tag { font-size: 11px; color: var(--c-ink-sub); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; min-width: 0; }
+  .head .ico { width: 32px; height: 32px; display: grid; place-items: center; color: var(--c-ink-sub); flex: none; }
+  .meter { position: absolute; left: 0; right: 0; top: 96px; z-index: 3; text-align: center; font-size: 11px; font-style: italic; color: var(--c-card); opacity: 0.86; }
+
+  .who { position: absolute; left: 16px; top: 118px; z-index: 2; color: var(--c-card); }
+  .who .nm { font-size: 14px; font-weight: 800; }
+  .who .bo { margin-top: 8px; font-size: 11.5px; opacity: 0.9; }
+  .chart { position: absolute; right: 14px; top: 118px; z-index: 2; display: inline-flex; gap: 4px; }
+  .chart .col { display: flex; flex-direction: column; gap: 3px; }
+  .chart i { width: 20px; height: 20px; border-radius: 6px; display: grid; place-items: center; font-size: 12px; font-weight: 800; font-style: normal; }
+
+  /* 말풍선 = 조절 대상 */
+  .log { position: absolute; left: 0; right: 0; top: 446px; bottom: 78px; padding: 0 16px; display: flex; flex-direction: column; justify-content: flex-start; gap: 8px; overflow: hidden; }
+  .b {
+    max-width: 82%; padding: 10px 13px; border-radius: 14px; font-size: 14.5px; line-height: 1.62; color: var(--c-ink);
+    background: color-mix(in srgb, var(--c-card) var(--fill), transparent);
+    border: var(--line) solid var(--glass-line);
+    backdrop-filter: blur(var(--blur)) saturate(var(--sat));
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(var(--sat));
+    box-shadow: inset 0 1px 0 var(--glass-inset);
+    border-top-left-radius: 6px; align-self: flex-start;
+  }
+  .b.me { align-self: flex-end; background: var(--c-primary); color: #fff; border: none; backdrop-filter: none; -webkit-backdrop-filter: none; border-top-left-radius: 14px; border-top-right-radius: 6px; box-shadow: none; }
+
+  .in {
+    position: absolute; left: 10px; right: 10px; bottom: 12px; z-index: 4;
+    display: flex; align-items: center; gap: 4px; padding: 5px 6px; border-radius: 999px;
+    background: color-mix(in srgb, var(--c-card) var(--fill), transparent);
+    border: var(--line) solid var(--glass-line);
+    backdrop-filter: blur(var(--blur)) saturate(var(--sat));
+    -webkit-backdrop-filter: blur(var(--blur)) saturate(var(--sat));
+    box-shadow: inset 0 1px 0 var(--glass-inset), 0 10px 30px rgba(0, 0, 0, 0.18);
+    color: var(--c-ink-sub);
+  }
+  .in .dock { display: flex; gap: 2px; }
+  .in .dock i { width: 34px; height: 44px; display: grid; place-items: center; font-style: normal; opacity: 0.75; }
+  .in .ph { flex: 1; padding: 0 4px; font-size: 14.5px; opacity: 0.6; }
+  .in .send { width: 44px; height: 44px; display: grid; place-items: center; color: var(--c-primary); }
+
+  /* ── 컨트롤 ── */
+  .ctl { flex: 1; min-width: 0; padding: 18px 20px 80px; overflow-y: auto; }
+  @media (min-width: 900px) { .ctl { height: 100dvh; } }
+  h1 { font-size: 17px; margin: 0 0 4px; }
+  .sub { font-size: 12px; color: #9aa0b0; margin: 0 0 18px; line-height: 1.7; }
+  .axis { margin-bottom: 22px; }
+  .axis h2 { font-size: 13px; margin: 0 0 2px; color: #cfd3e0; }
+  .axis .why { font-size: 11.5px; color: #868da0; margin: 0 0 8px; line-height: 1.6; }
+  .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .opts button {
+    font: inherit; font-size: 12px; font-weight: 700; padding: 7px 11px; min-height: 34px; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14); color: #e8e9ee; cursor: pointer;
+    transition: transform 0.12s var(--ease), border-color 0.15s;
+  }
+  .opts button:hover { border-color: rgba(255, 255, 255, 0.4); }
+  .opts button:active { transform: scale(0.95); }
+  .opts button[aria-pressed='true'] { background: #22409e; border-color: #22409e; color: #fff; }
+  .opts button .now { font-size: 9px; opacity: 0.75; margin-left: 4px; }
+  .out { position: sticky; bottom: 0; margin-top: 24px; padding: 12px 14px; border-radius: 12px; background: #10111a; border: 1px solid rgba(255, 255, 255, 0.12); }
+  .out div { font-size: 11px; color: #9aa0b0; margin-bottom: 6px; }
+  .out code { font-size: 12px; color: #b9f0c8; word-break: break-all; line-height: 1.7; }
+</style>
+
+<div class="stage-wrap">
+  <div class="frame">
+    <div class="bg">
+      <img src="/assets/chef-doryeong-full.webp" alt="" />
+      <div class="dim"></div>
+    </div>
+    <div class="head">
+      <span class="ico">‹</span>
+      <span class="ava"></span>
+      <b>알카사르</b>
+      <span class="tag">계해년 계해월 신유일 정유시의 극음 사주</span>
+      <span class="ico">◍</span>
+    </div>
+    <div class="meter halo">당신의 사주를 봅니다</div>
+    <div class="who halo">
+      <div class="nm">황세웅(초록토끼)</div>
+      <div class="bo">1993. 11. 30. 진시.</div>
+    </div>
+    <div class="chart">
+      <span class="col"><i style="background: #e8f0e4; color: #4e6b46">庚</i><i style="background: #f7efd9; color: #7a6633">辰</i></span>
+      <span class="col"><i style="background: #e8f0e4; color: #4e6b46">乙</i><i style="background: #e8f0e4; color: #4e6b46">卯</i></span>
+      <span class="col"><i style="background: #e3edf7; color: #3d5c7a">癸</i><i style="background: #e3edf7; color: #3d5c7a">亥</i></span>
+      <span class="col"><i style="background: #e3edf7; color: #3d5c7a">癸</i><i style="background: #f0f0f2; color: #666a75">酉</i></span>
+    </div>
+    <div class="log">
+      <div class="b">됐고, 생년월일 대봐. …하, 판 꼬라지 하고는. 하나 걸리는 게 있어.</div>
+      <div class="b">2021년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어.</div>
+      <div class="b me">그… 맞아</div>
+      <div class="b">쯧. 그럴 줄 알았지.</div>
+    </div>
+    <div class="in">
+      <span class="dock"><i>▤</i><i>◑</i><i>♡</i><i>◔</i></span>
+      <span class="ph">메시지</span>
+      <span class="send">➤</span>
+    </div>
+  </div>
+</div>
+
+<div class="ctl">
+  <h1>유리 투명도·블러 플레이그라운드</h1>
+  <p class="sub">
+    운영자 260727 «더 투명해야하고 블러를 높여야해». 미리보기는 <b>앱 실물과 같은 390×844</b>이고
+    말풍선·상단 알약·입력행이 <b>같은 축을 공유</b>한다(코드와 동일). 축을 누르면 즉시 반영되고,
+    맨 아래에 <b>코드에 넣을 값</b>이 나온다. <span style="color: #b9f0c8">현재</span> = 지금 코드에 들어간 값.
+  </p>
+
+  <div class="axis" data-var="--fill">
+    <h2>A. 채움(알파)</h2>
+    <p class="why">유리에 깐 흰색 양. 예타는 <b>0%</b>(순수 블러)다. 우리는 잉크가 검정이라 0이면 어두운 인물 위에서 안 읽힌다 — 읽히는 최소치를 찾는 축.</p>
+    <div class="opts"></div>
+  </div>
+
+  <div class="axis" data-var="--blur">
+    <h2>B. 블러</h2>
+    <p class="why">배경을 뭉개는 정도. 값이 클수록 뒤가 '녹아' 글자가 뜬다. 예타 <code style="color:#b9f0c8">--blur-m = 29px</code>.</p>
+    <div class="opts"></div>
+  </div>
+
+  <div class="axis" data-var="--sat">
+    <h2>C. 채도</h2>
+    <p class="why">유리 너머 색을 살릴지 뺄지. 1 초과면 뒤 색이 진해져 유리가 '색유리'가 된다.</p>
+    <div class="opts"></div>
+  </div>
+
+  <div class="axis" data-var="--line">
+    <h2>D. 테두리</h2>
+    <p class="why">유리의 모서리를 잡아 주는 1px 라인. 0이면 경계가 사라져 더 녹지만 형태가 흐려진다.</p>
+    <div class="opts"></div>
+  </div>
+
+  <div class="axis" data-var="--dim">
+    <h2>E. 배경 딤</h2>
+    <p class="why">인물 컷 전체를 얼마나 눌러 깔지. 유리를 투명하게 갈수록 이 값이 가독을 대신 받쳐 준다.</p>
+    <div class="opts"></div>
+  </div>
+
+  <div class="out">
+    <div>코드에 넣을 값 — <code>DosaChat.tsx</code> 말풍선/선택지, <code>Talk.tsx</code> 상단 알약, 입력행</div>
+    <code id="out"></code>
+  </div>
+</div>
+
+<script>
+  const AXES = {
+    '--fill': { now: '38%', opts: ['0%', '6%', '12%', '18%', '24%', '30%', '38%', '46%', '55%', '70%'] },
+    '--blur': { now: '29px', opts: ['6px', '11px', '16px', '22px', '29px', '36px', '44px', '54px', '66px', '80px'] },
+    '--sat': { now: '1.1', opts: ['0.6', '0.8', '0.9', '1', '1.1', '1.2', '1.35', '1.5', '1.7', '2'] },
+    '--line': { now: '1px', opts: ['0px', '0.5px', '1px', '1.5px', '2px'] },
+    '--dim': { now: '0%', opts: ['0%', '4%', '8%', '12%', '16%', '20%', '26%', '32%', '40%', '50%'] },
+  }
+  const root = document.documentElement
+  const out = document.getElementById('out')
+  const state = {}
+
+  function paint() {
+    out.textContent = Object.entries(state)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join('  ·  ') +
+      `\n\nbgcolor: 'color-mix(in srgb, var(--c-card) ${state['--fill']}, transparent)'` +
+      `\nbackdropFilter: 'blur(${state['--blur']}) saturate(${state['--sat']})'` +
+      `\nborder: '${state['--line']} solid var(--glass-line)'` +
+      (state['--dim'] === '0%' ? '' : `\n배경 딤: color-mix(in srgb, var(--c-ink) ${state['--dim']}, transparent)`)
+  }
+
+  for (const el of document.querySelectorAll('.axis')) {
+    const key = el.dataset.var
+    const { now, opts } = AXES[key]
+    state[key] = now
+    root.style.setProperty(key, now)
+    const box = el.querySelector('.opts')
+    for (const v of opts) {
+      const b = document.createElement('button')
+      b.type = 'button'
+      b.innerHTML = v + (v === now ? '<span class="now">현재</span>' : '')
+      b.setAttribute('aria-pressed', String(v === now))
+      b.onclick = () => {
+        state[key] = v
+        root.style.setProperty(key, v)
+        for (const s of box.children) s.setAttribute('aria-pressed', String(s === b))
+        paint()
+      }
+      box.appendChild(b)
+    }
+  }
+  paint()
+</script>
