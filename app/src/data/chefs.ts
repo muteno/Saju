@@ -263,3 +263,31 @@ ${PERSONA_SAFETY}`,
 
 ${PERSONA_SAFETY}`,
 }
+
+/**
+ * 표정 컷 — 생성 시트를 잘라 만든 `/reports/chef-<id>-faces-v2/NN.png`.
+ * 번호는 생성 스크립트의 `EXPRESSIONS` 순서다(1부터). **원본 화풍을 지킨 v2만 쓴다**
+ * (v1은 화풍 오염본 · `app/public/reports/POLYGON_v1_폐기.md`).
+ *
+ * 왜 상수로 두나: 대사 상황에 맞는 표정을 **결정론으로** 고르기 위해서다. 랜덤이면 같은 장면에서
+ * 매번 얼굴이 달라져 인물이 흔들린다. 없으면 컴포넌트가 플레이트로 조용히 폴백한다.
+ */
+export const FACE = {
+  기본: 1,
+  옅은미소: 2,
+  환한웃음: 3,
+  서늘한미소: 4,
+  수긍: 6,
+  흥미: 7,
+  의아: 8,
+  놀람: 9,
+  진지: 16,
+  꿰뚫어봄: 17,
+  단호: 19,
+  냉소: 30,
+  어이없음: 29,
+  의미심장: 48,
+} as const
+
+export const faceUrl = (id: string, n: number): string =>
+  `/reports/chef-${id}-faces-v2/${String(n).padStart(2, '0')}.png`

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { ReactNode } from 'react'
 import { Box } from '@mui/material'
 import { tokens } from '../theme'
-import type { Chef } from '../data/chefs'
+import { faceUrl, type Chef } from '../data/chefs'
 
 /**
  * 연식당 무대 — **간판 → 글래스 판 → 인물** 3층(운영자 260726 구술).
@@ -22,6 +22,8 @@ import type { Chef } from '../data/chefs'
  */
 export default function ShopStage({
   chef,
+  /** 표정 컷 번호(FACE 상수) — 있으면 이걸 먼저 쓰고, 파일이 없으면 플레이트로 폴백한다 */
+  face,
   /** 등장 방향 — 'right' = 오른쪽에서 촤르륵 밀고 들어옴(교체 난입) */
   enter = 'none',
   /** 무대 높이(px) */
@@ -30,12 +32,16 @@ export default function ShopStage({
   children,
 }: {
   chef: Chef
+  face?: number
   enter?: 'none' | 'right' | 'left'
   height?: number
   children?: ReactNode
 }) {
   const [broken, setBroken] = useState(false)
   const [bgBroken, setBgBroken] = useState(false)
+  // 표정 컷이 아직 안 들어온 캐릭터는 조용히 플레이트로 내려간다(에셋 유무로 화면이 안 깨진다)
+  const [faceBroken, setFaceBroken] = useState(false)
+  const src = face && !faceBroken ? faceUrl(chef.id, face) : chef.plate
   return (
     <Box sx={{ position: 'relative', minHeight: height, overflow: 'hidden' }}>
       {/* ⓪ 배경 — 벚꽃 흩날리는 목조 상담방(운영자 260726 무드 정본). 없으면 하늘 토큰 그라데이션으로
@@ -114,9 +120,10 @@ export default function ShopStage({
         {!broken ? (
           <Box
             component="img"
-            src={chef.plate}
+            key={src}
+            src={src}
             alt=""
-            onError={() => setBroken(true)}
+            onError={() => (face && !faceBroken ? setFaceBroken(true) : setBroken(true))}
             // 그림자 색도 토큰 계승(--line) — 키잉된 인물이 유리 판에서 떠 보이게만 하는 최소치
             sx={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', filter: 'drop-shadow(0 8px 18px var(--line))' }}
           />

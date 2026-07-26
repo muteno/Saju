@@ -6,7 +6,7 @@ import { TOPICS, TOPIC_INTROS, topicLines, chartSummaryOf } from '../data/dosaTo
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import type { JeonggokPick } from '../data/jeonggok'
 import ShopStage from './ShopStage'
-import { chefForGender, counterpartChef, BARGE_LINE, voiceOf } from '../data/chefs'
+import { chefForGender, counterpartChef, BARGE_LINE, voiceOf, FACE } from '../data/chefs'
 import type { ReportBundle } from '../engine'
 import { useReducedMotion } from './Motion'
 
@@ -183,6 +183,18 @@ export default function DosaChat({
     })
   }
 
+  /**
+   * 상황 → 표정(결정론). 랜덤이면 같은 장면에서 얼굴이 매번 달라져 인물이 흔들린다.
+   * 오프닝 = 판을 들여다보는 눈 · 的中 = 서늘한 미소("그럴 줄 알았지") ·
+   * 교체 난입 = 의미심장 · 빗맞힘 = 어이없음 · 주제 재생 중 = 진지.
+   */
+  const faceFor = (): number => {
+    if (phase === 'opening') return FACE.꿰뚫어봄
+    if (phase === 'verdict') return crit ? FACE.서늘한미소 : barge ? FACE.의미심장 : FACE.어이없음
+    if (phase === 'play') return FACE.진지
+    return FACE.기본
+  }
+
   const onTap = () => {
     if (!tw.done) {
       tw.skip() // 탭 = 즉시 전체 표시
@@ -232,7 +244,7 @@ export default function DosaChat({
       )}
       {/* 무대 — 간판(緣食堂) → 글래스 → 인물. 대사창은 그 아래에 붙어 한 덩어리로 읽힌다.
           교체가 일어난 직후에는 인물이 오른쪽에서 촤르륵 밀고 들어온다(barge). */}
-      <ShopStage chef={chef} enter={barge ? 'right' : 'none'} height={200} />
+      <ShopStage chef={chef} face={faceFor()} enter={barge ? 'right' : 'none'} height={200} />
       <DialogueBox speaker={chef.name} next={(phase === 'play' || phase === 'verdict') && tw.done}>
         {/* 진행 표지 + 주제 복귀 — play 중에만 (mini 9px 토큰 계승) */}
         {phase === 'play' && (
