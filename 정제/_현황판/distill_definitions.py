@@ -13,11 +13,10 @@ import json, re, sys, unicodedata, importlib.util
 from pathlib import Path
 from collections import defaultdict, Counter
 
-HERE = Path(r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주\2. 정제작업\_현황판")
-DATA = HERE / "data"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from 경로 import 현황판 as HERE, DATA
 
 # ── 기존 빌더를 모듈로 로드해 마커·원문읽기 재사용
-sys.path.insert(0, str(HERE))
 spec = importlib.util.spec_from_file_location("bnm", HERE / "build_neuron_map.py")
 bnm = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(bnm)

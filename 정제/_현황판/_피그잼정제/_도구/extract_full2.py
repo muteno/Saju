@@ -5,8 +5,11 @@
 """
 import xml.etree.ElementTree as ET
 import os, re, sys
+from pathlib import Path
 
-SRC = r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주\4. 구 사주본_Saju-main\dosa-app\methodology\figjam_board_raw.txt"
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+import 경로
+SRC = str(경로.방법론 / "figjam_board_raw.txt")
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'board_full2.md')
 
 SKIP_NAME = re.compile(r'^(image \d+|Group \d+|Section \d+|Frame \d+|Vector.*|Rectangle \d+|Ellipse \d+|SQUARE|ROUNDED_RECTANGLE|ELLIPSE|DIAMOND|TRIANGLE_UP|PARALLELOGRAM_RIGHT|ENG_DATABASE|SHIELD)?$')

@@ -156,7 +156,7 @@ STAGES = [
     dict(
         name="⑦-C 신살 조견표",
         script="신살_조견표.py",
-        inputs=["../../4. 구 사주본_Saju-main/app/src/engine/vendor/sinsal.js"],
+        inputs=["../../app/src/engine/vendor/sinsal.js"],
         outputs=["data/신살조견표.jsonl", "data/신살조견표.md"],
         why="「일간을 기준으로 정해지는」이 아니라 **기준 그 자체**. 엔진 표를 옮겨 적어 "
             "사람이 읽게 한다(⑦-B가 엔진과 대조한다).",
@@ -169,7 +169,7 @@ STAGES = [
     dict(
         name="⑦-D 판정 절차",
         script="판정절차.py",
-        inputs=["../../4. 구 사주본_Saju-main/app/src/engine/vendor/judge.js"],
+        inputs=["../../app/src/engine/vendor/judge.js"],
         outputs=["data/판정절차.jsonl", "data/판정절차.md"],
         why="강약 110점제·득령득지득시득세를 사람이 읽게 뽑는다. "
             "★자리 배점이 갈린다(방법론 보드 「연15·시10」 vs 도화도레 「연10·시15」) — "
@@ -193,10 +193,10 @@ STAGES = [
         name="⑦-B L1 엔진 대조",
         script="verify_L1_sync.py",
         inputs=["data/relation_edges.jsonl",
-                "../../4. 구 사주본_Saju-main/app/src/engine/vendor/relations.js",
-                "../../4. 구 사주본_Saju-main/app/src/engine/vendor/tables.js",
+                "../../app/src/engine/vendor/relations.js",
+                "../../app/src/engine/vendor/tables.js",
                 # ★260726 — 강약 배점·경계·득판정까지 대조 범위에 들어왔다.
-                "../../4. 구 사주본_Saju-main/app/src/engine/vendor/judge.js"],
+                "../../app/src/engine/vendor/judge.js"],
         outputs=[],          # 산출물 없음 — 검사만 한다(불일치면 exit 1)
         why="★L1 계산 엔진과 개념망이 같은 명리 표를 두 벌로 갖고 있다. 갈라지면 여기서 죽는다.",
         check_only=True,

@@ -89,6 +89,18 @@ export const kbCoverage: { distilledKeys: number; indexKeys: number }
 export function todayKST(): { year: number; month: number; day: number }
 export function currentUnseYearName(): string
 
+// ── 두뇌(정제 지도) — 어댑터 brain.js. 모양은 components/BrainPanel.tsx의 Brain과 구조 호환.
+export interface BrainRel {
+  a: string; b: string; 관계: string; 층?: string; 부호?: string | null
+  조건?: unknown; 왜?: string | null; 사슬?: string[] | null
+  근거?: string; stance?: string | null; 근거유형?: string | null
+}
+export interface BrainNodeCard { 키: string; 노드: string; 대주제?: string; 중주제?: string; 정의?: string; 문단?: number; 출처수?: number }
+export interface BrainReading { 노드: BrainNodeCard[]; 관계: BrainRel[]; 조견표: unknown[]; 못맞춘키: string[] }
+export function loadBrain(): Promise<unknown>
+export function brainMeta(): Record<string, unknown> | null
+export function brainReading(input: ChartInput, unseYearName?: string): BrainReading
+
 export interface DayRelation {
   type: string
   name: string

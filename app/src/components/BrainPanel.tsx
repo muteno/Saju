@@ -21,8 +21,11 @@ export type Brain = {
   이유있는관계?: Rel[]; 낭설수?: number; meta?: Record<string, unknown> | null
 }
 
+import { tokens } from '../theme'
+
+// 색 = 전부 토큰 계승(T3 게이트) — 결정론=primary · 조건부=lunar · 그 외=inkFaint
 const 층색 = (층?: string) =>
-  층?.startsWith('L1결정론') ? '#3ad9c0' : 층?.startsWith('L1½') ? '#8ab4f8' : '#9aa0a6'
+  층?.startsWith('L1결정론') ? tokens.color.primary : 층?.startsWith('L1½') ? tokens.color.lunar : tokens.color.inkFaint
 
 const 왜라벨: Record<string, string> = {
   인과닫힘: '이유까지 닿음', 작용까지: '힘이 오간 자리까지', 발현만: '결과만 붙음',
@@ -38,10 +41,11 @@ export default function BrainPanel({ brain }: { brain?: Brain | null }) {
   const 상위 = [...이유].sort((x, y) => (순위[x.왜 ?? ''] ?? 9) - (순위[y.왜 ?? ''] ?? 9)).slice(0, 24)
 
   return (
-    <section style={{ marginTop: 28, padding: '18px 16px', borderRadius: 18,
-                      border: '1px solid rgba(58,217,192,.28)', background: 'rgba(58,217,192,.05)' }}>
+    <section style={{ marginTop: 28, padding: '18px 16px', borderRadius: tokens.radius.lg,
+                      border: `1px solid color-mix(in srgb, ${tokens.color.primary} 28%, transparent)`,
+                      background: `color-mix(in srgb, ${tokens.color.primary} 5%, transparent)` }}>
       <header style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
-        <h3 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: '#3ad9c0' }}>
+        <h3 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: tokens.color.primary }}>
           이 사주에서 읽은 관계
         </h3>
         <span style={{ fontSize: 12, opacity: .7 }}>
@@ -60,8 +64,9 @@ export default function BrainPanel({ brain }: { brain?: Brain | null }) {
 
       <ul style={{ listStyle: 'none', padding: 0, margin: '14px 0 0', display: 'grid', gap: 8 }}>
         {상위.map((r, i) => (
-          <li key={i} style={{ padding: '10px 12px', borderRadius: 12,
-                               background: 'rgba(255,255,255,.04)', fontSize: 13.5, lineHeight: 1.55 }}>
+          <li key={i} style={{ padding: '10px 12px', borderRadius: tokens.radius.md,
+                               background: `color-mix(in srgb, ${tokens.color.ink} 4%, transparent)`,
+                               fontSize: 13.5, lineHeight: 1.55 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
               <b>{r.a}</b>
               <span style={{ color: 층색(r.층), fontWeight: 700 }}>─{r.관계}→</span>

@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { ModeProvider } from './mode'
 import './index.css'
 import App from './App.tsx'
-import { loadKb, useEmptyKb } from './engine'
+import { loadKb, useEmptyKb, loadBrain } from './engine'
 import { seedQa, isQa } from './data/qa'
 
 seedQa() // [E13] ?qa=1 = 무로그인 미리보기(대표데이터 시드 · 실사용 흐름 무변경)
@@ -21,6 +21,9 @@ const renderApp = () =>
       </ModeProvider>
     </StrictMode>,
   )
+
+// 두뇌 팩(/brain.json 3.4MB)은 렌더 게이트를 안 탄다 — 미리 당겨만 두고, 실패해도 앱은 그대로(패널만 안 뜸).
+loadBrain().catch((e) => console.warn('두뇌 로드 실패 — 패널 없이 진행', e))
 
 // KB(정적 /kb.json)를 먼저 적재하고 렌더 — 컴포넌트들의 동기 API(buildReading)가 그대로 성립.
 loadKb()

@@ -3,11 +3,13 @@
 표는 손으로 옮기지 않고 원문에서 파싱한다. 축자는 원문 실제 문자열만 쓴다(자동 검증).
 """
 import json, os, re, io, sys, unicodedata
+from pathlib import Path
 
-BASE = r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주"
-MD   = os.path.join(BASE, r"4. 구 사주본_Saju-main\dosa-app\methodology\figjam_board_full.md")
-RAW  = os.path.join(BASE, r"4. 구 사주본_Saju-main\dosa-app\methodology\figjam_board_raw.txt")
-OUT  = os.path.join(BASE, r"2. 정제작업\_현황판\_피그잼정제")
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+import 경로
+MD   = str(경로.방법론 / "figjam_board_full.md")
+RAW  = str(경로.방법론 / "figjam_board_raw.txt")
+OUT  = str(경로.피그잼)
 os.makedirs(OUT, exist_ok=True)
 
 MDL  = io.open(MD,  encoding='utf-8').read().split('\n')

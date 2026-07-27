@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
@@ -5,9 +6,10 @@ import MyeongShell from '../components/MyeongShell'
 import CharacterStage from '../components/CharacterStage'
 import { DaeunRail, SectionTitle, GlassButton } from '../components/ReportParts'
 import TopicAccordion from '../components/TopicAccordion'
+import BrainPanel, { type Brain } from '../components/BrainPanel'
 
 import { tokens } from '../theme'
-import { jeonggokRaw } from '../engine'
+import { jeonggokRaw, loadBrain, brainReading } from '../engine'
 import { hasChef } from '../data/chefs'
 import { buildTopicGroups } from '../data/analysisGroups'
 import { useReport, stepPath } from '../data/useReport'
@@ -27,6 +29,18 @@ import { useReport, stepPath } from '../data/useReport'
 export default function Analysis() {
   const nav = useNavigate()
   const { resolved, chart, reading } = useReport()
+
+  // ★두뇌 패널 데이터 — 정제 지도(운영자 260727 «앱에 뇌를 달아주셈»).
+  // 팩 로드는 fail-soft: 못 받으면 패널만 안 뜨고 분석 화면은 그대로다.
+  const [brain, setBrain] = useState<Brain | null>(null)
+  useEffect(() => {
+    if (resolved.broken) return
+    let alive = true
+    loadBrain()
+      .then(() => { if (alive) setBrain(brainReading(resolved.input)) })
+      .catch(() => {})
+    return () => { alive = false }
+  }, [resolved])
 
   if (!chart || !reading) {
     return (
@@ -85,6 +99,9 @@ export default function Analysis() {
               <DaeunRail daeun={chart.daeun} birthYear={resolved.input.year} />
             </>
           )}
+
+          {/* ★두뇌 패널 — 정제 지도가 이 사주에서 읽은 관계·조건(근거 화면의 마지막 층) */}
+          <BrainPanel brain={brain} />
 
           {/* 다음 단계 = 3단계 상담 */}
           <SectionTitle>더 물어보기</SectionTitle>
