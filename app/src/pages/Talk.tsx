@@ -37,8 +37,6 @@ export default function Talk() {
    * (운영자 260727 "누르면 사람 바뀌게 · 화면 흔들리면서 이미지 바뀌고 대사 나오면 됨").
    */
   const [switchSignal, setSwitchSignal] = useState(0)
-  /** 복채 주머니 신호 — 퀘스트 축은 미정이라 지금은 열어 보는 한마디까지(운영자 260727) */
-  const [pouchSignal, setPouchSignal] = useState(0)
   /**
    * 배경(인물 컷)도 같이 흔든다 — DosaChat의 덜컹은 대화 무대 안쪽만 잡는다. 배경은 스크롤
    * 컨테이너 **밖**에 따로 서 있어(25-ⓐ) 흔들리지 않으면 "화면이 흔들린다"가 반쪽이 된다.
@@ -205,9 +203,14 @@ export default function Talk() {
             <Box
               component="button"
               type="button"
-              aria-label="복채 주머니 열어 보기"
-              onClick={() => setPouchSignal((n) => n + 1)}
+              // ⚠ **비활성이 맞다**(운영자 260727 "복채에 뭔가 게임을 넣어서 퀘스트 깨는 방식으로
+              // 하고 싶은데 아직 고민이라 · 둘 다 누르면 비활성화가 일단 맞음"). 퀘스트 축이 정해지기
+              // 전에 임시 반응을 붙여 두면 그게 곧 가짜 액티브다 — '준비 중'을 정직하게 표기한다.
+              // 표기 = `Fun.tsx` SoonBadge 한 쌍의 축(opacity .58 + aria-disabled) 계승.
+              aria-label="복채 주머니 — 준비 중"
+              aria-disabled
               sx={{
+                opacity: 0.58,
                 flex: 'none',
                 width: 32,
                 height: 32,
@@ -216,9 +219,8 @@ export default function Talk() {
                 border: 'none',
                 background: 'none',
                 color: 'color-mix(in srgb, var(--c-card) 90%, transparent)',
-                cursor: 'pointer',
+                cursor: 'default',
                 borderRadius: '50%',
-                '&:active': { transform: 'scale(0.9)' },
               }}
             >
               {Pict.pouch(19)}
@@ -272,7 +274,6 @@ export default function Talk() {
             who={who}
             onBeat={setBeat}
             switchSignal={switchSignal}
-            pouchSignal={pouchSignal}
             onNav={(to) => nav(to === '/result' ? stepPath('intro', resolved.search) : to === '/analysis' ? stepPath('analysis', resolved.search) : to)}
           />
         </Box>
