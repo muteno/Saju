@@ -34,7 +34,7 @@ for e in meta:
                 'types': OVERRIDE.get(i) or parse_types(e['title']), 'text': text})
 
 js = 'window.LECTURES=' + json.dumps(out, ensure_ascii=True) + ';\n'
-dest = r'C:\Users\황세웅\Desktop\enneagram_transcripts.js'
+dest = r'C:\Users\[가림-계정]\Desktop\enneagram_transcripts.js'
 io.open(dest, 'w', encoding='utf-8').write(js)
 tot = sum(len(x['text']) for x in out)
 print('lectures=%d  missing=%s  short(<200ch)=%s' % (len(out), missing, shorty))

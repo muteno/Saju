@@ -6,8 +6,8 @@ import zipfile, json, re, sys, os
 
 sys.stdout.reconfigure(encoding='utf-8')
 HERE = os.path.dirname(os.path.abspath(__file__))
-TEMPLATE = r'C:\Users\Hwang\Desktop\새 폴더\자평명리학 게시판 글모음.docx'
-OUT = r'C:\Users\Hwang\Desktop\새 폴더\현묘의 사주 이야기 글모음.docx'
+TEMPLATE = r'C:\Users\[가림-계정]\Desktop\새 폴더\자평명리학 게시판 글모음.docx'
+OUT = r'C:\Users\[가림-계정]\Desktop\새 폴더\현묘의 사주 이야기 글모음.docx'
 
 _ctrl = re.compile(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]')
 
