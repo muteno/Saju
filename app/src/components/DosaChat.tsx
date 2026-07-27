@@ -635,7 +635,6 @@ export default function DosaChat({
    *   · 다시 바닥까지 내리면 도로 붙는다
    */
   const stick = useRef(true)
-<<<<<<< HEAD
   /**
    * 되읽는 중인가 = 손으로 위를 보고 있는 상태. 스크롤바는 **이때만** 보인다
    * (운영자 260727 "최신 읽을 땐 안 보이게"). 붙어 있을 땐 볼 이유가 없다 —
@@ -648,12 +647,6 @@ export default function DosaChat({
     const atEnd = el.scrollHeight - el.scrollTop - el.clientHeight < 24
     stick.current = atEnd
     setReading((r) => (r === !atEnd ? r : !atEnd))
-=======
-  const onUserScroll = () => {
-    const el = logRef.current
-    if (!el) return
-    stick.current = el.scrollHeight - el.scrollTop - el.clientHeight < 24
->>>>>>> origin/main
   }
   useEffect(() => {
     const el = logRef.current
@@ -1032,7 +1025,6 @@ export default function DosaChat({
             overflowY: 'auto',
             overflowX: 'hidden',
             /**
-<<<<<<< HEAD
              * 스크롤바 = **되읽는 동안에만, 아주 연하게**(운영자 260727 "정말 연하게 · 테마색에
              * 영향 안 받고 · 최신 읽을 땐 안 보이게"). 붙어 있을 땐 화면이 알아서 끝을 따라가니
              * 막대는 정보가 아니라 잡음이다.
@@ -1046,16 +1038,6 @@ export default function DosaChat({
             '&::-webkit-scrollbar-button': { display: 'none', width: 0, height: 0 },
             scrollbarWidth: 'thin',
             scrollbarColor: `${reading ? YG.scrollOn : 'transparent'} transparent`,
-=======
-             * 스크롤바 = **아예 안 보인다**(운영자 260727 "스크롤 내 생각엔 없어도 될 거 같음").
-             * 앞서 말풍선 결로 얇게 깔았는데, 무대 위 미연시 화면에서는 그 막대조차 앱 부품이다.
-             * 대신 **화면이 늘 마지막 말을 따라가므로**(아래 stick 로직) 막대가 없어도 길을 잃지 않는다.
-             * ⚠ 스크롤 자체는 살아 있다 — 손으로 올려 되읽는 길은 그대로다.
-             * ⚠ 접두 먼저·표준 나중(22-ⓙ 함정).
-             */
-            '&::-webkit-scrollbar': { width: 0, height: 0, display: 'none' },
-            scrollbarWidth: 'none',
->>>>>>> origin/main
             px: 2,
             pt: 1.5,
             display: 'flex',
