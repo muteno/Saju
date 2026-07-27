@@ -498,7 +498,6 @@ export default function DosaChat({
   onNav,
   onBeat,
   switchSignal = 0,
-  pouchSignal = 0,
 }: {
   report: ReportBundle
   /** 좌상단 미니 명식에 박히는 원국(UiChart.pillars — 시일월년 순) */
@@ -526,12 +525,6 @@ export default function DosaChat({
    * 헤더는 이 컴포넌트 밖(Talk)에 있어 콜백을 거꾸로 받을 수 없다 — 그래서 신호를 내려받는다.
    */
   switchSignal?: number
-  /**
-   * 복채 주머니 신호 — 헤더 주머니 버튼(운영자 260727). **퀘스트 축은 아직 고민 중**이라
-   * 지금은 화자가 주머니를 열어 보고 한마디 하는 것까지다("둘 다 그대로 동작").
-   * 보상·퀘스트가 정해지면 이 자리에 얹으면 된다 — 버튼·배선·말자리는 이미 서 있다.
-   */
-  pouchSignal?: number
 }) {
   const [chef, setChef] = useState(() => chefForGender(gender))
   /** 대화 로그 — 위에서 아래로 쌓인다(질문이 위에 남는다) */
@@ -706,20 +699,6 @@ export default function DosaChat({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [switchSignal])
-
-  /**
-   * 복채 주머니 — 지금은 **열어 보는 것까지**다(퀘스트 미정). 말이 흐르는 중이면 끼어들지 않는다.
-   * 국면(`stage`)은 건드리지 않는다 — 주머니는 곁가지라 대화 줄기를 끊으면 안 된다.
-   */
-  const firstPouch = useRef(true)
-  useEffect(() => {
-    if (firstPouch.current) {
-      firstPouch.current = false
-      return
-    }
-    say([nar('복채 주머니를 열어 보지만, 아직 든 것이 없다.'), '셈은 나중에 하지. 지금은 판이 먼저다.'])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pouchSignal])
 
   const onJeonggokAnswer = (hit: boolean, label: string) => {
     if (!jeonggok) return
@@ -1076,51 +1055,6 @@ export default function DosaChat({
             </Box>
           )}
         </Box>
-
-        {/* 최신으로 — **과거를 올려 봤을 때만** 뜨는 아래 화살표(운영자 260727 "화면을 과거 내용을
-            올리면 아래 화살표만 나오면 될 듯 · 글래스모피즘 많이 주고 거의 투명하게").
-            글자 없이 화살표 하나다 — 되읽는 중에 라벨이 뜨면 그것대로 화면을 가린다.
-            ⚠ 로그 스크롤러 **밖**에 둔다(안에 두면 저도 같이 스크롤돼 화면 밖으로 밀린다). */}
-        {reading && (
-          <Box
-            component="button"
-            type="button"
-            aria-label="최신 대화로"
-            onClick={(e: { stopPropagation: () => void }) => {
-              e.stopPropagation()
-              const el = logRef.current
-              if (!el) return
-              stick.current = true
-              setReading(false)
-              el.scrollTo({ top: el.scrollHeight, behavior: reduceMotion ? 'auto' : 'smooth' })
-            }}
-            sx={{
-              position: 'absolute',
-              right: 14,
-              // ⚠ `bottom`으로 잡으면 **입력행이 덮는다**(260727 실측 — 이 묶음은 아래 68px이
-              // 입력행 몫이고, 그 아래로 선택지 높이까지 가변이다). 로그는 높이가 못 박힌
-              // 상자니 **위에서부터** 재는 게 정확하다 — 로그 하단 안쪽에 정확히 걸린다.
-              top: LOG_H - 44,
-              zIndex: 3,
-              width: 36,
-              height: 36,
-              display: 'grid',
-              placeItems: 'center',
-              borderRadius: '50%',
-              cursor: 'pointer',
-              color: YG.fg2,
-              // 거의 투명 + 블러가 전부 — 말풍선보다도 옅게 잡아 되읽는 글을 안 가린다
-              bgcolor: 'color-mix(in srgb, var(--c-ink) 14%, transparent)',
-              border: `1px solid ${YG.line}`,
-              backdropFilter: YG.blurBubble,
-              WebkitBackdropFilter: YG.blurBubble,
-              animation: 'msd-popin .22s var(--ease) both',
-              '&:active': { transform: 'scale(0.92)' },
-            }}
-          >
-            {Pict.chevronDown(18)}
-          </Box>
-        )}
 
         {/* 진행 — 큐가 남아 있는 동안엔 선택지가 안 뜨므로, 이게 없으면 키보드·스크린리더
           사용자는 오프닝 세 통에서 영구히 멈춘다(검토자 260726 적발). 화면상으로는 어디를
