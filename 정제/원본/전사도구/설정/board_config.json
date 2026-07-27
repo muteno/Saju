@@ -1,0 +1,15 @@
+{
+  "port": 8765,
+  "title": "전사 프로세스 알리미",
+  "channel_name": "초코서당(초명)",
+  "channel_handle": "",
+  "channel_total_videos": 279,
+  "folder": "/Users/[가림-계정]/Library/CloudStorage/OneDrive-GS칼텍스예울마루/황세웅/초코서당(초명)_자막",
+  "url": "https://www.youtube.com/@choco85",
+  "log_file": "_whisper_mac.log",
+  "storage_style": "클라우드 · OneDrive (GS칼텍스 예울마루)",
+  "engine_match": "python.*whisper_channel_generic",
+  "expected_streams": 2,
+  "runner": "run_generic_retry.sh",
+  "note_excluded": "멤버십 영상은 ~/.whisper_cookies.txt 가 있고 접근 가능할 때만 받아짐"
+}
