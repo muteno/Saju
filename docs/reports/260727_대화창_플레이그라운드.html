@@ -1,0 +1,417 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>대화창 플레이그라운드 v1 — 260727</title>
+
+<!--
+  대화창(상담 말풍선) 플레이그라운드 — B3 규격.
+  · 미리보기 고정 + 만지는 컨트롤(PC 좌/우 · 모바일 상/하)
+  · 대분류 5축 × 축당 10안
+  · 값은 전부 앱 토큰 계승(`app/src/index.css :root`) — 이 파일에서 새 색을 만들지 않는다.
+  · 지금 앱에 실제로 들어가 있는 안에는 '고정' 배지.
+  실사용 화면 = app/src/components/DosaChat.tsx
+-->
+
+<style>
+  @font-face { font-family:'Paperlogy'; font-weight:400; font-display:swap; src:url('/fonts/Paperlogy-4Regular.woff2') format('woff2'); }
+  @font-face { font-family:'Paperlogy'; font-weight:500; font-display:swap; src:url('/fonts/Paperlogy-5Medium.woff2') format('woff2'); }
+  @font-face { font-family:'Paperlogy'; font-weight:600; font-display:swap; src:url('/fonts/Paperlogy-6SemiBold.woff2') format('woff2'); }
+  @font-face { font-family:'Paperlogy'; font-weight:700; font-display:swap; src:url('/fonts/Paperlogy-7Bold.woff2') format('woff2'); }
+  @font-face { font-family:'Paperlogy'; font-weight:800; font-display:swap; src:url('/fonts/Paperlogy-8ExtraBold.woff2') format('woff2'); }
+
+  :root {
+    /* ── 앱 토큰 계승(index.css :root 실값) ── */
+    --font-sans: Paperlogy, 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+    --tracking: -0.03em;
+    --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+    --c-page: #eef0f6;
+    --c-card: #ffffff;
+    --c-ink: #1b1b1f;
+    --c-primary: #22409e;
+    --c-on-primary: #ffffff;
+    --oh-label-mok: #3c7059;
+    --oh-label-hwa: #c85b5b;
+    --oh-label-to: #b98a38;
+    --oh-label-geum: #7e7e86;
+    --oh-label-su: #3f6b93;
+
+    /* ── 화자 시그니처(chefs.ts 실값) ── */
+    --sig-doryeong: color-mix(in srgb, var(--oh-label-su) 46%, var(--c-card));
+    --sig-baekui:   color-mix(in srgb, var(--oh-label-to) 58%, var(--c-card));
+    --sig-noona:    color-mix(in srgb, var(--oh-label-hwa) 52%, var(--c-card));
+    --sig-dongja:   color-mix(in srgb, var(--oh-label-mok) 48%, var(--c-card));
+    --sig: var(--sig-doryeong);
+
+    /* ── 축 A 표면 ── */
+    --bub-bg: color-mix(in srgb, var(--c-ink) 22%, transparent);
+    --bub-blur: blur(29px) saturate(1);
+    --bub-border: 1px solid color-mix(in srgb, var(--c-card) 8%, transparent);
+    --bub-inset: none;
+    --bub-shadow: none;
+    --me-bg: color-mix(in srgb, var(--c-ink) 32%, transparent);
+    /* ── 축 B 형태 ── */
+    --bub-r: 14px;
+    --bub-tail: 6px;
+    --bub-pad: 10px 13px;
+    --bub-max: 82%;
+    --bub-gap: 8px;
+    /* ── 축 E 등장 ── */
+    --in-name: pgIn;
+    --in-dur: .28s;
+    --in-stag: 26ms;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: var(--font-sans); letter-spacing: var(--tracking);
+    background: var(--c-page); color: var(--c-ink);
+    display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 18px;
+    padding: 18px; align-items: start;
+  }
+  @media (max-width: 900px) { body { grid-template-columns: 1fr; } }
+
+  /* ── 미리보기(고정) ── */
+  .stick { position: sticky; top: 18px; }
+  @media (max-width: 900px) { .stick { position: static; } }
+  .frame {
+    position: relative; width: 100%; max-width: 402px; aspect-ratio: 402 / 874;
+    border-radius: 34px; overflow: hidden; background: #0d1220;
+    box-shadow: 0 24px 60px rgba(20, 24, 45, .28);
+  }
+  .bg { position: absolute; inset: 0; }
+  .bg img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.9) brightness(1.04); }
+  .bg .fallback { position: absolute; inset: 0; background: linear-gradient(180deg, #22405e, #0f1626); }
+  .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 0%, transparent 44%,
+      color-mix(in srgb, var(--c-ink) 20%, transparent) 53%,
+      color-mix(in srgb, var(--c-ink) 50%, transparent) 100%);
+  }
+  .log {
+    position: absolute; left: 0; right: 0; bottom: 76px; height: 340px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    gap: var(--bub-gap); padding: 0 16px; overflow: hidden;
+  }
+
+  /* ── 말풍선 ── */
+  .b {
+    position: relative; align-self: flex-start; max-width: var(--bub-max);
+    padding: var(--bub-pad); border-radius: var(--bub-r); border-top-left-radius: var(--bub-tail);
+    background: var(--bub-bg); border: var(--bub-border);
+    -webkit-backdrop-filter: var(--bub-blur); backdrop-filter: var(--bub-blur);
+    box-shadow: var(--bub-inset), var(--bub-shadow);
+    color: #fff; font-size: 14.5px; line-height: 1.62; white-space: pre-line; word-break: break-word;
+    animation: var(--in-name) var(--in-dur) var(--ease) both;
+  }
+  /* 내 말풍선 = **같은 유리, 한 단 진하게**(운영자 260727 "검정색 불투명도 낮춘 거로 글래스모피즘").
+     색으로 편을 가르지 않는다 — 자리(우측)와 꼬리 방향이 화자를 말한다. */
+  .b.me {
+    align-self: flex-end; background: var(--me-bg); color: #fff;
+    border-radius: var(--bub-r); border-top-left-radius: var(--bub-r); border-top-right-radius: var(--bub-tail);
+  }
+  .b.nar { font-style: italic; }
+  .b:nth-child(2) { animation-delay: calc(var(--in-stag) * 1); }
+  .b:nth-child(3) { animation-delay: calc(var(--in-stag) * 2); }
+  .b:nth-child(4) { animation-delay: calc(var(--in-stag) * 3); }
+  .b:nth-child(5) { animation-delay: calc(var(--in-stag) * 4); }
+
+  /* ── 축 C 강조(구절) ── */
+  .em { font-weight: 800; color: var(--sig); text-shadow: 0 1px 6px color-mix(in srgb, var(--c-ink) 72%, transparent); }
+  .em.shim {
+    background: linear-gradient(100deg, var(--sig) 0%, var(--sig) 38%,
+      color-mix(in srgb, var(--c-card) 30%, var(--sig)) 50%, var(--sig) 62%, var(--sig) 100%);
+    background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: pgShim 1.9s linear infinite;
+  }
+  .em.uline { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+  .em.dline { text-decoration: underline dotted; text-underline-offset: 3px; }
+  .em.chip { color: #fff; background: color-mix(in srgb, var(--sig) 30%, transparent); padding: 1px 6px; border-radius: 6px; }
+  .em.plain { color: #fff; text-shadow: none; }
+  .em.bar { border-left: 3px solid var(--sig); padding-left: 6px; }
+  .em.deep { text-shadow: 0 1px 3px color-mix(in srgb, var(--c-ink) 92%, transparent), 0 2px 10px color-mix(in srgb, var(--c-ink) 80%, transparent); }
+  .em.big { font-size: 1.06em; }
+  .em.marker {
+    color: #fff;
+    background: linear-gradient(180deg, transparent 52%, color-mix(in srgb, var(--sig) 42%, transparent) 52%);
+  }
+
+  /* ── 축 D 끝말 액션 ── */
+  .lead { color: var(--sig); font-weight: 700; text-shadow: 0 1px 6px color-mix(in srgb, var(--c-ink) 72%, transparent); }
+  .lead.shim {
+    background: linear-gradient(100deg, var(--sig) 0%, var(--sig) 38%,
+      color-mix(in srgb, var(--c-card) 30%, var(--sig)) 50%, var(--sig) 62%, var(--sig) 100%);
+    background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: pgShim 1.9s linear infinite;
+  }
+  .ring { position: relative; align-self: flex-start; max-width: var(--bub-max); border-radius: var(--bub-r); border-top-left-radius: var(--bub-tail); padding: 1px; overflow: hidden; isolation: isolate; }
+  .ring > .b { max-width: 100%; align-self: stretch; z-index: 1; }
+  .ring .aura, .ring .sheen { position: absolute; inset: -60%; }
+  .ring .aura { background: conic-gradient(from 0deg, var(--sig) 0deg, color-mix(in srgb, var(--sig) 34%, transparent) 180deg, var(--sig) 360deg); animation: pgBreathe 8s var(--ease) infinite; }
+  .ring .sheen { background: conic-gradient(from 0deg, transparent 0deg, transparent 56deg, color-mix(in srgb, var(--sig) 22%, transparent) 73deg, color-mix(in srgb, var(--c-card) 45%, var(--sig)) 90deg, color-mix(in srgb, var(--sig) 22%, transparent) 107deg, transparent 124deg, transparent 360deg); animation: pgOrbit 5s linear infinite reverse; }
+  .ring.d-none .aura, .ring.d-none .sheen { display: none; }
+  .ring.d-none { padding: 0; }
+  .ring.d-still .sheen { display: none; }
+  .ring.d-still .aura { background: var(--sig); animation: none; }
+  .ring.d-glow .aura, .ring.d-glow .sheen { display: none; }
+  .ring.d-glow { padding: 0; box-shadow: 0 0 0 1px color-mix(in srgb, var(--sig) 40%, transparent), 0 6px 26px color-mix(in srgb, var(--sig) 34%, transparent); }
+  .ring.d-bar .aura, .ring.d-bar .sheen { display: none; }
+  .ring.d-bar { padding: 0 0 0 3px; background: var(--sig); }
+  .ring.d-top .aura, .ring.d-top .sheen { display: none; }
+  .ring.d-top { padding: 2px 0 0 0; background: linear-gradient(90deg, var(--sig), transparent 70%); }
+  .ring.d-both { box-shadow: 0 6px 26px color-mix(in srgb, var(--sig) 30%, transparent); }
+  .ring.d-dash .aura, .ring.d-dash .sheen { display: none; }
+  .ring.d-dash { padding: 0; outline: 1px dashed color-mix(in srgb, var(--sig) 60%, transparent); outline-offset: -1px; }
+  .ring.d-corner .aura, .ring.d-corner .sheen { display: none; }
+  .ring.d-corner { padding: 0; }
+  .ring.d-corner::before, .ring.d-corner::after {
+    content: ''; position: absolute; width: 14px; height: 14px; border: 2px solid var(--sig); z-index: 2;
+  }
+  .ring.d-corner::before { left: 0; top: 0; border-right: 0; border-bottom: 0; border-top-left-radius: var(--bub-tail); }
+  .ring.d-corner::after { right: 0; bottom: 0; border-left: 0; border-top: 0; border-bottom-right-radius: var(--bub-r); }
+  .ring.d-tint .aura, .ring.d-tint .sheen { display: none; }
+  .ring.d-tint { padding: 0; }
+  .ring.d-tint > .b { background: color-mix(in srgb, var(--sig) 14%, var(--bub-bg)); }
+
+  @keyframes pgShim { from { background-position: 120% 0; } to { background-position: -120% 0; } }
+  @keyframes pgBreathe { 0%,100% { filter: brightness(.86); } 50% { filter: brightness(1.12); } }
+  @keyframes pgOrbit { to { transform: rotate(360deg); } }
+  @keyframes pgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes pgFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pgSlide { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+  @keyframes pgScale { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
+  @keyframes pgNone { from { opacity: 1; } to { opacity: 1; } }
+  @keyframes pgBlur { from { opacity: 0; filter: blur(6px); } to { opacity: 1; filter: none; } }
+  @keyframes pgRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes pgBounce { 0% { opacity: 0; transform: translateY(10px) scale(.96); } 60% { opacity: 1; transform: translateY(-3px) scale(1.02); } 100% { transform: none; } }
+  @keyframes pgDrop { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+  .caret::after { content: '▍'; animation: pgCaret 1s steps(2) infinite; }
+  @keyframes pgCaret { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+  /* ── 컨트롤 ── */
+  .panel { display: grid; gap: 14px; }
+  .card { background: var(--c-card); border-radius: 14px; padding: 14px 16px; box-shadow: 0 10px 30px rgba(28,38,78,.08); }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  .sub { font-size: 12.5px; color: #5b6070; line-height: 1.6; margin: 0; }
+  h2 { font-size: 14px; margin: 0 0 2px; }
+  .axis-note { font-size: 11.5px; color: #5b6070; margin: 0 0 10px; }
+  .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  button.opt {
+    font: inherit; font-size: 12px; letter-spacing: inherit; cursor: pointer;
+    padding: 7px 10px; min-height: 34px; border-radius: 10px;
+    border: 1px solid #e2e4ee; background: #f7f8fc; color: #1b1b1f;
+  }
+  button.opt[aria-pressed='true'] { background: var(--c-primary); border-color: var(--c-primary); color: #fff; }
+  .fix { font-size: 10px; margin-left: 5px; padding: 1px 5px; border-radius: 999px; background: #e7ebf8; color: #22409e; }
+  button.opt[aria-pressed='true'] .fix { background: rgba(255,255,255,.24); color: #fff; }
+  .who { display: flex; gap: 6px; flex-wrap: wrap; }
+  .sum { font-size: 12.5px; line-height: 1.7; white-space: pre-wrap; background: #f7f8fc; border-radius: 10px; padding: 10px 12px; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+</style>
+
+<div class="stick">
+  <div class="frame">
+    <div class="bg">
+      <div class="fallback"></div>
+      <img id="plate" src="/assets/chef-doryeong-full.webp" alt="" onerror="this.style.display='none'" />
+    </div>
+    <div class="scrim"></div>
+    <div class="log" id="log"></div>
+  </div>
+  <div class="row" style="margin-top:10px">
+    <button class="opt" onclick="replay()">등장 다시 보기</button>
+    <span class="sub">화자를 바꾸면 시그니처 색이 같이 바뀐다</span>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="card">
+    <h1>대화창 플레이그라운드 v1</h1>
+    <p class="sub">
+      상담 말풍선을 <b>5축 × 10안</b>으로 갈아 끼워 본다. 값은 전부 앱 토큰 계승 — 여기서 새 색을 만들지 않았다.
+      <b>고정</b> 배지 = 지금 앱에 실제로 들어가 있는 안.
+    </p>
+    <div class="row" style="margin-top:10px">
+      <span class="sub" style="min-width:52px">화자</span>
+      <div class="who" id="who"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>A. 표면 — 유리가 얼마나 진하고 흐린가</h2>
+    <p class="axis-note">말풍선이 무대(인물 사진)를 얼마나 가리는가. 진할수록 글자가 편하고, 옅을수록 무대가 산다.</p>
+    <div class="opts" id="axA"></div>
+  </div>
+
+  <div class="card">
+    <h2>B. 형태 — 모서리·꼬리·여백·폭</h2>
+    <p class="axis-note">같은 유리라도 형태가 화면의 성격을 정한다(메신저 ↔ 미연시 자막).</p>
+    <div class="opts" id="axB"></div>
+  </div>
+
+  <div class="card">
+    <h2>C. 강조 — 한 구절을 화자 색으로 어떻게 집는가</h2>
+    <p class="axis-note">「제일 강조되는 말」의 표기법. 아래 셋째 말풍선에서 확인.</p>
+    <div class="opts" id="axC"></div>
+  </div>
+
+  <div class="card">
+    <h2>D. 끝말 액션 — 마지막(핵심) 말풍선의 테두리</h2>
+    <p class="axis-note">원국 도형에 두른 그 라인 계열. 맨 아래 말풍선에서 확인.</p>
+    <div class="opts" id="axD"></div>
+  </div>
+
+  <div class="card">
+    <h2>E. 등장 — 말풍선이 어떻게 들어오는가</h2>
+    <p class="axis-note">한 통씩 쌓이는 화면이라 이 축이 체감 속도를 정한다.</p>
+    <div class="opts" id="axE"></div>
+  </div>
+
+  <div class="card">
+    <h2>고른 조합</h2>
+    <div class="sum" id="sum"></div>
+  </div>
+</div>
+
+<script>
+  const CHEFS = [
+    { id: 'doryeong', name: '알카사르', sig: 'var(--sig-doryeong)', plate: '/assets/chef-doryeong-full.webp' },
+    { id: 'baekui', name: '단리아', sig: 'var(--sig-baekui)', plate: '/assets/chef-baekui-full.webp' },
+    { id: 'noona', name: '홍화동녀', sig: 'var(--sig-noona)', plate: '/assets/chef-noona-full.webp' },
+    { id: 'dongja', name: '설향 동자', sig: 'var(--sig-dongja)', plate: '/assets/chef-dongja-full.webp' },
+  ]
+
+  const A = [
+    { k: '지금 값', fix: 1, v: { '--bub-bg': 'color-mix(in srgb, var(--c-ink) 22%, transparent)', '--bub-blur': 'blur(29px) saturate(1)', '--bub-border': '1px solid color-mix(in srgb, var(--c-card) 8%, transparent)', '--bub-inset': 'none', '--bub-shadow': 'none', '--me-bg': 'color-mix(in srgb, var(--c-ink) 32%, transparent)' } },
+    { k: '채움 0 · 블러만', v: { '--bub-bg': 'transparent', '--bub-blur': 'blur(34px) saturate(1)', '--bub-border': '1px solid color-mix(in srgb, var(--c-card) 10%, transparent)', '--bub-inset': 'none', '--bub-shadow': 'none', '--me-bg': 'color-mix(in srgb, var(--c-ink) 26%, transparent)' } },
+    { k: '더 투명(12%)', v: { '--bub-bg': 'color-mix(in srgb, var(--c-ink) 12%, transparent)', '--bub-blur': 'blur(20px) saturate(1)', '--bub-border': '1px solid color-mix(in srgb, var(--c-card) 8%, transparent)', '--bub-inset': 'none', '--bub-shadow': 'none', '--me-bg': 'color-mix(in srgb, var(--c-ink) 22%, transparent)' } },
+    { k: '더 진하게(34%)', v: { '--bub-bg': 'color-mix(in srgb, var(--c-ink) 34%, transparent)', '--bub-blur': 'blur(18px) saturate(1)', '--bub-border': '1px solid color-mix(in srgb, var(--c-card) 8%, transparent)', '--bub-inset': 'none', '--bub-shadow': 'none', '--me-bg': 'color-mix(in srgb, var(--c-ink) 44%, transparent)' } },
+    { k: '테두리 없음', v: { '--bub-bg': 'color-mix(in srgb, var(--c-ink) 24%, transparent)', '--bub-blur': 'blur(29px) saturate(1)', '--bub-border': 'none', '--bub-inset': 'none', '--bub-shadow': 'none', '--me-bg': 'color-mix(in srgb, var(--c-ink) 34%, transparent)' } },
+    { k: '림라이트', v: { '--bub-bg': 'color-mix(in srgb, var(--c-ink) 22%, transparent)', '--bub-blur': 'blur(29px) saturate(1)', '--bub-border': '1px solid color-mix(in srgb, var(--c-card) 10%, transparent)', '--bub-inset': 'inset 0 1px 0 color-mix(in srgb, var(--c-card) 22%, transparent)', '--bub-shadow': 'none', '--me-bg': 'color-mix(in srgb, var(--c-ink) 32%, transparent)' } },
+    { k: '위가 밝은 유리', v: { '--bub-bg': 'linear-gradient(180deg, color-mix(in srgb, var(--c-ink) 14%, transparent), color-mix(in srgb, var(--c-ink) 30%, transparent))', '--bub-blur': 'blur(26px) saturate(1)', '--bub-border': '1px solid color-mix(in srgb, var(--c-card) 8%, transparent)', '--bub-inset': 'none', '--bub-shadow': 'none', '--me-bg': 'color-mix(in srgb, var(--c-ink) 34%, transparent)' } },
+    { k: '떠 있는 판(그림자)', v: { '--bub-bg': 'color-mix(in srgb, var(--c-ink) 26%, transparent)', '--bub-blur': 'blur(24px) saturate(1)', '--bub-border': '1px solid color-mix(in srgb, var(--c-card) 8%, transparent)', '--bub-inset': 'none', '--bub-shadow': '0 10px 24px color-mix(in srgb, var(--c-ink) 40%, transparent)', '--me-bg': 'color-mix(in srgb, var(--c-ink) 36%, transparent)' } },
+    { k: '완전 유리(blur 40)', v: { '--bub-bg': 'transparent', '--bub-blur': 'blur(40px) saturate(1)', '--bub-border': '1px solid color-mix(in srgb, var(--c-card) 16%, transparent)', '--bub-inset': 'none', '--bub-shadow': 'none', '--me-bg': 'color-mix(in srgb, var(--c-ink) 26%, transparent)' } },
+    { k: '색이 도는 유리', v: { '--bub-bg': 'color-mix(in srgb, var(--c-ink) 30%, transparent)', '--bub-blur': 'blur(26px) saturate(1.4)', '--bub-border': '1px solid color-mix(in srgb, var(--c-card) 8%, transparent)', '--bub-inset': 'none', '--bub-shadow': 'none', '--me-bg': 'color-mix(in srgb, var(--c-ink) 40%, transparent)' } },
+  ]
+
+  const B = [
+    { k: '지금 값', fix: 1, v: { '--bub-r': '14px', '--bub-tail': '6px', '--bub-pad': '10px 13px', '--bub-max': '82%', '--bub-gap': '8px' } },
+    { k: '둥글게 18', v: { '--bub-r': '18px', '--bub-tail': '6px', '--bub-pad': '10px 13px', '--bub-max': '82%', '--bub-gap': '8px' } },
+    { k: '꼬리 없이 전부 둥글게', v: { '--bub-r': '20px', '--bub-tail': '20px', '--bub-pad': '10px 14px', '--bub-max': '82%', '--bub-gap': '8px' } },
+    { k: '각지게 10', v: { '--bub-r': '10px', '--bub-tail': '4px', '--bub-pad': '10px 13px', '--bub-max': '82%', '--bub-gap': '8px' } },
+    { k: '알약형', v: { '--bub-r': '22px', '--bub-tail': '22px', '--bub-pad': '12px 16px', '--bub-max': '82%', '--bub-gap': '9px' } },
+    { k: '좁게 70%', v: { '--bub-r': '14px', '--bub-tail': '6px', '--bub-pad': '10px 13px', '--bub-max': '70%', '--bub-gap': '8px' } },
+    { k: '넓게 92%', v: { '--bub-r': '14px', '--bub-tail': '6px', '--bub-pad': '10px 13px', '--bub-max': '92%', '--bub-gap': '8px' } },
+    { k: '조밀(간격 5)', v: { '--bub-r': '14px', '--bub-tail': '6px', '--bub-pad': '8px 11px', '--bub-max': '82%', '--bub-gap': '5px' } },
+    { k: '여유(간격 12)', v: { '--bub-r': '14px', '--bub-tail': '6px', '--bub-pad': '13px 16px', '--bub-max': '82%', '--bub-gap': '12px' } },
+    { k: '자막형(폭 100%)', v: { '--bub-r': '12px', '--bub-tail': '12px', '--bub-pad': '11px 14px', '--bub-max': '100%', '--bub-gap': '7px' } },
+  ]
+
+  const C = [
+    { k: '색 + 빛 스윕', fix: 1, cls: 'shim' },
+    { k: '색만', cls: '' },
+    { k: '밑줄', cls: 'uline' },
+    { k: '점선 밑줄', cls: 'dline' },
+    { k: '색 칩(배경)', cls: 'chip' },
+    { k: '형광펜', cls: 'marker' },
+    { k: '굵게만(흰색)', cls: 'plain' },
+    { k: '좌측 바', cls: 'bar' },
+    { k: '그림자 강하게', cls: 'deep' },
+    { k: '살짝 크게', cls: 'big' },
+  ]
+
+  const D = [
+    { k: '기운 링(도는 빛)', fix: 1, cls: '' },
+    { k: '링 없음', cls: 'd-none' },
+    { k: '정지 링 1px', cls: 'd-still' },
+    { k: '바깥 글로우', cls: 'd-glow' },
+    { k: '좌측 색 바', cls: 'd-bar' },
+    { k: '상단 색 라인', cls: 'd-top' },
+    { k: '링 + 글로우', cls: 'd-both' },
+    { k: '점선 링', cls: 'd-dash' },
+    { k: '모서리 마크', cls: 'd-corner' },
+    { k: '배경만 살짝', cls: 'd-tint' },
+  ]
+
+  const E = [
+    { k: '아래에서 8px', fix: 1, v: { '--in-name': 'pgIn', '--in-dur': '.28s', '--in-stag': '26ms' } },
+    { k: '페이드만', v: { '--in-name': 'pgFade', '--in-dur': '.3s', '--in-stag': '26ms' } },
+    { k: '왼쪽에서 슬라이드', v: { '--in-name': 'pgSlide', '--in-dur': '.3s', '--in-stag': '30ms' } },
+    { k: '스케일 팝', v: { '--in-name': 'pgScale', '--in-dur': '.26s', '--in-stag': '26ms' } },
+    { k: '연출 없음', v: { '--in-name': 'pgNone', '--in-dur': '.01s', '--in-stag': '0ms' } },
+    { k: '블러 인', v: { '--in-name': 'pgBlur', '--in-dur': '.34s', '--in-stag': '30ms' } },
+    { k: '아래에서 크게(16px)', v: { '--in-name': 'pgRise', '--in-dur': '.34s', '--in-stag': '30ms' } },
+    { k: '스태거 강하게(70ms)', v: { '--in-name': 'pgIn', '--in-dur': '.28s', '--in-stag': '70ms' } },
+    { k: '튕김', v: { '--in-name': 'pgBounce', '--in-dur': '.44s', '--in-stag': '30ms' } },
+    { k: '위에서 떨어짐', v: { '--in-name': 'pgDrop', '--in-dur': '.28s', '--in-stag': '26ms' } },
+  ]
+
+  const pick = { who: 0, A: 0, B: 0, C: 0, D: 0, E: 0 }
+
+  function apply() {
+    const r = document.documentElement.style
+    for (const [k, v] of Object.entries(A[pick.A].v)) r.setProperty(k, v)
+    for (const [k, v] of Object.entries(B[pick.B].v)) r.setProperty(k, v)
+    for (const [k, v] of Object.entries(E[pick.E].v)) r.setProperty(k, v)
+    r.setProperty('--sig', CHEFS[pick.who].sig)
+    const img = document.getElementById('plate')
+    img.style.display = ''
+    img.src = CHEFS[pick.who].plate
+    draw()
+    document.getElementById('sum').textContent =
+      `화자 = ${CHEFS[pick.who].name}\n` +
+      `A 표면 = ${A[pick.A].k}\nB 형태 = ${B[pick.B].k}\nC 강조 = ${C[pick.C].k}\n` +
+      `D 끝말 = ${D[pick.D].k}\nE 등장 = ${E[pick.E].k}`
+  }
+
+  /** 샘플 대화 — 지문 / 일반 / 강조가 들어간 통 / 내 답 / 끝말(핵심) */
+  function draw() {
+    const em = C[pick.C].cls
+    const log = document.getElementById('log')
+    log.innerHTML = `
+      <div class="b nar"><span class="lead ${em === 'shim' ? 'shim' : ''}">판을 펼쳐 손끝으로 짚어 내려간다.</span></div>
+      <div class="b">됐고, 생년월일 대봐. …하, 판 꼬라지 하고는.</div>
+      <div class="b"><span class="em ${em}">2051년부터</span> 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지.</div>
+      <div class="b me">그… 맞아</div>
+      <div class="ring ${D[pick.D].cls}">
+        <div class="aura"></div><div class="sheen"></div>
+        <div class="b"><span class="lead ${em === 'shim' ? 'shim' : ''}">…미리 보러 온 셈이지?</span></div>
+      </div>`
+  }
+
+  function replay() { draw() }
+
+  function mount(id, arr, key) {
+    const box = document.getElementById(id)
+    box.innerHTML = ''
+    arr.forEach((o, i) => {
+      const b = document.createElement('button')
+      b.className = 'opt'
+      b.type = 'button'
+      b.innerHTML = `${i + 1}. ${o.k}` + (o.fix ? '<span class="fix">고정</span>' : '')
+      b.setAttribute('aria-pressed', String(pick[key] === i))
+      b.onclick = () => {
+        pick[key] = i
+        ;[...box.children].forEach((c, j) => c.setAttribute('aria-pressed', String(j === i)))
+        apply()
+      }
+      box.appendChild(b)
+    })
+  }
+
+  const whoBox = document.getElementById('who')
+  CHEFS.forEach((c, i) => {
+    const b = document.createElement('button')
+    b.className = 'opt'
+    b.type = 'button'
+    b.textContent = c.name
+    b.setAttribute('aria-pressed', String(i === 0))
+    b.onclick = () => {
+      pick.who = i
+      ;[...whoBox.children].forEach((x, j) => x.setAttribute('aria-pressed', String(j === i)))
+      apply()
+    }
+    whoBox.appendChild(b)
+  })
+
+  mount('axA', A, 'A'); mount('axB', B, 'B'); mount('axC', C, 'C'); mount('axD', D, 'D'); mount('axE', E, 'E')
+  apply()
+</script>
