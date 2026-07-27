@@ -19,6 +19,14 @@ export interface Chef {
    * 인물 사진은 손대지 않는다 — 생성물은 파생일 뿐 플레이트가 아니다.
    */
   plate: string
+  /**
+   * 시그니처 색 — **누가 말하고 있나를 색으로도 알리는** 축(운영자 260727 "말 중에 제일
+   * 강조되는 말에 항상 그 인물의 시그니처 색을 넣어서 안 헷갈리게").
+   * ⚠ 새 hex를 만들지 않는다 — **오행 라벨 토큰(`--oh-label-*`) 계승**이다(디자인 SSOT §A).
+   * 고른 축 = ①인물 명식·이름의 오행 ②그 인물 무대 컷의 지배색(둘이 어긋나면 화면 쪽을 따른다 —
+   * 목적이 '헷갈리지 않기'라 글자가 배경과 같은 계열이면 그 목적을 못 이룬다).
+   */
+  sig: string
   /** 표정 컷(선택) — 정본 원본 갤러리. 대화 연출(DosaChat) 배선 시 사용 */
   cuts?: Record<string, string>
 }
@@ -44,12 +52,14 @@ export const CHEFS: readonly Chef[] = [
     name: '홍화동녀',
     concept: '홍화동녀(紅花童女) — 은백발에 붉은 입술, 서늘한 뱀파이어 결의 여성 도사. 남성 사용자 상담. 먼저 찌르고 본다',
     plate: '/assets/chef-noona-full.webp',
+    sig: 'var(--oh-label-hwa)', // 화 — 이름이 곧 붉은 꽃(紅花)이고 입술·눈꼬리가 그 색이다
   },
   {
     id: 'baekui',
     name: '단리아',
     concept: '단리아 — 흰 도복에 검은 오비, 정통 일본식 결의 여성 도사. 말수가 적고 정확하다(여성 일반 상담)',
     plate: '/assets/chef-baekui-full.webp',
+    sig: 'var(--oh-label-to)', // 토 — 무대가 목조 실내에 드는 저녁 햇살(황갈)이다
   },
   {
     id: 'doryeong',
@@ -59,6 +69,10 @@ export const CHEFS: readonly Chef[] = [
       '핏기 없는 피부에 흑발, 목을 감싸는 고풍스러운 의상. 오만하고 냉정하되 격식을 지키는 클래식한 귀족. ' +
       '그림자를 다루는 음(陰)의 술사. 여성 사용자 상담',
     plate: '/assets/chef-doryeong-full.webp',
+    // 수 — 계해년·계해월의 극음(수)이고 무대도 청람빛 밤이다.
+    // ⚠ 일간은 신금(辛)이지만 금 라벨색(`--oh-label-geum` = 거의 흰 회색)은 이 화면의 흰 본문과
+    // 안 갈린다 → 화면 축을 택했다.
+    sig: 'var(--oh-label-su)',
   },
   {
     id: 'dongja',
@@ -68,12 +82,16 @@ export const CHEFS: readonly Chef[] = [
       '7~8세에 성장이 멈춘 모습, 눈부시게 흰 옷과 초점 없는 백색 눈동자, 붉은 염주. 평소엔 감정이 없다가 ' +
       '접신하면 목소리가 변해 신탁을 내린다. 알카사르 앞에서만 온순하다',
     plate: '/assets/chef-dongja-full.webp',
+    // 목 — 컨셉은 흰 옷·서리(금)지만 금 라벨색은 흰 본문과 대비가 0이라 '헷갈리지 않기'라는
+    // 목적 자체를 못 이룬다. 남은 축 중 대비가 서는 목을 쓴다(알카사르=수와도 안 겹친다).
+    sig: 'var(--oh-label-mok)',
   },
   {
     id: 'default',
     name: '기본캐(이름 미정)',
     concept: 'lineless painterly 남신(수채 제거·운영자 260722 확정) — 역할 미정',
     plate: '/assets/chef-default.jpg', // = v5 cut4_consult 최적화 사본
+    sig: 'var(--oh-label-su)', // 밤 수채 = 청람(어느 화면에도 안 뜨는 잔재라 값만 채운다)
     cuts: {
       거만: '/reports/dosa-male-v5/cut1_arrogant.png',
       진지: '/reports/dosa-male-v5/cut2_serious.png',
@@ -146,6 +164,18 @@ export function hasChef(): boolean {
  * ⚠ 남성 쪽은 원래 홍화동녀(noona)였는데 운영자 260726 "쟤 말고 다른애로 해봐"로 교체했다.
  */
 export const chefForGender = (g?: 'M' | 'F'): Chef => CHEFS.find((c) => c.id === (g === 'M' ? 'baekui' : 'doryeong'))!
+
+/**
+ * 사람 바꾸기 — 헤더 교체 버튼이 쓰는 **4인 순환 링**(운영자 260727 "교체 버튼 픽토그램으로
+ * 만들어서 누르면 사람 바뀌게"). 빗맞힘 교체(`counterpartChef`)는 맞은편 1명만 부르지만,
+ * 이건 손님이 직접 고르는 축이라 등재된 4인을 차례로 돈다(`default` = 잔재라 뺀다).
+ */
+const RING = ['doryeong', 'baekui', 'noona', 'dongja'] as const
+export const nextChef = (id: string): Chef => {
+  const i = RING.indexOf(id as (typeof RING)[number])
+  const nextId = RING[(i + 1) % RING.length] // 등재 밖(-1)이면 링 첫 사람부터
+  return CHEFS.find((c) => c.id === nextId)!
+}
 
 /** 맞은편 도사 — 빗맞혔을 때 밀고 들어오는 쪽(교체 연출) */
 export const counterpartChef = (id: string): Chef =>

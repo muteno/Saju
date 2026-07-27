@@ -8,7 +8,7 @@ import type { OhaengKey } from '../theme'
 import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, chartSummaryOf } from '../data/dosaTopics'
 import type { DosaLine, Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
-import { chefForGender, counterpartChef, bargeLineOf, voiceOf } from '../data/chefs'
+import { chefForGender, counterpartChef, nextChef, bargeLineOf, voiceOf } from '../data/chefs'
 import type { Chef } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
 import type { Pillar } from '../data/saju'
@@ -89,6 +89,9 @@ const YG = {
   bubbleBg: 'color-mix(in srgb, var(--c-ink) 22%, transparent)',
   pillBg: 'color-mix(in srgb, var(--c-ink) 18%, transparent)',
   line: 'color-mix(in srgb, var(--c-card) 8%, transparent)',
+  // 스크롤 막대 — 말풍선과 같은 검정 베이스에서 한 단 더 내린 값(말풍선 22% → 12%).
+  // "거의 투명해서 안 보이게"(운영자 260727)라 존재만 알리고 화면에선 물러난다.
+  scroll: 'color-mix(in srgb, var(--c-ink) 12%, transparent)',
   blurBubble: 'blur(29px) saturate(1)',
   blurPill: 'blur(11px) saturate(1)',
   fg: 'var(--c-card)',
@@ -113,6 +116,65 @@ interface Msg {
    * 예타 `.yb i.yn` 문법 계승 = 같은 유리 말풍선에 **이탤릭 + 톤다운**.
    */
   narration?: true
+}
+
+/**
+ * 시그니처 강조 — **한 말풍선에서 제일 중요한 한 구절**을 화자의 색으로 칠한다
+ * (운영자 260727 "말 중에 제일 강조되는 말에 항상 그 인물의 시그니처 색을 넣어서 안 헷갈리게" ·
+ * "밑줄친 부분이 시그니처 색으로 그 '사주를 보는 중입니다'처럼 나오게").
+ *
+ * 판정은 **결정론**이다(LLM에 마크업을 시키지 않는다 — 폴백 대사엔 마크업이 없어 두 경로가 갈린다).
+ * 우선순위대로 첫 1건만 칠한다. 여러 군데를 칠하면 강조가 아니라 배경이 된다.
+ *   ① 「」로 이미 묶인 말   ② 연도(20XX년)   ③ 사주 용어   ④ 없으면 **첫 문장**
+ * ④가 있어서 용어 없는 대사("계산은 분명 그렇게 나와 있소")도 늘 한 구절은 칠해진다.
+ */
+const TERMS = [
+  '비견', '겁재', '식신', '상관', '편재', '정재', '편관', '정관', '편인', '정인',
+  '도화', '역마', '화개', '백호', '귀문', '공망', '원진', '천을귀인', '문창', '양인',
+  '대운', '세운', '일주', '일간', '원국', '격국', '신강', '신약', '지장간', '삼합', '방합',
+] as const
+// 용어 뒤에 붙는 조사·꼬리 몇 자까지 함께 잡는다(「식신이」·「대운부터」) — 낱말이 잘려 보이지 않게
+const TERM_RE = new RegExp(`(?:${TERMS.join('|')})[가-힣]{0,3}`)
+const QUOTE_RE = /「[^」]{1,24}」/
+const YEAR_RE = /\d{4}년[가-힣]{0,4}/
+/** 첫 문장 — 뒤에 이어지는 말이 있을 때만 쓰는 폴백(아래 주석) */
+const FIRST_RE = /^[^.?!…]{2,}[.?!…]/
+
+function emphasisSpan(text: string): [number, number] | null {
+  for (const re of [QUOTE_RE, YEAR_RE, TERM_RE]) {
+    const m = re.exec(text)
+    if (m && m[0].trim()) return [m.index, m.index + m[0].length]
+  }
+  /**
+   * 용어가 하나도 없는 대사("계산은 분명 그렇게 나와 있소")도 한 구절은 칠해야 한다(운영자
+   * 260727 밑줄 예시가 정확히 그런 문장이었다) → 첫 문장을 쓴다.
+   * ⚠ 단 **뒤에 다른 문장이 남아 있을 때만**이다. 한 문장짜리 짧은 말까지 칠하면 260727 실측처럼
+   * 말풍선 넷이 전부 색으로 덮여 "제일 강조되는 말"이 아니라 그냥 배경이 된다.
+   */
+  const m = FIRST_RE.exec(text)
+  if (m && text.slice(m[0].length).trim().length >= 2) return [0, m[0].length]
+  return null
+}
+
+/**
+ * 강조 구간만 화자 색으로 갈아 끼운 조각들.
+ * ⚠ 무대가 인물 **사진**이라 색 글자는 배경에 먹힌다(운영자 "뒷 배경에 안 가려지게") —
+ * 미터줄과 같은 처리로 **어두운 그림자**를 깔아 대비를 세운다. 그림자 색도 잉크 토큰 파생이라 신규 색 0.
+ */
+const SIG_SHADOW = '0 1px 6px color-mix(in srgb, var(--c-ink) 72%, transparent)'
+function withEmphasis(text: string, color: string): ReactNode {
+  const span = emphasisSpan(text)
+  if (!span) return text
+  const [a, b] = span
+  return (
+    <>
+      {text.slice(0, a)}
+      <Box component="span" sx={{ color, fontWeight: 800, textShadow: SIG_SHADOW }}>
+        {text.slice(a, b)}
+      </Box>
+      {text.slice(b)}
+    </>
+  )
 }
 
 /** 지문 표기 — 이 접두가 붙은 줄은 말이 아니라 동작이다(큐를 통과해도 표시가 안 지워진다) */
@@ -224,12 +286,22 @@ const toMsgs = (text: string): string[] => {
 function Bubble({
   who,
   narration,
+  sig,
+  lead,
   children,
   'aria-hidden': ariaHidden,
 }: {
   who: 'ai' | 'me'
   /** 지문 = 말이 아니라 동작 — 예타 `.yb i.yn`(이탤릭 + 톤다운) 문법 계승 */
   narration?: true
+  /** 지금 말하는 인물의 시그니처 색 */
+  sig?: string
+  /**
+   * **전경째 시그니처 색**으로 칠하는 말풍선(운영자 260727 "심리상태 표기나, 핵심되는 마지막
+   * 말풍선에 시그니처 색으로 전경을 칠하게"). 발동 = ①지문(심리·상황 표기) ②지금 말줄기의 끝말.
+   * 나머지 말풍선은 흰 본문에 **한 구절만** 색이 들어간다(`withEmphasis`).
+   */
+  lead?: boolean
   children: ReactNode
   'aria-hidden'?: true
 }) {
@@ -260,7 +332,11 @@ function Bubble({
         letterSpacing: 'var(--tracking)',
         whiteSpace: 'pre-line',
         wordBreak: 'break-word',
-        ...(narration && { fontStyle: 'italic', color: YG.fg2, opacity: 0.75 }),
+        // 지문은 여전히 기울임이되 **톤다운은 걷었다** — 이 줄이 곧 심리·상황 표기라
+        // 시그니처 색으로 칠해질 자리다(흐려 놓으면 그 색이 안 보인다).
+        ...(narration && { fontStyle: 'italic', color: YG.fg2, opacity: 0.92 }),
+        // 전경 칠 — 사진 위라 색 글자는 그림자로 대비를 세운다(미터줄과 같은 처리)
+        ...(!me && lead && sig && { color: sig, fontWeight: 700, textShadow: SIG_SHADOW }),
       }}
       aria-hidden={ariaHidden}
     >
@@ -341,6 +417,7 @@ export default function DosaChat({
   who,
   onNav,
   onBeat,
+  switchSignal = 0,
 }: {
   report: ReportBundle
   /** 좌상단 미니 명식에 박히는 원국(UiChart.pillars — 시일월년 순) */
@@ -362,6 +439,12 @@ export default function DosaChat({
   onBeat?: (text: string) => void
   /** 입력행 좌측 도크의 메뉴 이동(예타 `.ydock` 문법 — 하단 바가 곧 입력행이라 여기가 유일한 출구) */
   onNav?: (to: string) => void
+  /**
+   * 사람 바꾸기 신호 — 헤더 교체 버튼이 누를 때마다 1씩 올린다(운영자 260727 "누르면 사람
+   * 바뀌게 · 화면 흔들리면서 이미지 바뀌고 대사 나오면 됨"). 값 자체는 뜻이 없고 **변한다는 것**만 읽는다.
+   * 헤더는 이 컴포넌트 밖(Talk)에 있어 콜백을 거꾸로 받을 수 없다 — 그래서 신호를 내려받는다.
+   */
+  switchSignal?: number
 }) {
   const [chef, setChef] = useState(() => chefForGender(gender))
   /** 대화 로그 — 위에서 아래로 쌓인다(질문이 위에 남는다) */
@@ -454,14 +537,22 @@ export default function DosaChat({
 
   /**
    * 새 말풍선을 따라 로그가 아래로 흐른다(메신저 관례).
-   * ⚠ **이미 바닥 근처일 때만** 따라간다 — 무조건 끌어내리면 사용자가 앞 대화를 되읽으려 올린 순간
-   * 타이핑이 28ms마다 바닥으로 도로 끌어내린다(검토자 260726 · 되읽기 불가 + 매 틱 강제 리플로우).
-   * 진짜 메신저가 하는 것과 같다 — 위를 보고 있으면 따라가지 않는다.
+   *
+   * ⚠ 260727 운영자 지적: "말하다가 말이 계속 위에 했던 말로 포커싱이 튈 때가 있는데 항상
+   * 포커싱은 마지막으로 가게 해줘." 원인 = 따라가는 조건이 「바닥에서 60px 안」 하나뿐이라,
+   * **긴 말풍선 한 통이 들어오면 그 순간 60px을 넘겨** 그 뒤로는 영영 안 따라갔다(화면은 옛 말에
+   * 멈춰 있고 새 말은 아래에서 혼자 쌓인다). 그래서 축을 둘로 나눈다:
+   *   · **말풍선이 하나 늘었다** = 무조건 끝으로 간다(새 말이 곧 지금 봐야 할 것)
+   *   · **같은 말풍선이 타이핑 중** = 바닥 근처일 때만(되읽으려 올려 둔 화면을 28ms마다
+   *     도로 끌어내리지 않는다 — 검토자 260726이 잡은 그 축은 그대로 지킨다)
    */
+  const logLenRef = useRef(0)
   useEffect(() => {
     const el = logRef.current
     if (!el) return
-    if (el.scrollHeight - el.scrollTop - el.clientHeight < 60) el.scrollTop = el.scrollHeight
+    const grew = log.length !== logLenRef.current
+    logLenRef.current = log.length
+    if (grew || el.scrollHeight - el.scrollTop - el.clientHeight < 60) el.scrollTop = el.scrollHeight
   }, [log, tw.shown, stage])
 
   /**
@@ -479,6 +570,43 @@ export default function DosaChat({
     return () => timers.forEach(clearTimeout)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage, chef.id])
+
+  /**
+   * 사람 바꾸기 — 헤더 교체 버튼(운영자 260727). 빗맞힘 교체와 **같은 문법**을 쓴다:
+   * 흔들림 → 인물(=배경) 교체 → 지문 + 들어온 사람의 난입 대사. 사과나 설명 자막은 없다.
+   * ⚠ 첫 렌더에는 안 돈다(신호 초기값) — 안 그러면 화면에 들어오자마자 사람이 바뀐다.
+   */
+  const firstSignal = useRef(true)
+  useEffect(() => {
+    if (firstSignal.current) {
+      firstSignal.current = false
+      return
+    }
+    const next = nextChef(chef.id)
+    setChef(next)
+    onChef?.(next)
+    rumble('shake')
+    readRef.current = 0
+    topicRef.current = null
+    setTopicKey(null)
+    /**
+     * ⚠ 연달아 누르면 **지문만 세 줄 쌓인다**(260727 실측): `say`는 첫 통만 로그에 넣고 나머지를
+     * 큐로 미루는데, 큐를 비우기 전에 또 누르면 앞 사람의 난입 대사가 통째로 덮인다.
+     * 그래서 **직전 줄이 같은 지문이면 지문을 건너뛴다** — 자리가 바뀌는 그림은 이미 봤으니까.
+     */
+    const ENTER = '자리를 물리자 다른 이가 판 앞에 앉는다.'
+    const lastText = log[log.length - 1]?.text
+    const head = lastText === nar(ENTER) ? [] : [nar(ENTER)]
+    // 정곡을 아직 안 물었으면 그 국면을 지킨다(질문만 새 화자가 다시 던진다).
+    // 풀이 중이었다면 앞 화자의 남은 말은 버리고 메뉴로 돌아간다 — 화자가 갈렸으니 그 풀이도 끝난 것.
+    if (stage === 'jeonggok' && jeonggok) {
+      say([...head, bargeLineOf(next.id), jeonggok.ask])
+    } else {
+      setStage('menu')
+      say([...head, bargeLineOf(next.id), '그래서, 뭐가 궁금한가?'])
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [switchSignal])
 
   const onJeonggokAnswer = (hit: boolean, label: string) => {
     if (!jeonggok) return
@@ -780,6 +908,20 @@ export default function DosaChat({
             minHeight: 0,
             overflowY: 'auto',
             overflowX: 'hidden',
+            /**
+             * 스크롤바 = **대화창과 같은 결**(운영자 260727 "스크롤 옆에 대화창이랑 분위기를
+             * 동일하게 · 거의 투명해서 안 보이게"). 기본 스크롤바는 회색 트랙 + 화살표 두 개라
+             * 무대 위에 OS 부품이 하나 얹힌 꼴이었다(260727 실측 스크린샷).
+             * 값은 말풍선 토큰 계승 — 막대는 `YG.scroll`(잉크 베이스 12%), 트랙은 아예 없다.
+             * ⚠ **접두 먼저·표준 나중**(22-ⓙ 함정): 크로뮴 121+는 표준 `scrollbar-*`가 이기고
+             * 그 아래 버전·사파리는 `::-webkit-*`를 읽는다. 둘 다 적어야 어디서든 얇고 투명하다.
+             */
+            '&::-webkit-scrollbar': { width: 6 },
+            '&::-webkit-scrollbar-track': { background: 'transparent' },
+            '&::-webkit-scrollbar-thumb': { background: YG.scroll, borderRadius: '999px' },
+            '&::-webkit-scrollbar-button': { display: 'none', width: 0, height: 0 },
+            scrollbarWidth: 'thin',
+            scrollbarColor: `${YG.scroll} transparent`,
             px: 2,
             pt: 1.5,
             display: 'flex',
@@ -793,11 +935,21 @@ export default function DosaChat({
         >
           {log.map((m, i) => {
             const typing = i === log.length - 1 && m.who === 'ai' && !tw.done
+            const shown = typing ? tw.shown : m.text
+            const body = isNar(shown) ? narText(shown) : shown
+            /**
+             * 전경째 칠하는 줄 = **지문**(심리·상황 표기) 또는 **지금 말줄기의 끝말**.
+             * 끝말 판정은 「로그의 마지막 AI 말풍선이고 뒤에 남은 큐가 없다」 —
+             * 운영자 "꼭 마지막 아니여도 돼. 마지막 말 하고, 상황 표기를 할 수도 있으니까".
+             */
+            const lastAi = i === log.length - 1 && m.who === 'ai' && queue.length === 0
+            const lead = m.narration || lastAi
             return (
               // ⚠ 타이핑 중인 말풍선은 낭독에서 뺀다 — 라이브 리전 안에서 28ms마다 글자가 갈리면
               // 스크린리더가 부분 문장을 초 36회 되읽는다(검토자 260726). 완성된 뒤에 읽힌다.
-              <Bubble key={i} who={m.who} narration={m.narration} aria-hidden={typing || undefined}>
-                {isNar(typing ? tw.shown : m.text) ? narText(typing ? tw.shown : m.text) : typing ? tw.shown : m.text}
+              <Bubble key={i} who={m.who} narration={m.narration} sig={chef.sig} lead={lead} aria-hidden={typing || undefined}>
+                {/* 전경째 칠하는 줄은 구절 강조를 겹치지 않는다(이미 전부 그 색이다) */}
+                {m.who === 'ai' && !lead ? withEmphasis(body, chef.sig) : body}
               </Bubble>
             )
           })}
