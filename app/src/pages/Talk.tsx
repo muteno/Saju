@@ -37,6 +37,8 @@ export default function Talk() {
    * (운영자 260727 "누르면 사람 바뀌게 · 화면 흔들리면서 이미지 바뀌고 대사 나오면 됨").
    */
   const [switchSignal, setSwitchSignal] = useState(0)
+  /** 복채 주머니 신호 — 퀘스트 축은 미정이라 지금은 열어 보는 한마디까지(운영자 260727) */
+  const [pouchSignal, setPouchSignal] = useState(0)
   /**
    * 배경(인물 컷)도 같이 흔든다 — DosaChat의 덜컹은 대화 무대 안쪽만 잡는다. 배경은 스크롤
    * 컨테이너 **밖**에 따로 서 있어(25-ⓐ) 흔들리지 않으면 "화면이 흔들린다"가 반쪽이 된다.
@@ -203,7 +205,8 @@ export default function Talk() {
             <Box
               component="button"
               type="button"
-              aria-label="복채 주머니 — 준비 중"
+              aria-label="복채 주머니 열어 보기"
+              onClick={() => setPouchSignal((n) => n + 1)}
               sx={{
                 flex: 'none',
                 width: 32,
@@ -269,6 +272,7 @@ export default function Talk() {
             who={who}
             onBeat={setBeat}
             switchSignal={switchSignal}
+            pouchSignal={pouchSignal}
             onNav={(to) => nav(to === '/result' ? stepPath('intro', resolved.search) : to === '/analysis' ? stepPath('analysis', resolved.search) : to)}
           />
         </Box>

@@ -52,14 +52,14 @@ export const CHEFS: readonly Chef[] = [
     name: '홍화동녀',
     concept: '홍화동녀(紅花童女) — 은백발에 붉은 입술, 서늘한 뱀파이어 결의 여성 도사. 남성 사용자 상담. 먼저 찌르고 본다',
     plate: '/assets/chef-noona-full.webp',
-    sig: 'var(--oh-label-hwa)', // 화 — 이름이 곧 붉은 꽃(紅花)이고 입술·눈꼬리가 그 색이다
+    sig: 'color-mix(in srgb, var(--oh-label-hwa) 52%, var(--c-card))', // 화 — 이름이 곧 붉은 꽃(紅花)
   },
   {
     id: 'baekui',
     name: '단리아',
     concept: '단리아 — 흰 도복에 검은 오비, 정통 일본식 결의 여성 도사. 말수가 적고 정확하다(여성 일반 상담)',
     plate: '/assets/chef-baekui-full.webp',
-    sig: 'var(--oh-label-to)', // 토 — 무대가 목조 실내에 드는 저녁 햇살(황갈)이다
+    sig: 'color-mix(in srgb, var(--oh-label-to) 58%, var(--c-card))', // 토 — 무대가 목조 실내의 저녁 햇살
   },
   {
     id: 'doryeong',
@@ -72,7 +72,7 @@ export const CHEFS: readonly Chef[] = [
     // 수 — 계해년·계해월의 극음(수)이고 무대도 청람빛 밤이다.
     // ⚠ 일간은 신금(辛)이지만 금 라벨색(`--oh-label-geum` = 거의 흰 회색)은 이 화면의 흰 본문과
     // 안 갈린다 → 화면 축을 택했다.
-    sig: 'var(--oh-label-su)',
+    sig: 'color-mix(in srgb, var(--oh-label-su) 46%, var(--c-card))',
   },
   {
     id: 'dongja',
@@ -84,14 +84,14 @@ export const CHEFS: readonly Chef[] = [
     plate: '/assets/chef-dongja-full.webp',
     // 목 — 컨셉은 흰 옷·서리(금)지만 금 라벨색은 흰 본문과 대비가 0이라 '헷갈리지 않기'라는
     // 목적 자체를 못 이룬다. 남은 축 중 대비가 서는 목을 쓴다(알카사르=수와도 안 겹친다).
-    sig: 'var(--oh-label-mok)',
+    sig: 'color-mix(in srgb, var(--oh-label-mok) 48%, var(--c-card))',
   },
   {
     id: 'default',
     name: '기본캐(이름 미정)',
     concept: 'lineless painterly 남신(수채 제거·운영자 260722 확정) — 역할 미정',
     plate: '/assets/chef-default.jpg', // = v5 cut4_consult 최적화 사본
-    sig: 'var(--oh-label-su)', // 밤 수채 = 청람(어느 화면에도 안 뜨는 잔재라 값만 채운다)
+    sig: 'color-mix(in srgb, var(--oh-label-su) 46%, var(--c-card))', // 잔재라 값만 채운다
     cuts: {
       거만: '/reports/dosa-male-v5/cut1_arrogant.png',
       진지: '/reports/dosa-male-v5/cut2_serious.png',

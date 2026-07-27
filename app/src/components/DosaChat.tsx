@@ -169,7 +169,12 @@ function withEmphasis(text: string, color: string): ReactNode {
   return (
     <>
       {text.slice(0, a)}
-      <Box component="span" sx={{ color, fontWeight: 800, textShadow: SIG_SHADOW }}>
+      {/* 미터줄과 **같은 빛 스윕**을 화자 색으로 훑는다(운영자 260727 "여기 있는 이 효과를 넣자") */}
+      <Box
+        component="span"
+        className="msd-shim-sig"
+        sx={{ '--shim-c': color, fontWeight: 800, textShadow: SIG_SHADOW }}
+      >
         {text.slice(a, b)}
       </Box>
       {text.slice(b)}
@@ -306,12 +311,17 @@ function Bubble({
   'aria-hidden'?: true
 }) {
   const me = who === 'me'
-  return (
+  /** 기운 링을 두르는 말풍선인가 — 두르면 정렬·폭은 **바깥 링**이 맡는다 */
+  const ringed = !me && lead && !!sig
+  const bubble = (
     <Box
       className="msd-popin"
       sx={{
-        alignSelf: me ? 'flex-end' : 'flex-start',
-        maxWidth: '82%',
+        // ⚠ 링을 두르면 **`position: relative`가 필수**다 — 링 두 겹이 absolute라, 정적 배치인
+        // 말풍선은 그 아래로 깔려 화면엔 링 선만 남는다(260727 실측: 말풍선이 선 한 줄로 보였다).
+        ...(ringed
+          ? { maxWidth: '100%', position: 'relative', zIndex: 1 }
+          : { alignSelf: me ? 'flex-end' : 'flex-start', maxWidth: '82%' }),
         p: '10px 13px',
         borderRadius: '14px',
         ...(me
@@ -336,7 +346,7 @@ function Bubble({
         // 시그니처 색으로 칠해질 자리다(흐려 놓으면 그 색이 안 보인다).
         ...(narration && { fontStyle: 'italic', color: YG.fg2, opacity: 0.92 }),
         // 전경 칠 — 사진 위라 색 글자는 그림자로 대비를 세운다(미터줄과 같은 처리)
-        ...(!me && lead && sig && { color: sig, fontWeight: 700, textShadow: SIG_SHADOW }),
+        ...(!me && lead && sig && { fontWeight: 700, textShadow: SIG_SHADOW }),
       }}
       aria-hidden={ariaHidden}
     >
@@ -345,7 +355,59 @@ function Bubble({
       <Box component="span" sx={{ position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
         {me ? '나: ' : narration ? '(지문) ' : '도사: '}
       </Box>
-      {children}
+      {/* ⚠ 스윕은 **안쪽 겹**이 든다 — `background-clip: text`를 말풍선 상자에 직접 걸면
+          유리 채움까지 글자 모양으로 잘려 상자가 사라진다(미터줄에서 겪은 그 함정). */}
+      {ringed ? (
+        <Box component="span" className="msd-shim-sig" sx={{ '--shim-c': sig }}>
+          {children}
+        </Box>
+      ) : (
+        children
+      )}
+    </Box>
+  )
+  if (!ringed) return bubble
+  /**
+   * 기운 링 — **신원 도형(원국)에 두른 그 라인 그대로**를 말풍선에 옮긴 것
+   * (운영자 260727 "맨 마지막 메세지에는 그 초록토끼 같이 겉에 강조 라인 들어가잖아 액션,
+   *  그거 들어가게 해줄래? 근데 그거를 그 사주 풀어주는 사람의 강조색으로").
+   * 구조도 같다: 1px 여백만 남긴 껍데기 → 색 밭(`.msd-aura`, 안 돈다) → 도는 빛(`.msd-sheen`) → 유리.
+   * ⚠ 원국 링의 빛은 흰색이지만 여기선 **화자 색을 밝힌 것**으로 돈다 — 그게 이 지시의 요지다.
+   */
+  return (
+    <Box
+      sx={{
+        alignSelf: 'flex-start',
+        maxWidth: '82%',
+        position: 'relative',
+        borderRadius: '14px',
+        borderTopLeftRadius: '6px',
+        p: '1px', // 링 두께 = 이 여백만큼만 드러난다
+        overflow: 'hidden',
+        isolation: 'isolate',
+      }}
+    >
+      <Box
+        className="msd-aura"
+        aria-hidden
+        sx={{
+          position: 'absolute',
+          inset: '-60%',
+          background: `conic-gradient(from 0deg, ${sig} 0deg, color-mix(in srgb, ${sig} 34%, transparent) 180deg, ${sig} 360deg)`,
+          animation: 'msd-breathe 8s var(--ease) infinite',
+        }}
+      />
+      <Box
+        className="msd-sheen"
+        aria-hidden
+        sx={{
+          position: 'absolute',
+          inset: '-60%',
+          background: `conic-gradient(from 0deg, transparent 0deg, transparent 56deg, color-mix(in srgb, ${sig} 22%, transparent) 73deg, color-mix(in srgb, var(--c-card) 45%, ${sig}) 90deg, color-mix(in srgb, ${sig} 22%, transparent) 107deg, transparent 124deg, transparent 360deg)`,
+          animation: 'msd-orbit 5s linear infinite reverse',
+        }}
+      />
+      {bubble}
     </Box>
   )
 }
@@ -418,6 +480,7 @@ export default function DosaChat({
   onNav,
   onBeat,
   switchSignal = 0,
+  pouchSignal = 0,
 }: {
   report: ReportBundle
   /** 좌상단 미니 명식에 박히는 원국(UiChart.pillars — 시일월년 순) */
@@ -445,6 +508,12 @@ export default function DosaChat({
    * 헤더는 이 컴포넌트 밖(Talk)에 있어 콜백을 거꾸로 받을 수 없다 — 그래서 신호를 내려받는다.
    */
   switchSignal?: number
+  /**
+   * 복채 주머니 신호 — 헤더 주머니 버튼(운영자 260727). **퀘스트 축은 아직 고민 중**이라
+   * 지금은 화자가 주머니를 열어 보고 한마디 하는 것까지다("둘 다 그대로 동작").
+   * 보상·퀘스트가 정해지면 이 자리에 얹으면 된다 — 버튼·배선·말자리는 이미 서 있다.
+   */
+  pouchSignal?: number
 }) {
   const [chef, setChef] = useState(() => chefForGender(gender))
   /** 대화 로그 — 위에서 아래로 쌓인다(질문이 위에 남는다) */
@@ -607,6 +676,20 @@ export default function DosaChat({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [switchSignal])
+
+  /**
+   * 복채 주머니 — 지금은 **열어 보는 것까지**다(퀘스트 미정). 말이 흐르는 중이면 끼어들지 않는다.
+   * 국면(`stage`)은 건드리지 않는다 — 주머니는 곁가지라 대화 줄기를 끊으면 안 된다.
+   */
+  const firstPouch = useRef(true)
+  useEffect(() => {
+    if (firstPouch.current) {
+      firstPouch.current = false
+      return
+    }
+    say([nar('복채 주머니를 열어 보지만, 아직 든 것이 없다.'), '셈은 나중에 하지. 지금은 판이 먼저다.'])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pouchSignal])
 
   const onJeonggokAnswer = (hit: boolean, label: string) => {
     if (!jeonggok) return
