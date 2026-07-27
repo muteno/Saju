@@ -3,7 +3,7 @@ import json, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from p0_credit import find_credit  # noqa
-INV = Path(r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리")
+INV = Path(r"C:\Users\[가림-계정]\OneDrive\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리")
 SNAP = INV / "webtxt_v1"
 bid = sys.argv[1]; apply = "--apply" in sys.argv
 p = INV / f"{bid}_posts.jsonl"

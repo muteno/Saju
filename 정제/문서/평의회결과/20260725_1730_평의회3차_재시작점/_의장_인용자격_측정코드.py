@@ -3,7 +3,7 @@
 import json, sys, io, os, re, unicodedata
 from collections import Counter, defaultdict
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-ROOT = r"C:\Users\[가림-계정]\OneDrive - [가림-조직]\황세웅\6.  Nomute\3. 사주\2. 정제작업"
+ROOT = r"C:\Users\[가림-계정]\OneDrive\황세웅\6.  Nomute\3. 사주\2. 정제작업"
 sys.path.insert(0, os.path.join(ROOT, "_현황판"))
 os.chdir(os.path.join(ROOT, "_현황판"))
 import build_neuron_map as B

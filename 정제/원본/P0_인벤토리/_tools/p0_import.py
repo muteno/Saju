@@ -3,7 +3,7 @@
 import json, re, sys, shutil
 from pathlib import Path
 OUT = Path(__file__).parent / "p0_out"
-INV = Path(r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리")
+INV = Path(r"C:\Users\[가림-계정]\OneDrive\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리")
 bid = sys.argv[1]
 
 def num(p):

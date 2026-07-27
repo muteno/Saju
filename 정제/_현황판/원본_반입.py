@@ -17,7 +17,7 @@
      ⚠주민번호류 6~13자리 숫자는 **안 건드린다** — 절기 epoch·FigJam 좌표 오탐 실증(★지금이어받기 §3).
 
 사용(재료가 있는 기계에서):
-    python 원본_반입.py "C:\\Users\\Hwang\\OneDrive - GS칼텍스 예울마루\\황세웅\\6.  Nomute\\3. 사주"
+    python 원본_반입.py "C:\\Users\\[가림-계정]\\OneDrive\\황세웅\\6.  Nomute\\3. 사주"
     python 원본_반입.py            # 인자 생략 = 레거시 리포 상대 위치에서 탐색
 
 끝나면:  git add "정제/원본" "정제/P2_유닛" && git commit && push (브랜치+PR).
@@ -43,7 +43,9 @@ PHONE = re.compile(r"(?<!\d)01[016789][-.\s]?\d{3,4}[-.\s]?\d{4}(?!\d)")
 #   ⚠줄 수·구조는 안 건드린다(치환만) · 이 사본은 «보관·인계용»이고 실행본은 맥의 스킬 폴더에 따로 있다.
 HOME_MAC = re.compile(r"/Users/[A-Za-z0-9._-]+")
 HOME_WIN = re.compile(r"([A-Za-z]:\\+Users\\+)[^\\\r\n\"']+")
-ORG_DRIVE = re.compile(r"OneDrive - [^\\/\r\n\"']+")
+# ⚠이 정규식은 자기 자신도 매치한다 — 리포 전체 일괄 치환을 돌릴 때 이 파일을 제외해라.
+#   (260727 실증: 안 빼고 돌렸다가 이 줄이 치환돼 패턴이 깨졌다.)
+ORG_DRIVE = re.compile("OneDrive" + r" - [^\\/\r\n\"']+")
 
 계수 = {"파일": 0, "메일": 0, "전화": 0, "경로": 0, "생략_대용량": 0, "이진복사": 0, "이미있음": 0}
 
@@ -105,7 +107,8 @@ def 가리기(text: str) -> str:
     text, n2 = PHONE.subn("[가림-전화]", text)
     text, n3 = HOME_MAC.subn("/Users/[가림-계정]", text)
     text, n4 = HOME_WIN.subn(r"\1[가림-계정]", text)
-    text, n5 = ORG_DRIVE.subn("OneDrive - [가림-조직]", text)
+    # 조직명은 마커도 안 남기고 **통째로 없앤다**(운영자 260727 — "직장명같은건 그냥 아예 없애셈").
+    text, n5 = ORG_DRIVE.subn("OneDrive", text)
     계수["메일"] += n1
     계수["전화"] += n2
     계수["경로"] += n3 + n4 + n5

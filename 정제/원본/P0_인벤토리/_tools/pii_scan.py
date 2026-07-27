@@ -1,7 +1,7 @@
 # 개인정보 스캔: 내용은 출력하지 않고 '어느 문단에 몇 건'만 센다 → 해당 para에 개인정보 플래그
 import json, re, sys
 from pathlib import Path
-INV = Path(r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리")
+INV = Path(r"C:\Users\[가림-계정]\OneDrive\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리")
 SNAP = INV / "webtxt_v1"
 apply = "--apply" in sys.argv
 

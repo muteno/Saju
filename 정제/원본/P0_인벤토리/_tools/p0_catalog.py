@@ -2,7 +2,7 @@
 # 산출 = P0_인벤토리\_카탈로그_보류.jsonl + _카탈로그_보류_요약.md
 import json, re
 from pathlib import Path
-INV = Path(r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리")
+INV = Path(r"C:\Users\[가림-계정]\OneDrive\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리")
 SNAP = INV / "webtxt_v1"
 # 글머리 형식 4종: ①작성일 …·원문 ②작성일 …·댓글·조회 ③작성일 …·분류…·원문 ④작성 <저자> ·작성일…
 HEAD = re.compile(r"^작성(?:일|\s+\S+\s*·)")

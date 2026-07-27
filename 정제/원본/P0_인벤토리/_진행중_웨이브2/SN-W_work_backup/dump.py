@@ -1,5 +1,5 @@
 import io, glob, sys, unicodedata
-BASE = "/Users/hwang/Library/CloudStorage/OneDrive-GS칼텍스예울마루/황세웅/6.  Nomute/3. 사주/2. 정제작업/P0_인벤토리/transcript_sanchaek_v1/"
+BASE = "/Users/[가림-계정]/Library/CloudStorage/OneDrive-GS칼텍스예울마루/황세웅/6.  Nomute/3. 사주/2. 정제작업/P0_인벤토리/transcript_sanchaek_v1/"
 fs = sorted(glob.glob(BASE + "*.md"))
 step = 5
 for idx in [int(x) for x in sys.argv[1:]]:

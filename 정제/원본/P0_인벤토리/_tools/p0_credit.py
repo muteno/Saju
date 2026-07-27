@@ -2,7 +2,7 @@
 # usage: python p0_credit.py <배치ID> [--apply]
 import json, re, sys
 from pathlib import Path
-INV = Path(r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리")
+INV = Path(r"C:\Users\[가림-계정]\OneDrive\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리")
 SNAP = INV / "webtxt_v1"
 Q = "\"“”'’"
 # 문형 3종: ①원고 작성은 [○○ 상담사] "X"님께서 도움을… ②원고 작성은 "X"님께서… ③상담사 X님께서 작성하셨습니다

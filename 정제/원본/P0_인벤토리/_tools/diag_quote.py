@@ -1,7 +1,7 @@
 # 불일치 quote 진단: 원문에서 가장 비슷한 줄을 찾아 차이를 보여준다
 import json, re, sys, difflib
 from pathlib import Path
-SNAP = Path(r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리\webtxt_v1")
+SNAP = Path(r"C:\Users\[가림-계정]\OneDrive\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리\webtxt_v1")
 OUT = Path(__file__).parent / "p0_out"
 bid = sys.argv[1]
 posts = {}

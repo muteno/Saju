@@ -2,7 +2,7 @@
 """raw paras (with qline) -> final paras with verbatim quote sliced from source."""
 import io, json, glob, os, sys
 
-SNAP = "/Users/hwang/Library/CloudStorage/OneDrive-GS칼텍스예울마루/황세웅/6.  Nomute/3. 사주/2. 정제작업/P0_인벤토리/transcript_sanchaek_v1"
+SNAP = "/Users/[가림-계정]/Library/CloudStorage/OneDrive-GS칼텍스예울마루/황세웅/6.  Nomute/3. 사주/2. 정제작업/P0_인벤토리/transcript_sanchaek_v1"
 OUT  = "/private/tmp/claude-501/-Users-hwang-Library-CloudStorage-OneDrive-GS------------6---Nomute-3----/edf4a125-f49b-417c-8ebc-11fce1e2ef31/scratchpad/p0_out"
 
 fs = sorted(glob.glob(os.path.join(SNAP, "*.md")))

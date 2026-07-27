@@ -2,7 +2,7 @@
 """SN-K 빌더: plan.jsonl(q=[줄범위]) -> paras_2.jsonl(quote 원문 슬라이스) + posts_2.jsonl 자동생성"""
 import io, json, glob, os, re, sys
 
-SNAP = "/Users/hwang/Library/CloudStorage/OneDrive-GS칼텍스예울마루/황세웅/6.  Nomute/3. 사주/2. 정제작업/P0_인벤토리/transcript_sanchaek_v1"
+SNAP = "/Users/[가림-계정]/Library/CloudStorage/OneDrive-GS칼텍스예울마루/황세웅/6.  Nomute/3. 사주/2. 정제작업/P0_인벤토리/transcript_sanchaek_v1"
 OUT = os.path.dirname(os.path.abspath(__file__))
 PLAN = os.path.join(OUT, "snk_work", "SN-K_plan.jsonl")
 KEYS = os.path.join(OUT, "snk_work", "SN-K_keys.json")   # {"ST-P0592": {"key_natal":"갑목일간","key_luck":"계묘년"}}

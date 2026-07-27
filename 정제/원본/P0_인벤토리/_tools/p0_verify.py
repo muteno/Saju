@@ -7,9 +7,9 @@ from pathlib import Path
 _CANDS = [
     # 맥(OneDrive CloudStorage) — 260725 추가. 맥 세션에서 이게 없으면 전 배치가 "스냅샷에 없음" 오탐.
     Path.home() / "Library" / "CloudStorage" / "OneDrive-GS칼텍스예울마루" / "황세웅" / "6.  Nomute" / "3. 사주" / "2. 정제작업" / "P0_인벤토리",
-    Path(os.environ.get("USERPROFILE", "")) / "OneDrive - GS칼텍스 예울마루" / "황세웅" / "6.  Nomute" / "3. 사주" / "2. 정제작업" / "P0_인벤토리",
-    Path(r"C:\Users\황세웅\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리"),
-    Path(r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리"),
+    Path(os.environ.get("USERPROFILE", "")) / "OneDrive" / "황세웅" / "6.  Nomute" / "3. 사주" / "2. 정제작업" / "P0_인벤토리",
+    Path(r"C:\Users\[가림-계정]\OneDrive\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리"),
+    Path(r"C:\Users\[가림-계정]\OneDrive\황세웅\6.  Nomute\3. 사주\2. 정제작업\P0_인벤토리"),
 ]
 _BASE = next((p for p in _CANDS if p.exists()), None)
 if _BASE is None:

@@ -4,7 +4,7 @@
 quote is SLICED from the source file by line number -> never retyped, never corrupted."""
 import glob, io, os, json, re, sys
 
-BASE = "/Users/hwang/Library/CloudStorage/OneDrive-GS칼텍스예울마루/황세웅/6.  Nomute/3. 사주/2. 정제작업/P0_인벤토리"
+BASE = "/Users/[가림-계정]/Library/CloudStorage/OneDrive-GS칼텍스예울마루/황세웅/6.  Nomute/3. 사주/2. 정제작업/P0_인벤토리"
 SNAP = os.path.join(BASE, "transcript_sanchaek_v1")
 OUT = "/private/tmp/claude-501/-Users-hwang-Library-CloudStorage-OneDrive-GS------------6---Nomute-3----/edf4a125-f49b-417c-8ebc-11fce1e2ef31/scratchpad/p0_out"
 SPEC = os.path.join(os.path.dirname(OUT), "sn_q_spec.jsonl")

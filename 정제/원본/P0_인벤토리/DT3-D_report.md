@@ -2,7 +2,7 @@
 
 - 작성(KST): 2026-07-24 · Opus 4.8 에이전트 · 스펙 v1 + v1.3(전사) 적용, v1.1(key_natal/key_luck)·v1.2(좌표계 splitlines) 준수
 - 산출: `DT3-D_posts.jsonl` · `DT3-D_paras.jsonl` · 본 리포트 (part 파일은 병합 후 삭제 — 메인 검수기 `DT3-D_posts*.jsonl` 글롭 이중로드 방지)
-- **자가 검수 통과(전용 `merge_verify.py` — 실제 transcript_v1 경로, 메인 p0_verify.py는 경로가 `C:\Users\Hwang\`로 하드코딩돼 이 환경에서 미동작):**
+- **자가 검수 통과(전용 `merge_verify.py` — 실제 transcript_v1 경로, 메인 p0_verify.py는 경로가 `C:\Users\[가림-계정]\`로 하드코딩돼 이 환경에서 미동작):**
   `posts=7 paras=150 · G1 ID중복 0 · G3 타일링 불량 0/7 · G4 quote 축자(전체) 143/143 · G6 quote 범위내 143/143 · G5 kind/subj 불량 0 · gist>60자 0 · quote>120자 0 · n_paras 선언=실제(전 7편)`
 - 좌표계 자가점검: 담당 7편 전부 CRLF·U+2028/U+2029 없음, splitlines()=개행수 일치. 파일 전체 lines[1,N] 커버(미커버 0).
 
