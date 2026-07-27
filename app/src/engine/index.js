@@ -254,3 +254,16 @@ export function todayFortune(input) {
     ],
   }
 }
+
+// ── ★두뇌(정제 지도) — kb.json이 «어느 글을 보여줄까»라면 두뇌는 «왜 그런가»다.
+//   어댑터 = brain.js · 팩 = /brain.json (생성기 = 정제/_현황판/build_brain.py — 손편집 금지)
+//   ⚠loadKb()와 달리 렌더 게이트를 안 탄다 — 지연 로드, 실패해도 앱은 그대로(패널만 안 뜸).
+export { loadBrain, brainMeta } from './brain.js'
+import { readChart as brainReadChart } from './brain.js'
+
+/** 계산된 키셋 → 두뇌 조회. 검색(RAG) 금지 원칙 그대로 — keyset.js가 만든 키만 태운다. */
+export function brainReading(input, unseYearName = currentUnseYearName()) {
+  const chart = computeChart(input, terms)
+  const { keys } = chartToKeys(chart, { unseYearName })
+  return brainReadChart(keys)
+}
