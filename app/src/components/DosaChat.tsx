@@ -95,6 +95,9 @@ const YG = {
   // 스크롤 막대 — 말풍선과 같은 검정 베이스에서 한 단 더 내린 값(말풍선 22% → 12%).
   // "거의 투명해서 안 보이게"(운영자 260727)라 존재만 알리고 화면에선 물러난다.
   scroll: 'color-mix(in srgb, var(--c-ink) 12%, transparent)',
+  // 되읽는 중에만 켜지는 막대 — 무채색이라 **어느 테마·어느 인물 컷에서도 같은 결**로 뜬다
+  // (운영자 260727 "테마색에 영향 안 받고"). 흰 14% = 어두운 무대 위에서 겨우 보이는 정도.
+  scrollOn: 'color-mix(in srgb, var(--c-card) 14%, transparent)',
   blurBubble: 'blur(29px) saturate(1)',
   blurPill: 'blur(11px) saturate(1)',
   fg: 'var(--c-card)',
@@ -632,10 +635,18 @@ export default function DosaChat({
    *   · 다시 바닥까지 내리면 도로 붙는다
    */
   const stick = useRef(true)
+  /**
+   * 되읽는 중인가 = 손으로 위를 보고 있는 상태. 스크롤바는 **이때만** 보인다
+   * (운영자 260727 "최신 읽을 땐 안 보이게"). 붙어 있을 땐 볼 이유가 없다 —
+   * 화면이 알아서 끝을 따라가니 막대는 정보가 아니라 잡음이다.
+   */
+  const [reading, setReading] = useState(false)
   const onUserScroll = () => {
     const el = logRef.current
     if (!el) return
-    stick.current = el.scrollHeight - el.scrollTop - el.clientHeight < 24
+    const atEnd = el.scrollHeight - el.scrollTop - el.clientHeight < 24
+    stick.current = atEnd
+    setReading((r) => (r === !atEnd ? r : !atEnd))
   }
   useEffect(() => {
     const el = logRef.current
@@ -1014,14 +1025,19 @@ export default function DosaChat({
             overflowY: 'auto',
             overflowX: 'hidden',
             /**
-             * 스크롤바 = **아예 안 보인다**(운영자 260727 "스크롤 내 생각엔 없어도 될 거 같음").
-             * 앞서 말풍선 결로 얇게 깔았는데, 무대 위 미연시 화면에서는 그 막대조차 앱 부품이다.
-             * 대신 **화면이 늘 마지막 말을 따라가므로**(아래 stick 로직) 막대가 없어도 길을 잃지 않는다.
-             * ⚠ 스크롤 자체는 살아 있다 — 손으로 올려 되읽는 길은 그대로다.
+             * 스크롤바 = **되읽는 동안에만, 아주 연하게**(운영자 260727 "정말 연하게 · 테마색에
+             * 영향 안 받고 · 최신 읽을 땐 안 보이게"). 붙어 있을 땐 화면이 알아서 끝을 따라가니
+             * 막대는 정보가 아니라 잡음이다.
+             * ⚠ **폭은 늘 잡아 둔다** — 보일 때만 자리를 만들면 그 순간 글자가 옆으로 밀린다.
+             *   자리는 고정하고 **색만** 켜고 끈다.
              * ⚠ 접두 먼저·표준 나중(22-ⓙ 함정).
              */
-            '&::-webkit-scrollbar': { width: 0, height: 0, display: 'none' },
-            scrollbarWidth: 'none',
+            '&::-webkit-scrollbar': { width: 5 },
+            '&::-webkit-scrollbar-track': { background: 'transparent' },
+            '&::-webkit-scrollbar-thumb': { background: reading ? YG.scrollOn : 'transparent', borderRadius: '999px' },
+            '&::-webkit-scrollbar-button': { display: 'none', width: 0, height: 0 },
+            scrollbarWidth: 'thin',
+            scrollbarColor: `${reading ? YG.scrollOn : 'transparent'} transparent`,
             px: 2,
             pt: 1.5,
             display: 'flex',
@@ -1060,6 +1076,51 @@ export default function DosaChat({
             </Box>
           )}
         </Box>
+
+        {/* 최신으로 — **과거를 올려 봤을 때만** 뜨는 아래 화살표(운영자 260727 "화면을 과거 내용을
+            올리면 아래 화살표만 나오면 될 듯 · 글래스모피즘 많이 주고 거의 투명하게").
+            글자 없이 화살표 하나다 — 되읽는 중에 라벨이 뜨면 그것대로 화면을 가린다.
+            ⚠ 로그 스크롤러 **밖**에 둔다(안에 두면 저도 같이 스크롤돼 화면 밖으로 밀린다). */}
+        {reading && (
+          <Box
+            component="button"
+            type="button"
+            aria-label="최신 대화로"
+            onClick={(e: { stopPropagation: () => void }) => {
+              e.stopPropagation()
+              const el = logRef.current
+              if (!el) return
+              stick.current = true
+              setReading(false)
+              el.scrollTo({ top: el.scrollHeight, behavior: reduceMotion ? 'auto' : 'smooth' })
+            }}
+            sx={{
+              position: 'absolute',
+              right: 14,
+              // ⚠ `bottom`으로 잡으면 **입력행이 덮는다**(260727 실측 — 이 묶음은 아래 68px이
+              // 입력행 몫이고, 그 아래로 선택지 높이까지 가변이다). 로그는 높이가 못 박힌
+              // 상자니 **위에서부터** 재는 게 정확하다 — 로그 하단 안쪽에 정확히 걸린다.
+              top: LOG_H - 44,
+              zIndex: 3,
+              width: 36,
+              height: 36,
+              display: 'grid',
+              placeItems: 'center',
+              borderRadius: '50%',
+              cursor: 'pointer',
+              color: YG.fg2,
+              // 거의 투명 + 블러가 전부 — 말풍선보다도 옅게 잡아 되읽는 글을 안 가린다
+              bgcolor: 'color-mix(in srgb, var(--c-ink) 14%, transparent)',
+              border: `1px solid ${YG.line}`,
+              backdropFilter: YG.blurBubble,
+              WebkitBackdropFilter: YG.blurBubble,
+              animation: 'msd-popin .22s var(--ease) both',
+              '&:active': { transform: 'scale(0.92)' },
+            }}
+          >
+            {Pict.chevronDown(18)}
+          </Box>
+        )}
 
         {/* 진행 — 큐가 남아 있는 동안엔 선택지가 안 뜨므로, 이게 없으면 키보드·스크린리더
           사용자는 오프닝 세 통에서 영구히 멈춘다(검토자 260726 적발). 화면상으로는 어디를
