@@ -87,6 +87,9 @@ const YG = {
   // 만들어서 투명도를 올려봐"). 흰색에 알파를 주면 밝은 판이 되고, 흰 글자가 그 위에서 죽는다.
   // 검정 베이스면 뒤가 비치면서도 흰 글자가 뜬다 — 이게 예타 화면에서 보이는 그 결이다.
   bubbleBg: 'color-mix(in srgb, var(--c-ink) 22%, transparent)',
+  // 내 말풍선 — 도사 쪽과 **같은 검정 베이스**에서 한 단 진하게(운영자 260727).
+  // 색으로 편을 가르지 않는다: 자리(우측)와 꼬리 방향이 화자를 말한다.
+  meBg: 'color-mix(in srgb, var(--c-ink) 32%, transparent)',
   pillBg: 'color-mix(in srgb, var(--c-ink) 18%, transparent)',
   line: 'color-mix(in srgb, var(--c-card) 8%, transparent)',
   // 스크롤 막대 — 말풍선과 같은 검정 베이스에서 한 단 더 내린 값(말풍선 22% → 12%).
@@ -325,7 +328,19 @@ function Bubble({
         p: '10px 13px',
         borderRadius: '14px',
         ...(me
-          ? { borderTopRightRadius: '6px', bgcolor: tokens.color.primary, color: tokens.color.onPrimary }
+          ? {
+              // ⚠ 내 말풍선도 **같은 유리**다(운영자 260727 "나의 말은 검정색을 불투명도 낮춘 거로
+              // 글래스모피즘으로 항상 해줘 · 지금 앱 강조색은 투박해서 흐름을 깬다").
+              // 코발트 불투명 판이 무대 위에서 혼자 앱 부품처럼 튀었다. 구분은 색이 아니라
+              // **자리와 꼬리**가 한다 — 오른쪽에 붙고 꼬리가 반대쪽이면 누구 말인지 이미 읽힌다.
+              // 도사 쪽보다 한 단 진하게(22% → 32%) 잡아 두 목소리가 붙어 있어도 층이 갈린다.
+              borderTopRightRadius: '6px',
+              color: YG.fg,
+              bgcolor: YG.meBg,
+              border: `1px solid ${YG.line}`,
+              backdropFilter: YG.blurBubble,
+              WebkitBackdropFilter: YG.blurBubble,
+            }
           : {
               borderTopLeftRadius: '6px',
               // ⚠ 이 화면만 **글자가 흰색**이다 — 무대가 어두운 인물 사진이고 유리가 검정 베이스라
