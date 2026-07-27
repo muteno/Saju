@@ -620,24 +620,28 @@ export default function DosaChat({
   const idle = tw.done && queue.length === 0 // 말이 끝났고 남은 메시지도 없다 = 내 차례
 
   /**
-   * 새 말풍선을 따라 로그가 아래로 흐른다(메신저 관례).
+   * 화면은 **늘 마지막 말을 본다** — 단 하나의 예외가 손이다
+   * (운영자 260727 "항상 제일 마지막 말에 화면이 포커싱하게만 해줘, 사용자가 별도로 손 터치해서
+   *  올리지 않는 한").
    *
-   * ⚠ 260727 운영자 지적: "말하다가 말이 계속 위에 했던 말로 포커싱이 튈 때가 있는데 항상
-   * 포커싱은 마지막으로 가게 해줘." 원인 = 따라가는 조건이 「바닥에서 60px 안」 하나뿐이라,
-   * **긴 말풍선 한 통이 들어오면 그 순간 60px을 넘겨** 그 뒤로는 영영 안 따라갔다(화면은 옛 말에
-   * 멈춰 있고 새 말은 아래에서 혼자 쌓인다). 그래서 축을 둘로 나눈다:
-   *   · **말풍선이 하나 늘었다** = 무조건 끝으로 간다(새 말이 곧 지금 봐야 할 것)
-   *   · **같은 말풍선이 타이핑 중** = 바닥 근처일 때만(되읽으려 올려 둔 화면을 28ms마다
-   *     도로 끌어내리지 않는다 — 검토자 260726이 잡은 그 축은 그대로 지킨다)
+   * 앞서 두 번 어긋난 자리다: ①「바닥 60px 안」 조건 하나로 두니 긴 말풍선 한 통에 임계를 넘겨
+   * 그 뒤로 영영 안 따라갔고 ②말풍선 수만 보게 하니 **한 통이 타이핑되며 길어지는 동안**엔
+   * 또 뒤처졌다. 그래서 이제 **의도를 직접 읽는다** — 손으로 올렸나(`stick`)만 본다.
+   *   · 기본 = 붙어 있음(무슨 일이 있어도 끝으로)
+   *   · 손으로 위를 보면 떨어짐 → 그동안은 안 끌어내린다(되읽기 보호)
+   *   · 다시 바닥까지 내리면 도로 붙는다
    */
-  const logLenRef = useRef(0)
-  useEffect(() => {
+  const stick = useRef(true)
+  const onUserScroll = () => {
     const el = logRef.current
     if (!el) return
-    const grew = log.length !== logLenRef.current
-    logLenRef.current = log.length
-    if (grew || el.scrollHeight - el.scrollTop - el.clientHeight < 60) el.scrollTop = el.scrollHeight
-  }, [log, tw.shown, stage])
+    stick.current = el.scrollHeight - el.scrollTop - el.clientHeight < 24
+  }
+  useEffect(() => {
+    const el = logRef.current
+    if (!el || !stick.current) return
+    el.scrollTop = el.scrollHeight
+  }, [log, tw.shown, stage, queue])
 
   /**
    * 선반응 프리페치 — 미본 주제를 미리 생성해 둔다(250ms 시차).
@@ -995,6 +999,9 @@ export default function DosaChat({
           role="log"
           aria-live="polite"
           aria-label="상담 대화"
+          // 손으로 올렸는지만 본다 — 휠·손가락·키보드 스크롤 전부 여기로 들어온다.
+          // (프로그램이 내리는 `scrollTop`도 이 이벤트를 쏘지만, 그건 늘 바닥이라 판정이 뒤집히지 않는다)
+          onScroll={onUserScroll}
           sx={{
             position: 'relative',
             zIndex: 1,
@@ -1007,19 +1014,14 @@ export default function DosaChat({
             overflowY: 'auto',
             overflowX: 'hidden',
             /**
-             * 스크롤바 = **대화창과 같은 결**(운영자 260727 "스크롤 옆에 대화창이랑 분위기를
-             * 동일하게 · 거의 투명해서 안 보이게"). 기본 스크롤바는 회색 트랙 + 화살표 두 개라
-             * 무대 위에 OS 부품이 하나 얹힌 꼴이었다(260727 실측 스크린샷).
-             * 값은 말풍선 토큰 계승 — 막대는 `YG.scroll`(잉크 베이스 12%), 트랙은 아예 없다.
-             * ⚠ **접두 먼저·표준 나중**(22-ⓙ 함정): 크로뮴 121+는 표준 `scrollbar-*`가 이기고
-             * 그 아래 버전·사파리는 `::-webkit-*`를 읽는다. 둘 다 적어야 어디서든 얇고 투명하다.
+             * 스크롤바 = **아예 안 보인다**(운영자 260727 "스크롤 내 생각엔 없어도 될 거 같음").
+             * 앞서 말풍선 결로 얇게 깔았는데, 무대 위 미연시 화면에서는 그 막대조차 앱 부품이다.
+             * 대신 **화면이 늘 마지막 말을 따라가므로**(아래 stick 로직) 막대가 없어도 길을 잃지 않는다.
+             * ⚠ 스크롤 자체는 살아 있다 — 손으로 올려 되읽는 길은 그대로다.
+             * ⚠ 접두 먼저·표준 나중(22-ⓙ 함정).
              */
-            '&::-webkit-scrollbar': { width: 6 },
-            '&::-webkit-scrollbar-track': { background: 'transparent' },
-            '&::-webkit-scrollbar-thumb': { background: YG.scroll, borderRadius: '999px' },
-            '&::-webkit-scrollbar-button': { display: 'none', width: 0, height: 0 },
-            scrollbarWidth: 'thin',
-            scrollbarColor: `${YG.scroll} transparent`,
+            '&::-webkit-scrollbar': { width: 0, height: 0, display: 'none' },
+            scrollbarWidth: 'none',
             px: 2,
             pt: 1.5,
             display: 'flex',
