@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
@@ -10,6 +10,7 @@ import { HOST_NAME, chefForGender, taglineOf } from '../data/chefs'
 import type { Chef } from '../data/chefs'
 import { Pict } from '../components/MyeongShell'
 import { useReport, stepPath } from '../data/useReport'
+import { useReducedMotion } from '../components/Motion'
 import { iljuNickname } from '../data/gapja'
 
 /**
@@ -31,6 +32,32 @@ export default function Talk() {
   const [chef, setChef] = useState<Chef>(() => chefForGender(resolved.input.gender))
   /** 미터줄 문장 — 화자가 지금 뭘 하고 있나(DosaChat이 알려 준다) */
   const [beat, setBeat] = useState('당신의 사주를 봅니다')
+  /**
+   * 사람 바꾸기 — 헤더 버튼이 누를 때마다 1 올라가고 DosaChat이 그 변화를 읽어 교체 연출을 튼다
+   * (운영자 260727 "누르면 사람 바뀌게 · 화면 흔들리면서 이미지 바뀌고 대사 나오면 됨").
+   */
+  const [switchSignal, setSwitchSignal] = useState(0)
+  /**
+   * 배경(인물 컷)도 같이 흔든다 — DosaChat의 덜컹은 대화 무대 안쪽만 잡는다. 배경은 스크롤
+   * 컨테이너 **밖**에 따로 서 있어(25-ⓐ) 흔들리지 않으면 "화면이 흔들린다"가 반쪽이 된다.
+   * ⚠ WAAPI는 전역 reduced-motion CSS 밖이라 여기서도 JS로 막는다(DosaChat과 같은 규칙).
+   */
+  const backdropRef = useRef<HTMLDivElement | null>(null)
+  const reduceMotion = useReducedMotion()
+  const shakeBackdrop = () => {
+    if (reduceMotion) return
+    backdropRef.current?.animate(
+      [
+        { transform: 'translate(0,0)', easing: 'step-end' },
+        { transform: 'translate(-6px,3px)', easing: 'step-end' },
+        { transform: 'translate(6px,-3px)', easing: 'step-end' },
+        { transform: 'translate(-4px,2px)', easing: 'step-end' },
+        { transform: 'translate(3px,-1px)', easing: 'step-end' },
+        { transform: 'translate(0,0)' },
+      ],
+      { duration: 480 },
+    )
+  }
 
   if (!chart || !report) {
     return (
@@ -69,7 +96,9 @@ export default function Talk() {
     <MyeongShell active="talk" gate={false} nav={false}>
       {/* 전역 배경 — 프레임 전체(9:16)를 덮는다. 스크롤 컨테이너 **밖**에 두어야 대사를 따라
           같이 흐르지 않고 무대처럼 고정된다(운영자 260726 "배경이 전역으로 깔려야된다"). */}
-      <StageBackdrop src={chef.plate} />
+      <Box ref={backdropRef} sx={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+        <StageBackdrop src={chef.plate} />
+      </Box>
       {/* overflowX hidden — 덜컹(translateX)이 가로 스크롤 흔적을 만들지 않게 */}
       {/* 스크롤은 무대 구역이 자체로 갖는다(DosaChat) — 여기서 또 스크롤하면 대사창 붙박이가 풀린다 */}
       <Box className="msd-fadein" sx={{ position: 'relative', flex: 1, minHeight: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
@@ -144,6 +173,32 @@ export default function Talk() {
             >
               {taglineOf(chef)}
             </Typography>
+            {/* 사람 바꾸기 — 복주머니 **좌측**(운영자 260727). 누르면 화면이 흔들리고 인물(=배경)이
+                갈리며 들어온 사람이 한마디 던진다. 연출은 빗맞힘 교체와 같은 문법(DosaChat). */}
+            <Box
+              component="button"
+              type="button"
+              aria-label={`도사 바꾸기 — 지금은 ${chef.name}`}
+              onClick={() => {
+                shakeBackdrop()
+                setSwitchSignal((n) => n + 1)
+              }}
+              sx={{
+                flex: 'none',
+                width: 32,
+                height: 32,
+                display: 'grid',
+                placeItems: 'center',
+                border: 'none',
+                background: 'none',
+                color: 'color-mix(in srgb, var(--c-card) 90%, transparent)',
+                cursor: 'pointer',
+                borderRadius: '50%',
+                '&:active': { transform: 'scale(0.9)' },
+              }}
+            >
+              {Pict.swap(19)}
+            </Box>
             {/* 복채 주머니 — 전화·문자 대신(운영자 260727). 지금은 자리만, 뒤에 퀘스트가 붙는다 */}
             <Box
               component="button"
@@ -178,9 +233,26 @@ export default function Talk() {
             }}
           >
             {/* 빛이 글자를 한 번 훑고 지나간다 — 노뮤트에디터 `.nm-shim` 이식(픽토그램 제외).
-                문장은 화자가 지금 하는 짓이라 국면마다 바뀐다(감정을 직접 말하지 않는다). */}
-            <Box component="span" className="msd-shim">
-              {beat}…
+                문장은 화자가 지금 하는 짓이라 국면마다 바뀐다(감정을 직접 말하지 않는다).
+                ⚠ 이 줄만 유리 없이 사진 위에 맨몸으로 떠 있어 밝은 컷에선 통째로 묻혔다(260727 실측) —
+                헤더 알약과 **같은 값**의 유리를 얇게 깔아 받친다(신규 색 0 · 계승). */}
+            {/* ⚠ 유리는 **바깥 겹**이 든다 — `.msd-shim`은 `background-clip: text`라 같은 요소에
+                배경을 주면 그 배경까지 글자 모양으로 잘려 알약이 아예 안 그려진다(260727 실측). */}
+            <Box
+              component="span"
+              sx={{
+                display: 'inline-block',
+                px: '9px',
+                py: '2px',
+                borderRadius: '999px',
+                bgcolor: 'color-mix(in srgb, var(--c-ink) 26%, transparent)',
+                backdropFilter: 'blur(11px) saturate(1)',
+                WebkitBackdropFilter: 'blur(11px) saturate(1)',
+              }}
+            >
+              <Box component="span" className="msd-shim">
+                {beat}…
+              </Box>
             </Box>
           </Typography>
         </Box>
@@ -196,6 +268,7 @@ export default function Talk() {
             onChef={setChef}
             who={who}
             onBeat={setBeat}
+            switchSignal={switchSignal}
             onNav={(to) => nav(to === '/result' ? stepPath('intro', resolved.search) : to === '/analysis' ? stepPath('analysis', resolved.search) : to)}
           />
         </Box>
