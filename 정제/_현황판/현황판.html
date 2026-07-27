@@ -1,0 +1,179 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>사주 정제 현황판</title><style>
+*{box-sizing:border-box}
+body{margin:0;padding:28px 20px 60px;font-family:'Malgun Gothic','Apple SD Gothic Neo',system-ui,sans-serif;
+ background:#f6f7f9;color:#1a1c20;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto}
+h1{font-size:26px;margin:0 0 4px} h2{font-size:17px;margin:34px 0 12px;padding-bottom:8px;border-bottom:2px solid #e3e6ea}
+.top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px}
+.sub{display:block;font-size:12px;color:#6b7280;font-weight:400;margin-top:2px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.card{background:#fff;border:1px solid #e3e6ea;border-radius:12px;padding:14px 16px}
+.card .n{font-size:30px;font-weight:700;letter-spacing:-.5px}
+.card .l{font-size:12px;color:#6b7280;margin-top:2px}
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.stage{background:#fff;border:1px solid #e3e6ea;border-radius:12px;padding:12px 14px}
+.stage.done{border-color:#86efac;background:#f0fdf4} .stage.run{border-color:#93c5fd;background:#eff6ff}
+.scode{font-size:12px;font-weight:700;color:#6b7280} .sname{font-weight:600;margin:2px 0 8px;font-size:14px}
+.snote{font-size:12px;color:#6b7280;margin-top:6px}
+.bar{height:8px;background:#e5e7eb;border-radius:99px;overflow:hidden}
+.bar span{display:block;height:100%;border-radius:99px}
+.bar .ok{background:#22c55e} .bar .run{background:#3b82f6}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e3e6ea;border-radius:12px;overflow:hidden}
+td{padding:9px 14px;border-top:1px solid #eef0f3;vertical-align:middle;font-size:14px}
+tr:first-child td{border-top:none}
+.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;width:90px}
+.barcell{width:38%}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}
+.chan{background:#fff;border:1px solid #e3e6ea;border-radius:12px;padding:14px 16px}
+.chead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cnum{font-size:22px;font-weight:700;margin:6px 0 8px}
+.pill{font-size:11px;padding:3px 9px;border-radius:99px;font-weight:600}
+.pill.live{background:#dbeafe;color:#1d4ed8} .pill.idle{background:#f1f5f9;color:#64748b}
+.note{background:#fff;border:1px solid #e3e6ea;border-radius:12px;padding:14px 16px;font-size:13px;color:#4b5563}
+code{background:#f1f5f9;padding:1px 6px;border-radius:5px;font-size:12px}
+.gonext{display:inline-block;text-decoration:none;font-size:13px;font-weight:600;color:#1d4ed8;
+ background:#dbeafe;padding:7px 14px;border-radius:9px;margin-bottom:6px}
+@media(prefers-color-scheme:dark){
+ body{background:#0f1114;color:#e5e7eb} h2{border-color:#262b33}
+ .card,.stage,table,.chan,.note{background:#171a1f;border-color:#262b33}
+ .stage.done{background:#0f2418;border-color:#166534} .stage.run{background:#0f1d33;border-color:#1e40af}
+ td{border-color:#22262e} .bar{background:#262b33} .sub,.card .l,.snote{color:#9ca3af}
+ .pill.idle{background:#22262e;color:#9ca3af} .pill.live{background:#1e3a8a;color:#bfdbfe}
+ code{background:#22262e}}
+</style></head><body><div class="wrap">
+
+<div class="top"><div><h1>🗂 사주 정제 현황판</h1>
+<span class="sub">원본 라이브러리 → 문단 창고 → 지식 유닛. 지금 어디까지 왔는지 한눈에.</span></div>
+<div style="text-align:right"><a class="gonext" href="개념지도.html">🧭 개념 지도 열기 →</a>
+<span class="sub">갱신 2026-07-27 12:38</span></div></div>
+
+<h2>1. 전체 공정 — 어디까지 왔나</h2>
+<div class="stages"><div class="stage done">
+          <div class="scode">W0</div><div class="sname">용어·질문 사전</div>
+          <div class="bar"><span class="ok" style="width:100.0%"></span></div>
+          <div class="snote">완료</div></div><div class="stage done">
+          <div class="scode">P0</div><div class="sname">원본을 문단으로 썰기</div>
+          <div class="bar"><span class="ok" style="width:100.0%"></span></div>
+          <div class="snote">1783/1783 파일</div></div><div class="stage wait">
+          <div class="scode">P1</div><div class="sname">색인·커버리지 지도</div>
+          <div class="bar"><span class="run" style="width:0.0%"></span></div>
+          <div class="snote">대기</div></div><div class="stage wait">
+          <div class="scode">P2</div><div class="sname">증류 (유닛 만들기)</div>
+          <div class="bar"><span class="run" style="width:0.0%"></span></div>
+          <div class="snote">대기</div></div><div class="stage wait">
+          <div class="scode">P3</div><div class="sname">검증 게이트</div>
+          <div class="bar"><span class="run" style="width:0.0%"></span></div>
+          <div class="snote">대기</div></div><div class="stage wait">
+          <div class="scode">P4</div><div class="sname">벤치마크·역추론 시험</div>
+          <div class="bar"><span class="run" style="width:0.0%"></span></div>
+          <div class="snote">대기</div></div></div>
+
+<h2>2. 정제 창고 — 지금까지 쌓인 것</h2>
+<div class="cards">
+ <div class="card"><div class="n">3,845</div><div class="l">글 (원본 게시물)</div></div>
+ <div class="card"><div class="n">38,072</div><div class="l">문단 (썰어놓은 조각)</div></div>
+ <div class="card"><div class="n">32,650</div><div class="l">인용문 (원문 검증 통과)</div></div>
+ <div class="card"><div class="n">90</div><div class="l">배치 (작업 단위)<br><span class="sub" style="display:inline">리포트 완결 70 · 전사 부분 20</span></div></div>
+ <div class="card"><div class="n">1783</div><div class="l">커버한 원본 파일</div></div>
+</div>
+<div class="grid2">
+ <div><b>저자별</b><span class="sub">누구 말이 얼마나 쌓였나</span>
+  <table><tr><td>현묘</td><td class="num">1,293</td><td class="barcell"><div class="bar"><span class="ok" style="width:33.6%"></span></div></td></tr>
+<tr><td>산책처럼</td><td class="num">1,231</td><td class="barcell"><div class="bar"><span class="ok" style="width:32.0%"></span></div></td></tr>
+<tr><td>초코서당</td><td class="num">346</td><td class="barcell"><div class="bar"><span class="ok" style="width:9.0%"></span></div></td></tr>
+<tr><td>도화도레</td><td class="num">246</td><td class="barcell"><div class="bar"><span class="ok" style="width:6.4%"></span></div></td></tr>
+<tr><td>플러스명리학</td><td class="num">224</td><td class="barcell"><div class="bar"><span class="ok" style="width:5.8%"></span></div></td></tr>
+<tr><td>명리학탐구</td><td class="num">220</td><td class="barcell"><div class="bar"><span class="ok" style="width:5.7%"></span></div></td></tr>
+<tr><td>사공</td><td class="num">162</td><td class="barcell"><div class="bar"><span class="ok" style="width:4.2%"></span></div></td></tr>
+<tr><td>도화로운</td><td class="num">123</td><td class="barcell"><div class="bar"><span class="ok" style="width:3.2%"></span></div></td></tr></table></div>
+ <div><b>글 성격별</b><span class="sub">문단이 어떤 종류인가</span>
+  <table><tr><td>이론 (개념·원리)</td><td class="num">16,051</td><td class="barcell"><div class="bar"><span class="ok" style="width:42.2%"></span></div></td></tr>
+<tr><td>운세 (연운·월운)</td><td class="num">7,401</td><td class="barcell"><div class="bar"><span class="ok" style="width:19.4%"></span></div></td></tr>
+<tr><td>잡동 (목차·인사말)</td><td class="num">4,983</td><td class="barcell"><div class="bar"><span class="ok" style="width:13.1%"></span></div></td></tr>
+<tr><td>사례 (실제 명식 풀이)</td><td class="num">3,549</td><td class="barcell"><div class="bar"><span class="ok" style="width:9.3%"></span></div></td></tr>
+<tr><td>화법 (상담 말투·질문)</td><td class="num">3,223</td><td class="barcell"><div class="bar"><span class="ok" style="width:8.5%"></span></div></td></tr>
+<tr><td>개운 (생활 처방)</td><td class="num">1,311</td><td class="barcell"><div class="bar"><span class="ok" style="width:3.4%"></span></div></td></tr>
+<tr><td>공지 (안내·가격)</td><td class="num">1,285</td><td class="barcell"><div class="bar"><span class="ok" style="width:3.4%"></span></div></td></tr>
+<tr><td>고전 (원문 인용·번역)</td><td class="num">269</td><td class="barcell"><div class="bar"><span class="ok" style="width:0.7%"></span></div></td></tr></table></div>
+</div>
+<div class="grid2" style="margin-top:16px">
+ <div><b>과목별</b><span class="sub">사주 어느 분야를 다루나</span>
+  <table><tr><td>대운·세운·운해석</td><td class="num">11,045</td><td class="barcell"><div class="bar"><span class="ok" style="width:20.8%"></span></div></td></tr>
+<tr><td>십성·육친</td><td class="num">9,091</td><td class="barcell"><div class="bar"><span class="ok" style="width:17.1%"></span></div></td></tr>
+<tr><td>지지·지장간</td><td class="num">5,517</td><td class="barcell"><div class="bar"><span class="ok" style="width:10.4%"></span></div></td></tr>
+<tr><td>상담론·화법·윤리</td><td class="num">5,191</td><td class="barcell"><div class="bar"><span class="ok" style="width:9.8%"></span></div></td></tr>
+<tr><td>음양·오행</td><td class="num">3,818</td><td class="barcell"><div class="bar"><span class="ok" style="width:7.2%"></span></div></td></tr>
+<tr><td>천간</td><td class="num">3,553</td><td class="barcell"><div class="bar"><span class="ok" style="width:6.7%"></span></div></td></tr>
+<tr><td>강약·격국·구조</td><td class="num">3,428</td><td class="barcell"><div class="bar"><span class="ok" style="width:6.4%"></span></div></td></tr>
+<tr><td>신살</td><td class="num">2,918</td><td class="barcell"><div class="bar"><span class="ok" style="width:5.5%"></span></div></td></tr>
+<tr><td>역사·이론사·기타</td><td class="num">2,756</td><td class="barcell"><div class="bar"><span class="ok" style="width:5.2%"></span></div></td></tr>
+<tr><td>합충형파해</td><td class="num">2,535</td><td class="barcell"><div class="bar"><span class="ok" style="width:4.8%"></span></div></td></tr>
+<tr><td>용신</td><td class="num">2,385</td><td class="barcell"><div class="bar"><span class="ok" style="width:4.5%"></span></div></td></tr>
+<tr><td>십이운성</td><td class="num">983</td><td class="barcell"><div class="bar"><span class="ok" style="width:1.8%"></span></div></td></tr></table></div>
+ <div><b>쓸모별 표시</b><span class="sub">나중에 어디 쓸지 미리 찍어둔 것</span>
+  <table><tr><td>규칙·공식<span class="sub">엔진으로 맞는지 검증할 수 있는 주장</span></td><td class="num">11,090</td><td class="barcell"><div class="bar"><span class="ok" style="width:29.1%"></span></div></td></tr>
+<tr><td>증류 우선 후보<span class="sub">먼저 다뤄야 할 알짜 문단</span></td><td class="num">10,746</td><td class="barcell"><div class="bar"><span class="ok" style="width:28.2%"></span></div></td></tr>
+<tr><td>금지 규칙<span class="sub">앱이 하면 안 되는 말</span></td><td class="num">2,985</td><td class="barcell"><div class="bar"><span class="ok" style="width:7.8%"></span></div></td></tr>
+<tr><td>유파 대립 (관점 병기)</td><td class="num">2,520</td><td class="barcell"><div class="bar"><span class="ok" style="width:6.6%"></span></div></td></tr>
+<tr><td>전사 오류 후보<span class="sub">받아쓰기가 틀린 단어</span></td><td class="num">2,274</td><td class="barcell"><div class="bar"><span class="ok" style="width:6.0%"></span></div></td></tr>
+<tr><td>실존 인물 사례<span class="sub">역추론 시험문제 후보</span></td><td class="num">1,660</td><td class="barcell"><div class="bar"><span class="ok" style="width:4.4%"></span></div></td></tr>
+<tr><td>숫자·비율<span class="sub">정량 데이터</span></td><td class="num">887</td><td class="barcell"><div class="bar"><span class="ok" style="width:2.3%"></span></div></td></tr>
+<tr><td>질문 원형<span class="sub">사용자에게 물어볼 질문 재료</span></td><td class="num">581</td><td class="barcell"><div class="bar"><span class="ok" style="width:1.5%"></span></div></td></tr>
+<tr><td>병존 이론<span class="sub">같은 글자 나란히 붙은 해석</span></td><td class="num">276</td><td class="barcell"><div class="bar"><span class="ok" style="width:0.7%"></span></div></td></tr>
+<tr><td>역추론</td><td class="num">170</td><td class="barcell"><div class="bar"><span class="ok" style="width:0.4%"></span></div></td></tr>
+<tr><td>개운</td><td class="num">144</td><td class="barcell"><div class="bar"><span class="ok" style="width:0.4%"></span></div></td></tr>
+<tr><td>재확인 필요<span class="sub">판단 보류</span></td><td class="num">123</td><td class="barcell"><div class="bar"><span class="ok" style="width:0.3%"></span></div></td></tr></table></div>
+</div>
+
+<h2>3. 원본 커버리지 — 얼마나 남았나</h2>
+<div class="grid2">
+ <div class="chan"><div class="chead"><b>웹 스크랩 (76개 문서)</b><span class="pill idle">사실상 완료</span></div>
+  <div class="cnum">57 <span class="sub">/ 76개 처리</span></div>
+  <div class="bar"><span class="ok" style="width:75.0%"></span></div>
+  <div class="sub">보류 19개(타 술수·매뉴얼) · 미처리 0개</div></div>
+ <div class="chan"><div class="chead"><b>도화도레 전사 (246편)</b><span class="pill live">다음 작업</span></div>
+  <div class="cnum">1726 <span class="sub">/ 1726편 처리</span></div>
+  <div class="bar"><span class="run" style="width:100.0%"></span></div>
+  <div class="sub">잔여 0편 — 지난번 사용 한도로 중단</div></div>
+</div>
+
+<h2>4. 전사 공장 — 유튜브 받아쓰기 (백그라운드)</h2>
+<div class="grid2"><div class="chan"><div class="chead"><b>1. 초코명리</b><span class="pill idle">멈춤/완료</span></div>
+          <div class="cnum">249 <span class="sub">/ 279편</span></div>
+          <div class="bar"><span class="ok" style="width:89.2%"></span></div>
+          <div class="sub">최근 기록 07-22 08:34 </div></div><div class="chan"><div class="chead"><b>2. 산책처럼사주</b><span class="pill idle">멈춤/완료</span></div>
+          <div class="cnum">1,231 <span class="sub">/ 1,231편</span></div>
+          <div class="bar"><span class="ok" style="width:100.0%"></span></div>
+          <div class="sub">최근 기록 07-23 22:13 </div></div><div class="chan"><div class="chead"><b>3. 석우당</b><span class="pill idle">멈춤/완료</span></div>
+          <div class="cnum">847 <span class="sub">/ 2편</span></div>
+          <div class="bar"><span class="ok" style="width:100.0%"></span></div>
+          <div class="sub">최근 기록 07-25 11:23 </div></div><div class="chan"><div class="chead"><b>4. 사람공부</b><span class="pill idle">멈춤/완료</span></div>
+          <div class="cnum">84 <span class="sub">/ 11편</span></div>
+          <div class="bar"><span class="ok" style="width:100.0%"></span></div>
+          <div class="sub">최근 기록 07-25 14:08 </div></div><div class="chan"><div class="chead"><b>5. 효명작명</b><span class="pill idle">멈춤/완료</span></div>
+          <div class="cnum">533 <span class="sub">/ 538편</span></div>
+          <div class="bar"><span class="ok" style="width:99.1%"></span></div>
+          <div class="sub">최근 기록 07-26 08:41 </div></div><div class="chan"><div class="chead"><b>6. 남석운명과명리학</b><span class="pill live">● 돌아가는 중</span></div>
+          <div class="cnum">1,285 <span class="sub">/ 2,473편</span></div>
+          <div class="bar"><span class="run" style="width:52.0%"></span></div>
+          <div class="sub">최근 기록 07-27 12:36 <span class="sub">남은 약 26.1시간</span></div></div><div class="chan"><div class="chead"><b>7. 정이철학원(부산 대청동 이길우)</b><span class="pill idle">멈춤/완료</span></div>
+          <div class="cnum">177 <span class="sub">/ 127편</span></div>
+          <div class="bar"><span class="ok" style="width:100.0%"></span></div>
+          <div class="sub">최근 기록 07-25 12:22 </div></div><div class="chan"><div class="chead"><b>8. 하나사주</b><span class="pill idle">멈춤/완료</span></div>
+          <div class="cnum">188 <span class="sub">/ 7편</span></div>
+          <div class="bar"><span class="ok" style="width:100.0%"></span></div>
+          <div class="sub">최근 기록 07-25 17:53 </div></div></div>
+<div class="note" style="margin-top:12px"><b>대기 큐</b><br>07-25 11:23:05 ▶ [석우당] 하위 탭 전사: https://www.youtube.com/@user-9913/streams<br>07-25 12:04:02 ▶ [정이철학원 · 부산 대청동 이길우 선생님] 하위 탭 전사: https://www.youtube.com/@luckysaju/shorts<br>07-25 14:07:59 ▶ [사람공부] 하위 탭 전사: https://www.youtube.com/@%EC%82%AC%EB%9E%8C%EA%B3%B5%EB%B6%80/shorts<br>07-25 17:52:04 ▶ [하나사주] 하위 탭 전사: https://www.youtube.com/@hanasaju/shorts</div>
+
+<h2>5. 지금 할 일 / 결정 대기</h2>
+<table><tr><td><b>도화도레 전사 191편 문단화</b><span class="sub">정제 다음 순서 — 246편 중 55편만 들어옴</span></td><td><span class="pill idle">정제</span></td></tr><tr><td><b>6번 폴더 ix_ 파일 4개 처리 방침</b><span class="sub">파일명 깨진 채 반입됨 — 쓸지 말지 결정 필요</span></td><td><span class="pill live">결정</span></td></tr><tr><td><b>보류군 19파일 (토정비결·구성학 등)</b><span class="sub">19개 파일 좌표만 보존 — 넣을지 결정 필요</span></td><td><span class="pill live">결정</span></td></tr><tr><td><b>초코서당 전문가 등급 승급</b><span class="sub">잔여 30편이 등급 때문에 막힘</span></td><td><span class="pill live">결정</span></td></tr><tr><td><b>P1 색인·히트맵 착수</b><span class="sub">P0 끝나면 바로</span></td><td><span class="pill idle">정제</span></td></tr></table>
+
+<h2>6. 이 현황판은</h2>
+<div class="note">
+ 자동 생성물이다. <code>현황판_갱신.bat</code> 더블클릭하면 최신 수치로 다시 그린다.<br>
+ 데이터 원천 = <code>P0_인벤토리\</code>의 배치 산출물 + 전사 폴더 실측.
+ 병합본은 <code>_현황판\data\posts_all.jsonl · paras_all.jsonl</code>에 모아둔다.
+</div>
+</div></body></html>

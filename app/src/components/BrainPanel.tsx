@@ -1,0 +1,109 @@
+// ★두뇌 패널 — 정제 지도가 이 사주에 대해 «무엇을, 왜» 아는지 그대로 보여준다.
+//
+// 운영자 260727: *"앱에 뇌를 달아주셈"* · *"뇌 연결도 한번 다시 띄워주라"*
+//
+// ⚠이 패널의 설계 원칙 세 가지 (프로젝트 규칙에서 그대로 온다)
+//   ①**낭설을 숨기지 않는다.** 「이유를 못 대는 관계」가 몇 개인지 숫자로 띄운다.
+//     운영자 축자: *"자미원진이 애증관계예요? 왜요? > 몰라요 > (실패)"*
+//     숨기면 앱이 그걸 근거처럼 쓰고, 그게 «낭설»이다.
+//   ②**결론을 쓰지 않는다.** 여기 뜨는 건 정의·관계·조건뿐이다.
+//     「이러면 이렇게 산다」는 지도에도 없고 화면에도 없다(운영자 1-36).
+//   ③**판본이 갈리면 병기한다.** stance가 붙은 관계는 ⚖로 표시한다.
+
+type Rel = {
+  a: string; b: string; 관계: string; 층?: string; 부호?: string | null
+  조건?: unknown; 왜?: string | null; 사슬?: string[] | null
+  근거?: string; stance?: string | null; 근거유형?: string | null
+}
+type NodeCard = { 키: string; 노드: string; 대주제?: string; 중주제?: string; 정의?: string; 문단?: number; 출처수?: number }
+export type Brain = {
+  노드: NodeCard[]; 관계: Rel[]; 조견표: unknown[]; 못맞춘키: string[]
+  이유있는관계?: Rel[]; 낭설수?: number; meta?: Record<string, unknown> | null
+}
+
+const 층색 = (층?: string) =>
+  층?.startsWith('L1결정론') ? '#3ad9c0' : 층?.startsWith('L1½') ? '#8ab4f8' : '#9aa0a6'
+
+const 왜라벨: Record<string, string> = {
+  인과닫힘: '이유까지 닿음', 작용까지: '힘이 오간 자리까지', 발현만: '결과만 붙음',
+  분류경로: '분류로만 이어짐', 낭설후보: '이유 못 댐',
+}
+
+export default function BrainPanel({ brain }: { brain?: Brain | null }) {
+  if (!brain || !brain.노드?.length) return null
+  const 이유 = brain.이유있는관계 ?? brain.관계.filter((r) => r.왜 && r.왜 !== '낭설후보')
+  const 낭설 = brain.낭설수 ?? brain.관계.length - 이유.length
+  // 이유가 가장 단단한 것부터 — 인과닫힘 > 작용까지 > 발현만 > 분류경로
+  const 순위: Record<string, number> = { 인과닫힘: 0, 작용까지: 1, 발현만: 2, 분류경로: 3 }
+  const 상위 = [...이유].sort((x, y) => (순위[x.왜 ?? ''] ?? 9) - (순위[y.왜 ?? ''] ?? 9)).slice(0, 24)
+
+  return (
+    <section style={{ marginTop: 28, padding: '18px 16px', borderRadius: 18,
+                      border: '1px solid rgba(58,217,192,.28)', background: 'rgba(58,217,192,.05)' }}>
+      <header style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
+        <h3 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: '#3ad9c0' }}>
+          이 사주에서 읽은 관계
+        </h3>
+        <span style={{ fontSize: 12, opacity: .7 }}>
+          글자 {brain.노드.length} · 관계 {brain.관계.length.toLocaleString()} ·
+          {' '}이유 있는 것 {이유.length.toLocaleString()}
+        </span>
+      </header>
+
+      {/* ⚠«이유 못 대는 것»을 숨기지 않는다 — 이게 이 패널의 핵심 규칙이다 */}
+      {낭설 > 0 && (
+        <p style={{ margin: '10px 0 0', fontSize: 12.5, lineHeight: 1.6, opacity: .8 }}>
+          ⚠ 이 중 <b>{낭설.toLocaleString()}개</b>는 아직 <b>왜 그런지 근거를 대지 못합니다.</b>{' '}
+          아래에는 <b>이유를 댈 수 있는 것만</b> 띄웁니다 — 못 대는 것을 근거처럼 쓰지 않으려고요.
+        </p>
+      )}
+
+      <ul style={{ listStyle: 'none', padding: 0, margin: '14px 0 0', display: 'grid', gap: 8 }}>
+        {상위.map((r, i) => (
+          <li key={i} style={{ padding: '10px 12px', borderRadius: 12,
+                               background: 'rgba(255,255,255,.04)', fontSize: 13.5, lineHeight: 1.55 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+              <b>{r.a}</b>
+              <span style={{ color: 층색(r.층), fontWeight: 700 }}>─{r.관계}→</span>
+              <b>{r.b}</b>
+              {r.부호 && r.부호 !== '중립' && (
+                <span style={{ fontSize: 11, opacity: .65 }}>({r.부호})</span>
+              )}
+              <span style={{ marginLeft: 'auto', fontSize: 11, opacity: .6 }}>
+                {왜라벨[r.왜 ?? ''] ?? r.왜}
+              </span>
+            </div>
+            {Array.isArray(r.조건) && r.조건.length > 0 && (
+              <div style={{ marginTop: 4, fontSize: 12, opacity: .75 }}>
+                조건 · {(r.조건 as string[]).slice(0, 2).join(' / ')}
+              </div>
+            )}
+            {/* 사슬 = «왜»의 실물. 이게 있으면 도사가 근거를 말할 수 있다 */}
+            {r.사슬 && r.사슬.length > 0 && (
+              <div style={{ marginTop: 4, fontSize: 12, opacity: .7 }}>
+                까닭 · {r.사슬.slice(0, 3).join(' → ')}
+              </div>
+            )}
+            {/* ⚖판본 갈림 — 지우지 않고 병기한다(§3) */}
+            {r.stance && (
+              <div style={{ marginTop: 4, fontSize: 11.5, opacity: .62 }}>
+                ⚖ {String(r.stance).slice(0, 110)}
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      {/* 못 맞춘 키 — 조용히 버리지 않는다 */}
+      {brain.못맞춘키?.length > 0 && (
+        <p style={{ margin: '12px 0 0', fontSize: 11.5, opacity: .55 }}>
+          지도가 아직 못 받은 키 {brain.못맞춘키.length}개 — {brain.못맞춘키.slice(0, 6).join(' · ')}
+        </p>
+      )}
+      <p style={{ margin: '12px 0 0', fontSize: 11.5, opacity: .5, lineHeight: 1.6 }}>
+        여기 뜨는 것은 <b>관계와 조건</b>입니다. 「이러면 이렇게 산다」는 담지 않습니다 —
+        같은 글자도 놓인 자리와 운에 따라 다르게 나타나기 때문입니다.
+      </p>
+    </section>
+  )
+}
