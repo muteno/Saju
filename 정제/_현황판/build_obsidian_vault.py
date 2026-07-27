@@ -6,9 +6,10 @@
 """
 import json, os, re, shutil, collections, sys
 
-BASE = r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주"
-DATA = os.path.join(BASE, "2. 정제작업", "_현황판", "data")
-OUT  = os.path.join(BASE, "7. 옵시디언 볼트")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import 경로
+DATA = str(경로.DATA)
+OUT  = str(경로.옵시디언_볼트)
 
 def jl(name):
     with open(os.path.join(DATA, name), encoding="utf-8") as f:

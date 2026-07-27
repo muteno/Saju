@@ -54,8 +54,10 @@ DATA = HERE / "data"
 #     재추출기는 `_피그잼정제/_도구/extract_full2.py`, 산출은 `보드_완전추출본_v2.md`.
 #     완전본이 있으면 그걸 쓰고, 없으면 정본으로 물러난다(그때는 25% 빠진 상태라고 찍는다).
 _V2 = HERE / "_피그잼정제" / "_도구" / "보드_완전추출본_v2.md"
-_V1 = (HERE / ".." / ".." / "4. 구 사주본_Saju-main" / "dosa-app" /
-       "methodology" / "figjam_board_full.md").resolve()
+import sys
+sys.path.insert(0, str(HERE))
+from 경로 import 방법론 as _METH
+_V1 = _METH / "figjam_board_full.md"
 BOARD = _V2 if _V2.exists() else _V1
 
 # ⛔개인정보 — 이 절 아래는 다음 `## ` 헤딩까지 통째로 버린다.

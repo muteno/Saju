@@ -11,7 +11,7 @@ r"""
 >  **대조 테스트가 없어 눈에 띌 때만 고쳐진다는 증거**"
 
 ■ 왜 두 벌인가, 왜 위험한가
-  L1(`4. 구 사주본_Saju-main\app\src\engine\vendor\`)  = 계산 엔진. 실제로 사주를 뽑는다
+  L1(`app/src/engine/vendor/` — 리포의 살아있는 엔진)  = 계산 엔진. 실제로 사주를 뽑는다
   L2(`_현황판\build_relation_edges.py`)                = 개념망. 지식을 잇는다
   같은 명리 규칙(합·충·형·파·해·원진·지장간)을 **둘 다 하드코딩**하고 있고 서로를 모른다.
   → 운영자가 "자형 기본 ON"이라고 결정하면 어느 벌이 따라가고 어느 벌이 안 따라가는지 아무도 모른다.
@@ -38,7 +38,8 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
 
 HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
-L1 = HERE.parent.parent / "4. 구 사주본_Saju-main" / "app" / "src" / "engine" / "vendor"
+sys.path.insert(0, str(HERE))
+from 경로 import 엔진_VENDOR as L1
 
 # ── 정본 노드명 (build_relation_edges.py와 같은 이름을 써야 한다)
 GAN = ["갑목(甲)", "을목(乙)", "병화(丙)", "정화(丁)", "무토(戊)",
@@ -52,7 +53,7 @@ def read(fn):
     p = L1 / fn
     if not p.exists():
         sys.stderr.write(f"\n[L1 엔진 없음] {p}\n"
-                         "  구 사주본 리포 경로를 확인하라. 대조 없이 통과시키지 않는다.\n")
+                         "  엔진 vendor 경로(경로.py)를 확인하라. 대조 없이 통과시키지 않는다.\n")
         raise SystemExit(1)
     return p.read_text(encoding="utf-8")
 

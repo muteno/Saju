@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """보드 조견표 ↔ 엔진(vendor/tables.js, sinsal.js) 값 대조."""
-import json, io, os, re
-OUT = r"C:\Users\Hwang\OneDrive - GS칼텍스 예울마루\황세웅\6.  Nomute\3. 사주\2. 정제작업\_현황판\_피그잼정제"
+import json, io, os, re, sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+import 경로
+OUT = str(경로.피그잼)
 R = {r['표이름']: r for r in (json.loads(l) for l in io.open(os.path.join(OUT, '조견표.jsonl'), encoding='utf-8'))}
 
 STEMS = ['갑','을','병','정','무','기','경','신','임','계']
