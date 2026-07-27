@@ -31,6 +31,16 @@ const 층색 = (층?: string) =>
 const 왜라벨: Record<string, string> = {
   인과닫힘: '이유까지 닿음', 작용까지: '힘이 오간 자리까지', 발현만: '결과만 붙음',
   분류경로: '분류로만 이어짐', 낭설후보: '이유 못 댐',
+  // ★260728 — L1 결정론 층의 판정 4종. 그전엔 이 값들이 앱에 아예 안 왔다(전부 null)
+  //   = 「글자 → 겪는 일」을 말하는 발현 층이 화면에서 통째로 빠져 있었다.
+  //   L1은 검증 «대상»이 아니라 검증의 «바탕»이라 「못 믿을 것」이 아니다.
+  공리: '더 물으면 명리 밖', 파생: '공리로 환원됨',
+  인과: '그래서 이렇게 된다', 목차: '학습 순서 — 이유 아님',
+  미검증: '아직 안 따져봄',
+}
+// 이유가 단단한 순 — L1 공리·파생·인과는 사슬로 따질 «대상»이 아니라 바탕이므로 위로 온다
+const 왜순위: Record<string, number> = {
+  인과닫힘: 0, 공리: 1, 파생: 2, 인과: 3, 작용까지: 4, 발현만: 5, 분류경로: 6, 목차: 7, 미검증: 8,
 }
 
 export default function BrainPanel({ brain }: { brain?: Brain | null }) {
@@ -38,8 +48,7 @@ export default function BrainPanel({ brain }: { brain?: Brain | null }) {
   const 이유 = brain.이유있는관계 ?? brain.관계.filter((r) => r.왜 && r.왜 !== '낭설후보')
   const 낭설 = brain.낭설수 ?? brain.관계.length - 이유.length
   // 이유가 가장 단단한 것부터 — 인과닫힘 > 작용까지 > 발현만 > 분류경로
-  const 순위: Record<string, number> = { 인과닫힘: 0, 작용까지: 1, 발현만: 2, 분류경로: 3 }
-  const 상위 = [...이유].sort((x, y) => (순위[x.왜 ?? ''] ?? 9) - (순위[y.왜 ?? ''] ?? 9)).slice(0, 24)
+  const 상위 = [...이유].sort((x, y) => (왜순위[x.왜 ?? ''] ?? 9) - (왜순위[y.왜 ?? ''] ?? 9)).slice(0, 24)
 
   return (
     <section style={{ marginTop: 28, padding: '18px 16px', borderRadius: tokens.radius.lg,
