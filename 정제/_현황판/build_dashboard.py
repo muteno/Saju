@@ -12,10 +12,12 @@ from pathlib import Path
 from datetime import datetime
 from collections import Counter, defaultdict
 
+import sys
 HERE = Path(__file__).resolve().parent
-REFINE = HERE.parent                      # 2. 정제작업
-ROOT = REFINE.parent                      # 3. 사주
-INV = REFINE / "P0_인벤토리"
+sys.path.insert(0, str(HERE))
+from 경로 import P0_인벤토리 as INV, 전사_내용 as 전사_ROOT
+REFINE = HERE.parent                      # 정제/
+ROOT = REFINE.parent                      # 리포 루트
 DATA = HERE / "data"
 DATA.mkdir(parents=True, exist_ok=True)
 
@@ -122,7 +124,7 @@ def coverage(posts):
 
 # ─────────────────────────── 3. 전사 공장
 def factory():
-    base = ROOT / "0. 전사프로그램" / "전사 내용"
+    base = 전사_ROOT
     out = []
     if not base.exists():
         return out, []

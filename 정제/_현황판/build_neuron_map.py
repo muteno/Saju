@@ -298,7 +298,10 @@ _file_cache = {}
 
 
 def _snapshot_dirs():
-    base = HERE.parent / "P0_인벤토리"
+    import sys as _s
+    _s.path.insert(0, str(HERE))
+    import 경로 as _p
+    base = _p.P0_인벤토리
     return [d for d in sorted(base.glob("*_v1")) if d.is_dir()] or []
 
 
