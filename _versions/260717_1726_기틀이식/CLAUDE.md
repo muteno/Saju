@@ -16,7 +16,7 @@
 
 1. 익명 크롤: `python sajuplus-tools/crawl_board.py <boards.json>` — 완전 수집되면 그걸로 끝
 2. 부족하면(로그인 게이트) 브라우저 크롤: `sajuplus-tools/browser_crawl.js`를 claude-in-chrome javascript_tool로 실행 (반드시 백그라운드 + 폴링, 동기 await 금지 — 45초 타임아웃)
-3. 반출: localStorage → 같은 origin 두 번째 탭에서 Blob 다운로드 → 파일은 `C:\Users\Hwang\Google Drive 스트리밍\내 드라이브\Shared\`에 떨어짐 (Downloads 아님)
+3. 반출: localStorage → 같은 origin 두 번째 탭에서 Blob 다운로드 → 파일은 `C:\Users\[가림-계정]\Google Drive 스트리밍\내 드라이브\Shared\`에 떨어짐 (Downloads 아님)
 4. 워드 생성: `node sajuplus-tools/build_from_json.js <data.json> <meta.json>` (최초 1회 `npm install docx`)
 5. 검증: docx 내부 XML 파싱 체크. Word COM 쓰기 전 잔여 WINWORD 프로세스 kill
 

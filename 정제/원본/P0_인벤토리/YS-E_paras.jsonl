@@ -1,0 +1,719 @@
+{"para_id": "HM-Y2023-P000-01", "post_id": "HM-Y2023-P000", "lines": [1, 5], "kind": "잡동", "gist": "파일 머리말: 출처·글 수·저장일 고지", "flags": []}
+{"para_id": "HM-Y2023-P000-02", "post_id": "HM-Y2023-P000", "lines": [6, 82], "kind": "잡동", "gist": "수록 글 목록 76편(제목+작성일)", "flags": []}
+{"para_id": "HM-Y2023-P001-01", "post_id": "HM-Y2023-P001", "lines": [83, 89], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P001-02", "post_id": "HM-Y2023-P001", "lines": [90, 96], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P001-03", "post_id": "HM-Y2023-P001", "lines": [97, 112], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·쥐띠 출생연도표", "quote": "2023년 2월 3일에 태어난 아이는 2023년에 태어났지만 호랑이띠이고, 2023년 2월 5일에 태어난 아이는 토끼띠가 됩니다.", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P001-04", "post_id": "HM-Y2023-P001", "lines": [113, 119], "kind": "운세", "subj": ["S06", "S10"], "gist": "쥐띠 계묘년 총평: 활동 접고 정리 단계", "quote": "위의 그래프는 기운이 차오르고 빠지는 과정을 나타낸 것일 뿐, \"오르막이 좋다.\" \"내리막이 나쁘다.\"고 보는 것은 단편적이고 편협한 시각이자 사주명리의 기운을 제대로 이해하지 못한 해석입니다.", "slot": "총평", "flags": ["게이트", "별점"]}
+{"para_id": "HM-Y2023-P001-05", "post_id": "HM-Y2023-P001", "lines": [120, 127], "kind": "운세", "subj": ["S10"], "gist": "쥐띠 기본사항: 활동성 정지·타인 의존", "quote": "계묘년에 쥐띠는 활동성이 정지되는 기운을 맞이하게 됩니다.", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P001-06", "post_id": "HM-Y2023-P001", "lines": [128, 135], "kind": "운세", "subj": ["S10"], "gist": "쥐띠 직장·사업운: 협력·전통 직군 유리", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P001-07", "post_id": "HM-Y2023-P001", "lines": [136, 140], "kind": "운세", "subj": ["S10"], "gist": "쥐띠 인간관계운: 폭 제한, 유지가 상책", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P001-08", "post_id": "HM-Y2023-P001", "lines": [141, 145], "kind": "운세", "subj": ["S10"], "gist": "쥐띠 재물운: 금융 의존·투기 관심 증가", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P001-09", "post_id": "HM-Y2023-P001", "lines": [146, 155], "kind": "운세", "subj": ["S10"], "gist": "쥐띠 연애운·건강운: 고착, 만성질환 주의", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P001-10", "post_id": "HM-Y2023-P001", "lines": [156, 163], "kind": "개운", "subj": ["S10"], "gist": "쥐띠 개운법: 배짱과 협력으로 돌파", "slot": "조언", "flags": []}
+{"para_id": "HM-Y2023-P001-11", "post_id": "HM-Y2023-P001", "lines": [164, 166], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 쥐띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P001-12", "post_id": "HM-Y2023-P001", "lines": [167, 195], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "quote": "십이신살은 지지와 지지 사이에서 발생하는 힘을 정리한 개념입니다. 한 지지가 다른 지지를 만나면 어떤 힘을 가지게 되는가를 정리한 것이 십이신살입니다.", "flags": ["stance:기타", "별점"]}
+{"para_id": "HM-Y2023-P001-13", "post_id": "HM-Y2023-P001", "lines": [196, 202], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P002-01", "post_id": "HM-Y2023-P002", "lines": [203, 209], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P002-02", "post_id": "HM-Y2023-P002", "lines": [210, 216], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P002-03", "post_id": "HM-Y2023-P002", "lines": [217, 232], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·소띠 출생연도표", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P002-04", "post_id": "HM-Y2023-P002", "lines": [233, 239], "kind": "운세", "subj": ["S06", "S10"], "gist": "소띠 계묘년 총평: 부산히 돌아다니는 해", "slot": "총평", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P002-05", "post_id": "HM-Y2023-P002", "lines": [240, 249], "kind": "운세", "subj": ["S10"], "gist": "소띠 기본사항: 타의에 의한 환경 변화", "quote": "소띠는 계묘년에 환경의 변화라는 기운에 접어들게 됩니다.", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P002-06", "post_id": "HM-Y2023-P002", "lines": [250, 263], "kind": "운세", "subj": ["S10"], "gist": "소띠 직장·사업운", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P002-07", "post_id": "HM-Y2023-P002", "lines": [264, 270], "kind": "운세", "subj": ["S10"], "gist": "소띠 인간관계운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P002-08", "post_id": "HM-Y2023-P002", "lines": [271, 276], "kind": "운세", "subj": ["S10"], "gist": "소띠 재물운", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P002-09", "post_id": "HM-Y2023-P002", "lines": [277, 286], "kind": "운세", "subj": ["S10"], "gist": "소띠 연애운·건강운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P002-10", "post_id": "HM-Y2023-P002", "lines": [287, 293], "kind": "개운", "subj": ["S10"], "gist": "소띠 개운법", "slot": "조언", "flags": []}
+{"para_id": "HM-Y2023-P002-11", "post_id": "HM-Y2023-P002", "lines": [294, 296], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 소띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P002-12", "post_id": "HM-Y2023-P002", "lines": [297, 325], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "flags": ["stance:기타"]}
+{"para_id": "HM-Y2023-P002-13", "post_id": "HM-Y2023-P002", "lines": [326, 333], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P003-01", "post_id": "HM-Y2023-P003", "lines": [334, 340], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P003-02", "post_id": "HM-Y2023-P003", "lines": [341, 347], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P003-03", "post_id": "HM-Y2023-P003", "lines": [348, 362], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·호랑이띠 출생연도표", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P003-04", "post_id": "HM-Y2023-P003", "lines": [363, 369], "kind": "운세", "subj": ["S06", "S10"], "gist": "호랑이띠 계묘년 총평: 힘이 빠지는 단계", "slot": "총평", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P003-05", "post_id": "HM-Y2023-P003", "lines": [370, 377], "kind": "운세", "subj": ["S10"], "gist": "호랑이띠 기본사항: 전년 대비 기운 하강", "quote": "호랑이띠는 작년(2022년)에 매사에 자신만만한 기운으로 임했을 것입니다.", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P003-06", "post_id": "HM-Y2023-P003", "lines": [378, 386], "kind": "운세", "subj": ["S10"], "gist": "호랑이띠 직장 또는 사업운", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P003-07", "post_id": "HM-Y2023-P003", "lines": [387, 393], "kind": "운세", "subj": ["S10"], "gist": "호랑이띠 인간관계운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P003-08", "post_id": "HM-Y2023-P003", "lines": [394, 401], "kind": "운세", "subj": ["S10"], "gist": "호랑이띠 재물운", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P003-09", "post_id": "HM-Y2023-P003", "lines": [402, 406], "kind": "운세", "subj": ["S10"], "gist": "호랑이띠 연애운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P003-10", "post_id": "HM-Y2023-P003", "lines": [407, 411], "kind": "개운", "subj": ["S10"], "gist": "호랑이띠 개운법", "slot": "조언", "flags": []}
+{"para_id": "HM-Y2023-P003-11", "post_id": "HM-Y2023-P003", "lines": [412, 415], "kind": "운세", "subj": ["S10"], "gist": "호랑이띠 종합", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P003-12", "post_id": "HM-Y2023-P003", "lines": [416, 418], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 호랑이띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P003-13", "post_id": "HM-Y2023-P003", "lines": [419, 447], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "flags": ["stance:기타"]}
+{"para_id": "HM-Y2023-P003-14", "post_id": "HM-Y2023-P003", "lines": [448, 454], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P004-01", "post_id": "HM-Y2023-P004", "lines": [455, 461], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P004-02", "post_id": "HM-Y2023-P004", "lines": [462, 468], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P004-03", "post_id": "HM-Y2023-P004", "lines": [469, 484], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·토끼띠 출생연도표", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P004-04", "post_id": "HM-Y2023-P004", "lines": [485, 491], "kind": "운세", "subj": ["S06", "S10"], "gist": "토끼띠 계묘년 총평: 기운이 최고조", "slot": "총평", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P004-05", "post_id": "HM-Y2023-P004", "lines": [492, 497], "kind": "운세", "subj": ["S10"], "gist": "토끼띠 기본사항: 강한 기운의 도움·주도", "quote": "토끼띠들은 계묘년에 아주 강한 기운의 도움을 받게 됩니다.", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P004-06", "post_id": "HM-Y2023-P004", "lines": [498, 503], "kind": "운세", "subj": ["S10"], "gist": "토끼띠 직장·사업운", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P004-07", "post_id": "HM-Y2023-P004", "lines": [504, 511], "kind": "운세", "subj": ["S10"], "gist": "토끼띠 인간관계운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P004-08", "post_id": "HM-Y2023-P004", "lines": [512, 518], "kind": "운세", "subj": ["S10"], "gist": "토끼띠 재물운", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P004-09", "post_id": "HM-Y2023-P004", "lines": [519, 523], "kind": "운세", "subj": ["S10"], "gist": "토끼띠 연애운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P004-10", "post_id": "HM-Y2023-P004", "lines": [524, 529], "kind": "운세", "subj": ["S10"], "gist": "토끼띠 종합", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P004-11", "post_id": "HM-Y2023-P004", "lines": [530, 532], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 토끼띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P004-12", "post_id": "HM-Y2023-P004", "lines": [533, 561], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "flags": ["stance:기타"]}
+{"para_id": "HM-Y2023-P004-13", "post_id": "HM-Y2023-P004", "lines": [562, 568], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P005-01", "post_id": "HM-Y2023-P005", "lines": [569, 575], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P005-02", "post_id": "HM-Y2023-P005", "lines": [576, 582], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P005-03", "post_id": "HM-Y2023-P005", "lines": [583, 597], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·용띠 출생연도표", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P005-04", "post_id": "HM-Y2023-P005", "lines": [598, 604], "kind": "운세", "subj": ["S06", "S10"], "gist": "용띠 계묘년 총평", "slot": "총평", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P005-05", "post_id": "HM-Y2023-P005", "lines": [605, 613], "kind": "운세", "subj": ["S10"], "gist": "용띠 기본사항: 타의로 무대에 오른 형국", "quote": "용띠들에게 계묘년은 나의 의지와는 상관 없이 무대위로 올려진 상황을 의미합니다.", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P005-06", "post_id": "HM-Y2023-P005", "lines": [614, 621], "kind": "운세", "subj": ["S10"], "gist": "용띠 직장·사업운", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P005-07", "post_id": "HM-Y2023-P005", "lines": [622, 626], "kind": "운세", "subj": ["S10"], "gist": "용띠 인간관계운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P005-08", "post_id": "HM-Y2023-P005", "lines": [627, 633], "kind": "운세", "subj": ["S10"], "gist": "용띠 재물운", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P005-09", "post_id": "HM-Y2023-P005", "lines": [634, 639], "kind": "운세", "subj": ["S10"], "gist": "용띠 연애운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P005-10", "post_id": "HM-Y2023-P005", "lines": [640, 647], "kind": "운세", "subj": ["S10"], "gist": "용띠 종합(건강운 포함)", "quote": "건강운 측면을 보면, 계묘년은 가지고 있던 질병이 드러나는 시기입니다.", "slot": "건강", "flags": []}
+{"para_id": "HM-Y2023-P005-11", "post_id": "HM-Y2023-P005", "lines": [648, 650], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 용띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P005-12", "post_id": "HM-Y2023-P005", "lines": [651, 679], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "flags": ["stance:기타"]}
+{"para_id": "HM-Y2023-P005-13", "post_id": "HM-Y2023-P005", "lines": [680, 686], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P006-01", "post_id": "HM-Y2023-P006", "lines": [687, 693], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P006-02", "post_id": "HM-Y2023-P006", "lines": [694, 700], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P006-03", "post_id": "HM-Y2023-P006", "lines": [701, 715], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·뱀띠 출생연도표", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P006-04", "post_id": "HM-Y2023-P006", "lines": [716, 722], "kind": "운세", "subj": ["S06", "S10"], "gist": "뱀띠 계묘년 총평", "slot": "총평", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P006-05", "post_id": "HM-Y2023-P006", "lines": [723, 730], "kind": "운세", "subj": ["S10"], "gist": "뱀띠 기본사항: 갑작스레 큰 힘을 쥔 형국", "quote": "뱀띠는 이 시기에 상당히 강한 힘을 나도 모르게 손에 쥐게 됩니다.", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P006-06", "post_id": "HM-Y2023-P006", "lines": [731, 747], "kind": "운세", "subj": ["S10"], "gist": "뱀띠 직장·사업운", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P006-07", "post_id": "HM-Y2023-P006", "lines": [748, 753], "kind": "운세", "subj": ["S10"], "gist": "뱀띠 인간관계운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P006-08", "post_id": "HM-Y2023-P006", "lines": [754, 762], "kind": "운세", "subj": ["S10"], "gist": "뱀띠 재물운", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P006-09", "post_id": "HM-Y2023-P006", "lines": [763, 766], "kind": "운세", "subj": ["S10"], "gist": "뱀띠 연애운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P006-10", "post_id": "HM-Y2023-P006", "lines": [767, 772], "kind": "개운", "subj": ["S10"], "gist": "뱀띠 개운법", "slot": "조언", "flags": []}
+{"para_id": "HM-Y2023-P006-11", "post_id": "HM-Y2023-P006", "lines": [773, 775], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 뱀띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P006-12", "post_id": "HM-Y2023-P006", "lines": [776, 804], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "flags": ["stance:기타"]}
+{"para_id": "HM-Y2023-P006-13", "post_id": "HM-Y2023-P006", "lines": [805, 811], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P007-01", "post_id": "HM-Y2023-P007", "lines": [812, 818], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P007-02", "post_id": "HM-Y2023-P007", "lines": [819, 825], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P007-03", "post_id": "HM-Y2023-P007", "lines": [826, 841], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·말띠 출생연도표", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P007-04", "post_id": "HM-Y2023-P007", "lines": [842, 848], "kind": "운세", "subj": ["S06", "S10"], "gist": "말띠 계묘년 총평", "slot": "총평", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P007-05", "post_id": "HM-Y2023-P007", "lines": [849, 854], "kind": "운세", "subj": ["S10"], "gist": "말띠 기본사항: 문이 열려 주목받는 상황", "quote": "말띠는 계묘년에 문이 열린 것과 같은 상황을 맞이하게 됩니다.", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P007-06", "post_id": "HM-Y2023-P007", "lines": [855, 863], "kind": "운세", "subj": ["S10"], "gist": "말띠 직장·사업운", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P007-07", "post_id": "HM-Y2023-P007", "lines": [864, 869], "kind": "운세", "subj": ["S10"], "gist": "말띠 인간관계운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P007-08", "post_id": "HM-Y2023-P007", "lines": [870, 878], "kind": "운세", "subj": ["S10"], "gist": "말띠 재물운", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P007-09", "post_id": "HM-Y2023-P007", "lines": [879, 884], "kind": "운세", "subj": ["S10"], "gist": "말띠 연애운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P007-10", "post_id": "HM-Y2023-P007", "lines": [885, 889], "kind": "개운", "subj": ["S10"], "gist": "말띠 개운법", "slot": "조언", "flags": []}
+{"para_id": "HM-Y2023-P007-11", "post_id": "HM-Y2023-P007", "lines": [890, 892], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 말띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P007-12", "post_id": "HM-Y2023-P007", "lines": [893, 921], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "flags": ["stance:기타"]}
+{"para_id": "HM-Y2023-P007-13", "post_id": "HM-Y2023-P007", "lines": [922, 929], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P008-01", "post_id": "HM-Y2023-P008", "lines": [930, 936], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P008-02", "post_id": "HM-Y2023-P008", "lines": [937, 943], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P008-03", "post_id": "HM-Y2023-P008", "lines": [944, 959], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·양띠 출생연도표", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P008-04", "post_id": "HM-Y2023-P008", "lines": [960, 967], "kind": "운세", "subj": ["S06", "S10"], "gist": "양띠 계묘년 총평", "slot": "총평", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P008-05", "post_id": "HM-Y2023-P008", "lines": [968, 975], "kind": "운세", "subj": ["S10"], "gist": "양띠 기본사항: 새 환경에서 새 일", "quote": "양띠는 새로운 환경에서 새로운 일을 하는 계묘년 한 해를 보내게 됩니다.", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P008-06", "post_id": "HM-Y2023-P008", "lines": [976, 982], "kind": "운세", "subj": ["S10"], "gist": "양띠 직장·사업운", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P008-07", "post_id": "HM-Y2023-P008", "lines": [983, 988], "kind": "운세", "subj": ["S10"], "gist": "양띠 인간관계운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P008-08", "post_id": "HM-Y2023-P008", "lines": [989, 995], "kind": "운세", "subj": ["S10"], "gist": "양띠 재물운", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P008-09", "post_id": "HM-Y2023-P008", "lines": [996, 1001], "kind": "운세", "subj": ["S10"], "gist": "양띠 연애운·건강운", "quote": "건강운으로 보면, 양띠의 계묘년 건강은 매우 좋다고 봅니다.", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P008-10", "post_id": "HM-Y2023-P008", "lines": [1002, 1009], "kind": "개운", "subj": ["S10"], "gist": "양띠 개운법", "slot": "조언", "flags": []}
+{"para_id": "HM-Y2023-P008-11", "post_id": "HM-Y2023-P008", "lines": [1010, 1013], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 양띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P008-12", "post_id": "HM-Y2023-P008", "lines": [1014, 1042], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "flags": ["stance:기타"]}
+{"para_id": "HM-Y2023-P008-13", "post_id": "HM-Y2023-P008", "lines": [1043, 1050], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P009-01", "post_id": "HM-Y2023-P009", "lines": [1051, 1057], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P009-02", "post_id": "HM-Y2023-P009", "lines": [1058, 1064], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P009-03", "post_id": "HM-Y2023-P009", "lines": [1065, 1080], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·원숭이띠 출생연도표", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P009-04", "post_id": "HM-Y2023-P009", "lines": [1081, 1087], "kind": "운세", "subj": ["S06", "S10"], "gist": "원숭이띠 계묘년 총평", "slot": "총평", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P009-05", "post_id": "HM-Y2023-P009", "lines": [1088, 1100], "kind": "운세", "subj": ["S10"], "gist": "원숭이띠 기본사항", "quote": "원숭이띠의 계묘년은 한 문장으로 요약할 수 있습니다.", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P009-06", "post_id": "HM-Y2023-P009", "lines": [1101, 1110], "kind": "운세", "subj": ["S10"], "gist": "원숭이띠 직장·사업운", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P009-07", "post_id": "HM-Y2023-P009", "lines": [1111, 1117], "kind": "운세", "subj": ["S10"], "gist": "원숭이띠 인간관계운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P009-08", "post_id": "HM-Y2023-P009", "lines": [1118, 1125], "kind": "운세", "subj": ["S10"], "gist": "원숭이띠 재물운", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P009-09", "post_id": "HM-Y2023-P009", "lines": [1126, 1135], "kind": "운세", "subj": ["S10"], "gist": "원숭이띠 연애운·건강운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P009-10", "post_id": "HM-Y2023-P009", "lines": [1136, 1144], "kind": "개운", "subj": ["S10"], "gist": "원숭이띠 개운법", "slot": "조언", "flags": []}
+{"para_id": "HM-Y2023-P009-11", "post_id": "HM-Y2023-P009", "lines": [1145, 1148], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 원숭이띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P009-12", "post_id": "HM-Y2023-P009", "lines": [1149, 1177], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "flags": ["stance:기타"]}
+{"para_id": "HM-Y2023-P009-13", "post_id": "HM-Y2023-P009", "lines": [1178, 1185], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P010-01", "post_id": "HM-Y2023-P010", "lines": [1186, 1192], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P010-02", "post_id": "HM-Y2023-P010", "lines": [1193, 1199], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P010-03", "post_id": "HM-Y2023-P010", "lines": [1200, 1215], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·닭띠 출생연도표", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P010-04", "post_id": "HM-Y2023-P010", "lines": [1216, 1222], "kind": "운세", "subj": ["S06", "S10"], "gist": "닭띠 계묘년 총평", "slot": "총평", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P010-05", "post_id": "HM-Y2023-P010", "lines": [1223, 1233], "kind": "운세", "subj": ["S10"], "gist": "닭띠 기본사항: 신체·정신 활동력이 반대", "quote": "닭띠들은 계묘년에 신체적 활동력과 정신적 활동력이 정 반대로 드러납니다.", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P010-06", "post_id": "HM-Y2023-P010", "lines": [1234, 1247], "kind": "운세", "subj": ["S10"], "gist": "닭띠 직장·사업운", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P010-07", "post_id": "HM-Y2023-P010", "lines": [1248, 1253], "kind": "운세", "subj": ["S10"], "gist": "닭띠 인간관계운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P010-08", "post_id": "HM-Y2023-P010", "lines": [1254, 1260], "kind": "운세", "subj": ["S10"], "gist": "닭띠 재물운", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P010-09", "post_id": "HM-Y2023-P010", "lines": [1261, 1267], "kind": "운세", "subj": ["S10"], "gist": "닭띠 연애운·건강운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P010-10", "post_id": "HM-Y2023-P010", "lines": [1268, 1278], "kind": "개운", "subj": ["S10"], "gist": "닭띠 개운법", "slot": "조언", "flags": []}
+{"para_id": "HM-Y2023-P010-11", "post_id": "HM-Y2023-P010", "lines": [1279, 1282], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 닭띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P010-12", "post_id": "HM-Y2023-P010", "lines": [1283, 1311], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "flags": ["stance:기타"]}
+{"para_id": "HM-Y2023-P010-13", "post_id": "HM-Y2023-P010", "lines": [1312, 1319], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P011-01", "post_id": "HM-Y2023-P011", "lines": [1320, 1326], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P011-02", "post_id": "HM-Y2023-P011", "lines": [1327, 1333], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P011-03", "post_id": "HM-Y2023-P011", "lines": [1334, 1349], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·개띠 출생연도표", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P011-04", "post_id": "HM-Y2023-P011", "lines": [1350, 1356], "kind": "운세", "subj": ["S06", "S10"], "gist": "개띠 계묘년 총평", "slot": "총평", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P011-05", "post_id": "HM-Y2023-P011", "lines": [1357, 1369], "kind": "운세", "subj": ["S10"], "gist": "개띠 기본사항", "quote": "개띠들에게 올해 계묘년의 의미는", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P011-06", "post_id": "HM-Y2023-P011", "lines": [1370, 1381], "kind": "운세", "subj": ["S10"], "gist": "개띠 직장·사업운", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P011-07", "post_id": "HM-Y2023-P011", "lines": [1382, 1388], "kind": "운세", "subj": ["S10"], "gist": "개띠 인간관계운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P011-08", "post_id": "HM-Y2023-P011", "lines": [1389, 1396], "kind": "운세", "subj": ["S10"], "gist": "개띠 재물운", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P011-09", "post_id": "HM-Y2023-P011", "lines": [1397, 1403], "kind": "운세", "subj": ["S10"], "gist": "개띠 연애운·건강운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P011-10", "post_id": "HM-Y2023-P011", "lines": [1404, 1411], "kind": "개운", "subj": ["S10"], "gist": "개띠 개운법", "slot": "조언", "flags": []}
+{"para_id": "HM-Y2023-P011-11", "post_id": "HM-Y2023-P011", "lines": [1412, 1415], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 개띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P011-12", "post_id": "HM-Y2023-P011", "lines": [1416, 1444], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "flags": ["stance:기타"]}
+{"para_id": "HM-Y2023-P011-13", "post_id": "HM-Y2023-P011", "lines": [1445, 1452], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P012-01", "post_id": "HM-Y2023-P012", "lines": [1453, 1459], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P012-02", "post_id": "HM-Y2023-P012", "lines": [1460, 1466], "kind": "잡동", "gist": "글의 목차 6항", "flags": []}
+{"para_id": "HM-Y2023-P012-03", "post_id": "HM-Y2023-P012", "lines": [1467, 1482], "kind": "이론", "subj": ["S03"], "gist": "띠 구분 기준은 입춘·돼지띠 출생연도표", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P012-04", "post_id": "HM-Y2023-P012", "lines": [1483, 1491], "kind": "운세", "subj": ["S06", "S10"], "gist": "돼지띠 계묘년 총평", "slot": "총평", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P012-05", "post_id": "HM-Y2023-P012", "lines": [1492, 1502], "kind": "운세", "subj": ["S10"], "gist": "돼지띠 기본사항: 하락세의 끝·보호 기운", "quote": "돼지띠는 계묘년이 하락세의 끝이고, 안정적으로 보호받는 기운으로 접어듭니다.", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P012-06", "post_id": "HM-Y2023-P012", "lines": [1503, 1512], "kind": "운세", "subj": ["S10"], "gist": "돼지띠 직장·사업운", "slot": "직업", "flags": []}
+{"para_id": "HM-Y2023-P012-07", "post_id": "HM-Y2023-P012", "lines": [1513, 1518], "kind": "운세", "subj": ["S10"], "gist": "돼지띠 인간관계운", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P012-08", "post_id": "HM-Y2023-P012", "lines": [1519, 1523], "kind": "운세", "subj": ["S10"], "gist": "돼지띠 재물운", "slot": "재물", "flags": []}
+{"para_id": "HM-Y2023-P012-09", "post_id": "HM-Y2023-P012", "lines": [1524, 1534], "kind": "운세", "subj": ["S10"], "gist": "돼지띠 연애운·건강운", "quote": "건강적으로도 비슷한 맥락으로 해석할 수 있는데, 과거에 문제가 있었던 신체 부위가 다시 발병하는 기운을 가지고 있습니다.", "slot": "관계", "flags": []}
+{"para_id": "HM-Y2023-P012-10", "post_id": "HM-Y2023-P012", "lines": [1535, 1550], "kind": "개운", "subj": ["S10"], "gist": "돼지띠 개운법", "slot": "조언", "flags": []}
+{"para_id": "HM-Y2023-P012-11", "post_id": "HM-Y2023-P012", "lines": [1551, 1554], "kind": "운세", "subj": ["S10"], "gist": "작년 임인년 돼지띠 운세 되짚기 안내", "slot": "리뷰", "flags": []}
+{"para_id": "HM-Y2023-P012-12", "post_id": "HM-Y2023-P012", "lines": [1555, 1583], "kind": "이론", "subj": ["S06", "S03", "S12"], "gist": "일간 중심론과 십이신살—띠로 연운 보는 근거", "flags": ["stance:기타"]}
+{"para_id": "HM-Y2023-P012-13", "post_id": "HM-Y2023-P012", "lines": [1584, 1591], "kind": "화법", "subj": ["S11"], "gist": "나가며: 띠 판단의 한계 고지·후원 안내", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P013-01", "post_id": "HM-Y2023-P013", "lines": [1592, 1596], "kind": "잡동", "gist": "제목·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P013-02", "post_id": "HM-Y2023-P013", "lines": [1597, 1603], "kind": "화법", "subj": ["S11", "S10"], "gist": "서문: 한 글자로 길흉 판단하는 일의 한계", "quote": "사주 팔자 중에 한 글자(띠, 태어난 해)만 가지고, 길흉을 판단하는 것이기 때문입니다.", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P013-03", "post_id": "HM-Y2023-P013", "lines": [1604, 1619], "kind": "이론", "subj": ["S06", "S03"], "gist": "십이신살은 이름이 아니라 주기 곡선이 핵심", "quote": "결국 사주명리는 천문학이자, 계절에 대한 통찰을 그 바탕에 깔고 있는데, 이들의 공통점은 주기성을 갖는다는 것입니다.", "flags": ["별점"]}
+{"para_id": "HM-Y2023-P013-04", "post_id": "HM-Y2023-P013", "lines": [1620, 1646], "kind": "운세", "subj": ["S10", "S06"], "gist": "상·하향 곡선을 길흉으로 읽는 건 초보적 이해", "quote": "이것은 마치 \"겨울은 추워서 싫고, 봄은 따뜻해서 좋아.\" 라고 말하는 것과 같습니다.", "slot": "총평", "flags": ["게이트", "별점"]}
+{"para_id": "HM-Y2023-P013-05", "post_id": "HM-Y2023-P013", "lines": [1647, 1655], "kind": "화법", "subj": ["S11"], "gist": "나가며: 계묘년 총론 인사·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P014-01", "post_id": "HM-Y2023-P014", "lines": [1656, 1661], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P014-02", "post_id": "HM-Y2023-P014", "lines": [1662, 1669], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P014-03", "post_id": "HM-Y2023-P014", "lines": [1670, 1679], "kind": "이론", "subj": ["S02", "S03"], "gist": "갑자일주 기본 성향", "quote": "갑자일주의 키워드는 지치지 않는 싱그러운 생명력입니다.", "flags": []}
+{"para_id": "HM-Y2023-P014-04", "post_id": "HM-Y2023-P014", "lines": [1680, 1704], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 갑자일주 운세", "quote": "십신으로 한 해의 운을 추론한다는 것은 일간-태어난 날의 천간- 을 기준으로 그 일간과 그 해에 해당하는 간지와의 관계를 살피는 것을 뜻합니다.", "slot": "총평", "flags": ["결정론", "별점"]}
+{"para_id": "HM-Y2023-P014-05", "post_id": "HM-Y2023-P014", "lines": [1705, 1724], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 갑자일주 운세", "quote": "갑자일주는 계묘년에 양인살의 기운이 임합니다.", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P014-06", "post_id": "HM-Y2023-P014", "lines": [1725, 1738], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 갑자일주 계묘년 운세", "quote": "가. 신강한 갑자일주 <갑목의 주변에 오행 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P014-07", "post_id": "HM-Y2023-P014", "lines": [1739, 1752], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 갑자일주 계묘년 운세", "quote": "나. 신약한 갑자일주 <갑목의 주변에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P014-08", "post_id": "HM-Y2023-P014", "lines": [1753, 1782], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "갑자일주 계묘년 주의해야 하는 사주 구성", "quote": "바로 시간이나 월간, 대운의 천간에 정화가 뜬 경우입니다.", "slot": "조언", "flags": ["결정론", "별점"]}
+{"para_id": "HM-Y2023-P014-09", "post_id": "HM-Y2023-P014", "lines": [1783, 1810], "kind": "화법", "subj": ["S11"], "gist": "나가며: 갑자일주 격려·후원 안내", "quote": "하지만 내년의 기운을 미리 살피고 이해하는 과정을 통해 스스로의 마음을 다잡고, 긍정으로 내년을 대비할 수 있다면 우리의 삶이 더욱 아름다워질 것입니다.", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P015-01", "post_id": "HM-Y2023-P015", "lines": [1811, 1816], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P015-02", "post_id": "HM-Y2023-P015", "lines": [1817, 1824], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P015-03", "post_id": "HM-Y2023-P015", "lines": [1825, 1832], "kind": "이론", "subj": ["S02", "S03"], "gist": "을축일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P015-04", "post_id": "HM-Y2023-P015", "lines": [1833, 1857], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 을축일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P015-05", "post_id": "HM-Y2023-P015", "lines": [1858, 1864], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 을축일주 운세(해당 없음)", "quote": "을축일주는 계묘년에 신살의 기운이 임하지 않습니다.", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P015-06", "post_id": "HM-Y2023-P015", "lines": [1865, 1878], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 을축일주 계묘년 운세", "quote": "가. 신강한 을축일주 <을목의 주변에 오행 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P015-07", "post_id": "HM-Y2023-P015", "lines": [1879, 1887], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 을축일주 계묘년 운세", "quote": "나. 신약한 을축일주 <을목의 주변에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P015-08", "post_id": "HM-Y2023-P015", "lines": [1888, 1918], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "을축일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P015-09", "post_id": "HM-Y2023-P015", "lines": [1919, 1945], "kind": "화법", "subj": ["S11"], "gist": "나가며: 을축일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P016-01", "post_id": "HM-Y2023-P016", "lines": [1946, 1951], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P016-02", "post_id": "HM-Y2023-P016", "lines": [1952, 1959], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P016-03", "post_id": "HM-Y2023-P016", "lines": [1960, 1969], "kind": "이론", "subj": ["S02", "S03"], "gist": "병인일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P016-04", "post_id": "HM-Y2023-P016", "lines": [1970, 1995], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 병인일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P016-05", "post_id": "HM-Y2023-P016", "lines": [1996, 2007], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 병인일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P016-06", "post_id": "HM-Y2023-P016", "lines": [2008, 2023], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 병인일주 계묘년 운세", "quote": "가. 신강한 병인일주 <병화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P016-07", "post_id": "HM-Y2023-P016", "lines": [2024, 2038], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 병인일주 계묘년 운세", "quote": "나. 신약한 병인일주 <병화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P016-08", "post_id": "HM-Y2023-P016", "lines": [2039, 2065], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "병인일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P016-09", "post_id": "HM-Y2023-P016", "lines": [2066, 2092], "kind": "화법", "subj": ["S11"], "gist": "나가며: 병인일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P017-01", "post_id": "HM-Y2023-P017", "lines": [2093, 2098], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P017-02", "post_id": "HM-Y2023-P017", "lines": [2099, 2106], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P017-03", "post_id": "HM-Y2023-P017", "lines": [2107, 2116], "kind": "이론", "subj": ["S02", "S03"], "gist": "정묘일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P017-04", "post_id": "HM-Y2023-P017", "lines": [2117, 2142], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 정묘일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P017-05", "post_id": "HM-Y2023-P017", "lines": [2143, 2149], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 정묘일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P017-06", "post_id": "HM-Y2023-P017", "lines": [2150, 2166], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 정묘일주 계묘년 운세", "quote": "가. 신강한 정묘일주 <정화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P017-07", "post_id": "HM-Y2023-P017", "lines": [2167, 2182], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 정묘일주 계묘년 운세", "quote": "나. 신약한 정묘일주 <정화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P017-08", "post_id": "HM-Y2023-P017", "lines": [2183, 2209], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "정묘일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P017-09", "post_id": "HM-Y2023-P017", "lines": [2210, 2240], "kind": "화법", "subj": ["S11"], "gist": "나가며: 정묘일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P018-01", "post_id": "HM-Y2023-P018", "lines": [2241, 2247], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P018-02", "post_id": "HM-Y2023-P018", "lines": [2248, 2254], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P018-03", "post_id": "HM-Y2023-P018", "lines": [2255, 2264], "kind": "이론", "subj": ["S02", "S03"], "gist": "무진일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P018-04", "post_id": "HM-Y2023-P018", "lines": [2265, 2294], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 무진일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P018-05", "post_id": "HM-Y2023-P018", "lines": [2295, 2301], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 무진일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P018-06", "post_id": "HM-Y2023-P018", "lines": [2302, 2313], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 무진일주 계묘년 운세", "quote": "가. 신강한 무진일주 <무토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P018-07", "post_id": "HM-Y2023-P018", "lines": [2314, 2323], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 무진일주 계묘년 운세", "quote": "나. 신약한 무진일주 <무토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P018-08", "post_id": "HM-Y2023-P018", "lines": [2324, 2350], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "무진일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P018-09", "post_id": "HM-Y2023-P018", "lines": [2351, 2380], "kind": "화법", "subj": ["S11"], "gist": "나가며: 무진일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P019-01", "post_id": "HM-Y2023-P019", "lines": [2381, 2387], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P019-02", "post_id": "HM-Y2023-P019", "lines": [2388, 2394], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P019-03", "post_id": "HM-Y2023-P019", "lines": [2395, 2405], "kind": "이론", "subj": ["S02", "S03"], "gist": "기사일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P019-04", "post_id": "HM-Y2023-P019", "lines": [2406, 2435], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 기사일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P019-05", "post_id": "HM-Y2023-P019", "lines": [2436, 2442], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 기사일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P019-06", "post_id": "HM-Y2023-P019", "lines": [2443, 2455], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 기사일주 계묘년 운세", "quote": "가. 신강한 기사일주 <기토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P019-07", "post_id": "HM-Y2023-P019", "lines": [2456, 2469], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 기사일주 계묘년 운세", "quote": "나. 신약한 기사일주 <기토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P019-08", "post_id": "HM-Y2023-P019", "lines": [2470, 2496], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "기사일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P019-09", "post_id": "HM-Y2023-P019", "lines": [2497, 2524], "kind": "화법", "subj": ["S11"], "gist": "나가며: 기사일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P020-01", "post_id": "HM-Y2023-P020", "lines": [2525, 2531], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P020-02", "post_id": "HM-Y2023-P020", "lines": [2532, 2538], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P020-03", "post_id": "HM-Y2023-P020", "lines": [2539, 2549], "kind": "이론", "subj": ["S02", "S03"], "gist": "경오일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P020-04", "post_id": "HM-Y2023-P020", "lines": [2550, 2581], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 경오일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P020-05", "post_id": "HM-Y2023-P020", "lines": [2582, 2593], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 경오일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P020-06", "post_id": "HM-Y2023-P020", "lines": [2594, 2609], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 경오일주 계묘년 운세", "quote": "가. 신강한 경오일주 <경금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P020-07", "post_id": "HM-Y2023-P020", "lines": [2610, 2618], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 경오일주 계묘년 운세", "quote": "나. 신약한 경오일주 <경금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P020-08", "post_id": "HM-Y2023-P020", "lines": [2619, 2649], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "경오일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P020-09", "post_id": "HM-Y2023-P020", "lines": [2650, 2678], "kind": "화법", "subj": ["S11"], "gist": "나가며: 경오일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P021-01", "post_id": "HM-Y2023-P021", "lines": [2679, 2685], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P021-02", "post_id": "HM-Y2023-P021", "lines": [2686, 2692], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P021-03", "post_id": "HM-Y2023-P021", "lines": [2693, 2702], "kind": "이론", "subj": ["S02", "S03"], "gist": "신미일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P021-04", "post_id": "HM-Y2023-P021", "lines": [2703, 2732], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 신미일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P021-05", "post_id": "HM-Y2023-P021", "lines": [2733, 2739], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 신미일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P021-06", "post_id": "HM-Y2023-P021", "lines": [2740, 2753], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 신미일주 계묘년 운세", "quote": "가. 신강한 신미일주 <신금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P021-07", "post_id": "HM-Y2023-P021", "lines": [2754, 2766], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 신미일주 계묘년 운세", "quote": "나. 신약한 신미일주 <신금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P021-08", "post_id": "HM-Y2023-P021", "lines": [2767, 2801], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신미일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P021-09", "post_id": "HM-Y2023-P021", "lines": [2802, 2828], "kind": "화법", "subj": ["S11"], "gist": "나가며: 신미일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P022-01", "post_id": "HM-Y2023-P022", "lines": [2829, 2835], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P022-02", "post_id": "HM-Y2023-P022", "lines": [2836, 2842], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P022-03", "post_id": "HM-Y2023-P022", "lines": [2843, 2854], "kind": "이론", "subj": ["S02", "S03"], "gist": "임신일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P022-04", "post_id": "HM-Y2023-P022", "lines": [2855, 2880], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 임신일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P022-05", "post_id": "HM-Y2023-P022", "lines": [2881, 2897], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 임신일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P022-06", "post_id": "HM-Y2023-P022", "lines": [2898, 2914], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 임신일주 계묘년 운세", "quote": "가. 신강한 임신일주 <임수의 주변에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P022-07", "post_id": "HM-Y2023-P022", "lines": [2915, 2925], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 임신일주 계묘년 운세", "quote": "나. 신약한 임신일주 <임수의 주변에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P022-08", "post_id": "HM-Y2023-P022", "lines": [2926, 2960], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "임신일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P022-09", "post_id": "HM-Y2023-P022", "lines": [2961, 2990], "kind": "화법", "subj": ["S11"], "gist": "나가며: 임신일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P023-01", "post_id": "HM-Y2023-P023", "lines": [2991, 2998], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P023-02", "post_id": "HM-Y2023-P023", "lines": [2999, 3004], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P023-03", "post_id": "HM-Y2023-P023", "lines": [3005, 3015], "kind": "이론", "subj": ["S02", "S03"], "gist": "계유일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P023-04", "post_id": "HM-Y2023-P023", "lines": [3016, 3037], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 계유일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P023-05", "post_id": "HM-Y2023-P023", "lines": [3038, 3060], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 계유일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P023-06", "post_id": "HM-Y2023-P023", "lines": [3061, 3077], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 계유일주 계묘년 운세", "quote": "가. 신강한 계유일주 <계수의 주변에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P023-07", "post_id": "HM-Y2023-P023", "lines": [3078, 3088], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 계유일주 계묘년 운세", "quote": "나. 신약한 계유일주 <계수의 주변에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P023-08", "post_id": "HM-Y2023-P023", "lines": [3089, 3123], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "계유일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P023-09", "post_id": "HM-Y2023-P023", "lines": [3124, 3155], "kind": "화법", "subj": ["S11"], "gist": "나가며: 계유일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P024-01", "post_id": "HM-Y2023-P024", "lines": [3156, 3161], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P024-02", "post_id": "HM-Y2023-P024", "lines": [3162, 3169], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P024-03", "post_id": "HM-Y2023-P024", "lines": [3170, 3182], "kind": "이론", "subj": ["S02", "S03"], "gist": "갑술일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P024-04", "post_id": "HM-Y2023-P024", "lines": [3183, 3209], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 갑술일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P024-05", "post_id": "HM-Y2023-P024", "lines": [3210, 3236], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 갑술일주 운세(도화·양인)", "quote": "갑술일주는 계묘년에 \"도화살\"이라는 소중한 신살이 임합니다.", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P024-06", "post_id": "HM-Y2023-P024", "lines": [3237, 3253], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 갑술일주 계묘년 운세", "quote": "가. 신강한 갑술일주 <갑목의 주변에 오행 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P024-07", "post_id": "HM-Y2023-P024", "lines": [3254, 3259], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 갑술일주 계묘년 운세", "quote": "나. 신약한 갑술일주 <갑목의 주변에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P024-08", "post_id": "HM-Y2023-P024", "lines": [3260, 3284], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "갑술일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P024-09", "post_id": "HM-Y2023-P024", "lines": [3285, 3317], "kind": "화법", "subj": ["S11"], "gist": "나가며: 갑술일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P025-01", "post_id": "HM-Y2023-P025", "lines": [3318, 3323], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P025-02", "post_id": "HM-Y2023-P025", "lines": [3324, 3331], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P025-03", "post_id": "HM-Y2023-P025", "lines": [3332, 3342], "kind": "이론", "subj": ["S02", "S03"], "gist": "을해일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P025-04", "post_id": "HM-Y2023-P025", "lines": [3343, 3367], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 을해일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P025-05", "post_id": "HM-Y2023-P025", "lines": [3368, 3374], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 을해일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P025-06", "post_id": "HM-Y2023-P025", "lines": [3375, 3386], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 을해일주 계묘년 운세", "quote": "가. 신강한 을해일주 <을목의 주변에 오행 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P025-07", "post_id": "HM-Y2023-P025", "lines": [3387, 3397], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 을해일주 계묘년 운세", "quote": "나. 신약한 을해일주 <을목의 주변에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P025-08", "post_id": "HM-Y2023-P025", "lines": [3398, 3429], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "을해일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P025-09", "post_id": "HM-Y2023-P025", "lines": [3430, 3456], "kind": "화법", "subj": ["S11"], "gist": "나가며: 을해일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P026-01", "post_id": "HM-Y2023-P026", "lines": [3457, 3462], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P026-02", "post_id": "HM-Y2023-P026", "lines": [3463, 3470], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P026-03", "post_id": "HM-Y2023-P026", "lines": [3471, 3480], "kind": "이론", "subj": ["S02", "S03"], "gist": "병자일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P026-04", "post_id": "HM-Y2023-P026", "lines": [3481, 3512], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 병자일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P026-05", "post_id": "HM-Y2023-P026", "lines": [3513, 3519], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 병자일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P026-06", "post_id": "HM-Y2023-P026", "lines": [3520, 3532], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 병자일주 계묘년 운세", "quote": "가. 신강한 병자일주 <병화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P026-07", "post_id": "HM-Y2023-P026", "lines": [3533, 3542], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 병자일주 계묘년 운세", "quote": "나. 신약한 병자일주 <병화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P026-08", "post_id": "HM-Y2023-P026", "lines": [3543, 3570], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "병자일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P026-09", "post_id": "HM-Y2023-P026", "lines": [3571, 3607], "kind": "화법", "subj": ["S11"], "gist": "나가며: 병자일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P027-01", "post_id": "HM-Y2023-P027", "lines": [3608, 3613], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P027-02", "post_id": "HM-Y2023-P027", "lines": [3614, 3621], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P027-03", "post_id": "HM-Y2023-P027", "lines": [3622, 3633], "kind": "이론", "subj": ["S02", "S03"], "gist": "정축일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P027-04", "post_id": "HM-Y2023-P027", "lines": [3634, 3660], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 정축일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P027-05", "post_id": "HM-Y2023-P027", "lines": [3661, 3667], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 정축일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P027-06", "post_id": "HM-Y2023-P027", "lines": [3668, 3680], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 정축일주 계묘년 운세", "quote": "가. 신강한 정축일주 <정화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P027-07", "post_id": "HM-Y2023-P027", "lines": [3681, 3689], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 정축일주 계묘년 운세", "quote": "나. 신약한 정축일주 <정화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P027-08", "post_id": "HM-Y2023-P027", "lines": [3690, 3716], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "정축일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P027-09", "post_id": "HM-Y2023-P027", "lines": [3717, 3750], "kind": "화법", "subj": ["S11"], "gist": "나가며: 정축일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P028-01", "post_id": "HM-Y2023-P028", "lines": [3751, 3757], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P028-02", "post_id": "HM-Y2023-P028", "lines": [3758, 3764], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P028-03", "post_id": "HM-Y2023-P028", "lines": [3765, 3774], "kind": "이론", "subj": ["S02", "S03"], "gist": "무인일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P028-04", "post_id": "HM-Y2023-P028", "lines": [3775, 3806], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 무인일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P028-05", "post_id": "HM-Y2023-P028", "lines": [3807, 3818], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 무인일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P028-06", "post_id": "HM-Y2023-P028", "lines": [3819, 3831], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 무인일주 계묘년 운세", "quote": "가. 신강한 무인일주 <무토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P028-07", "post_id": "HM-Y2023-P028", "lines": [3832, 3840], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 무인일주 계묘년 운세", "quote": "나. 신약한 무인일주 <무토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P028-08", "post_id": "HM-Y2023-P028", "lines": [3841, 3867], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "무인일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P028-09", "post_id": "HM-Y2023-P028", "lines": [3868, 3903], "kind": "화법", "subj": ["S11"], "gist": "나가며: 무인일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P029-01", "post_id": "HM-Y2023-P029", "lines": [3904, 3910], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P029-02", "post_id": "HM-Y2023-P029", "lines": [3911, 3917], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P029-03", "post_id": "HM-Y2023-P029", "lines": [3918, 3928], "kind": "이론", "subj": ["S02", "S03"], "gist": "기묘일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P029-04", "post_id": "HM-Y2023-P029", "lines": [3929, 3954], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 기묘일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P029-05", "post_id": "HM-Y2023-P029", "lines": [3955, 3961], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 기묘일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P029-06", "post_id": "HM-Y2023-P029", "lines": [3962, 3976], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 기묘일주 계묘년 운세", "quote": "가. 신강한 기묘일주 <기토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P029-07", "post_id": "HM-Y2023-P029", "lines": [3977, 3986], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 기묘일주 계묘년 운세", "quote": "나. 신약한 기묘일주 <기토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P029-08", "post_id": "HM-Y2023-P029", "lines": [3987, 4013], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "기묘일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P029-09", "post_id": "HM-Y2023-P029", "lines": [4014, 4045], "kind": "화법", "subj": ["S11"], "gist": "나가며: 기묘일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P030-01", "post_id": "HM-Y2023-P030", "lines": [4046, 4052], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P030-02", "post_id": "HM-Y2023-P030", "lines": [4053, 4059], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P030-03", "post_id": "HM-Y2023-P030", "lines": [4060, 4069], "kind": "이론", "subj": ["S02", "S03"], "gist": "경진일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P030-04", "post_id": "HM-Y2023-P030", "lines": [4070, 4097], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 경진일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P030-05", "post_id": "HM-Y2023-P030", "lines": [4098, 4104], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 경진일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P030-06", "post_id": "HM-Y2023-P030", "lines": [4105, 4117], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 경진일주 계묘년 운세", "quote": "가. 신강한 경진일주 <경금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P030-07", "post_id": "HM-Y2023-P030", "lines": [4118, 4129], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 경진일주 계묘년 운세", "quote": "나. 신약한 경진일주 <경금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P030-08", "post_id": "HM-Y2023-P030", "lines": [4130, 4160], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "경진일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P030-09", "post_id": "HM-Y2023-P030", "lines": [4161, 4193], "kind": "화법", "subj": ["S11"], "gist": "나가며: 경진일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P031-01", "post_id": "HM-Y2023-P031", "lines": [4194, 4201], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P031-02", "post_id": "HM-Y2023-P031", "lines": [4202, 4208], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P031-03", "post_id": "HM-Y2023-P031", "lines": [4209, 4218], "kind": "이론", "subj": ["S02", "S03"], "gist": "신사일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P031-04", "post_id": "HM-Y2023-P031", "lines": [4219, 4245], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 신사일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P031-05", "post_id": "HM-Y2023-P031", "lines": [4246, 4252], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 신사일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P031-06", "post_id": "HM-Y2023-P031", "lines": [4253, 4264], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 신사일주 계묘년 운세", "quote": "가. 신강한 신사일주 <신금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P031-07", "post_id": "HM-Y2023-P031", "lines": [4265, 4272], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 신사일주 계묘년 운세", "quote": "나. 신약한 신사일주 <신금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P031-08", "post_id": "HM-Y2023-P031", "lines": [4273, 4306], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신사일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P031-09", "post_id": "HM-Y2023-P031", "lines": [4307, 4330], "kind": "화법", "subj": ["S11"], "gist": "나가며: 신사일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P032-01", "post_id": "HM-Y2023-P032", "lines": [4331, 4337], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P032-02", "post_id": "HM-Y2023-P032", "lines": [4338, 4344], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P032-03", "post_id": "HM-Y2023-P032", "lines": [4345, 4353], "kind": "이론", "subj": ["S02", "S03"], "gist": "임오일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P032-04", "post_id": "HM-Y2023-P032", "lines": [4354, 4389], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 임오일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P032-05", "post_id": "HM-Y2023-P032", "lines": [4390, 4413], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 임오일주 운세(도화살)", "quote": "임오일주는 계묘년에 \"도화살\"이라는 소중한 신살이 임합니다.", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P032-06", "post_id": "HM-Y2023-P032", "lines": [4414, 4423], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 임오일주 계묘년 운세", "quote": "가. 신강한 임오일주 <사주원국에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P032-07", "post_id": "HM-Y2023-P032", "lines": [4424, 4431], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 임오일주 계묘년 운세", "quote": "나. 신약한 임오일주 <사주원국에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P032-08", "post_id": "HM-Y2023-P032", "lines": [4432, 4466], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "임오일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P032-09", "post_id": "HM-Y2023-P032", "lines": [4467, 4491], "kind": "화법", "subj": ["S11"], "gist": "나가며: 임오일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P033-01", "post_id": "HM-Y2023-P033", "lines": [4492, 4499], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P033-02", "post_id": "HM-Y2023-P033", "lines": [4500, 4505], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P033-03", "post_id": "HM-Y2023-P033", "lines": [4506, 4519], "kind": "이론", "subj": ["S02", "S03"], "gist": "계미일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P033-04", "post_id": "HM-Y2023-P033", "lines": [4520, 4546], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 계미일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P033-05", "post_id": "HM-Y2023-P033", "lines": [4547, 4569], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 계미일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P033-06", "post_id": "HM-Y2023-P033", "lines": [4570, 4581], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 계미일주 계묘년 운세", "quote": "가. 신강한 계미일주 <계수의 주변에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P033-07", "post_id": "HM-Y2023-P033", "lines": [4582, 4589], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 계미일주 계묘년 운세", "quote": "나. 신약한 계미일주 <계수의 주변에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P033-08", "post_id": "HM-Y2023-P033", "lines": [4590, 4624], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "계미일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P033-09", "post_id": "HM-Y2023-P033", "lines": [4625, 4653], "kind": "화법", "subj": ["S11"], "gist": "나가며: 계미일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P034-01", "post_id": "HM-Y2023-P034", "lines": [4654, 4659], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P034-02", "post_id": "HM-Y2023-P034", "lines": [4660, 4667], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P034-03", "post_id": "HM-Y2023-P034", "lines": [4668, 4678], "kind": "이론", "subj": ["S02", "S03"], "gist": "갑신일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P034-04", "post_id": "HM-Y2023-P034", "lines": [4679, 4706], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 갑신일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P034-05", "post_id": "HM-Y2023-P034", "lines": [4707, 4726], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 갑신일주 운세(양인살)", "quote": "갑신일주는 계묘년에 \"양인살\"의 기운이 임합니다.", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P034-06", "post_id": "HM-Y2023-P034", "lines": [4727, 4737], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 갑신일주 계묘년 운세", "quote": "가. 신강한 갑신일주 <갑목의 주변에 오행 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P034-07", "post_id": "HM-Y2023-P034", "lines": [4738, 4746], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 갑신일주 계묘년 운세", "quote": "나. 신약한 갑신일주 <갑목의 주변에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P034-08", "post_id": "HM-Y2023-P034", "lines": [4747, 4771], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "갑신일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P034-09", "post_id": "HM-Y2023-P034", "lines": [4772, 4800], "kind": "화법", "subj": ["S11"], "gist": "나가며: 갑신일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P035-01", "post_id": "HM-Y2023-P035", "lines": [4801, 4806], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P035-02", "post_id": "HM-Y2023-P035", "lines": [4807, 4814], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P035-03", "post_id": "HM-Y2023-P035", "lines": [4815, 4824], "kind": "이론", "subj": ["S02", "S03"], "gist": "을유일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P035-04", "post_id": "HM-Y2023-P035", "lines": [4825, 4850], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 을유일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P035-05", "post_id": "HM-Y2023-P035", "lines": [4851, 4857], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 을유일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P035-06", "post_id": "HM-Y2023-P035", "lines": [4858, 4870], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 을유일주 계묘년 운세", "quote": "가. 신강한 을유일주 <을목의 주변에 오행 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P035-07", "post_id": "HM-Y2023-P035", "lines": [4871, 4882], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 을유일주 계묘년 운세", "quote": "나. 신약한 을유일주 <을목의 주변에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P035-08", "post_id": "HM-Y2023-P035", "lines": [4883, 4914], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "을유일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P035-09", "post_id": "HM-Y2023-P035", "lines": [4915, 4941], "kind": "화법", "subj": ["S11"], "gist": "나가며: 을유일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P036-01", "post_id": "HM-Y2023-P036", "lines": [4942, 4948], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P036-02", "post_id": "HM-Y2023-P036", "lines": [4949, 4955], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P036-03", "post_id": "HM-Y2023-P036", "lines": [4956, 4967], "kind": "이론", "subj": ["S02", "S03"], "gist": "병술일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P036-04", "post_id": "HM-Y2023-P036", "lines": [4968, 4990], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 병술일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P036-05", "post_id": "HM-Y2023-P036", "lines": [4991, 5002], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 병술일주 운세(도화살)", "quote": "병술일주는 계묘년에 \"도화살\"이라는 소중한 신살이 임합니다.", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P036-06", "post_id": "HM-Y2023-P036", "lines": [5003, 5018], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 병술일주 계묘년 운세", "quote": "가. 신강한 병술일주 <병화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P036-07", "post_id": "HM-Y2023-P036", "lines": [5019, 5027], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 병술일주 계묘년 운세", "quote": "나. 신약한 병술일주 <병화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P036-08", "post_id": "HM-Y2023-P036", "lines": [5028, 5055], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "병술일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P036-09", "post_id": "HM-Y2023-P036", "lines": [5056, 5085], "kind": "화법", "subj": ["S11"], "gist": "나가며: 병술일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P037-01", "post_id": "HM-Y2023-P037", "lines": [5086, 5091], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P037-02", "post_id": "HM-Y2023-P037", "lines": [5092, 5099], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P037-03", "post_id": "HM-Y2023-P037", "lines": [5100, 5109], "kind": "이론", "subj": ["S02", "S03"], "gist": "정해일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P037-04", "post_id": "HM-Y2023-P037", "lines": [5110, 5138], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 정해일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P037-05", "post_id": "HM-Y2023-P037", "lines": [5139, 5145], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 정해일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P037-06", "post_id": "HM-Y2023-P037", "lines": [5146, 5156], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 정해일주 계묘년 운세", "quote": "가. 신강한 정해일주 <정화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P037-07", "post_id": "HM-Y2023-P037", "lines": [5157, 5163], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 정해일주 계묘년 운세", "quote": "나. 신약한 정해일주 <정화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P037-08", "post_id": "HM-Y2023-P037", "lines": [5164, 5190], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "정해일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P037-09", "post_id": "HM-Y2023-P037", "lines": [5191, 5219], "kind": "화법", "subj": ["S11"], "gist": "나가며: 정해일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P038-01", "post_id": "HM-Y2023-P038", "lines": [5220, 5225], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P038-02", "post_id": "HM-Y2023-P038", "lines": [5226, 5233], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P038-03", "post_id": "HM-Y2023-P038", "lines": [5234, 5246], "kind": "이론", "subj": ["S02", "S03"], "gist": "무자일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P038-04", "post_id": "HM-Y2023-P038", "lines": [5247, 5271], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 무자일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P038-05", "post_id": "HM-Y2023-P038", "lines": [5272, 5278], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 무자일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P038-06", "post_id": "HM-Y2023-P038", "lines": [5279, 5288], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 무자일주 계묘년 운세", "quote": "가. 신강한 무자일주 <무토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P038-07", "post_id": "HM-Y2023-P038", "lines": [5289, 5295], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 무자일주 계묘년 운세", "quote": "나. 신약한 무자일주 <무토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P038-08", "post_id": "HM-Y2023-P038", "lines": [5296, 5322], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "무자일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P038-09", "post_id": "HM-Y2023-P038", "lines": [5323, 5350], "kind": "화법", "subj": ["S11"], "gist": "나가며: 무자일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P039-01", "post_id": "HM-Y2023-P039", "lines": [5351, 5356], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P039-02", "post_id": "HM-Y2023-P039", "lines": [5357, 5364], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P039-03", "post_id": "HM-Y2023-P039", "lines": [5365, 5376], "kind": "이론", "subj": ["S02", "S03"], "gist": "기축일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P039-04", "post_id": "HM-Y2023-P039", "lines": [5377, 5400], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 기축일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P039-05", "post_id": "HM-Y2023-P039", "lines": [5401, 5407], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 기축일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P039-06", "post_id": "HM-Y2023-P039", "lines": [5408, 5418], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 기축일주 계묘년 운세", "quote": "가. 신강한 기축일주 <기토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P039-07", "post_id": "HM-Y2023-P039", "lines": [5419, 5426], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 기축일주 계묘년 운세", "quote": "나. 신약한 기축일주 <기토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P039-08", "post_id": "HM-Y2023-P039", "lines": [5427, 5453], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "기축일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P039-09", "post_id": "HM-Y2023-P039", "lines": [5454, 5486], "kind": "화법", "subj": ["S11"], "gist": "나가며: 기축일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P040-01", "post_id": "HM-Y2023-P040", "lines": [5487, 5492], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P040-02", "post_id": "HM-Y2023-P040", "lines": [5493, 5500], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P040-03", "post_id": "HM-Y2023-P040", "lines": [5501, 5517], "kind": "이론", "subj": ["S02", "S03"], "gist": "경인일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P040-04", "post_id": "HM-Y2023-P040", "lines": [5518, 5545], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 경인일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P040-05", "post_id": "HM-Y2023-P040", "lines": [5546, 5557], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 경인일주 운세(도화살)", "quote": "경인일주는 계묘년에 \"도화살\"이라는 소중한 신살이 임합니다.", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P040-06", "post_id": "HM-Y2023-P040", "lines": [5558, 5569], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 경인일주 계묘년 운세", "quote": "가. 신강한 경인일주 <경금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P040-07", "post_id": "HM-Y2023-P040", "lines": [5570, 5575], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 경인일주 계묘년 운세", "quote": "나. 신약한 경인일주 <경금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P040-08", "post_id": "HM-Y2023-P040", "lines": [5576, 5606], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "경인일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P040-09", "post_id": "HM-Y2023-P040", "lines": [5607, 5638], "kind": "화법", "subj": ["S11"], "gist": "나가며: 경인일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P041-01", "post_id": "HM-Y2023-P041", "lines": [5639, 5644], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P041-02", "post_id": "HM-Y2023-P041", "lines": [5645, 5652], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P041-03", "post_id": "HM-Y2023-P041", "lines": [5653, 5665], "kind": "이론", "subj": ["S02", "S03"], "gist": "신묘일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P041-04", "post_id": "HM-Y2023-P041", "lines": [5666, 5691], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 신묘일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P041-05", "post_id": "HM-Y2023-P041", "lines": [5692, 5698], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 신묘일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P041-06", "post_id": "HM-Y2023-P041", "lines": [5699, 5712], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 신묘일주 계묘년 운세", "quote": "가. 신강한 신묘일주 <신금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P041-07", "post_id": "HM-Y2023-P041", "lines": [5713, 5720], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 신묘일주 계묘년 운세", "quote": "나. 신약한 신묘일주 <신금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P041-08", "post_id": "HM-Y2023-P041", "lines": [5721, 5754], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신묘일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P041-09", "post_id": "HM-Y2023-P041", "lines": [5755, 5779], "kind": "화법", "subj": ["S11"], "gist": "나가며: 신묘일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P042-01", "post_id": "HM-Y2023-P042", "lines": [5780, 5785], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P042-02", "post_id": "HM-Y2023-P042", "lines": [5786, 5793], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P042-03", "post_id": "HM-Y2023-P042", "lines": [5794, 5805], "kind": "이론", "subj": ["S02", "S03"], "gist": "임진일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P042-04", "post_id": "HM-Y2023-P042", "lines": [5806, 5833], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 임진일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P042-05", "post_id": "HM-Y2023-P042", "lines": [5834, 5850], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 임진일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P042-06", "post_id": "HM-Y2023-P042", "lines": [5851, 5861], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 임진일주 계묘년 운세", "quote": "가. 신강한 임진일주 <임수의 주변에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P042-07", "post_id": "HM-Y2023-P042", "lines": [5862, 5870], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 임진일주 계묘년 운세", "quote": "나. 신약한 임진일주 <임수의 주변에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P042-08", "post_id": "HM-Y2023-P042", "lines": [5871, 5905], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "임진일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P042-09", "post_id": "HM-Y2023-P042", "lines": [5906, 5938], "kind": "화법", "subj": ["S11"], "gist": "나가며: 임진일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P043-01", "post_id": "HM-Y2023-P043", "lines": [5939, 5942], "kind": "공지", "subj": ["S11"], "gist": "제목·강의 모집 마감 고지", "flags": []}
+{"para_id": "HM-Y2023-P043-02", "post_id": "HM-Y2023-P043", "lines": [5943, 5980], "kind": "화법", "subj": ["S11"], "gist": "북토크 어르신 일화—강의를 결심한 이유", "quote": "사주는 공부할수록 더욱 재미있고,", "flags": []}
+{"para_id": "HM-Y2023-P043-03", "post_id": "HM-Y2023-P043", "lines": [5981, 5995], "kind": "공지", "subj": ["S11"], "gist": "강의 취지 2항: 상담사 양성·공동체 수업", "quote": "1. 단순한 인문학적 교양을 위한 강의가 아닌, 사주명리 상담사 양성을 최종 목표로 합니다.", "flags": ["별점"]}
+{"para_id": "HM-Y2023-P043-04", "post_id": "HM-Y2023-P043", "lines": [5996, 6000], "kind": "공지", "gist": "모집 마감·ZOOM 일정 안내", "flags": []}
+{"para_id": "HM-Y2023-P044-01", "post_id": "HM-Y2023-P044", "lines": [6001, 6006], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P044-02", "post_id": "HM-Y2023-P044", "lines": [6007, 6014], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P044-03", "post_id": "HM-Y2023-P044", "lines": [6015, 6024], "kind": "이론", "subj": ["S02", "S03"], "gist": "계사일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P044-04", "post_id": "HM-Y2023-P044", "lines": [6025, 6050], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 계사일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P044-05", "post_id": "HM-Y2023-P044", "lines": [6051, 6072], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 계사일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P044-06", "post_id": "HM-Y2023-P044", "lines": [6073, 6084], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 계사일주 계묘년 운세", "quote": "가. 신강한 계사일주 <계수의 주변에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P044-07", "post_id": "HM-Y2023-P044", "lines": [6085, 6093], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 계사일주 계묘년 운세", "quote": "나. 신약한 계사일주 <계수의 주변에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P044-08", "post_id": "HM-Y2023-P044", "lines": [6094, 6129], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "계사일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P044-09", "post_id": "HM-Y2023-P044", "lines": [6130, 6159], "kind": "화법", "subj": ["S11"], "gist": "나가며: 계사일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P045-01", "post_id": "HM-Y2023-P045", "lines": [6160, 6165], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P045-02", "post_id": "HM-Y2023-P045", "lines": [6166, 6173], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P045-03", "post_id": "HM-Y2023-P045", "lines": [6174, 6185], "kind": "이론", "subj": ["S02", "S03"], "gist": "갑오일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P045-04", "post_id": "HM-Y2023-P045", "lines": [6186, 6208], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 갑오일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P045-05", "post_id": "HM-Y2023-P045", "lines": [6209, 6235], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 갑오일주 운세(도화·양인)", "quote": "갑오일주는 계묘년에 \"도화살\"이라는 소중한 신살이 임합니다.", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P045-06", "post_id": "HM-Y2023-P045", "lines": [6236, 6250], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 갑오일주 계묘년 운세", "quote": "가. 신강한 갑오일주 <사주원국에 오행 수와 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P045-07", "post_id": "HM-Y2023-P045", "lines": [6251, 6259], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 갑오일주 계묘년 운세", "quote": "나. 신약한 갑오일주 <사주원국에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P045-08", "post_id": "HM-Y2023-P045", "lines": [6260, 6284], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "갑오일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P045-09", "post_id": "HM-Y2023-P045", "lines": [6285, 6315], "kind": "화법", "subj": ["S11"], "gist": "나가며: 갑오일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P046-01", "post_id": "HM-Y2023-P046", "lines": [6316, 6321], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P046-02", "post_id": "HM-Y2023-P046", "lines": [6322, 6329], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P046-03", "post_id": "HM-Y2023-P046", "lines": [6330, 6340], "kind": "이론", "subj": ["S02", "S03"], "gist": "을미일주 기본 성향", "quote": "을미일주의 키워드는 끈기와 예리한 촉입니다.", "flags": []}
+{"para_id": "HM-Y2023-P046-04", "post_id": "HM-Y2023-P046", "lines": [6341, 6366], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 을미일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P046-05", "post_id": "HM-Y2023-P046", "lines": [6367, 6373], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 을미일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P046-06", "post_id": "HM-Y2023-P046", "lines": [6374, 6387], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 을미일주 계묘년 운세", "quote": "가. 신강한 을미일주 <을목의 주변에 오행 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P046-07", "post_id": "HM-Y2023-P046", "lines": [6388, 6395], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 을미일주 계묘년 운세", "quote": "나. 신약한 을미일주 <사주원국에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P046-08", "post_id": "HM-Y2023-P046", "lines": [6396, 6426], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "을미일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P046-09", "post_id": "HM-Y2023-P046", "lines": [6427, 6455], "kind": "화법", "subj": ["S11"], "gist": "나가며: 을미일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P047-01", "post_id": "HM-Y2023-P047", "lines": [6456, 6461], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P047-02", "post_id": "HM-Y2023-P047", "lines": [6462, 6469], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P047-03", "post_id": "HM-Y2023-P047", "lines": [6470, 6481], "kind": "이론", "subj": ["S02", "S03"], "gist": "병신일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P047-04", "post_id": "HM-Y2023-P047", "lines": [6482, 6507], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 병신일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P047-05", "post_id": "HM-Y2023-P047", "lines": [6508, 6514], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 병신일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P047-06", "post_id": "HM-Y2023-P047", "lines": [6515, 6526], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 병신일주 계묘년 운세", "quote": "가. 신강한 병신일주 <병화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P047-07", "post_id": "HM-Y2023-P047", "lines": [6527, 6535], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 병신일주 계묘년 운세", "quote": "나. 신약한 병신일주 <병화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P047-08", "post_id": "HM-Y2023-P047", "lines": [6536, 6563], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "병신일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P047-09", "post_id": "HM-Y2023-P047", "lines": [6564, 6593], "kind": "화법", "subj": ["S11"], "gist": "나가며: 병신일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P048-01", "post_id": "HM-Y2023-P048", "lines": [6594, 6599], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P048-02", "post_id": "HM-Y2023-P048", "lines": [6600, 6607], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P048-03", "post_id": "HM-Y2023-P048", "lines": [6608, 6619], "kind": "이론", "subj": ["S02", "S03"], "gist": "정유일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P048-04", "post_id": "HM-Y2023-P048", "lines": [6620, 6650], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 정유일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P048-05", "post_id": "HM-Y2023-P048", "lines": [6651, 6657], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 정유일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P048-06", "post_id": "HM-Y2023-P048", "lines": [6658, 6669], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 정유일주 계묘년 운세", "quote": "가. 신강한 정유일주 <정화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P048-07", "post_id": "HM-Y2023-P048", "lines": [6670, 6679], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 정유일주 계묘년 운세", "quote": "나. 신약한 정유일주 <정화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P048-08", "post_id": "HM-Y2023-P048", "lines": [6680, 6706], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "정유일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P048-09", "post_id": "HM-Y2023-P048", "lines": [6707, 6741], "kind": "화법", "subj": ["S11"], "gist": "나가며: 정유일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P049-01", "post_id": "HM-Y2023-P049", "lines": [6742, 6748], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P049-02", "post_id": "HM-Y2023-P049", "lines": [6749, 6755], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P049-03", "post_id": "HM-Y2023-P049", "lines": [6756, 6768], "kind": "이론", "subj": ["S02", "S03"], "gist": "무술일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P049-04", "post_id": "HM-Y2023-P049", "lines": [6769, 6795], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 무술일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P049-05", "post_id": "HM-Y2023-P049", "lines": [6796, 6807], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 무술일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P049-06", "post_id": "HM-Y2023-P049", "lines": [6808, 6818], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 무술일주 계묘년 운세", "quote": "가. 신강한 무술일주 <무토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P049-07", "post_id": "HM-Y2023-P049", "lines": [6819, 6829], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 무술일주 계묘년 운세", "quote": "나. 신약한 무술일주 <무토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P049-08", "post_id": "HM-Y2023-P049", "lines": [6830, 6856], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "무술일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P049-09", "post_id": "HM-Y2023-P049", "lines": [6857, 6885], "kind": "화법", "subj": ["S11"], "gist": "나가며: 무술일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P050-01", "post_id": "HM-Y2023-P050", "lines": [6886, 6892], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P050-02", "post_id": "HM-Y2023-P050", "lines": [6893, 6899], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P050-03", "post_id": "HM-Y2023-P050", "lines": [6900, 6910], "kind": "이론", "subj": ["S02", "S03"], "gist": "기해일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P050-04", "post_id": "HM-Y2023-P050", "lines": [6911, 6934], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 기해일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P050-05", "post_id": "HM-Y2023-P050", "lines": [6935, 6941], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 기해일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P050-06", "post_id": "HM-Y2023-P050", "lines": [6942, 6955], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 기해일주 계묘년 운세", "quote": "가. 신강한 기해일주 <기토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P050-07", "post_id": "HM-Y2023-P050", "lines": [6956, 6966], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 기해일주 계묘년 운세", "quote": "나. 신약한 기해일주 <기토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P050-08", "post_id": "HM-Y2023-P050", "lines": [6967, 6993], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "기해일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P050-09", "post_id": "HM-Y2023-P050", "lines": [6994, 7026], "kind": "화법", "subj": ["S11"], "gist": "나가며: 기해일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P051-01", "post_id": "HM-Y2023-P051", "lines": [7027, 7032], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P051-02", "post_id": "HM-Y2023-P051", "lines": [7033, 7040], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P051-03", "post_id": "HM-Y2023-P051", "lines": [7041, 7052], "kind": "이론", "subj": ["S02", "S03"], "gist": "경자일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P051-04", "post_id": "HM-Y2023-P051", "lines": [7053, 7078], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 경자일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P051-05", "post_id": "HM-Y2023-P051", "lines": [7079, 7085], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 경자일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P051-06", "post_id": "HM-Y2023-P051", "lines": [7086, 7100], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 경자일주 계묘년 운세", "quote": "가. 신강한 경자일주 <경금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P051-07", "post_id": "HM-Y2023-P051", "lines": [7101, 7110], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 경자일주 계묘년 운세", "quote": "나. 신약한 경자일주 <경금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P051-08", "post_id": "HM-Y2023-P051", "lines": [7111, 7141], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "경자일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P051-09", "post_id": "HM-Y2023-P051", "lines": [7142, 7173], "kind": "화법", "subj": ["S11"], "gist": "나가며: 경자일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P052-01", "post_id": "HM-Y2023-P052", "lines": [7174, 7179], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P052-02", "post_id": "HM-Y2023-P052", "lines": [7180, 7187], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P052-03", "post_id": "HM-Y2023-P052", "lines": [7188, 7197], "kind": "이론", "subj": ["S02", "S03"], "gist": "신축일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P052-04", "post_id": "HM-Y2023-P052", "lines": [7198, 7223], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 신축일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P052-05", "post_id": "HM-Y2023-P052", "lines": [7224, 7230], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 신축일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P052-06", "post_id": "HM-Y2023-P052", "lines": [7231, 7241], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 신축일주 계묘년 운세", "quote": "가. 신강한 신축일주 <신금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P052-07", "post_id": "HM-Y2023-P052", "lines": [7242, 7252], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 신축일주 계묘년 운세", "quote": "나. 신약한 신축일주 <신금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P052-08", "post_id": "HM-Y2023-P052", "lines": [7253, 7286], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신축일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P052-09", "post_id": "HM-Y2023-P052", "lines": [7287, 7325], "kind": "화법", "subj": ["S11"], "gist": "나가며: 신축일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P053-01", "post_id": "HM-Y2023-P053", "lines": [7326, 7331], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P053-02", "post_id": "HM-Y2023-P053", "lines": [7332, 7339], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P053-03", "post_id": "HM-Y2023-P053", "lines": [7340, 7354], "kind": "이론", "subj": ["S02", "S03"], "gist": "임인일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P053-04", "post_id": "HM-Y2023-P053", "lines": [7355, 7379], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 임인일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P053-05", "post_id": "HM-Y2023-P053", "lines": [7380, 7403], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 임인일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P053-06", "post_id": "HM-Y2023-P053", "lines": [7404, 7414], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 임인일주 계묘년 운세", "quote": "가. 신강한 임인일주 <임수의 주변에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P053-07", "post_id": "HM-Y2023-P053", "lines": [7415, 7422], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 임인일주 계묘년 운세", "quote": "나. 신약한 임인일주 <임수의 주변에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P053-08", "post_id": "HM-Y2023-P053", "lines": [7423, 7457], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "임인일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P053-09", "post_id": "HM-Y2023-P053", "lines": [7458, 7488], "kind": "화법", "subj": ["S11"], "gist": "나가며: 임인일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P054-01", "post_id": "HM-Y2023-P054", "lines": [7489, 7494], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P054-02", "post_id": "HM-Y2023-P054", "lines": [7495, 7503], "kind": "잡동", "gist": "글의 차례 7항(복음 절 추가)", "flags": []}
+{"para_id": "HM-Y2023-P054-03", "post_id": "HM-Y2023-P054", "lines": [7504, 7518], "kind": "이론", "subj": ["S02", "S03"], "gist": "계묘일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P054-04", "post_id": "HM-Y2023-P054", "lines": [7519, 7532], "kind": "이론", "subj": ["S03", "S04", "S10"], "gist": "복음(伏吟)의 정의와 성립 3유형", "quote": "1. 사주 원국에 똑같은 천간과 지지가 겹치는 경우, (갑인일주, 갑인월주)", "flags": ["결정론", "별점"]}
+{"para_id": "HM-Y2023-P054-05", "post_id": "HM-Y2023-P054", "lines": [7533, 7553], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 계묘일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P054-06", "post_id": "HM-Y2023-P054", "lines": [7554, 7575], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 계묘일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P054-07", "post_id": "HM-Y2023-P054", "lines": [7576, 7586], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 계묘일주 계묘년 운세", "quote": "가. 신강한 계묘일주 <계수의 주변에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P054-08", "post_id": "HM-Y2023-P054", "lines": [7587, 7594], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 계묘일주 계묘년 운세", "quote": "나. 신약한 계묘일주 <계수의 주변에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P054-09", "post_id": "HM-Y2023-P054", "lines": [7595, 7630], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "계묘일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P054-10", "post_id": "HM-Y2023-P054", "lines": [7631, 7659], "kind": "화법", "subj": ["S11"], "gist": "나가며: 계묘일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P055-01", "post_id": "HM-Y2023-P055", "lines": [7660, 7665], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P055-02", "post_id": "HM-Y2023-P055", "lines": [7666, 7673], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P055-03", "post_id": "HM-Y2023-P055", "lines": [7674, 7686], "kind": "이론", "subj": ["S02", "S03"], "gist": "갑진일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P055-04", "post_id": "HM-Y2023-P055", "lines": [7687, 7708], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 갑진일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P055-05", "post_id": "HM-Y2023-P055", "lines": [7709, 7728], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 갑진일주 운세(양인살)", "quote": "갑진일주는 계묘년에 \"양인살\"의 기운이 임합니다.", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P055-06", "post_id": "HM-Y2023-P055", "lines": [7729, 7742], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 갑진일주 계묘년 운세", "quote": "가. 신강한 갑진일주 <사주원국에 오행 수와 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P055-07", "post_id": "HM-Y2023-P055", "lines": [7743, 7751], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 갑진일주 계묘년 운세", "quote": "나. 신약한 갑진일주 <사주원국에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P055-08", "post_id": "HM-Y2023-P055", "lines": [7752, 7772], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "갑진일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P055-09", "post_id": "HM-Y2023-P055", "lines": [7773, 7808], "kind": "화법", "subj": ["S11"], "gist": "나가며: 갑진일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P056-01", "post_id": "HM-Y2023-P056", "lines": [7809, 7814], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P056-02", "post_id": "HM-Y2023-P056", "lines": [7815, 7822], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P056-03", "post_id": "HM-Y2023-P056", "lines": [7823, 7838], "kind": "이론", "subj": ["S02", "S03"], "gist": "을사일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P056-04", "post_id": "HM-Y2023-P056", "lines": [7839, 7863], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 을사일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P056-05", "post_id": "HM-Y2023-P056", "lines": [7864, 7870], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 을사일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P056-06", "post_id": "HM-Y2023-P056", "lines": [7871, 7885], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 을사일주 계묘년 운세", "quote": "가. 신강한 을사일주 <을목의 주변에 오행 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P056-07", "post_id": "HM-Y2023-P056", "lines": [7886, 7895], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 을사일주 계묘년 운세", "quote": "나. 신약한 을사일주 <사주원국에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P056-08", "post_id": "HM-Y2023-P056", "lines": [7896, 7924], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "을사일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P056-09", "post_id": "HM-Y2023-P056", "lines": [7925, 7956], "kind": "화법", "subj": ["S11"], "gist": "나가며: 을사일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P057-01", "post_id": "HM-Y2023-P057", "lines": [7957, 7962], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P057-02", "post_id": "HM-Y2023-P057", "lines": [7963, 7970], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P057-03", "post_id": "HM-Y2023-P057", "lines": [7971, 7981], "kind": "이론", "subj": ["S02", "S03"], "gist": "병오일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P057-04", "post_id": "HM-Y2023-P057", "lines": [7982, 8010], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 병오일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P057-05", "post_id": "HM-Y2023-P057", "lines": [8011, 8022], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 병오일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P057-06", "post_id": "HM-Y2023-P057", "lines": [8023, 8036], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 병오일주 계묘년 운세", "quote": "가. 신강한 병오일주 <병화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P057-07", "post_id": "HM-Y2023-P057", "lines": [8037, 8047], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 병오일주 계묘년 운세", "quote": "나. 신약한 병오일주 <병화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P057-08", "post_id": "HM-Y2023-P057", "lines": [8048, 8075], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "병오일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P057-09", "post_id": "HM-Y2023-P057", "lines": [8076, 8108], "kind": "화법", "subj": ["S11"], "gist": "나가며: 병오일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P058-01", "post_id": "HM-Y2023-P058", "lines": [8109, 8114], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P058-02", "post_id": "HM-Y2023-P058", "lines": [8115, 8122], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P058-03", "post_id": "HM-Y2023-P058", "lines": [8123, 8135], "kind": "이론", "subj": ["S02", "S03"], "gist": "정미일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P058-04", "post_id": "HM-Y2023-P058", "lines": [8136, 8161], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 정미일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P058-05", "post_id": "HM-Y2023-P058", "lines": [8162, 8168], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 정미일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P058-06", "post_id": "HM-Y2023-P058", "lines": [8169, 8180], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 정미일주 계묘년 운세", "quote": "가. 신강한 정미일주 <정화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P058-07", "post_id": "HM-Y2023-P058", "lines": [8181, 8190], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 정미일주 계묘년 운세", "quote": "나. 신약한 정미일주 <정화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P058-08", "post_id": "HM-Y2023-P058", "lines": [8191, 8217], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "정미일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P058-09", "post_id": "HM-Y2023-P058", "lines": [8218, 8254], "kind": "화법", "subj": ["S11"], "gist": "나가며: 정미일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P059-01", "post_id": "HM-Y2023-P059", "lines": [8255, 8261], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P059-02", "post_id": "HM-Y2023-P059", "lines": [8262, 8268], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P059-03", "post_id": "HM-Y2023-P059", "lines": [8269, 8280], "kind": "이론", "subj": ["S02", "S03"], "gist": "무신일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P059-04", "post_id": "HM-Y2023-P059", "lines": [8281, 8305], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 무신일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P059-05", "post_id": "HM-Y2023-P059", "lines": [8306, 8312], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 무신일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P059-06", "post_id": "HM-Y2023-P059", "lines": [8313, 8325], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 무신일주 계묘년 운세", "quote": "가. 신강한 무신일주 <무토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P059-07", "post_id": "HM-Y2023-P059", "lines": [8326, 8334], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 무신일주 계묘년 운세", "quote": "나. 신약한 무신일주 <무토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P059-08", "post_id": "HM-Y2023-P059", "lines": [8335, 8361], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "무신일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P059-09", "post_id": "HM-Y2023-P059", "lines": [8362, 8394], "kind": "화법", "subj": ["S11"], "gist": "나가며: 무신일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P060-01", "post_id": "HM-Y2023-P060", "lines": [8395, 8401], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P060-02", "post_id": "HM-Y2023-P060", "lines": [8402, 8408], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P060-03", "post_id": "HM-Y2023-P060", "lines": [8409, 8419], "kind": "이론", "subj": ["S02", "S03"], "gist": "기유일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P060-04", "post_id": "HM-Y2023-P060", "lines": [8420, 8445], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 기유일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P060-05", "post_id": "HM-Y2023-P060", "lines": [8446, 8452], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 기유일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P060-06", "post_id": "HM-Y2023-P060", "lines": [8453, 8463], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 기유일주 계묘년 운세", "quote": "가. 신강한 기유일주 <기토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P060-07", "post_id": "HM-Y2023-P060", "lines": [8464, 8471], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 기유일주 계묘년 운세", "quote": "나. 신약한 기유일주 <기토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P060-08", "post_id": "HM-Y2023-P060", "lines": [8472, 8498], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "기유일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P060-09", "post_id": "HM-Y2023-P060", "lines": [8499, 8529], "kind": "화법", "subj": ["S11"], "gist": "나가며: 기유일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P061-01", "post_id": "HM-Y2023-P061", "lines": [8530, 8535], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P061-02", "post_id": "HM-Y2023-P061", "lines": [8536, 8543], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P061-03", "post_id": "HM-Y2023-P061", "lines": [8544, 8552], "kind": "이론", "subj": ["S02", "S03"], "gist": "경술일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P061-04", "post_id": "HM-Y2023-P061", "lines": [8553, 8585], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 경술일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P061-05", "post_id": "HM-Y2023-P061", "lines": [8586, 8597], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 경술일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P061-06", "post_id": "HM-Y2023-P061", "lines": [8598, 8610], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 경술일주 계묘년 운세", "quote": "가. 신강한 경술일주 <경금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P061-07", "post_id": "HM-Y2023-P061", "lines": [8611, 8621], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 경술일주 계묘년 운세", "quote": "나. 신약한 경술일주 <경금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P061-08", "post_id": "HM-Y2023-P061", "lines": [8622, 8652], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "경술일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P061-09", "post_id": "HM-Y2023-P061", "lines": [8653, 8684], "kind": "화법", "subj": ["S11"], "gist": "나가며: 경술일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P062-01", "post_id": "HM-Y2023-P062", "lines": [8685, 8690], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P062-02", "post_id": "HM-Y2023-P062", "lines": [8691, 8698], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P062-03", "post_id": "HM-Y2023-P062", "lines": [8699, 8710], "kind": "이론", "subj": ["S02", "S03"], "gist": "신해일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P062-04", "post_id": "HM-Y2023-P062", "lines": [8711, 8735], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 신해일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P062-05", "post_id": "HM-Y2023-P062", "lines": [8736, 8742], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 신해일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P062-06", "post_id": "HM-Y2023-P062", "lines": [8743, 8756], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 신해일주 계묘년 운세", "quote": "가. 신강한 신해일주 <신금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P062-07", "post_id": "HM-Y2023-P062", "lines": [8757, 8768], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 신해일주 계묘년 운세", "quote": "나. 신약한 신해일주 <신금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P062-08", "post_id": "HM-Y2023-P062", "lines": [8769, 8800], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신해일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P062-09", "post_id": "HM-Y2023-P062", "lines": [8801, 8832], "kind": "화법", "subj": ["S11"], "gist": "나가며: 신해일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P063-01", "post_id": "HM-Y2023-P063", "lines": [8833, 8838], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P063-02", "post_id": "HM-Y2023-P063", "lines": [8839, 8846], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P063-03", "post_id": "HM-Y2023-P063", "lines": [8847, 8856], "kind": "이론", "subj": ["S02", "S03"], "gist": "임자일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P063-04", "post_id": "HM-Y2023-P063", "lines": [8857, 8884], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 임자일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P063-05", "post_id": "HM-Y2023-P063", "lines": [8885, 8901], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 임자일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P063-06", "post_id": "HM-Y2023-P063", "lines": [8902, 8914], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 임자일주 계묘년 운세", "quote": "가. 신강한 임자일주 <임수의 주변에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P063-07", "post_id": "HM-Y2023-P063", "lines": [8915, 8923], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 임자일주 계묘년 운세", "quote": "나. 신약한 임자일주 <임수의 주변에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P063-08", "post_id": "HM-Y2023-P063", "lines": [8924, 8958], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "임자일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P063-09", "post_id": "HM-Y2023-P063", "lines": [8959, 8990], "kind": "화법", "subj": ["S11"], "gist": "나가며: 임자일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P064-01", "post_id": "HM-Y2023-P064", "lines": [8991, 8996], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P064-02", "post_id": "HM-Y2023-P064", "lines": [8997, 9005], "kind": "잡동", "gist": "글의 차례 7항(복음 절 예고)", "flags": []}
+{"para_id": "HM-Y2023-P064-03", "post_id": "HM-Y2023-P064", "lines": [9006, 9018], "kind": "이론", "subj": ["S02", "S03"], "gist": "계축일주 기본 성향(목차의 복음 절 본문 부재)", "flags": ["확인필요"]}
+{"para_id": "HM-Y2023-P064-04", "post_id": "HM-Y2023-P064", "lines": [9019, 9050], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 계축일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P064-05", "post_id": "HM-Y2023-P064", "lines": [9051, 9072], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 계축일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P064-06", "post_id": "HM-Y2023-P064", "lines": [9073, 9087], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 계축일주 계묘년 운세", "quote": "가. 신강한 계축일주 <계수의 주변에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P064-07", "post_id": "HM-Y2023-P064", "lines": [9088, 9095], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 계축일주 계묘년 운세", "quote": "나. 신약한 계축일주 <계수의 주변에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P064-08", "post_id": "HM-Y2023-P064", "lines": [9096, 9130], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "계축일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P064-09", "post_id": "HM-Y2023-P064", "lines": [9131, 9165], "kind": "화법", "subj": ["S11"], "gist": "나가며: 계축일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P065-01", "post_id": "HM-Y2023-P065", "lines": [9166, 9171], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P065-02", "post_id": "HM-Y2023-P065", "lines": [9172, 9179], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P065-03", "post_id": "HM-Y2023-P065", "lines": [9180, 9190], "kind": "이론", "subj": ["S02", "S03"], "gist": "갑인일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P065-04", "post_id": "HM-Y2023-P065", "lines": [9191, 9213], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 갑인일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P065-05", "post_id": "HM-Y2023-P065", "lines": [9214, 9239], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 갑인일주 운세(양인살)", "quote": "갑인일주는 계묘년에 \"양인살\"의 기운이 임합니다.", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P065-06", "post_id": "HM-Y2023-P065", "lines": [9240, 9249], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 갑인일주 계묘년 운세", "quote": "가. 신강한 갑인일주 <사주원국에 오행 수와 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P065-07", "post_id": "HM-Y2023-P065", "lines": [9250, 9260], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 갑인일주 계묘년 운세", "quote": "나. 신약한 갑인일주 <사주원국에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P065-08", "post_id": "HM-Y2023-P065", "lines": [9261, 9279], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "갑인일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P065-09", "post_id": "HM-Y2023-P065", "lines": [9280, 9309], "kind": "화법", "subj": ["S11"], "gist": "나가며: 갑인일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P066-01", "post_id": "HM-Y2023-P066", "lines": [9310, 9315], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P066-02", "post_id": "HM-Y2023-P066", "lines": [9316, 9323], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P066-03", "post_id": "HM-Y2023-P066", "lines": [9324, 9335], "kind": "이론", "subj": ["S02", "S03"], "gist": "을묘일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P066-04", "post_id": "HM-Y2023-P066", "lines": [9336, 9363], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 을묘일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P066-05", "post_id": "HM-Y2023-P066", "lines": [9364, 9370], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 을묘일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P066-06", "post_id": "HM-Y2023-P066", "lines": [9371, 9379], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 을묘일주 계묘년 운세", "quote": "가. 신강한 을묘일주 <을목의 주변에 오행 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P066-07", "post_id": "HM-Y2023-P066", "lines": [9380, 9388], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 을묘일주 계묘년 운세", "quote": "나. 신약한 을묘일주 <사주원국에 오행 화, 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P066-08", "post_id": "HM-Y2023-P066", "lines": [9389, 9416], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "을묘일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P066-09", "post_id": "HM-Y2023-P066", "lines": [9417, 9445], "kind": "화법", "subj": ["S11"], "gist": "나가며: 을묘일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P067-01", "post_id": "HM-Y2023-P067", "lines": [9446, 9451], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P067-02", "post_id": "HM-Y2023-P067", "lines": [9452, 9459], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P067-03", "post_id": "HM-Y2023-P067", "lines": [9460, 9473], "kind": "이론", "subj": ["S02", "S03"], "gist": "병진일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P067-04", "post_id": "HM-Y2023-P067", "lines": [9474, 9499], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 병진일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P067-05", "post_id": "HM-Y2023-P067", "lines": [9500, 9506], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 병진일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P067-06", "post_id": "HM-Y2023-P067", "lines": [9507, 9519], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 병진일주 계묘년 운세", "quote": "가. 신강한 병진일주 <병화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P067-07", "post_id": "HM-Y2023-P067", "lines": [9520, 9527], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 병진일주 계묘년 운세", "quote": "나. 신약한 병진일주 <병화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P067-08", "post_id": "HM-Y2023-P067", "lines": [9528, 9555], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "병진일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P067-09", "post_id": "HM-Y2023-P067", "lines": [9556, 9585], "kind": "화법", "subj": ["S11"], "gist": "나가며: 병진일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P068-01", "post_id": "HM-Y2023-P068", "lines": [9586, 9591], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P068-02", "post_id": "HM-Y2023-P068", "lines": [9592, 9599], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P068-03", "post_id": "HM-Y2023-P068", "lines": [9600, 9612], "kind": "이론", "subj": ["S02", "S03"], "gist": "정사일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P068-04", "post_id": "HM-Y2023-P068", "lines": [9613, 9636], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 정사일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P068-05", "post_id": "HM-Y2023-P068", "lines": [9637, 9643], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 정사일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P068-06", "post_id": "HM-Y2023-P068", "lines": [9644, 9654], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 정사일주 계묘년 운세", "quote": "가. 신강한 정사일주 <정화의 주변에 오행 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P068-07", "post_id": "HM-Y2023-P068", "lines": [9655, 9663], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 정사일주 계묘년 운세", "quote": "나. 신약한 정사일주 <정화의 주변에 오행 토, 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P068-08", "post_id": "HM-Y2023-P068", "lines": [9664, 9690], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "정사일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P068-09", "post_id": "HM-Y2023-P068", "lines": [9691, 9722], "kind": "화법", "subj": ["S11"], "gist": "나가며: 정사일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P069-01", "post_id": "HM-Y2023-P069", "lines": [9723, 9729], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P069-02", "post_id": "HM-Y2023-P069", "lines": [9730, 9736], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P069-03", "post_id": "HM-Y2023-P069", "lines": [9737, 9753], "kind": "이론", "subj": ["S02", "S03"], "gist": "무오일주 기본 성향", "quote": "무오일주의 키워드는 천하태평, 무위도식입니다.", "flags": []}
+{"para_id": "HM-Y2023-P069-04", "post_id": "HM-Y2023-P069", "lines": [9754, 9776], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 무오일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P069-05", "post_id": "HM-Y2023-P069", "lines": [9777, 9788], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 무오일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P069-06", "post_id": "HM-Y2023-P069", "lines": [9789, 9799], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 무오일주 계묘년 운세", "quote": "가. 신강한 무오일주 <무토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P069-07", "post_id": "HM-Y2023-P069", "lines": [9800, 9807], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 무오일주 계묘년 운세", "quote": "나. 신약한 무오일주 <무토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P069-08", "post_id": "HM-Y2023-P069", "lines": [9808, 9834], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "무오일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P069-09", "post_id": "HM-Y2023-P069", "lines": [9835, 9865], "kind": "화법", "subj": ["S11"], "gist": "나가며: 무오일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P070-01", "post_id": "HM-Y2023-P070", "lines": [9866, 9872], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P070-02", "post_id": "HM-Y2023-P070", "lines": [9873, 9879], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P070-03", "post_id": "HM-Y2023-P070", "lines": [9880, 9890], "kind": "이론", "subj": ["S02", "S03"], "gist": "기미일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P070-04", "post_id": "HM-Y2023-P070", "lines": [9891, 9915], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 기미일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P070-05", "post_id": "HM-Y2023-P070", "lines": [9916, 9922], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 기미일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P070-06", "post_id": "HM-Y2023-P070", "lines": [9923, 9932], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 기미일주 계묘년 운세", "quote": "가. 신강한 기미일주 <기토의 주변에 오행 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P070-07", "post_id": "HM-Y2023-P070", "lines": [9933, 9942], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 기미일주 계묘년 운세", "quote": "나. 신약한 기미일주 <기토의 주변에 오행 금, 수, 목이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P070-08", "post_id": "HM-Y2023-P070", "lines": [9943, 9969], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "기미일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P070-09", "post_id": "HM-Y2023-P070", "lines": [9970, 10001], "kind": "화법", "subj": ["S11"], "gist": "나가며: 기미일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P071-01", "post_id": "HM-Y2023-P071", "lines": [10002, 10007], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P071-02", "post_id": "HM-Y2023-P071", "lines": [10008, 10015], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P071-03", "post_id": "HM-Y2023-P071", "lines": [10016, 10029], "kind": "이론", "subj": ["S02", "S03"], "gist": "경신일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P071-04", "post_id": "HM-Y2023-P071", "lines": [10030, 10056], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 경신일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P071-05", "post_id": "HM-Y2023-P071", "lines": [10057, 10063], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 경신일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P071-06", "post_id": "HM-Y2023-P071", "lines": [10064, 10074], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 경신일주 계묘년 운세", "quote": "가. 신강한 경신일주 <경금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P071-07", "post_id": "HM-Y2023-P071", "lines": [10075, 10084], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 경신일주 계묘년 운세", "quote": "나. 신약한 경신일주 <경금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P071-08", "post_id": "HM-Y2023-P071", "lines": [10085, 10115], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "경신일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P071-09", "post_id": "HM-Y2023-P071", "lines": [10116, 10152], "kind": "화법", "subj": ["S11"], "gist": "나가며: 경신일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P072-01", "post_id": "HM-Y2023-P072", "lines": [10153, 10158], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P072-02", "post_id": "HM-Y2023-P072", "lines": [10159, 10166], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P072-03", "post_id": "HM-Y2023-P072", "lines": [10167, 10177], "kind": "이론", "subj": ["S02", "S03"], "gist": "신유일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P072-04", "post_id": "HM-Y2023-P072", "lines": [10178, 10202], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 신유일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P072-05", "post_id": "HM-Y2023-P072", "lines": [10203, 10209], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 신유일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P072-06", "post_id": "HM-Y2023-P072", "lines": [10210, 10220], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 신유일주 계묘년 운세", "quote": "가. 신강한 신유일주 <신금의 주변에 오행 토, 금이 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P072-07", "post_id": "HM-Y2023-P072", "lines": [10221, 10232], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 신유일주 계묘년 운세", "quote": "나. 신약한 신유일주 <신금의 주변에 오행 수, 목, 화가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P072-08", "post_id": "HM-Y2023-P072", "lines": [10233, 10264], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신유일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P072-09", "post_id": "HM-Y2023-P072", "lines": [10265, 10297], "kind": "화법", "subj": ["S11"], "gist": "나가며: 신유일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P073-01", "post_id": "HM-Y2023-P073", "lines": [10298, 10303], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P073-02", "post_id": "HM-Y2023-P073", "lines": [10304, 10311], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P073-03", "post_id": "HM-Y2023-P073", "lines": [10312, 10326], "kind": "이론", "subj": ["S02", "S03"], "gist": "임술일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P073-04", "post_id": "HM-Y2023-P073", "lines": [10327, 10353], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 임술일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P073-05", "post_id": "HM-Y2023-P073", "lines": [10354, 10376], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 임술일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P073-06", "post_id": "HM-Y2023-P073", "lines": [10377, 10387], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 임술일주 계묘년 운세", "quote": "가. 신강한 임술일주 <임수의 주변에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P073-07", "post_id": "HM-Y2023-P073", "lines": [10388, 10395], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 임술일주 계묘년 운세", "quote": "나. 신약한 임술일주 <임수의 주변에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P073-08", "post_id": "HM-Y2023-P073", "lines": [10396, 10430], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "임술일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P073-09", "post_id": "HM-Y2023-P073", "lines": [10431, 10460], "kind": "화법", "subj": ["S11"], "gist": "나가며: 임술일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P074-01", "post_id": "HM-Y2023-P074", "lines": [10461, 10466], "kind": "잡동", "gist": "제목·도입·저자 책 광고", "flags": []}
+{"para_id": "HM-Y2023-P074-02", "post_id": "HM-Y2023-P074", "lines": [10467, 10474], "kind": "잡동", "gist": "글의 차례 6항", "flags": []}
+{"para_id": "HM-Y2023-P074-03", "post_id": "HM-Y2023-P074", "lines": [10475, 10485], "kind": "이론", "subj": ["S02", "S03"], "gist": "계해일주 기본 성향", "flags": []}
+{"para_id": "HM-Y2023-P074-04", "post_id": "HM-Y2023-P074", "lines": [10486, 10510], "kind": "운세", "subj": ["S05", "S10"], "gist": "십신으로 보는 계묘년 계해일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P074-05", "post_id": "HM-Y2023-P074", "lines": [10511, 10532], "kind": "운세", "subj": ["S06", "S10"], "gist": "신살로 보는 계묘년 계해일주 운세", "slot": "총평", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P074-06", "post_id": "HM-Y2023-P074", "lines": [10533, 10543], "kind": "운세", "subj": ["S08", "S10"], "gist": "신강한 계해일주 계묘년 운세", "quote": "가. 신강한 계해일주 <계수의 주변에 오행 금, 수가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P074-07", "post_id": "HM-Y2023-P074", "lines": [10544, 10552], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "신약한 계해일주 계묘년 운세", "quote": "나. 신약한 계해일주 <계수의 주변에 오행 목, 화, 토가 많을 경우>", "slot": "총평", "flags": []}
+{"para_id": "HM-Y2023-P074-08", "post_id": "HM-Y2023-P074", "lines": [10553, 10587], "kind": "운세", "subj": ["S08", "S09", "S10"], "gist": "계해일주 계묘년 주의해야 하는 사주 구성", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P074-09", "post_id": "HM-Y2023-P074", "lines": [10588, 10617], "kind": "화법", "subj": ["S11"], "gist": "나가며: 계해일주 격려·후원 안내", "slot": "마무리", "flags": []}
+{"para_id": "HM-Y2023-P075-01", "post_id": "HM-Y2023-P075", "lines": [10618, 10622], "kind": "잡동", "gist": "제목·연재 마무리 도입", "flags": []}
+{"para_id": "HM-Y2023-P075-02", "post_id": "HM-Y2023-P075", "lines": [10623, 10646], "kind": "이론", "subj": ["S02", "S03", "S10"], "gist": "일주로 연운을 보는 이유: 일간·일지의 위상", "quote": "일간이 주체라면, 일지는 그런 주체의 존립 기반이자, 평생을 대결하는 평생의 라이벌이자, 반려자입니다.", "flags": ["별점"]}
+{"para_id": "HM-Y2023-P075-03", "post_id": "HM-Y2023-P075", "lines": [10647, 10666], "kind": "운세", "subj": ["S02", "S05", "S10"], "gist": "일간 10종 계묘년 운세 한 줄 요약표", "quote": "갑목 일간의 계묘년은 경쟁심을 기본 바탕으로 자기 자신을 더욱 성장시키는 의미가 있습니다.", "slot": "총평", "flags": ["별점"]}
+{"para_id": "HM-Y2023-P075-04", "post_id": "HM-Y2023-P075", "lines": [10667, 10674], "kind": "화법", "subj": ["S11"], "gist": "나가며: 긍정 서술 원칙 고백·후원 안내", "quote": "최대한 긍정의 의미를 담아보려고 노력했습니다.", "slot": "마무리", "flags": ["게이트"]}
+{"para_id": "HM-Y2023-P076-01", "post_id": "HM-Y2023-P076", "lines": [10675, 10710], "kind": "화법", "subj": ["S11"], "gist": "섣부른 개운법·자기계발 훈화 비판", "quote": "전교 1등을 예로 들어 하는 훈화가 나머지 49명을 주눅들게 하는 것처럼 말입니다.", "flags": ["게이트", "별점"]}
+{"para_id": "HM-Y2023-P076-02", "post_id": "HM-Y2023-P076", "lines": [10711, 10727], "kind": "개운", "subj": ["S10", "S11"], "gist": "개운1: 명언 대신 자기 타이밍을 보라", "quote": "사주 명리는 타이밍의 학문입니다.", "slot": "조언", "flags": ["별점"]}
+{"para_id": "HM-Y2023-P076-03", "post_id": "HM-Y2023-P076", "lines": [10728, 10749], "kind": "개운", "subj": ["S01", "S10"], "gist": "개운2: 음기 강한 해이니 1년간 금주", "quote": "개운은 마음으로, 다짐으로, 부적으로 하는 것이 아닙니다.", "slot": "조언", "flags": []}
+{"para_id": "HM-Y2023-P076-04", "post_id": "HM-Y2023-P076", "lines": [10750, 10762], "kind": "개운", "subj": ["S05", "S10"], "gist": "개운3: 식신의 해—작고 소소한 취미", "quote": "계묘년은 십신으로 볼 때 식신이라는 기운에 해당합니다.", "slot": "조언", "flags": ["결정론"]}
+{"para_id": "HM-Y2023-P076-05", "post_id": "HM-Y2023-P076", "lines": [10763, 10776], "kind": "개운", "subj": ["S01", "S10"], "gist": "개운4: 수기운 부족자—향후 5년 대비책", "quote": "즉 계묘년은 사막을 앞둔 시점에서의 마지막 오아시스에 해당합니다.", "slot": "조언", "flags": ["별점"]}
+{"para_id": "HM-Y2023-P076-06", "post_id": "HM-Y2023-P076", "lines": [10777, 10785], "kind": "화법", "subj": ["S11"], "gist": "마무리: 마음을 먼저 돌보라는 인사", "quote": "마음이 추울때는 스스로의 마음을 먼저 돌보는 것이 우선입니다.", "slot": "마무리", "flags": []}

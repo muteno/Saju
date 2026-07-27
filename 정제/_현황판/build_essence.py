@@ -234,8 +234,10 @@ def main():
             L.append(f"- `{x['para_id']}` <sub>{x['저자']}</sub> — {x['축자']}")
         if not r["⑤판본갈림"]["수치가 저자마다 다름"] and not r["⑤판본갈림"]["단정 축자"]:
             L.append("*(갈림 신호 없음)*")
-        (d / f"{re.sub(r'[\\/:*?\"<>|]', '_', r['개념'])}.md").write_text(
-            "\n".join(L) + "\n", encoding="utf-8")
+        # ⚠f-string 표현식 안 백슬래시는 파이썬 3.12(PEP 701)부터다 — 3.11에선
+        #   SyntaxError로 임포트가 죽는다. build_gather.py와 같은 자리, 같은 조치.
+        파일명 = re.sub(r'[\\/:*?"<>|]', "_", r["개념"])
+        (d / f"{파일명}.md").write_text("\n".join(L) + "\n", encoding="utf-8")
 
     # ── 리포트 ──────────────────────────────────────────────────
     성립없음 = [r["개념"] for r in rows

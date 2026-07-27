@@ -1,0 +1,53 @@
+<!doctype html><html lang="ko"><meta charset="utf-8">
+<title>사주 정제 — 진행판</title>
+<style>
+ body{font:14px/1.6 -apple-system,'Segoe UI',sans-serif;margin:0;padding:28px;background:#fbfaf8;color:#23201c}
+ h1{font-size:20px;margin:0 0 4px} h2{font-size:15px;margin:26px 0 8px;color:#6b5f52}
+ .sub{color:#8a7f73;font-size:12px;margin-bottom:18px}
+ table{border-collapse:collapse;width:100%;max-width:860px;background:#fff;
+        box-shadow:0 1px 2px rgba(0,0,0,.06);border-radius:6px;overflow:hidden}
+ th,td{padding:7px 11px;border-bottom:1px solid #f0ece6;text-align:left}
+ th{background:#f6f3ee;font-weight:600;font-size:12px;color:#6b5f52}
+ td.n{text-align:right;font-variant-numeric:tabular-nums}
+ .mono{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#8a7f73}
+ .bar{display:inline-block;width:180px;height:8px;background:#eee6dc;border-radius:4px;vertical-align:middle}
+ .bar i{display:block;height:8px;border-radius:4px}
+ .pct{margin-left:8px;font-size:12px;color:#6b5f52;font-variant-numeric:tabular-nums}
+ .cards{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 0}
+ .card{background:#fff;border-radius:6px;padding:12px 16px;min-width:150px;
+        box-shadow:0 1px 2px rgba(0,0,0,.06)}
+ .card b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+ .card span{font-size:12px;color:#8a7f73}
+ .note{color:#8a7f73;font-size:12px;margin-top:8px;max-width:860px}
+</style>
+<h1>사주 정제 — 진행판</h1>
+<div class="sub">2026-07-28 04:40 KST · 이 파일은 <b>생성물</b>이다(손으로 고치지 마라). 다시 그리기 =
+ <span class="mono">python3 정제/_현황판/build_진행판.py</span></div>
+
+<div class="cards">
+  <div class="card"><b>5,190</b><span>전사 회수(편)</span></div>
+  <div class="card"><b>82%</b><span>전사 진척(모수 6,310)</span></div>
+  <div class="card"><b>262</b><span>개념 노드</span></div>
+  <div class="card"><b>23,120</b><span>관계(간선)</span></div>
+  <div class="card"><b>38,072</b><span>코퍼스 문단</span></div>
+</div>
+
+<h2>① 전사 — 채널별 회수</h2>
+<table><tr><th>채널</th><th>회수</th><th>모수</th><th>진척</th></tr><tr><td>0. 단편모음</td><td class="n">2</td><td class="n">2</td><td><div class="bar"><i style="width:180px;background:#2e7d32"></i></div><span class="pct">100%</span></td></tr><tr><td>1. 초코명리</td><td class="n">249</td><td class="n">279</td><td><div class="bar"><i style="width:161px;background:#f9a825"></i></div><span class="pct">89%</span></td></tr><tr><td>2. 산책처럼사주</td><td class="n">1,231</td><td class="n">1,231</td><td><div class="bar"><i style="width:180px;background:#2e7d32"></i></div><span class="pct">100%</span></td></tr><tr><td>3. 석우당</td><td class="n">847</td><td class="n">977</td><td><div class="bar"><i style="width:156px;background:#f9a825"></i></div><span class="pct">87%</span></td></tr><tr><td>4. 사람공부</td><td class="n">84</td><td class="n">146</td><td><div class="bar"><i style="width:104px;background:#f9a825"></i></div><span class="pct">58%</span></td></tr><tr><td>5. 효명작명</td><td class="n">533</td><td class="n">537</td><td><div class="bar"><i style="width:179px;background:#2e7d32"></i></div><span class="pct">99%</span></td></tr><tr><td>6. 남석운명과명리학</td><td class="n">1,632</td><td class="n">2,473</td><td><div class="bar"><i style="width:119px;background:#f9a825"></i></div><span class="pct">66%</span></td></tr><tr><td>7. 정이철학원(부산 대청동 이길우)</td><td class="n">178</td><td class="n">218</td><td><div class="bar"><i style="width:147px;background:#f9a825"></i></div><span class="pct">82%</span></td></tr><tr><td>8. 하나사주</td><td class="n">188</td><td class="n">188</td><td><div class="bar"><i style="width:180px;background:#2e7d32"></i></div><span class="pct">100%</span></td></tr><tr><td>도화도레_사주</td><td class="n">246</td><td class="n">259</td><td><div class="bar"><i style="width:171px;background:#f9a825"></i></div><span class="pct">95%</span></td></tr></table>
+<div class="note">⚠모수는 유튜브 게시 편수라 채널이 새로 올리면 는다. 값은
+ <span class="mono">build_진행판.py</span>의 <span class="mono">채널총량</span>에 있다.
+ 전사는 맥에서만 돈다(mlx-whisper = 애플 실리콘 전용) — 올리기 =
+ <span class="mono">./scripts/전사본_올리기.sh</span></div>
+
+<h2>② 녹임 — 리포에 들어온 재료</h2>
+<table><tr><th>무엇</th><th>파일</th></tr><tr><td>전사 원문</td><td class="n">5,197</td></tr><tr><td>P0 인벤토리</td><td class="n">2,229</td></tr><tr><td>전사 도구</td><td class="n">26</td></tr><tr><td>원본 라이브러리</td><td class="n">7</td></tr><tr><td>설계정본</td><td class="n">17</td></tr><tr><td>평의회결과</td><td class="n">39</td></tr><tr><td>인수인계</td><td class="n">11</td></tr><tr><td>통독노트</td><td class="n">4</td></tr><tr><td>역추론 작업큐</td><td class="n">3</td></tr><tr><td>P2 유닛</td><td class="n">5</td></tr></table>
+
+<h2>③ 앱에 붙은 두뇌</h2>
+<table><tr><td>app/public/brain.json</td><td>노드 262 · 관계 8,967 · 조견표 532 · 4.29MB</td></tr></table>
+
+<h2>④ 최근 작업</h2>
+<table><tr><th>커밋</th><th>때</th><th>무엇</th></tr><tr><td class="mono">83c2480</td><td class="mono">07-27 19:28</td><td>개인정보 전량 정리 + 게이트 부채 180 해소(게이트 8 · 반박 7)</td></tr><tr><td class="mono">01533fc</td><td class="mono">07-27 19:15</td><td>압축 전량 반입 — 대차대조표 잔차 0 + 반입기 확장(손복사 금지)</td></tr><tr><td class="mono">a1f5028</td><td class="mono">07-27 18:41</td><td>원본 반입 + 파이프라인 완주 — 로컬 작업 소거(압축본 없는 단일 커밋)</td></tr><tr><td class="mono">68e0914</td><td class="mono">07-27 20:32</td><td>chore: CLAUDE.md 공통 골격 동기화 (nomute-editor@2539d81) (#148)</td></tr><tr><td class="mono">498ea9b</td><td class="mono">07-27 20:27</td><td>분할압축 반입 경로 확정 — 인계문 §2-2 절차 + 함정 3개 (#147)</td></tr><tr><td class="mono">3143e67</td><td class="mono">07-27 11:26</td><td>분할압축 반입 경로 확정 - 인계문 §2-2 절차 + 함정 3개(100MB 상한·gitignore·암호화)</td></tr><tr><td class="mono">13ff2a1</td><td class="mono">07-27 20:18</td><td>revert: 한 수에서 시작된 변경 되돌리기(화살표·복채 반응) (#146)</td></tr><tr><td class="mono">39e55d7</td><td class="mono">07-27 19:28</td><td>원본 반입 체계 — 로컬 작업 소거 준비 (#145)</td></tr></table>
+
+<div class="note">파이프라인 단계별 낡음 상태는
+ <span class="mono">허브.html</span>에 있다. 여기는 «얼마나 모였나», 거기는 «무엇이 낡았나».</div>
+</html>
