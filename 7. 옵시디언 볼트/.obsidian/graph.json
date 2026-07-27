@@ -1,0 +1,128 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "tag:#S01",
+      "color": {
+        "a": 1,
+        "rgb": 14701138
+      }
+    },
+    {
+      "query": "tag:#S02",
+      "color": {
+        "a": 1,
+        "rgb": 14714687
+      }
+    },
+    {
+      "query": "tag:#S03",
+      "color": {
+        "a": 1,
+        "rgb": 14729791
+      }
+    },
+    {
+      "query": "tag:#S04",
+      "color": {
+        "a": 1,
+        "rgb": 11063626
+      }
+    },
+    {
+      "query": "tag:#S05",
+      "color": {
+        "a": 1,
+        "rgb": 5226637
+      }
+    },
+    {
+      "query": "tag:#S06",
+      "color": {
+        "a": 1,
+        "rgb": 4177856
+      }
+    },
+    {
+      "query": "tag:#S07",
+      "color": {
+        "a": 1,
+        "rgb": 4889568
+      }
+    },
+    {
+      "query": "tag:#S08",
+      "color": {
+        "a": 1,
+        "rgb": 5926880
+      }
+    },
+    {
+      "query": "tag:#S09",
+      "color": {
+        "a": 1,
+        "rgb": 9067232
+      }
+    },
+    {
+      "query": "tag:#S10",
+      "color": {
+        "a": 1,
+        "rgb": 12603327
+      }
+    },
+    {
+      "query": "tag:#S11",
+      "color": {
+        "a": 1,
+        "rgb": 14700434
+      }
+    },
+    {
+      "query": "tag:#S12",
+      "color": {
+        "a": 1,
+        "rgb": 10386266
+      }
+    },
+    {
+      "query": "tag:#S13",
+      "color": {
+        "a": 1,
+        "rgb": 8031129
+      }
+    },
+    {
+      "query": "tag:#S14",
+      "color": {
+        "a": 1,
+        "rgb": 5939290
+      }
+    },
+    {
+      "query": "tag:#S15",
+      "color": {
+        "a": 1,
+        "rgb": 11558975
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": -1.2,
+  "nodeSizeMultiplier": 1.15,
+  "lineSizeMultiplier": 0.4,
+  "collapse-forces": false,
+  "centerStrength": 0.3,
+  "repelStrength": 18.5,
+  "linkStrength": 0.35,
+  "linkDistance": 280,
+  "scale": 0.35,
+  "close": false
+}
