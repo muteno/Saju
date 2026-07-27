@@ -36,3 +36,7 @@ dohwadore_saju_자막/
 
 # OAuth 계정 로테이션(sticky failover) 신호 파일 — 실수 커밋 방지(이식팩 §2-e)
 .nomute_active_quota
+
+# 개인 설정 — 모델/노력도/권한 모드는 사람마다 다르고, 특히 권한은 공개 리포에
+#   커밋하면 클론하는 모든 사람에게 적용된다. 팀 공통은 .claude/settings.json 에.
+.claude/settings.local.json
