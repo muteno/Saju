@@ -12,6 +12,7 @@
 
 type Rel = {
   a: string; b: string; 관계: string; 층?: string; 부호?: string | null
+  효과?: string | null      // 촉진 / 해소 — 부호와 다른 축(발생량의 방향)
   조건?: unknown; 왜?: string | null; 사슬?: string[] | null
   근거?: string; stance?: string | null; 근거유형?: string | null
 }
@@ -73,6 +74,14 @@ export default function BrainPanel({ brain }: { brain?: Brain | null }) {
               <b>{r.b}</b>
               {r.부호 && r.부호 !== '중립' && (
                 <span style={{ fontSize: 11, opacity: .65 }}>({r.부호})</span>
+              )}
+              {/* ★260728 «효과» — 부호와 다른 축이다. 같은 '+'라도 역마→이동은 «촉진»이고
+                  천을귀인→구설·송사는 «해소»다. 이 칸이 없으면 앱이 해소를 촉진으로 읽는다. */}
+              {r.효과 && (
+                <span style={{ fontSize: 11, fontWeight: 700,
+                               color: r.효과 === '해소' ? tokens.color.lunar : tokens.color.primary }}>
+                  {r.효과 === '해소' ? '덜어냄' : '북돋움'}
+                </span>
               )}
               <span style={{ marginLeft: 'auto', fontSize: 11, opacity: .6 }}>
                 {왜라벨[r.왜 ?? ''] ?? r.왜}

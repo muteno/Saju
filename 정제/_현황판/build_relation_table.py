@@ -104,6 +104,9 @@ for e in E:
     rows.append({
         "층": e["층"], "A": a, "관계": e["kind"], "B": b,
         "방향": e.get("dir", ""), "부호": e.get("polarity") or "",
+        # ★260728 — 부호와 «효과»는 다른 축이다. 같은 '+'라도 역마→이동은 촉진이고
+        #   천을귀인→구설·송사는 해소다. 한 칸에 섞으면 합산이 조용히 틀린다.
+        "효과": e.get("effect") or "",
         "조건": " · ".join(cond),
         # ★«있으면»/«없으면». 이 칸이 없으면 읽는 사람이 방향을 거꾸로 읽는다(260726 페이블 감사)
         "조건극성": e.get("조건극성", ""), "무게": e.get("weight"),
@@ -117,7 +120,7 @@ for e in E:
 rows.sort(key=lambda r: (LAYER_ORD.get(r["층"], 9), -(r["무게"] or 0), r["A"]))
 
 # ── CSV
-cols = ["층", "A", "관계", "B", "방향", "조건", "조건극성", "부호", "무게", "등급", "표본",
+cols = ["층", "A", "관계", "B", "방향", "조건", "조건극성", "부호", "효과", "무게", "등급", "표본",
         "출처수", "교차확인", "왜", "사슬", "근거", "대주제A", "대주제B", "간선id"]
 
 
@@ -246,7 +249,7 @@ tr:hover td{{background:#151a24}}
 </div>
 <table id="tbl"><thead><tr>
 <th data-s="층">층</th><th data-s="A">A</th><th data-s="관계">관계</th><th data-s="B">B</th>
-<th data-s="조건">조건</th><th data-s="부호">부호</th><th data-s="무게">무게</th>
+<th data-s="조건">조건</th><th data-s="부호">부호</th><th data-s="효과">효과</th><th data-s="무게">무게</th>
 <th data-s="출처수">출처</th><th data-s="왜">왜</th><th>사슬 / 근거</th>
 </tr></thead><tbody id="tb"></tbody></table>
 </div>
@@ -297,6 +300,7 @@ function draw(){{
    <td class="cond">${{r["조건"]||'<span style="color:#4a5262">—</span>'}}${{
        r["조건극성"]==="부재"?'<b style="color:#ff9ecd"> ·없을때</b>':''}}</td>
    <td>${{r["부호"]||""}}</td>
+   <td>${{r["효과"]?(r["효과"]==="해소"?'<b style="color:#7fd6a0">해소</b>':'<b style="color:#ffb36b">촉진</b>'):""}}</td>
    <td><span class="bar" style="width:${{Math.round((r["무게"]||0)*38)}}px"></span> ${{r["무게"]??""}}</td>
    <td>${{r["출처수"]!==""?r["출처수"]+"곳":""}} ${{r["교차확인"]||""}}</td>
    <td class="why-${{r["왜"]}}" title="${{VN[r["왜"]]||''}}">${{r["왜"]}}</td>

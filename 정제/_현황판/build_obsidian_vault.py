@@ -413,13 +413,18 @@ for c in CONCEPTS:
     if e1:
         L.append("명리 규칙으로 정해져 있는 다리다. **판단은 이 위로만 흐른다.**")
         L.append("")
-        L.append("| | 관계 | 상대 | 부호 | 강도 |")
-        L.append("|---|---|---|---|---|")
+        # ★260728 «효과» 열 신설 — 부호와 발생량 방향은 다른 축이다.
+        #   같은 '+'라도 역마→이동·이사는 «촉진»이고 천을귀인→구설·송사는 «해소»다.
+        #   한 칸에 섞어 두면 읽는 사람이 정반대로 읽는다(평의회 4차 감독관 단독 적발).
+        L.append("| | 관계 | 상대 | 부호 | 효과 | 강도 |")
+        L.append("|---|---|---|---|---|---|")
         for o, e in sorted(e1, key=lambda t: (-t[1]["weight"], t[1]["kind"])):
             d = ("→" if e["dir"] == "a→b" else "←") if e["a"] == c else                 ("←" if e["dir"] == "a→b" else "→")
             ic = KIND_ICON.get(e["kind"], "🔗")
+            eff = e.get("effect")
+            eff_s = {"촉진": "🔺촉진", "해소": "🔻해소"}.get(eff, "") if eff else ""
             L.append(f"| {d} | {ic} {e['kind']} | {wl(o)}{badge(o)} | {e.get('polarity') or ''} "
-                     f"| {w_bar(e['weight'])} {e['weight']} |")
+                     f"| {eff_s} | {w_bar(e['weight'])} {e['weight']} |")
         L.append("")
         L.append("<details><summary>이 규칙들의 출처</summary>")
         L.append("")
