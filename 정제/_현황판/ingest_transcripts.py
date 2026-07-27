@@ -37,7 +37,8 @@ from collections import Counter
 
 HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
-ROOT = HERE.parent.parent / "0. 전사프로그램" / "전사 내용"
+sys.path.insert(0, str(HERE))
+from 경로 import 전사_내용 as ROOT
 
 HOLD_CH = re.compile(r"작명")          # 보류군: 키셋이 다른 술수
 HDR_END = re.compile(r"^-{3,}\s*$")

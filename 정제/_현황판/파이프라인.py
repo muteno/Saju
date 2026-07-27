@@ -37,8 +37,10 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
 
 HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
-ROOT = HERE.parent                      # 2. 정제작업
+ROOT = HERE.parent                      # 정제/
 KST = timezone(timedelta(hours=9))
+sys.path.insert(0, str(HERE))
+import 경로                              # 위치 정본 — 원본(P0·전사)은 신·구 자동 판별
 
 # ══════════════════════════════════════════════════════════════════════
 #  파이프라인 정의 — 순서가 곧 의존성이다. 위에서 아래로만 흐른다.
@@ -47,7 +49,7 @@ STAGES = [
     dict(
         name="① 통합본 병합",
         script="build_dashboard.py",
-        inputs=["../P0_인벤토리/*_posts.jsonl", "../P0_인벤토리/*_paras.jsonl"],
+        inputs=[f"{경로.P0_인벤토리}/*_posts.jsonl", f"{경로.P0_인벤토리}/*_paras.jsonl"],
         outputs=["data/posts_all.jsonl", "data/paras_all.jsonl", "data/stats.json", "현황판.html"],
         why="P0 배치 산출물을 하나로 합친다. 이게 아래 전부의 뿌리다.",
     ),
@@ -58,7 +60,7 @@ STAGES = [
     dict(
         name="② 전사 적재",
         script="ingest_transcripts.py",
-        inputs=["../../0. 전사프로그램/전사 내용"],
+        inputs=[str(경로.전사_내용)],
         outputs=["data/전사_글.jsonl", "data/전사_문단.jsonl", "data/전사_적재리포트.md"],
         why="유튜브 Whisper 전사본을 웹과 같은 모양으로. 붕괴 반복 접기·보류군 표시.",
     ),
@@ -342,7 +344,16 @@ STAGES = [
         outputs=["data/앱두뇌.json", "data/앱두뇌_리포트.md"],
         why="★운영자 260727: *«앱에 뇌를 달아주셈»*. 지도를 앱이 «계산된 키»로 조회할 수 있게. "
             "⚠검색(RAG) 금지 원칙 그대로 — 질의가 아니라 keyset.js가 만든 키만 받는다. "
-            "산출물은 `app/public/brain.json`으로 복사해야 앱이 먹는다(복사는 아직 수동).",
+            "앱 배포는 ⑱-B가 한다.",
+    ),
+    # ★260727 — «복사는 아직 수동»이던 단계의 배선. 수동 = 지도는 새것인데 앱이 옛 뇌를
+    #   먹는 사고의 씨앗(생산자가 파이프라인 밖 병과 같은 축)이라 즉시 단계로 올린다.
+    dict(
+        name="⑱-B 두뇌 배포",
+        script="두뇌_배포.py",
+        inputs=["data/앱두뇌.json"],
+        outputs=["../../app/public/brain.json"],
+        why="앱이 실제로 먹는 `app/public/brain.json` 갱신. 같으면 복사 생략.",
     ),
     dict(
         name="⑲ 2차 전사(분류별 모으기)",
