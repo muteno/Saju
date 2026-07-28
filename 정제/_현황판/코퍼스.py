@@ -41,6 +41,12 @@ _bnm.SNAP_DIRS = _bnm._snapshot_dirs()
 
 HOLD = re.compile(r"^(?:hand|face|taro|pungsu|dang|gusung|mehwa|tojung|name)-|"
                   r"토정비결|타로|관상|수상|풍수|당사주|구성학|매화역수|작명|플러스작명|지문학")
+# ★260728 보류 해제 3파일 (운영자 승인) — HOLD보다 먼저 본다.
+#   19파일 2,355청크 표본에서 이 셋만 명리 코어어 94.7% / 57.6% / 54.5%로 예외였다.
+#   mehwa는 이름만 매화역수고 내용이 명리 합충 이론이다(「지지의 육합: 자축합토…」).
+#   실증: 이 셋을 뺀 탓에 명암합·모자멸자·토다금매 후보 근거가 얇게 잡혔다.
+#   ⚠나머지 16파일은 그대로 보류 — 이 예외가 그 결정을 바꾸지 않는다.
+HOLD_EXEMPT = re.compile(r"^mehwa-매화역수자료실|^운세력사용설명서|^택일기타사용설명")
 GRID = re.compile(r"운세|이달의|경자년|신축년|임인년|계묘년|갑진년|을사년|병오년")
 GRID_KIND = {"잡동", "공지", "운세"}
 
@@ -83,7 +89,7 @@ def 문단들(전사=True, 격자=False, 보류군=False, 제목포함=False, �
     for q in _jl("paras_all.jsonl"):
         p = posts.get(q.get("post_id"), {})
         f = p.get("file", "")
-        if not 보류군 and HOLD.search(f):
+        if not 보류군 and HOLD.search(f) and not HOLD_EXEMPT.search(f):
             continue
         if not 격자 and (GRID.search(f) or q.get("kind") in GRID_KIND):
             continue

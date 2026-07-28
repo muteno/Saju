@@ -232,6 +232,16 @@ STAGES = [
         outputs=["data/정의_정제본.jsonl"],
         why="손으로 쓴 원고(정의원고/b1~b5.txt)를 데이터로. 정본 노드명 게이트 — 어긋나면 죽는다.",
     ),
+    # ★260728 신설 — 백과사전 층 (운영자 확정: 기초 = 백과식 정의집 ~10만자 · 차등 밴드).
+    #   집필 = E1~E5 원고(정의원고/백과_*.md), 소비 = ⑮ 볼트(정의 정본 승격).
+    #   원고만 쌓이고 소비자가 없는 병(13회 전례)을 여기 등재로 막는다.
+    dict(
+        name="⑩-B 백과사전",
+        script="build_encyclopedia.py",
+        inputs=["정의원고", "data/node_layers.jsonl"],
+        outputs=["data/백과.jsonl"],
+        why="백과 원고(무엇/어디서/산출/낳나/갈림)를 데이터로. 정본 노드명 게이트 + 중복 게이트.",
+    ),
     dict(
         name="⑪ 분기 간선(F6)",
         script="build_branch_edges.py",
@@ -317,7 +327,8 @@ STAGES = [
     dict(
         name="⑮ 옵시디언 볼트",
         script="build_obsidian_vault.py",
-        inputs=["data/링크망.jsonl", "data/정의_정제본.jsonl", "data/node_layers.jsonl"],
+        inputs=["data/링크망.jsonl", "data/정의_정제본.jsonl", "data/백과.jsonl",
+                "data/node_layers.jsonl"],
         outputs=["../../7. 옵시디언 볼트/00 시작/🏠 홈.md"],
         why="★사람이 읽는 관계지도. 노트마다 결정론·조건부·밀착 3층을 편다.",
     ),

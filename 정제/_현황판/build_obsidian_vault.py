@@ -41,6 +41,13 @@ try:
     REFINED = {r["concept"]: r["정의"] for r in jl("정의_정제본.jsonl")}
 except FileNotFoundError:
     REFINED = {}
+# ★260728 — 백과사전 원고(운영자 확정: 기초 = 백과식 정의집 ~10만자).
+#   생산 = 정의원고/백과_*.md → build_encyclopedia.py → 백과.jsonl.
+#   여기가 그 소비자다 — 소비자 없이 원고만 쌓이는 병(13회 전례)의 방지벽.
+try:
+    ENCYC = {r["concept"]: r for r in jl("백과.jsonl")}
+except FileNotFoundError:
+    ENCYC = {}
 # 전사(유튜브)를 다시 정제한 «실전 쓰임» — 웹은 정의를 주고 전사는 판단·화법을 준다
 try:
     USAGE = {r["concept"]: r for r in jl("실전쓰임.jsonl")}
@@ -349,8 +356,9 @@ for c in CONCEPTS:
     front["공기다리"] = mt.get("공기다리", 0)
     front["확장성지수"] = mt.get("확장성지수", 0)
     front["관계강도평균"] = mt.get("관계강도평균", 0)
-    front["정의"] = ("정제" if REFINED.get(c) else
-                    ("미정제" if DEFS.get(c, {}).get("defs") else "공백"))
+    front["정의"] = ("백과" if ENCYC.get(c) else
+                    ("정제" if REFINED.get(c) else
+                     ("미정제" if DEFS.get(c, {}).get("defs") else "공백")))
     if alias_by_c.get(c):
         front["aliases"] = alias_by_c[c]
     front["tags"] = ["개념", BIGCODE[b]]
@@ -361,7 +369,19 @@ for c in CONCEPTS:
     dcard = DEFS.get(c, {})
     dl = dcard.get("defs", [])
     ref = REFINED.get(c)
-    if ref:
+    enc = ENCYC.get(c)
+    if enc:
+        # ★백과 항목이 있으면 그것이 정의의 정본이다(53자 정의는 요약으로 강등).
+        L.append("> [!abstract] 정의")
+        L.append(f"> {enc['무엇']}")
+        L.append("")
+        for 칸, 제목 in (("어디서", "🌱 어디서 나오나"), ("산출", "⚙️ 어떻게 산출되나"),
+                        ("낳나", "🌿 무엇을 낳나"), ("갈림", "⚖️ 갈리는 것")):
+            v = enc.get(칸)
+            if v:
+                L.append(f"**{제목}** — {v}")
+                L.append("")
+    elif ref:
         L.append("> [!abstract] 정의")
         L.append(f"> {ref}")
         L.append("")
@@ -638,8 +658,18 @@ for b, mids in TAX.items():
         front["tags"] = ["중주제", BIGCODE[b]]
         L = [fm(front), "", f"# {m}", "",
              f"**계층** · {wl(b)} › **{m}**", "",
-             f"개념 {len(cs)}개 · 문단 {num(tot)}개", "",
-             "| 개념 | 문단 | 저자 | 결정론다리 | 확장성 |", "|---|---:|---:|---:|---:|"]
+             f"개념 {len(cs)}개 · 문단 {num(tot)}개", ""]
+        # ★260728 — 중주제 백과 항목(예: 「십이신살」 체계 해설). 개념이 아니라 체계 전체를
+        #   말하는 원고는 노드를 새로 세우지 않고 여기 «이사»한다.
+        menc = ENCYC.get(m)
+        if menc:
+            L += ["> [!abstract] 정의", f"> {menc['무엇']}", ""]
+            for 칸, 제목 in (("어디서", "🌱 어디서 나오나"), ("산출", "⚙️ 어떻게 산출되나"),
+                            ("낳나", "🌿 무엇을 낳나"), ("갈림", "⚖️ 갈리는 것")):
+                v = menc.get(칸)
+                if v:
+                    L += [f"**{제목}** — {v}", ""]
+        L += ["| 개념 | 문단 | 저자 | 결정론다리 | 확장성 |", "|---|---:|---:|---:|---:|"]
         for x in sorted(cs, key=lambda y: -metrics.get(y, {}).get("문단", 0)):
             mt = metrics.get(x, {})
             L.append(f"| {wl(x)} | {num(mt.get('문단',0))} | {mt.get('저자수',0)} | "
