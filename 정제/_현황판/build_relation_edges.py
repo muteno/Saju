@@ -2100,6 +2100,44 @@ def main():
         seen.add(k)
         uniq.append(e)
 
+    # ══ ★260728 발현 «살» 오버레이 — P2 채굴 + 감독관 눈검수(채택 9 · 보류 6 · 근거없음 6) ══
+    #   발현 간선 160 중 효과가 18뿐이라 «합산하면 조용히 틀리는» 층이었다.
+    #   원고 = 발현살_원고.jsonl. 처분 3종:
+    #     채택   → 효과·축자·para_id·stance를 그 간선에 싣는다 (문장이 방향을 말한 것만)
+    #     보류   → 건드리지 않는다 (개별 명식 일반화·조건부 위험 — 사람 확인 큐)
+    #     근거없음 → 「근거없음": true」 표시 — **코퍼스 실증 0**인데 관계도 서술만 있는 것.
+    #               지우는 게 아니라 라이브에서 단정 문장을 못 쓰게 막는 깃발이다.
+    #               (실증: 천을귀인↔구설이 같은 창에 나온 적 0회 — 위조 후보 적발)
+    살원고 = HERE / "발현살_원고.jsonl"
+    if 살원고.exists():
+        살 = {}
+        for _ln in 살원고.read_text(encoding="utf-8").split("\n"):
+            if not _ln.strip():
+                continue
+            _d = json.loads(_ln)
+            if _d.get("_주석") or not _d.get("a"):
+                continue
+            살[(_d["a"], _d["b"])] = _d
+        _hit = Counter()
+        for e in uniq:
+            if e["kind"] != "발현":
+                continue
+            _d = 살.get((e["a"], e["b"]))
+            if not _d:
+                continue
+            if _d["처분"] == "채택":
+                e["effect"] = e.get("effect") or ("촉진" if _d["효과"] == "촉진" else "해소")
+                e["살축자"] = _d["축자"]
+                e["살para"] = _d["para_id"]
+                if _d.get("stance") and _d["stance"] != "일치":
+                    e["stance"] = e.get("stance") or _d["stance"]
+                _hit["채택"] += 1
+            elif _d["처분"] == "근거없음":
+                e["근거없음"] = True
+                e["note"] = (e.get("note") or "") + " ⚠코퍼스 실증 0 — 단정 금지"
+                _hit["근거없음"] += 1
+        print(f"  발현 살 오버레이 — 채택 {_hit['채택']} · 근거없음 표시 {_hit['근거없음']} · 보류(무접촉) {sum(1 for v in 살.values() if v['처분']=='보류')}")
+
     out_e = DATA / "relation_edges.jsonl"
     with out_e.open("w", encoding="utf-8") as fh:
         for e in HIER + uniq:
