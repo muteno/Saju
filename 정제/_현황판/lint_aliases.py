@@ -124,8 +124,22 @@ def main():
     for a, info in sorted(alias_info.items()):
         codes = info["codes"]
         # 같은 과목의 '다른' 별칭들 = 동반어 후보 (2글자 이상만, 자기 자신 제외)
+        # ★260728 — **뿌리층(S00)은 자기 층 어휘로 잴 수 없다.**
+        #   동반어 검사는 「이 별칭이 명리 문맥 안에 있나」를 묻는 것인데,
+        #   S00 개념끼리는 **같은 문단에 안 나온다** — 「인시에 태어났다」 옆에 「황도」가 있을 리 없다.
+        #   실측(자기 층 vs 아래층): 시에태어 1.2%→51.8% · 황경 14.9%→91.5% · 지축 14.9%→57.4%
+        #                          단 반대도 있다: 「목성, 화성」 100%→20% · 「23.5도」 90%→10%
+        #   → **한쪽만 쓰면 어느 쪽이든 틀린다. 합집합이 맞다** —
+        #     증거는 ①다른 천문어가 옆에 있거나 ②명리 구조어가 옆에 있거나 둘 중 하나면 된다.
+        #   ⚠이건 기준을 낮추는 게 아니라 **같은 질문을 제대로 묻는 것**이다.
+        #     이미 같은 결함을 S15에서 겪었다 — 「발현어끼리는 일상어가 일상어를 증명하는 회로가 된다」.
+        ROOT_BORROW = {"S00": ("S01", "S02", "S03", "S14")}
         companions = {x for code in codes for x in code_aliases[code]
                       if x != a and len(x) >= 2 and x not in a and a not in x}
+        for code in codes:
+            for lend in ROOT_BORROW.get(code, ()):
+                companions |= {x for x in code_aliases[lend]
+                               if x != a and len(x) >= 2 and x not in a and a not in x}
         hits = 0
         with_comp = 0
         subj_ok = subj_n = 0
