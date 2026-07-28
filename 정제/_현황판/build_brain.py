@@ -130,6 +130,10 @@ def main():
     #   **「글자 → 겪는 일」을 말하는 유일한 층인 발현 157건이 화면에서 통째로 사라졌다.**
     #   정본 표(관계도.csv)는 같은 간선을 「인과」로 찍고 있었다 = 두 벌 장부.
     from 판정어 import 판정 as _판정
+    # ★260728 서술층 — 운영자: *"풀어서 문장으로 나와야되거든 … 정제랑은 또 다른영역인데"*
+    #   화살표 사슬(«A ─생→ B»)을 사람이 읽는 문장으로 푼다. 문형은 서술.py 한 곳에만.
+    from 서술 import 문장 as _문장, 사슬문장 as _사슬문장
+    미문형 = Counter()
     링크 = jl("링크망.jsonl")
     사슬 = {}
     for r in jl("근거사슬.jsonl"):
@@ -141,6 +145,9 @@ def main():
         if a not in nodes or b not in nodes:
             continue
         ch = 사슬.get((a, b)) or 사슬.get((b, a)) or {}
+        _s = _문장(e)
+        if _s is None:
+            미문형[e.get("kind")] += 1
         관계.append({
             "a": a, "b": b, "관계": e.get("kind") or e.get("관계"), "층": e.get("층"),
             "방향": e.get("dir"), "부호": e.get("polarity"), "무게": e.get("weight"),
@@ -159,6 +166,9 @@ def main():
             "등급": e.get("등급"), "조건": e.get("조건"), "근거유형": e.get("근거유형"),
             "stance": e.get("stance"),
             "왜": _판정(e, 사슬), "사슬": ch.get("사슬"),
+            # ★260728 서술층 — 앱은 화살표가 아니라 이 문장을 띄운다. 없으면(미문형 kind)
+            #   앱이 화살표로 폴백하고, 그 kind는 아래 리포트에 소리 내어 적힌다.
+            "문장": _s, "사슬문장": _사슬문장(ch.get("사슬")),
             "근거": (e.get("source") or "")[:300],
         })
 
@@ -253,6 +263,14 @@ def main():
          f"- 🔴**못 맞춘 {len(미매핑)}종** — 숨기지 않고 적는다:", ""]
     for k in 미매핑:
         L.append(f"  - `{k}`")
+    _문장수 = sum(1 for r in 관계 if r.get("문장"))
+    L += ["", "## 서술층 — 화살표가 아니라 문장으로 (운영자 260728)", "",
+          f"- 관계 {len(관계):,}건 중 **{_문장수:,}건({_문장수/max(1,len(관계)):.0%})**에 문장이 실렸다. "
+          f"문형 출처 = `서술.py` 한 곳.",]
+    if 미문형:
+        L.append(f"- 🔴**미문형 kind {len(미문형)}종** — 문장을 못 만든 간선 "
+                 f"{sum(미문형.values()):,}건(앱은 화살표로 폴백): "
+                 + ", ".join(f"`{k}` {n}" for k, n in 미문형.most_common()))
     L += ["", "## 관계의 «왜» 분포 — 앱이 근거를 댈 수 있는 비율", "",
           "| 판정 | 건수 |", "|---|---:|"]
     for k, v in 왜.most_common():
@@ -275,6 +293,8 @@ def main():
     if 미매핑:
         print("     " + " · ".join(미매핑[:10]))
     print(f"  왜 분포: {dict(왜.most_common(6))}")
+    print(f"  서술층: 문장 {_문장수:,}/{len(관계):,}"
+          + (f" · 🔴미문형 {dict(미문형)}" if 미문형 else " · 미문형 0"))
     print(f"→ {out}")
     return pack, 미매핑
 

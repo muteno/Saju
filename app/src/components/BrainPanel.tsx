@@ -14,6 +14,9 @@ type Rel = {
   a: string; b: string; 관계: string; 층?: string; 부호?: string | null
   효과?: string | null      // 촉진 / 해소 — 부호와 다른 축(발생량의 방향)
   조건?: unknown; 왜?: string | null; 사슬?: string[] | null
+  // ★260728 서술층 — 운영자: "풀어서 문장으로 나와야되거든". 빌더(서술.py)가 심는다.
+  //   없으면(미문형 kind) 화살표로 폴백 — 조용히 비우지 않는다.
+  문장?: string | null; 사슬문장?: string | null
   근거?: string; stance?: string | null; 근거유형?: string | null
 }
 type NodeCard = { 키: string; 노드: string; 대주제?: string; 중주제?: string; 정의?: string; 문단?: number; 출처수?: number }
@@ -23,6 +26,18 @@ export type Brain = {
 }
 
 import { tokens } from '../theme'
+import type { ReactNode } from 'react'
+
+// 문장 속에서 이 관계의 두 글자(a·b)만 굵게 — 문장은 빌더가 만들고 여기선 칠만 한다
+function 강조(text: string, names: (string | undefined)[]): ReactNode[] {
+  let segs: (string | { n: string })[] = [text]
+  for (const n of names) {
+    if (!n) continue
+    segs = segs.flatMap((s) => typeof s !== 'string' ? [s]
+      : s.split(n).flatMap((p, i) => (i ? [{ n }, p] : [p])))
+  }
+  return segs.map((s, i) => (typeof s === 'string' ? s : <b key={i}>{s.n}</b>))
+}
 
 // 색 = 전부 토큰 계승(T3 게이트) — 결정론=primary · 조건부=lunar · 그 외=inkFaint
 const 층색 = (층?: string) =>
@@ -82,10 +97,16 @@ export default function BrainPanel({ brain }: { brain?: Brain | null }) {
           <li key={i} style={{ padding: '10px 12px', borderRadius: tokens.radius.md,
                                background: `color-mix(in srgb, ${tokens.color.ink} 4%, transparent)`,
                                fontSize: 13.5, lineHeight: 1.55 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-              <b>{r.a}</b>
-              <span style={{ color: 층색(r.층), fontWeight: 700 }}>─{r.관계}→</span>
-              <b>{r.b}</b>
+            {/* ★260728 서술층 — 운영자: "풀어서 문장으로 나와야되거든".
+                문장이 있으면 문장이 본문이고, 없을 때만(미문형 kind) 화살표로 폴백한다. */}
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, flexWrap: 'wrap' }}>
+              <span style={{ flex: '1 1 auto', minWidth: 0 }}>
+                {r.문장 ? 강조(r.문장, [r.a, r.b]) : (<>
+                  <b>{r.a}</b>{' '}
+                  <span style={{ color: 층색(r.층), fontWeight: 700 }}>─{r.관계}→</span>{' '}
+                  <b>{r.b}</b>
+                </>)}
+              </span>
               {r.부호 && r.부호 !== '중립' && (
                 <span style={{ fontSize: 11, opacity: .65 }}>({r.부호})</span>
               )}
@@ -106,10 +127,11 @@ export default function BrainPanel({ brain }: { brain?: Brain | null }) {
                 조건 · {(r.조건 as string[]).slice(0, 2).join(' / ')}
               </div>
             )}
-            {/* 사슬 = «왜»의 실물. 이게 있으면 도사가 근거를 말할 수 있다 */}
-            {r.사슬 && r.사슬.length > 0 && (
+            {/* 사슬 = «왜»의 실물. 이게 있으면 도사가 근거를 말할 수 있다.
+                ★260728 — 화살표 나열이 아니라 빌더가 풀어 쓴 문장(사슬문장)으로 읽어 준다. */}
+            {(r.사슬문장 || (r.사슬 && r.사슬.length > 0)) && (
               <div style={{ marginTop: 4, fontSize: 12, opacity: .7 }}>
-                까닭 · {r.사슬.slice(0, 3).join(' → ')}
+                까닭 · {r.사슬문장 ?? r.사슬!.slice(0, 3).join(' → ')}
               </div>
             )}
             {/* ⚖판본 갈림 — 지우지 않고 병기한다(§3) */}
