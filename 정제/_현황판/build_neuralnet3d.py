@@ -377,6 +377,30 @@ let wmin=0,showLbl=true,showGuide=true,useFog=true,hover=null,lock=null,LOD=fals
 const ADJ=N.map(()=>[]);
 E.forEach((e,i)=>{ADJ[e[0]].push(i);ADJ[e[1]].push(i)});
 
+// ── 성능 골격(260728) — 그림은 그대로, 그리는 횟수·낭비만 줄인다
+//  ① sched = rAF 병합  ② visEdges = 가시 간선 캐시  ③ 정지 화면 스냅샷 복원
+//  ④ 회전·드래그 = 저해상 LOD(멈추면 원해상 정밀)  ⑤ 가산합성(lighter)은 순서 무관 → 매 프레임 깊이정렬 제거
+let _rev=0,_visE=null;
+function inval(){_rev++;_visE=null;}
+function visEdges(){ if(_visE)return _visE;
+  _visE=[[],[],[],[],[]];
+  for(let i=0;i<E.length;i++){const e=E[i];if(eVis(e))_visE[e[2]].push(i);}
+  return _visE;}
+let RD=DPR;                                  // 현재 백킹 해상도 — 모션 중엔 1로 낮춘다
+function setRes(d){ if(RD===d)return; RD=d; cv.width=W*RD; cv.height=H*RD; }
+const _off=document.createElement('canvas');
+let _snap=false,_snapKey='';
+const _vKey=()=>_rev+'|'+yaw.toFixed(4)+'|'+pitch.toFixed(4)+'|'+dist.toFixed(3)+'|'+W+'x'+H;
+function _takeSnap(){
+  if(_off.width!==cv.width||_off.height!==cv.height){_off.width=cv.width;_off.height=cv.height;}
+  _off.getContext('2d').drawImage(cv,0,0); _snap=true; _snapKey=_vKey(); }
+function _restore(){ ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height); ctx.drawImage(_off,0,0); }
+let _dq=false;
+function sched(){ if(_dq)return; _dq=true;
+  requestAnimationFrame(()=>{_dq=false;
+    const f=lock!=null?lock:hover;
+    if(f==null&&!LOD&&_snap&&_snapKey===_vKey()&&_off.width===cv.width) _restore(); else draw(); }); }
+
 const vis=n=>bigOn[n.code]&&stgOn[n.s];
 function eVis(e){ return tierOn[e[2]] && e[3]>=wmin && vis(N[e[0]]) && vis(N[e[1]]); }
 
@@ -388,7 +412,8 @@ function dist3(a,b){ const A=N[a],B=N[b];
 let PT=[];
 function draw(){
   if(W<2||H<2) return;
-  ctx.setTransform(DPR,0,0,DPR,0,0);
+  setRes(LOD?1:DPR);                       // 모션 중 저해상 → 멈추면 원해상(전환 때만 재할당)
+  ctx.setTransform(RD,0,0,RD,0,0);
   const g=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);
   g.addColorStop(0,'#080f20');g.addColorStop(1,'#03050b');
   ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
@@ -406,17 +431,15 @@ function draw(){
   // 시냅스 — 뒤에서 앞으로
   ctx.lineCap='round'; ctx.globalCompositeOperation='lighter';
   const ord=[3,2,1,4,0];
+  const VE=visEdges();                     // 캐시된 가시 간선(필터 바뀔 때만 재계산)
   for(const t of ord){
     if(!tierOn[t])continue;
-    const li=[];
-    for(let i=0;i<E.length;i++){const e=E[i];
-      if(e[2]!==t||!eVis(e))continue;
+    if(LOD&&t===3)continue;              // 회전 중엔 약한 다리 생략
+    // 가산 합성(lighter)은 그리는 순서와 무관 → 매 프레임 깊이정렬 제거(픽셀 동일)
+    for(const i of VE[t]){
+      const e=E[i];
       if(foc!=null&&e[0]!==foc&&e[1]!==foc)continue;
-      if(LOD&&t===3)continue;            // 회전 중엔 약한 다리 생략
-      li.push(i);}
-    li.sort((a,b)=>(PT[E[b][0]].d+PT[E[b][1]].d)-(PT[E[a][0]].d+PT[E[a][1]].d));
-    for(const i of li){
-      const e=E[i],A=PT[e[0]],B=PT[e[1]];
+      const A=PT[e[0]],B=PT[e[1]];
       const col = t===0 ? AXCOL[e[4]] : TIERS[t].col;
       const al = foc!=null?0.9:(t===0?0.40:(t===1?0.26:(t===2?0.14:(t===3?0.055:0.30))));
       ctx.strokeStyle=col;
@@ -472,6 +495,7 @@ function draw(){
     }
   }
   drawStageLabels();
+  if(foc==null&&!LOD) _takeSnap();         // 정지 화면 저장 — 다음 같은 화면 요청은 복원으로 끝
 }
 
 function drawGuide(){
@@ -562,15 +586,15 @@ function showInfo(i){
 const tip=document.getElementById('tip');
 let drag=false,px=0,py=0,moved=false;
 cv.addEventListener('mousedown',e=>{drag=true;moved=false;px=e.clientX;py=e.clientY;cv.classList.add('drag')});
-addEventListener('mouseup',()=>{drag=false;cv.classList.remove('drag')});
+addEventListener('mouseup',()=>{drag=false;cv.classList.remove('drag');settle();});
 cv.addEventListener('mousemove',e=>{
   if(drag){const dx=e.clientX-px,dy=e.clientY-py;
     if(Math.abs(dx)+Math.abs(dy)>3)moved=true;
     LOD=true;settle();
     yaw+=dx*0.0075; pitch=Math.max(-1.5708,Math.min(1.5708,pitch+dy*0.006));
-    px=e.clientX;py=e.clientY;draw();return;}
+    px=e.clientX;py=e.clientY;sched();return;}
   const i=pick(e.clientX,e.clientY);
-  if(i!==hover){hover=i;draw();if(lock==null)showInfo(i);}
+  if(i!==hover){hover=i;sched();if(lock==null)showInfo(i);}
   if(i!=null){const n=N[i];tip.style.display='block';
     tip.style.left=(e.clientX+13)+'px';tip.style.top=(e.clientY+13)+'px';
     tip.innerHTML=`<b>${n.n}</b> <span style="color:#6d82a3">${n.code}·${n.mid}</span><br>`+
@@ -579,45 +603,56 @@ cv.addEventListener('mousemove',e=>{
 });
 cv.addEventListener('click',e=>{if(moved)return;
   const i=pick(e.clientX,e.clientY);lock=(i!=null&&i!==lock)?i:null;
-  showInfo(lock!=null?lock:hover);draw();});
+  showInfo(lock!=null?lock:hover);sched();});
 cv.addEventListener('wheel',e=>{e.preventDefault();
-  dist=Math.max(2.2,Math.min(24,dist*Math.exp(e.deltaY*0.0011)));draw();},{passive:false});
+  dist=Math.max(2.2,Math.min(24,dist*Math.exp(e.deltaY*0.0011)));
+  LOD=true;settle();sched();},{passive:false});
 
 // ── 컨트롤
 const tb=document.getElementById('tierBox');
 TIERS.forEach((t,i)=>{const c=E.filter(e=>e[2]===i).length;
   const l=document.createElement('label');
   l.innerHTML=`<input type="checkbox" ${tierOn[i]?'checked':''}><span class="sw" style="background:${t.col}"></span>${t.name}<span class="cnt">${c}</span>`;
-  l.querySelector('input').onchange=ev=>{tierOn[i]=ev.target.checked;draw()};tb.appendChild(l);});
+  l.querySelector('input').onchange=ev=>{tierOn[i]=ev.target.checked;inval();sched()};tb.appendChild(l);});
 const sb=document.getElementById('stgBox');
 S.forEach((s,i)=>{const l=document.createElement('label');
   l.innerHTML=`<input type="checkbox" checked>${s.name}<span class="cnt">${s.n}</span>`;
   l.title=s.desc;
-  l.querySelector('input').onchange=ev=>{stgOn[i]=ev.target.checked;draw()};sb.appendChild(l);});
+  l.querySelector('input').onchange=ev=>{stgOn[i]=ev.target.checked;inval();sched()};sb.appendChild(l);});
 const bb=document.getElementById('bigBox'),bn={};
 N.forEach(n=>bn[n.code]=n.big);
 Object.keys(D.pal).sort().forEach(c=>{if(!bn[c])return;
   const k=N.filter(n=>n.code===c).length;const l=document.createElement('label');
   l.innerHTML=`<input type="checkbox" checked><span class="sw" style="background:${D.pal[c]}"></span>${bn[c].replace(/^S\d+ /,'')}<span class="cnt">${k}</span>`;
-  l.querySelector('input').onchange=ev=>{bigOn[c]=ev.target.checked;draw()};bb.appendChild(l);});
+  l.querySelector('input').onchange=ev=>{bigOn[c]=ev.target.checked;inval();sched()};bb.appendChild(l);});
 document.getElementById('nN').textContent=N.length;
 document.getElementById('eN').textContent=E.length.toLocaleString();
 document.getElementById('wmin').oninput=e=>{wmin=+e.target.value;
-  document.getElementById('wv').textContent=wmin.toFixed(2);draw()};
-document.getElementById('lbl').onchange=e=>{showLbl=e.target.checked;draw()};
-document.getElementById('guide').onchange=e=>{showGuide=e.target.checked;draw()};
-document.getElementById('fog').onchange=e=>{useFog=e.target.checked;draw()};
-document.getElementById('camRing').onclick=()=>{yaw=0;pitch=Math.PI/2;dist=7.0;draw()};
-document.getElementById('camFlow').onclick=()=>{yaw=0;pitch=0;dist=7.6;draw()};
-document.getElementById('camIso').onclick=()=>{yaw=.62;pitch=.30;dist=7.4;draw()};
+  document.getElementById('wv').textContent=wmin.toFixed(2);inval();sched()};
+document.getElementById('lbl').onchange=e=>{showLbl=e.target.checked;inval();sched()};
+document.getElementById('guide').onchange=e=>{showGuide=e.target.checked;inval();sched()};
+document.getElementById('fog').onchange=e=>{useFog=e.target.checked;inval();sched()};
+document.getElementById('camRing').onclick=()=>{yaw=0;pitch=Math.PI/2;dist=7.0;sched()};
+document.getElementById('camFlow').onclick=()=>{yaw=0;pitch=0;dist=7.6;sched()};
+document.getElementById('camIso').onclick=()=>{yaw=.62;pitch=.30;dist=7.4;sched()};
 const sp=document.getElementById('spin');
-sp.onclick=()=>{spin=!spin;sp.classList.toggle('on',spin);if(!spin){LOD=false;draw();}};
+sp.onclick=()=>{spin=!spin;sp.classList.toggle('on',spin);
+  if(!spin){LOD=false;draw();} else if(!_lp){requestAnimationFrame(loop);}};
 
-let idleT=null;
-function loop(){ if(spin&&!drag){LOD=true;yaw+=0.0026;draw();} requestAnimationFrame(loop); }
+let idleT=null,_lp=false,_ph=false,_ema=20;
+function loop(){
+  if(!spin){ _lp=false; return; }          // 회전 꺼지면 루프도 쉰다
+  _lp=true;
+  if(!drag){ _ph=!_ph;
+    const full=_ema<8;                     // 여유 기기(프레임 8ms 미만)만 60fps, 나머지 30fps — 스텝 2배 보상 = 회전 속도 동일
+    if(full||_ph){ const t0=performance.now();
+      LOD=true; yaw+=(full?0.0026:0.0052); draw();
+      _ema=_ema*0.9+(performance.now()-t0)*0.1; } }
+  requestAnimationFrame(loop);
+}
 function settle(){clearTimeout(idleT);idleT=setTimeout(()=>{if(!spin){LOD=false;draw();}},110);}
-function resize(){W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;
-  cv.style.width=W+'px';cv.style.height=H+'px';draw();}
+function resize(){W=innerWidth;H=innerHeight;cv.width=W*RD;cv.height=H*RD;
+  cv.style.width=W+'px';cv.style.height=H+'px';_snap=false;inval();draw();}
 addEventListener('resize',resize);
 resize();loop();
 </script></body></html>
