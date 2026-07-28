@@ -37,6 +37,8 @@ const 왜라벨: Record<string, string> = {
   공리: '더 물으면 명리 밖', 파생: '공리로 환원됨',
   인과: '그래서 이렇게 된다', 목차: '학습 순서 — 이유 아님',
   미검증: '아직 안 따져봄',
+  // ★260728 — 인물·상담화법 접촉. 이유가 없는 게 아니라 애초에 명제가 아니다.
+  비명제: '인물·화법 메타 — 명제 아님',
 }
 // 이유가 단단한 순 — L1 공리·파생·인과는 사슬로 따질 «대상»이 아니라 바탕이므로 위로 온다
 const 왜순위: Record<string, number> = {
@@ -45,7 +47,10 @@ const 왜순위: Record<string, number> = {
 
 export default function BrainPanel({ brain }: { brain?: Brain | null }) {
   if (!brain || !brain.노드?.length) return null
-  const 이유 = brain.이유있는관계 ?? brain.관계.filter((r) => r.왜 && r.왜 !== '낭설후보')
+  // ★260728 — «비명제»(인물·화법 메타)도 「이유 있는 것」이 아니다. 갈래만 신설했는데
+  //   여기 필터를 안 넓히면 764건이 하루아침에 «이유 있음»으로 둔갑한다(한 군데만 고치기).
+  const 없는쪽 = new Set(['낭설후보', '비명제', '미검증'])
+  const 이유 = brain.이유있는관계 ?? brain.관계.filter((r) => r.왜 && !없는쪽.has(r.왜))
   const 낭설 = brain.낭설수 ?? brain.관계.length - 이유.length
   // 이유가 가장 단단한 것부터 — 인과닫힘 > 작용까지 > 발현만 > 분류경로
   const 상위 = [...이유].sort((x, y) => (왜순위[x.왜 ?? ''] ?? 9) - (왜순위[y.왜 ?? ''] ?? 9)).slice(0, 24)
