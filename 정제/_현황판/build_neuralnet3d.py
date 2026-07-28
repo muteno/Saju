@@ -353,6 +353,10 @@ const CX=(S.length-1)*XGAP/2;
 
 // ── 카메라 (궤도)
 let yaw=0.62, pitch=0.30, dist=7.4, spin=true;
+// 고정 초점거리(260728) — 종전 f=(dist*1.02)/(dist+z3)는 dist를 키울수록 f가 1.02로
+// 수렴해 줌아웃이 화면에서 안 먹혔다(멀리서 전체를 못 봄). FL 고정이면 dist가 실제
+// 거리로 작동한다. 기본 dist=7.4에서는 종전과 동일 픽셀.
+const FL=7.4*1.02;
 function project(n){
   let x=n.X-CX, y=n.Y, z=n.Z;
   // x축 둘레 회전(yaw) → 오행 고리가 돈다
@@ -362,10 +366,11 @@ function project(n){
   let cp=Math.cos(pitch),sp=Math.sin(pitch);
   let x2=x*cp - z2*sp, z3=x*sp + z2*cp;
   const d=dist+z3;
-  const f=(dist*1.02)/Math.max(0.35,d);
+  const f=FL/Math.max(0.35,d);
   return {sx:x2*f, sy:-y2*f, depth:d, f:f};
 }
 let SC=1, OX=0, OY=0;
+let CAMX=0;                                 // 좌측 HUD 패널만큼 장면 중심을 오른쪽으로 — 그래프가 패널 밑에 안 숨는다(260728)
 function toScreen(p){ return {x:OX+p.sx*SC, y:OY+p.sy*SC}; }
 
 // ── 상태
@@ -418,7 +423,7 @@ function draw(){
   g.addColorStop(0,'#080f20');g.addColorStop(1,'#03050b');
   ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
 
-  SC=Math.min(W,H)*0.40; OX=W/2; OY=H/2;
+  SC=Math.min(W,H)*0.40; OX=W/2+CAMX; OY=H/2;
   PT=N.map(n=>{const p=project(n);const s=toScreen(p);return {x:s.x,y:s.y,d:p.depth,f:p.f};});
   const dmin=Math.min(...PT.map(p=>p.d)), dmax=Math.max(...PT.map(p=>p.d));
   const fog=p=>useFog?Math.max(0.12,Math.min(1,1.12-(p.d-dmin)/Math.max(.001,dmax-dmin)*0.92)):1;
@@ -605,7 +610,7 @@ cv.addEventListener('click',e=>{if(moved)return;
   const i=pick(e.clientX,e.clientY);lock=(i!=null&&i!==lock)?i:null;
   showInfo(lock!=null?lock:hover);sched();});
 cv.addEventListener('wheel',e=>{e.preventDefault();
-  dist=Math.max(2.2,Math.min(24,dist*Math.exp(e.deltaY*0.0011)));
+  dist=Math.max(2.2,Math.min(60,dist*Math.exp(e.deltaY*0.0011)));
   LOD=true;settle();sched();},{passive:false});
 
 // ── 컨트롤
@@ -651,8 +656,25 @@ function loop(){
   requestAnimationFrame(loop);
 }
 function settle(){clearTimeout(idleT);idleT=setTimeout(()=>{if(!spin){LOD=false;draw();}},110);}
+let _booted=false;
+function fitCam(){                          // 시작 카메라 = 전체가 다 보이는 원거리(운영자 260728)
+  for(let k=0;k<3;k++){
+    SC=Math.min(W,H)*0.40;
+    let mx=0,my=0;
+    for(const n of N){const p=project(n);
+      mx=Math.max(mx,Math.abs(p.sx));my=Math.max(my,Math.abs(p.sy));}
+    const r=Math.max(mx*SC/(W/2-CAMX-48), my*SC/(H*0.38));   // 가시폭(패널 제외) 기준 · 층 라벨 좌우 여유 48px
+    if(r<=1) break;
+    dist=Math.min(60,dist*r);               // f≈FL/dist — 배율 비례라 2~3회면 수렴
+  }
+}
 function resize(){W=innerWidth;H=innerHeight;cv.width=W*RD;cv.height=H*RD;
-  cv.style.width=W+'px';cv.style.height=H+'px';_snap=false;inval();draw();}
+  cv.style.width=W+'px';cv.style.height=H+'px';_snap=false;inval();
+  if(!_booted){_booted=true;                // 첫 로드에만 — 창 리사이즈로 사용자 카메라를 안 건드린다
+    const c=document.getElementById('ctl');
+    CAMX=c?Math.min(W*0.28,c.getBoundingClientRect().right+10)/2:0;
+    fitCam();}
+  draw();}
 addEventListener('resize',resize);
 resize();loop();
 </script></body></html>
