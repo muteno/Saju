@@ -272,6 +272,27 @@ def fixture_check():
             hit = bool(_CP.GRID.search(r["문장"]) or _CP.HOLD.search(r["문장"])
                        or r.get("kind") in _CP.GRID_KIND)
             return (not hit), [f"필터걸림={hit}"]   # «걸러짐»이면 hit=False로 돌려준다
+        if 검사 == "결론어게이트":
+            # ★260728 — 수기 조건부의 결론어 게이트가 사는가. O2 적발: 옛 정규식이
+            #   시험 12문장 중 10개를 통과시켰다(「좋다」만 알고 「좋은」을 모름).
+            #   **그 게이트의 진짜 정규식을 부른다** — 여기 사본을 두면 사본만 시험하게 된다.
+            import importlib.util as _il2
+            _sp2 = _il2.spec_from_file_location("bmc", HERE / "build_manual_conditions.py")
+            import ast as _ast
+            _src = (HERE / "build_manual_conditions.py").read_text(encoding="utf-8")
+            _tree = _ast.parse(_src)
+            _pat = None
+            for _n in _ast.walk(_tree):
+                if (isinstance(_n, _ast.Assign) and _n.targets
+                        and getattr(_n.targets[0], "id", "") == "결론어"):
+                    _pat = re.compile(_ast.literal_eval(_n.value.args[0]))
+            if _pat is None:
+                return None, ["결론어 정규식을 못 찾았다 — 게이트가 사라졌나"]
+            m = _pat.search(r["문장"])
+            # ⚠아래 범용 루프의 극성 규약: hit = «산출물에 나타났다».
+            #   정규식이 잡으면 그 행은 **차단돼 산출물에 안 나타난다** → hit = not 잡힘.
+            #   (기대=차단 & 잡음 → hit=False → 통과 / 기대=통과 & 오살 → hit=False → 실패)
+            return (not m), [f"매치={m.group() if m else '없음'}"]
         return None, ["알 수 없는 검사 종류"]
 
     fails = []
