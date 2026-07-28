@@ -24,7 +24,12 @@ HERE = Path(__file__).resolve().parent
 DATA = HERE / "data"
 원고들 = sorted(glob.glob(str(HERE / "정의원고" / "백과_*.md")))
 
-정본 = {json.loads(l)["concept"] for l in (DATA / "node_layers.jsonl").open(encoding="utf-8")}
+_rows = [json.loads(l) for l in (DATA / "node_layers.jsonl").open(encoding="utf-8")]
+정본 = {r["concept"] for r in _rows}
+# ★260728 — 중주제 이름도 받는다(층="중주제"로 표시).
+#   E4가 「십이신살」처럼 **체계 전체를 해설하는 항목**을 냈는데, 그건 개념 노드가 아니라
+#   중주제다. 노드를 새로 세우면 승인 사안이고, 버리면 해설이 죽는다 — 중주제로 «이사»가 답.
+중주제들 = {r["mid"] for r in _rows}
 
 # 칸 이름 — E5는 S15에서 «무엇이 여기 착지하나»를 쓸 수 있다(발현은 산출이 아니라 착지).
 칸패턴 = re.compile(r"\*\*(무엇|어디서 나오나|어떻게 산출되나|무엇이 여기 착지하나|무엇을 낳나|갈리는 것)\*\*\s*[:：]\s*")
@@ -40,7 +45,8 @@ for f in 원고들:
         name = m.group(1).strip()
         if name in ("차례",) or name.startswith(("S0", "S1")):
             continue                            # 부(部) 머리
-        if name not in 정본:
+        층 = "개념" if name in 정본 else ("중주제" if name in 중주제들 else None)
+        if 층 is None:
             이름오류.append((Path(f).name, name))
             continue
         칸들 = {}
@@ -53,7 +59,7 @@ for f in 원고들:
             칸들[parts[i]] = body
         근거m = re.search(r"\n근거\s*[:：]\s*(.+?)(?:\n\n|\n#|$)", chunk, re.S)
         rows.append({
-            "concept": name, "원고": Path(f).name,
+            "concept": name, "층": 층, "원고": Path(f).name,
             "무엇": 칸들.get("무엇", ""),
             "어디서": 칸들.get("어디서 나오나", ""),
             "산출": 칸들.get("어떻게 산출되나") or 칸들.get("무엇이 여기 착지하나", ""),
