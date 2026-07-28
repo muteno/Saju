@@ -127,6 +127,66 @@ def main():
         })
         stat["채택"] += 1
 
+    # ══ ★260728 — 보드 조건부(피그잼 B갈래) ═══════════════════════════
+    #   근거가 코퍼스가 아니라 **운영자 보드**다. 그래서 para_id/검증구 대신
+    #   보드줄/보드축자를 받고, 닻 검증도 코퍼스가 아니라 `_피그잼정제/규칙.jsonl`의
+    #   «축자» 필드와 대조한다(한 글자도 다르면 탈락 — 요약의 축자 위장 방지).
+    #   ⚠weight 축은 자동본과 같게 두되 근거유형이 «보드규칙»이라 소비처가 갈라 볼 수 있다.
+    보드원고 = HERE / "보드조건부_원고.jsonl"
+    if 보드원고.exists():
+        # ⚠규칙.jsonl 12행은 축자 안에 **개행이 박혀 레코드가 두 줄로 갈라져 있다**(원본 보드의
+        #   줄바꿈이 그대로 들어온 것). 기계산출물이라 손편집 금지 — 리더가 줄을 누적하며 판다.
+        # 🔴그리고 `splitlines()`를 쓰면 안 된다 — **U+2028(LINE SEPARATOR)에서도 줄을 갈라**
+        #   축자 문자열을 부순다(3대 260722가 박아둔 함정의 재현 — 이 파일에도 U+2028이 있다).
+        #   `.split("\n")`은 \n만 가른다. 실측: splitlines() = 16건 중 다수 축자불일치 탈락,
+        #   split("\n") = 전건 일치.
+        보드축자들 = set()
+        _buf = ""
+        for line in (HERE / "_피그잼정제" / "규칙.jsonl").read_text(encoding="utf-8").split("\n"):
+            if not line.strip() and not _buf:
+                continue
+            _buf = (_buf + "\n" + line) if _buf else line
+            try:
+                보드축자들.add(norm(json.loads(_buf).get("축자") or ""))
+                _buf = ""
+            except json.JSONDecodeError:
+                continue                      # 다음 줄을 이어 붙여 다시 시도
+        if _buf:
+            print(f"  ⚠규칙.jsonl 꼬리에 못 판 조각이 남았다({len(_buf)}자) — 검사 필요")
+        n_board = 0
+        for line in 보드원고.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            d = json.loads(line)
+            if d.get("_주석") or d.get("_규칙") or not d.get("a"):
+                continue
+            a, b = d["a"], d["b"]
+            if a not in CONCEPTS or b not in CONCEPTS:
+                탈락.append((d, f"정본 노드명 아님 — {[x for x in (a, b) if x not in CONCEPTS]}"))
+                stat["탈락:노드명"] += 1
+                continue
+            if not any(norm(d["보드축자"]) in s for s in 보드축자들):
+                탈락.append((d, f"★보드축자가 규칙.jsonl에 없다 — 「{d['보드축자']}」"))
+                stat["탈락:축자불일치"] += 1
+                continue
+            if 결론어.search(d.get("조건", "")):
+                탈락.append((d, f"⛔조건 서술에 결론 어휘 — 「{결론어.search(d['조건']).group()}」"))
+                stat["탈락:결론"] += 1
+                continue
+            out.append({
+                "a": a, "b": b, "kind": "조건부", "dir": "→",
+                "polarity": d.get("부호") or "중립",
+                "조건": ["보드"], "조건절": d["조건"],
+                "para_id": f"BD-L{d['보드줄']}", "출처": "보드", "출처처": "방법론 보드(운영자 정리본)",
+                "등급": "상", "조건극성": ("부재" if _NEG.search(d["조건"]) else "존재"),
+                "트리거품질": 1.0, "트리거총칭": False,
+                "수기": True, "수기관계": d.get("kind", "관계"), "검증구": d["보드축자"],
+                "간선id": "B-" + hashlib.md5(
+                    f"{a}|{b}|BD-L{d['보드줄']}".encode()).hexdigest()[:8],
+            })
+            stat["채택:보드"] += 1
+            n_board += 1
+
     (DATA / "조건부간선_수기.jsonl").write_text(
         "\n".join(json.dumps(x, ensure_ascii=False) for x in out) + "\n", encoding="utf-8")
 
