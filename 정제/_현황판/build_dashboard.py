@@ -48,6 +48,9 @@ FLAG_NAME = {
 
 # ─────────────────────────── 1. 배치 산출물 병합
 def merge():
+    # ★260728 — 보류 해제 반입분(XT 배치)도 아래 글롭이 먹는다. 대차대조표는 글롭(`*`)을
+    #   못 보므로 소비 사실을 리터럴로 남긴다: "XT_posts.jsonl" · "XT_paras.jsonl"
+    #   (생산 = 보류해제_반입.py · 운영자 승인 260728 — 매화역수·운세력·택일 3파일)
     posts, paras, batches = [], [], []
     for f in sorted(INV.glob("*_posts.jsonl")):
         b = f.name.replace("_posts.jsonl", "")
