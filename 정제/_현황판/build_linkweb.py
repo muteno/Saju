@@ -121,7 +121,10 @@ for r in rels:
              "polarity": r.get("polarity"), "weight": r["weight"],
              "근거유형": r.get("근거유형", "결정론규칙"), "source": r.get("source", ""),
              "author": r.get("author", ""), "층": "L1결정론"}
-        for k in ("조건", "ratio", "stance", "effect", "note", "as_of"):
+        # ★260728 — 발현 «살» 3필드 추가(근거없음·살축자·살para). **또 여기서 떨어질 뻔했다** —
+        #   위 260726 주석이 경고한 그 허용목록에 새 필드를 안 넣으면 같은 증발이 재발한다.
+        for k in ("조건", "ratio", "stance", "effect", "note", "as_of",
+                  "근거없음", "살축자", "살para"):
             if r.get(k):
                 e[k] = r[k]
         # 간선 주소 — 조건·프로브·유닛이 간선을 가리키려면 안정 키가 있어야 한다
