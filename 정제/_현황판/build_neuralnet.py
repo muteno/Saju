@@ -247,6 +247,42 @@ let hover=null, lock=null;
 const ADJ = N.map(()=>[]);
 E.forEach((e,i)=>{ ADJ[e[0]].push(i); ADJ[e[1]].push(i); });
 
+// ── 성능 골격(260728) — 그림은 그대로, 그리는 횟수·낭비만 줄인다
+//  ① sched = rAF 병합(mousemove 폭주 → 프레임당 1회)
+//  ② visEdges = 가시 간선 캐시(7천 간선 × 티어 5회 스캔을 필터 바뀔 때만)
+//  ③ 스냅샷 = 정지 화면 비트맵 저장 → 같은 화면 재요청은 복원, 팬·줌 중엔 밀어 보여주고 멈추면 정밀 재렌더
+let _rev=0, _visE=null;
+function inval(){ _rev++; _visE=null; }
+function visEdges(){ if(_visE) return _visE;
+  _visE=[[],[],[],[],[]];
+  for(let i=0;i<E.length;i++){ const e=E[i]; if(edgeVisible(e)) _visE[e[2]].push(i); }
+  return _visE; }
+const _off=document.createElement('canvas');
+let _snap=false, _snapKey='', _sv=null;
+const _vKey=()=>_rev+'|'+vx.toFixed(2)+'|'+vy.toFixed(2)+'|'+vs.toFixed(4)+'|'+W+'x'+H;
+const _snapRevOk=()=>_snap && _sv && _snapKey.split('|')[0]===String(_rev) && _off.width===cv.width;
+function _takeSnap(){
+  if(_off.width!==cv.width||_off.height!==cv.height){ _off.width=cv.width; _off.height=cv.height; }
+  _off.getContext('2d').drawImage(cv,0,0); _snap=true; _snapKey=_vKey(); _sv={vx,vy,vs}; }
+function _restore(){ ctx.setTransform(1,0,0,1,0,0); ctx.clearRect(0,0,cv.width,cv.height); ctx.drawImage(_off,0,0); }
+function _blitView(){                       // 스냅샷을 현재 뷰로 밀어서 그린다(팬=동일 픽셀 이동 · 줌=잠깐 근사)
+  ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H);
+  const g=ctx.createRadialGradient(W*0.5,H*0.45,0,W*0.5,H*0.45,Math.max(W,H)*0.75);
+  g.addColorStop(0,'#0a1122'); g.addColorStop(1,'#04060d'); ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+  const k=vs/_sv.vs;
+  ctx.drawImage(_off,0,0,_off.width,_off.height, vx-_sv.vx*k, vy-_sv.vy*k, W*k, H*k); }
+let _dq=false, _stT=null;
+function sched(){ if(_dq) return; _dq=true;
+  requestAnimationFrame(()=>{ _dq=false;
+    const f=lock!=null?lock:hover;
+    if(f==null && _snap && _snapKey===_vKey() && _off.width===cv.width) _restore(); else draw(); }); }
+function schedMotion(){                     // 드래그·휠 중 전용 — 멈추면 120ms 뒤 정밀 재렌더
+  if(!_dq){ _dq=true;
+    requestAnimationFrame(()=>{ _dq=false;
+      const f=lock!=null?lock:hover;
+      if(f==null && _snapRevOk()) _blitView(); else draw(); }); }
+  clearTimeout(_stT); _stT=setTimeout(()=>{ const f=lock!=null?lock:hover; if(f==null) draw(); else sched(); }, 120); }
+
 function edgeVisible(e){
   if(!tierOn[e[2]]) return false;
   if(e[3] < wmin) return false;
@@ -303,11 +339,12 @@ function draw(){
   ctx.lineCap='round';
   if(glow) ctx.globalCompositeOperation='lighter';
   const order = [3,2,1,4,0];               // 약한 것부터 깔고 센 것을 위에
+  const VE = visEdges();                    // 캐시된 가시 간선(필터 바뀔 때만 재계산)
   for(const t of order){
     if(!tierOn[t]) continue;
     const C = TIERS[t].col;
-    for(let i=0;i<E.length;i++){
-      const e=E[i]; if(e[2]!==t || !edgeVisible(e)) continue;
+    for(const i of VE[t]){
+      const e=E[i];
       const inFoc = foc==null || e[0]===foc || e[1]===foc;
       if(foc!=null && !inFoc) continue;
       let a = foc!=null ? 0.85 : (t===0?0.42:(t===1?0.30:(t===2?0.17:(t===3?0.07:0.34))));
@@ -322,10 +359,11 @@ function draw(){
   ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over';
 
   // 뉴런
-  for(const n of N){
+  for(let ni=0;ni<N.length;ni++){
+    const n=N[ni];
     if(!nodeVisible(n)) continue;
     const P=toS(n), r=Math.max(1.6, n.r*vs);
-    const dim = focSet && !focSet.has(N.indexOf(n)) && N.indexOf(n)!==foc;
+    const dim = focSet && !focSet.has(ni) && ni!==foc;
     ctx.globalAlpha = dim ? 0.13 : 1;
     if(!dim){
       ctx.beginPath(); ctx.arc(P.x,P.y,r*2.5,0,6.284);
@@ -345,9 +383,9 @@ function draw(){
   if(showLbl){
     ctx.font = `${Math.max(8.5, 10.5*Math.min(1.35,vs))}px "Pretendard","Malgun Gothic",sans-serif`;
     ctx.textBaseline='middle';
-    for(const n of N){
+    for(let ni=0;ni<N.length;ni++){
+      const n=N[ni];
       if(!nodeVisible(n)) continue;
-      const ni=N.indexOf(n);
       const dim = focSet && !focSet.has(ni) && ni!==foc;
       const near = foc!=null && (ni===foc || (focSet && focSet.has(ni)));
       if(gapOK[n.L] < 12.5 && !near) continue;    // 겹칠 자리면 생략 — 줌인하면 나타난다
@@ -382,6 +420,7 @@ function draw(){
     ctx.fillText(f.sub+'  (클릭)', x-8, y+32*Math.min(1.2,vs));
     f._hit = {x:x-14, y:y-7, w:bw, h:bh};
   }
+  if(foc==null) _takeSnap();               // 정지 화면 저장 — 다음 같은 화면 요청은 복원으로 끝
 }
 
 // ── 히트 테스트
@@ -437,10 +476,10 @@ cv.addEventListener('mousemove',e=>{
   if(dragging){
     const dx=e.clientX-sx, dy=e.clientY-sy;
     if(Math.abs(dx)+Math.abs(dy)>3) moved=true;
-    vx+=dx; vy+=dy; sx=e.clientX; sy=e.clientY; draw(); return;
+    vx+=dx; vy+=dy; sx=e.clientX; sy=e.clientY; schedMotion(); return;
   }
   const i=pick(e.clientX,e.clientY);
-  if(i!==hover){ hover=i; draw(); if(lock==null) showInfo(i); }
+  if(i!==hover){ hover=i; sched(); if(lock==null) showInfo(i); }
   if(i!=null){
     const n=N[i];
     tip.style.display='block';
@@ -454,18 +493,18 @@ cv.addEventListener('click',e=>{
   for(let i=0;i<F.length;i++){
     const r=F[i]._hit;
     if(r && e.clientX>=r.x && e.clientX<=r.x+r.w && e.clientY>=r.y && e.clientY<=r.y+r.h){
-      collapsed[i]=!collapsed[i]; layout(); draw(); return;
+      collapsed[i]=!collapsed[i]; layout(); inval(); sched(); return;
     }
   }
   const i=pick(e.clientX,e.clientY);
   lock = (i!=null && i!==lock) ? i : null;
-  showInfo(lock!=null?lock:hover); draw();
+  showInfo(lock!=null?lock:hover); sched();
 });
 cv.addEventListener('wheel',e=>{
   e.preventDefault();
   const f=Math.exp(-e.deltaY*0.0013), nx=Math.max(0.12,Math.min(7,vs*f));
   vx = e.clientX-(e.clientX-vx)*(nx/vs); vy = e.clientY-(e.clientY-vy)*(nx/vs);
-  vs=nx; draw();
+  vs=nx; schedMotion();
 },{passive:false});
 
 // ── 컨트롤
@@ -476,7 +515,7 @@ TIERS.forEach(t=>{
   l.innerHTML=`<input type="checkbox" ${tierOn[t.i]?'checked':''}>
     <span class="sw" style="background:${t.col}"></span>${t.name}<span class="cnt">${cnt}</span>`;
   l.title=t.desc;
-  l.querySelector('input').onchange=ev=>{tierOn[t.i]=ev.target.checked;draw()};
+  l.querySelector('input').onchange=ev=>{tierOn[t.i]=ev.target.checked;inval();sched()};
   tierBox.appendChild(l);
 });
 const bigBox=document.getElementById('bigBox');
@@ -487,22 +526,23 @@ Object.keys(D.pal).sort().forEach(code=>{
   const cnt=N.filter(n=>n.code===code).length;
   const l=document.createElement('label');
   l.innerHTML=`<input type="checkbox" checked><span class="sw" style="background:${D.pal[code]}"></span>${bigNames[code].replace(/^S\d+ /,'')}<span class="cnt">${cnt}</span>`;
-  l.querySelector('input').onchange=ev=>{bigOn[code]=ev.target.checked;draw()};
+  l.querySelector('input').onchange=ev=>{bigOn[code]=ev.target.checked;inval();sched()};
   bigBox.appendChild(l);
 });
 document.getElementById('nN').textContent=N.length;
 document.getElementById('eN').textContent=E.length.toLocaleString();
 document.getElementById('wmin').oninput=e=>{wmin=+e.target.value;
-  document.getElementById('wv').textContent=wmin.toFixed(2);draw()};
-document.getElementById('lbl').onchange=e=>{showLbl=e.target.checked;draw()};
-document.getElementById('glow').onchange=e=>{glow=e.target.checked;draw()};
-document.getElementById('fwd').onchange=e=>{fwdOnly=e.target.checked;draw()};
+  document.getElementById('wv').textContent=wmin.toFixed(2);inval();sched()};
+document.getElementById('lbl').onchange=e=>{showLbl=e.target.checked;inval();sched()};
+document.getElementById('glow').onchange=e=>{glow=e.target.checked;inval();sched()};
+document.getElementById('fwd').onchange=e=>{fwdOnly=e.target.checked;inval();sched()};
 document.getElementById('fit').onclick=fit;
-document.getElementById('reset').onclick=()=>{lock=null;hover=null;showInfo(null);draw()};
+document.getElementById('reset').onclick=()=>{lock=null;hover=null;showInfo(null);sched()};
 
 function resize(){
   W=innerWidth;H=innerHeight;
   cv.width=W*DPR;cv.height=H*DPR;cv.style.width=W+'px';cv.style.height=H+'px';
+  _snap=false; inval();
   draw();
 }
 addEventListener('resize',()=>{resize();});
