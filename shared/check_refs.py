@@ -23,8 +23,8 @@ def is_generated(p):
     except OSError:
         return False
 
-# 골격 [N] 줄에 반드시 있어야 할 키워드 — 전파로 번호가 밀리면 여기서 울린다
-MARKER_ANCHORS = {'## §A': '착수', '## §B': '수행', '## §C': '완료', '## §D': '금지'}  # [6] '한 수'→'보고': 260717 #51 개정(6단 골격) 동조
+# 골격 [키] 줄에 반드시 있어야 할 키워드 — 전파로 문안이 뒤틀리면 여기서 울린다
+MARKER_ANCHORS = {'[디자인기틀]': '정본', '[평의회]': '적대적 검증', '[머지]': 'read-back', '[보고]': '3줄'}  # 260730 개정: §A~D 골격 폐지 → [키] 체계 동조
 EXTERNAL_REPOS = ('muteno/', 'nomute-editor')  # 타 레포 참조 면제 화이트리스트
 
 
@@ -43,7 +43,7 @@ def main():
     if '<!-- SYNC-COMMON-START -->' in txt:
         common = txt.split('<!-- SYNC-COMMON-START -->')[-1].split('<!-- SYNC-COMMON-END -->')[0]
         for num, kw in MARKER_ANCHORS.items():
-            m = re.search(r'^' + re.escape(num) + r'[^\n]*', common, re.M)
+            m = re.search(r'^[^\n]*' + re.escape(num) + r'[^\n]*', common, re.M)
             if not (m and kw in m.group(0)):
                 errs.append(f"마커 번호 드리프트 의심: {num} 절에 '{kw}' 없음 — 【레포 바인딩】의 [N] 참조 전수 재점검 필요")
 
