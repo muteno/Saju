@@ -4,3 +4,9 @@
 4. [전후] UI 변경은 전과 후를 보여준다. 시각 변경은 이미지나 html로.
 5. [완료] 작업 끝 = 머지까지. 단 충돌·체크 실패·비가역 작업이면 멈추고 묻는다.
 6. [보고] 딱 3줄: ①결과(실패는 실패라고) ②바뀐 것 ③머지 여부 + 다음 액션.
+
+## 이 레포 전용 (saju)
+- 실제 앱 = `app/`(Vite+React+TS) · 루트 스크립트로 빌드(Cloudflare Pages가 루트에서 빌드해 dist/ 산출) · 세션 규범·현황 = `dosa-app/STATUS.md`.
+- 커밋 전 `npm run verify`(= `scripts/verify.sh`) · 디자인 토큰 락 = `npm run lock:tokens`(= `scripts/check_tokens.mjs`) — 미승인 신규 토큰은 게이트 차단.
+- 디자인 규칙 = `docs/디자인토큰_제1핵심명령.md` + `docs/디자인방식론_지침.md` — 새 색·px·radius 창작 금지, 없는 값이 필요하면 멈추고 운영자에게 묻는다.
+- 작업 이력·요구사항 = `docs/작업이력.md` · `docs/요구사항_큐.md`.
