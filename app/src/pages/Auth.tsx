@@ -161,9 +161,13 @@ export function Signup() {
     setEntered()
     nav('/loading?flow=enter', { replace: true })
   }
-  const agree = (label: string, on: boolean, last = false) => (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', py: 1.3, borderBottom: last ? 'none' : '1px solid var(--c-page)' }}>
-      <Typography sx={{ fontSize: label === '전체 동의' ? 13.5 : 12.5, fontWeight: label === '전체 동의' ? 700 : 600, color: label === '전체 동의' ? tokens.color.ink : tokens.color.inkSub }}>{label}</Typography>
+  /** to = 문서 열람 경로(/terms·/privacy) — 행 전체가 열람 버튼이 된다(체크는 목업 그대로) */
+  const agree = (label: string, on: boolean, last = false, to?: string) => (
+    <Box onClick={to ? () => nav(to) : undefined} role={to ? 'button' : undefined} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', py: 1.3, borderBottom: last ? 'none' : '1px solid var(--c-page)', cursor: to ? 'pointer' : 'default' }}>
+      <Typography sx={{ fontSize: label === '전체 동의' ? 13.5 : 12.5, fontWeight: label === '전체 동의' ? 700 : 600, color: label === '전체 동의' ? tokens.color.ink : tokens.color.inkSub }}>
+        {label}
+        {to && <span style={{ color: 'var(--c-ink-faint)', marginLeft: 6 }}>›</span>}
+      </Typography>
       <Typography sx={{ color: on ? tokens.color.primary : 'var(--c-border-strong)', fontWeight: 800 }}>✓</Typography>
     </Box>
   )
@@ -190,8 +194,8 @@ export function Signup() {
           <input placeholder="별명도 좋아요" style={fieldStyle} aria-label="닉네임" value={nickname} onChange={(e) => setNickname(e.target.value)} autoComplete="nickname" />
           <Box sx={{ mt: 2.75, borderRadius: '14px', background: 'rgba(255,255,255,.55)', border: '1px solid rgba(255,255,255,.8)', backdropFilter: 'blur(11px)', WebkitBackdropFilter: 'blur(11px)', px: 1.75, py: 0.5 }}>
             {agree('전체 동의', true)}
-            {agree('[필수] 서비스 이용약관', true)}
-            {agree('[필수] 개인정보 처리방침', true)}
+            {agree('[필수] 서비스 이용약관', true, false, '/terms')}
+            {agree('[필수] 개인정보 처리방침', true, false, '/privacy')}
             {agree('[선택] 운세 알림 받기', false, true)}
           </Box>
         </Box>
