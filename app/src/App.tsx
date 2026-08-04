@@ -7,6 +7,7 @@ import Settings from './pages/Settings'
 import InfoInput from './pages/InfoInput'
 import Loading from './pages/Loading'
 import { Login, Signup, Find } from './pages/Auth'
+import { Terms, Privacy } from './pages/Legal'
 
 /** 구 라우트 → 신 라우트로 쿼리 보존 이동(공유 링크·저장 링크가 안 끊기게) */
 function Keep({ to }: { to: string }) {
@@ -31,6 +32,8 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/find" element={<Find />} />
+      <Route path="/terms" element={<Terms />} />
+      <Route path="/privacy" element={<Privacy />} />
       <Route path="/input" element={<InfoInput />} />
       <Route path="/loading" element={<Loading />} />
       {/* 구 라우트 보존 */}

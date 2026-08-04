@@ -189,6 +189,13 @@ export default function Settings() {
             })}
           </Box>
 
+          {/* 약관·정책 — 처리방침은 상시 열람 공개가 의무(가입 화면 밖 진입점 · YETA 설정 약관 행 문법) */}
+          <SectionTitle>약관·정책</SectionTitle>
+          <Box className="glass" sx={{ borderRadius: '14px', px: 2, py: 0.5 }}>
+            {row('서비스 이용약관', { onClick: () => nav('/terms') })}
+            {row('개인정보 처리방침', { onClick: () => nav('/privacy'), last: true })}
+          </Box>
+
           <Typography sx={{ textAlign: 'center', fontSize: 11, color: tokens.color.inkFaint, mt: 2.75 }}>
             연식당 v0.1 · 입력 정보는 이 기기에만 저장돼요
           </Typography>
