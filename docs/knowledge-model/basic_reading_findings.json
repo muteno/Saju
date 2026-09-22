@@ -1,0 +1,205 @@
+{
+  "inspected_at": "2026-09-22",
+  "scope": "기존 자료 및 코드를 읽고 작성한 기초 풀이 우선 로드맵. 제품 코드는 변경하지 않았다.",
+  "archive_coverage": [
+    {
+      "source_id": "src-78a6c768649d",
+      "path": "1. 원본 라이브러리/2. 웹 스크랩/일주론 글모음.docx",
+      "sha256": "4200872a10b2715b394b6524c951656c7a554f97b61199473081f9ce95ed139f",
+      "actual_article_headers": 61,
+      "daypillar_article_headers": 60,
+      "method": "본문의 작성일 YYYY-MM-DD 메타데이터 직전 제목을 집계. 목차 중복 제외. 문장 정합성 검수와는 별개.",
+      "author_cluster": null
+    },
+    {
+      "source_id": "src-18730e6f239f",
+      "path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+      "sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+      "actual_article_headers": 28,
+      "daypillar_article_headers": 0,
+      "method": "본문의 작성일 YYYY-MM-DD 메타데이터 직전 제목을 집계. 목차 중복 제외. 문장 정합성 검수와는 별개.",
+      "author_cluster": null
+    },
+    {
+      "source_id": "src-99e7ca751eef",
+      "path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+      "sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+      "actual_article_headers": 59,
+      "daypillar_article_headers": 0,
+      "method": "본문의 작성일 YYYY-MM-DD 메타데이터 직전 제목을 집계. 목차 중복 제외. 문장 정합성 검수와는 별개.",
+      "author_cluster": null
+    }
+  ],
+  "repo_index_coverage": [
+    {
+      "prefix": "ilju/",
+      "keys": 60,
+      "unique_indexed_articles": 97,
+      "article_docs": {
+        "명리학탐구(고급1) 게시판 글모음": 7,
+        "일주론 글모음": 60,
+        "현묘의 사주 이야기 글모음": 1,
+        "운세정리게시판 게시판 글모음": 29
+      },
+      "status": "기존 색인상의 연결 수; 원문 관련성이나 정확도를 보증하지 않음"
+    },
+    {
+      "prefix": "cheongan/",
+      "keys": 10,
+      "unique_indexed_articles": 19,
+      "article_docs": {
+        "천간과 지지 글모음": 10,
+        "초코서당-천간, 지지 글모음": 9
+      },
+      "status": "기존 색인상의 연결 수; 원문 관련성이나 정확도를 보증하지 않음"
+    },
+    {
+      "prefix": "jiji/",
+      "keys": 12,
+      "unique_indexed_articles": 15,
+      "article_docs": {
+        "천간과 지지 글모음": 12,
+        "초코서당-천간, 지지 글모음": 3
+      },
+      "status": "기존 색인상의 연결 수; 원문 관련성이나 정확도를 보증하지 않음"
+    },
+    {
+      "prefix": "sipsin/",
+      "keys": 10,
+      "unique_indexed_articles": 74,
+      "article_docs": {
+        "도화로운 사주 칼럼 글모음": 13,
+        "명리학입문 게시판 글모음": 5,
+        "명리학탐구(고급1) 게시판 글모음": 7,
+        "명리학탐구(기초) 전체 글모음 001-086": 10,
+        "사주공부-명리 초급 글모음": 5,
+        "십신과 합충 글모음": 14,
+        "자평명리학 게시판 글모음": 4,
+        "사주풀이 게시판 글모음": 7,
+        "현묘의 사주 이야기 글모음": 2,
+        "명리학탐구(중급2) 게시판 글모음": 1,
+        "사주공부-명리 중급 글모음": 6
+      },
+      "status": "기존 색인상의 연결 수; 원문 관련성이나 정확도를 보증하지 않음"
+    },
+    {
+      "prefix": "yongsin/",
+      "keys": 5,
+      "unique_indexed_articles": 28,
+      "article_docs": {
+        "원국 분석 및 용신 글모음": 28
+      },
+      "status": "기존 색인상의 연결 수; 원문 관련성이나 정확도를 보증하지 않음"
+    }
+  ],
+  "distilled_ilju": {
+    "files": 60,
+    "with_perspective_differences": 60,
+    "personality_bullet_drafts": 402,
+    "source_doc_references": {
+      "운세정리게시판 게시판 글모음": 29,
+      "일주론 글모음": 60,
+      "명리학탐구(고급1) 게시판 글모음": 7,
+      "현묘의 사주 이야기 글모음": 1
+    },
+    "quality_status": "60일주 초안은 존재한다. 모든 성향문장에 대한 원문 정합성·조건 누락·충돌·중복 저자 검수는 아직 보증하지 못한다."
+  },
+  "reusable": [
+    {
+      "component": "만세력/키셋",
+      "path": "dosa-app/engine/src/manseryeok.js, keyset.js",
+      "use": "생년월일시에서 구조를 산출하는 기존 모듈 재사용 후보. 경계시각 및 시간미상 등 계산 검증은 별도 유지."
+    },
+    {
+      "component": "근거 리포트 조립",
+      "path": "dosa-app/engine/src/report.js; app/src/engine/vendor/report.js",
+      "use": "일주·일간·일지·십신·관계 자료를 키로 조회, 증류본 우선/원문 발췌 폴백, 근거 없으면 비움."
+    },
+    {
+      "component": "기초 풀이 화면",
+      "path": "app/src/data/saju.ts:toReading",
+      "use": "기존 60일주 핵심·성격·관점차이를 화면에 연결하는 경로가 이미 있다."
+    },
+    {
+      "component": "출처 자동 검증",
+      "path": "dosa-app/kb-tools/validate_distilled.py",
+      "use": "키/원문 유닛 존재·직접 인용의 축자일치·일부 조견표 일치 검증 재사용. 요약문의 의미적 타당성이나 사주 예측 정확도를 검증하지 않는다."
+    }
+  ],
+  "gaps": [
+    {
+      "id": "claim_granularity",
+      "detail": "distilled.성격 등은 문장 배열. 각 주장에 개별 출처 구간·성립 조건·반대 근거·맥락 의존성을 붙여야 함."
+    },
+    {
+      "id": "static_daypillar",
+      "detail": "일주 요약을 원국 맥락 조건 확인 없이 직접 노출. 일주 초안을 기본 설명으로 제한하고 월령/십신/위치 상호작용으로 보완할 출력 구조 필요."
+    },
+    {
+      "id": "source_display",
+      "detail": "현재 toReading에서 다중 출처 요약에 d.sources[0]만 대표 출처로 부착. 문장별 검증 가능한 출처 연결 필요."
+    },
+    {
+      "id": "policy_vs_probability",
+      "detail": "judge의 보드110점, todayFortune 관계별 가감점은 기존 정책값이며 학습된 확률이 아님. 기본풀이 설계에서 이 수치를 확률로 이관하지 않음."
+    },
+    {
+      "id": "unknown_hour",
+      "detail": "현재 toReading는 일부 섹션을 숨기지만 buildReading는 hourUnknown 옵션 없이 먼저 실행됨. 사용자 문구에 일주 풀이가 그대로 정확하다고 단정하는 문장도 존재. 입력 불확실성 계산/표현 검토 필요."
+    },
+    {
+      "id": "author_dependence",
+      "detail": "같은 저자의 블로그/영상 및 파생 운영자 노트가 독립 증거로 누적되지 않도록 저자 계보·중복 분리."
+    },
+    {
+      "id": "unsupported_sensitive_claims",
+      "detail": "기존 요약에 건강·관계결과·민감한 개인 특성 단정이 섞일 수 있음. 기초 성향 범위에서 조건 없는 개인 단정 제외 검수 필요."
+    }
+  ],
+  "milestones": [
+    {
+      "stage": "0. 기준 확정",
+      "deliverable": "아젠다·원문 발언 보존 + 검증 수준(자료 존재/출처 검증/맥락 추론/확률 보정) 명시",
+      "done_when": "테스트 통과나 데이터 수량을 해석 정확도 또는 모델 완성으로 부르지 않는다."
+    },
+    {
+      "stage": "1. 기초 지식 검수",
+      "deliverable": "60일주 초안을 블로그 원문과 대조해 문장별 주장 카드로 정리. 일간10·일지12·십신10 기본 정의/관련 해석 카드 정리. 필요조건·완화조건·반대근거·출처·검수상태 필수.",
+      "done_when": "60일주 모두 최소 기본 설명·성향 후보·출처를 갖고, 근거 없는 문장은 보류 상태로 분리됨."
+    },
+    {
+      "stage": "2. 기본 풀이 MVP",
+      "deliverable": "일주 정체와 구조 + 기본 성향 후보 + 그 해석을 조정하는 원국 조건 + 근거와 알 수 없는 부분을 한 응답 구조로 생성. 근거에 없는 내용을 LLM이 덧붙이지 않도록 연결.",
+      "done_when": "60일주 커버리지와 생시 미상 처리, 모순 보존, 무근거 단정 방지, 출처 충실도 검수 통과. 해석 정확도 검증과 구분."
+    },
+    {
+      "stage": "3. 맥락 관계 모델",
+      "deliverable": "문장 카드를 조건부 관계/다항 상호작용으로 변환. 일간·일지·월령·십신·위치의 입력별 관계 강도 변화부터 반영.",
+      "done_when": "변수 변화에 대한 해석 변화와 그 근거를 추적할 수 있으며 자료에 없는 수치는 미보정으로 표시."
+    },
+    {
+      "stage": "4. 대운·세운 확장",
+      "deliverable": "기본 원국 해석 위에 시기별 입력과 관계 변화를 분리 적층. 추가 수집물은 기존 주장 보강/새 조건/반론으로 반영.",
+      "done_when": "원국 설명과 시기별 설명이 혼동되지 않고, 특정 글의 연도별 풀이가 일반 규칙으로 누출되지 않음."
+    },
+    {
+      "stage": "5. 확률 보정 및 평가",
+      "deliverable": "예측 대상/관측 결과/시간 범위를 정의한 데이터와 검수 사례를 별도로 구축. 저자 및 시기 단위 분리 평가.",
+      "done_when": "자료내 지지 강도, 추론 불확실성, 실제 관측 결과에 대한 확률을 분리해 평가하고 보정."
+    }
+  ],
+  "ingestion_policy": {
+    "retain_original": true,
+    "reingest_incremental": true,
+    "stages": [
+      "원문 식별·해시",
+      "저자/글 단위 분리·중복 확인",
+      "주장·조건·예외·반론 추출",
+      "출처 검수",
+      "기존 관계에 연결",
+      "모순 보존·검수",
+      "평가 후 풀이에 반영"
+    ],
+    "more_scrapes_means": "근거 범위와 조건 다양성이 늘 수 있음. 수집량 또는 같은 주장의 반복 횟수만으로 실세계 정확도나 확률이 증가한다고 볼 수 없음."
+  }
+}

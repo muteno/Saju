@@ -1,0 +1,508 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "path": "dosa-app/methodology/figjam_board_full.md",
+    "sha256": "442c1892203cb5edde66db53dec733ea0d352d5682447f1ed4515835b16a20d6",
+    "git_blob_sha": "34cf3b61bdaa8f71cdbe739fec3d3dc3c951491b",
+    "snapshot_commit": "15ef8837144f9c130b7f3a6ca23f53d15a6a1fcd",
+    "board_key": "SEEnsqUToHwgVY5QZnYLeU",
+    "board_url_candidate": "https://www.figma.com/board/SEEnsqUToHwgVY5QZnYLeU",
+    "board_url_status": "constructed_from_key_not_live_verified",
+    "snapshot_captured_at": null,
+    "live_sync_status": "not_checked",
+    "source_kind": "operator_curated_figjam_snapshot",
+    "line_count": 3517,
+    "line_locator": "UTF-8 text physical lines, 1-based",
+    "connector_endpoint_status": "not_preserved_in_markdown",
+    "raw_companion": {
+      "path": "dosa-app/methodology/figjam_board_raw.txt",
+      "format": "XML",
+      "bytes": 627361,
+      "connector_elements_observed": 154,
+      "endpoint_attributes": [
+        "connectorStart",
+        "connectorEnd"
+      ],
+      "use_in_bindings": "not_used",
+      "endpoint_semantics_status": "not_validated",
+      "note": "Git HEAD의 기존 원문 구조만 확인. 연결에는 개인 영역이 포함될 수 있어 이번 산출물로 복제하거나 해석하지 않음."
+    },
+    "upstream_attribution_status": "each claim needs original blog/video lineage crosscheck",
+    "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+  },
+  "purpose": "사용자 원문 14에 따라 기본 개념을 구성할 보드 기준 자료를 별도 연결한다. 학술적 원전·독립 실증 근거·검증된 알고리즘을 뜻하지 않는다.",
+  "scope": {
+    "concepts_reviewed": 18,
+    "existing_blog_definitions_modified": false,
+    "index_line_min": 330,
+    "excluded_personal_sections": [
+      {
+        "line_start": 6,
+        "line_end": 183,
+        "reason": "팀원 사주 및 기타 만세력 개인 기록"
+      }
+    ],
+    "quotation_policy": "330줄 이후에도 개인 사례가 섞일 수 있으므로 짧은 일반 개념 부분만 선별. 행 전체를 자동 출력하지 않음.",
+    "full_board_semantic_review": false
+  },
+  "coverage_counts": {
+    "title_only": 4,
+    "explanation": 11,
+    "definition": 3
+  },
+  "sections": [
+    {
+      "id": "section_1",
+      "title": "기초 / Section 1",
+      "line_start": 332,
+      "line_end": 775,
+      "topics": [
+        "사주팔자",
+        "운",
+        "명",
+        "음양오행"
+      ],
+      "status": "catalogued_not_fully_extracted",
+      "nonempty_lines": 228
+    },
+    {
+      "id": "section_2",
+      "title": "기초 / Section 2",
+      "line_start": 776,
+      "line_end": 1111,
+      "topics": [
+        "십성",
+        "비견·겁재",
+        "식신·상관",
+        "편재·정재",
+        "편관·정관",
+        "편인·정인"
+      ],
+      "status": "catalogued_not_fully_extracted",
+      "nonempty_lines": 188
+    },
+    {
+      "id": "section_3",
+      "title": "기초 / Section 3",
+      "line_start": 1112,
+      "line_end": 2356,
+      "topics": [
+        "10천간",
+        "12지 및 지장간",
+        "생지·왕지·고지",
+        "통근·투간·투출",
+        "월령"
+      ],
+      "status": "catalogued_not_fully_extracted",
+      "nonempty_lines": 640
+    },
+    {
+      "id": "section_4",
+      "title": "기초 / Section 4",
+      "line_start": 2357,
+      "line_end": 3325,
+      "topics": [
+        "합충형해파",
+        "천간합·충",
+        "삼합",
+        "육합",
+        "지충",
+        "형",
+        "해·파",
+        "원진·귀문관살·공망"
+      ],
+      "status": "catalogued_not_fully_extracted",
+      "nonempty_lines": 494
+    },
+    {
+      "id": "section_5",
+      "title": "심화 / Section 5",
+      "line_start": 3328,
+      "line_end": 3424,
+      "topics": [
+        "십이운성"
+      ],
+      "status": "catalogued_not_fully_extracted",
+      "nonempty_lines": 58
+    },
+    {
+      "id": "section_6",
+      "title": "심화 / Section 6",
+      "line_start": 3425,
+      "line_end": 3517,
+      "topics": [
+        "길성·신살",
+        "양인",
+        "백호대살",
+        "부성입묘"
+      ],
+      "status": "catalogued_not_fully_extracted",
+      "nonempty_lines": 74
+    }
+  ],
+  "bindings": [
+    {
+      "id": "figma_yin_yang",
+      "concept_id": "yin_yang",
+      "title": "음양",
+      "coverage": "title_only",
+      "spans": [
+        {
+          "line_start": 428,
+          "line_end": 428,
+          "quote": "#### 음양오행"
+        },
+        {
+          "line_start": 480,
+          "line_end": 482,
+          "quote": "- 양(陽)\n\n- 음(陰)"
+        }
+      ],
+      "review_note": "음양 표제와 양/음 라벨은 확인됨. 주변 성향 조각과의 공간상 대응은 이 Markdown만으로 확정하지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_five_elements",
+      "concept_id": "five_elements",
+      "title": "오행",
+      "coverage": "explanation",
+      "spans": [
+        {
+          "line_start": 456,
+          "line_end": 464,
+          "quote": "- 목\n\n- 화\n\n- 토\n\n- 금\n\n- 수"
+        }
+      ],
+      "review_note": "목·화·토·금·수의 구성 목록. 오행의 완전한 정의나 표 옆 속성들의 연결은 이 인용만으로 확인되지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_generation_control",
+      "concept_id": "generation_control",
+      "title": "생극",
+      "coverage": "explanation",
+      "spans": [
+        {
+          "line_start": 466,
+          "line_end": 466,
+          "quote": "- 1칸: 생(生)"
+        },
+        {
+          "line_start": 470,
+          "line_end": 470,
+          "quote": "- 2칸: 극(剋)"
+        }
+      ],
+      "review_note": "도식의 생/극 거리 라벨만 확인. 방향·대상 노드가 없는 Markdown으로 5개 생/극 간선을 복원하지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_heavenly_stems",
+      "concept_id": "heavenly_stems",
+      "title": "천간",
+      "coverage": "explanation",
+      "spans": [
+        {
+          "line_start": 544,
+          "line_end": 544,
+          "quote": "- 천간: 순수하고 추동력이 강한 기운(陽)"
+        }
+      ],
+      "review_note": "천간의 성질에 대한 보드 설명. 10천간 구성과 음양 오행 배정 정의는 별도 블로그 근거 유지.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_earthly_branches",
+      "concept_id": "earthly_branches",
+      "title": "지지",
+      "coverage": "explanation",
+      "spans": [
+        {
+          "line_start": 612,
+          "line_end": 612,
+          "quote": "- 지지: 복잡하고 안정성이 강한 기운(陰)"
+        }
+      ],
+      "review_note": "지지의 성질에 대한 보드 설명. 12지/지장간 제목 및 도식은 Section 3에 있으며 완전한 조견표는 별도 검수.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_day_master",
+      "concept_id": "day_master",
+      "title": "일간",
+      "coverage": "explanation",
+      "spans": [
+        {
+          "line_start": 2369,
+          "line_end": 2369,
+          "quote": "일간(나의 본질)"
+        }
+      ],
+      "review_note": "합의 조건을 설명하는 문장 안에서의 일간 역할 표현. 일간의 계산적 정의는 아님. 같은 행의 합 정책을 보편 규칙으로 채택하지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_ten_gods",
+      "concept_id": "ten_gods",
+      "title": "십신",
+      "coverage": "title_only",
+      "spans": [
+        {
+          "line_start": 778,
+          "line_end": 778,
+          "quote": "#### 10성"
+        }
+      ],
+      "review_note": "10성 제목 확인. 주변 십신 라벨들은 위치가 평탄화되어 십신 전체의 정의나 관계표로 승격하지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_peers",
+      "concept_id": "peers",
+      "title": "비겁",
+      "coverage": "explanation",
+      "spans": [
+        {
+          "line_start": 938,
+          "line_end": 938,
+          "quote": "##### 1. 비견/겁재"
+        },
+        {
+          "line_start": 942,
+          "line_end": 943,
+          "quote": "| 정의 | 견줄 비(比), 어깨 견(肩) 같은 처지에서 어깨를 걸고 함께하다\n나 자신 | 위협할 겁(劫), 재물 재(財) 재물을 강탈하다 내 재물의 유출 |"
+        }
+      ],
+      "review_note": "비견/겁재의 어원과 개별 설명은 있음. 비겁이라는 묶음의 일간 대비 생극·음양 정의 전체를 제공하는 인용은 아님.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_output",
+      "concept_id": "output",
+      "title": "식상",
+      "coverage": "explanation",
+      "spans": [
+        {
+          "line_start": 960,
+          "line_end": 960,
+          "quote": "##### 2. 식신/상관"
+        },
+        {
+          "line_start": 982,
+          "line_end": 982,
+          "quote": "식신은 일간이 생(生)하는 오행 중 음양이 같아"
+        }
+      ],
+      "review_note": "식상의 하위 개념 식신에 대한 명시적 분류 조건. 이 인용으로 상관이나 식상 전체의 정의를 대신하지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_wealth",
+      "concept_id": "wealth",
+      "title": "재성",
+      "coverage": "explanation",
+      "spans": [
+        {
+          "line_start": 1018,
+          "line_end": 1018,
+          "quote": "##### 3. 편재/정재(財)"
+        },
+        {
+          "line_start": 1039,
+          "line_end": 1039,
+          "quote": "일간이 통제해야 할 대상(재성)"
+        }
+      ],
+      "review_note": "재다신약 설명 안의 재성 역할을 부분 인용. 전체 문장의 개인 관계/결과 주장을 기본 정의나 출력 규칙으로 승격하지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_authority",
+      "concept_id": "authority",
+      "title": "관성",
+      "coverage": "explanation",
+      "spans": [
+        {
+          "line_start": 1050,
+          "line_end": 1050,
+          "quote": "##### 4. 편관/정관"
+        },
+        {
+          "line_start": 1078,
+          "line_end": 1078,
+          "quote": "정관과 편관(살)이 섞여 관성이 지나치게 강해진 상태이다."
+        }
+      ],
+      "review_note": "관살혼잡 문맥에서 관성의 하위 개념이 확인됨. 강함의 기준과 일반 관성 정의는 이 인용만으로 결정하지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_resource",
+      "concept_id": "resource",
+      "title": "인성",
+      "coverage": "title_only",
+      "spans": [
+        {
+          "line_start": 1085,
+          "line_end": 1087,
+          "quote": "##### 5. 편인/정인\n\n- 정의"
+        }
+      ],
+      "review_note": "편인/정인 제목과 빈 정의 자리만 있음. 뒤의 상호작용·성향 서술로 인성 정의를 만들어 채우지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_month_command",
+      "concept_id": "month_command",
+      "title": "월령",
+      "coverage": "explanation",
+      "spans": [
+        {
+          "line_start": 2337,
+          "line_end": 2337,
+          "quote": "월령: 月(달 월), 令(법칙 령) 계절의 힘은 법칙이 될 만큼 아주 중요하다."
+        }
+      ],
+      "review_note": "월령의 어원과 계절적 중요성 설명. 같은 행의 득령/실령 세부 정책은 별도 대조 대상.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_hidden_stems",
+      "concept_id": "hidden_stems",
+      "title": "지장간",
+      "coverage": "title_only",
+      "spans": [
+        {
+          "line_start": 1246,
+          "line_end": 1246,
+          "quote": "#### 12지 및 지장간"
+        }
+      ],
+      "review_note": "지장간 제목은 확인됨. 주변 배점·간지 조각은 원래 셀 대응 없이 정의나 조견표로 채택하지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_rooting",
+      "concept_id": "rooting",
+      "title": "통근",
+      "coverage": "definition",
+      "spans": [
+        {
+          "line_start": 2335,
+          "line_end": 2335,
+          "quote": "통근: 천간의 글자가 지지의 지장간에 같은 글자가 있는 것"
+        }
+      ],
+      "review_note": "보드에 명시된 통근 정의. 통근의 강도, 투간/투출 용례 차이는 블로그와 별도 대조.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_combination",
+      "concept_id": "combination",
+      "title": "합",
+      "coverage": "explanation",
+      "spans": [
+        {
+          "line_start": 2367,
+          "line_end": 2367,
+          "quote": "- 천간합 적용 조건"
+        },
+        {
+          "line_start": 2371,
+          "line_end": 2371,
+          "quote": "천간합은 붙어 있는 원국만 합으로 인정한다. (술자에 따라 해석 다름)"
+        }
+      ],
+      "review_note": "일반적인 합 정의가 아닌 천간합의 적용 정책이며, 원문 자체의 술자별 차이 문구를 보존.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_transformation",
+      "concept_id": "transformation",
+      "title": "합화",
+      "coverage": "definition",
+      "spans": [
+        {
+          "line_start": 2371,
+          "line_end": 2371,
+          "quote": "합이화(合而化): 천간합은 되지만 합화 오행이 만들어 지는 경우 합이불화(合而不化) : 천간합은 되지만 합화 오행이 만들어 지지 않는 경우"
+        }
+      ],
+      "review_note": "합과 합화를 구별하는 명시적 설명. 동일 행 뒤의 수치 조건·대운 정책·개인 사례는 편입하지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    },
+    {
+      "id": "figma_clash",
+      "concept_id": "clash",
+      "title": "충",
+      "coverage": "definition",
+      "spans": [
+        {
+          "line_start": 2645,
+          "line_end": 2645,
+          "quote": "충 → 충돌한다 부딪힌다"
+        },
+        {
+          "line_start": 2645,
+          "line_end": 2645,
+          "quote": "해석 → 긍정 / 부정 모두 가능"
+        }
+      ],
+      "review_note": "충의 기본 의미와 긍정/부정 양면을 함께 보존. 같은 행의 결과 예시나 위치 정책을 확정 해석으로 채택하지 않음.",
+      "status": "reference_only_pending_crosscheck",
+      "independent_evidence_weight": 0,
+      "adopted_as_algorithm": false
+    }
+  ],
+  "policies": {
+    "original_unchanged": true,
+    "derived_references_do_not_add_independent_evidence": true,
+    "existing_source_attribution_preserved": true,
+    "no_missing_table_reconstruction": true,
+    "no_probability_weights_assigned": true,
+    "no_unreviewed_personal_profile_rules": true,
+    "conflicts_preserved": true
+  },
+  "validation": {
+    "concept_ids_match_basic_concepts": true,
+    "unique_binding_ids": true,
+    "all_quotes_exact_substrings_of_spans": true,
+    "all_spans_outside_excluded_personal_sections": true,
+    "checked_spans": 26,
+    "meaning_accuracy_or_prediction_accuracy_test": false
+  }
+}

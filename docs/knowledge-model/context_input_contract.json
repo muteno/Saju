@@ -1,0 +1,26 @@
+{
+  "version": "0.1-draft",
+  "status": "proposal_not_user_approved_final_schema",
+  "case_fields": {
+    "case_id": "stable identifier",
+    "subject_group": "pseudonymous grouping for splitting repeated cases",
+    "evaluated_at": "time for which an interpretation is requested",
+    "evidence_available_until": "cutoff to prevent using later observations in earlier predictions",
+    "source_profile": "author/school-specific claim scope",
+    "natal_context": "observed natal facts; retain unknown fields",
+    "time_context": {
+      "daewoon": "supplied time context with calculator version; not computed in this prototype",
+      "yearly": "optional separately sourced context",
+      "monthly": "optional separately sourced context"
+    },
+    "features": "observed degree in [0,1] or null, with measurement policy and source",
+    "interactions": "explicit factors involving 2 or more features; arbitrary arity supported",
+    "target": "precise definition of the interpretation being modelled",
+    "label": "reviewed degree or binary outcome depending on declared target; no implicit label",
+    "label_origin": "expert/source annotation/empirical outcome must remain distinguishable",
+    "review_status": "unreviewed/reviewed/disputed"
+  },
+  "mapping_to_current_engine": "features supplies conditional_model.predict context; metadata/time-context must be retained by caller. No automatic temporal feature extraction implemented.",
+  "user_examples_as_training_labels": false,
+  "default_numeric_probabilities": null
+}

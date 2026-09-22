@@ -1,0 +1,753 @@
+{
+  "schema_version": "0.1",
+  "title": "사주 문헌 지식망 소규모 사람 검수 평가 양식",
+  "purpose": "이 자료를 위한 우리 설계의 추출·조건·충돌·출처 부재 및 문맥별 다중 조합 처리를 점검한다. 실제 사건 예측 정확도 평가가 아니다.",
+  "status": "designed_not_executed",
+  "contains_actual_person_chart": false,
+  "scoring_policy": {
+    "verdicts": [
+      "pass",
+      "fail",
+      "needs_review",
+      "unrun"
+    ],
+    "pass_rule": "필수 기준을 모두 충족하고 critical_failures가 없어야 해당 과제 pass. 해석이 불명확하면 needs_review.",
+    "numeric_weights": null,
+    "aggregate_saju_accuracy": null,
+    "note": "임의 가중합이나 운세 정확도 하나로 합산하지 않는다. 아직 어떤 과제도 실행한 것으로 기록하지 않았다."
+  },
+  "dataset_split_policy": {
+    "unit": "글·영상·파생 인용 및 저자 계열의 의존성을 확인한 묶음",
+    "deduplicate_before_split": true,
+    "operator_board_as_gold_labels": false,
+    "same_author_blog_transcript_split_across_train_test": false,
+    "additional_check": "수정에 쓰지 않은 새 글 평가와 특정 저자 계열을 제외한 평가를 별도로 기록한다."
+  },
+  "source_locator_policy": {
+    "docx": "word/document.xml .//w:p, 1-based, 빈 문단과 표 안 문단 포함",
+    "markdown": "1-based physical line",
+    "source_roots": "사용자가 제공한 1. 원본 라이브러리 원본; 이 파일은 원문 전체를 복제하지 않음",
+    "no_source_refs_meaning": "설계자가 만든 절차 평가 입력이며 원문 사실 주장이 아님"
+  },
+  "reviewer_protocol": [
+    "출력과 해당 원문 구절을 함께 확인한다.",
+    "각 필수 기준의 pass/fail/needs_review와 짧은 이유를 남긴다.",
+    "의견이 갈리면 근거와 쟁점을 기록하고 확정 정답으로 학습하지 않는다.",
+    "수정 후 재평가와 처음 보는 표본 평가를 구분한다."
+  ],
+  "task_count": 10,
+  "tasks": [
+    {
+      "id": "eval_01",
+      "title": "표기 정규화와 동음이의 구분",
+      "category": "extraction_normalization",
+      "task_prompt": "천간의 辛(신금), 지지의 申(신금), 문맥 없는 신을 용어 노드에 연결하세요.",
+      "input_fixture": {
+        "fixture_kind": "합성 용어 입력; 실제 개인 정보 없음",
+        "tokens": [
+          {
+            "raw": "辛(신금)",
+            "context": "천간"
+          },
+          {
+            "raw": "申(신금)",
+            "context": "지지"
+          },
+          {
+            "raw": "신",
+            "context": null
+          }
+        ]
+      },
+      "source_refs": [
+        {
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 424,
+          "end": 424
+        },
+        {
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 531,
+          "end": 532
+        }
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "eval_01_c1",
+          "required": true,
+          "criterion": "辛과 申을 서로 다른 개념 ID로 보존한다."
+        },
+        {
+          "id": "eval_01_c2",
+          "required": true,
+          "criterion": "한글 신금은 각각의 문맥 안에서 연결하며 전역 동일어로 합치지 않는다."
+        },
+        {
+          "id": "eval_01_c3",
+          "required": true,
+          "criterion": "문맥 없는 신은 미해결 후보로 남긴다."
+        },
+        {
+          "id": "eval_01_c4",
+          "required": true,
+          "criterion": "raw 표기를 보존하고 사용한 원문 위치를 기록한다."
+        }
+      ],
+      "critical_failures": [
+        "한글 독음이 같다는 이유로 천간과 지지를 하나로 병합",
+        "문맥 없는 입력을 근거 없이 확정"
+      ],
+      "review": {
+        "verdict": "unrun",
+        "observed_output": null,
+        "criteria_results": null,
+        "reviewer_note": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "eval_02",
+      "title": "생극 관계의 방향과 종류",
+      "category": "extraction_relation",
+      "task_prompt": "다음 원문에서 목생화와 목극토를 추출하고, 반대 방향까지 성립하는지 답하세요.",
+      "input_fixture": {
+        "source_excerpt": "목생화(木生火) / 목극토(木剋土)",
+        "fixture_kind": "원문 중 두 관계를 발췌한 입력"
+      },
+      "source_refs": [
+        {
+          "source_relative_path": "2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 624,
+          "end": 624
+        },
+        {
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 175,
+          "end": 176
+        },
+        {
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 196,
+          "end": 196
+        }
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "eval_02_c1",
+          "required": true,
+          "criterion": "목→생→화와 목→극→토를 다른 predicate로 저장한다."
+        },
+        {
+          "id": "eval_02_c2",
+          "required": true,
+          "criterion": "간선을 임의로 역방향의 동일 predicate로 복제하지 않는다."
+        },
+        {
+          "id": "eval_02_c3",
+          "required": true,
+          "criterion": "두 용어의 단순 동시 등장과 관계 정의를 구분한다."
+        },
+        {
+          "id": "eval_02_c4",
+          "required": true,
+          "criterion": "생은 항상 좋고 극은 항상 나쁘다는 평가를 추가하지 않는다."
+        }
+      ],
+      "critical_failures": [
+        "관계 방향 반전",
+        "생/극을 단일 연관선으로 합쳐 의미 소실"
+      ],
+      "review": {
+        "verdict": "unrun",
+        "observed_output": null,
+        "criteria_results": null,
+        "reviewer_note": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "eval_03",
+      "title": "십성의 상대 분류와 기준 누락",
+      "category": "deterministic_definition",
+      "task_prompt": "A와 B에서 대상의 십성을 판정하세요. 근거가 부족하면 부족한 입력을 쓰세요.",
+      "input_fixture": {
+        "fixture_kind": "조건 검사용 합성 기호 입력",
+        "A": {
+          "day_master": {
+            "element": "木",
+            "polarity": "陽"
+          },
+          "target": {
+            "element": "火",
+            "polarity": "陽"
+          },
+          "known_relation": "木生火"
+        },
+        "B": {
+          "day_master": null,
+          "target": {
+            "element": "火",
+            "polarity": "陽"
+          }
+        }
+      },
+      "source_refs": [
+        {
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 442,
+          "end": 451
+        }
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "eval_03_c1",
+          "required": true,
+          "criterion": "A는 일간이 대상을 생하고 음양이 같다는 조건을 통해 식신으로 판정한다."
+        },
+        {
+          "id": "eval_03_c2",
+          "required": true,
+          "criterion": "B는 일간이 없으므로 unknown으로 반환한다."
+        },
+        {
+          "id": "eval_03_c3",
+          "required": true,
+          "criterion": "火 또는 陽火의 영구 속성으로 식신을 저장하지 않는다."
+        },
+        {
+          "id": "eval_03_c4",
+          "required": true,
+          "criterion": "십성 분류를 성격·재물 결과까지 확장하지 않는다."
+        }
+      ],
+      "critical_failures": [
+        "기준 일간 없이 십성 확정",
+        "대상의 오행 자체를 특정 십성과 동일시"
+      ],
+      "review": {
+        "verdict": "unrun",
+        "observed_output": null,
+        "criteria_results": null,
+        "reviewer_note": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "eval_04",
+      "title": "합 후보와 합화 결과 분리",
+      "category": "conditional_application",
+      "task_prompt": "갑·기가 함께 있다는 정보만 있습니다. 초코서당의 천간합 설명에 따라 합화 완료를 확정할 수 있나요?",
+      "input_fixture": {
+        "fixture_kind": "조건 누락 합성 입력",
+        "participants": [
+          "甲",
+          "己"
+        ],
+        "scope": "천간",
+        "positions": null,
+        "day_master_included": null,
+        "supporting_context": null,
+        "interference": null,
+        "requested_profile": "초코서당 해당 글"
+      },
+      "source_refs": [
+        {
+          "source_relative_path": "2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 20,
+          "end": 21
+        },
+        {
+          "source_relative_path": "2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 48,
+          "end": 54
+        },
+        {
+          "source_relative_path": "2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 79,
+          "end": 95
+        }
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "eval_04_c1",
+          "required": true,
+          "criterion": "합의 쌍 후보와 실제 합화 완료를 구분한다."
+        },
+        {
+          "id": "eval_04_c2",
+          "required": true,
+          "criterion": "주변 지원·방해, 위치, 일간 포함 여부 등의 부족한 조건을 열거한다."
+        },
+        {
+          "id": "eval_04_c3",
+          "required": true,
+          "criterion": "미입력 조건을 거짓이나 참으로 바꾸지 않는다."
+        },
+        {
+          "id": "eval_04_c4",
+          "required": true,
+          "criterion": "현재 입력에서는 합화 결과를 unknown 또는 보류로 둔다."
+        },
+        {
+          "id": "eval_04_c5",
+          "required": true,
+          "criterion": "해당 저자의 천간 규칙이라는 범위를 보존한다."
+        }
+      ],
+      "critical_failures": [
+        "글자 공존만으로 오행 변환 실행",
+        "인접·지지 정도를 임의 백분율로 생성"
+      ],
+      "review": {
+        "verdict": "unrun",
+        "observed_output": null,
+        "criteria_results": null,
+        "reviewer_note": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "eval_05",
+      "title": "문서 내부의 불일치 보존",
+      "category": "conflict_detection",
+      "task_prompt": "연속된 두 구절을 지식망에 넣으세요. 오류가 의심될 때 처리도 설명하세요.",
+      "input_fixture": {
+        "source_excerpt": [
+          "인해합 - 목 - 수생목",
+          "=> 자수와 축토가 합하여 토오행으로 변화합니다."
+        ],
+        "fixture_kind": "원문 불일치 발췌"
+      },
+      "source_refs": [
+        {
+          "source_relative_path": "2. 웹 스크랩/명리학탐구(기초) 전체 글모음 001-086.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 907,
+          "end": 908
+        },
+        {
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 2763,
+          "end": 2763
+        }
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "eval_05_c1",
+          "required": true,
+          "criterion": "제목의 인해와 본문의 자축, 목표 목과 토의 불일치를 각각 식별한다."
+        },
+        {
+          "id": "eval_05_c2",
+          "required": true,
+          "criterion": "두 구절을 원문 위치와 함께 보존하고 내부 불일치 상태를 붙인다."
+        },
+        {
+          "id": "eval_05_c3",
+          "required": true,
+          "criterion": "다른 출처의 인해합 설명은 대조 근거로 연결하되 원문을 몰래 수정하지 않는다."
+        },
+        {
+          "id": "eval_05_c4",
+          "required": true,
+          "criterion": "불일치 구절을 자동 합화 규칙의 확정 근거에서 보류한다."
+        }
+      ],
+      "critical_failures": [
+        "제목과 본문을 섞어 새로운 규칙 생성",
+        "원문을 정정한 뒤 정정 기록 삭제"
+      ],
+      "review": {
+        "verdict": "unrun",
+        "observed_output": null,
+        "criteria_results": null,
+        "reviewer_note": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "eval_06",
+      "title": "범위 차이와 진짜 충돌 구분",
+      "category": "scope_review",
+      "task_prompt": "지지 인해합 설명과 천간합화 설명이 다릅니다. 두 글은 직접 모순인가요?",
+      "input_fixture": {
+        "fixture_kind": "실제 문헌의 서로 다른 범위 비교",
+        "claim_A_scope": "현묘의 지지 육합",
+        "claim_B_scope": "초코서당의 천간 합화"
+      },
+      "source_refs": [
+        {
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 2860,
+          "end": 2873
+        },
+        {
+          "source_relative_path": "2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 48,
+          "end": 54
+        }
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "eval_06_c1",
+          "required": true,
+          "criterion": "A는 지지, B는 천간이라는 대상 차이를 표시한다."
+        },
+        {
+          "id": "eval_06_c2",
+          "required": true,
+          "criterion": "범위가 달라 바로 직접 모순이라고 확정하지 않는다."
+        },
+        {
+          "id": "eval_06_c3",
+          "required": true,
+          "criterion": "두 자료의 규칙 profile을 따로 저장한다."
+        },
+        {
+          "id": "eval_06_c4",
+          "required": true,
+          "criterion": "한쪽의 조건을 다른 쪽에 자동 적용하지 않는다."
+        },
+        {
+          "id": "eval_06_c5",
+          "required": true,
+          "criterion": "비교하려면 같은 대상·조건에 대한 문헌이 더 필요함을 표시한다."
+        }
+      ],
+      "critical_failures": [
+        "모든 합을 하나의 전역 규칙으로 합침",
+        "서로 다른 대상의 설명을 직접 충돌로 단정"
+      ],
+      "review": {
+        "verdict": "unrun",
+        "observed_output": null,
+        "criteria_results": null,
+        "reviewer_note": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "eval_07",
+      "title": "동일 저자와 파생 자료의 의존성",
+      "category": "source_dependency",
+      "task_prompt": "아래 세 자료가 같은 해석을 말합니다. 독립 근거 세 개로 처리할 수 있나요?",
+      "input_fixture": {
+        "fixture_kind": "명세에 따른 의존성 평가 입력",
+        "records": [
+          {
+            "id": "column",
+            "source_group": "도화로운 칼럼",
+            "claim": "동일 해석 A"
+          },
+          {
+            "id": "transcript",
+            "source_group": "도화도레 전사",
+            "claim": "동일 해석 A"
+          },
+          {
+            "id": "operator_note",
+            "source_group": "운영자 보드",
+            "derived_from": [
+              "column",
+              "transcript"
+            ],
+            "claim": "동일 해석 A"
+          }
+        ]
+      },
+      "source_refs": [
+        {
+          "source_relative_path": "_라이브러리_명세.md",
+          "locator_kind": "markdown_line_1based",
+          "start": 12,
+          "end": 12
+        },
+        {
+          "source_relative_path": "_라이브러리_명세.md",
+          "locator_kind": "markdown_line_1based",
+          "start": 35,
+          "end": 36
+        }
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "eval_07_c1",
+          "required": true,
+          "criterion": "도화로운과 도화도레를 같은 저자 계열로 묶는다."
+        },
+        {
+          "id": "eval_07_c2",
+          "required": true,
+          "criterion": "운영자 보드를 파생 참고자료로 연결한다."
+        },
+        {
+          "id": "eval_07_c3",
+          "required": true,
+          "criterion": "문서 세 개를 독립된 지지 세 개로 계상하지 않는다."
+        },
+        {
+          "id": "eval_07_c4",
+          "required": true,
+          "criterion": "원문의 위치는 각각 보존한다."
+        },
+        {
+          "id": "eval_07_c5",
+          "required": true,
+          "criterion": "독립성 미확인 상태를 임의의 확률 가중치로 바꾸지 않는다."
+        }
+      ],
+      "critical_failures": [
+        "같은 계열의 반복을 독립 증거로 합산",
+        "보드의 반복 서술을 별도 정답 표로 취급"
+      ],
+      "review": {
+        "verdict": "unrun",
+        "observed_output": null,
+        "criteria_results": null,
+        "reviewer_note": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "eval_08",
+      "title": "누락된 그림과 근거 부재",
+      "category": "missing_evidence",
+      "task_prompt": "본문의 위 표를 보고 전체 배점표를 복원해 주세요라는 요청에 대응하세요. 그림은 입력에 없습니다.",
+      "input_fixture": {
+        "fixture_kind": "누락 자료에 대한 합성 요청",
+        "available": [
+          "텍스트 스크랩",
+          "그림·도표 미포함 고지"
+        ],
+        "missing": [
+          "본문이 가리키는 배점표 이미지"
+        ],
+        "requested_output": "전체 숫자 배점표"
+      },
+      "source_refs": [
+        {
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 5,
+          "end": 5
+        },
+        {
+          "source_relative_path": "2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 5,
+          "end": 5
+        }
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "eval_08_c1",
+          "required": true,
+          "criterion": "표 이미지가 수집 대상에서 제외되었음을 근거와 함께 확인한다."
+        },
+        {
+          "id": "eval_08_c2",
+          "required": true,
+          "criterion": "값을 복원할 수 없는 부분은 missing_diagram 또는 insufficient_evidence로 반환한다."
+        },
+        {
+          "id": "eval_08_c3",
+          "required": true,
+          "criterion": "보이지 않는 숫자나 셀을 상식·추측으로 채우지 않는다."
+        },
+        {
+          "id": "eval_08_c4",
+          "required": true,
+          "criterion": "현재 텍스트로 설명 가능한 범위와 추가로 필요한 원문을 구체적으로 구분한다."
+        }
+      ],
+      "critical_failures": [
+        "근거 없는 배점표 생성",
+        "출처에 없는 숫자를 원문 값으로 표시"
+      ],
+      "review": {
+        "verdict": "unrun",
+        "observed_output": null,
+        "criteria_results": null,
+        "reviewer_note": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "eval_09",
+      "title": "문맥별 해석 확률과 출처 신뢰도 분리",
+      "category": "probability_semantics",
+      "task_prompt": "원문 검수는 끝났지만 문맥 사례 모델은 아직 학습하지 않았습니다. 추출 신뢰도, 문맥별 해석 선택 확률, 실제 사건 확률을 구분해 출력하세요.",
+      "input_fixture": {
+        "fixture_kind": "확률 의미 평가를 위한 합성 입력",
+        "extraction_review": "원문과 관계 일치 확인",
+        "calibration_dataset": null,
+        "case_context": "필수 조건 일부 누락",
+        "event_definition": null,
+        "observed_outcomes": null,
+        "independence_verified": false,
+        "contextual_model_status": "untrained",
+        "keyword_context": {
+          "keywords": [
+            "식신",
+            "재성",
+            "편인"
+          ],
+          "multiway_interactions": "아직 검수 전",
+          "source_profile": "미선택"
+        }
+      },
+      "source_refs": [],
+      "acceptance_criteria": [
+        {
+          "id": "eval_09_c1",
+          "required": true,
+          "criterion": "추출 검수 완료와 보정된 추출 확률을 구분하고 수치 확률은 null로 둔다."
+        },
+        {
+          "id": "eval_09_c2",
+          "required": true,
+          "criterion": "문맥별 해석 선택 확률은 미학습 상태이므로 null로 두며, 확률의 조건에 키워드 집합·조합·명식 조건·source_profile을 명시한다."
+        },
+        {
+          "id": "eval_09_c3",
+          "required": true,
+          "criterion": "필수 조건의 satisfied/not_satisfied/unknown 판정과 문맥별 선택 확률을 별도로 표현한다."
+        },
+        {
+          "id": "eval_09_c4",
+          "required": true,
+          "criterion": "실제 사건 확률은 관측자료가 없으므로 null로 둔다."
+        },
+        {
+          "id": "eval_09_c5",
+          "required": true,
+          "criterion": "자료 개수·검색 점수·LLM의 자신감을 해석 확률이나 사건 확률로 환산하지 않는다."
+        }
+      ],
+      "critical_failures": [
+        "미학습 상태에서 실자료 학습 확률 생성",
+        "출처 신뢰도를 현재 문맥의 해석 확률로 그대로 사용",
+        "문헌 적용 확률을 실제 사건 확률과 동일시"
+      ],
+      "review": {
+        "verdict": "unrun",
+        "observed_output": null,
+        "criteria_results": null,
+        "reviewer_note": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "eval_10",
+      "title": "세 번째 키워드가 바뀌는 다중 조합 평가",
+      "category": "contextual_interaction_and_grounding",
+      "task_prompt": "C1과 C2는 일부 키워드가 같습니다. 문맥별 해석 모델의 입력과 출력을 구성하고, 세 키워드 상호작용을 어디에 담을지 설명하세요. 실자료 모델은 미학습입니다.",
+      "input_fixture": {
+        "fixture_kind": "모델 인터페이스 검수용 합성 문맥. 조합의 실제 해석·효과 방향은 정답으로 주어지지 않음.",
+        "C1": {
+          "keywords": [
+            "식신",
+            "재성"
+          ],
+          "positions": {
+            "식신": "월간",
+            "재성": "시간"
+          },
+          "strength_conditions": null,
+          "source_profile": "profile_A"
+        },
+        "C2": {
+          "keywords": [
+            "식신",
+            "재성",
+            "편인"
+          ],
+          "positions": {
+            "식신": "월간",
+            "재성": "시간",
+            "편인": "연간"
+          },
+          "strength_conditions": null,
+          "source_profile": "profile_A"
+        },
+        "candidate_labels": [
+          "해석_가",
+          "해석_나",
+          "추가조건필요"
+        ],
+        "candidate_label_note": "모델 설계 검수를 위한 임시 라벨이며 문헌에서 추출된 실해석이 아님",
+        "contextual_model_status": "untrained",
+        "observed_outcomes": null
+      },
+      "source_refs": [],
+      "acceptance_criteria": [
+        {
+          "id": "eval_10_c1",
+          "required": true,
+          "criterion": "C1과 C2의 입력 문맥을 다르게 보존하고 각 문맥에 대해 후보 평가를 다시 요청한다."
+        },
+        {
+          "id": "eval_10_c2",
+          "required": true,
+          "criterion": "C2에서 개별 키워드·두 개 조합뿐 아니라 식신+재성+편인이라는 세 개 조합을 별도 특성 또는 hyperedge 후보로 표현할 수 있다."
+        },
+        {
+          "id": "eval_10_c3",
+          "required": true,
+          "criterion": "두 개 조합의 합이 세 개 조합 효과와 같다고 가정하지 않는다."
+        },
+        {
+          "id": "eval_10_c4",
+          "required": true,
+          "criterion": "문헌 근거·검수 라벨이 없는 조합의 실제 효과 방향이나 가중치를 임의 확정하지 않는다."
+        },
+        {
+          "id": "eval_10_c5",
+          "required": true,
+          "criterion": "실자료 미학습 출력은 문맥별 후보 확률 null과 untrained 상태를 포함한다."
+        },
+        {
+          "id": "eval_10_c6",
+          "required": true,
+          "criterion": "합성 데모 숫자를 함께 제공한다면 synthetic_demo 모드, 별도 파라미터, 실자료 확률이 아니라는 설명을 유지한다."
+        },
+        {
+          "id": "eval_10_c7",
+          "required": true,
+          "criterion": "LLM 설명에는 입력 변화, 사용하거나 검토할 조합, 부족한 조건을 표시하며 근거 없는 사건 예측을 추가하지 않는다."
+        }
+      ],
+      "critical_failures": [
+        "문맥이 달라도 같은 노드의 고정 확률을 조회하는 것으로 처리",
+        "세 개 이상 상호작용 표현 없이 모든 효과를 단어별 합으로만 확정",
+        "합성 데모의 숫자를 실제 문헌 학습 확률로 제시"
+      ],
+      "review": {
+        "verdict": "unrun",
+        "observed_output": null,
+        "criteria_results": null,
+        "reviewer_note": null,
+        "reviewed_at": null
+      }
+    }
+  ],
+  "execution_summary": {
+    "executed_count": 0,
+    "pass_count": null,
+    "fail_count": null,
+    "needs_review_count": null,
+    "outcome_prediction_accuracy": null
+  }
+}
