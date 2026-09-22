@@ -1,6 +1,6 @@
 {
-  "version": "0.2-draft",
-  "status": "research_observation_bridge_implemented_training_case_schema_still_proposed",
+  "version": "0.3-draft",
+  "status": "research_observation_and_case_review_pipeline_implemented_labels_uncollected",
   "case_fields": {
     "case_id": "stable identifier",
     "subject_group": "pseudonymous grouping for splitting repeated cases",
@@ -31,6 +31,17 @@
     "condition_values": "exact reviewed antecedents only, three-valued logic; condition match is not a personal interpretation or probability",
     "model_compatibility": "require feature_policy plus identical review_sha256, adapter_sha256 and calculator_files; retain request and source provenance",
     "not_implemented": "strength/root weighting, birth-derived precise daewoon start dates, learned labels/parameters, empirical calibration, time-transition learning"
+  },
+  "implemented_review_workflow": {
+    "entrypoint": "case_review.py --input case_bundle.json [--compare]",
+    "schema": "case_review_pilot.json demonstrates version-1 spec, cases, provenance, annotations and split; its six calculator fixtures are not training cases",
+    "target_kind": "literature_applicability only; structural predicates are audited separately and empirical outcome targets are rejected",
+    "labels": "reviewed binary/soft labels with reviewer, rationale, time, declared expert origin and evidence references; pending/unknown/disputed stay null",
+    "source_and_subject_split": "transitive grouping by source family, subject, dependency groups, input evidence hashes and normalized copied requests; excluded rows remain in dependency graph",
+    "time": "input evidence available by case evaluation; annotation not before input evidence; optional forward split also checks target/case/annotation availability before train_until",
+    "comparison": "same eligible cases, raw observations, split and optimizer; additive logistic versus explicitly declared multiway products; no automatic winner",
+    "provenance_limits": "declared identities, timestamps and external evidence hashes are not authenticated by the code",
+    "current_learning_status": "no eligible real cases or trained production parameters supplied"
   },
   "user_examples_as_training_labels": false,
   "default_numeric_probabilities": null
