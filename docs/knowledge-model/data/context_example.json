@@ -1,0 +1,16 @@
+{
+  "birth": {
+    "year": 1990,
+    "month": 1,
+    "day": 1,
+    "hour": 12,
+    "minute": 0,
+    "gender": "F",
+    "timeZone": "Asia/Seoul",
+    "longitude": 126.978,
+    "solarTimeCorrection": true,
+    "lateZiRule": "midnight23"
+  },
+  "evaluated_at": "2026-09-22T12:00:00+09:00",
+  "daewoon_periods": []
+}

@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "feature_policy": "chart-observations-v1",
+  "use_as_training_labels": false,
+  "reviews": [
+    {
+      "id": "eul_wood_fire_context",
+      "label": "을목·신유월/을유일과 천간 병정화 조건",
+      "candidate_signatures": {
+        "legacy_candidate_1ad07a088fa47bcf8f60": "de63409a1c2e3ef0f63850125109b5f4fc4bbfe163a621c17c73b7039fb78d60"
+      },
+      "concept_ids": [
+        "stem_乙",
+        "stem_丙",
+        "stem_丁",
+        "branch_申",
+        "branch_酉"
+      ],
+      "review_scope": "antecedent_only",
+      "reviewer_kind": "implementation_source_reading_not_expert_validation",
+      "prediction_enabled": false,
+      "expression": {
+        "all": [
+          {
+            "feature": "natal.day.stem.乙"
+          },
+          {
+            "any": [
+              {
+                "feature": "natal.month.branch.申"
+              },
+              {
+                "feature": "natal.month.branch.酉"
+              },
+              {
+                "feature": "natal.day.branch.酉"
+              }
+            ]
+          },
+          {
+            "any": [
+              {
+                "feature": "natal.stem.丙.present"
+              },
+              {
+                "feature": "natal.stem.丁.present"
+              }
+            ]
+          }
+        ]
+      },
+      "source_context": [
+        {
+          "path": "정제본/초코서당-천간, 지지 글모음.docx",
+          "sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 286,
+          "end": 293,
+          "quote": "懷丁抱丙(회정포병) 跨鳳乘猴(과봉승후)\n직역: 정화를 품고 병화를 포용하게 되면, 봉황을 넘고 원숭이에도 탈 수 있다.\n의역: 병화나 정화가 천간에 떠 있으면, 지지의 유금이나 신금도 감당할 수 있다.\n해설\n이 구절은 을목(乙木)이 신월(申月)과 유월(酉月)에 태어났거나, 혹은 을유(乙酉)일에 태어난 것을 말합니다. 이런 상황에서 천간에 정화나 병화가 떠 있기만 한다면, 을목은 능히 봉황(酉)을 넘고 원숭이(申)를 탈 수 있다고 합니다.\n금은 목을 극합니다. 목에 속하는 을목 역시, 지지에서 유금(酉)이나 신금(申)을 만나면 극을 당하죠. 충은 1:1로 반대 방향의 에너지가 부딪혀 기운이 선명해지는 것을 의미하지만, 극은 힘의 우위를 가진 기운이 다른 기운을 일방적으로 꺾으며, 방해함을 의미합니다.\n을목 역시 지지에서 유금이나 신금을 만나면 극을 당하지만, 천간에 병화나 정화가 떠 있기만 하면 이들을 잘 활용하여 지지에 있는 금의 기운을 상대할 수 있게 됩니다.\n금은 목을 극하지만, 화는 반대로 금을 극하는 기운입니다. 병화나 정화 모두 을목이 금에게 공격당하는걸 잘 막아줄 수 있습니다. 여기서의 포인트는 미토나 축토에 모두 뿌리내릴 수 있던 것처럼, 을목이 병화와 정화 모두 잘 활용할 수 있다는 점입니다."
+        }
+      ],
+      "scope_reconstruction": "P290의 신월·유월 출생 또는 을유일 범위를 복원. 이 범위의 조건 충족만 판정하며 금을 감당한다는 효과·개인 성향은 추론하지 않는다.",
+      "unresolved": [
+        "문헌의 해석 효과·강도·현실 결과는 평가하지 않음",
+        "검토자는 구현자이며 전문가 정답·학습 라벨이 아님",
+        "추가 유파·예외 및 실제 관측 결과 검증 대기"
+      ]
+    },
+    {
+      "id": "wealth_surface_absence",
+      "label": "원국 표면 8글자의 재성 오행 부재",
+      "candidate_signatures": {
+        "legacy_candidate_2872129152c43ff280a1": "7a16511d1e053f2cb54dc37d087d0dadb52359424b9b6cae962ab6bf897e6de9"
+      },
+      "concept_ids": [
+        "wealth",
+        "five_elements"
+      ],
+      "review_scope": "antecedent_only",
+      "reviewer_kind": "implementation_source_reading_not_expert_validation",
+      "prediction_enabled": false,
+      "expression": {
+        "not": {
+          "feature": "natal.surface_role.wealth.present"
+        }
+      },
+      "source_context": [
+        {
+          "path": "정제본/현묘의 사주 이야기 글모음.docx",
+          "sha256": "40cae55d2a6c2bb3cdf2b778f27293d040e250f1243553a3515f653cbd84fab0",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 985,
+          "end": 985,
+          "quote": "무재(無財) 사주란 사주 원국에 재성의 기운이 없는 사주를 의미합니다. 사주원국 8글자에 재성을 의미하는 오행이 없으면 무재사주라고 하며, 지장간(支藏干)-지지 안에 숨어있는 천간의 요소- 안에도 재성이 없으면 순도 100%의 완벽한 무재사주가 됩니다."
+        }
+      ],
+      "scope_reconstruction": "본문의 8글자 범위를 천간 4·지지 본오행 4로 분리. 지장간은 이 항목에 포함하지 않는다.",
+      "unresolved": [
+        "문헌의 해석 효과·강도·현실 결과는 평가하지 않음",
+        "검토자는 구현자이며 전문가 정답·학습 라벨이 아님",
+        "추가 유파·예외 및 실제 관측 결과 검증 대기"
+      ]
+    },
+    {
+      "id": "wealth_surface_and_hidden_absence",
+      "label": "표면과 지장간 모두 재성 오행 부재",
+      "candidate_signatures": {
+        "legacy_candidate_2872129152c43ff280a1": "7a16511d1e053f2cb54dc37d087d0dadb52359424b9b6cae962ab6bf897e6de9",
+        "legacy_candidate_3700c4429b3739f20235": "d71d7eb1859e2fe9a93713358a454dd100d7ac606ce5bf05289b29a194013f96"
+      },
+      "concept_ids": [
+        "wealth",
+        "hidden_stems"
+      ],
+      "review_scope": "antecedent_only",
+      "reviewer_kind": "implementation_source_reading_not_expert_validation",
+      "prediction_enabled": false,
+      "expression": {
+        "all": [
+          {
+            "not": {
+              "feature": "natal.surface_role.wealth.present"
+            }
+          },
+          {
+            "not": {
+              "feature": "natal.hidden_role.wealth.present"
+            }
+          }
+        ]
+      },
+      "source_context": [
+        {
+          "path": "정제본/현묘의 사주 이야기 글모음.docx",
+          "sha256": "40cae55d2a6c2bb3cdf2b778f27293d040e250f1243553a3515f653cbd84fab0",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 985,
+          "end": 985,
+          "quote": "무재(無財) 사주란 사주 원국에 재성의 기운이 없는 사주를 의미합니다. 사주원국 8글자에 재성을 의미하는 오행이 없으면 무재사주라고 하며, 지장간(支藏干)-지지 안에 숨어있는 천간의 요소- 안에도 재성이 없으면 순도 100%의 완벽한 무재사주가 됩니다."
+        }
+      ],
+      "scope_reconstruction": "지장간 안에도라는 표현의 선행 조건인 표면 8글자 부재를 함께 유지. 본문의 100% 표현을 예측 확률로 사용하지 않는다.",
+      "unresolved": [
+        "문헌의 해석 효과·강도·현실 결과는 평가하지 않음",
+        "검토자는 구현자이며 전문가 정답·학습 라벨이 아님",
+        "추가 유파·예외 및 실제 관측 결과 검증 대기"
+      ]
+    },
+    {
+      "id": "authority_surface_absence",
+      "label": "원국 표면 8글자의 관성 오행 부재",
+      "candidate_signatures": {
+        "legacy_candidate_37291ccb116476845dd2": "d7c909f3fc242233d1ae59de3518cf305345090fec1669efdc2a5acbe90280d0"
+      },
+      "concept_ids": [
+        "authority",
+        "five_elements"
+      ],
+      "review_scope": "antecedent_only",
+      "reviewer_kind": "implementation_source_reading_not_expert_validation",
+      "prediction_enabled": false,
+      "expression": {
+        "not": {
+          "feature": "natal.surface_role.authority.present"
+        }
+      },
+      "source_context": [
+        {
+          "path": "정제본/현묘의 사주 이야기 글모음.docx",
+          "sha256": "40cae55d2a6c2bb3cdf2b778f27293d040e250f1243553a3515f653cbd84fab0",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 995,
+          "end": 995,
+          "quote": "무관(無官) 사주란 사주 원국에 관성의 기운이 없는 사주를 의미합니다. 사주원국 8글자에 관성을 의미하는 오행이 없으면 무관사주라고 하며, 마찬가지 지장간(支藏干)-지지 안에 숨어있는 천간의 요소- 안에도 관성이 없으면 순도 100%의 완벽한 무관사주가 됩니다."
+        }
+      ],
+      "scope_reconstruction": "본문의 8글자 범위만 판정하며 지장간 부재 및 통변 결론을 자동 확정하지 않는다.",
+      "unresolved": [
+        "문헌의 해석 효과·강도·현실 결과는 평가하지 않음",
+        "검토자는 구현자이며 전문가 정답·학습 라벨이 아님",
+        "추가 유파·예외 및 실제 관측 결과 검증 대기"
+      ]
+    },
+    {
+      "id": "authority_surface_and_hidden_absence",
+      "label": "표면과 지장간 모두 관성 오행 부재",
+      "candidate_signatures": {
+        "legacy_candidate_37291ccb116476845dd2": "d7c909f3fc242233d1ae59de3518cf305345090fec1669efdc2a5acbe90280d0",
+        "legacy_candidate_4ae9736226cc7a147948": "b4b70241c54f2c83be5646a968924b601e77c44e28d973fd44cbebe5966bb259"
+      },
+      "concept_ids": [
+        "authority",
+        "hidden_stems"
+      ],
+      "review_scope": "antecedent_only",
+      "reviewer_kind": "implementation_source_reading_not_expert_validation",
+      "prediction_enabled": false,
+      "expression": {
+        "all": [
+          {
+            "not": {
+              "feature": "natal.surface_role.authority.present"
+            }
+          },
+          {
+            "not": {
+              "feature": "natal.hidden_role.authority.present"
+            }
+          }
+        ]
+      },
+      "source_context": [
+        {
+          "path": "정제본/현묘의 사주 이야기 글모음.docx",
+          "sha256": "40cae55d2a6c2bb3cdf2b778f27293d040e250f1243553a3515f653cbd84fab0",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 995,
+          "end": 995,
+          "quote": "무관(無官) 사주란 사주 원국에 관성의 기운이 없는 사주를 의미합니다. 사주원국 8글자에 관성을 의미하는 오행이 없으면 무관사주라고 하며, 마찬가지 지장간(支藏干)-지지 안에 숨어있는 천간의 요소- 안에도 관성이 없으면 순도 100%의 완벽한 무관사주가 됩니다."
+        }
+      ],
+      "scope_reconstruction": "지장간 안에도의 선행 조건을 복원. 강약·성격 및 실제 사건은 판정하지 않는다.",
+      "unresolved": [
+        "문헌의 해석 효과·강도·현실 결과는 평가하지 않음",
+        "검토자는 구현자이며 전문가 정답·학습 라벨이 아님",
+        "추가 유파·예외 및 실제 관측 결과 검증 대기"
+      ]
+    },
+    {
+      "id": "daewoon_centered_samhap_completion",
+      "label": "대운에서 중심자 포함 반합의 빠진 글자 보충",
+      "candidate_signatures": {
+        "legacy_candidate_fe27c6893920af361aef": "2182ebf3d8ddfbf8e705489fec8a5a6c7b24461d70a9df7bf6ed18a323de2d59"
+      },
+      "concept_ids": [
+        "earthly_branches",
+        "combination"
+      ],
+      "review_scope": "antecedent_only",
+      "reviewer_kind": "implementation_source_reading_not_expert_validation",
+      "prediction_enabled": false,
+      "expression": {
+        "feature": "time.daewoon.completes_centered_samhap"
+      },
+      "source_context": [
+        {
+          "path": "정제본/명리학입문 게시판 글모음.docx",
+          "sha256": "d428aaab9cdc0acfd7ba9ac713df35534d0bee30997faba9edc29e4068e8f329",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 517,
+          "end": 532,
+          "quote": "1.해묘미 목국\n목 기운은 겨울이 시작되기 전인 해월(10월)에 땅속의 물을 저장하여 봄을 기다리고, 묘월(2월)에 싹을 틔우며 가을이 시작되기 전인 미월(6월)에 봄의 기운을 마감합니다.\n해묘미 목국은 3개의 지지가 합해 목오행으로 변합니다.\n2.인오술 화국\n화의 기운은 인월(음력 1월)에 시작하여 오월(5월)에 정점을 이루고, 술월(9월)에 여름의 기운이 사라진다고 봅니다.\n인오술 화국은 모두 화오행으로 변하게 됩니다.\n3.사유축 금국\n금(가을)의 기운은 사월(4월)에 시작하여 유월(8월)에 가장 왕하며, 축월(12월)에 그 기운이 사라진다고 봅니다.\n사유축 삼합은 금기운으로 변하게 됩니다.\n4.신자진 수국\n수(겨울)의 기운은 신월(7월)에 시작하여 자월(11월)에 가장 왕성하며, 진월(3월)에 그 기운이 사라집니다.\n신자진 삼합은 모든 오행이 수의 기운을 가집니다.\n[반합]\n삼합의 3자가 모두 갖추어지지 않더라도 중심자가 포함된 2자가 있으면, 해당 삼합의 반합으로 봅니다. 반합은 3자가 다 갖추어진 삼합보다는 당연히 영향력이 부족합니다.\n이 경우 대운이나 세운에서 부족한 글자가 들어오면 삼합이 완성됩니다. 부족한 글자가 대운에서 들어오면 10년 동안은 삼합이 되고, 세운에서 들어오면 1년 동안 삼합이 됩니다.\n참고로 삼합의 3글자 중 2글자가 갖추어지더라도, 중심글자가 빠진 경우는 삼합의 반합이 되지 않습니다."
+        }
+      ],
+      "scope_reconstruction": "P530·P532의 중심자(왕지) 포함 조건을 유지한다. 원국에 이미 세 글자가 있거나 중심자 없는 두 글자만 있으면 이 조건으로 새 완성을 판정하지 않는다. 합화·지속기간·운의 유불리는 추론하지 않는다.",
+      "unresolved": [
+        "문헌의 해석 효과·강도·현실 결과는 평가하지 않음",
+        "검토자는 구현자이며 전문가 정답·학습 라벨이 아님",
+        "추가 유파·예외 및 실제 관측 결과 검증 대기"
+      ]
+    },
+    {
+      "id": "yearly_centered_samhap_completion",
+      "label": "세운에서 중심자 포함 반합의 빠진 글자 보충",
+      "candidate_signatures": {
+        "legacy_candidate_32af175dfb5215ccbedb": "26b50650fd6dd9b718c7b24450c63a830ca02e1f244a035dc248371818a063a6"
+      },
+      "concept_ids": [
+        "earthly_branches",
+        "combination"
+      ],
+      "review_scope": "antecedent_only",
+      "reviewer_kind": "implementation_source_reading_not_expert_validation",
+      "prediction_enabled": false,
+      "expression": {
+        "feature": "time.yearly.completes_centered_samhap"
+      },
+      "source_context": [
+        {
+          "path": "정제본/명리학입문 게시판 글모음.docx",
+          "sha256": "d428aaab9cdc0acfd7ba9ac713df35534d0bee30997faba9edc29e4068e8f329",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 517,
+          "end": 532,
+          "quote": "1.해묘미 목국\n목 기운은 겨울이 시작되기 전인 해월(10월)에 땅속의 물을 저장하여 봄을 기다리고, 묘월(2월)에 싹을 틔우며 가을이 시작되기 전인 미월(6월)에 봄의 기운을 마감합니다.\n해묘미 목국은 3개의 지지가 합해 목오행으로 변합니다.\n2.인오술 화국\n화의 기운은 인월(음력 1월)에 시작하여 오월(5월)에 정점을 이루고, 술월(9월)에 여름의 기운이 사라진다고 봅니다.\n인오술 화국은 모두 화오행으로 변하게 됩니다.\n3.사유축 금국\n금(가을)의 기운은 사월(4월)에 시작하여 유월(8월)에 가장 왕하며, 축월(12월)에 그 기운이 사라진다고 봅니다.\n사유축 삼합은 금기운으로 변하게 됩니다.\n4.신자진 수국\n수(겨울)의 기운은 신월(7월)에 시작하여 자월(11월)에 가장 왕성하며, 진월(3월)에 그 기운이 사라집니다.\n신자진 삼합은 모든 오행이 수의 기운을 가집니다.\n[반합]\n삼합의 3자가 모두 갖추어지지 않더라도 중심자가 포함된 2자가 있으면, 해당 삼합의 반합으로 봅니다. 반합은 3자가 다 갖추어진 삼합보다는 당연히 영향력이 부족합니다.\n이 경우 대운이나 세운에서 부족한 글자가 들어오면 삼합이 완성됩니다. 부족한 글자가 대운에서 들어오면 10년 동안은 삼합이 되고, 세운에서 들어오면 1년 동안 삼합이 됩니다.\n참고로 삼합의 3글자 중 2글자가 갖추어지더라도, 중심글자가 빠진 경우는 삼합의 반합이 되지 않습니다."
+        }
+      ],
+      "scope_reconstruction": "P530·P532의 중심자(왕지) 포함 조건을 유지한다. 원국에 이미 세 글자가 있거나 중심자 없는 두 글자만 있으면 이 조건으로 새 완성을 판정하지 않는다. 합화·지속기간·운의 유불리는 추론하지 않는다.",
+      "unresolved": [
+        "문헌의 해석 효과·강도·현실 결과는 평가하지 않음",
+        "검토자는 구현자이며 전문가 정답·학습 라벨이 아님",
+        "추가 유파·예외 및 실제 관측 결과 검증 대기"
+      ]
+    },
+    {
+      "id": "inhae_without_stem_fire",
+      "label": "인해 관계에서 천간 화 오행 부재",
+      "candidate_signatures": {
+        "legacy_candidate_a5b59a980ad6a662839c": "abb16aa7495156ac336a7c65e5c453dbfc7fc56299ef12869d0e0345a799f0c9"
+      },
+      "concept_ids": [
+        "branch_寅",
+        "branch_亥",
+        "element_화"
+      ],
+      "review_scope": "antecedent_only",
+      "reviewer_kind": "implementation_source_reading_not_expert_validation",
+      "prediction_enabled": false,
+      "expression": {
+        "all": [
+          {
+            "feature": "natal.branch.寅.present"
+          },
+          {
+            "feature": "natal.branch.亥.present"
+          },
+          {
+            "not": {
+              "feature": "natal.stem_element.화.present"
+            }
+          }
+        ]
+      },
+      "source_context": [
+        {
+          "path": "정제본/고전읽기 글모음.docx",
+          "sha256": "0b41f4014668dc117fb7b2c1943eb4dc5c38520136e901f0dc881045fe658c0d",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 234,
+          "end": 238,
+          "quote": "하지만 오미합 화(火)가 되건 오미합 일월(日月)이 되건 간에, 중요한 것은 지지 육합의 의미입니다. 육합에 대한 여러 해설을 살펴보면, 인해합목의 경우, 해수가 인목을 生해주는 관계가 되어 인목과 하나가 된다고 육합에 의미를 부여한 해설을 볼 수 있습니다.\n이 경우, 해수는 인목에게 끊임없이 情을 주고자 하고, 인목은 해수와 하나가 되어 기분좋게 情을 받았으나, 곧 火로 나아가고자 하기 때문에 해수에게서 떠나려고 한다고 의미를 확장할 수 있습니다.\n봄은 여름이 되고, 여름은 가을이 되고자 하는 순환의 이치 때문에 인목(봄)은 해수와의 관계에서 벗어나 결국 火(여름)으로 나아가고자 하는 것입니다.\n이때 천간에 火(여름)기운이 있으면, 인목과 해수와의 관계가 소통이 이루어지나, 火(여름)기운이 없으면 인목이 나아가고자 하나 나아가지 못하기 때문에 인목이 외롭고 고통스러워진다고 의미를 확장할 수 있습니다.\n물론 육합 하나 가지고 이렇게까지 세세하게 의미를 확장하는 것은 구체적인 사주 해석에서 활용할 수 있는 하나의 팁 정도일 것입니다."
+        }
+      ],
+      "scope_reconstruction": "이때의 선행 문맥인 인목·해수 관계와 천간 범위를 복원. 외로움·고통 같은 저자 해석을 개인 결과로 출력하지 않는다.",
+      "unresolved": [
+        "문헌의 해석 효과·강도·현실 결과는 평가하지 않음",
+        "검토자는 구현자이며 전문가 정답·학습 라벨이 아님",
+        "추가 유파·예외 및 실제 관측 결과 검증 대기"
+      ]
+    }
+  ]
+}

@@ -13,6 +13,7 @@ python3 shared/check_refs.py || fail=1
 python3 dosa-app/kb-tools/extract_bodies.py || fail=1
 python3 docs/knowledge-model/legacy_import.py --check || fail=1
 python3 -m unittest discover -s docs/knowledge-model -p 'test_*.py' || fail=1
+node --test docs/knowledge-model/test_chart_context.mjs || fail=1
 
 step "2/8 디자인 토큰 게이트 (계승/갱신 규율 — 정본 docs/디자인토큰_제1핵심명령.md)"
 node scripts/check_tokens.mjs || fail=1
