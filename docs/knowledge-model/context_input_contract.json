@@ -1,6 +1,6 @@
 {
-  "version": "0.1-draft",
-  "status": "proposal_not_user_approved_final_schema",
+  "version": "0.2-draft",
+  "status": "research_observation_bridge_implemented_training_case_schema_still_proposed",
   "case_fields": {
     "case_id": "stable identifier",
     "subject_group": "pseudonymous grouping for splitting repeated cases",
@@ -9,9 +9,9 @@
     "source_profile": "author/school-specific claim scope",
     "natal_context": "observed natal facts; retain unknown fields",
     "time_context": {
-      "daewoon": "supplied time context with calculator version; not computed in this prototype",
-      "yearly": "optional separately sourced context",
-      "monthly": "optional separately sourced context"
+      "daewoon": "select explicitly supplied source-labelled [start,end) period; age-only L1 schedule is not converted into start dates",
+      "yearly": "canonical L1 year pillar at evaluated_at, using solar-term boundary",
+      "monthly": "canonical L1 month pillar at evaluated_at, using solar-term boundary"
     },
     "features": "observed degree in [0,1] or null, with measurement policy and source",
     "interactions": "explicit factors involving 2 or more features; arbitrary arity supported",
@@ -20,7 +20,18 @@
     "label_origin": "expert/source annotation/empirical outcome must remain distinguishable",
     "review_status": "unreviewed/reviewed/disputed"
   },
-  "mapping_to_current_engine": "features supplies conditional_model.predict context; metadata/time-context must be retained by caller. No automatic temporal feature extraction implemented.",
+  "mapping_to_current_engine": "chart_context.mjs exports L1 natal and time observations; context_query.py evaluates 8 reviewed antecedents and supplies features to conditional_model.predict when a compatible model is explicitly supplied. This research CLI is not connected to application inference.",
+  "implemented_observation_request": {
+    "feature_policy": "chart-observations-v1",
+    "birth": "canonical L1 Gregorian fields; explicit hour integer 0..23 or null; known minute is forbidden with unknown hour",
+    "evaluated_at": "required ISO timestamp with UTC offset and whole-minute precision",
+    "daewoon_periods": "optional array of {start,end,pillar,source}; pillar is sexagenary index 0..59; overlapping periods are rejected; no active period means unknown",
+    "unknown_hour": "enumerate valid civil minutes, retain consensus and measurement bounds; never substitute noon or average the scenarios; timezone transition dates remain unresolved",
+    "features": "categorical presence 0/1/null; unweighted stem/branch fractions over 4 slots and surface-element fractions over 8 slots; day-master-relative wealth/authority and hidden-stem presence; temporal symbols and stem ten-gods; centered-pair samhap completion",
+    "condition_values": "exact reviewed antecedents only, three-valued logic; condition match is not a personal interpretation or probability",
+    "model_compatibility": "require feature_policy plus identical review_sha256, adapter_sha256 and calculator_files; retain request and source provenance",
+    "not_implemented": "strength/root weighting, birth-derived precise daewoon start dates, learned labels/parameters, empirical calibration, time-transition learning"
+  },
   "user_examples_as_training_labels": false,
   "default_numeric_probabilities": null
 }

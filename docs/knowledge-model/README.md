@@ -9,7 +9,7 @@
 | 파일 | 역할 |
 |---|---|
 | `PROJECT_AGENDA.md` | 진화 가능한 프로젝트 목적·설계 원칙·완료 기준 |
-| `USER_INTENT_LOG.md` | 사용자의 관련 발언 23개와 이해 수정의 흐름 |
+| `USER_INTENT_LOG.md` | 사용자의 관련 발언 24개와 이해 수정의 흐름 |
 | `MATHEMATICAL_DESIGN.md` | 논문에 근거한 수학적 후보와 현재 기준 모델 |
 | `학습과평가설계.md` | 원문 추출·라벨링·조합·시간·출처 분리 평가 |
 | `knowledge_graph.json` | 기본 개념 18개를 포함한 58개 노드, 132개 관계, 11개 다중 입력 관계 |
@@ -22,6 +22,8 @@
 | `knowledge_query.py` | 노드·관계·조건·출처 조회, 동음이의어 구별 |
 | `legacy_import.py`, `data/legacy_review.json` | 기존 조건·분기 후보와 원문·개념 대응을 재현하는 검토 입력 |
 | `LEGACY_MIGRATION.md` | 기존 지도와 현재 모델 비교, 이관 범위와 미확인 항목 |
+| `chart_context.mjs`, `context_query.py` | L1 원국·시간 관찰값 산출과 원문 문맥을 복원한 조건 8개 판정 |
+| `data/context_reviews.json`, `CONTEXT_BRIDGE.md` | 조건식·주변 원문·해시와 입력·측정·미상 처리 규약 |
 | `rules_engine.py` | 별도 부록: 천간·생극·십신 기호 분류 검증 |
 | `evaluation_rubric.json` | 아직 수행하지 않은 사람 검수 과제 10개 |
 | `validation_report.json` | 이번에 실제 수행한 코드·원문 확인 결과 |
@@ -30,7 +32,7 @@
 
 ## 실행
 
-Python 3.10 이상, 표준 라이브러리만 사용한다. 저장소 루트에서 `cd docs/knowledge-model`로 이동해 실행한다. 별도 배포 ZIP에서는 압축을 푼 뒤 이 파일이 있는 폴더에서 실행한다.
+Python 3.10 이상, 표준 라이브러리만 사용한다. 원국 연결에는 기존 엔진을 실행할 Node.js도 필요하다. 저장소 루트에서 `cd docs/knowledge-model`로 이동해 실행한다. 별도 배포 ZIP에서는 압축을 푼 뒤 이 파일이 있는 폴더에서 실행한다.
 
 ```bash
 python build_graph.py
@@ -40,7 +42,9 @@ python knowledge_query.py 식신
 python knowledge_query.py 신
 python conditional_model.py
 python conditional_model.py --demo
+python context_query.py --input data/context_example.json --term 재성
 python -m unittest discover -p 'test_*.py'
+node --test test_chart_context.mjs
 ```
 
 `신`은 천간과 지지 후보가 함께 반환된다. 의미가 확정되지 않은 입력을 하나로 합치지 않는다.
@@ -49,7 +53,7 @@ python -m unittest discover -p 'test_*.py'
 
 기본 확률 실행은 매개변수가 미학습 상태이므로 `probability: null`이다. `--demo`에서만 추상 키워드 X·Y와 조건 A·B에 대해 임의의 시연 매개변수를 사용한다. 이 숫자는 문헌에서 측정한 값이나 사주 정확도가 아니다.
 
-특징 입력의 0은 관찰된 부재, 1은 완전한 활성, 중간값은 정의된 측정 기준에 따른 정도이며 `null`은 미상이다. 현재는 이 정도를 외부에서 명시적으로 입력한다. 원국·대운에서 활성값을 자동 계산하는 정책은 아직 구현하지 않았다.
+특징 입력의 0은 관찰된 부재, 1은 완전한 활성, 중간값은 정의된 측정 기준에 따른 정도이며 `null`은 미상이다. `chart_context.mjs`는 원국의 기호 존재·구성 비율과 세운·월운, 명시된 기간의 대운 기호를 산출한다. 비율은 고정 자리 수에 대한 무가중 개수이며 강약·확률이 아니다. 조건 8개의 앞뒤 문맥 복원·미상 처리·모델 연결 범위는 `CONTEXT_BRIDGE.md`를 따른다. 이 실행에는 저장소의 L1 엔진·절기표·원문 DOCX가 필요하다.
 
 해석 후보가 동시에 성립할 수 있으면 각각의 sigmoid 출력을 사용한다. 후보가 서로 배타적이라고 명시한 비교 모드에서는 softmax를 사용한다. 모든 해석의 합을 무조건 1로 맞추지 않는다. 현재의 개별 후보 모델은 후보들 사이의 전체 결합분포를 학습하지 않으며, 이는 향후 요인 그래프/PSL 비교 범위다.
 
@@ -69,7 +73,7 @@ python conditional_model.py --fit reviewed_cases.json --holdout-group held_out_a
 
 - 블로그 우선으로 일부 기본 개념과 근거를 추렸다. 전체 76개 DOCX의 의미 추출이 끝난 상태가 아니다.
 - 문헌에서 관계를 추출한 정확성과 현실 결과를 예측하는 정확성은 별도로 평가한다.
-- 대운·세운은 설계와 입력 계약에 포함했다. 실제 시간 계산·변수 산출·시간별 재학습은 후속 작업이다.
+- 원국·세운·월운 관찰값과 사용자가 기간을 명시한 대운을 연구 CLI에 연결했다. 정확한 대운 시작일의 출생 기반 산출, 강약·통근 정도, 시간별 재학습과 앱 추론 적용은 후속 작업이다.
 - PSL, 요인 그래프, GATv2는 조사한 후보다. 현재 코드에 이 모델들을 구현하거나 학습했다고 주장하지 않는다.
 - 원본 자료는 수정하지 않았다. 이 패키지는 원본 ZIP의 재배포본이 아니라 파생 작업본이다.
 
