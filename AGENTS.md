@@ -1,9 +1,5 @@
 # Saju 작업 시작 시 필독
 
-<!-- TEMP_HANDOFF_START -->
-**이번 다음 세션:** 먼저 루트 [임시 인수인계서](HANDOFF_TEMP.md)를 읽는다. 사용자 요청에 따라 인계한 즉시 해당 파일과 이 `TEMP_HANDOFF_START`~`TEMP_HANDOFF_END` 안내 블록을 삭제하고 다음 작업 커밋에 반영한다. 아래의 상시 필독 문서와 사용자 원문은 보존한다.
-<!-- TEMP_HANDOFF_END -->
-
 이 저장소를 맡는 에이전트는 작업을 시작할 때 아래 문서를 순서대로 읽는다.
 
 1. [사용자 의도 원문](docs/knowledge-model/USER_INTENT_LOG.md)

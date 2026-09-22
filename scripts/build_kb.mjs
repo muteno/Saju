@@ -5,7 +5,7 @@
 //   npm run build:kb
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, unlinkSync } from 'node:fs'
 import { createHash } from 'node:crypto'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { dirname, join } from 'node:path'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -28,7 +28,7 @@ if (!existsSync(join(KB, 'unit_bodies.json'))) {
 const fullBodies = load(join(KB, 'unit_bodies.json'))
 
 // 현재 세운 연도명(입춘 경계 = 엔진 연주 판정) + 이듬해 — 입춘 부근 배포도 양쪽을 커버.
-const { computeChart } = await import(join(root, 'dosa-app/engine/src/manseryeok.js'))
+const { computeChart } = await import(pathToFileURL(join(root, 'dosa-app/engine/src/manseryeok.js')).href)
 const terms = load(join(root, 'dosa-app/engine/data/solar_terms.json')).terms
 const [ty, tm, td] = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date()).split('-').map(Number)
 const yearNameAt = (y) => computeChart({ year: y, month: tm, day: td, hour: 12, minute: 0, gender: 'F' }, terms).saju.year.name

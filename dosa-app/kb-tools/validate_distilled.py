@@ -11,10 +11,11 @@
 실행: python validate_distilled.py
 """
 import json, os, glob, subprocess, sys
+from pathlib import Path
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 KB = os.path.join(HERE, '..', 'kb')
-ENGINE = os.path.join(HERE, '..', 'engine').replace(os.sep, '/')
+ENGINE = (Path(HERE) / '..' / 'engine').resolve().as_uri()
 
 NODE = r'''
 import { STEMS, BRANCHES, HIDDEN_STEMS, TEN_GODS, tenGod, twelveStage, TWELVE_STAGES, sexIndex } from '%E%/src/tables.js';

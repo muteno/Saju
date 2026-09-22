@@ -37,10 +37,26 @@ def query(term, graph):
     factors = [h for h in graph["hyperedges"] if node["id"] in [*h["input_nodes"], h["output_node"]]]
     refs = set(node["evidence_ids"])
     for item in links + factors: refs.update(item["evidence_ids"])
+    # Select review records once from the original evidence. Their companion
+    # sources must not pull unrelated review records into the result recursively.
+    review_records = {
+        field: [item for item in graph.get(field, []) if refs.intersection(item["evidence_ids"])]
+        for field in ("conditional_rule_candidates", "source_issues")
+    }
+    for records in review_records.values():
+        for item in records:
+            refs.update(item["evidence_ids"])
     foundation_ids = set(node.get("foundation_reference_ids", []))
     live_ids = set(node.get("live_foundation_reference_ids", []))
     return {"status": "found", "node": node, "relations": links, "context_factors": factors,
             "evidence": [e for e in graph["evidence"] if e["id"] in refs],
+            **review_records,
+            "context_contract": graph.get("context_contract"),
+            "review_context": {
+                "selection_basis": "shared_evidence_with_retrieved_concept_relations_or_factors",
+                "application_status": "not_evaluated",
+                "meaning": "Source conditions and issues for review; shared evidence does not establish rule applicability.",
+            },
             "foundation_source": graph.get("foundation_source"),
             "foundation_references": [r for r in graph.get("foundation_references", [])
                                       if r["id"] in foundation_ids],

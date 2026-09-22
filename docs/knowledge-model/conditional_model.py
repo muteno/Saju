@@ -16,7 +16,26 @@ class ValidationError(ValueError):
 
 
 def _number(value):
-    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        return False
+    try:
+        return math.isfinite(value)
+    except OverflowError:
+        return False
+
+
+def _finite(value, name):
+    if not _number(value):
+        raise ValidationError(name + ' must remain finite; numeric overflow')
+    return value
+
+
+def _finite_sum(values, name):
+    try:
+        value = float(sum(values))
+    except OverflowError as exc:
+        raise ValidationError(name + ' must remain finite; numeric overflow') from exc
+    return _finite(value, name)
 
 
 def context_states(context):
@@ -44,6 +63,9 @@ def context_states(context):
 def validate_model(model):
     if not isinstance(model, dict) or model.get('hypothesis_mode') not in ('nonexclusive', 'competing'):
         raise ValidationError('hypothesis_mode must explicitly be nonexclusive or competing')
+    origin = model.get('parameter_origin', 'untrained')
+    if origin not in ('untrained', 'synthetic_illustration', 'expert_label_training'):
+        raise ValidationError('parameter_origin must be untrained, synthetic_illustration or expert_label_training')
     claims = model.get('claims')
     if not isinstance(claims, list) or not claims:
         raise ValidationError('claims must be a nonempty list')
@@ -76,11 +98,14 @@ def validate_model(model):
         values = [claim.get('bias')] + list(weights.values()) + [x.get('weight') for x in interactions]
         if any(x is not None and not _number(x) for x in values):
             raise ValidationError('parameters must be finite numbers or null')
+        if origin == 'untrained' and any(x is not None for x in values):
+            raise ValidationError('untrained parameters must be null; numeric parameters require a declared trained or synthetic origin')
     if model['hypothesis_mode'] == 'competing' and len(claims) < 2:
         raise ValidationError('competing requires at least two alternative claims')
 
 
 def _sigmoid(value):
+    _finite(value, 'logit')
     if value >= 0:
         return 1 / (1 + math.exp(-value))
     exp = math.exp(value)
@@ -124,14 +149,14 @@ def predict(model, context, *, allow_synthetic=False):
             terms = _terms(claim, states)
             contributions = [{'term': name, 'active': active, 'weight': weight, 'contribution': active * weight}
                              for (name, active), weight in zip(terms, parameters)]
-            logit = sum(x['contribution'] for x in contributions)
+            logit = _finite_sum((x['contribution'] for x in contributions), 'logit')
             item.update(status='synthetic_illustration' if synthetic else 'model_estimate_uncalibrated',
                         probability=_sigmoid(logit), logit=logit, contributions=contributions)
         output['claims'].append(item)
     if model['hypothesis_mode'] == 'competing':
         complete = all(x['probability'] is not None for x in output['claims'])
         maximum = max(x['logit'] for x in output['claims']) if complete else None
-        total = sum(math.exp(x['logit'] - maximum) for x in output['claims']) if complete else None
+        total = _finite_sum((math.exp(x['logit'] - maximum) for x in output['claims']), 'softmax total') if complete else None
         for item in output['claims']:
             item['probability'] = math.exp(item['logit'] - maximum) / total if complete else None
             if not complete:
@@ -192,10 +217,11 @@ def fit(model, dataset, holdout_group, *, epochs=300, learning_rate=0.15, l2=0.0
         for _ in range(epochs):
             gradients = [0.0] * len(weights)
             for vector, label in zip(features, labels):
-                error = _sigmoid(sum(w * x for w, x in zip(weights, vector))) - label
+                error = _sigmoid(_finite_sum((w * x for w, x in zip(weights, vector)), 'training logit')) - label
                 for i, value in enumerate(vector):
                     gradients[i] += error * value / len(train)
-            weights = [w - learning_rate * (g + (l2 * w if i else 0)) for i, (w, g) in enumerate(zip(weights, gradients))]
+            weights = [_finite(w - learning_rate * (g + (l2 * w if i else 0)), 'updated parameter')
+                       for i, (w, g) in enumerate(zip(weights, gradients))]
         claim['bias'] = weights[0]
         cursor = 1
         for key in claim['feature_weights']:
@@ -210,13 +236,15 @@ def fit(model, dataset, holdout_group, *, epochs=300, learning_rate=0.15, l2=0.0
     for row in holdout:
         states = context_states(row['context'])
         for claim in fitted['claims']:
-            p = _sigmoid(sum(weight * active for weight, (_, active) in zip(_parameters(claim), _terms(claim, states))))
-            p = min(max(p, 1e-12), 1 - 1e-12)
+            logit = _finite_sum((weight * active for weight, (_, active) in zip(_parameters(claim), _terms(claim, states))), 'holdout logit')
             y = row['labels'][claim['id']]
-            losses.append(-y * math.log(p) - (1 - y) * math.log(1 - p))
+            # BCE from logits stays finite without clipping away confident errors.
+            loss = ((1 - y) * logit if logit >= 0 else -y * logit) + math.log1p(math.exp(-abs(logit)))
+            losses.append(_finite(loss, 'holdout loss'))
+    holdout_loss = _finite_sum((loss / len(losses) for loss in losses), 'mean holdout loss')
     fitted['training_report'] = {'objective': 'binary_cross_entropy', 'training_groups': sorted(groups - {holdout_group}),
                                  'holdout_group': holdout_group, 'training_case_ids': [x['case_id'] for x in train],
-                                 'holdout_case_ids': [x['case_id'] for x in holdout], 'holdout_binary_cross_entropy': sum(losses) / len(losses),
+                                 'holdout_case_ids': [x['case_id'] for x in holdout], 'holdout_binary_cross_entropy': holdout_loss,
                                  'calibrated': False, 'source_groups_verified_by_engine': False,
                                  'note': 'Group separation is enforced; expert identity, label quality and independent provenance still require review.'}
     return fitted
