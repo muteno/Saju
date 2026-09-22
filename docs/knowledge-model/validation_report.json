@@ -1,8 +1,8 @@
 {
   "code_tests": {
-    "total": 24,
-    "passed": 24,
-    "scope": "16 symbolic rule tests including 100 stem pairs; 8 conditional model tests"
+    "total": 37,
+    "passed": 37,
+    "scope": "16 symbolic tests; 8 conditional model tests; 10 FigJam ingestion tests; 3 source navigation tests"
   },
   "graph": {
     "basic_concepts": 18,
@@ -36,5 +36,25 @@
     "ambiguous_alias_preserved": true,
     "live_board_sync": "not_checked",
     "probability_calibration": "not_run"
+  },
+  "figma_live": {
+    "xml_sha256": "c303fadeac529369d296bfdf672c0e60f445583754e883ec26efec66bbc6b09f",
+    "connector_api_sha256": "896c64bbf430cb3b4c483e65ed708412e3cdee0afd8c9783cda72ef4097d583d",
+    "concept_bindings": 18,
+    "exact_quote_spans": 50,
+    "coverage": {
+      "definition": 3,
+      "explanation": 13,
+      "title_only": 2
+    },
+    "scoped_nodes": 3619,
+    "connectors": 154,
+    "tables": 10,
+    "table_cells": 943,
+    "attachment_self_loops": 60,
+    "missing_endpoints": 0,
+    "xml_api_endpoint_caps_match": true,
+    "existing_semantic_relations_unchanged": true,
+    "meaning_accuracy_or_probability_calibration": "not_evaluated"
   }
 }

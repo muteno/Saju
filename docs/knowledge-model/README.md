@@ -9,7 +9,7 @@
 | 파일 | 역할 |
 |---|---|
 | `PROJECT_AGENDA.md` | 진화 가능한 프로젝트 목적·설계 원칙·완료 기준 |
-| `USER_INTENT_LOG.md` | 사용자의 관련 발언 14개와 이해 수정의 흐름 |
+| `USER_INTENT_LOG.md` | 사용자의 관련 발언 15개와 이해 수정의 흐름 |
 | `MATHEMATICAL_DESIGN.md` | 논문에 근거한 수학적 후보와 현재 기준 모델 |
 | `학습과평가설계.md` | 원문 추출·라벨링·조합·시간·출처 분리 평가 |
 | `knowledge_graph.json` | 기본 개념 18개를 포함한 58개 노드, 132개 관계, 11개 다중 입력 관계 |
@@ -72,3 +72,9 @@ python conditional_model.py --fit reviewed_cases.json --holdout-group held_out_a
 ## Figma 기본 개념 자료
 
 [FIGMA_FOUNDATION.md](FIGMA_FOUNDATION.md)는 기존 보드 텍스트 추출본과 18개 기본 개념을 연결한다. `data/figma_foundation_bindings.json`에 원문 줄·발췌·해시·확인 수준을 저장하고, `build_graph.py`는 이 참조를 개념 노드에 붙인다. `knowledge_query.py`는 블로그 근거와 함께 Figma 원천 개념 참조도 반환한다. 기존 보드 스냅샷을 재사용한 것이며 최신 Figma 동기화 완료를 뜻하지 않는다.
+
+### 현재 보드 직접 읽기와 구조 조회
+
+[FIGMA_LIVE_REVIEW.md](FIGMA_LIVE_REVIEW.md)에 최신 세션의 노드 ID·표 셀·보드 연결선 검수 결과를 기록했다. 과거 보드 참조와 별도인 `data/figma_live_bindings.json` 및 `data/figma_live_structure.json`을 사용한다. `knowledge_query.py`는 현재 보드의 검수 인용도 반환한다. 도식 선은 학습된 확률 관계가 아니다.
+
+연결선 탐색은 `python knowledge_query.py 십신 --diagram-context`로 확인한다. 직접 부착된 선과 인용 섹션의 도식을 구별하며, 서로 다른 스냅샷은 혼용하지 않는다.

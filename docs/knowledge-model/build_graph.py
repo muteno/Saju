@@ -172,6 +172,20 @@ def build():
         assert bool(ref["spans"]) == (ref["coverage"] != "not_found")
         nodes[ref["concept_id"]]["foundation_reference_ids"] = [ref["id"]]
 
+    live = read("figma_live_bindings.json")
+    live_refs = live["bindings"]
+    structure = read("figma_live_structure.json")
+    assert structure["source"]["raw_sha256"] == live["source"]["snapshot_sha256"]
+    board_ids = {n["id"] for n in structure["nodes"]}
+    assert len({r["id"] for r in live_refs}) == len(live_refs)
+    assert {r["concept_id"] for r in live_refs} == {c["id"] for c in basic["concepts"]}
+    assert len(live_refs) == len(basic["concepts"])
+    for ref in live_refs:
+        assert ref["coverage"] in {"definition", "explanation", "title_only", "not_found"}
+        assert bool(ref["spans"]) == (ref["coverage"] != "not_found")
+        assert all(span["node_id"] in board_ids for span in ref["spans"])
+        nodes[ref["concept_id"]]["live_foundation_reference_ids"] = [ref["id"]]
+
     result = {"schema_version": "0.1", "purpose": "context-conditioned probabilistic knowledge model foundation",
         "scope": "18 basic concepts plus directly sourced symbolic components; not full-corpus semantic extraction",
         "nodes": list(nodes.values()), "relations": relations, "hyperedges": hyperedges,
@@ -179,6 +193,13 @@ def build():
         "evidence": list(evidence.values()), "source_issues": issues,
         "foundation_source": foundation["source"],
         "foundation_references": foundation_refs,
+        "live_foundation_source": live["source"],
+        "live_foundation_references": live_refs,
+        "diagram_structure": {"path": "data/figma_live_structure.json",
+            "use_in_inference": False, "probability": None,
+            "snapshot_sha256": live["source"]["snapshot_sha256"],
+            "statistics": structure["statistics"],
+            "purpose": "source navigation and attachment inspection; not semantic or probabilistic edges"},
         "context_contract": {"activation": "observed degree in [0,1]; null means unknown, not zero",
             "time": "natal chart, daewoon, yearly/monthly context stored separately with evaluation time",
             "interactions": "explicit factors with 2 or more keywords; do not reduce all to independent pair edges",

@@ -4,6 +4,29 @@ import json
 from pathlib import Path
 
 
+def diagram_context(result, structure):
+    """Return source-navigation links; no board line becomes a semantic edge."""
+    expected = result.get("diagram_structure", {}).get("snapshot_sha256")
+    if not expected or expected != structure["source"]["raw_sha256"]:
+        raise ValueError("Graph references and diagram structure use different snapshots")
+    nodes = {n["id"]: n for n in structure["nodes"]}
+    cited = {s["node_id"] for r in result.get("live_foundation_references", []) for s in r["spans"]}
+    sections = {node_id for node_id in cited if nodes[node_id]["type"] == "section"}
+    connections = []
+    for connector in structure["connectors"]:
+        endpoints = {connector[role]["node_id"] for role in ("start", "end")}
+        direct = sorted(cited & endpoints)
+        ancestors = {a for endpoint in endpoints for a in nodes.get(endpoint, {}).get("ancestor_ids", [])}
+        contextual = sorted(sections & ancestors)
+        if direct or contextual:
+            connections.append({"match_kind": "direct_node_attachment" if direct else "cited_section_context",
+                "matched_node_ids": direct, "matched_section_ids": contextual,
+                "connector": connector})
+    return {"use_in_inference": False, "probability": None,
+            "meaning": "navigation within cited source nodes/sections; not concept relations",
+            "connections": connections}
+
+
 def query(term, graph):
     matches = [n for n in graph["nodes"] if term in [n["id"], n["title"], *n["aliases"]]]
     if len(matches) != 1:
@@ -15,17 +38,28 @@ def query(term, graph):
     refs = set(node["evidence_ids"])
     for item in links + factors: refs.update(item["evidence_ids"])
     foundation_ids = set(node.get("foundation_reference_ids", []))
+    live_ids = set(node.get("live_foundation_reference_ids", []))
     return {"status": "found", "node": node, "relations": links, "context_factors": factors,
             "evidence": [e for e in graph["evidence"] if e["id"] in refs],
             "foundation_source": graph.get("foundation_source"),
             "foundation_references": [r for r in graph.get("foundation_references", [])
                                       if r["id"] in foundation_ids],
+            "live_foundation_source": graph.get("live_foundation_source"),
+            "live_foundation_references": [r for r in graph.get("live_foundation_references", [])
+                                           if r["id"] in live_ids],
+            "diagram_structure": graph.get("diagram_structure"),
             "probability": None, "probability_status": "requires_trained_context_model"}
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("term")
+    parser.add_argument("--diagram-context", action="store_true",
+                        help="Include board attachments in cited source nodes/sections, not inferred relations")
     args = parser.parse_args()
     graph = json.loads((Path(__file__).parent / "knowledge_graph.json").read_text(encoding="utf-8"))
-    print(json.dumps(query(args.term, graph), ensure_ascii=False, indent=2))
+    result = query(args.term, graph)
+    if args.diagram_context and result["status"] == "found":
+        path = Path(__file__).parent / graph["diagram_structure"]["path"]
+        result["diagram_context"] = diagram_context(result, json.loads(path.read_text(encoding="utf-8")))
+    print(json.dumps(result, ensure_ascii=False, indent=2))
