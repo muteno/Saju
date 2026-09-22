@@ -1,0 +1,1921 @@
+{
+  "schema_version": "0.1",
+  "title": "블로그 우선 기본 개념노트 후보",
+  "scope": "원본 라이브러리의 블로그 스크랩 일부에서 확인한 18개 기본 개념. 전체 76 DOCX·246 전사의 의미 검수 완료나 전체 사주 지식망 완성을 뜻하지 않음.",
+  "source_priority": [
+    "블로그 원문 스크랩",
+    "후속 대조 단계의 전사본"
+  ],
+  "transcripts_used_in_definitions": false,
+  "notes_are": "앱에 종속되지 않는 개념망의 기본 개념 후보; 해석 알고리즘 또는 학습 완료 모델이 아님",
+  "link_policy": "학습선행 링크는 편집상 제안. 정의·지식 관계는 원문 evidence_id로 추적. 빈 evidence_ids인 학습상 비교 링크는 원문이 선언한 관계가 아님.",
+  "probability_policy": "현재 저장하는 것은 개념·출처·조건이다. 공기빈도·소스 일치도·예측 확률을 서로 구별하고, 근거 없는 수치 확률을 붙이지 않는다.",
+  "concept_count": 18,
+  "concepts": [
+    {
+      "id": "yin_yang",
+      "title": "음양",
+      "status": "basic_note_candidate",
+      "definition": "서로 대립하면서도 조화를 이루고 변화하는 두 측면을 가리키는 상대적 개념이다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "陰陽"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 591,
+          "paragraph_end": 594,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "음양(陰陽)은 우주 만물을 이루는, 서로 대립하면서도 조화를 이루며 변화를 만들어내는 기운으로 봤죠.\n음(陰): 어둠, 차가움, 정적, 하강, 여성적인 기운\n양(陽): 밝음, 뜨거움, 활동, 상승, 남성적인 기운\n음양은 서로 독립적으로 존재하는 것이 아니라, 상대적인 개념이며, 서로 변화하고 균형을 이루려는 속성을 가지고 있습니다.",
+          "article_metadata": "작성일 2025-07-22 · 원문 chocosd.com/%ec%9d%8c%ec%96%91-%ec%98%a4%ed%96%89/%ec%b2%9c%ec%99%95%ec%84%b1%ea%b3%bc-%ed%95%b4%ec%99%95%ec%84%b1%ec%9d%b4-%ec%9d%bc%ec%b0%8d-%eb%b0%9c%ea%b2%ac%eb%90%90%eb%8b%a4%eb%a9%b4-%ec%9d%8c%ec%96%91%ec%b9%a0%ed%96%89%eb%a1%a0%ec%9d%b4/",
+          "source_group": "초코서당",
+          "source_sha256": "4824ad58cc60a017a57550cc62db681f26613cd9af1de12fa01bb1dfb3f846e1",
+          "evidence_id": "yin_yang_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 596,
+          "paragraph_end": 596,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "음양의 개념에서 확대된 게 바로 오행입니다. 동양에서 오행은 자연의 기본적인 다섯 가지 요소인 목(木), 화(火), 토(土), 금(金), 수(水)로 이루어져 있고, 이들이 상호 작용하면서 세상의 모든 변화가 일어난다고 봅니다.",
+          "article_metadata": "작성일 2025-07-22 · 원문 chocosd.com/%ec%9d%8c%ec%96%91-%ec%98%a4%ed%96%89/%ec%b2%9c%ec%99%95%ec%84%b1%ea%b3%bc-%ed%95%b4%ec%99%95%ec%84%b1%ec%9d%b4-%ec%9d%bc%ec%b0%8d-%eb%b0%9c%ea%b2%ac%eb%90%90%eb%8b%a4%eb%a9%b4-%ec%9d%8c%ec%96%91%ec%b9%a0%ed%96%89%eb%a1%a0%ec%9d%b4/",
+          "source_group": "초코서당",
+          "source_sha256": "4824ad58cc60a017a57550cc62db681f26613cd9af1de12fa01bb1dfb3f846e1",
+          "evidence_id": "yin_yang_e2"
+        }
+      ],
+      "prerequisite_links": [],
+      "relation_links": [
+        {
+          "target": "five_elements",
+          "relation": "개념 확장",
+          "evidence_ids": [
+            "yin_yang_e2"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "정의는 해당 자료의 철학적 틀이다. 개인의 성격을 분류하는 입력 규칙은 아직 만들지 않는다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "five_elements",
+      "title": "오행",
+      "status": "basic_note_candidate",
+      "definition": "목·화·토·금·수라는 다섯 범주로 자연의 변화와 운동성을 설명하는 체계다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "五行"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 596,
+          "paragraph_end": 606,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "음양의 개념에서 확대된 게 바로 오행입니다. 동양에서 오행은 자연의 기본적인 다섯 가지 요소인 목(木), 화(火), 토(土), 금(金), 수(水)로 이루어져 있고, 이들이 상호 작용하면서 세상의 모든 변화가 일어난다고 봅니다.\n오행의 특징 및 성질\n목(木)생장, 발전, 봄, 동쪽, 푸른색 화(火)열정, 확장, 여름, 남쪽, 붉은색 토(土)균형, 조화, 변화, 중앙, 노란색 금(金)수렴, 결실, 가을, 서쪽, 흰색 수(水)저장, 생명력, 겨울, 북쪽, 검은색\n여기에서 중요한 것은,\n사실 목화토금수 오행이 단순한 물질이 아니라, 운동의 속성을 나타내는 개념이라는 사실입니다.\n그래서 다섯가지 요소를,\n다섯 가지 운동성이라는 뜻으로 오행(五行)이라고 표기하는 것입니다.\n목 오행은 만물이 싹을 트고 성장하는 봄의 운동성을,\n화 오행은 태양은 뜨거운 열기를 내뿜고, 만물은 최고조로 성장하는 여름의 운동성을,\n금 오행은 태양의 열기는 조금씩 식어가고, 만물이 결실을 맺는 가을의 운동성을,\n수 오행은 날씨가 추워지며, 생명의 활동력이 점점 멈추는 겨울의 운동성을 나타내죠.",
+          "article_metadata": "작성일 2025-07-22 · 원문 chocosd.com/%ec%9d%8c%ec%96%91-%ec%98%a4%ed%96%89/%ec%b2%9c%ec%99%95%ec%84%b1%ea%b3%bc-%ed%95%b4%ec%99%95%ec%84%b1%ec%9d%b4-%ec%9d%bc%ec%b0%8d-%eb%b0%9c%ea%b2%ac%eb%90%90%eb%8b%a4%eb%a9%b4-%ec%9d%8c%ec%96%91%ec%b9%a0%ed%96%89%eb%a1%a0%ec%9d%b4/",
+          "source_group": "초코서당",
+          "source_sha256": "4824ad58cc60a017a57550cc62db681f26613cd9af1de12fa01bb1dfb3f846e1",
+          "evidence_id": "five_elements_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 624,
+          "paragraph_end": 624,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "목생화(木生火), 화생토(火生土), 토생금(土生金), 금생수(金生水), 수생목(水生木)의 상생(相生) 관계에서 나아가, 목극토(木剋土), 토극수(土剋水), 수극화(水剋火), 화극금(火剋金), 금극목(金剋木)처럼 상극(相剋) 관계로도 오행체계를 설명할 수 있게 됐다는 점에서 큰 의미가 있습니다.",
+          "article_metadata": "작성일 2025-07-22 · 원문 chocosd.com/%ec%9d%8c%ec%96%91-%ec%98%a4%ed%96%89/%ec%b2%9c%ec%99%95%ec%84%b1%ea%b3%bc-%ed%95%b4%ec%99%95%ec%84%b1%ec%9d%b4-%ec%9d%bc%ec%b0%8d-%eb%b0%9c%ea%b2%ac%eb%90%90%eb%8b%a4%eb%a9%b4-%ec%9d%8c%ec%96%91%ec%b9%a0%ed%96%89%eb%a1%a0%ec%9d%b4/",
+          "source_group": "초코서당",
+          "source_sha256": "4824ad58cc60a017a57550cc62db681f26613cd9af1de12fa01bb1dfb3f846e1",
+          "evidence_id": "five_elements_e2"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "yin_yang",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "yin_yang",
+          "relation": "개념적 바탕",
+          "evidence_ids": [
+            "five_elements_e1"
+          ]
+        },
+        {
+          "target": "generation_control",
+          "relation": "상호작용 관계",
+          "evidence_ids": [
+            "five_elements_e2"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "물상 비유와 운동성 설명을 동의어로 완전히 합치지 않는다.",
+        "오행의 존재·갯수와 실제 강도는 별도 항목으로 둔다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "generation_control",
+      "title": "생극",
+      "status": "basic_note_candidate",
+      "definition": "오행 사이에서 생은 받쳐주고 토대가 되는 관계, 극은 제어하고 억제하는 관계를 뜻한다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "生剋",
+        "상생상극"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 174,
+          "paragraph_end": 176,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "이 오행의 관계는 기본적으로 생(生)하는 관계와 극(剋)하는 관계로 나누어 집니다. 살려주고 받쳐주고 토대가 되는 관계를 생(生)이라 하며, 제어하고 억제하고 다스리는 관계를 극(剋)이라고 합니다.\n일반적으로 오행을 외울 때 목화토금수의 순서대로 외우는데, 생하는 관계는 목-화-토-금-수의 순서와 일치합니다. 목생화, 화생토, 토생금, 금생수, 수생목하는 관계가 형성되는 것입니다.\n한자로 하면 木生火, 火生土, 土生金, 金生水, 水生木입니다. 목이 화를 살리고, 화가 토를 살리고, 토가 금을 살리고, 금이 수를 살리고, 수가 목을 살리는 것입니다.",
+          "article_metadata": "작성일 2019-08-23 · 원문 yavares.tistory.com/199",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "generation_control_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 624,
+          "paragraph_end": 624,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "목생화(木生火), 화생토(火生土), 토생금(土生金), 금생수(金生水), 수생목(水生木)의 상생(相生) 관계에서 나아가, 목극토(木剋土), 토극수(土剋水), 수극화(水剋火), 화극금(火剋金), 금극목(金剋木)처럼 상극(相剋) 관계로도 오행체계를 설명할 수 있게 됐다는 점에서 큰 의미가 있습니다.",
+          "article_metadata": "작성일 2025-07-22 · 원문 chocosd.com/%ec%9d%8c%ec%96%91-%ec%98%a4%ed%96%89/%ec%b2%9c%ec%99%95%ec%84%b1%ea%b3%bc-%ed%95%b4%ec%99%95%ec%84%b1%ec%9d%b4-%ec%9d%bc%ec%b0%8d-%eb%b0%9c%ea%b2%ac%eb%90%90%eb%8b%a4%eb%a9%b4-%ec%9d%8c%ec%96%91%ec%b9%a0%ed%96%89%eb%a1%a0%ec%9d%b4/",
+          "source_group": "초코서당",
+          "source_sha256": "4824ad58cc60a017a57550cc62db681f26613cd9af1de12fa01bb1dfb3f846e1",
+          "evidence_id": "generation_control_e2"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 562,
+          "paragraph_end": 563,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "통변 시 금생수(金生水)의 상생 관계가 특히 그렇습니다. 경금(庚)이나 신금(辛)일간인 경우 가급적 사주에 수(水)가 있어 금(金)이 설기되어야 좋다고 합니다. 얼핏 설기된다는 표현은 에너지나 기운이 빠져나간다고 하여 부정적으로 생각되기 쉽지만, 금은 수의 설기를 반깁니다. 그 이유는 금이 제 역할을 하며 더욱 맑아지기 때문입니다. 수 또한 금으로부터 흘러 생명수로 작용하니, 더욱 수로서의 역할을 잘 할 수 있게 됩니다.\n이런 관점은 생(生)의 관계뿐 아니라, 극(剋)의 관계에서도 마찬가지입니다. 금은 화극금(火剋金), 즉 불로 제련되어야 합니다. 일간이 특히 경금(庚)인 경우, 극하는 관계를 꺼린다고 보기 쉽지만, 정화(丁)가 와서 제련이 되어야 경금(庚)은 더욱 안정감을 키울 수 있게 됩니다.",
+          "article_metadata": "작성일 2021-11-12 · 원문 chocosd.com/%ec%9d%8c%ec%96%91-%ec%98%a4%ed%96%89/%ea%b8%88%ec%83%9d%ec%88%98%e9%87%91%e7%94%9f%e6%b0%b4-%ea%b8%88%ec%9d%b4-%ec%88%98%eb%a5%bc-%ec%83%9d%ed%95%9c%eb%8b%a4%eb%8a%94-%eb%a7%90%ec%9d%80-%eb%ac%b4%ec%8a%a8-%eb%9c%bb%ec%9d%bc%ea%b9%8c/",
+          "source_group": "초코서당",
+          "source_sha256": "4824ad58cc60a017a57550cc62db681f26613cd9af1de12fa01bb1dfb3f846e1",
+          "evidence_id": "generation_control_e3"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 418,
+          "paragraph_end": 420,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "지난 시간에 우리는 오행의 상생상극에서 비롯한 육친(六親)이라는 개념에 대해 알아보았습니다. 목생화, 화생토, 토생금, ... 목극토, 토극수, 수극화, ... 하는 오행의 상생상극의 관계에 인간관계를 대입한 것이 바로 육친의 개념이었습니다.\n오행의 상생상극 관계를 친족에 대입한 것이 육친이라면, 십신은 오행의 상생상극 관계를 음과 양으로 세분화 하여 인간 삶의 구체적인 모든 요소로 표현할 수 있게 정리한 것입니다.\n오행에서 음양으로 세분화하니 5(오행) × 2(음양) = 10 해서 십신(十神)이 되는 것입니다. 십신은 학자에 따라 십성(十聖)이라고 부르기도 합니다. 또는 십신과 육친을 통틀어 육친(六親)이라고 부르기도 하며, 육신(六神)이라고 부르기도 합니다. 하지만 어떻게 부르든 오행의 관계성을 인간 삶으로 끌어온 개념이라는 사실이 중요합니다.",
+          "article_metadata": "작성일 2019-09-02 · 원문 yavares.tistory.com/209",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "generation_control_e4"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "five_elements",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "five_elements",
+          "relation": "관계의 양 끝",
+          "evidence_ids": [
+            "generation_control_e1",
+            "generation_control_e2"
+          ]
+        },
+        {
+          "target": "ten_gods",
+          "relation": "분류의 기반",
+          "evidence_ids": [
+            "generation_control_e4"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "생=항상 좋음, 극=항상 나쁨으로 평가하지 않는다.",
+        "방향이 있는 관계이므로 주체와 대상을 보존한다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "heavenly_stems",
+      "title": "천간",
+      "status": "basic_note_candidate",
+      "definition": "간지를 이루는 두 체계 가운데 하늘의 기운을 나타내는 열 기호이며, 갑·을·병·정·무·기·경·신·임·계로 구성된다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "天干",
+        "십천간",
+        "十天干"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 90,
+          "paragraph_end": 99,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "간지(干支)란 시간의 순환을 나타내기 위해 쓰인 중국의 역법 단위입니다. 현대에는 시간은 앞에서 뒤로, 왼쪽에서 오른쪽으로 흐르는 것처럼 받아들여지지만, 과거에는 동양에서는 시간을 순환하는 개념으로 이해하였습니다.\n지구가 자전, 공전하듯 시간도 돌고 세상 모든 만물이 돌고 돈다는 인식이 자리잡고 있었기에 가능한 인식이었습니다. 계속 돌고 도는 시간의 개념을 60개의 단위로 구분하였고 그것의 기호가 바로 간지인 것입니다. 갑자년이 지나고 59년뒤에 또다시 갑자년이 오는 식으로 말이죠.\n이 간지는 간과 지, 즉 하늘과 땅의 기운으로 나누어 지는데 하늘의 기운을 나타내는 단어를 천간(天干)이라 합니다.\n반대로 땅의 작용을 나타내는 단어를 지지(地支)라고 하며, 하늘의 기운과 땅의 작용을 합하여 간지(干支, 천간天干과 지지地支)라고 부릅니다.\n2. 간지의 활용\n이 간지(干支)들의 조합을 가지고 인간의 성향을 분석하고 운명을 점치는 것이 역학(명리학)의 기본입니다. 철학적으로 이야기 하자면, 시간의 순환 속에 선 인간 존재를 파악하려는 작업이었던 것입니다.\n간지는 일종의 명리학의 알파벳이라고 할 수 있는데, 간지중, 하늘의 기운에 해당하는 천간은 10개의 요소로 구성되어 있습니다. 따라서 십천간(十天干)이라는 말을 쓰기도 합니다. (반대로 지지는 십이지(十二支)라는 말이 통용됩니다. 십이지라는 개념은 동물과도 연관되어 어린이 만화나 게임에도 자주 등장하는 친숙한 개념입니다.\n3. 천간을 이루는 요소\n천간을 이루는 10개의 요소를 살펴보면 다음과 같습니다.\n갑(甲), 을(乙), 병(丙), 정(丁), 무(戊), 기(己), 경(庚), 신(辛), 임(壬), 계(癸)",
+          "article_metadata": "작성일 2019-02-20 · 원문 yavares.tistory.com/3",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "heavenly_stems_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 424,
+          "paragraph_end": 425,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "천간은 갑(甲), 을(乙), 병(丙), 정(丁), 무(戊), 기(己), 경(庚), 신(辛), 임(壬), 계(癸) 총 10개 입니다. 천간에 부여된 음양오행은 다음 표와 같습니다.\n위의 표를 보면 아시겠지만, 갑(甲) 부터 양음양음의 순서대로 음양(陰陽)이 부여됩니다. 오행은 목,화,토,금,수(木,火,土,金,水)의 순서대로 배치되어 있습니다. 계절로는 봄(목), 여름(화), 간절기(토), 가을(금), 겨울(수)의 순서입니다.",
+          "article_metadata": "작성일 2019-09-02 · 원문 yavares.tistory.com/209",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "heavenly_stems_e2"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 127,
+          "paragraph_end": 127,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "甲(갑)은 음양으로는 양(陽), 오행으로는 木(목)에 해당합니다.",
+          "article_metadata": "작성일 2019-02-20 · 원문 yavares.tistory.com/3",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "heavenly_stems_property_1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 132,
+          "paragraph_end": 132,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "乙(을)은 음양으로는 음(陰), 오행으로는 木(목)에 해당합니다.",
+          "article_metadata": "작성일 2019-02-20 · 원문 yavares.tistory.com/3",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "heavenly_stems_property_2"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 137,
+          "paragraph_end": 137,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "丙(병)은 음양으로는 양(陽), 오행으로는 火(화)에 해당합니다.",
+          "article_metadata": "작성일 2019-02-20 · 원문 yavares.tistory.com/3",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "heavenly_stems_property_3"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 142,
+          "paragraph_end": 142,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "丁(정)은 음양으로는 음(陰), 오행으로는 火(화)에 해당합니다.",
+          "article_metadata": "작성일 2019-02-20 · 원문 yavares.tistory.com/3",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "heavenly_stems_property_4"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 147,
+          "paragraph_end": 147,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "戊(무)는 음양으로는 양(陽), 오행으로는 토(土)에 해당합니다.",
+          "article_metadata": "작성일 2019-02-20 · 원문 yavares.tistory.com/3",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "heavenly_stems_property_5"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 152,
+          "paragraph_end": 152,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "己(기)는 음양으로는 음(陰), 오행으로는 토(土)에 해당합니다.",
+          "article_metadata": "작성일 2019-02-20 · 원문 yavares.tistory.com/3",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "heavenly_stems_property_6"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 157,
+          "paragraph_end": 157,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "庚(경)은 음양으로는 양(陽), 오행으로는 金(금)에 해당합니다.",
+          "article_metadata": "작성일 2019-02-20 · 원문 yavares.tistory.com/3",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "heavenly_stems_property_7"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 162,
+          "paragraph_end": 162,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "辛(신)은 음양으로는 음(陰), 오행으로는 金(금)에 해당합니다.",
+          "article_metadata": "작성일 2019-02-20 · 원문 yavares.tistory.com/3",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "heavenly_stems_property_8"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 167,
+          "paragraph_end": 167,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "壬(임)은 음양으로는 양(陽), 오행으로는 水(수)에 해당합니다.",
+          "article_metadata": "작성일 2019-02-20 · 원문 yavares.tistory.com/3",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "heavenly_stems_property_9"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 172,
+          "paragraph_end": 172,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "癸(계)는 음양으로는 음(陰), 오행으로는 水(수)에 해당합니다.",
+          "article_metadata": "작성일 2019-02-20 · 원문 yavares.tistory.com/3",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "heavenly_stems_property_10"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "yin_yang",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "five_elements",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "earthly_branches",
+          "relation": "함께 간지를 구성",
+          "evidence_ids": [
+            "heavenly_stems_e1"
+          ]
+        },
+        {
+          "target": "yin_yang",
+          "relation": "각 기호에 배정",
+          "evidence_ids": [
+            "heavenly_stems_e2"
+          ]
+        },
+        {
+          "target": "five_elements",
+          "relation": "각 기호에 배정",
+          "evidence_ids": [
+            "heavenly_stems_e2"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "천간 신(辛)과 지지 신(申)은 한글 표기가 같아도 서로 다른 노드로 유지한다."
+      ],
+      "empirical_prediction_claim": false,
+      "properties": {
+        "heavenly_stems": [
+          {
+            "id": "stem_甲",
+            "order": 1,
+            "hangul": "갑",
+            "hanja": "甲",
+            "name": "갑목",
+            "element": "목",
+            "polarity": "양",
+            "evidence_ids": [
+              "heavenly_stems_property_1"
+            ]
+          },
+          {
+            "id": "stem_乙",
+            "order": 2,
+            "hangul": "을",
+            "hanja": "乙",
+            "name": "을목",
+            "element": "목",
+            "polarity": "음",
+            "evidence_ids": [
+              "heavenly_stems_property_2"
+            ]
+          },
+          {
+            "id": "stem_丙",
+            "order": 3,
+            "hangul": "병",
+            "hanja": "丙",
+            "name": "병화",
+            "element": "화",
+            "polarity": "양",
+            "evidence_ids": [
+              "heavenly_stems_property_3"
+            ]
+          },
+          {
+            "id": "stem_丁",
+            "order": 4,
+            "hangul": "정",
+            "hanja": "丁",
+            "name": "정화",
+            "element": "화",
+            "polarity": "음",
+            "evidence_ids": [
+              "heavenly_stems_property_4"
+            ]
+          },
+          {
+            "id": "stem_戊",
+            "order": 5,
+            "hangul": "무",
+            "hanja": "戊",
+            "name": "무토",
+            "element": "토",
+            "polarity": "양",
+            "evidence_ids": [
+              "heavenly_stems_property_5"
+            ]
+          },
+          {
+            "id": "stem_己",
+            "order": 6,
+            "hangul": "기",
+            "hanja": "己",
+            "name": "기토",
+            "element": "토",
+            "polarity": "음",
+            "evidence_ids": [
+              "heavenly_stems_property_6"
+            ]
+          },
+          {
+            "id": "stem_庚",
+            "order": 7,
+            "hangul": "경",
+            "hanja": "庚",
+            "name": "경금",
+            "element": "금",
+            "polarity": "양",
+            "evidence_ids": [
+              "heavenly_stems_property_7"
+            ]
+          },
+          {
+            "id": "stem_辛",
+            "order": 8,
+            "hangul": "신",
+            "hanja": "辛",
+            "name": "신금",
+            "element": "금",
+            "polarity": "음",
+            "evidence_ids": [
+              "heavenly_stems_property_8"
+            ]
+          },
+          {
+            "id": "stem_壬",
+            "order": 9,
+            "hangul": "임",
+            "hanja": "壬",
+            "name": "임수",
+            "element": "수",
+            "polarity": "양",
+            "evidence_ids": [
+              "heavenly_stems_property_9"
+            ]
+          },
+          {
+            "id": "stem_癸",
+            "order": 10,
+            "hangul": "계",
+            "hanja": "癸",
+            "name": "계수",
+            "element": "수",
+            "polarity": "음",
+            "evidence_ids": [
+              "heavenly_stems_property_10"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "earthly_branches",
+      "title": "지지",
+      "status": "basic_note_candidate",
+      "definition": "간지에서 땅의 작용을 나타내는 열두 기호이며 자·축·인·묘·진·사·오·미·신·유·술·해로 구성된다. 시간·계절 등의 의미와 연결된다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "地支",
+        "십이지",
+        "十二支"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 531,
+          "paragraph_end": 532,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "중국의 역법 단위인 간지는 천간과 지지로 나누어집니다. 하늘을 기운을 천간이라 한다면 땅의 작용을 나타내는 것을 지지라 합니다. 천간이 10개인 반면, 지지는 12개의 문자로 구성됩니다. 이를 십이지(十二支)라고 부르기도 합니다.\n지지에 해당하는 글자는 그 순서대로 자(子), 축(丑), 인(寅), 묘(卯), 진(辰), 사(巳), 오(午), 미(未), 신(申), 유(酉), 술(戌), 해(亥) 입니다. 많은 사람들이 아시는 대로 지지 열 두글자에는 수많은 의미가 들어있습니다. 쉽게는 동물에서부터 음양오행, 계절, 월(月), 시(時)까지... 지지는 주로 시간과 관련하여 우리 인간사의 많은 의미를 담아내고 있습니다.",
+          "article_metadata": "작성일 2019-03-04 · 원문 yavares.tistory.com/19",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "earthly_branches_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 542,
+          "paragraph_end": 542,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "위의 표를 참고하시면 지지의 음양과 오행에 대해 쉽게 이해하실 수 있을 것입니다. 재밌는 것은 실제 음양오행상으로는 수(水)와 화(火)에 해당하는 해(亥), 자(子), 사(巳), 오(午)는 해 - 자 + 사 - 오 + 로 음양이 구분됩니다. 하지만 명리학에서는 그 체용이 바뀌어 음양이 반대로 적용됩니다. 따라서 위의 표처럼 구성되는 것입니다. 실제 음양오행 대로라면 자축인묘부터 양음양음 이렇게 진행됩니다. 외우기도 쉽겠지요.",
+          "article_metadata": "작성일 2019-03-04 · 원문 yavares.tistory.com/19",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "earthly_branches_e2"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 568,
+          "paragraph_end": 568,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "지지 안에 내재된 천간의 기운을 의미하는 용어는 지장간(地藏干)입니다. 그 뜻을 풀이하면 글자 그대로 지지(地)에 숨어있는(藏) 천간(干)이 됩니다.",
+          "article_metadata": "작성일 2019-03-07 · 원문 yavares.tistory.com/21",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "earthly_branches_e3"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "yin_yang",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "five_elements",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "heavenly_stems",
+          "relation": "함께 간지를 구성",
+          "evidence_ids": [
+            "earthly_branches_e1"
+          ]
+        },
+        {
+          "target": "hidden_stems",
+          "relation": "내재하는 천간",
+          "evidence_ids": [
+            "earthly_branches_e3"
+          ]
+        },
+        {
+          "target": "yin_yang",
+          "relation": "적용 관점의 구분 필요",
+          "evidence_ids": [
+            "earthly_branches_e2"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "지지 순번의 음양과 명리 적용 음양을 구별한다. 특히 해·자·사·오를 본기 정책 없이 분류하지 않는다.",
+        "월·시 경계 계산은 이 개념노트만으로 구현하지 않는다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "day_master",
+      "title": "일간",
+      "status": "basic_note_candidate",
+      "definition": "태어난 날에 해당하는 천간이며, 다른 간지와의 관계를 비교하여 십신을 정하는 기준이다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "日干",
+        "본원",
+        "명주"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 430,
+          "paragraph_end": 439,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "3. 십신의 기준 - 일간(日干)\n육친에서도 설명하였지만, 기준이 있어야 명확하게 관계를 알 수 있습니다. 기준을 하나 잡고, 그 기준을 \"나\"로 설정한 다음 다른 요소들과의 관계를 따져야 관계성을 선명하게 정리할 수 있는 것입니다.\n현대 명리학에서는 모든 관계의 기준이 되는 글자를 일간(日干)이라는 용어로 표현합니다. 즉, 사주를 볼때, 기준이 되는 글자가 일간이 되는 것이며, 예상하셨겠지만 일간이 곧 \"나\"입니다. 일간이 곧 나, 주체이기 때문에 일간을 본원(本原)이라고 하는 경우도 있고, 명주(命主)라고 하는 경우도 있습니다.\n위의 그림을 보면 아시겠지만, 일간은 어려운 개념이 아니라 바로 내가 태어난 날에 해당하는 하늘의 기운입니다. 인터넷이나 휴대폰 어플로 무료 만세력 어플리케이션을 다운 받아, 자신의 생년월일을 넣어보면, 누구나 쉽게 일간을 확인할 수 있습니다.\n심심풀이로 사주를 보러가면,\n\"너는 추운 나무여, 사방에서 눈보라가 치는데 외롭게 서 있어.\"\n라거나,\n\"너는 물이여, 한없이 자유롭게 흘러가고 싶은데 앞뒤가 댐으로 막혀있어, 답답해 죽겄지?\"\n라는 이야기를 들을 수 있습니다. 역술가들이 이런 이야기를 할 때, 나무, 물은 모두 일간을 의미하는 것입니다. 일간은 사주를 보는 중심이 되는 위치이자, 육친 및 십신의 기준이 되는 자리입니다.\n사주를 볼때, 일간을 기준으로 잡고, 다른 간지와 일간과의 관계를 살펴서 십신을 구별합니다. 그것이 현대 사주명리의 기본원리입니다.",
+          "article_metadata": "작성일 2019-09-02 · 원문 yavares.tistory.com/209",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "day_master_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 574,
+          "paragraph_end": 576,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "오행의 상생상극 관계에서 기준이 되는 오행과 같은 종류의 오행을 말한다. 즉 기준이 되는 오행이 木이라면 추가로 木이 있을 때, 비겁이 있다고 한다.\n(2) 기준이 되는 오행?\n현대 사주명리에서 기준은 일간(日干)이다. 즉, 사람이 태어난 날의 천간에 해당하는 부분이 일간이다. 이 일간을 기준으로 삼고, 일간과 다른 나머지 7개의 천간 및 지지와의 관계를 살피는 것이 사주명리의 핵심이다.",
+          "article_metadata": "작성일 2019-09-08 · 원문 yavares.tistory.com/214",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "day_master_e2"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "heavenly_stems",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "heavenly_stems",
+          "relation": "태어난 날의 천간",
+          "evidence_ids": [
+            "day_master_e1",
+            "day_master_e2"
+          ]
+        },
+        {
+          "target": "ten_gods",
+          "relation": "분류 기준",
+          "evidence_ids": [
+            "day_master_e1"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "일간을 비견 갯수에 포함하는지 별도 집계정책을 둔다.",
+        "일간만으로 전체 구성을 대체하지 않는다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "ten_gods",
+      "title": "십신",
+      "status": "basic_note_candidate",
+      "definition": "일간과 다른 간지의 오행 생극 관계를 음양의 같고 다름으로 나누어 만든 열 가지 관계명이다. 두 개씩 묶으면 비겁·식상·재성·관성·인성의 다섯 군이 된다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "十神",
+        "십성"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 419,
+          "paragraph_end": 420,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "오행의 상생상극 관계를 친족에 대입한 것이 육친이라면, 십신은 오행의 상생상극 관계를 음과 양으로 세분화 하여 인간 삶의 구체적인 모든 요소로 표현할 수 있게 정리한 것입니다.\n오행에서 음양으로 세분화하니 5(오행) × 2(음양) = 10 해서 십신(十神)이 되는 것입니다. 십신은 학자에 따라 십성(十聖)이라고 부르기도 합니다. 또는 십신과 육친을 통틀어 육친(六親)이라고 부르기도 하며, 육신(六神)이라고 부르기도 합니다. 하지만 어떻게 부르든 오행의 관계성을 인간 삶으로 끌어온 개념이라는 사실이 중요합니다.",
+          "article_metadata": "작성일 2019-09-02 · 원문 yavares.tistory.com/209",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "ten_gods_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 439,
+          "paragraph_end": 458,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "사주를 볼때, 일간을 기준으로 잡고, 다른 간지와 일간과의 관계를 살펴서 십신을 구별합니다. 그것이 현대 사주명리의 기본원리입니다.\n4. 십신(十神)의 구분\n설명을 위해 목(木)을 기준으로 삼고 십신을 구분해 보았습니다.\n일간과 오행이 같고 음양이 같을 때, 비견(比肩)이라 합니다.\n일간과 오행이 같고 음양이 다르면, 겁재(劫財)라고 합니다.\n일간이 생(生) 하며 음양이 같을 때, 식신(食神)이라 합니다.\n일간이 생(生) 하며 음양이 다를 때, 상관(傷官)이라 합니다.\n일간이 극(剋) 하며 음양이 같을 때, 편재(偏財)라 합니다.\n일간이 극(剋) 하며 음양이 다를 때, 정재(正財)라 합니다.\n일간을 극(剋) 하며 음양이 같을 때, 편관(偏官)이라 합니다.\n일간을 극(剋) 하며 음양이 다를 때, 정관(正官)이라 합니다.\n일간을 생(生) 하며 음양이 같을 때, 편인(偏印)이라 합니다.\n일간을 생(生) 하며 음양이 다를 때, 정인(正印)이라 합니다.\n하나의 일간을 기준으로 비견부터 정인까지 총 10개의 관계가 형성됩니다. 일간을 기준으로 형성되는 이 10개의 관계가 바로 십신(十神)이 됩니다.\n십신은 2개씩 묶어 다섯개로 구분하기도 합니다.\n비견(比肩)과 겁재(劫財)를 묵어 비겁(比劫),\n식신(食神)과 상관(傷官)을 묶어 식상(食傷),\n편재(偏財)와 정재(正財)를 묶어 재성(財星),\n편관(偏官)과 정관(正官)을 묶어 관성(官星),\n편인(偏印)과 정인(正印)을 묶어 인성(印星),(또는 인수라고도 함.) 이라고 합니다.",
+          "article_metadata": "작성일 2019-09-02 · 원문 yavares.tistory.com/209",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "ten_gods_e2"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "day_master",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "generation_control",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "yin_yang",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "day_master",
+          "relation": "비교 기준",
+          "evidence_ids": [
+            "ten_gods_e2"
+          ]
+        },
+        {
+          "target": "peers",
+          "relation": "하위군",
+          "evidence_ids": [
+            "ten_gods_e2"
+          ]
+        },
+        {
+          "target": "output",
+          "relation": "하위군",
+          "evidence_ids": [
+            "ten_gods_e2"
+          ]
+        },
+        {
+          "target": "wealth",
+          "relation": "하위군",
+          "evidence_ids": [
+            "ten_gods_e2"
+          ]
+        },
+        {
+          "target": "authority",
+          "relation": "하위군",
+          "evidence_ids": [
+            "ten_gods_e2"
+          ]
+        },
+        {
+          "target": "resource",
+          "relation": "하위군",
+          "evidence_ids": [
+            "ten_gods_e2"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "지지의 십신은 본기 또는 개별 지장간 중 어떤 대상을 계산했는지 남긴다.",
+        "구조 분류와 인생 사건·성향 해석을 별도 계층으로 둔다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "peers",
+      "title": "비겁",
+      "status": "basic_note_candidate",
+      "definition": "일간과 같은 오행인 관계를 묶은 말이다. 음양도 같으면 비견, 음양이 다르면 겁재로 구분한다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "比劫"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 574,
+          "paragraph_end": 579,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "오행의 상생상극 관계에서 기준이 되는 오행과 같은 종류의 오행을 말한다. 즉 기준이 되는 오행이 木이라면 추가로 木이 있을 때, 비겁이 있다고 한다.\n(2) 기준이 되는 오행?\n현대 사주명리에서 기준은 일간(日干)이다. 즉, 사람이 태어난 날의 천간에 해당하는 부분이 일간이다. 이 일간을 기준으로 삼고, 일간과 다른 나머지 7개의 천간 및 지지와의 관계를 살피는 것이 사주명리의 핵심이다.\n(3) 단어의 의미\n비겁(比劫)은 비견(比肩)과 겁재(劫財)의 줄임말이다.\n비겁은 음양에 따라 2가지로 나눌 수 있다. 기준이 되는 일간과 음양이 같다면, 비견이라고 하고, 음양이 다르다면 겁재라고 부른다. 오행의 관계만 가지고 따질 때는 비겁이라고 통칭해서 부르며, 음양의 관계까지 고려하면 비견과 겁재를 구분한다.",
+          "article_metadata": "작성일 2019-09-08 · 원문 yavares.tistory.com/214",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "peers_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 442,
+          "paragraph_end": 443,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "일간과 오행이 같고 음양이 같을 때, 비견(比肩)이라 합니다.\n일간과 오행이 같고 음양이 다르면, 겁재(劫財)라고 합니다.",
+          "article_metadata": "작성일 2019-09-02 · 원문 yavares.tistory.com/209",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "peers_e2"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "ten_gods",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "day_master",
+          "relation": "같은 오행의 비교 기준",
+          "evidence_ids": [
+            "peers_e1",
+            "peers_e2"
+          ]
+        },
+        {
+          "target": "ten_gods",
+          "relation": "하위군",
+          "evidence_ids": [
+            "peers_e1",
+            "peers_e2"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "단순 갯수로 많음·강함을 동일시하지 않는다.",
+        "비견·겁재의 세부 노트 및 집계 범위는 다음 정제 단계에 둔다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "output",
+      "title": "식상",
+      "status": "basic_note_candidate",
+      "definition": "일간이 생하는 오행의 관계를 묶은 말이다. 음양이 같으면 식신, 다르면 상관으로 구분한다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "食傷"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 758,
+          "paragraph_end": 761,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "오행의 상생상극 관계에서 기준이 되는 일간(日干)이 생(生) 해주는 오행을 말한다. 즉 일간(日干)의 오행이 목(木) 이라면 화(火)가 있을 때 이 화(火)를 일컬어 식상(食傷)이라 한다.\n(2) 단어의 의미\n식상(食傷)은 식신(食神)과 상관(傷官)의 줄임말이다.\n식상은 음양에 따라 2가지로 구분할 수 있다. 기준이 되는 일간과 음양이 같다면 식신이라 하고, 음양이 다르면 상관이라 한다. 오행의 관계만 가지고 따질 때는 식상(食傷)이라고 통칭하며, 음양의 관계까지 고려하면 식신과 상관으로 구분한다.",
+          "article_metadata": "작성일 2019-09-16 · 원문 yavares.tistory.com/225",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "output_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-십성, 육친 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-십성, 육친 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 118,
+          "paragraph_end": 121,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "식상은 식신과 상관을 함께 일컫는 용어입니다. 식신은 일간과 음양이 같고, 상관은 음양이 다릅니다.\n일지가 식상에 해당하는 일주는 위 이미지처럼 총 12개입니다.\n식상은 일간이 생해주는 기운으로, 활동력과 표현력을 나타냅니다. 또한 낙천성, 예술성, 그리고 삶에 대한 여유로운 태도를 의미하기도 하죠.\n일간의 기운은 식상을 통해 자연스럽게 외부로 발현되잖아요? 식상이 삶을 풍요롭고 활기차게 만드는 원동력으로 작용한다는 뜻입니다.",
+          "article_metadata": "작성일 2025-06-10 · 원문 chocosd.com/%ec%8b%ad%ec%84%b1-%ec%9c%a1%ec%b9%9c/%ec%9d%bc%ec%a7%80%eb%a1%9c-%eb%b3%b4%eb%8a%94-%eb%82%98%ec%9d%98-%eb%b0%b0%ec%9a%b0%ec%9e%90-1-%eb%b9%84%ea%b2%81-%ec%8b%9d%ec%83%81%ed%8e%b8feat-%ea%b7%bc%eb%ac%98%ed%99%94%ec%8b%a4%eb%a1%a0/",
+          "source_group": "초코서당",
+          "source_sha256": "f6c22393c4655350abc5faf578fc5f8582c7911518266709cd1386eb1dfaa703",
+          "evidence_id": "output_e2"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "ten_gods",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "generation_control",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "day_master",
+          "relation": "생하는 주체",
+          "evidence_ids": [
+            "output_e1"
+          ]
+        },
+        {
+          "target": "ten_gods",
+          "relation": "하위군",
+          "evidence_ids": [
+            "output_e1"
+          ]
+        },
+        {
+          "target": "generation_control",
+          "relation": "일간→대상 생",
+          "evidence_ids": [
+            "output_e1"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "활동력·표현력은 자료의 해석 태그로 보존하고 개인의 실제 능력으로 확정하지 않는다.",
+        "식신·상관 각각의 주변 구성과 강약 조건은 추가 정제가 필요하다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "wealth",
+      "title": "재성",
+      "status": "basic_note_candidate",
+      "definition": "일간이 극하는 오행의 관계를 묶은 말이다. 음양이 같으면 편재, 다르면 정재로 구분한다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "財星"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 970,
+          "paragraph_end": 973,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "오행의 상생상극 관계에서 기준이 되는 일간(日干)이 극(剋) 하는 오행을 말한다. 즉 일간(日干)의 오행이 목(木) 이라면 토(土)가 있을 때 이 토(土)를 일컬어 재성(財星)이라 한다.\n(2) 단어의 의미\n재성(財星)은 정재(正財) 와 편재(偏財)의 줄임말이다.\n재성은 음양에 따라 2가지로 구분할 수 있다. 기준이 되는 일간과 음양이 같다면 편재라 하고, 음양이 다르면 정재라 한다. 오행의 관계만 가지고 따질 때는 재성(財星)이라고 통칭하며, 음양의 관계까지 고려하면 편재와 정재로 구분한다.",
+          "article_metadata": "작성일 2019-09-23 · 원문 yavares.tistory.com/232",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "wealth_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-십성, 육친 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-십성, 육친 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 158,
+          "paragraph_end": 162,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "편재와 정재를 합쳐서 재성이라고 하는데요.\n일간이 극하는 기운으로 일간과 음양이 같으면 편재,\n일간이 극하는 기운으로 일간과 음양이 다르면 정재가 됩니다.\n일지가 재성인 일주들은 총 12개입니다.\n재성은 재화활동이나 자원을 활용하는 능력을 뜻합니다.",
+          "article_metadata": "작성일 2025-06-10 · 원문 chocosd.com/%ec%8b%ad%ec%84%b1-%ec%9c%a1%ec%b9%9c/%ec%9d%bc%ec%a7%80%eb%a1%9c-%eb%b3%b4%eb%8a%94-%eb%82%98%ec%9d%98-%eb%b0%b0%ec%9a%b0%ec%9e%90-2-%ec%9e%ac%ec%84%b1-%ea%b4%80%ec%84%b1-%ec%9d%b8%ec%84%b1%ed%8e%b8/",
+          "source_group": "초코서당",
+          "source_sha256": "f6c22393c4655350abc5faf578fc5f8582c7911518266709cd1386eb1dfaa703",
+          "evidence_id": "wealth_e2"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "ten_gods",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "generation_control",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "day_master",
+          "relation": "극하는 주체",
+          "evidence_ids": [
+            "wealth_e1",
+            "wealth_e2"
+          ]
+        },
+        {
+          "target": "ten_gods",
+          "relation": "하위군",
+          "evidence_ids": [
+            "wealth_e1"
+          ]
+        },
+        {
+          "target": "generation_control",
+          "relation": "일간→대상 극",
+          "evidence_ids": [
+            "wealth_e1"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "재물·자원 관련 상징과 실제 소득·투자 성과는 같은 값으로 취급하지 않는다.",
+        "전통 육친 대응과 현대적 해석은 출처별 주장으로 따로 둔다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "authority",
+      "title": "관성",
+      "status": "basic_note_candidate",
+      "definition": "일간을 극하는 오행의 관계를 묶은 말이다. 음양이 같으면 편관, 다르면 정관으로 구분한다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "官星"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 1313,
+          "paragraph_end": 1316,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "오행의 상생상극 관계에서 기준이 되는 일간(日干)을 극(剋) 하는 오행을 말한다. 즉 일간(日干)의 오행이 목(木)이라면 금(金)이 있을 때 이 금(金)을 일컬어 관성(官星)이라 한다.\n(2) 단어의 의미\n관성(官星)은 공권력, 관직(벼슬)을 의미한다.\n관성은 음양에 따라 2가지로 구분할 수 있다. 기준이 되는 일간과 음양이 같다면 편관이라 하고, 일간과 음양이 다르면 정관이라고 한다. 오행의 관계만 가지고 따질 때는 관성(官星)이라고 통칭하며, 음양의 관계가지 고려하면 정관과 편관으로 구분한다.",
+          "article_metadata": "작성일 2019-10-14 · 원문 yavares.tistory.com/248",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "authority_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 448,
+          "paragraph_end": 449,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "일간을 극(剋) 하며 음양이 같을 때, 편관(偏官)이라 합니다.\n일간을 극(剋) 하며 음양이 다를 때, 정관(正官)이라 합니다.",
+          "article_metadata": "작성일 2019-09-02 · 원문 yavares.tistory.com/209",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "authority_e2"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "ten_gods",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "generation_control",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "day_master",
+          "relation": "극을 받는 기준",
+          "evidence_ids": [
+            "authority_e1",
+            "authority_e2"
+          ]
+        },
+        {
+          "target": "ten_gods",
+          "relation": "하위군",
+          "evidence_ids": [
+            "authority_e1"
+          ]
+        },
+        {
+          "target": "generation_control",
+          "relation": "대상→일간 극",
+          "evidence_ids": [
+            "authority_e1"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "직장·규율 등의 해석을 구조 정의와 분리한다.",
+        "편관과 정관의 유불리를 이름만으로 정하지 않는다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "resource",
+      "title": "인성",
+      "status": "basic_note_candidate",
+      "definition": "일간을 생하는 오행의 관계를 묶은 말이다. 음양이 같으면 편인, 다르면 정인으로 구분한다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "印星"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 1550,
+          "paragraph_end": 1553,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "오행의 상생상극 관계에서 기준이 되는 일간(日干)을 생(生) 하는 오행을 말한다. 즉 일간(日干)의 오행이 목(木)이라면 수(水)가 있을 때 이 수(水)을 일컬어 인성(印星)이라 한다.\n(2) 단어의 의미\n인성(印星)의 \"인\"은 도장을 의미한다. 인성의 도장은 다양한 의미를 내포하고 있다.\n인성은 음양에 따라 2가지로 구분할 수 있다. 기준이 되는 일간과 음양이 같다면 편인이라 하고, 일간과 음양이 다르면 정인이라고 한다. 오행의 관계만 가지고 따질 때는 인성(印星)이라고 통칭하며, 음양의 관계가지 고려하면 정인과 편인으로 구분한다.",
+          "article_metadata": "작성일 2019-10-28 · 원문 yavares.tistory.com/257",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "resource_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 450,
+          "paragraph_end": 451,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "일간을 생(生) 하며 음양이 같을 때, 편인(偏印)이라 합니다.\n일간을 생(生) 하며 음양이 다를 때, 정인(正印)이라 합니다.",
+          "article_metadata": "작성일 2019-09-02 · 원문 yavares.tistory.com/209",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "resource_e2"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "ten_gods",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "generation_control",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "day_master",
+          "relation": "생을 받는 기준",
+          "evidence_ids": [
+            "resource_e1",
+            "resource_e2"
+          ]
+        },
+        {
+          "target": "ten_gods",
+          "relation": "하위군",
+          "evidence_ids": [
+            "resource_e1"
+          ]
+        },
+        {
+          "target": "generation_control",
+          "relation": "대상→일간 생",
+          "evidence_ids": [
+            "resource_e1"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "자료가 정인 또는 인성군에 인수라는 말을 다르게 붙이는 경우가 있어 인수를 전역 별칭으로 확정하지 않는다.",
+        "생하는 관계의 존재와 도움이 되는지는 별도 조건이다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "month_command",
+      "title": "월령",
+      "status": "basic_note_candidate",
+      "definition": "태어난 달의 지지인 월지를, 그 달의 기운이 사주의 기본 바탕이라는 뜻에서 월의 명령에 비유하여 부르는 말이다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "月令",
+        "월지"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 1593,
+          "paragraph_end": 1596,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "명리학은 절기학이다 보니,\n사람이 태어난 월을 매우 중요하게 바라봅니다.\n그 달의 기운이 그 사주의 기본적인 바탕을 이루고 있다고 있다는 뜻에서,\n월지를 월의 명령에 비유하여 월령(月令)이라 부르기도 하죠.",
+          "article_metadata": "작성일 2025-07-20 · 원문 chocosd.com/%ec%b2%9c%ea%b0%84-%ec%a7%80%ec%a7%80/%ec%a7%80%ec%9e%a5%ea%b0%84%ec%97%90-%eb%8c%80%ed%95%9c-%eb%aa%a8%eb%93%a0-%ea%b2%83-3-%ec%9b%94%eb%a5%a0%eb%b6%84%ec%95%bc-%ec%9b%94%eb%a5%a0%eb%b6%84%ec%9d%bc%ec%9a%a9%ec%82%ac-%ec%9d%b8/",
+          "source_group": "초코서당",
+          "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+          "evidence_id": "month_command_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 1603,
+          "paragraph_end": 1606,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "그런데 저는 개인적으로 월지의 지장간을 기계적으로 나누는 것에는 조금 의문을 갖고 있습니다.\n예를 들어, 생지에 해당하는 지지 인목의 경우 초기인 무토와 병화는 각각 7일씩, 갑목은 16일 정도 에 해당합니다.\n이를 기준으로 무토와 병화, 갑목이 각각 1 : 1 : 2 정도의 힘을 갖고 있다고 해석하는데요.\n잘 보시면 정기인 갑목은 중기 병화를 생하고, 병화는 다시 초기인 무토를 생합니다. 지장간 내에서도 상생상극의 흐름이 존재한다는 뜻입니다.",
+          "article_metadata": "작성일 2025-07-20 · 원문 chocosd.com/%ec%b2%9c%ea%b0%84-%ec%a7%80%ec%a7%80/%ec%a7%80%ec%9e%a5%ea%b0%84%ec%97%90-%eb%8c%80%ed%95%9c-%eb%aa%a8%eb%93%a0-%ea%b2%83-3-%ec%9b%94%eb%a5%a0%eb%b6%84%ec%95%bc-%ec%9b%94%eb%a5%a0%eb%b6%84%ec%9d%bc%ec%9a%a9%ec%82%ac-%ec%9d%b8/",
+          "source_group": "초코서당",
+          "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+          "evidence_id": "month_command_e2"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 1647,
+          "paragraph_end": 1648,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "월령분일용사란,\n날짜에 따라 월지의 지장간 중 작용력이 가장 강한 천간을 파악하는 이론입니다.",
+          "article_metadata": "작성일 2025-07-20 · 원문 chocosd.com/%ec%b2%9c%ea%b0%84-%ec%a7%80%ec%a7%80/%ec%a7%80%ec%9e%a5%ea%b0%84%ec%97%90-%eb%8c%80%ed%95%9c-%eb%aa%a8%eb%93%a0-%ea%b2%83-3-%ec%9b%94%eb%a5%a0%eb%b6%84%ec%95%bc-%ec%9b%94%eb%a5%a0%eb%b6%84%ec%9d%bc%ec%9a%a9%ec%82%ac-%ec%9d%b8/",
+          "source_group": "초코서당",
+          "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+          "evidence_id": "month_command_e3"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "earthly_branches",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "five_elements",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "earthly_branches",
+          "relation": "태어난 달의 지지",
+          "evidence_ids": [
+            "month_command_e1"
+          ]
+        },
+        {
+          "target": "hidden_stems",
+          "relation": "세부 작용력 해석에 사용",
+          "evidence_ids": [
+            "month_command_e2",
+            "month_command_e3"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "월령과 월령분일용사를 한 개념으로 합치지 않는다.",
+        "월률분야의 일수 비율을 힘의 확률로 바로 치환할지 원문 저자도 의문을 제기한다.",
+        "절기 경계와 시간대 계산은 만세력 계층에서 별도로 검증해야 한다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "hidden_stems",
+      "title": "지장간",
+      "status": "basic_note_candidate",
+      "definition": "지지 안에 숨어 있거나 내재한다고 설명하는 천간이다. 초기(여기)·중기·정기(본기)로 나누며, 정기는 해당 지지를 대표한다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "地藏干"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 568,
+          "paragraph_end": 568,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "지지 안에 내재된 천간의 기운을 의미하는 용어는 지장간(地藏干)입니다. 그 뜻을 풀이하면 글자 그대로 지지(地)에 숨어있는(藏) 천간(干)이 됩니다.",
+          "article_metadata": "작성일 2019-03-07 · 원문 yavares.tistory.com/21",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "hidden_stems_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 1179,
+          "paragraph_end": 1185,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "지장간은 말 그대로, 지지에 숨어들어 있는 천간이라는 의미를 지니고 있는데,\n지장간이라는 개념 자체가 천간과 지지의 무한한 상호 연관성을 의미하고 있습니다.\n지장간은 초기(여기)와 중기, 정기(본기)로 나눠지며,\n정기(본기)에 해당하는 지장간이 지지를 대표하며, 정기의 음양오행이 곧 해당 지지의 음양오행이 됩니다.\n寅(인목)의 경우,\n정기가 甲(갑목)이기 때문에 寅(인목)의 오행을 목木이라고 하고, 음양을 양陽이라고 구분할 수 있습니다.\n甲(갑목)의 음양오행이 양목(陽木)이기 때문입니다.",
+          "article_metadata": "작성일 2020-11-20 · 원문 yavares.tistory.com/473",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "hidden_stems_e2"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/천간과 지지 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 1332,
+          "paragraph_end": 1332,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "<지장간의 순서를 따지는 것은 큰 의미가 없습니다. 지장간이 실제 사주에서 작용할 때, 초기-중기-정기의 순서대로 작용하는 것이 아닙니다. 지장간은 동시적으로 작용합니다. 이 글에서는 지지의 특성을 설명하기 위해 마치 순서대로 작용하는 것처럼 표현하였을 뿐입니다.>",
+          "article_metadata": "작성일 2020-11-21 · 원문 yavares.tistory.com/474",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+          "evidence_id": "hidden_stems_e3"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-사주용어사전 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-사주용어사전 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 35,
+          "paragraph_end": 40,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "통근은 천간이 지지에 동일한 간지나, 같은 오행을 뿌리로 두고 있다는 뜻입니다.\n일간이 을목인데 일지를 묘목으로 두고 있는 위 사주를 살펴보겠습니다.\n이때\n“일간 을목은 일지 묘목에 통근했다＂거나,\n“일간 을목이 묘중 을목에 뿌리를 두고 있다＂고 말할 수 있습니다.\n통근이나 뿌리를 두었다는 표현은, 말 그대로 천간과 지지가 서로 소통이 되었다는 것을 의미합니다. 이렇게 통근이 되면, 간지와 오행은 더욱 선명하게 자신의 기운을 드러낼 수 있게 됩니다.",
+          "article_metadata": "작성일 2025-07-22 · 원문 chocosd.com/%ec%82%ac%ec%a3%bc%ec%9a%a9%ec%96%b4%ec%82%ac%ec%a0%84/%ed%88%ac%ea%b0%84-%ed%88%ac%ec%b6%9c-%ed%86%b5%ea%b7%bc%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80/",
+          "source_group": "초코서당",
+          "source_sha256": "c2e8f6070c7c3a543847b56b667ad9543322bd0501cce0e6dd0261fe8343b77f",
+          "evidence_id": "hidden_stems_e4"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "earthly_branches",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "heavenly_stems",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "earthly_branches",
+          "relation": "내부 구성",
+          "evidence_ids": [
+            "hidden_stems_e1",
+            "hidden_stems_e2"
+          ]
+        },
+        {
+          "target": "heavenly_stems",
+          "relation": "구성 요소",
+          "evidence_ids": [
+            "hidden_stems_e1",
+            "hidden_stems_e2"
+          ]
+        },
+        {
+          "target": "rooting",
+          "relation": "천간과 지지 연결의 기반",
+          "evidence_ids": [
+            "hidden_stems_e4"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "12지지 전체 지장간표와 각 유파의 구성 차이는 아직 검수 완료하지 않았다.",
+        "초기→중기→정기를 원국 작용의 시간 순서로 자동 해석하지 않는다.",
+        "오행 비율 또는 확률 가중치가 아직 정의되지 않았다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "rooting",
+      "title": "통근",
+      "status": "basic_note_candidate",
+      "definition": "천간이 지지의 동일한 간지 또는 같은 오행에 뿌리를 두는 관계를 말한다. 천간을 기준으로 지지를 살피는 관점이다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "通根"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-사주용어사전 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-사주용어사전 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 31,
+          "paragraph_end": 40,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "1) 천간의 글자를 기준으로 지지를 살피기\n2) 지지의 글자를 기준으로 천간을 살피기\n이번 시간에는 위 1번과 2번처럼 각각 기준을 천간, 또는 지지로 나누어서 사주를 살펴보려 합니다. 그래야 통근, 투간, 투출의 개념을 제대로 이해할 수 있으니까요.\n 천간의 관점 : 통근(通根)\n통근은 천간이 지지에 동일한 간지나, 같은 오행을 뿌리로 두고 있다는 뜻입니다.\n일간이 을목인데 일지를 묘목으로 두고 있는 위 사주를 살펴보겠습니다.\n이때\n“일간 을목은 일지 묘목에 통근했다＂거나,\n“일간 을목이 묘중 을목에 뿌리를 두고 있다＂고 말할 수 있습니다.\n통근이나 뿌리를 두었다는 표현은, 말 그대로 천간과 지지가 서로 소통이 되었다는 것을 의미합니다. 이렇게 통근이 되면, 간지와 오행은 더욱 선명하게 자신의 기운을 드러낼 수 있게 됩니다.",
+          "article_metadata": "작성일 2025-07-22 · 원문 chocosd.com/%ec%82%ac%ec%a3%bc%ec%9a%a9%ec%96%b4%ec%82%ac%ec%a0%84/%ed%88%ac%ea%b0%84-%ed%88%ac%ec%b6%9c-%ed%86%b5%ea%b7%bc%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80/",
+          "source_group": "초코서당",
+          "source_sha256": "c2e8f6070c7c3a543847b56b667ad9543322bd0501cce0e6dd0261fe8343b77f",
+          "evidence_id": "rooting_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-사주용어사전 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-사주용어사전 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 41,
+          "paragraph_end": 46,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "나아가 위 예시의 경우,\n“월간 갑목이 일지 묘중에 통근했다”\n“월간 갑목이 일지 묘중 갑목에 통근했다”\n“월간 갑목이 일지 묘중 을목에 통근했다”고 말할 수 있습니다.\n통근했다는 용어는 천간과 지지의 거리가 멀리 떨어져 있어도 상관없이 쓸 수 있습니다.\n예를 들어, 이 사주의 경우",
+          "article_metadata": "작성일 2025-07-22 · 원문 chocosd.com/%ec%82%ac%ec%a3%bc%ec%9a%a9%ec%96%b4%ec%82%ac%ec%a0%84/%ed%88%ac%ea%b0%84-%ed%88%ac%ec%b6%9c-%ed%86%b5%ea%b7%bc%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80/",
+          "source_group": "초코서당",
+          "source_sha256": "c2e8f6070c7c3a543847b56b667ad9543322bd0501cce0e6dd0261fe8343b77f",
+          "evidence_id": "rooting_e2"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-사주용어사전 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-사주용어사전 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 114,
+          "paragraph_end": 118,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "‘시지 미중 기토가 대운에서 투출했다’라고 표현할 수 있습니다.\n하지만 투간이라는 용어를 좀 더 엄격하게 사용하는 학자들은 미중 기토가 연간 기토로 투출했다고는 해도, 투간했다고 말하지는 않을 겁니다.\n그 이유는 연주, 월주, 시주처럼 동주해 있는 곳의 지지가 바로 위에 뜬 것이 아니라면, 투간이라는 용어를 사용해서는 안 된다고 보기 때문입니다.\n나아가 격국을 중요하게 여기는 학자들 중에서는 오직 월지에 있는 지장간이 월간에 떴을 때만 투간이라고 보는 견해도 있습니다.\n개인적으로는 원국 내에서 천간과 지지가 같은 간지로 호응하는 경우에는 투간 또는 투출로, 원국 내 요소가 대세운의 천간과 같은 간지로 호응하는 경우에는 투출로 말하는 것이 옳다고 봅니다.",
+          "article_metadata": "작성일 2025-07-22 · 원문 chocosd.com/%ec%82%ac%ec%a3%bc%ec%9a%a9%ec%96%b4%ec%82%ac%ec%a0%84/%ed%88%ac%ea%b0%84-%ed%88%ac%ec%b6%9c-%ed%86%b5%ea%b7%bc%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80/",
+          "source_group": "초코서당",
+          "source_sha256": "c2e8f6070c7c3a543847b56b667ad9543322bd0501cce0e6dd0261fe8343b77f",
+          "evidence_id": "rooting_e3"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "heavenly_stems",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "earthly_branches",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "hidden_stems",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "heavenly_stems",
+          "relation": "관찰 기준",
+          "evidence_ids": [
+            "rooting_e1"
+          ]
+        },
+        {
+          "target": "earthly_branches",
+          "relation": "뿌리 위치",
+          "evidence_ids": [
+            "rooting_e1"
+          ]
+        },
+        {
+          "target": "hidden_stems",
+          "relation": "구체적 뿌리",
+          "evidence_ids": [
+            "rooting_e1",
+            "rooting_e2"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "같은 천간만 허용할지 같은 오행까지 허용할지 정책과 용례를 함께 남긴다.",
+        "통근·투간·투출은 관찰 방향과 적용 범위가 다르므로 동의어로 합치지 않는다.",
+        "근의 강도를 거리 또는 숫자로 산출하는 규칙은 아직 미정이다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "combination",
+      "title": "합",
+      "status": "basic_note_candidate",
+      "definition": "서로 다른 기운이 만나 결합하거나 묶이는 관계다. 천간합과 지지의 합은 유형을 나누어 기록해야 하며, 합 자체가 오행의 변화를 뜻하지는 않는다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "合"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 15,
+          "paragraph_end": 21,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "갑기합(甲己合), 을경합(乙庚合), 병신합(丙辛合), 정임합(丁壬合), 무계합(戊癸合) 이렇게 다섯 가지입니다.\n많은 분들이 원국 내에서 갑목과 기토가 만나면 무조건 갑목이 토가 바뀐다거나, 을목과 경금이 만나면 을목이 금으로 바뀐다고 알고 계시는데요.\n절대 그렇지 않습니다.\n여기에는 몇 가지 조건이 필요하기 때문입니다.\n일단 제일 중요한 전제는,\n천간에서의 합(合)은 두 개의 서로 다른 기운이 만나 서로를 묶는다는 뜻이고,\n합화(合化)는 두 개의 기운이 만나 완전히 다른 기운으로 바뀐다는 것을 뜻한다는 겁니다.",
+          "article_metadata": "작성일 2025-07-23 · 원문 chocosd.com/%ed%95%a9-%ec%b6%a9-%ed%98%95/%ec%b2%9c%ea%b0%84-%ed%95%a9%e5%90%88%ec%9d%98-%ea%b8%b0%eb%b3%b8-%ea%b0%9c%eb%85%90%ea%b3%bc-%ec%9b%90%eb%a6%ac-1-%ec%b2%9c%ea%b0%84%ec%9d%98-%ed%95%a9%ea%b3%bc-%ed%95%a9%ed%99%94%eb%8a%94/",
+          "source_group": "초코서당",
+          "source_sha256": "14284dbf7f83fc5213ff8954a6f869665224c162bd6b27e58ceac3e5f9623e48",
+          "evidence_id": "combination_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 2754,
+          "paragraph_end": 2767,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "하지만 오늘 알아볼 육합의 경우, 1:1의 대응을 가진 합입니다. 지지가 총 12개인데, 1:1 대응을 가진 합이니 총 6개의 조합이 나옵니다. 6개의 조합이기 때문에 육합(六合)이 되는 것이죠.\n1:1:1의 관계가 삼합\n1:1의 관계가 육합\n이니 육합은 삼합과 전혀 다른 방식의 합이라는 사실을 쉽게 확인할 수 있겠습니다. 삼합이 사회적 합이니, 육합은 어떤 합일까요?\n쉽게 예상하실 수 있겠죠?\n그럼 지금부터 육합에 대해 천천히 알아보도록 하겠습니다.\n2. 육합(六合)\n육합은 그 종류가 6개입니다.\n子(자수)와 丑(축토)가 합을 하는 자축합화토(子丑合化土) 줄여서 자축합토(子丑合土)\n寅(인목)과 亥(해수)가 합을 하는 인해합화목(寅亥合化木), 줄여서 인해합목(寅亥合木)\n卯(묘목)과 戌(술토)가 합을 하는 묘술합화화(卯戌合化火), 줄여서 묘술합화(卯戌合火)\n辰(진토)가 酉(유금)이 합을 하는 진유합화금(辰酉合化金), 줄여서 진유합금(辰酉合金)\n巳(사화)와 申(신금)이 합을 하는 사신합화수(巳申合化水), 줄여서 사신합수(巳申合水)\n午(오화)와 未(미토)가 합을 하는 오미합화화(午未合化火), 줄여서 오미합화(午未合火)",
+          "article_metadata": "작성일 2020-07-03 · 원문 yavares.tistory.com/375",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "combination_e2"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 38,
+          "paragraph_end": 39,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "대부분 명리를 공부하시는 분들이, 합은 무조건 좋고, 충은 무조건 나쁘다고 보시는데 이는 편견에 가깝습니다. 상황에 따라 합이 긍정적으로 작용할 수도, 부정적으로 작용할 수도 있기 때문입니다.\n물론, 이는 충에 대해서도 마찬가지 입니다.",
+          "article_metadata": "작성일 2025-07-23 · 원문 chocosd.com/%ed%95%a9-%ec%b6%a9-%ed%98%95/%ec%b2%9c%ea%b0%84-%ed%95%a9%e5%90%88%ec%9d%98-%ea%b8%b0%eb%b3%b8-%ea%b0%9c%eb%85%90%ea%b3%bc-%ec%9b%90%eb%a6%ac-1-%ec%b2%9c%ea%b0%84%ec%9d%98-%ed%95%a9%ea%b3%bc-%ed%95%a9%ed%99%94%eb%8a%94/",
+          "source_group": "초코서당",
+          "source_sha256": "14284dbf7f83fc5213ff8954a6f869665224c162bd6b27e58ceac3e5f9623e48",
+          "evidence_id": "combination_e3"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "heavenly_stems",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "earthly_branches",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "heavenly_stems",
+          "relation": "천간합의 대상",
+          "evidence_ids": [
+            "combination_e1"
+          ]
+        },
+        {
+          "target": "earthly_branches",
+          "relation": "육합의 대상",
+          "evidence_ids": [
+            "combination_e2"
+          ]
+        },
+        {
+          "target": "transformation",
+          "relation": "개념 구별",
+          "evidence_ids": [
+            "combination_e1"
+          ]
+        },
+        {
+          "target": "clash",
+          "relation": "길흉 이분법을 피하는 비교",
+          "evidence_ids": [
+            "combination_e3"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "천간합·육합·삼합을 하나의 무조건적 연산으로 만들지 않는다.",
+        "거리·방해·원국과 운의 구분 등 성립 조건을 추가로 붙여야 한다.",
+        "합짝의 존재와 합화 성립은 별도 사실로 저장한다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "transformation",
+      "title": "합화",
+      "status": "basic_note_candidate",
+      "definition": "두 기운의 만남으로 오행의 성분이 달라진다고 설명하는 변화다. 원문은 천간에서 합이 되는 것과 합화가 되는 것을 구별하고 추가 조건을 요구한다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "合化"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 20,
+          "paragraph_end": 21,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "천간에서의 합(合)은 두 개의 서로 다른 기운이 만나 서로를 묶는다는 뜻이고,\n합화(合化)는 두 개의 기운이 만나 완전히 다른 기운으로 바뀐다는 것을 뜻한다는 겁니다.",
+          "article_metadata": "작성일 2025-07-23 · 원문 chocosd.com/%ed%95%a9-%ec%b6%a9-%ed%98%95/%ec%b2%9c%ea%b0%84-%ed%95%a9%e5%90%88%ec%9d%98-%ea%b8%b0%eb%b3%b8-%ea%b0%9c%eb%85%90%ea%b3%bc-%ec%9b%90%eb%a6%ac-1-%ec%b2%9c%ea%b0%84%ec%9d%98-%ed%95%a9%ea%b3%bc-%ed%95%a9%ed%99%94%eb%8a%94/",
+          "source_group": "초코서당",
+          "source_sha256": "14284dbf7f83fc5213ff8954a6f869665224c162bd6b27e58ceac3e5f9623e48",
+          "evidence_id": "transformation_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 48,
+          "paragraph_end": 54,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "천간에서의 합이 깨끗하게 이루어지려면\n1) 두 개의 다른 요소가 1:1로 결합해야 하고,\n2) 주변의 방해가 없어야 하며\n3) 나아가 주변의 요소들이 모두 합화의 방향을 순조롭게 도와야 가능합니다.\n결론부터 말씀드리면,\n위에 말씀드린 모든 요소를 충족시켜야 하기에,\n원국 내에서 합이 되는 건 쉬워도 합화는 매우 어렵다고 보셔야 합니다.",
+          "article_metadata": "작성일 2025-07-23 · 원문 chocosd.com/%ed%95%a9-%ec%b6%a9-%ed%98%95/%ec%b2%9c%ea%b0%84-%ed%95%a9%e5%90%88%ec%9d%98-%ea%b8%b0%eb%b3%b8-%ea%b0%9c%eb%85%90%ea%b3%bc-%ec%9b%90%eb%a6%ac-1-%ec%b2%9c%ea%b0%84%ec%9d%98-%ed%95%a9%ea%b3%bc-%ed%95%a9%ed%99%94%eb%8a%94/",
+          "source_group": "초코서당",
+          "source_sha256": "14284dbf7f83fc5213ff8954a6f869665224c162bd6b27e58ceac3e5f9623e48",
+          "evidence_id": "transformation_e2"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 77,
+          "paragraph_end": 78,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "합화하게 될 경우, 오행의 성분이 완전히 변하기 때문에 이때는 화 오행으로 바뀌었다고 보고, 계수 정관이 아니라 화 오행이 뜻하는 비견과 겁재 둘 다로 해석하셔야 합니다. 따라서 이 명식은 신강한 사주가 무계합화화로 인해 더욱 극신강해진 사주가 됩니다.\n합화할 경우 십성은 음과 양 중 하나로 단순히 해석하는 것이 아니라, 오행에 따라 비겁, 식상, 재성, 관성, 인성으로 묶어서 통합적으로 해석하는 것이 중요합니다.",
+          "article_metadata": "작성일 2025-07-23 · 원문 chocosd.com/%ed%95%a9-%ec%b6%a9-%ed%98%95/%ec%b2%9c%ea%b0%84-%ed%95%a9%e5%90%88%ec%9d%98-%ea%b8%b0%eb%b3%b8-%ea%b0%9c%eb%85%90%ea%b3%bc-%ec%9b%90%eb%a6%ac-1-%ec%b2%9c%ea%b0%84%ec%9d%98-%ed%95%a9%ea%b3%bc-%ed%95%a9%ed%99%94%eb%8a%94/",
+          "source_group": "초코서당",
+          "source_sha256": "14284dbf7f83fc5213ff8954a6f869665224c162bd6b27e58ceac3e5f9623e48",
+          "evidence_id": "transformation_e3"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/초코서당-합, 충, 형 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 93,
+          "paragraph_end": 95,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "일간의 합은 그 어떤 경우에라도 합화가 될 수 없습니다.\n심지어 위 예시처럼, 일간을 제외한 모든 자리가 토 오행으로 되어 있다 하더라도,\n갑목인 일간은 다른 오행으로 바뀌지 않습니다.",
+          "article_metadata": "작성일 2025-07-23 · 원문 chocosd.com/%ed%95%a9-%ec%b6%a9-%ed%98%95/%ec%b2%9c%ea%b0%84-%ed%95%a9%e5%90%88%ec%9d%98-%ea%b8%b0%eb%b3%b8-%ea%b0%9c%eb%85%90%ea%b3%bc-%ec%9b%90%eb%a6%ac-1-%ec%b2%9c%ea%b0%84%ec%9d%98-%ed%95%a9%ea%b3%bc-%ed%95%a9%ed%99%94%eb%8a%94/",
+          "source_group": "초코서당",
+          "source_sha256": "14284dbf7f83fc5213ff8954a6f869665224c162bd6b27e58ceac3e5f9623e48",
+          "evidence_id": "transformation_e4"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "combination",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "five_elements",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "combination",
+          "relation": "구별되는 후속 판단",
+          "evidence_ids": [
+            "transformation_e1",
+            "transformation_e2"
+          ]
+        },
+        {
+          "target": "five_elements",
+          "relation": "변화의 대상",
+          "evidence_ids": [
+            "transformation_e1",
+            "transformation_e3"
+          ]
+        },
+        {
+          "target": "ten_gods",
+          "relation": "변화 후 해석 층위",
+          "evidence_ids": [
+            "transformation_e3"
+          ]
+        },
+        {
+          "target": "day_master",
+          "relation": "출처별 예외 조건",
+          "evidence_ids": [
+            "transformation_e4"
+          ]
+        }
+      ],
+      "unresolved_conditions": [
+        "초코서당의 천간합화 조건을 지지 합화의 보편 규칙으로 전용하지 않는다.",
+        "일간은 합화하지 않는다는 주장은 해당 출처의 정책으로 표시한다.",
+        "합화 후 기존 오행과 십신을 대체할지 병기할지 출처별 검수가 필요하다."
+      ],
+      "empirical_prediction_claim": false
+    },
+    {
+      "id": "clash",
+      "title": "충",
+      "status": "basic_note_candidate",
+      "definition": "이 자료의 지지 설명에서 서로 맞은편에 놓인 반대 기운의 지지끼리 이루는 관계다. 자오·사해·인신·묘유·진술·축미의 여섯 쌍을 구분한다.",
+      "definition_type": "source_grounded_paraphrase",
+      "aliases": [
+        "沖"
+      ],
+      "evidence": [
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 3559,
+          "paragraph_end": 3568,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "지지의 충 (1)\n작성일 2020-09-29 · 원문 yavares.tistory.com/417\n오늘은 지지의 충에 대해 살펴보겠습니다.\n1. 천간의 충과 지지의 충\n천간은 10개 지지는 12개 입니다.\n천간이 10개이며 서로 반대되는 기운을 딱 설정하기가 어렵기 때문에 충에 대한 공통된 합의는 힘든 실정입니다.\n(특히 오행 토의 경우, 반대되는 기운을 설정하는데 어려움이 있습니다.)\n따라서 천간 충의 경우\n충과 극을 구분해야 한다는 견해, (극은 충으로 보면 안된다는 견해)\n충은 없고, 모두 극으로 봐야한다는 견해로 나눠집니다.",
+          "article_metadata": "작성일 2020-09-28 · 원문 yavares.tistory.com/416",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "clash_e1"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 3594,
+          "paragraph_end": 3614,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "그리고 서로 맞은편에 있는 지지를 살피면 지지충을 아주 쉽게 확인하실 수 있습니다.\n서로 마주보는 기운은 서로 반대적인 성격을 가지기 때문에 충을 합니다.\n지지의 충을 그림으로 보면 다음과 같습니다.\n선명하게 딱 맞아 떨어지는 것을 확인할 수 있습니다.\n표로 정리하면 다음과 같습니다.\n지지의 충은\n자오충(子午沖),\n사해충\n(巳亥沖)\n,\n인신충\n(寅申沖),\n묘유충\n(卯酉沖)\n,\n진술충\n(辰戌沖)\n,\n축미충\n(丑未沖)\n으로 나눌 수 있습니다.",
+          "article_metadata": "작성일 2020-09-29 · 원문 yavares.tistory.com/417",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "clash_e2"
+        },
+        {
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_relative_path": "2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_format": "docx",
+          "xml_part": "word/document.xml",
+          "xml_xpath": ".//w:p",
+          "paragraph_start": 3632,
+          "paragraph_end": 3638,
+          "paragraph_indexing": "1-based; includes empty paragraphs and table paragraphs",
+          "quote": "갈등과 자극이 많고, 변화와 변동이 크다는 것을 나쁘게 볼 수도 있지만,\n그로 인해 적극성과 투쟁성이 생겨서 큰 성취를 할 수 있습니다.\n반대로 변화와 변동이 적은 호수같은 삶을 살아서는 큰 성취를 이룰 수 없을 것입니다.\n따라서 지지의 충에 있어서도 무조건 충이 나쁘다? 좋다? 고 하는 이분법적인 시각은 버려야 하겠습니다.\n또한 지지의 충은 그 종류에 따라 아주 다양한 기운이 뿜어져 나옵니다.\n충이라고 다 같은 충이 아닙니다.\n묘유충이 다르고, 인신충이 다릅니다.",
+          "article_metadata": "작성일 2020-09-29 · 원문 yavares.tistory.com/417",
+          "source_group": "현묘/안녕, 사주명리",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "evidence_id": "clash_e3"
+        }
+      ],
+      "prerequisite_links": [
+        {
+          "target": "earthly_branches",
+          "relation": "학습선행",
+          "editorial": true
+        },
+        {
+          "target": "generation_control",
+          "relation": "학습선행",
+          "editorial": true
+        }
+      ],
+      "relation_links": [
+        {
+          "target": "earthly_branches",
+          "relation": "여섯 관계쌍",
+          "evidence_ids": [
+            "clash_e2"
+          ]
+        },
+        {
+          "target": "generation_control",
+          "relation": "천간의 극과 구별 논의",
+          "evidence_ids": [
+            "clash_e1"
+          ]
+        },
+        {
+          "target": "combination",
+          "relation": "학습상 비교",
+          "editorial": true,
+          "evidence_ids": []
+        }
+      ],
+      "unresolved_conditions": [
+        "천간의 충을 인정하거나 극과 구별하는지 유파 차이가 있다.",
+        "충을 사건·질병·이별이나 무조건 나쁨으로 바로 번역하지 않는다.",
+        "같은 충도 원국·운, 위치, 주변 구성을 구분해야 한다."
+      ],
+      "empirical_prediction_claim": false
+    }
+  ]
+}

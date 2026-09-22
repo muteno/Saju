@@ -1,0 +1,37 @@
+{
+  "complete_candidate": {
+    "stems": [
+      {"id": "Y", "gan": "병", "position": "year"},
+      {"id": "M", "gan": "무", "position": "month"},
+      {"id": "D", "gan": "갑", "position": "day"},
+      {"id": "H", "gan": "임", "position": "hour"}
+    ],
+    "hour_unknown": false
+  },
+  "unknown_hour_candidate": {
+    "stems": [
+      {"id": "Y", "gan": "정", "position": "year"},
+      {"id": "M", "gan": "기", "position": "month"},
+      {"id": "D", "gan": "을", "position": "day"}
+    ],
+    "hour_unknown": true
+  },
+  "sanggwan_is_not_siksin": {
+    "stems": [
+      {"id": "Y", "gan": "정", "position": "year"},
+      {"id": "M", "gan": "무", "position": "month"},
+      {"id": "D", "gan": "갑", "position": "day"},
+      {"id": "H", "gan": "임", "position": "hour"}
+    ],
+    "hour_unknown": false
+  },
+  "unknown_hour_excludes_supplied_guess": {
+    "stems": [
+      {"id": "Y", "gan": "병", "position": "year"},
+      {"id": "M", "gan": "경", "position": "month"},
+      {"id": "D", "gan": "갑", "position": "day"},
+      {"id": "H", "gan": "무", "position": "hour"}
+    ],
+    "hour_unknown": true
+  }
+}

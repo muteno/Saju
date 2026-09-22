@@ -1,0 +1,747 @@
+{
+  "schema_version": "1.0-pilot",
+  "purpose": "rules_engine.py PROVENANCE 4개 식별자와 첨부 코퍼스 원문을 결합한다.",
+  "scope": "블로그 기본 정의의 확인과 구조 계산 재현용 부록. 확률·정확도·길흉 타당성 검증이 아님.",
+  "locator_policy": {
+    "source_path_root": "압축 파일에 포함된 최상위 1. 원본 라이브러리 폴더",
+    "locator": "DOCX word/document.xml의 모든 w:p를 표 내부 문단 포함 문서순으로 1부터 계산. 화면 페이지가 아님.",
+    "quote": "인용 문자열은 해당 문단의 정확한 연속 부분문자열이며 생략 표시를 원문에 삽입하지 않음."
+  },
+  "deduplication_policy": "동일 저자·재수록의 일치는 독립된 검증 표본이나 확률 가중치로 중복 집계하지 않음.",
+  "bindings": {
+    "source:stem_properties": {
+      "status": "verified",
+      "scope": "십간 10자의 한글·한자 대응 및 오행·음양",
+      "claims": [
+        {
+          "claim_id": "stem:갑",
+          "gan": "갑",
+          "hanja": "甲",
+          "element": "목",
+          "polarity": "양",
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P50",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 50,
+              "end": 50,
+              "quote": "갑목은 양(陽)의 기운을 지닌 목(木)의 간지로",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            },
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P1880",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 1880,
+              "end": 1880,
+              "quote": "갑(甲): 갑목은 목의 양 기운",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ],
+          "scope": "천간 문자·오행·음양 분류만 채택. 인물 성향·길흉·의학·성별 비유는 이 계산 규칙에 포함하지 않음."
+        },
+        {
+          "claim_id": "stem:을",
+          "gan": "을",
+          "hanja": "乙",
+          "element": "목",
+          "polarity": "음",
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P186",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 186,
+              "end": 186,
+              "quote": "을목은 음(陰)의 기운을 지닌 목(木)의 간지로",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            },
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P1881",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 1881,
+              "end": 1881,
+              "quote": "을(乙): 을목은 목의 음 기운",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ],
+          "scope": "천간 문자·오행·음양 분류만 채택. 인물 성향·길흉·의학·성별 비유는 이 계산 규칙에 포함하지 않음."
+        },
+        {
+          "claim_id": "stem:병",
+          "gan": "병",
+          "hanja": "丙",
+          "element": "화",
+          "polarity": "양",
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P403",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 403,
+              "end": 403,
+              "quote": "병화는 양(陽)의 기운을 지닌 화(火)의 간지로",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            },
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P1883",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 1883,
+              "end": 1883,
+              "quote": "병(丙): 병화는 화의 양 기운",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ],
+          "scope": "천간 문자·오행·음양 분류만 채택. 인물 성향·길흉·의학·성별 비유는 이 계산 규칙에 포함하지 않음."
+        },
+        {
+          "claim_id": "stem:정",
+          "gan": "정",
+          "hanja": "丁",
+          "element": "화",
+          "polarity": "음",
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P537",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 537,
+              "end": 537,
+              "quote": "정화는 음(陰)의 기운을 지닌 화(火)의 간지로",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            },
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P1884",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 1884,
+              "end": 1884,
+              "quote": "정(丁): 정화는 화의 음 기운",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ],
+          "scope": "천간 문자·오행·음양 분류만 채택. 인물 성향·길흉·의학·성별 비유는 이 계산 규칙에 포함하지 않음."
+        },
+        {
+          "claim_id": "stem:무",
+          "gan": "무",
+          "hanja": "戊",
+          "element": "토",
+          "polarity": "양",
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P754",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 754,
+              "end": 754,
+              "quote": "무토는 양(陽)의 기운을 지닌 토(土)의 간지로",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            },
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P1886",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 1886,
+              "end": 1886,
+              "quote": "무(戊): 무토는 토의 양 기운",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ],
+          "scope": "천간 문자·오행·음양 분류만 채택. 인물 성향·길흉·의학·성별 비유는 이 계산 규칙에 포함하지 않음."
+        },
+        {
+          "claim_id": "stem:기",
+          "gan": "기",
+          "hanja": "己",
+          "element": "토",
+          "polarity": "음",
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P976",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 976,
+              "end": 976,
+              "quote": "기토는 음(陰)의 기운을 지닌 토(土)의 간지로",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            },
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P1887",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 1887,
+              "end": 1887,
+              "quote": "기(己): 기토는 토의 음 기운",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ],
+          "scope": "천간 문자·오행·음양 분류만 채택. 인물 성향·길흉·의학·성별 비유는 이 계산 규칙에 포함하지 않음."
+        },
+        {
+          "claim_id": "stem:경",
+          "gan": "경",
+          "hanja": "庚",
+          "element": "금",
+          "polarity": "양",
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-78cc6b6b4d82",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/명리학탐구(초급) 게시판 글모음.docx",
+              "source_sha256": "f5ccb3cb39cfaf3330f539ab0c72f7b107151b8271865f62b87e620312fb564e",
+              "locator": "XML-P609",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 609,
+              "end": 609,
+              "quote": "경금은 陽金(양금)",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            },
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P1889",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 1889,
+              "end": 1889,
+              "quote": "경(庚): 경금은 금의 양 기운",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ],
+          "scope": "천간 문자·오행·음양 분류만 채택. 인물 성향·길흉·의학·성별 비유는 이 계산 규칙에 포함하지 않음."
+        },
+        {
+          "claim_id": "stem:신",
+          "gan": "신",
+          "hanja": "辛",
+          "element": "금",
+          "polarity": "음",
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-78cc6b6b4d82",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/명리학탐구(초급) 게시판 글모음.docx",
+              "source_sha256": "f5ccb3cb39cfaf3330f539ab0c72f7b107151b8271865f62b87e620312fb564e",
+              "locator": "XML-P654",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 654,
+              "end": 654,
+              "quote": "신금은 음금(陰金)",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            },
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P1890",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 1890,
+              "end": 1890,
+              "quote": "신(辛): 신금은 금의 음 기운",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ],
+          "scope": "천간 문자·오행·음양 분류만 채택. 인물 성향·길흉·의학·성별 비유는 이 계산 규칙에 포함하지 않음."
+        },
+        {
+          "claim_id": "stem:임",
+          "gan": "임",
+          "hanja": "壬",
+          "element": "수",
+          "polarity": "양",
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-78cc6b6b4d82",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/명리학탐구(초급) 게시판 글모음.docx",
+              "source_sha256": "f5ccb3cb39cfaf3330f539ab0c72f7b107151b8271865f62b87e620312fb564e",
+              "locator": "XML-P703",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 703,
+              "end": 703,
+              "quote": "임수는 陽水(양수)",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            },
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P1892",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 1892,
+              "end": 1892,
+              "quote": "임(壬): 임수는 수의 양 기운",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ],
+          "scope": "천간 문자·오행·음양 분류만 채택. 인물 성향·길흉·의학·성별 비유는 이 계산 규칙에 포함하지 않음."
+        },
+        {
+          "claim_id": "stem:계",
+          "gan": "계",
+          "hanja": "癸",
+          "element": "수",
+          "polarity": "음",
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-78cc6b6b4d82",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/명리학탐구(초급) 게시판 글모음.docx",
+              "source_sha256": "f5ccb3cb39cfaf3330f539ab0c72f7b107151b8271865f62b87e620312fb564e",
+              "locator": "XML-P749",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 749,
+              "end": 749,
+              "quote": "계수는 陰水(음수)에 속합니다.",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            },
+            {
+              "source_id": "src-95b1e2bb41cb",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-천간, 지지 글모음.docx",
+              "source_sha256": "fa9148288fbe2b3d5c23dfb0196265f69962f27a90ab9b1d4f9f485b2b70cc48",
+              "locator": "XML-P1893",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 1893,
+              "end": 1893,
+              "quote": "계(癸): 계수는 수의 음 기운",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ],
+          "scope": "천간 문자·오행·음양 분류만 채택. 인물 성향·길흉·의학·성별 비유는 이 계산 규칙에 포함하지 않음."
+        }
+      ],
+      "unverified_parts": []
+    },
+    "source:five_element_cycles": {
+      "status": "verified",
+      "scope": "5개 상생·5개 상극의 방향 관계",
+      "claims": [
+        {
+          "subject": "목",
+          "predicate": "generates",
+          "object": "화",
+          "status": "verified"
+        },
+        {
+          "subject": "화",
+          "predicate": "generates",
+          "object": "토",
+          "status": "verified"
+        },
+        {
+          "subject": "토",
+          "predicate": "generates",
+          "object": "금",
+          "status": "verified"
+        },
+        {
+          "subject": "금",
+          "predicate": "generates",
+          "object": "수",
+          "status": "verified"
+        },
+        {
+          "subject": "수",
+          "predicate": "generates",
+          "object": "목",
+          "status": "verified"
+        },
+        {
+          "subject": "목",
+          "predicate": "controls",
+          "object": "토",
+          "status": "verified"
+        },
+        {
+          "subject": "토",
+          "predicate": "controls",
+          "object": "수",
+          "status": "verified"
+        },
+        {
+          "subject": "수",
+          "predicate": "controls",
+          "object": "화",
+          "status": "verified"
+        },
+        {
+          "subject": "화",
+          "predicate": "controls",
+          "object": "금",
+          "status": "verified"
+        },
+        {
+          "subject": "금",
+          "predicate": "controls",
+          "object": "목",
+          "status": "verified"
+        }
+      ],
+      "evidence": [
+        {
+          "source_id": "src-31426122ec01",
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/초코서당-음양, 오행 글모음.docx",
+          "source_sha256": "4824ad58cc60a017a57550cc62db681f26613cd9af1de12fa01bb1dfb3f846e1",
+          "locator": "XML-P624",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 624,
+          "end": 624,
+          "quote": "목생화(木生火), 화생토(火生土), 토생금(土生金), 금생수(金生水), 수생목(水生木)의 상생(相生) 관계에서 나아가, 목극토(木剋土), 토극수(土剋水), 수극화(水剋火), 화극금(火剋金), 금극목(金剋木)처럼 상극(相剋) 관계로도 오행체계를 설명할 수 있게 됐다는 점에서 큰 의미가 있습니다.",
+          "quote_type": "exact_text_substring",
+          "author_cluster": null
+        }
+      ],
+      "implementation_notes": [
+        "same은 오행 값의 동일성 비교이며 별도 생극 주장이 아님.",
+        "generated_by와 controlled_by는 원문 방향 간선의 역조회이다."
+      ],
+      "unverified_parts": []
+    },
+    "source:ten_god_definition": {
+      "status": "verified",
+      "scope": "일간 대비 천간의 오행 관계와 음양 일치 여부로 십신 분류",
+      "claims": [
+        {
+          "claim_id": "ten_god_비견",
+          "ten_god": "비견",
+          "element_relation": "same",
+          "same_polarity": true,
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-99e7ca751eef",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+              "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+              "locator": "XML-P442",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 442,
+              "end": 442,
+              "quote": "일간과 오행이 같고 음양이 같을 때, 비견(比肩)이라 합니다.",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ]
+        },
+        {
+          "claim_id": "ten_god_겁재",
+          "ten_god": "겁재",
+          "element_relation": "same",
+          "same_polarity": false,
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-99e7ca751eef",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+              "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+              "locator": "XML-P443",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 443,
+              "end": 443,
+              "quote": "일간과 오행이 같고 음양이 다르면, 겁재(劫財)라고 합니다.",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ]
+        },
+        {
+          "claim_id": "ten_god_식신",
+          "ten_god": "식신",
+          "element_relation": "generates",
+          "same_polarity": true,
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-99e7ca751eef",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+              "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+              "locator": "XML-P444",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 444,
+              "end": 444,
+              "quote": "일간이 생(生) 하며 음양이 같을 때, 식신(食神)이라 합니다.",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ]
+        },
+        {
+          "claim_id": "ten_god_상관",
+          "ten_god": "상관",
+          "element_relation": "generates",
+          "same_polarity": false,
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-99e7ca751eef",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+              "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+              "locator": "XML-P445",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 445,
+              "end": 445,
+              "quote": "일간이 생(生) 하며 음양이 다를 때, 상관(傷官)이라 합니다.",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ]
+        },
+        {
+          "claim_id": "ten_god_편재",
+          "ten_god": "편재",
+          "element_relation": "controls",
+          "same_polarity": true,
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-99e7ca751eef",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+              "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+              "locator": "XML-P446",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 446,
+              "end": 446,
+              "quote": "일간이 극(剋) 하며 음양이 같을 때, 편재(偏財)라 합니다.",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ]
+        },
+        {
+          "claim_id": "ten_god_정재",
+          "ten_god": "정재",
+          "element_relation": "controls",
+          "same_polarity": false,
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-99e7ca751eef",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+              "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+              "locator": "XML-P447",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 447,
+              "end": 447,
+              "quote": "일간이 극(剋) 하며 음양이 다를 때, 정재(正財)라 합니다.",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ]
+        },
+        {
+          "claim_id": "ten_god_편관",
+          "ten_god": "편관",
+          "element_relation": "controlled_by",
+          "same_polarity": true,
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-99e7ca751eef",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+              "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+              "locator": "XML-P448",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 448,
+              "end": 448,
+              "quote": "일간을 극(剋) 하며 음양이 같을 때, 편관(偏官)이라 합니다.",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ]
+        },
+        {
+          "claim_id": "ten_god_정관",
+          "ten_god": "정관",
+          "element_relation": "controlled_by",
+          "same_polarity": false,
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-99e7ca751eef",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+              "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+              "locator": "XML-P449",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 449,
+              "end": 449,
+              "quote": "일간을 극(剋) 하며 음양이 다를 때, 정관(正官)이라 합니다.",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ]
+        },
+        {
+          "claim_id": "ten_god_편인",
+          "ten_god": "편인",
+          "element_relation": "generated_by",
+          "same_polarity": true,
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-99e7ca751eef",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+              "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+              "locator": "XML-P450",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 450,
+              "end": 450,
+              "quote": "일간을 생(生) 하며 음양이 같을 때, 편인(偏印)이라 합니다.",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ]
+        },
+        {
+          "claim_id": "ten_god_정인",
+          "ten_god": "정인",
+          "element_relation": "generated_by",
+          "same_polarity": false,
+          "status": "verified",
+          "evidence": [
+            {
+              "source_id": "src-99e7ca751eef",
+              "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+              "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+              "locator": "XML-P451",
+              "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+              "start": 451,
+              "end": 451,
+              "quote": "일간을 생(生) 하며 음양이 다를 때, 정인(正印)이라 합니다.",
+              "quote_type": "exact_text_substring",
+              "author_cluster": null
+            }
+          ]
+        }
+      ],
+      "unverified_parts": [],
+      "excluded_scope": "지지 자체의 음양, 지장간 본기 선택, 강약·성향·미래 결과는 계산하지 않음."
+    },
+    "source:siksin_saengjae_candidate": {
+      "status": "verified_structural_candidate_only",
+      "scope": "기존 입력 천간 중 식신과 재성을 분류하고 식신→재성의 생 관계 경로를 찾는 필요 구조 후보",
+      "verified_claims": [
+        "식신이 재성을 생하는 관계에는 정재와 편재가 포함된다.",
+        "인용 문헌은 식신이 재성을 생조하는 경우 식신생재격이라는 명칭을 사용한다."
+      ],
+      "evidence": [
+        {
+          "source_id": "src-99e7ca751eef",
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/십신과 합충 글모음.docx",
+          "source_sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+          "locator": "XML-P860",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 860,
+          "end": 860,
+          "quote": "식신이 재성을 생하는 경우는 정재를 생하는 경우와 편재를 생하는 경우로 나눌 수 있습니다.",
+          "quote_type": "exact_text_substring",
+          "author_cluster": null
+        },
+        {
+          "source_id": "src-45516679ee36",
+          "source_path": "1. 원본 라이브러리/2. 웹 스크랩/명리학입문 게시판 글모음.docx",
+          "source_sha256": "d428aaab9cdc0acfd7ba9ac713df35534d0bee30997faba9edc29e4068e8f329",
+          "locator": "XML-P1322",
+          "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+          "start": 1322,
+          "end": 1322,
+          "quote": "신강한 명조가 재성을 용신으로 정하고, 식상이 재성을 생조하는 명조가 됩니다. 식신이 생조하는 경우는 식신생재격, 상관이 생조하는 경우는 상관생재격이라 합니다.",
+          "quote_type": "exact_text_substring",
+          "author_cluster": null
+        }
+      ],
+      "derivation_refs": [
+        "source:stem_properties",
+        "source:five_element_cycles",
+        "source:ten_god_definition"
+      ],
+      "source_conditions_not_dropped": [
+        "명리학입문 P1322는 신강한 명조와 재성을 용신으로 정한 상황을 전제한다."
+      ],
+      "unverified_parts": [
+        {
+          "part": "식신생재격의 전체 성립 판정",
+          "status": "unverified",
+          "reason": "신강 여부·재성 용신 선정·월령·통근·지지·상호작용·문헌별 예외를 계산하지 않으므로 격국 성립은 확정하지 않는다."
+        },
+        {
+          "part": "천간 위치·거리 및 실제 유통 효력",
+          "status": "unverified",
+          "reason": "원문 관계 정의만으로 모든 위치 조합의 실제 작용 강도를 승인할 수 없다. 프로토타입은 위치와 경로를 기록할 뿐 효과를 계산하지 않는다."
+        },
+        {
+          "part": "현실 결과·재물 성취·확률 가중치",
+          "status": "unverified",
+          "reason": "본문 주장과 현실 검증 자료를 구분하며, 학습용 결과 라벨과 표본이 없어 점수·확률을 제시하지 않는다."
+        }
+      ],
+      "engine_contract": {
+        "structural_candidate_status": "needs_review",
+        "full_interpretation_status": "blocked",
+        "missing_observed_roles_status": "not_observed",
+        "not_observed_scope": "알려진 입력 천간에서 관찰하지 못했다는 뜻이며 원국 전체 부재·흉운 주장이 아님."
+      }
+    }
+  },
+  "validation_summary": {
+    "binding_count": 4,
+    "stem_property_claims": 10,
+    "cycle_edges": 10,
+    "ten_god_definitions": 10,
+    "all_quotes_exact_substrings_of_corpus_units": true,
+    "image_only_table_inferences_used": false,
+    "source_accuracy_is_not_outcome_accuracy": true
+  }
+}

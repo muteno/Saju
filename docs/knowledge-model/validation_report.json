@@ -1,0 +1,40 @@
+{
+  "code_tests": {
+    "total": 24,
+    "passed": 24,
+    "scope": "16 symbolic rule tests including 100 stem pairs; 8 conditional model tests"
+  },
+  "graph": {
+    "basic_concepts": 18,
+    "nodes": 58,
+    "relations": 132,
+    "hyperedges": 11,
+    "evidence_spans": 100,
+    "editorial_links": 33
+  },
+  "evidence_spans_exact_in_original_corpus": 100,
+  "raw_excerpt_audit": {
+    "count": 138,
+    "exact_matches": 138
+  },
+  "domain_expert_review": "not_run",
+  "empirical_probability_calibration": "not_run",
+  "temporal_chart_generation": "not_implemented",
+  "full_corpus_semantic_extraction": "not_completed",
+  "figma_foundation": {
+    "source_sha256": "442c1892203cb5edde66db53dec733ea0d352d5682447f1ed4515835b16a20d6",
+    "source_blob_matches_main": true,
+    "concept_bindings": 18,
+    "exact_quote_spans": 26,
+    "coverage": {
+      "definition": 3,
+      "explanation": 11,
+      "title_only": 4
+    },
+    "existing_graph_semantics_preserved": true,
+    "all_basic_concept_queries_include_reference": true,
+    "ambiguous_alias_preserved": true,
+    "live_board_sync": "not_checked",
+    "probability_calibration": "not_run"
+  }
+}

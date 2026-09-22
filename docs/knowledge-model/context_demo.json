@@ -1,0 +1,331 @@
+{
+  "warning": "모든 숫자는 원리를 보여주기 위해 임의로 만든 synthetic_illustration입니다. 사주 정답 확률·원문 검증 가중치·교정된 현실 확률이 아닙니다. 기본 실행은 미학습 모델로 probability=null을 출력합니다.",
+  "untrained_model": {
+    "schema_version": "context-logistic-v1",
+    "hypothesis_mode": "nonexclusive",
+    "parameter_origin": "untrained",
+    "training_status": "untrained",
+    "claims": [
+      {
+        "id": "demo_hypothesis",
+        "target_definition": "설명용 가설에 대한 검토자 승인 라벨. 실제 사주 해석이나 현실 결과를 뜻하지 않음.",
+        "required_features": [
+          "키워드_X",
+          "키워드_Y",
+          "설명용조건_A",
+          "설명용조건_B"
+        ],
+        "bias": null,
+        "feature_weights": {
+          "키워드_X": null,
+          "키워드_Y": null,
+          "설명용조건_A": null,
+          "설명용조건_B": null
+        },
+        "interactions": [
+          {
+            "id": "base_pair",
+            "when": {
+              "키워드_X": "present",
+              "키워드_Y": "present"
+            },
+            "weight": null
+          },
+          {
+            "id": "pair_plus_A",
+            "when": {
+              "키워드_X": "present",
+              "키워드_Y": "present",
+              "설명용조건_A": "present"
+            },
+            "weight": null
+          },
+          {
+            "id": "four_way",
+            "when": {
+              "키워드_X": "present",
+              "키워드_Y": "present",
+              "설명용조건_A": "present",
+              "설명용조건_B": "present"
+            },
+            "weight": null
+          }
+        ]
+      }
+    ]
+  },
+  "synthetic_model": {
+    "schema_version": "context-logistic-v1",
+    "hypothesis_mode": "nonexclusive",
+    "parameter_origin": "synthetic_illustration",
+    "training_status": "synthetic_parameters_only",
+    "claims": [
+      {
+        "id": "demo_hypothesis",
+        "target_definition": "설명용 가설에 대한 검토자 승인 라벨. 실제 사주 해석이나 현실 결과를 뜻하지 않음.",
+        "required_features": [
+          "키워드_X",
+          "키워드_Y",
+          "설명용조건_A",
+          "설명용조건_B"
+        ],
+        "bias": -2.0,
+        "feature_weights": {
+          "키워드_X": 0.0,
+          "키워드_Y": 0.0,
+          "설명용조건_A": 0.0,
+          "설명용조건_B": 0.0
+        },
+        "interactions": [
+          {
+            "id": "base_pair",
+            "when": {
+              "키워드_X": "present",
+              "키워드_Y": "present"
+            },
+            "weight": 1.0
+          },
+          {
+            "id": "pair_plus_A",
+            "when": {
+              "키워드_X": "present",
+              "키워드_Y": "present",
+              "설명용조건_A": "present"
+            },
+            "weight": 1.5
+          },
+          {
+            "id": "four_way",
+            "when": {
+              "키워드_X": "present",
+              "키워드_Y": "present",
+              "설명용조건_A": "present",
+              "설명용조건_B": "present"
+            },
+            "weight": -2.0
+          }
+        ]
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "name": "같은 키워드_X+키워드_Y, A 없음 B 없음",
+      "context": {
+        "present": [
+          "키워드_X",
+          "키워드_Y"
+        ],
+        "absent": [
+          "설명용조건_A",
+          "설명용조건_B"
+        ]
+      }
+    },
+    {
+      "name": "같은 키워드_X+키워드_Y, A 추가",
+      "context": {
+        "present": [
+          "키워드_X",
+          "키워드_Y",
+          "설명용조건_A"
+        ],
+        "absent": [
+          "설명용조건_B"
+        ]
+      }
+    },
+    {
+      "name": "A가 연속값 0.4인 같은 키워드_X+키워드_Y",
+      "context": {
+        "features": {
+          "키워드_X": 1,
+          "키워드_Y": 1,
+          "설명용조건_A": 0.4,
+          "설명용조건_B": 0
+        }
+      }
+    },
+    {
+      "name": "같은 키워드_X+키워드_Y, A와 B 결합",
+      "context": {
+        "present": [
+          "키워드_X",
+          "키워드_Y",
+          "설명용조건_A",
+          "설명용조건_B"
+        ]
+      }
+    },
+    {
+      "name": "B 미상은 B 없음과 다름",
+      "context": {
+        "present": [
+          "키워드_X",
+          "키워드_Y",
+          "설명용조건_A"
+        ],
+        "unknown": [
+          "설명용조건_B"
+        ]
+      }
+    }
+  ],
+  "feature_semantics": "0은 관찰된 없음, 1은 완전한 관찰 활성, 0~1 사이는 관찰된 정도, null은 미상. 활성 정도는 발생 확률이 아니며 명시적으로 제공되어야 합니다.",
+  "synthetic_training_cases": [
+    {
+      "case_id": "synthetic_group_A_0",
+      "source_group": "synthetic_group_A",
+      "label_origin": "synthetic",
+      "label_type": "soft",
+      "context": {
+        "features": {
+          "키워드_X": 1.0,
+          "키워드_Y": 1.0,
+          "설명용조건_A": 0.0,
+          "설명용조건_B": 0.0
+        }
+      },
+      "labels": {
+        "demo_hypothesis": 0.2
+      }
+    },
+    {
+      "case_id": "synthetic_group_A_1",
+      "source_group": "synthetic_group_A",
+      "label_origin": "synthetic",
+      "label_type": "soft",
+      "context": {
+        "features": {
+          "키워드_X": 1.0,
+          "키워드_Y": 1.0,
+          "설명용조건_A": 0.5,
+          "설명용조건_B": 0.0
+        }
+      },
+      "labels": {
+        "demo_hypothesis": 0.5
+      }
+    },
+    {
+      "case_id": "synthetic_group_A_2",
+      "source_group": "synthetic_group_A",
+      "label_origin": "synthetic",
+      "label_type": "soft",
+      "context": {
+        "features": {
+          "키워드_X": 1.0,
+          "키워드_Y": 1.0,
+          "설명용조건_A": 1.0,
+          "설명용조건_B": 0.0
+        }
+      },
+      "labels": {
+        "demo_hypothesis": 0.8
+      }
+    },
+    {
+      "case_id": "synthetic_group_B_0",
+      "source_group": "synthetic_group_B",
+      "label_origin": "synthetic",
+      "label_type": "soft",
+      "context": {
+        "features": {
+          "키워드_X": 1.0,
+          "키워드_Y": 1.0,
+          "설명용조건_A": 0.0,
+          "설명용조건_B": 0.0
+        }
+      },
+      "labels": {
+        "demo_hypothesis": 0.2
+      }
+    },
+    {
+      "case_id": "synthetic_group_B_1",
+      "source_group": "synthetic_group_B",
+      "label_origin": "synthetic",
+      "label_type": "soft",
+      "context": {
+        "features": {
+          "키워드_X": 1.0,
+          "키워드_Y": 1.0,
+          "설명용조건_A": 0.5,
+          "설명용조건_B": 0.0
+        }
+      },
+      "labels": {
+        "demo_hypothesis": 0.5
+      }
+    },
+    {
+      "case_id": "synthetic_group_B_2",
+      "source_group": "synthetic_group_B",
+      "label_origin": "synthetic",
+      "label_type": "soft",
+      "context": {
+        "features": {
+          "키워드_X": 1.0,
+          "키워드_Y": 1.0,
+          "설명용조건_A": 1.0,
+          "설명용조건_B": 0.0
+        }
+      },
+      "labels": {
+        "demo_hypothesis": 0.8
+      }
+    },
+    {
+      "case_id": "synthetic_group_C_0",
+      "source_group": "synthetic_group_C",
+      "label_origin": "synthetic",
+      "label_type": "soft",
+      "context": {
+        "features": {
+          "키워드_X": 1.0,
+          "키워드_Y": 1.0,
+          "설명용조건_A": 0.0,
+          "설명용조건_B": 0.0
+        }
+      },
+      "labels": {
+        "demo_hypothesis": 0.2
+      }
+    },
+    {
+      "case_id": "synthetic_group_C_1",
+      "source_group": "synthetic_group_C",
+      "label_origin": "synthetic",
+      "label_type": "soft",
+      "context": {
+        "features": {
+          "키워드_X": 1.0,
+          "키워드_Y": 1.0,
+          "설명용조건_A": 0.5,
+          "설명용조건_B": 0.0
+        }
+      },
+      "labels": {
+        "demo_hypothesis": 0.5
+      }
+    },
+    {
+      "case_id": "synthetic_group_C_2",
+      "source_group": "synthetic_group_C",
+      "label_origin": "synthetic",
+      "label_type": "soft",
+      "context": {
+        "features": {
+          "키워드_X": 1.0,
+          "키워드_Y": 1.0,
+          "설명용조건_A": 1.0,
+          "설명용조건_B": 0.0
+        }
+      },
+      "labels": {
+        "demo_hypothesis": 0.8
+      }
+    }
+  ],
+  "synthetic_training_warning": "아홉 사례는 코드 동작 확인을 위한 인공 자료입니다. 독립 문헌·전문가·실제 사건 데이터가 아니며 --demo 없이 학습할 수 없습니다."
+}
