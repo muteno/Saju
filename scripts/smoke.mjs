@@ -2,7 +2,7 @@
 // 근거: 260717 Q05에서 tsc·vite가 초록인데 실브라우저만 잡은 게이트 우회 버그(모듈 시점 kb 접근) 실증.
 // 브라우저·의존성이 없는 환경(Windows 로컬·CF 빌드)에선 소프트 스킵(exit 0) — 게이트는 가능한 곳에서만 문다.
 import { createServer } from 'node:http'
-import { readFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync, statSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import { dirname, join, extname, normalize } from 'node:path'
@@ -22,7 +22,7 @@ const MIME = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css
 const server = createServer((req, res) => {
   let p = normalize(decodeURIComponent(req.url.split('?')[0])).replace(/^([.][.][/\\])+/, '')
   let fp = join(dist, p)
-  if (!existsSync(fp) || fp.endsWith('/')) fp = join(dist, 'index.html') // SPA 폴백(_redirects 등가)
+  if (!existsSync(fp) || statSync(fp).isDirectory()) fp = join(dist, 'index.html') // SPA 폴백(_redirects 등가)
   res.setHeader('content-type', MIME[extname(fp)] || 'application/octet-stream')
   res.end(readFileSync(fp))
 })

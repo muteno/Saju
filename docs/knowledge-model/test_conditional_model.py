@@ -10,6 +10,19 @@ BUNDLE = json.loads(Path(__file__).with_name('context_demo.json').read_text(enco
 
 
 class ConditionalModelTests(unittest.TestCase):
+    @staticmethod
+    def one_feature_model(*, bias=None, weight=None, origin='untrained'):
+        return {'hypothesis_mode': 'nonexclusive', 'parameter_origin': origin,
+                'claims': [{'id': 'h', 'required_features': ['x'],
+                            'feature_weights': {'x': weight}, 'interactions': [], 'bias': bias}]}
+
+    @staticmethod
+    def labelled_cases(training_label, holdout_label):
+        return [{'case_id': group, 'source_group': group, 'label_origin': 'expert',
+                 'label_type': 'binary' if type(label) is int else 'soft',
+                 'labels': {'h': label}, 'context': {'features': {'x': 1}}}
+                for group, label in [('A', training_label), ('B', training_label), ('C', holdout_label)]]
+
     def test_context_and_arbitrary_interaction_change_same_pair_continuously(self):
         model = BUNDLE['synthetic_model']
         probabilities = []
@@ -40,6 +53,82 @@ class ConditionalModelTests(unittest.TestCase):
         synthetic = predict(BUNDLE['synthetic_model'], context)['claims'][0]
         self.assertEqual(synthetic['status'], 'synthetic_excluded')
         self.assertIsNone(synthetic['probability'])
+
+    def test_numeric_parameters_require_known_trained_or_synthetic_origin(self):
+        for origin in ('untrained', 'unknown', None):
+            model = self.one_feature_model(bias=0, weight=0, origin=origin)
+            with self.subTest(origin=origin), self.assertRaises(ValidationError):
+                predict(model, {'features': {'x': 1}}, allow_synthetic=True)
+        model = self.one_feature_model(bias=0, weight=0)
+        del model['parameter_origin']
+        with self.assertRaises(ValidationError):
+            predict(model, {'features': {'x': 1}})
+        # Missing origin retains the existing untrained default for null parameters.
+        model = self.one_feature_model()
+        del model['parameter_origin']
+        self.assertEqual(predict(model, {'features': {'x': 1}})['claims'][0]['status'], 'needs_training')
+
+    def test_prediction_rejects_logit_overflow_and_unrepresentable_integer(self):
+        for mode in ('nonexclusive', 'competing'):
+            model = self.one_feature_model(bias=1e308, weight=1e308, origin='expert_label_training')
+            model['hypothesis_mode'] = mode
+            if mode == 'competing':
+                other = copy.deepcopy(model['claims'][0]); other['id'] = 'other'
+                model['claims'].append(other)
+            with self.subTest(mode=mode), self.assertRaisesRegex(ValidationError, 'finite'):
+                predict(model, {'features': {'x': 1}})
+        model = self.one_feature_model(bias=10 ** 400, weight=0, origin='expert_label_training')
+        with self.assertRaises(ValidationError):
+            predict(model, {'features': {'x': 1}})
+
+    def test_large_finite_logits_remain_valid(self):
+        model = self.one_feature_model(bias=-1000, weight=0, origin='expert_label_training')
+        self.assertEqual(predict(model, {'features': {'x': 1}})['claims'][0]['probability'], 0)
+        other = copy.deepcopy(model['claims'][0]); other.update(id='other', bias=1000)
+        model['claims'].append(other)
+        model['hypothesis_mode'] = 'competing'
+        result = predict(model, {'features': {'x': 1}})
+        self.assertEqual([c['probability'] for c in result['claims']], [0, 1])
+        json.dumps(result, allow_nan=False)
+
+    def test_mixed_integer_float_logit_overflow_uses_validation_error(self):
+        for mode in ('nonexclusive', 'competing'):
+            model = self.one_feature_model(bias=10 ** 308, weight=10 ** 308, origin='expert_label_training')
+            model['hypothesis_mode'] = mode
+            model['claims'][0]['required_features'].append('y')
+            model['claims'][0]['feature_weights']['y'] = 0.5
+            if mode == 'competing':
+                other = copy.deepcopy(model['claims'][0]); other['id'] = 'other'
+                model['claims'].append(other)
+            with self.subTest(mode=mode), self.assertRaisesRegex(ValidationError, 'logit.*finite'):
+                predict(model, {'features': {'x': 1, 'y': 1}})
+
+    def test_competing_large_integer_logits_keep_stable_softmax(self):
+        model = self.one_feature_model(bias=-(10 ** 308), weight=0, origin='expert_label_training')
+        other = copy.deepcopy(model['claims'][0]); other.update(id='other', bias=10 ** 308)
+        model['claims'].append(other)
+        model['hypothesis_mode'] = 'competing'
+        result = predict(model, {'features': {'x': 1}})
+        self.assertEqual([c['probability'] for c in result['claims']], [0, 1])
+        json.dumps(result, allow_nan=False)
+
+    def test_fit_rejects_overflow_without_mutating_input(self):
+        model = self.one_feature_model()
+        original = copy.deepcopy(model)
+        with self.assertRaisesRegex(ValidationError, 'finite'):
+            fit(model, self.labelled_cases(0, 1), 'C', epochs=3, learning_rate=1e308, l2=1e308)
+        self.assertEqual(model, original)
+
+    def test_holdout_bce_uses_logits_without_clipping_confident_errors(self):
+        for training_label, holdout_label, rate, expected in (
+                (0, 1, 1000, 1000), (1, 0, 1000, 1000),
+                (0, 0.25, 1000, 250), (1, 0.25, 1000, 750),
+                (0, 1, 1, math.log1p(math.exp(1)))):
+            with self.subTest(training_label=training_label, holdout_label=holdout_label, rate=rate):
+                fitted = fit(self.one_feature_model(), self.labelled_cases(training_label, holdout_label),
+                             'C', epochs=1, learning_rate=rate, l2=0)
+                self.assertAlmostEqual(fitted['training_report']['holdout_binary_cross_entropy'], expected)
+                json.dumps(fitted, allow_nan=False)
 
     def test_repeated_terms_deduplicate_and_contradictory_states_reject(self):
         context = copy.deepcopy(BUNDLE['scenarios'][0]['context'])
