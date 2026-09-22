@@ -1,0 +1,48 @@
+{
+  "kb": {
+    "file": "kb-b5b98b98.json",
+    "keys": 598
+  },
+  "results": [
+    {
+      "name": "StrictMode retains initial speaker and opening",
+      "ok": true
+    },
+    {
+      "name": "Layout 390x844: choices, log, composer and focus",
+      "ok": true
+    },
+    {
+      "name": "Layout 320x568: choices, log, composer and focus",
+      "ok": true
+    },
+    {
+      "name": "Layout 390x420: choices, log, composer and focus",
+      "ok": true
+    },
+    {
+      "name": "Korean IME, Shift+Enter and double Enter send once",
+      "ok": true
+    },
+    {
+      "name": "Retry preserves one user bubble; returning to topics clears retry",
+      "ok": true
+    },
+    {
+      "name": "Character switch aborts question and ignores delayed reply",
+      "ok": true
+    },
+    {
+      "name": "Profile switch aborts question, replaces log and ignores delayed reply",
+      "ok": true
+    },
+    {
+      "name": "Topic prefetch aborts on character switch and route unmount; stale text ignored",
+      "ok": true
+    },
+    {
+      "name": "KB failure: readable message and retry successfully reloads",
+      "ok": true
+    }
+  ]
+}
