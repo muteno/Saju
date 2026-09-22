@@ -21,6 +21,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_yin_yang"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_yin_yang"
       ]
     },
     {
@@ -42,6 +45,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_five_elements"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_five_elements"
       ]
     },
     {
@@ -66,6 +72,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_generation_control"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_generation_control"
       ]
     },
     {
@@ -221,6 +230,9 @@
       },
       "foundation_reference_ids": [
         "figma_heavenly_stems"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_heavenly_stems"
       ]
     },
     {
@@ -245,6 +257,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_earthly_branches"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_earthly_branches"
       ]
     },
     {
@@ -268,6 +283,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_day_master"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_day_master"
       ]
     },
     {
@@ -290,6 +308,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_ten_gods"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_ten_gods"
       ]
     },
     {
@@ -311,6 +332,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_peers"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_peers"
       ]
     },
     {
@@ -332,6 +356,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_output"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_output"
       ]
     },
     {
@@ -353,6 +380,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_wealth"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_wealth"
       ]
     },
     {
@@ -374,6 +404,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_authority"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_authority"
       ]
     },
     {
@@ -395,6 +428,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_resource"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_resource"
       ]
     },
     {
@@ -419,6 +455,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_month_command"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_month_command"
       ]
     },
     {
@@ -443,6 +482,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_hidden_stems"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_hidden_stems"
       ]
     },
     {
@@ -466,6 +508,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_rooting"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_rooting"
       ]
     },
     {
@@ -489,6 +534,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_combination"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_combination"
       ]
     },
     {
@@ -513,6 +561,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_transformation"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_transformation"
       ]
     },
     {
@@ -536,6 +587,9 @@
       "properties": {},
       "foundation_reference_ids": [
         "figma_clash"
+      ],
+      "live_foundation_reference_ids": [
+        "figma_live_clash"
       ]
     },
     {
@@ -6599,6 +6653,1086 @@
       "adopted_as_algorithm": false
     }
   ],
+  "live_foundation_source": {
+    "id": "figma_live_20260922",
+    "board_key": "SEEnsqUToHwgVY5QZnYLeU",
+    "board_url": "https://www.figma.com/board/SEEnsqUToHwgVY5QZnYLeU",
+    "status": "retrieved",
+    "live_sync_status": "retrieved_this_session",
+    "retrieval_session_date": "2026-09-22",
+    "retrieved_at_utc": null,
+    "captured_at_status": "exact_time_not_supplied_to_this_review",
+    "snapshot_filename": "figma-live-20260922.txt",
+    "snapshot_sha256": "c303fadeac529369d296bfdf672c0e60f445583754e883ec26efec66bbc6b09f",
+    "snapshot_storage": "Full live XML remains in scratch; only reviewed excerpts and hashes are committed.",
+    "snapshot_last_modified_at": null,
+    "snapshot_last_modified_status": "not_reported",
+    "scope_root_node_ids": [
+      "498:4143",
+      "498:4142"
+    ],
+    "scope_names": [
+      "기초",
+      "심화"
+    ],
+    "source_kind": "operator_curated_figjam_live_snapshot",
+    "full_board_stored_in_this_file": false,
+    "board_modified": false,
+    "text_field_semantics": "Many TEXT node bodies are stored in the XML name attribute; native table-cell content is XML element text.",
+    "node_content_sha256_method": "SHA-256 of UTF-8 JSON {node_id,tag,name,text}, keys sorted, ensure_ascii=false, separators=(comma,colon). text is direct XML element text or empty string; no descendants.",
+    "field_sha256_method": "SHA-256 of exact decoded XML name attribute or direct element text; quote is an exact substring.",
+    "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+  },
+  "live_foundation_references": [
+    {
+      "id": "figma_live_yin_yang",
+      "concept_id": "yin_yang",
+      "title": "음양",
+      "coverage": "title_only",
+      "previous_reference_id": "figma_yin_yang",
+      "previous_coverage": "title_only",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "498:8466",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "음양오행",
+          "role": "concept_reference",
+          "content_sha256": "c15c0d8ed1326387babaea4b0aab1070452c1c8f1f04c3a20e526e7fbac483a4",
+          "field_sha256": "f1cd7447511219529304b6a4b3fe7aebd53b45696a7f9066bf8d2713195bfb03",
+          "quote_sha256": "f1cd7447511219529304b6a4b3fe7aebd53b45696a7f9066bf8d2713195bfb03",
+          "parent_node_id": "498:6058",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "181:458",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "양(陽)",
+          "role": "concept_reference",
+          "content_sha256": "6b5bc1353119b9907bb40a7d69962f581a4f978a41c18859bdb6113ef2388c4e",
+          "field_sha256": "9688933b9e1579050833fa5d1f9278ffdadec079e23e70bc0af24d39f9f018bf",
+          "quote_sha256": "9688933b9e1579050833fa5d1f9278ffdadec079e23e70bc0af24d39f9f018bf",
+          "parent_node_id": "498:8466",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "181:465",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "음(陰)",
+          "role": "concept_reference",
+          "content_sha256": "72ddf0911eb92e09fbe6943a0edd415b6591979be1f106dcb43510625e89fb51",
+          "field_sha256": "1377ab033180259632a8090dfb70c7cff659572b8ae8a8c5dea67c71295f37f6",
+          "quote_sha256": "1377ab033180259632a8090dfb70c7cff659572b8ae8a8c5dea67c71295f37f6",
+          "parent_node_id": "498:8466",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "표제와 음/양 라벨은 직접 확인했다. 주변 설명은 위치로 구분되는 도식이며 이번 작업은 상대성·변화 등 개념 정의를 이 배치에서 새로 만들지 않았다.",
+        "title_only는 보드 전체에 설명이 없다는 단정이 아니다. 블로그 yin_yang_e1의 개념 정의를 보완 근거로 유지한다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_five_elements",
+      "concept_id": "five_elements",
+      "title": "오행",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_five_elements",
+      "previous_coverage": "explanation",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "104:1016",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "목",
+          "role": "concept_reference",
+          "content_sha256": "f1b178794f733810ee03a924e0cf72a0a28bfc13fd96f5afc8dc7760ece6d192",
+          "field_sha256": "5fbc9add7bd4911bb91895472982650616da7c0564b37eb59e59586070c04ee1",
+          "quote_sha256": "5fbc9add7bd4911bb91895472982650616da7c0564b37eb59e59586070c04ee1",
+          "parent_node_id": "498:8466",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1091",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "화",
+          "role": "concept_reference",
+          "content_sha256": "dd1c3dc143f4fb4063facc6707d9059c454f714bff8bbe4df2c4b896beea56f5",
+          "field_sha256": "950afe85bf406364ecdd0c72ec58754853e7d61961fd921ffb5968e9904efa68",
+          "quote_sha256": "950afe85bf406364ecdd0c72ec58754853e7d61961fd921ffb5968e9904efa68",
+          "parent_node_id": "498:8466",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1123",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "토",
+          "role": "concept_reference",
+          "content_sha256": "dbdf43bb52d3fcb0ae23f63f0fd92a8be23d703653b48f581ce8f29e837f8a21",
+          "field_sha256": "164f51aa4871af06c5c385109afe03442e615400453f38175404f276deb47409",
+          "quote_sha256": "164f51aa4871af06c5c385109afe03442e615400453f38175404f276deb47409",
+          "parent_node_id": "498:8466",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1135",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "금",
+          "role": "concept_reference",
+          "content_sha256": "69401d23ddf867e4484d77cf3d9d1d4d14dd8a05c2fa9b3e5cf6242e9285d0af",
+          "field_sha256": "d6f030e0b2b54ac203dc1493a2557a9a131c47e34accf8b6a614763138774a5f",
+          "quote_sha256": "d6f030e0b2b54ac203dc1493a2557a9a131c47e34accf8b6a614763138774a5f",
+          "parent_node_id": "498:8466",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1142",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "수",
+          "role": "concept_reference",
+          "content_sha256": "24e1e9009c411dc158562addfd763d12f846ddf511187f42ca501b632537d736",
+          "field_sha256": "dcd19f5b5caac9771378e393a0d5764a04c612d4573194f1b63cd13faf9fd496",
+          "quote_sha256": "dcd19f5b5caac9771378e393a0d5764a04c612d4573194f1b63cd13faf9fd496",
+          "parent_node_id": "498:8466",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "동일 음양오행 section의 목·화·토·금·수 명칭을 직접 연결했다. 명칭의 나열을 확률 관계나 사건 해석으로 취급하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_generation_control",
+      "concept_id": "generation_control",
+      "title": "생극",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_generation_control",
+      "previous_coverage": "explanation",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "104:1393",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "1칸: 생(生)",
+          "role": "concept_reference",
+          "content_sha256": "fd591ec507861ee3aeb7bade58142b92dcaf16d100480cd0fb68260a327ccb7b",
+          "field_sha256": "4fa58abe55f4eced191edead772b32ddc3eaf6c12b6f80d9286483fa0d6400b3",
+          "quote_sha256": "4fa58abe55f4eced191edead772b32ddc3eaf6c12b6f80d9286483fa0d6400b3",
+          "parent_node_id": "181:905",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1419",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "2칸: 극(剋)",
+          "role": "concept_reference",
+          "content_sha256": "bda49865b3ae02aecc1f120d02bfb656f20431b7bd5be778641c5d6803743350",
+          "field_sha256": "eb0fe1ccca93c416a15187fa915a3bb3a7f938eb92c390d4324034cfed8599dd",
+          "quote_sha256": "eb0fe1ccca93c416a15187fa915a3bb3a7f938eb92c390d4324034cfed8599dd",
+          "parent_node_id": "181:905",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "생/극 범례를 노드 ID로 확인했다. 간선 끝점의 의미·방향 검수와 분리하며 이 참조만으로 생극 순환을 새로 확정하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_heavenly_stems",
+      "concept_id": "heavenly_stems",
+      "title": "천간",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_heavenly_stems",
+      "previous_coverage": "explanation",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "190:1486",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "천간: 순수하고 추동력이 강한 기운(陽)",
+          "role": "concept_reference",
+          "content_sha256": "a23f780af79ac7ca8b84d1bbd3c48a6960ae23e2f4ccedd23afd972afe0d6d17",
+          "field_sha256": "0536f9919896d44aa6563b46ff3ba0497349a7c18e1d927ff54bd8886a7152be",
+          "quote_sha256": "0536f9919896d44aa6563b46ff3ba0497349a7c18e1d927ff54bd8886a7152be",
+          "parent_node_id": "498:8466",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "천간의 성질 설명이다. 천간 10개와 각 오행·음양 배정의 검증을 대신하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_earthly_branches",
+      "concept_id": "earthly_branches",
+      "title": "지지",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_earthly_branches",
+      "previous_coverage": "explanation",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "190:1503",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "지지: 복잡하고 안정성이 강한 기운(陰)",
+          "role": "concept_reference",
+          "content_sha256": "58014e9ab74e2eeba54cd7d060727cb88b89d8979f6c86cf6d7371ba11b90076",
+          "field_sha256": "86c3ac2234d8d76a31114489e96aa9a0c1af50af5e57afa17163697e88eb8afb",
+          "quote_sha256": "86c3ac2234d8d76a31114489e96aa9a0c1af50af5e57afa17163697e88eb8afb",
+          "parent_node_id": "498:8466",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "지지의 성질 설명이다. 공간 배치의 동물·간지 표식을 계산 규칙으로 자동 승격하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_day_master",
+      "concept_id": "day_master",
+      "title": "일간",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_day_master",
+      "previous_coverage": "explanation",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "236:1152",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "일간(나의 본질)",
+          "role": "concept_reference",
+          "content_sha256": "571b38c381fd28a2dbf65d5e94f69bae9c5b24ea9a1eb7fa4c13b8c037e1a689",
+          "field_sha256": "c93c7b5d06686700bd7e9393b67cdbab284f74b188f99b303071231e29dae751",
+          "quote_sha256": "01223b60df65648615c79048272aa3801c63851e1495970bdc97734e65c29283",
+          "parent_node_id": "236:1150",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "천간합 적용 설명에서 일간 역할을 부분 인용했다. 해당 노드 전체에는 개인 사례가 섞일 수 있어 짧은 발췌만 저장한다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_ten_gods",
+      "concept_id": "ten_gods",
+      "title": "십신",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_ten_gods",
+      "previous_coverage": "title_only",
+      "coverage_changed": true,
+      "spans": [
+        {
+          "node_id": "104:1267",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "10성",
+          "role": "concept_reference",
+          "content_sha256": "c03474bd1656087c8908ac4c73480ba7d6737306396e006d95f0f8ff1e825766",
+          "field_sha256": "2522f6603fcb0b8914caad21a5927d08c7d3e9a1504c9803c82edeac69e1e830",
+          "quote_sha256": "2522f6603fcb0b8914caad21a5927d08c7d3e9a1504c9803c82edeac69e1e830",
+          "parent_node_id": "498:6059",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "190:980",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "1. 비견/겁재",
+          "role": "group_heading",
+          "content_sha256": "5e7250c648db0bce47da6064e796823034606c8d7ec520fee50d28be32ba02ce",
+          "field_sha256": "b1c3e2ba74544c8c1daa749984857802a3df1e08f508301e7ddca9f6770970a4",
+          "quote_sha256": "b1c3e2ba74544c8c1daa749984857802a3df1e08f508301e7ddca9f6770970a4",
+          "parent_node_id": "104:1267",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "474:4623",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "2. 식신/상관",
+          "role": "group_heading",
+          "content_sha256": "9f7969f07813846424ca3443380482e6e2741b8cff134c99a71f3b8f09fffe07",
+          "field_sha256": "0ba50aac91d8777b4906fabafdca5a2f9b33b4de2b5fa17b94eabc2baaf4c9f7",
+          "quote_sha256": "0ba50aac91d8777b4906fabafdca5a2f9b33b4de2b5fa17b94eabc2baaf4c9f7",
+          "parent_node_id": "104:1267",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "186:531",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "3. 편재/정재(財)",
+          "role": "group_heading",
+          "content_sha256": "e2192a27759458a0585e521e6a18977e6aea90a336c2e413235df5ba2697987d",
+          "field_sha256": "9f2d77c25c040af80ce05b81b47ec312d134d008cf64c4198b6b3ca1e0b82a07",
+          "quote_sha256": "9f2d77c25c040af80ce05b81b47ec312d134d008cf64c4198b6b3ca1e0b82a07",
+          "parent_node_id": "104:1267",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "194:485",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "4. 편관/정관",
+          "role": "group_heading",
+          "content_sha256": "74e9db648ebdf6254ca70297023a4541ed25c5c039fecf9746ba7cf609a67d86",
+          "field_sha256": "944aceaa9f042cf4b782f25f5086edbeda12394b19b1a7cc3d03847f4348c57d",
+          "quote_sha256": "944aceaa9f042cf4b782f25f5086edbeda12394b19b1a7cc3d03847f4348c57d",
+          "parent_node_id": "104:1267",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "196:683",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "5. 편인/정인",
+          "role": "group_heading",
+          "content_sha256": "385546c08bfd1e142d859218c6eb830908cdcbba700041faf9dc504c1df2a4c4",
+          "field_sha256": "bd4569701cd0d48d528e2c78591f03577bd33a32ac5039ececaa62f3da8752da",
+          "quote_sha256": "bd4569701cd0d48d528e2c78591f03577bd33a32ac5039ececaa62f3da8752da",
+          "parent_node_id": "104:1267",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1310",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "비견(아신)",
+          "role": "member_label",
+          "content_sha256": "04f7330921c6e0e8a6a4c24330385dbe95c7bba070bf5919ba71ae91c3cb0bbb",
+          "field_sha256": "125304f63c91ec73df1f638bb0e381a223911e833ce649ab2a7b31762b07ccb1",
+          "quote_sha256": "125304f63c91ec73df1f638bb0e381a223911e833ce649ab2a7b31762b07ccb1",
+          "parent_node_id": "241:1531",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1311",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "겁재",
+          "role": "member_label",
+          "content_sha256": "9f9b1383675fd11fe791317a03137ef378454ed5155d9063fcecc4518b6b5dac",
+          "field_sha256": "41e0c8af9ab21cd9cfab1a068d1979f65eac939ef446fc337b0df8068f2b700e",
+          "quote_sha256": "41e0c8af9ab21cd9cfab1a068d1979f65eac939ef446fc337b0df8068f2b700e",
+          "parent_node_id": "241:1531",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1312",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "식신",
+          "role": "member_label",
+          "content_sha256": "8dcce3580db835ba50f2f7e8b7088a4964a0f8e39ac8a36202b8bb24aad170fa",
+          "field_sha256": "c579175da03f31c1efbddd701a7baf80ac1232d4674ade946f2ce4631c7c797d",
+          "quote_sha256": "c579175da03f31c1efbddd701a7baf80ac1232d4674ade946f2ce4631c7c797d",
+          "parent_node_id": "241:1531",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1313",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "상관",
+          "role": "member_label",
+          "content_sha256": "227b9e9614e74e38315f27174ee6e45f44b95efcc509c3aea81d96186d28f326",
+          "field_sha256": "7c0b2b950f7b18554a7133152babe082221a7c01540801700d45e917d2e49a62",
+          "quote_sha256": "7c0b2b950f7b18554a7133152babe082221a7c01540801700d45e917d2e49a62",
+          "parent_node_id": "241:1531",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1314",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "편재",
+          "role": "member_label",
+          "content_sha256": "3e7a165188ed5cd02f17cfee03b94194809ab485ff1844194b575307476a6cfc",
+          "field_sha256": "4685f8cc9ac537302e129b9d97405704d641849d0da0b8c1b9d0298c034e45bf",
+          "quote_sha256": "4685f8cc9ac537302e129b9d97405704d641849d0da0b8c1b9d0298c034e45bf",
+          "parent_node_id": "241:1531",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1315",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "정재",
+          "role": "member_label",
+          "content_sha256": "6ddbfc6a4c5cc1606139ce1f5606a04c3b9a0c6bc00f172106949b0a10007abe",
+          "field_sha256": "a61257705f0e7912f5bd18ac0c42593221bf6b1a466ccbd9f03bd09825146153",
+          "quote_sha256": "a61257705f0e7912f5bd18ac0c42593221bf6b1a466ccbd9f03bd09825146153",
+          "parent_node_id": "241:1531",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1316",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "편관",
+          "role": "member_label",
+          "content_sha256": "d98f15c1b62e5f5bc44a292a55d3f14566aad863f3709fe403e05ccb181ead6d",
+          "field_sha256": "a8ba71565c3d30b2ec78b5956d86d820e93c19a279955394d653634b4a560d23",
+          "quote_sha256": "a8ba71565c3d30b2ec78b5956d86d820e93c19a279955394d653634b4a560d23",
+          "parent_node_id": "241:1531",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1317",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "편인",
+          "role": "member_label",
+          "content_sha256": "c1d929775151324452949226f46c1b33be30da2440ad392da3e28b07beb5ae5d",
+          "field_sha256": "9cd7d295bcfe0a6d036465b9a20397f8f1bc745ac72f61922e6435e77e5c3da2",
+          "quote_sha256": "9cd7d295bcfe0a6d036465b9a20397f8f1bc745ac72f61922e6435e77e5c3da2",
+          "parent_node_id": "241:1531",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1318",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "정관",
+          "role": "member_label",
+          "content_sha256": "08827b16e243561ddf5efe841b3fd62795d8f8b92f9a75fb5b9061b184b63fd8",
+          "field_sha256": "4c65f98d1f048b7e9531611ec838686d568aacd22d8f18bc45b95338e5cf3a25",
+          "quote_sha256": "4c65f98d1f048b7e9531611ec838686d568aacd22d8f18bc45b95338e5cf3a25",
+          "parent_node_id": "241:1531",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "104:1319",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "정인",
+          "role": "member_label",
+          "content_sha256": "e8a14d6b4a539537d463178e0101f1e622565b9724defb4f191fb0ff9ca4f669",
+          "field_sha256": "e3d5bf261d2cd77ff37ed8f34924f94080acf7bc46db26739e097ee84dd31655",
+          "quote_sha256": "e3d5bf261d2cd77ff37ed8f34924f94080acf7bc46db26739e097ee84dd31655",
+          "parent_node_id": "241:1531",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "live 구조에서 10성 section104:1267 아래 다섯 하위군 section과 group241:1531의 열 명칭이 확인되어 구성 설명 수준으로 승격했다.",
+        "다섯 그룹/열 명칭의 구조적 식별이다. 일간을 기준으로 한 생극·음양의 완전한 정의는 기존 ten_gods_e2를 사용하며, 위치상 가까운 단어의 인과 연결이나 수치 가중치는 추가하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_peers",
+      "concept_id": "peers",
+      "title": "비겁",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_peers",
+      "previous_coverage": "explanation",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "190:980",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "1. 비견/겁재",
+          "role": "concept_reference",
+          "content_sha256": "5e7250c648db0bce47da6064e796823034606c8d7ec520fee50d28be32ba02ce",
+          "field_sha256": "b1c3e2ba74544c8c1daa749984857802a3df1e08f508301e7ddca9f6770970a4",
+          "quote_sha256": "b1c3e2ba74544c8c1daa749984857802a3df1e08f508301e7ddca9f6770970a4",
+          "parent_node_id": "104:1267",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "T474:3828;472:5;472:8",
+          "node_type": "table-cell",
+          "scope_root_node_id": "498:4143",
+          "field": "text",
+          "quote": "견줄 비(比), 어깨 견(肩)\n같은 처지에서 어깨를 걸고 함께하다 나 자신",
+          "role": "concept_reference",
+          "content_sha256": "b169c5797a698de2121d8860f0f24d04176a789283d0e8d8cd3ffc734d45a2e0",
+          "field_sha256": "10c32569a657ccab25aa9606c640e8d3d2cf4b87f56fa8db998561761d06e705",
+          "quote_sha256": "10c32569a657ccab25aa9606c640e8d3d2cf4b87f56fa8db998561761d06e705",
+          "parent_node_id": "474:3828",
+          "exact_substring_verified": true,
+          "table": {
+            "table_node_id": "474:3828",
+            "row_index": 1,
+            "column_index": 1,
+            "index_base": 0,
+            "row_header": {
+              "node_id": "T474:3828;472:5;472:6",
+              "field": "text",
+              "quote": "정의"
+            },
+            "column_header": {
+              "node_id": "T474:3828;472:4;472:8",
+              "field": "text",
+              "quote": "비견"
+            }
+          }
+        },
+        {
+          "node_id": "T474:3828;472:5;474:1",
+          "node_type": "table-cell",
+          "scope_root_node_id": "498:4143",
+          "field": "text",
+          "quote": "위협할 겁(劫), 재물 재(財)\n재물을 강탈하다\n내 재물의 유출",
+          "role": "concept_reference",
+          "content_sha256": "298b40aeeeb203d35763e7a68f710785789b611324bf9acee49a2078f1a0f5e6",
+          "field_sha256": "0cdb8f0f82be3c4a1cb7266f35549cb5f5b42f38b853f5956e6765db0554c53a",
+          "quote_sha256": "0cdb8f0f82be3c4a1cb7266f35549cb5f5b42f38b853f5956e6765db0554c53a",
+          "parent_node_id": "474:3828",
+          "exact_substring_verified": true,
+          "table": {
+            "table_node_id": "474:3828",
+            "row_index": 1,
+            "column_index": 2,
+            "index_base": 0,
+            "row_header": {
+              "node_id": "T474:3828;472:5;472:6",
+              "field": "text",
+              "quote": "정의"
+            },
+            "column_header": {
+              "node_id": "T474:3828;472:4;474:1",
+              "field": "text",
+              "quote": "겁재"
+            }
+          }
+        }
+      ],
+      "review_notes": [
+        "네이티브 표474:3828의 정의 행(row1)·비견/겁재 열(column1/2)을 셀 ID와 헤더까지 확인했다.",
+        "개별 어원 설명을 비겁군의 완전한 오행·음양 정의로 확대하지 않는다. 표 밖 성향 문장은 이번 카드에 이관하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_output",
+      "concept_id": "output",
+      "title": "식상",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_output",
+      "previous_coverage": "explanation",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "474:4623",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "2. 식신/상관",
+          "role": "concept_reference",
+          "content_sha256": "9f7969f07813846424ca3443380482e6e2741b8cff134c99a71f3b8f09fffe07",
+          "field_sha256": "0ba50aac91d8777b4906fabafdca5a2f9b33b4de2b5fa17b94eabc2baaf4c9f7",
+          "quote_sha256": "0ba50aac91d8777b4906fabafdca5a2f9b33b4de2b5fa17b94eabc2baaf4c9f7",
+          "parent_node_id": "104:1267",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "474:4898",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "식신은 일간이 생(生)하는 오행 중 음양이 같아",
+          "role": "concept_reference",
+          "content_sha256": "6c4e723f40ae3b14390ccad4ec528ad70eca9ed0efe3aeff8474be3681210877",
+          "field_sha256": "256cbab271e721ff3728e4f09b74ac47805a44af53d5600e015f73c41a995b41",
+          "quote_sha256": "cacdbcffaded983b7b09611d85639e0d134eaa0effffc3df02c5bcc3ba45632f",
+          "parent_node_id": "474:4896",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "식신의 명시적인 생극·음양 조건을 부분 인용했다. 식상군 전체 또는 상관의 정의를 이 문장으로 대신하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_wealth",
+      "concept_id": "wealth",
+      "title": "재성",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_wealth",
+      "previous_coverage": "explanation",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "186:531",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "3. 편재/정재(財)",
+          "role": "concept_reference",
+          "content_sha256": "e2192a27759458a0585e521e6a18977e6aea90a336c2e413235df5ba2697987d",
+          "field_sha256": "9f2d77c25c040af80ce05b81b47ec312d134d008cf64c4198b6b3ca1e0b82a07",
+          "quote_sha256": "9f2d77c25c040af80ce05b81b47ec312d134d008cf64c4198b6b3ca1e0b82a07",
+          "parent_node_id": "104:1267",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "187:445",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "일간이 통제해야 할 대상(재성)",
+          "role": "concept_reference",
+          "content_sha256": "81c5d67410416b5689d5355d81600f43cf3b492787c14d751a1fd85c481a6c9b",
+          "field_sha256": "535d2b5cee0d2d1e6f730204330e370b36305fa010e9972f51067aa967900c71",
+          "quote_sha256": "bd7064fdea1077ea986eddef574553645ca02c86b52a46298adfe4f739e47346",
+          "parent_node_id": "187:442",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "재다신약 문맥에서의 재성 역할 설명이며 조건 없는 개인 성향이나 결과를 채택하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_authority",
+      "concept_id": "authority",
+      "title": "관성",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_authority",
+      "previous_coverage": "explanation",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "194:485",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "4. 편관/정관",
+          "role": "concept_reference",
+          "content_sha256": "74e9db648ebdf6254ca70297023a4541ed25c5c039fecf9746ba7cf609a67d86",
+          "field_sha256": "944aceaa9f042cf4b782f25f5086edbeda12394b19b1a7cc3d03847f4348c57d",
+          "quote_sha256": "944aceaa9f042cf4b782f25f5086edbeda12394b19b1a7cc3d03847f4348c57d",
+          "parent_node_id": "104:1267",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "194:513",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "정관과 편관(살)이 섞여 관성이 지나치게 강해진 상태이다.",
+          "role": "concept_reference",
+          "content_sha256": "96a7707acd1be08692199922577f185add95cdfea4fed841e23c5bbf45106c7c",
+          "field_sha256": "50355cd3eb5dcd199783fa22c4995efbd05a0cfb16bb1f818887075b7069fc25",
+          "quote_sha256": "f489b4ad06d0672a0d5b8e78bfe6b38475b8c4a82a38711dd00e398e9b1fab63",
+          "parent_node_id": "194:510",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "관살혼잡 문맥에서 하위 개념의 포함 관계를 확인했다. 강도 임계값이나 일반 관성 정의를 이 문장으로 새로 정하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_resource",
+      "concept_id": "resource",
+      "title": "인성",
+      "coverage": "title_only",
+      "previous_reference_id": "figma_resource",
+      "previous_coverage": "title_only",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "196:683",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "5. 편인/정인",
+          "role": "concept_reference",
+          "content_sha256": "385546c08bfd1e142d859218c6eb830908cdcbba700041faf9dc504c1df2a4c4",
+          "field_sha256": "bd4569701cd0d48d528e2c78591f03577bd33a32ac5039ececaa62f3da8752da",
+          "quote_sha256": "bd4569701cd0d48d528e2c78591f03577bd33a32ac5039ececaa62f3da8752da",
+          "parent_node_id": "104:1267",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "196:692",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "정의",
+          "role": "concept_reference",
+          "content_sha256": "068d61a7f98dcb075691f5706774b77d26eb3c34e2b7fa705fc01b791319d2a4",
+          "field_sha256": "87c242333a3e98e4ab0d9ec5672b55c95bc9970bea9a9dd308f9fe3a2f1a05c6",
+          "quote_sha256": "87c242333a3e98e4ab0d9ec5672b55c95bc9970bea9a9dd308f9fe3a2f1a05c6",
+          "parent_node_id": "196:683",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "실제 section196:683에는 정의 표제196:692와 비어 있는 도형 틀이 확인되며 일반 인성 정의 문장은 찾지 못했다.",
+        "이 section에 있는 편인도식·성향 서술을 인성 자체의 정의로 채우지 않는다. 기존 resource_e1/e2로 기본 풀이 정의를 제공할 수 있다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_month_command",
+      "concept_id": "month_command",
+      "title": "월령",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_month_command",
+      "previous_coverage": "explanation",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "498:13713",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "월령: 月(달 월), 令(법칙 령) 계절의 힘은 법칙이 될 만큼 아주 중요하다.",
+          "role": "concept_reference",
+          "content_sha256": "13312159b869d58a7f71d9eaa89bde577f63fab2cb48cdc78470a0046bf603f4",
+          "field_sha256": "f97b9f60638fe6503419e172f679d6ef79a8c83675884fa2c5e2feff92333128",
+          "quote_sha256": "eded65c96f59e3b212e8582f74fe39a04203f3034f5bd2d86f012d07af7e7253",
+          "parent_node_id": "498:13698",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "계절적 중요성을 설명하는 부분만 연결했다. 같은 노드의 득령/실령 정책 전체 채택을 뜻하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_hidden_stems",
+      "concept_id": "hidden_stems",
+      "title": "지장간",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_hidden_stems",
+      "previous_coverage": "title_only",
+      "coverage_changed": true,
+      "spans": [
+        {
+          "node_id": "498:6061",
+          "node_type": "section",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "12지 및 지장간",
+          "role": "concept_reference",
+          "content_sha256": "1c0d411bccf8b12a54675dfcd0d950ec4526d860995487a57ae22fa356b03bdb",
+          "field_sha256": "8791c33bd24a98d588d5fd7efad30aa555f6529485f146e07b3cd5b24bf99e73",
+          "quote_sha256": "8791c33bd24a98d588d5fd7efad30aa555f6529485f146e07b3cd5b24bf99e73",
+          "parent_node_id": "498:6060",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "498:6167",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "고지 지장간 구성 예시: 진(辰) (고지 만임)",
+          "role": "concept_reference",
+          "content_sha256": "c4ddda812f6b44b485b0fbc2e02e00c14219f2a534de3b9b11025eea8c9c2310",
+          "field_sha256": "f0f00417d649f1c4a98f3ac1a2eaf5502db9e725bcefa77df16830a0eb0f0bee",
+          "quote_sha256": "f0f00417d649f1c4a98f3ac1a2eaf5502db9e725bcefa77df16830a0eb0f0bee",
+          "parent_node_id": "498:6163",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "498:6166",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "乙[여기, 현 계절] | 癸[중기, 전 계절] | 戊[정기, 자기 자신]",
+          "role": "concept_reference",
+          "content_sha256": "6e16325a7d2adf9d707818297f8471c6e8c562a76a59f2e373c29f327d49e371",
+          "field_sha256": "33d18aca1096924811e03b4f03a984bc3675f159d8abf4b66f1f19859c181a5e",
+          "quote_sha256": "33d18aca1096924811e03b4f03a984bc3675f159d8abf4b66f1f19859c181a5e",
+          "parent_node_id": "498:6163",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "고지 지장간 구성이라는 명시적 제목498:6167과 여기·중기·정기를 직접 표기한 내용498:6166이 같은 group498:6163에 있어 설명 수준으로 승격했다.",
+        "이는 네이티브 표 복원이 아니라 단일 텍스트 안에 명시된 부분 구성 설명이다. 이 구간을 12지지 전체 표나 일반 공식으로 확대하지 않는다.",
+        "기존 hidden_stems_e1/e2/e3의 정의·본기 설명·순차작용을 단정하지 않는 조건을 유지한다. 배점·순서를 확률로 바꾸지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_rooting",
+      "concept_id": "rooting",
+      "title": "통근",
+      "coverage": "definition",
+      "previous_reference_id": "figma_rooting",
+      "previous_coverage": "definition",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "498:13700",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "통근: 천간의 글자가 지지의 지장간에 같은 글자가 있는 것",
+          "role": "concept_reference",
+          "content_sha256": "ff412d82cb74a692bdc7a6cec66e4c6d09d8266bd9674ff8c932d051321b9d22",
+          "field_sha256": "c1f848930c4dd9d529709046464f89e6b0a60479503b34157ddcf69dc6dc2e7b",
+          "quote_sha256": "d91ffcec5343469cd9b69e8859b30f9339a1d4a575d6be6552d635a1d064b4f3",
+          "parent_node_id": "498:13698",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "명시적 통근 정의를 확인했다. 동일 글자/동일 오행 범위를 달리하는 다른 문헌과의 차이는 별도 검수한다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_combination",
+      "concept_id": "combination",
+      "title": "합",
+      "coverage": "explanation",
+      "previous_reference_id": "figma_combination",
+      "previous_coverage": "explanation",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "236:1153",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "천간합 적용 조건",
+          "role": "concept_reference",
+          "content_sha256": "9ec76122f609ae15fe3189d9d40a77fa6e55926fc2163697800708cbe9c9a9c1",
+          "field_sha256": "bf34edc78fa0aaa34e31602d041f944481352addc00302401be7048f09a24cc9",
+          "quote_sha256": "bf34edc78fa0aaa34e31602d041f944481352addc00302401be7048f09a24cc9",
+          "parent_node_id": "236:1150",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "236:1152",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "천간합은 붙어 있는 원국만 합으로 인정한다. (술자에 따라 해석 다름)",
+          "role": "concept_reference",
+          "content_sha256": "571b38c381fd28a2dbf65d5e94f69bae9c5b24ea9a1eb7fa4c13b8c037e1a689",
+          "field_sha256": "c93c7b5d06686700bd7e9393b67cdbab284f74b188f99b303071231e29dae751",
+          "quote_sha256": "4507fa7b91d6feb952680e582f087babd6cd5b392513417df5030aaf8c695dad",
+          "parent_node_id": "236:1150",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "보드의 천간합 적용 정책이다. 원문에 있는 술자별 차이를 유지하며 보편 정의로 채택하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_transformation",
+      "concept_id": "transformation",
+      "title": "합화",
+      "coverage": "definition",
+      "previous_reference_id": "figma_transformation",
+      "previous_coverage": "definition",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "236:1152",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "합이화(合而化): 천간합은 되지만 합화 오행이 만들어 지는 경우 합이불화(合而不化) : 천간합은 되지만 합화 오행이 만들어 지지 않는 경우",
+          "role": "concept_reference",
+          "content_sha256": "571b38c381fd28a2dbf65d5e94f69bae9c5b24ea9a1eb7fa4c13b8c037e1a689",
+          "field_sha256": "c93c7b5d06686700bd7e9393b67cdbab284f74b188f99b303071231e29dae751",
+          "quote_sha256": "5f4b1bde803fa107a428359734bd0739bff536297ddf4ec1b9b7c9fc660ccf7d",
+          "parent_node_id": "236:1150",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "합화의 성립과 불성립을 구별하는 명시적 설명만 인용했다. 뒤의 적용 수치·대운 정책·개인 사례는 복제하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    },
+    {
+      "id": "figma_live_clash",
+      "concept_id": "clash",
+      "title": "충",
+      "coverage": "definition",
+      "previous_reference_id": "figma_clash",
+      "previous_coverage": "definition",
+      "coverage_changed": false,
+      "spans": [
+        {
+          "node_id": "243:3689",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "충 → 충돌한다 부딪힌다",
+          "role": "concept_reference",
+          "content_sha256": "c446d56b97a8da5bf39dac3aa91f79cc7a7e65437e7e04f935dde032b63a009a",
+          "field_sha256": "745a3350ca86bc9ef5d4d320a6f722553bfa689e83c16686d6f746cbc6e331d0",
+          "quote_sha256": "774609eb1599c6f390933565903e6bc2615d20aedac8528c393a3881508fe10b",
+          "parent_node_id": "235:1737",
+          "exact_substring_verified": true
+        },
+        {
+          "node_id": "243:3689",
+          "node_type": "text",
+          "scope_root_node_id": "498:4143",
+          "field": "name",
+          "quote": "해석 → 긍정 / 부정 모두 가능",
+          "role": "concept_reference",
+          "content_sha256": "c446d56b97a8da5bf39dac3aa91f79cc7a7e65437e7e04f935dde032b63a009a",
+          "field_sha256": "745a3350ca86bc9ef5d4d320a6f722553bfa689e83c16686d6f746cbc6e331d0",
+          "quote_sha256": "ca60892f47b2f64c303a7cf90b2f1ad108c9e62246615db1ed85b5fb1d84d119",
+          "parent_node_id": "235:1737",
+          "exact_substring_verified": true
+        }
+      ],
+      "review_notes": [
+        "충의 기본 의미와 양면성을 함께 연결했다. 개인 결과·건강·민감 특성의 자동 판정을 추가하지 않는다."
+      ],
+      "status": "live_reference_reviewed_not_algorithm",
+      "adopted_as_algorithm": false,
+      "probability": null,
+      "independent_evidence_counting": "disabled_until_upstream_lineage_review"
+    }
+  ],
+  "diagram_structure": {
+    "path": "data/figma_live_structure.json",
+    "use_in_inference": false,
+    "probability": null,
+    "snapshot_sha256": "c303fadeac529369d296bfdf672c0e60f445583754e883ec26efec66bbc6b09f",
+    "statistics": {
+      "nodes": 3619,
+      "node_types": {
+        "connector": 154,
+        "frame": 357,
+        "rounded-rectangle": 36,
+        "section": 80,
+        "shape-with-text": 634,
+        "table": 10,
+        "table-cell": 943,
+        "text": 1399,
+        "widget": 6
+      },
+      "connectors": 154,
+      "connectors_by_scope": {
+        "498:4142": 8,
+        "498:4143": 146
+      },
+      "dangling_connectors": 0,
+      "connectors_with_both_endpoints_inside_scope": 154,
+      "attachment_self_loops": 60,
+      "visual_directions": {
+        "both": 51,
+        "no_arrowheads": 41,
+        "start_to_end": 62
+      },
+      "tables": 10,
+      "table_cells": 943
+    },
+    "purpose": "source navigation and attachment inspection; not semantic or probabilistic edges"
+  },
   "context_contract": {
     "activation": "observed degree in [0,1]; null means unknown, not zero",
     "time": "natal chart, daewoon, yearly/monthly context stored separately with evaluation time",

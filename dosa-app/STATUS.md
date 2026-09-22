@@ -7,7 +7,8 @@
 
 - 매 세션 [사용자 원문](../docs/knowledge-model/USER_INTENT_LOG.md) → [아젠다](../docs/knowledge-model/PROJECT_AGENDA.md) → [현재 범위](../docs/knowledge-model/CURRENT_STATE.md) → [기본 풀이 계획](../docs/knowledge-model/BASIC_READING_PLAN.md)을 읽는다. `AGENTS.md`·`CLAUDE.md`·루트 README도 이 경로를 안내한다.
 - 사용자 목표 = 기본 개념을 추려, 동반 키워드·여러 변수·대운과 시점에 따라 관계의 정도와 해석 확률이 달라지는 지식망을 구축하고 수집 자료로 보강하는 것. 옵시디언은 형태 비유이며 사용자 예시는 정답·규칙으로 확정하지 않는다. 앞선 말과 수정·모순 가능성도 원문으로 남긴다.
-- 사용자 원문 14: Figma 보드를 더 원천적인 기본 개념 기준으로 추가. 기존 `dosa-app/methodology/figjam_board_full.md`의 기초·심화 부분을 `docs/knowledge-model/FIGMA_FOUNDATION.md`와 참조 데이터로 연결한다. 최신 Figma 재수집·스냅샷 동일성은 미확인. 블로그는 정의·조건·예외를 대조·보강하고 기존 출처를 보존한다.
+- 사용자 원문 14 당시: Figma 보드를 더 원천적인 기본 개념 기준으로 추가. 기존 `dosa-app/methodology/figjam_board_full.md`의 기초·심화 부분을 `docs/knowledge-model/FIGMA_FOUNDATION.md`와 참조 데이터로 연결한다. 최신 Figma 재수집·스냅샷 동일성은 미확인. 블로그는 정의·조건·예외를 대조·보강하고 기존 출처를 보존한다.
+- 사용자 원문 15: 현재 Figma 직접 읽기 성공. `docs/knowledge-model/FIGMA_LIVE_REVIEW.md`에 18개 개념·50개 실제 노드 인용과 기초·심화 구조 연결 결과를 기록한다. 과거 스냅샷과 블로그 근거는 보존하며 자동 확률·성향 규칙으로 승격하지 않는다.
 - 첫 사용 가능한 단계 = **출처가 붙은 일주 설명과 기본 성향 풀이**. 추가 스크래핑 자료를 계속 참고하되, 자료량이나 코드 시제품만으로 알고리즘 완성을 주장하지 않는다.
 - 보존된 파생 작업본 = `docs/knowledge-model/`: 기본 개념 18개, 노드 58개, 관계 132개, 다중 입력 관계 11개, 문맥 조건부 모델·수학 후보·평가 설계. Python 검증 24개 통과는 코드 계약 검증이며 해석 정확도 검증이 아니다.
 - **지식 추출·연구 시제품은 착수했으며, 앱의 새 해석 알고리즘과 실제 학습 확률·대운 변수 연결은 미완료**다. 기존 앱의 일주 정제본·기초 출력은 재사용 후보로 검토한다. 아래의 기존 강약 점수·키 조회·운세 정책은 과거 실행 현황으로 보존하며 새 모델의 학습 정답으로 자동 승격하지 않는다.
