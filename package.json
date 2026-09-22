@@ -4,6 +4,8 @@
   "description": "명리학 도사 — 사주풀이 웹앱. 실제 빌드는 app/(Vite+React). 루트 스크립트는 Cloudflare Pages가 저장소 루트에서 빌드해 dist/로 내보낸다. 세션 규범·현황은 dosa-app/STATUS.md.",
   "scripts": {
     "verify": "bash scripts/verify.sh",
+    "test:app": "node --test scripts/test_app.mjs",
+    "test:chat": "node scripts/test_chat_browser.mjs",
     "sync:engine": "node scripts/sync_engine.mjs",
     "build:kb": "node scripts/build_kb.mjs",
     "prebuild": "python3 dosa-app/kb-tools/extract_bodies.py && node scripts/sync_engine.mjs && node scripts/build_kb.mjs",

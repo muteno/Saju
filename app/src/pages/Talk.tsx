@@ -132,11 +132,11 @@ export default function Talk() {
               component="button"
               type="button"
               aria-label="뒤로 — 내 사주로"
-              onClick={() => nav(-1)}
+              onClick={() => nav(stepPath('intro', resolved.search), { replace: true })}
               sx={{
                 flex: 'none',
-                width: 32,
-                height: 32,
+                width: tokens.minTap,
+                height: tokens.minTap,
                 display: 'grid',
                 placeItems: 'center',
                 border: 'none',
@@ -185,8 +185,8 @@ export default function Talk() {
               }}
               sx={{
                 flex: 'none',
-                width: 32,
-                height: 32,
+                width: tokens.minTap,
+                height: tokens.minTap,
                 display: 'grid',
                 placeItems: 'center',
                 border: 'none',
@@ -209,11 +209,12 @@ export default function Talk() {
               // 표기 = `Fun.tsx` SoonBadge 한 쌍의 축(opacity .58 + aria-disabled) 계승.
               aria-label="복채 주머니 — 준비 중"
               aria-disabled
+              disabled
               sx={{
                 opacity: 0.58,
                 flex: 'none',
-                width: 32,
-                height: 32,
+                width: tokens.minTap,
+                height: tokens.minTap,
                 display: 'grid',
                 placeItems: 'center',
                 border: 'none',
@@ -264,6 +265,7 @@ export default function Talk() {
 
         <Box sx={{ position: 'relative', mt: 1.5, flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
           <DosaChat
+            key={JSON.stringify([resolved.input, resolved.name, resolved.hourUnknown])}
             report={report}
             pillars={chart.pillars}
             profileName={resolved.name || undefined}

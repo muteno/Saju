@@ -235,13 +235,14 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
 }
 
 /** LLM 프롬프트용 압축 요약 — 원국표 4주 간지 + 일간 + 구조 판정 lines(엔진 산출 그대로) */
-export function chartSummaryOf(report: ReportBundle): string {
+export function chartSummaryOf(report: ReportBundle, hourUnknown = false): string {
   const parts: string[] = []
   const w = findSection(report, 'wonguk')
-  const rows = w?.table ?? []
+  const rows = (w?.table ?? []).filter((r) => !hourUnknown || r.pos !== '시주')
   if (rows.length) parts.push(`원국: ${rows.map((r) => `${r.pos ?? ''} ${r.ganji ?? ''}`.trim()).join(' · ')}`)
   if (w?.meta?.dayMaster) parts.push(`일간: ${w.meta.dayMaster}`)
   const judge = findSection(report, 'judge')
-  if (judge?.lines?.length) parts.push(`구조 판정: ${judge.lines.map((l) => l.replace(/\*\*/g, '')).join(' / ')}`)
+  if (!hourUnknown && judge?.lines?.length) parts.push(`구조 판정: ${judge.lines.map((l) => l.replace(/\*\*/g, '')).join(' / ')}`)
+  if (hourUnknown) parts.push('출생 시간 모름: 시주·강약·십신 분포·합충·신살·대운은 판단하지 않는다. 절입일의 연·월주는 확정할 수 없다.')
   return parts.join('\n')
 }

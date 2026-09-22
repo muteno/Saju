@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom'
 import { computeChartUI, buildReading, jeonggokRaw, type UiChart, type ReportBundle } from '../engine'
 import { selectJeonggok, type JeonggokPick } from './jeonggok'
 import { toReading, SAMPLE_INPUT, type Reading } from './saju'
-import { activeProfile, parseShare, profileToInput, profileToSearch } from './profiles'
+import { activeProfile, matchesShare, parseShare, profileToInput, profileToSearch } from './profiles'
 
 export interface ResolvedSource {
   input: ReturnType<typeof profileToInput>
@@ -44,9 +44,8 @@ export function useReport(): ReportData {
     if (shared) {
       // 이 링크가 내 저장 프로필과 같으면 '내 것', 다르면 '공유받은 사주'
       const mine = activeProfile()
-      const isMine =
-        !!mine && mine.year === shared.input.year && mine.month === shared.input.month && mine.day === shared.input.day && mine.name === shared.name
-      return { ...shared, sample: false, shared: !isMine && !!shared.name, search: loc.search.replace(/^\?/, ''), broken: false }
+      const isMine = !!mine && matchesShare(mine, shared)
+      return { ...shared, sample: false, shared: !isMine, search: loc.search.replace(/^\?/, ''), broken: false }
     }
     const hasParams = /(^|[?&])y=/.test(loc.search)
     if (hasParams) return { input: SAMPLE_INPUT, name: '', city: '서울', hourUnknown: false, sample: false, shared: false, search: '', broken: true }
