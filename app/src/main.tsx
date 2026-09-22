@@ -40,7 +40,7 @@ loadKb()
     // fail-soft: 지식 파일을 못 받으면 안내 + 재시도 (기존 body 타이포 상속 — 신규 디자인 요소 최소)
     console.error('KB 로드 실패', e)
     root.render(
-      <div style={{ padding: '2rem', textAlign: 'center', color: '#f1f1f4' }}>
+      <div role="alert" style={{ padding: '2rem', textAlign: 'center', color: 'var(--c-ink)' }}>
         <p>지식 데이터를 불러오지 못했어요.</p>
         <button
           onClick={() => location.reload()}
@@ -48,9 +48,9 @@ loadKb()
             marginTop: 12,
             padding: '12px 24px',
             borderRadius: 14,
-            border: '1.5px solid #3ad9c0',
+            border: '1.5px solid var(--c-primary)',
             background: 'transparent',
-            color: '#3ad9c0',
+            color: 'var(--c-primary)',
             fontSize: 15,
             fontWeight: 700,
             cursor: 'pointer',

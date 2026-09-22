@@ -5,9 +5,10 @@ import MiniChart from './MiniChart'
 import { Pict } from './MyeongShell'
 import { tokens } from '../theme'
 import type { OhaengKey } from '../theme'
-import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, chartSummaryOf } from '../data/dosaTopics'
-import type { DosaLine, Topic } from '../data/dosaTopics'
+import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines } from '../data/dosaTopics'
+import type { Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
+import { requestDosaText, shouldSendOnEnter } from '../data/dosaClient'
 import { chefForGender, counterpartChef, nextChef, bargeLineOf, voiceOf } from '../data/chefs'
 import type { Chef } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
@@ -227,47 +228,6 @@ function useTypewriter(text: string, speedMs: number) {
       if (timerRef.current) clearInterval(timerRef.current)
       setN(text.length)
     },
-  }
-}
-
-/**
- * /api/dosa 시도 — 200 & {text}만 채택, 그 외(에러·비200·타임아웃)는 null(조용한 폴백).
- * 프리페치(사용자 대기 없음)는 타임아웃을 길게 잡는다 — 선택 시점엔 이미 도착해 있는 게 목적.
- */
-async function fetchDosaText(
-  topic: string,
-  report: ReportBundle,
-  lines: DosaLine[],
-  chefId: string,
-  profileName?: string,
-  timeoutMs = 5000,
-  question?: string,
-): Promise<string | null> {
-  const ctrl = new AbortController()
-  const timer = setTimeout(() => ctrl.abort(), timeoutMs)
-  try {
-    const res = await fetch('/api/dosa', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        topic,
-        model: dosaModel(), // 설정에서 고른 응답 모델(소넷5/오퍼스5 빠름 — data/prefs.ts)
-        chefId, // 무대에 선 화자 — 서버가 chefs.ts PERSONA를 시스템 프롬프트에 합성
-        chartSummary: chartSummaryOf(report),
-        grounds: lines.map((l) => ({ text: l.text, grounds: l.grounds ?? [] })),
-        ...(profileName ? { profileName } : {}),
-        ...(question ? { question } : {}),
-      }),
-      signal: ctrl.signal,
-    })
-    if (!res.ok) return null
-    const data: unknown = await res.json()
-    const text = (data as { text?: unknown } | null)?.text
-    return typeof text === 'string' && text.trim() ? text : null
-  } catch {
-    return null
-  } finally {
-    clearTimeout(timer)
   }
 }
 
@@ -540,9 +500,40 @@ export default function DosaChat({
   const readRef = useRef(0) // 지금 주제에서 이미 읽어 내린 말풍선 수(늦게 온 LLM 응답을 이어 붙일 지점)
   const [draft, setDraft] = useState('') // 입력창에 쓰는 중인 말
   const [asking, setAsking] = useState(false) // 자유 질문 왕복 중
+  const [failedQuestion, setFailedQuestion] = useState<string | null>(null)
+  const activeRequest = useRef<AbortController | null>(null)
+  const conversation = useRef(0)
+  const composing = useRef(false)
+  const [inputFocused, setInputFocused] = useState(false)
+  const inputRef = useRef<HTMLTextAreaElement | null>(null)
+  const llmCache = useRef<Map<string, { promise: Promise<string | null>; text?: string | null; controller: AbortController }>>(new Map())
+  const prefetchTimers = useRef<Set<ReturnType<typeof setTimeout>>>(new Set())
+  const cancelTopics = () => {
+    for (const timer of prefetchTimers.current) clearTimeout(timer)
+    prefetchTimers.current.clear()
+    for (const [key, entry] of llmCache.current) {
+      if (entry.text !== undefined) continue
+      entry.controller.abort()
+      // 취소한 프리페치는 재방문할 때 다시 요청할 수 있어야 한다.
+      llmCache.current.delete(key)
+    }
+  }
+  const cancelQuestion = () => {
+    conversation.current += 1
+    activeRequest.current?.abort()
+    activeRequest.current = null
+    cancelTopics()
+    setAsking(false)
+    setFailedQuestion(null)
+  }
+  useEffect(() => () => {
+    conversation.current += 1
+    activeRequest.current?.abort()
+    activeRequest.current = null
+    cancelTopics()
+  }, [])
   const stageRef = useRef<HTMLDivElement | null>(null) // 덜컹 연출 대상
   const logRef = useRef<HTMLDivElement | null>(null) // 로그 스크롤러
-  const llmCache = useRef<Map<string, { promise: Promise<string | null>; text?: string | null }>>(new Map())
   const reduceMotion = useReducedMotion()
 
   /** 캐릭터 메시지 묶음을 흘려보낸다 — 첫 줄은 바로 뜨고 나머지는 탭을 기다린다 */
@@ -559,8 +550,11 @@ export default function DosaChat({
     const hit = llmCache.current.get(key)
     if (hit) return hit
     const fallback = topicLines(report, key2, hourUnknown)
-    const entry: { promise: Promise<string | null>; text?: string | null } = {
-      promise: fetchDosaText(key2, report, fallback, chef.id, profileName, 20000).then((text) => {
+    const controller = new AbortController()
+    const entry: { promise: Promise<string | null>; text?: string | null; controller: AbortController } = {
+      controller,
+      promise: requestDosaText({ topic: key2, report, lines: fallback, chefId: chef.id, model: dosaModel(), profileName, hourUnknown, signal: controller.signal }).then((text) => {
+        if (controller.signal.aborted) return null
         entry.text = text
         return text
       }),
@@ -591,6 +585,7 @@ export default function DosaChat({
 
   // 첫 대사 — 정곡이 있으면 [화자 인사 → 단정 → 질문] 세 통, 없으면 용건 묻기 한 통
   useEffect(() => {
+    cancelQuestion()
     const c = chefForGender(gender)
     setChef(c)
     setCrit(false)
@@ -656,10 +651,19 @@ export default function DosaChat({
    */
   useEffect(() => {
     if (stage === 'play') return
-    const timers = TOPICS.filter((t) => !llmCache.current.has(`${dosaModel()}:${chef.id}:${t.key}`)).map((t, i) =>
-      setTimeout(() => ensureLlm(t.key), i * 250),
-    )
-    return () => timers.forEach(clearTimeout)
+    const scheduled = prefetchTimers.current
+    const timers = TOPICS.filter((t) => !llmCache.current.has(`${dosaModel()}:${chef.id}:${t.key}`)).map((t, i) => {
+      const timer = setTimeout(() => {
+        scheduled.delete(timer)
+        ensureLlm(t.key)
+      }, i * 250)
+      scheduled.add(timer)
+      return timer
+    })
+    return () => timers.forEach((timer) => {
+      clearTimeout(timer)
+      scheduled.delete(timer)
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage, chef.id])
 
@@ -668,12 +672,11 @@ export default function DosaChat({
    * 흔들림 → 인물(=배경) 교체 → 지문 + 들어온 사람의 난입 대사. 사과나 설명 자막은 없다.
    * ⚠ 첫 렌더에는 안 돈다(신호 초기값) — 안 그러면 화면에 들어오자마자 사람이 바뀐다.
    */
-  const firstSignal = useRef(true)
+  const lastSignal = useRef(switchSignal)
   useEffect(() => {
-    if (firstSignal.current) {
-      firstSignal.current = false
-      return
-    }
+    if (lastSignal.current === switchSignal) return
+    lastSignal.current = switchSignal
+    cancelQuestion()
     const next = nextChef(chef.id)
     setChef(next)
     onChef?.(next)
@@ -711,6 +714,7 @@ export default function DosaChat({
       say([nar('입꼬리를 살짝 올린다.'), ...toMsgs(voiceOf(chef.id).hit), '그래서, 뭐가 궁금한가?'])
     } else {
       // 빗맞힘 = 사과가 아니라 **교체**(운영자 260726) — 맞은편 도사가 밀고 들어와 판을 받아 간다
+      cancelQuestion()
       const next = counterpartChef(chef.id)
       setChef(next)
       onChef?.(next)
@@ -720,6 +724,7 @@ export default function DosaChat({
   }
 
   const selectTopic = (t: Topic) => {
+    const revision = ++conversation.current
     const fallback = topicLines(report, t.key, hourUnknown)
     const intro = TOPIC_INTROS[t.key]
     const entry = ensureLlm(t.key)
@@ -742,7 +747,7 @@ export default function DosaChat({
     readRef.current = 0
     if (!ready)
       void entry.promise.then((text) => {
-        if (!text || topicRef.current !== t.key) return
+        if (!text || topicRef.current !== t.key || conversation.current !== revision) return
         // ⚠ 앞서는 `slice(-남은개수)`로 **꼬리만** 갈아 끼웠는데, 그러면 LLM 문단이 남은 큐보다
         // 많을 때 **서두가 통째로 잘려 결론만** 남는다(검토자 260726 적발 — 폴백 2통 + 맥락 없는
         // LLM 결론 1통을 읽게 된다). 그래서 **읽은 개수만큼만** 건너뛰고 이어 붙인다.
@@ -758,30 +763,40 @@ export default function DosaChat({
    * 내 말풍선을 먼저 찍고(보낸 게 눈에 보여야 한다), 답이 오면 말풍선으로 이어 붙인다.
    * LLM이 꺼져 있거나 실패하면 **조용히 실패로 두지 않고** 그 사실을 도사 입으로 말한다.
    */
-  const askFree = async () => {
-    const q = draft.trim()
-    if (!q || asking) return
+  const askFree = async (retry?: string) => {
+    const q = (retry ?? draft).trim()
+    if (!q || activeRequest.current) return
+    const revision = ++conversation.current
+    cancelTopics()
+    const ctrl = new AbortController()
+    activeRequest.current = ctrl
     setDraft('')
+    setFailedQuestion(null)
     setAsking(true)
-    answer(q)
+    setQueue([])
+    if (!retry) answer(q)
     setStage('play')
     setTopicKey(null)
     topicRef.current = null
     readRef.current = 0
     try {
-      const text = await fetchDosaText(
-        '성격', // 화이트리스트 자리채움 — 서버는 question이 있으면 그걸 먼저 읽는다
-        report,
-        topicLines(report, '성격', hourUnknown),
-        chef.id,
-        profileName,
-        25000,
-        q,
-      )
+      const text = await requestDosaText({
+        topic: '성격', report, lines: topicLines(report, '성격', hourUnknown),
+        chefId: chef.id, model: dosaModel(), profileName, hourUnknown,
+        timeoutMs: 25000, question: q, signal: ctrl.signal,
+      })
+      if (ctrl.signal.aborted || conversation.current !== revision) return
       if (text) say(toMsgs(text))
-      else say(['…지금은 판을 더 못 읽겠군. 잠시 뒤에 다시 물어보게.'])
+      else {
+        setFailedQuestion(q)
+        say(['답변을 받지 못했어요. 질문은 남겨 두었으니 다시 보내 주세요.'])
+      }
     } finally {
-      setAsking(false)
+      if (activeRequest.current === ctrl) {
+        activeRequest.current = null
+        setAsking(false)
+        inputRef.current?.focus({ preventScroll: true })
+      }
     }
   }
 
@@ -807,6 +822,7 @@ export default function DosaChat({
   }, [beat])
 
   const onTap = () => {
+    if (asking) return
     if (!tw.done) {
       tw.skip()
       return
@@ -819,6 +835,7 @@ export default function DosaChat({
     }
     // 이야기 한 바퀴가 끝나면 다시 메뉴로 — 질문도 한 통의 메시지다
     if (stage === 'play') {
+      setFailedQuestion(null)
       setStage('menu')
       setTopicKey(null)
       topicRef.current = null
@@ -855,12 +872,12 @@ export default function DosaChat({
   const a1 = `color-mix(in srgb, ${aura[1] ?? aura[0]} 78%, transparent)`
 
   /** 다음 메시지가 남아 있나 — 진행 버튼을 띄울지 가른다 */
-  const hasNext = !tw.done || queue.length > 0 || stage === 'play'
+  const hasNext = !asking && (!tw.done || queue.length > 0 || stage === 'play')
 
   return (
     <Box
       onClick={onTap}
-      sx={{ cursor: 'pointer', position: 'relative', flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}
+      sx={{ position: 'relative', flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}
     >
       {/* 的中 크리티컬 — 60px/900 스케일인 0.7s (플레이그라운드 정본 연출) */}
       {crit && (
@@ -894,7 +911,7 @@ export default function DosaChat({
       <Box ref={stageRef} sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
         {/* 배경이 보이는 구역 — 인물은 **배경 그 자체**라 여기엔 아무것도 안 세운다.
             화면 위쪽은 통째로 인물 몫이고, 원국만 그 좌상단에 얹힌다. */}
-        <Box sx={{ position: 'relative', flex: '1 1 auto', minHeight: 0 }}>
+        <Box className="msd-chat-profile" sx={{ position: 'relative', flex: '1 1 auto', minHeight: 0, overflow: 'hidden', visibility: inputFocused ? 'hidden' : undefined }}>
           {/* 신원 + 원국 = **한 유리 도형 안에 붙여서**(운영자 260727 "둘의 간격이 아주 멀어 거의
               둘이 붙어있게 · 글래스로 그 두개를 감싸줘 도형으로"). 좌우 끝에 떨어뜨려 놓으니
               두 개의 딴 물건으로 읽혔다 — 하나로 묶으면 「누구의 어떤 판인가」 한 덩어리가 된다.
@@ -903,6 +920,7 @@ export default function DosaChat({
             aria-hidden
             sx={{
               position: 'absolute',
+              maxWidth: 'calc(100% - 32px)',
               right: 16, // 운영자 260727 — 도형 자체를 우측 정렬
               bottom: 30,
               zIndex: 2,
@@ -964,8 +982,8 @@ export default function DosaChat({
               }}
             >
             {who && (
-              <Box>
-                <Typography sx={{ fontSize: 14, fontWeight: 800, color: YG.fg, lineHeight: 1.3, whiteSpace: 'nowrap' }}>
+              <Box sx={{ minWidth: 0 }}>
+                <Typography sx={{ overflow: 'hidden', textOverflow: 'ellipsis', fontSize: 14, fontWeight: 800, color: YG.fg, lineHeight: 1.3, whiteSpace: 'nowrap' }}>
                   {who.name}
                 </Typography>
                 <Typography sx={{ mt: 0.2, fontSize: 11.5, color: YG.fg2, opacity: 0.9, lineHeight: 1.35, whiteSpace: 'nowrap' }}>
@@ -982,7 +1000,7 @@ export default function DosaChat({
             ⚠ 처음엔 하단을 띠 하나로 덮었는데(블라인더), 레퍼런스(예타)엔 **그런 층이 없다** —
             유리는 **말풍선이 각자** 든다. 띠로 덮으면 인물이 통째로 뿌예지고 '판 한 장'이 된다
             (운영자 260727 "블러 처리만 하면되는데, 글래스모피즘 수준차이가 엄청나"). */}
-        <Box sx={{ position: 'relative', flex: '0 0 auto', pb: '68px' }}>
+        <Box sx={{ position: 'relative', flex: '0 1 auto', minHeight: 0, maxHeight: '100%', display: 'flex', flexDirection: 'column', pb: 'calc(68px + env(safe-area-inset-bottom))' }}>
         {/* 대화 로그 — 위에서 아래로 쌓이고, 넘치면 아래로 흐른다 */}
         <Box
           ref={logRef}
@@ -998,7 +1016,7 @@ export default function DosaChat({
             // ⚠ **고정 높이**다. `maxHeight`로 두면 내용이 늘 때 상자가 **아래에서 위로 자라
             // 대화가 밑에서 솟는 것처럼** 보인다(운영자 260727 지적). 높이를 못 박아야
             // 위에서부터 아래로 채워지고, 넘치면 그 안에서 스크롤된다.
-            flex: `0 0 ${LOG_H}px`,
+            flex: `1 1 ${LOG_H}px`,
             height: LOG_H,
             minHeight: 0,
             overflowY: 'auto',
@@ -1026,6 +1044,7 @@ export default function DosaChat({
             // 이제 대화 구역 자체가 중하단에 고정돼 있어 상단 정렬이어도 화면이 안 빈다.
             justifyContent: 'flex-start',
             gap: '8px',
+            '& > *': { flexShrink: 0 },
           }}
         >
           {log.map((m, i) => {
@@ -1056,11 +1075,10 @@ export default function DosaChat({
           )}
         </Box>
 
-        {/* 진행 — 큐가 남아 있는 동안엔 선택지가 안 뜨므로, 이게 없으면 키보드·스크린리더
-          사용자는 오프닝 세 통에서 영구히 멈춘다(검토자 260726 적발). 화면상으로는 어디를
-          눌러도 진행되니 이건 **보조 경로**라 자리를 안 먹는다(포커스될 때만 나타난다).
-          ⚠ 로그 스크롤러 **밖**에 둔다 — 안에 두면 스크롤과 함께 화면 밖으로 밀린다(실측). */}
-        {hasNext && (
+        {/* 진행 — 화면 탭과 같은 동작을 보이는 버튼으로 제공한다. 타이핑 중에는 한 번에
+          표시하고, 문장이 끝나면 다음 대사를 넘긴다. 입력 중에는 접는다.
+          로그 스크롤러 밖에 두어 긴 대화에서도 진행 버튼을 찾을 수 있게 한다. */}
+        {hasNext && !inputFocused && (
           <Box
             component="button"
             type="button"
@@ -1069,41 +1087,20 @@ export default function DosaChat({
               onTap()
             }}
             sx={{
-              // ⚠ MUI sx에서 숫자 `1`은 **100%**다(px 아님) — 앞서 `width: 1`로 적어 이 숨김 버튼이
-              // 대화 구역을 통째로 덮고 있었다(260726 실측 rect 390×762). 반드시 단위를 붙인다.
-              position: 'absolute',
-              width: '1px',
-              height: '1px',
-              p: 0,
-              m: '-1px',
-              overflow: 'hidden',
-              clip: 'rect(0 0 0 0)',
-              whiteSpace: 'nowrap',
-              border: 0,
-              '&:focus-visible': {
-                position: 'static',
-                width: 'auto',
-                height: 'auto',
-                clip: 'auto',
-                m: 0,
-                p: '8px 12px',
-                minHeight: 44,
-                borderRadius: '12px',
-                bgcolor: YG.pillBg,
-                border: `1px solid ${YG.line}`,
-                color: YG.fg,
-                fontFamily: 'inherit',
-                fontSize: 14,
-                fontWeight: 700,
-              },
+              alignSelf: 'flex-end', flexShrink: 0, mx: 2, mt: 1,
+              p: '8px 12px', minHeight: tokens.minTap,
+              borderRadius: '12px', bgcolor: YG.pillBg,
+              border: `1px solid ${YG.line}`, color: YG.fg,
+              fontFamily: 'inherit', fontSize: 14, fontWeight: 700,
+              cursor: 'pointer',
             }}
           >
-            다음 이야기 듣기
+            {tw.done ? '다음 이야기' : '한 번에 보기'}
           </Box>
         )}
         {/* 내 차례 — 답을 고른다(고른 답은 내 말풍선으로 로그에 남는다) */}
-        {choices.length > 0 && (
-          <Box sx={{ position: 'relative', zIndex: 1, px: 2, pt: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        {choices.length > 0 && !inputFocused && !asking && !failedQuestion && (
+          <Box sx={{ position: 'relative', flexShrink: 0, zIndex: 1, px: 2, pt: 1, display: 'flex', overflowX: 'auto', gap: '8px', '& > button': { flex: '0 0 auto', width: 'auto' } }}>
             {choices.map((c, i) => (
               <VnChoice
                 key={c.key}
@@ -1119,6 +1116,13 @@ export default function DosaChat({
           </Box>
         )}
 
+        {asking && <Typography role="status" sx={{ flexShrink: 0, px: 2, pt: 1, fontSize: 14, color: YG.fg2 }}>답변을 기다리는 중…</Typography>}
+        {failedQuestion && !asking && (
+          <Box sx={{ flexShrink: 0, px: 2, pt: 1 }}>
+            <VnChoice label="질문 다시 보내기" seen={false} delay={0} onClick={(e) => { e.stopPropagation(); void askFree(failedQuestion) }} />
+          </Box>
+        )}
+
         {/* 입력행 = 예타 `.yeta-in` **실측값 그대로**(운영자 260727 "예타꺼 거의 그대로 가져온다고
             생각해줘"): 떠 있는 알약 · bottom 12 · 좌우 10 · 반경 999 · padding 5/6 · gap 4 ·
             `blur(11px) saturate(1)` · 유리 표면 + 1px 라인. 색만 우리 라이트 토큰이다.
@@ -1130,7 +1134,7 @@ export default function DosaChat({
             position: 'absolute',
             left: '10px',
             right: '10px',
-            bottom: '12px',
+            bottom: 'calc(12px + env(safe-area-inset-bottom))',
             zIndex: 4,
             display: 'flex',
             alignItems: 'center',
@@ -1139,20 +1143,19 @@ export default function DosaChat({
             borderRadius: '999px',
             bgcolor: YG.pillBg,
             border: `1px solid ${YG.line}`,
-            backdropFilter: YG.blurPill,
-            WebkitBackdropFilter: YG.blurPill,
             boxShadow: 'var(--shadow-card)',
-            '&:focus-within .msd-dock': { maxWidth: 0, opacity: 0 },
           }}
         >
           <Box
+            aria-hidden={inputFocused || undefined}
             className="msd-dock"
             sx={{
               flex: 'none',
               display: 'flex',
               alignItems: 'center',
               gap: '2px',
-              maxWidth: '150px',
+              maxWidth: inputFocused ? 0 : '184px',
+              opacity: inputFocused ? 0 : 1,
               overflow: 'hidden',
               transition: 'max-width .34s var(--ease), opacity .25s var(--ease)',
             }}
@@ -1163,10 +1166,11 @@ export default function DosaChat({
                 component="button"
                 type="button"
                 aria-label={d.label}
+                tabIndex={inputFocused ? -1 : 0}
                 onClick={() => onNav?.(d.to)}
                 sx={{
                   flex: 'none',
-                  width: 34,
+                  width: tokens.minTap,
                   height: 44,
                   display: 'grid',
                   placeItems: 'center',
@@ -1184,14 +1188,23 @@ export default function DosaChat({
           </Box>
           <Box
             component="textarea"
+            ref={inputRef}
             rows={1}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck={false}
+            onFocus={() => setInputFocused(true)}
+            onBlur={() => setInputFocused(false)}
+            onCompositionStart={() => { composing.current = true }}
+            onCompositionEnd={() => { composing.current = false }}
             value={draft}
             placeholder={asking ? '판을 보는 중…' : '메시지'}
-            disabled={asking}
+            readOnly={asking}
             aria-label="도사에게 직접 묻기"
             onChange={(e: { target: { value: string } }) => setDraft(e.target.value.slice(0, MAX_ASK))}
-            onKeyDown={(e: { key: string; shiftKey: boolean; preventDefault: () => void }) => {
-              if (e.key === 'Enter' && !e.shiftKey) {
+            onKeyDown={(e) => {
+              if (shouldSendOnEnter({ key: e.key, shiftKey: e.shiftKey, isComposing: composing.current || e.nativeEvent.isComposing, keyCode: e.nativeEvent.keyCode })) {
                 e.preventDefault()
                 void askFree()
               }

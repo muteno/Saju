@@ -213,7 +213,7 @@ function PillNav({ active, go }: { active: MenuKey; go: (to: string) => void }) 
             sx={{
               display: 'flex',
               alignItems: 'center',
-              height: 40,
+              height: tokens.minTap,
               px: '12px',
               borderRadius: '999px',
               cursor: 'pointer',
