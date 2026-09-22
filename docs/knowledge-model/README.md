@@ -9,7 +9,7 @@
 | 파일 | 역할 |
 |---|---|
 | `PROJECT_AGENDA.md` | 진화 가능한 프로젝트 목적·설계 원칙·완료 기준 |
-| `USER_INTENT_LOG.md` | 사용자의 관련 발언 15개와 이해 수정의 흐름 |
+| `USER_INTENT_LOG.md` | 사용자의 관련 발언 23개와 이해 수정의 흐름 |
 | `MATHEMATICAL_DESIGN.md` | 논문에 근거한 수학적 후보와 현재 기준 모델 |
 | `학습과평가설계.md` | 원문 추출·라벨링·조합·시간·출처 분리 평가 |
 | `knowledge_graph.json` | 기본 개념 18개를 포함한 58개 노드, 132개 관계, 11개 다중 입력 관계 |
@@ -20,6 +20,8 @@
 | `conditional_model.py` | 연속 입력과 다중 상호작용을 지원하는 조건부 로지스틱 기준 모델 |
 | `context_demo.json` | 미학습 모델과 별도로 표시한 추상적·합성 시연 입력 |
 | `knowledge_query.py` | 노드·관계·조건·출처 조회, 동음이의어 구별 |
+| `legacy_import.py`, `data/legacy_review.json` | 기존 조건·분기 후보와 원문·개념 대응을 재현하는 검토 입력 |
+| `LEGACY_MIGRATION.md` | 기존 지도와 현재 모델 비교, 이관 범위와 미확인 항목 |
 | `rules_engine.py` | 별도 부록: 천간·생극·십신 기호 분류 검증 |
 | `evaluation_rubric.json` | 아직 수행하지 않은 사람 검수 과제 10개 |
 | `validation_report.json` | 이번에 실제 수행한 코드·원문 확인 결과 |
@@ -32,14 +34,18 @@ Python 3.10 이상, 표준 라이브러리만 사용한다. 저장소 루트에�
 
 ```bash
 python build_graph.py
+python legacy_import.py
+python legacy_import.py --check
 python knowledge_query.py 식신
 python knowledge_query.py 신
 python conditional_model.py
 python conditional_model.py --demo
-python -m unittest -v test_rules.py test_conditional_model.py
+python -m unittest discover -p 'test_*.py'
 ```
 
 `신`은 천간과 지지 후보가 함께 반환된다. 의미가 확정되지 않은 입력을 하나로 합치지 않는다.
+
+기존 조건·분기 후보는 조회 결과의 `legacy_review`에 포함한다. 직접 대응된 개념의 검토 자료만 가져오며 원문 미확인 항목도 상태를 표시한다. `query(term, graph, legacy=bundle)`로도 사용한다. 그래프가 바뀌면 이관 스냅샷을 다시 생성해야 하며, 원문·기존 자료가 생략된 배포 ZIP에서는 이관 재생성을 실행할 수 없다. 후보 조회는 원국 적용이나 학습된 확률 출력이 아니다.
 
 기본 확률 실행은 매개변수가 미학습 상태이므로 `probability: null`이다. `--demo`에서만 추상 키워드 X·Y와 조건 A·B에 대해 임의의 시연 매개변수를 사용한다. 이 숫자는 문헌에서 측정한 값이나 사주 정확도가 아니다.
 

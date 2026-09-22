@@ -27,7 +27,7 @@ def diagram_context(result, structure):
             "connections": connections}
 
 
-def query(term, graph):
+def query(term, graph, legacy=None):
     matches = [n for n in graph["nodes"] if term in [n["id"], n["title"], *n["aliases"]]]
     if len(matches) != 1:
         return {"status": "ambiguous" if matches else "not_found", "term": term,
@@ -48,7 +48,7 @@ def query(term, graph):
             refs.update(item["evidence_ids"])
     foundation_ids = set(node.get("foundation_reference_ids", []))
     live_ids = set(node.get("live_foundation_reference_ids", []))
-    return {"status": "found", "node": node, "relations": links, "context_factors": factors,
+    result = {"status": "found", "node": node, "relations": links, "context_factors": factors,
             "evidence": [e for e in graph["evidence"] if e["id"] in refs],
             **review_records,
             "context_contract": graph.get("context_contract"),
@@ -65,6 +65,12 @@ def query(term, graph):
                                            if r["id"] in live_ids],
             "diagram_structure": graph.get("diagram_structure"),
             "probability": None, "probability_status": "requires_trained_context_model"}
+    if legacy is not None:
+        from legacy_import import graph_fingerprint, review_context
+        if legacy["graph_fingerprint"] != graph_fingerprint(graph):
+            raise ValueError("Legacy concept bindings use a different graph; rebuild legacy_import.py")
+        result["legacy_review"] = review_context(node["id"], legacy)
+    return result
 
 
 if __name__ == "__main__":
@@ -73,8 +79,16 @@ if __name__ == "__main__":
     parser.add_argument("--diagram-context", action="store_true",
                         help="Include board attachments in cited source nodes/sections, not inferred relations")
     args = parser.parse_args()
-    graph = json.loads((Path(__file__).parent / "knowledge_graph.json").read_text(encoding="utf-8"))
-    result = query(args.term, graph)
+    root = Path(__file__).parent
+    graph_path = root / "knowledge_graph.json"
+    graph = json.loads(graph_path.read_text(encoding="utf-8"))
+    legacy_path = root / "data/legacy_review.json"
+    legacy = json.loads(legacy_path.read_text(encoding="utf-8")) if legacy_path.exists() else None
+    if legacy is not None:
+        from legacy_import import digest
+        if legacy["graph_sha256"] != digest(graph_path.read_bytes()):
+            raise ValueError("Legacy concept bindings are stale; rebuild legacy_import.py")
+    result = query(args.term, graph, legacy=legacy)
     if args.diagram_context and result["status"] == "found":
         path = Path(__file__).parent / graph["diagram_structure"]["path"]
         result["diagram_context"] = diagram_context(result, json.loads(path.read_text(encoding="utf-8")))
