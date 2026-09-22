@@ -33,14 +33,35 @@ interface Store {
 
 const KEY = 'saju-profiles-v1'
 let memory: Store = { active: null, list: [] } // storage 불가 환경 폴백
+let memoryOnly = false
+
+function validProfile(value: unknown): value is StoredProfile {
+  if (!value || typeof value !== 'object') return false
+  const p = value as StoredProfile
+  const date = new Date(Date.UTC(p.year, p.month - 1, p.day))
+  return typeof p.id === 'string' && typeof p.name === 'string' &&
+    (p.gender === '남자' || p.gender === '여자') && p.calendar === '양력' &&
+    Number.isInteger(p.year) && p.year >= 1900 && p.year <= 2100 &&
+    Number.isInteger(p.month) && p.month >= 1 && p.month <= 12 &&
+    Number.isInteger(p.day) && p.day >= 1 && date.getUTCMonth() === p.month - 1 && date.getUTCDate() === p.day &&
+    Number.isInteger(p.hour) && p.hour >= 0 && p.hour <= 23 &&
+    Number.isInteger(p.minute) && p.minute >= 0 && p.minute <= 59 &&
+    typeof p.hourUnknown === 'boolean' && typeof p.city === 'string' &&
+    (p.marital === '미혼' || p.marital === '기혼') && Number.isFinite(p.createdAt) &&
+    (p.solarCorrection === undefined || typeof p.solarCorrection === 'boolean') &&
+    (p.lateZi === undefined || typeof p.lateZi === 'boolean')
+}
 
 function read(): Store {
+  if (memoryOnly) return memory
   try {
     const raw = localStorage.getItem(KEY)
     if (!raw) return memory
     const s = JSON.parse(raw)
     if (!s || !Array.isArray(s.list)) return memory
-    return s as Store
+    const list = s.list.filter(validProfile)
+    memory = { active: list.some((p: StoredProfile) => p.id === s.active) ? s.active : list[0]?.id ?? null, list }
+    return memory
   } catch {
     return memory
   }
@@ -51,7 +72,8 @@ function write(s: Store) {
   try {
     localStorage.setItem(KEY, JSON.stringify(s))
   } catch {
-    /* fail-soft */
+    // 쓰기만 차단된 환경에서 다음 read가 디스크의 예전 값으로 되돌리지 않게 한다.
+    memoryOnly = true
   }
 }
 
@@ -64,14 +86,15 @@ export function activeProfile(): StoredProfile | null {
   return s.list.find((p) => p.id === s.active) ?? s.list[0] ?? null
 }
 
-export function saveProfile(p: Omit<StoredProfile, 'id' | 'createdAt'>): StoredProfile {
+export function saveProfile(p: Omit<StoredProfile, 'id' | 'createdAt'>, editId?: string): StoredProfile {
   const s = read()
   // 동일 인물(이름+생년월일시) 재제출 = 갱신 (중복 누적 방지)
-  const dup = s.list.find(
+  const dup = s.list.find((q) => q.id === editId) ?? s.list.find(
     (q) => q.name === p.name && q.year === p.year && q.month === p.month && q.day === p.day && q.hour === p.hour && q.minute === p.minute,
   )
-  const id = dup?.id ?? (crypto.randomUUID ? crypto.randomUUID() : `p${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`)
+  const id = dup?.id ?? (typeof globalThis.crypto?.randomUUID === 'function' ? crypto.randomUUID() : `p${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`)
   const stored: StoredProfile = { ...p, id, createdAt: dup?.createdAt ?? Date.now() }
+  if (!validProfile(stored)) throw new Error('잘못된 프로필 정보')
   const list = dup ? s.list.map((q) => (q.id === id ? stored : q)) : [...s.list, stored]
   write({ active: id, list })
   return stored
@@ -89,7 +112,7 @@ export function removeProfile(id: string) {
 }
 
 /** 프로필 → 엔진 입력 (경도 포함). 시간 모름이면 정오 대입 — 일주 판정 안전 실증(260718 엔진 실측). */
-export function profileToInput(p: StoredProfile): ChartInput {
+export function profileToInput(p: Omit<StoredProfile, 'id' | 'createdAt'>): ChartInput {
   return {
     year: p.year,
     month: p.month,
@@ -127,6 +150,17 @@ export interface ParsedShare {
   hourUnknown: boolean
 }
 
+/** 이름만 같은 다른 사주에 내 기기의 보조 검사 결과를 붙이지 않는다. */
+export function matchesShare(profile: StoredProfile, share: ParsedShare): boolean {
+  if (profile.name !== share.name || profile.hourUnknown !== share.hourUnknown || profile.city !== share.city) return false
+  const own = profileToInput(profile)
+  const other = share.input
+  return own.year === other.year && own.month === other.month && own.day === other.day &&
+    own.hour === other.hour && own.minute === other.minute && own.gender === other.gender &&
+    own.longitude === other.longitude && (own.solarTimeCorrection !== false) === (other.solarTimeCorrection !== false) &&
+    (own.lateZiRule ?? 'midnight23') === (other.lateZiRule ?? 'midnight23')
+}
+
 /** 딥링크 쿼리 → 엔진 입력 (검증 포함 — 불량이면 null) */
 export function parseShare(search: string): ParsedShare | null {
   try {
@@ -137,6 +171,7 @@ export function parseShare(search: string): ParsedShare | null {
     const g = q.get('g')
     const hourUnknown = q.get('hu') === '1'
     const t = q.get('t') ?? ''
+    if (!hourUnknown && !/^\d{1,2}:\d{2}$/.test(t)) return null
     const [hh, mi] = t.split(':').map(Number)
     if (!Number.isInteger(y) || y < 1900 || y > 2100) return null
     if (!Number.isInteger(mo) || mo < 1 || mo > 12) return null

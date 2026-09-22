@@ -96,7 +96,7 @@ const CORE_RULES = `서술 표준 6원칙(반드시 지킬 것):
 
 /** 화자 페르소나 + 공통 규칙 합성 — PERSONA에 안전 경계가 이미 박혀 있다(chefs.ts) */
 function systemPromptFor(chefId?: string): string {
-  const persona = (typeof chefId === 'string' && PERSONA[chefId]) || NEUTRAL_PERSONA
+  const persona = (typeof chefId === 'string' && Object.hasOwn(PERSONA, chefId) && PERSONA[chefId]) || NEUTRAL_PERSONA
   return `${persona}\n\n${CORE_RULES}`
 }
 
@@ -141,6 +141,7 @@ async function callOnce(
   cred: { kind: 'oauth' | 'apikey'; token: string },
   modelCfg: { model: string; speed?: 'fast'; effort?: string },
   body: DosaRequest,
+  signal: AbortSignal,
 ): Promise<{ ok: true; text: string } | { ok: false; next: 'rotate' | 'fallback' }> {
   // OAuth 구독 토큰 = Authorization: Bearer + oauth 베타 헤더(x-api-key 아님 — claude-api 정본).
   // 빠름 모드 = fast-mode 베타 헤더 + 본문 speed:"fast"(Opus 5/4.8 전용).
@@ -157,6 +158,7 @@ async function callOnce(
     apiRes = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers,
+      signal: AbortSignal.any([signal, AbortSignal.timeout(8000)]),
       body: JSON.stringify({
         model: modelCfg.model,
         max_tokens: 700,
@@ -169,7 +171,7 @@ async function callOnce(
       }),
     })
   } catch {
-    return { ok: false, next: 'rotate' } // 네트워크 오류 = 다음 자격 시도(무해)
+    return { ok: false, next: signal.aborted ? 'fallback' : 'rotate' }
   }
 
   if (!apiRes.ok) {
@@ -184,7 +186,8 @@ async function callOnce(
   const data = (await apiRes.json().catch(() => null)) as AnthropicResponse | null
   if (!data) return { ok: false, next: 'rotate' }
   if ((data as { stop_reason?: string }).stop_reason === 'refusal') return { ok: false, next: 'fallback' }
-  const text = (data.content ?? [])
+  if (!Array.isArray(data.content)) return { ok: false, next: 'fallback' }
+  const text = data.content
     .filter((b) => b?.type === 'text' && typeof b.text === 'string')
     .map((b) => b.text as string)
     .join('\n\n')
@@ -218,18 +221,22 @@ export async function onRequestPost(ctx: { request: Request; env: Env }): Promis
   } catch {
     return json({ error: 'invalid JSON' }, 400)
   }
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return json({ error: 'invalid body' }, 400)
   // 주제 선택(화이트리스트) **또는** 자유 질문 — 둘 중 하나는 있어야 한다.
   // 자유 질문은 임의 문자열이라 길이만 자르고 그대로 넘긴다(시스템 프롬프트가 범위를 잡는다).
   const freeQ = typeof body.question === 'string' ? body.question.trim() : ''
+  if (freeQ.length > MAX_QUESTION) return json({ error: 'question too long' }, 400)
   const okTopic = typeof body.topic === 'string' && TOPIC_WHITELIST.includes(body.topic)
   if (!okTopic && !(freeQ && freeQ.length <= MAX_QUESTION)) {
     return json({ error: 'invalid topic' }, 400)
   }
-  const modelCfg = MODELS[typeof body.model === 'string' && body.model in MODELS ? body.model : DEFAULT_MODEL_KEY]
+  const modelCfg = MODELS[typeof body.model === 'string' && Object.hasOwn(MODELS, body.model) ? body.model : DEFAULT_MODEL_KEY]
+  const signal = AbortSignal.any([request.signal, AbortSignal.timeout(20000)])
 
   try {
     for (const cred of creds) {
-      const r = await callOnce(cred, modelCfg, body)
+      if (signal.aborted) return json({ fallback: true }, 502)
+      const r = await callOnce(cred, modelCfg, body, signal)
       if (r.ok) return json({ text: r.text })
       if (r.next === 'fallback') return json({ fallback: true }, 502)
       // rotate = 다음 자격으로 계속

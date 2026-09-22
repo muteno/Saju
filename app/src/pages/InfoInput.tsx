@@ -127,7 +127,7 @@ export default function InfoInput() {
       if (!Number.isInteger(minute) || minute < 0 || minute > 59) return fail('mi', '분은 0~59로 입력해 주세요.')
     }
 
-    const profile = saveProfile({
+    const draft: Omit<StoredProfile, 'id' | 'createdAt'> = {
       name: name.trim(),
       gender,
       calendar: '양력',
@@ -141,12 +141,13 @@ export default function InfoInput() {
       marital,
       solarCorrection: solarCorr,
       lateZi,
-    })
-    setActiveProfile(profile.id)
+    }
 
     try {
-      const input = profileToInput(profile)
+      const input = profileToInput(draft)
       const chart = computeChartUI(input)
+      const profile = saveProfile(draft, loadedId ?? undefined)
+      setActiveProfile(profile.id)
       nav(`/loading?${profileToSearch(profile)}`, { state: { chart, input, profile } })
     } catch {
       fail('y', '만세력 계산 범위를 벗어났어요. 날짜를 다시 확인해 주세요.')
