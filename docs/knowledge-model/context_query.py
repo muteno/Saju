@@ -18,6 +18,16 @@ REPO = ROOT.parents[1]
 POLICY = "chart-observations-v1"
 
 
+def calculate_context(request):
+    """Recompute observations from the request; never trust caller-supplied features."""
+    run = subprocess.run(["node", str(ROOT / "chart_context.mjs"), "-"],
+                         input=json.dumps(request, ensure_ascii=False, allow_nan=False, sort_keys=True),
+                         capture_output=True, text=True, check=False)
+    if run.returncode:
+        raise ValueError(run.stderr.strip())
+    return json.loads(run.stdout)
+
+
 def signature(value):
     return digest(json.dumps(value, ensure_ascii=False, sort_keys=True).encode())
 
@@ -122,10 +132,7 @@ def main():
     parser.add_argument("--model", type=Path)
     args = parser.parse_args()
     try:
-        run = subprocess.run(["node", str(ROOT / "chart_context.mjs"), str(args.input.resolve())], capture_output=True, text=True, check=False)
-        if run.returncode:
-            raise ValueError(run.stderr.strip())
-        context = json.loads(run.stdout)
+        context = calculate_context(json.loads(args.input.read_text(encoding="utf-8")))
         reviews = json.loads((ROOT / "data/context_reviews.json").read_text(encoding="utf-8"))
         legacy = json.loads((ROOT / "data/legacy_review.json").read_text(encoding="utf-8"))
         validate_reviews(reviews, legacy)

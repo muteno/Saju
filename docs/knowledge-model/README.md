@@ -9,7 +9,7 @@
 | 파일 | 역할 |
 |---|---|
 | `PROJECT_AGENDA.md` | 진화 가능한 프로젝트 목적·설계 원칙·완료 기준 |
-| `USER_INTENT_LOG.md` | 사용자의 관련 발언 24개와 이해 수정의 흐름 |
+| `USER_INTENT_LOG.md` | 사용자의 관련 발언 25개와 이해 수정의 흐름 |
 | `MATHEMATICAL_DESIGN.md` | 논문에 근거한 수학적 후보와 현재 기준 모델 |
 | `학습과평가설계.md` | 원문 추출·라벨링·조합·시간·출처 분리 평가 |
 | `knowledge_graph.json` | 기본 개념 18개를 포함한 58개 노드, 132개 관계, 11개 다중 입력 관계 |
@@ -24,6 +24,8 @@
 | `LEGACY_MIGRATION.md` | 기존 지도와 현재 모델 비교, 이관 범위와 미확인 항목 |
 | `chart_context.mjs`, `context_query.py` | L1 원국·시간 관찰값 산출과 원문 문맥을 복원한 조건 8개 판정 |
 | `data/context_reviews.json`, `CONTEXT_BRIDGE.md` | 조건식·주변 원문·해시와 입력·측정·미상 처리 규약 |
+| `case_review.py`, `compare_models.py`, `CASE_REVIEW.md` | 사례·라벨·의존 자료·시점 검사와 같은 자료에서 조합 유무 모델 비교 |
+| `data/case_review_pilot.json` | 검토용 계산 예제 6개와 제안 목표·빈 라벨. 실제 학습 자료가 아님 |
 | `rules_engine.py` | 별도 부록: 천간·생극·십신 기호 분류 검증 |
 | `evaluation_rubric.json` | 아직 수행하지 않은 사람 검수 과제 10개 |
 | `validation_report.json` | 이번에 실제 수행한 코드·원문 확인 결과 |
@@ -43,6 +45,8 @@ python knowledge_query.py 신
 python conditional_model.py
 python conditional_model.py --demo
 python context_query.py --input data/context_example.json --term 재성
+python case_review.py
+python case_review.py --compare
 python -m unittest discover -p 'test_*.py'
 node --test test_chart_context.mjs
 ```
@@ -59,6 +63,8 @@ node --test test_chart_context.mjs
 
 ## 학습 입구
 
+원국 기반의 새 검토 입력은 `CASE_REVIEW.md`를 따른다. `case_review.py`는 원국을 다시 계산하고 라벨 근거·상태와 출처·인물·시점 분리를 확인한다. `--compare`는 같은 적격 사례·입력·학습 설정에서 개별 항과 조합 항 모델을 비교한다. 동봉 예제 6개는 라벨이 없고 학습 대상도 아니므로 현재 비교는 `blocked`와 모델 null을 반환한다. 실제 사건 확률은 이 경로의 학습 대상이 아니다.
+
 `conditional_model.fit`은 문맥·라벨·출처 집단이 있는 검토된 학습 사례를 받는다. `context_demo.json`의 `synthetic_training_cases`는 형식과 테스트용이며 실제 학습 자료가 아니다. 실제 라벨은 아직 수집·확정하지 않았다.
 
 ```bash
@@ -66,6 +72,8 @@ python conditional_model.py --fit reviewed_cases.json --holdout-group held_out_a
 ```
 
 학습은 BCE 목적함수와 L2 정규화, 출처 집단별 분리를 지원한다. 최소 두 학습 집단과 별도의 한 평가 집단이 필요하다. 현재 CLI가 반환하는 학습 모델의 추론은 Python의 `predict(fitted_model, context)`로 수행한다. 학습 결과를 저장할 경우 새 버전 파일로 저장하고 어떤 라벨·출처·시점으로 학습했는지 유지한다.
+
+위 저수준 `fit` 함수 자체는 원국 재계산·인물/파생 관계·시점 검사를 하지 않는다. 새 원국 사례는 `case_review.py --compare` 경로를 사용한다. 검토자의 실제 자격과 외부 자료의 진위는 코드가 인증하지 않으며, 합성 검사 결과를 사주 해석 정확도로 보고하지 않는다.
 
 `review_queue.jsonl`은 학습 사례와 다르다. 문헌의 관계 후보를 검토하기 위한 대기열이다. 출처의 문장을 확인하고 적용 조건과 예외를 정리한 뒤, 명시적인 학습 대상과 문맥을 갖춘 사례로 작성한다. 출현 빈도를 바로 정답 라벨로 변환하지 않는다.
 

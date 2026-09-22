@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "purpose": "unlabelled_review_workflow_fixture_not_training_data",
+  "spec": {
+    "feature_policy": "chart-observations-v1",
+    "review_sha256": "2939c7f8b637186af0dbbf44c1ad8510d55a4ec66b4248985c899abaf2400834",
+    "target_kind": "literature_applicability",
+    "targets": [
+      {
+        "id": "eul_fire_metal_applicability",
+        "hypothesis": "이 문헌의 범위에서 을목이 병화·정화를 활용하여 신금·유금을 감당한다는 해석을 해당 문맥에 적용할 수 있는가?",
+        "positive_definition": "원문과 주변 조건·예외를 대조한 검토자가 해당 해석의 적용을 충분히 지지한 경우 1.",
+        "negative_definition": "검토자가 적용을 배제하는 명시적 근거를 확인한 경우 0. 단순 미언급이나 조건값 복사는 근거가 아니다.",
+        "unknown_definition": "정보·근거·척도가 부족하거나 검토자 이견이 해결되지 않으면 null. 중간값으로 불확실성을 대신하지 않는다.",
+        "label_type": "soft",
+        "degree_policy": "0과 1 사이 값은 사전 합의한 기준에 따른 해석 적용의 정도이며 검토자의 자신감이나 사건 확률이 아니다. 중간 정도의 판단 근거와 남은 제약을 rationale에 명시한다. 이 척도는 검토 전 제안이다.",
+        "source_review_ids": [
+          "eul_wood_fire_context"
+        ],
+        "base_features": [
+          "natal.day.stem.乙",
+          "natal.month.branch.申",
+          "natal.month.branch.酉",
+          "natal.day.branch.酉",
+          "natal.stem.丙.present",
+          "natal.stem.丁.present",
+          "natal.stem.丙.fraction",
+          "natal.stem.丁.fraction"
+        ],
+        "interactions": [
+          {
+            "id": "shin_month_丙",
+            "when": {
+              "natal.day.stem.乙": "present",
+              "natal.month.branch.申": "present",
+              "natal.stem.丙.present": "present"
+            },
+            "source_review_ids": [
+              "eul_wood_fire_context"
+            ]
+          },
+          {
+            "id": "shin_month_丁",
+            "when": {
+              "natal.day.stem.乙": "present",
+              "natal.month.branch.申": "present",
+              "natal.stem.丁.present": "present"
+            },
+            "source_review_ids": [
+              "eul_wood_fire_context"
+            ]
+          },
+          {
+            "id": "yu_month_丙",
+            "when": {
+              "natal.day.stem.乙": "present",
+              "natal.month.branch.酉": "present",
+              "natal.stem.丙.present": "present"
+            },
+            "source_review_ids": [
+              "eul_wood_fire_context"
+            ]
+          },
+          {
+            "id": "yu_month_丁",
+            "when": {
+              "natal.day.stem.乙": "present",
+              "natal.month.branch.酉": "present",
+              "natal.stem.丁.present": "present"
+            },
+            "source_review_ids": [
+              "eul_wood_fire_context"
+            ]
+          },
+          {
+            "id": "yu_day_丙",
+            "when": {
+              "natal.day.stem.乙": "present",
+              "natal.day.branch.酉": "present",
+              "natal.stem.丙.present": "present"
+            },
+            "source_review_ids": [
+              "eul_wood_fire_context"
+            ]
+          },
+          {
+            "id": "yu_day_丁",
+            "when": {
+              "natal.day.stem.乙": "present",
+              "natal.day.branch.酉": "present",
+              "natal.stem.丁.present": "present"
+            },
+            "source_review_ids": [
+              "eul_wood_fire_context"
+            ]
+          }
+        ],
+        "review": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null
+        }
+      }
+    ]
+  },
+  "split": {
+    "protocol": "source_subject_holdout",
+    "train_case_ids": [],
+    "holdout_case_ids": []
+  },
+  "cases": [
+    {
+      "case_id": "canonical_fixture",
+      "case_origin": "calculator_fixture",
+      "note": "구현자가 만든 계산 입력. 실제 인물·문헌 사례·학습 정답이 아니며 검토 작업 흐름 확인에만 사용.",
+      "request": {
+        "birth": {
+          "year": 1990,
+          "month": 1,
+          "day": 1,
+          "hour": 12,
+          "minute": 0,
+          "gender": "F",
+          "timeZone": "Asia/Seoul",
+          "longitude": 126.978,
+          "solarTimeCorrection": true,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-22T12:00:00+09:00",
+        "daewoon_periods": []
+      },
+      "provenance": {
+        "source_group": "implementation_calculator_fixture",
+        "subject_group": "canonical_fixture",
+        "dependency_groups": [
+          "implementation_calculator_fixture"
+        ],
+        "input_evidence": [],
+        "review": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null
+        }
+      },
+      "labels": {
+        "eul_fire_metal_applicability": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null,
+          "value": null,
+          "label_origin": null,
+          "evidence_refs": []
+        }
+      }
+    },
+    {
+      "case_id": "eul_fire_fixture",
+      "case_origin": "calculator_fixture",
+      "note": "구현자가 만든 계산 입력. 실제 인물·문헌 사례·학습 정답이 아니며 검토 작업 흐름 확인에만 사용.",
+      "request": {
+        "birth": {
+          "year": 1990,
+          "month": 8,
+          "day": 18,
+          "hour": 1,
+          "minute": 30,
+          "gender": "F",
+          "timeZone": "Asia/Seoul",
+          "longitude": 126.978,
+          "solarTimeCorrection": false,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-22T12:00:00+09:00",
+        "daewoon_periods": []
+      },
+      "provenance": {
+        "source_group": "implementation_calculator_fixture",
+        "subject_group": "eul_fixture_variants",
+        "dependency_groups": [
+          "implementation_calculator_fixture"
+        ],
+        "input_evidence": [],
+        "review": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null
+        }
+      },
+      "labels": {
+        "eul_fire_metal_applicability": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null,
+          "value": null,
+          "label_origin": null,
+          "evidence_refs": []
+        }
+      }
+    },
+    {
+      "case_id": "eul_no_stem_fire_fixture",
+      "case_origin": "calculator_fixture",
+      "note": "구현자가 만든 계산 입력. 실제 인물·문헌 사례·학습 정답이 아니며 검토 작업 흐름 확인에만 사용.",
+      "request": {
+        "birth": {
+          "year": 1990,
+          "month": 8,
+          "day": 18,
+          "hour": 12,
+          "minute": 0,
+          "gender": "F",
+          "timeZone": "Asia/Seoul",
+          "longitude": 126.978,
+          "solarTimeCorrection": false,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-22T12:00:00+09:00",
+        "daewoon_periods": []
+      },
+      "provenance": {
+        "source_group": "implementation_calculator_fixture",
+        "subject_group": "eul_fixture_variants",
+        "dependency_groups": [
+          "implementation_calculator_fixture"
+        ],
+        "input_evidence": [],
+        "review": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null
+        }
+      },
+      "labels": {
+        "eul_fire_metal_applicability": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null,
+          "value": null,
+          "label_origin": null,
+          "evidence_refs": []
+        }
+      }
+    },
+    {
+      "case_id": "eul_unknown_time_fixture",
+      "case_origin": "calculator_fixture",
+      "note": "구현자가 만든 계산 입력. 실제 인물·문헌 사례·학습 정답이 아니며 검토 작업 흐름 확인에만 사용.",
+      "request": {
+        "birth": {
+          "year": 1990,
+          "month": 8,
+          "day": 18,
+          "hour": null,
+          "minute": null,
+          "gender": "F",
+          "timeZone": "Asia/Seoul",
+          "longitude": 126.978,
+          "solarTimeCorrection": false,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-22T12:00:00+09:00",
+        "daewoon_periods": []
+      },
+      "provenance": {
+        "source_group": "implementation_calculator_fixture",
+        "subject_group": "eul_fixture_variants",
+        "dependency_groups": [
+          "implementation_calculator_fixture"
+        ],
+        "input_evidence": [],
+        "review": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null
+        }
+      },
+      "labels": {
+        "eul_fire_metal_applicability": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null,
+          "value": null,
+          "label_origin": null,
+          "evidence_refs": []
+        }
+      }
+    },
+    {
+      "case_id": "before_solar_term_fixture",
+      "case_origin": "calculator_fixture",
+      "note": "구현자가 만든 계산 입력. 실제 인물·문헌 사례·학습 정답이 아니며 검토 작업 흐름 확인에만 사용.",
+      "request": {
+        "birth": {
+          "year": 1990,
+          "month": 8,
+          "day": 18,
+          "hour": 1,
+          "minute": 30,
+          "gender": "F",
+          "timeZone": "Asia/Seoul",
+          "longitude": 126.978,
+          "solarTimeCorrection": false,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2024-02-04T17:00:00+09:00",
+        "daewoon_periods": []
+      },
+      "provenance": {
+        "source_group": "implementation_calculator_fixture",
+        "subject_group": "eul_fixture_variants",
+        "dependency_groups": [
+          "implementation_calculator_fixture"
+        ],
+        "input_evidence": [],
+        "review": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null
+        }
+      },
+      "labels": {
+        "eul_fire_metal_applicability": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null,
+          "value": null,
+          "label_origin": null,
+          "evidence_refs": []
+        }
+      }
+    },
+    {
+      "case_id": "after_solar_term_fixture",
+      "case_origin": "calculator_fixture",
+      "note": "구현자가 만든 계산 입력. 실제 인물·문헌 사례·학습 정답이 아니며 검토 작업 흐름 확인에만 사용.",
+      "request": {
+        "birth": {
+          "year": 1990,
+          "month": 8,
+          "day": 18,
+          "hour": 1,
+          "minute": 30,
+          "gender": "F",
+          "timeZone": "Asia/Seoul",
+          "longitude": 126.978,
+          "solarTimeCorrection": false,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2024-02-04T17:30:00+09:00",
+        "daewoon_periods": []
+      },
+      "provenance": {
+        "source_group": "implementation_calculator_fixture",
+        "subject_group": "eul_fixture_variants",
+        "dependency_groups": [
+          "implementation_calculator_fixture"
+        ],
+        "input_evidence": [],
+        "review": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null
+        }
+      },
+      "labels": {
+        "eul_fire_metal_applicability": {
+          "status": "pending",
+          "reviewer_id": null,
+          "reviewed_at": null,
+          "rationale": null,
+          "value": null,
+          "label_origin": null,
+          "evidence_refs": []
+        }
+      }
+    }
+  ]
+}

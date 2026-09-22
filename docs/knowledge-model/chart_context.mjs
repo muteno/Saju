@@ -198,8 +198,8 @@ export function exportContext(payload) {
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
-    if (process.argv.length !== 3) throw new Error('Usage: node chart_context.mjs request.json');
-    console.log(JSON.stringify(exportContext(JSON.parse(readFileSync(process.argv[2], 'utf8'))), null, 2));
+    if (process.argv.length !== 3) throw new Error('Usage: node chart_context.mjs request.json|-');
+    console.log(JSON.stringify(exportContext(JSON.parse(readFileSync(process.argv[2] === '-' ? 0 : process.argv[2], 'utf8'))), null, 2));
   } catch (error) {
     console.error(error.message); process.exitCode = 2;
   }
