@@ -44,5 +44,18 @@
     "current_learning_status": "no eligible real cases or trained production parameters supplied"
   },
   "user_examples_as_training_labels": false,
-  "default_numeric_probabilities": null
+  "default_numeric_probabilities": null,
+  "implemented_source_case_workflow": {
+    "entrypoint": "source_case_review.py --input data/source_cases.json [--summary]",
+    "input_mode": "source_reported_pillars, distinct from Gregorian calculator requests",
+    "provenance": "repository DOCX hash, paragraph hash, exact substring offsets, symbol anchors and explicit position-reading notes",
+    "observation_path": "reported_context.mjs -> existing chart_context.observations -> context_query.assess",
+    "unknown": "unreported pillars, transit boundaries and evaluated_at remain null; no cross-passage filling or transit union",
+    "author_assertions": "source explanations only, never independent expert labels or observed outcomes",
+    "dependencies": "source family, subject, declared dependencies and shared source file hashes; identities are not authenticated",
+    "current_scope": "6 literature cases, 4 DOCX, 32 excerpts; 0 training eligible; no matched case for the current eul/fire target",
+    "calendar_consistency_verified": false,
+    "position_mapping_expert_verified": false,
+    "training_labels_created": false
+  }
 }

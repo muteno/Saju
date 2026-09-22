@@ -1,0 +1,1000 @@
+{
+  "schema_version": 1,
+  "purpose": "literal_source_cases_for_antecedent_review_only",
+  "use_as_training_labels": false,
+  "review_kind": "implementation_source_reading_not_expert_validation",
+  "evidence": [
+    {
+      "id": "clock_context",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P1051",
+      "paragraph_sha256": "2ca0a7d2e8c01ffbeed4d51bb25be84fa7ff59d5cd0ad76ff3582d4d04989bba",
+      "start": 0,
+      "end": 95,
+      "quote": "사주팔자는 옛날 한자 표기방식인 오른쪽에서 왼쪽으로 세로쓰기를 합니다. 이 글을 작성하고 있는 시간(2020년 6월 2일 오후 1시)을 사주로 적어본다면 아래와 같습니다."
+    },
+    {
+      "id": "clock_header",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P1052",
+      "paragraph_sha256": "bda4de75c55f71ca807482f8a30eea1b9cdf735b85831717bf64785d4895487f",
+      "start": 0,
+      "end": 7,
+      "quote": "시 일 월 년"
+    },
+    {
+      "id": "clock_stems",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P1053",
+      "paragraph_sha256": "fec5ec2dec13c37231d92988bf3918416803cf8cf9fd99c51cebfd0d568c2251",
+      "start": 0,
+      "end": 7,
+      "quote": "甲 丙 辛 庚"
+    },
+    {
+      "id": "clock_branches",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P1054",
+      "paragraph_sha256": "e26061d7889a32db0ccfe0dbae1f192768c49d989f291ba485924a0082a35411",
+      "start": 0,
+      "end": 7,
+      "quote": "午 子 巳 子"
+    },
+    {
+      "id": "clock_read",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P1055",
+      "paragraph_sha256": "ededb23c2877cc06169d86dbf08ce8b5a50b7f0da83e76d2831979cb9045217d",
+      "start": 0,
+      "end": 40,
+      "quote": "읽을 때는 사주를 쓴 순서대로 “경자년 신사월 병자일 갑오시”가 됩니다."
+    },
+    {
+      "id": "root_context",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P1071",
+      "paragraph_sha256": "cb0ee90150d49fb4b1b4e289fc564c9d179046e3fe08b4ed9d422de16c62ba6c",
+      "start": 0,
+      "end": 28,
+      "quote": "(글을 작성하는 시간에 태어난 아이의 사주입니다.)"
+    },
+    {
+      "id": "root_header",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P1072",
+      "paragraph_sha256": "bda4de75c55f71ca807482f8a30eea1b9cdf735b85831717bf64785d4895487f",
+      "start": 0,
+      "end": 7,
+      "quote": "시 일 월 년"
+    },
+    {
+      "id": "root_stems",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P1074",
+      "paragraph_sha256": "685910800ffd35120b53f86149d4b07081af0ee3bfeb871555353b5a5c3e1845",
+      "start": 0,
+      "end": 7,
+      "quote": "己 丁 辛 庚"
+    },
+    {
+      "id": "root_branches",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P1075",
+      "paragraph_sha256": "75456516f2c1212a4cc368859802db36f998ee484a0c4fb47083bea4c1a0bca1",
+      "start": 0,
+      "end": 7,
+      "quote": "酉 丑 巳 子"
+    },
+    {
+      "id": "root_theory",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P1067",
+      "paragraph_sha256": "3162d826ae082e3ea78e360cbd26f9ad40beea3db783a3d77c265e08032b5af3",
+      "start": 0,
+      "end": 59,
+      "quote": "사주의 년주, 월주, 일주 시주를 순서대로 근(뿌리), 묘(모종), 화(꽃), 실(열매)로 빗댄 말입니다."
+    },
+    {
+      "id": "self_chart",
+      "path": "정제본/초코서당-일주론 글모음.docx",
+      "sha256": "edf8e03034403e81836663cb1c7925a6ca0b2257d88a4ace1b10bfef12540cf2",
+      "paragraph": "XML-P180",
+      "paragraph_sha256": "e5ab6c24d517fedce78cba407af710be7c3249aedac57d521558cd02da6012cc",
+      "start": 0,
+      "end": 79,
+      "quote": "예컨대 저는 병오일주입니다. 하지만 병오 뿐만 아니라, 제 사주 중 연주의 을축, 월주의 갑신, 시주의 을미도 제 원국을 구성하는 질료입니다."
+    },
+    {
+      "id": "self_theory",
+      "path": "정제본/초코서당-일주론 글모음.docx",
+      "sha256": "edf8e03034403e81836663cb1c7925a6ca0b2257d88a4ace1b10bfef12540cf2",
+      "paragraph": "XML-P179",
+      "paragraph_sha256": "b362709eab045533eb8bfba6b97e2f1c208a2f3492996c36cef1cce25d80fd85",
+      "start": 0,
+      "end": 108,
+      "quote": "저는 60일주론이라는 명리학의 대중적인 이론을, 60간지론으로 확장하여 바라보는 것이 더 타당하다고 봅니다. 60개의 간지는 일주 뿐만 아니라, 연주와 월주, 시주도 함께 이루고 있기 때문이죠."
+    },
+    {
+      "id": "self_interpretation",
+      "path": "정제본/초코서당-일주론 글모음.docx",
+      "sha256": "edf8e03034403e81836663cb1c7925a6ca0b2257d88a4ace1b10bfef12540cf2",
+      "paragraph": "XML-P181",
+      "paragraph_sha256": "44034b6b095e17df72dad814e2ce96a149618196c867e8900e1f3c1e33005be8",
+      "start": 0,
+      "end": 68,
+      "quote": "여기서 중요한 건, 을축일주, 갑신일주, 을미일주가 가진 의미들 역시 제 사주를 이루고 있는 중요한 특성이 된다는 겁니다."
+    },
+    {
+      "id": "partial_chart",
+      "path": "정제본/초코서당-십성, 육친 글모음.docx",
+      "sha256": "f6c22393c4655350abc5faf578fc5f8582c7911518266709cd1386eb1dfaa703",
+      "paragraph": "XML-P79",
+      "paragraph_sha256": "85a3387242d1e4cbc4a5754c57e46f0217fd2e178cfdcd2dafdbf30cda9ff797",
+      "start": 0,
+      "end": 34,
+      "quote": "예를 들면 시주가 을미시인 병오일주가 있다고 가정해보겠습니다."
+    },
+    {
+      "id": "partial_interpretation",
+      "path": "정제본/초코서당-십성, 육친 글모음.docx",
+      "sha256": "f6c22393c4655350abc5faf578fc5f8582c7911518266709cd1386eb1dfaa703",
+      "paragraph": "XML-P80",
+      "paragraph_sha256": "1a5110ad55700a17da4bb7452855fc09fee93ffa3d56ce54ecbe7a6ab626cd9c",
+      "start": 0,
+      "end": 89,
+      "quote": "이런 구조의 경우 자기만의 독자적인 영역(겁재)에서 시간 을목에 해당하는 정인과 시지 미토에 해당하는 상관의 기준을 모두 잘 쓸 수 있다고 해석할 수 있습니다."
+    },
+    {
+      "id": "partial_link",
+      "path": "정제본/초코서당-십성, 육친 글모음.docx",
+      "sha256": "f6c22393c4655350abc5faf578fc5f8582c7911518266709cd1386eb1dfaa703",
+      "paragraph": "XML-P81",
+      "paragraph_sha256": "779cb63b8e2cecb7d9ad011269fca22f12dee150fd2485fd3543b00a92af9dc1",
+      "start": 29,
+      "end": 56,
+      "quote": "실제 병오일주에 을미시의 사주를 가지고 있는데요."
+    },
+    {
+      "id": "transit_header",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P3757",
+      "paragraph_sha256": "4dd611b406fedb7368706c9846c8cb0cdc6875a59ba976dcc08898c9a2796522",
+      "start": 0,
+      "end": 12,
+      "quote": "사주 | 대운 | 세운"
+    },
+    {
+      "id": "transit_stems",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P3758",
+      "paragraph_sha256": "9a12fc668ce79abe07313c4bae3ee732118ee7e6f4db3c41b404f33e9a139b55",
+      "start": 10,
+      "end": 17,
+      "quote": "◎ 癸 甲 庚"
+    },
+    {
+      "id": "transit_branches",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P3758",
+      "paragraph_sha256": "9a12fc668ce79abe07313c4bae3ee732118ee7e6f4db3c41b404f33e9a139b55",
+      "start": 18,
+      "end": 25,
+      "quote": "◎ 酉 申 午"
+    },
+    {
+      "id": "transit_daewoon",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P3758",
+      "paragraph_sha256": "9a12fc668ce79abe07313c4bae3ee732118ee7e6f4db3c41b404f33e9a139b55",
+      "start": 28,
+      "end": 36,
+      "quote": "29대운 辛 巳"
+    },
+    {
+      "id": "transit_yearly",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P3758",
+      "paragraph_sha256": "9a12fc668ce79abe07313c4bae3ee732118ee7e6f4db3c41b404f33e9a139b55",
+      "start": 39,
+      "end": 52,
+      "quote": "2021년 ← 辛 ← 丑"
+    },
+    {
+      "id": "transit_position",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P3759",
+      "paragraph_sha256": "e1fa3fc4f3dbb368eb42a1c8993c3ec751efc599e4b666507e86b1821f82b30b",
+      "start": 43,
+      "end": 67,
+      "quote": "갑신월주에서 계유일주로 넘어가는 시기입니다."
+    },
+    {
+      "id": "transit_framework",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P3756",
+      "paragraph_sha256": "eeaeb05be628374bf5c8f5474666814f16a2579ff566fd77216081d4df108e2f",
+      "start": 0,
+      "end": 102,
+      "quote": "하지만 세운은 직접 사주와 작용하는 것이 아니라 대운 틀 안에서 작용을 하는데 사주와 대운을 연관 지어 봤을 때 바로 눈에 띄는 형충회합은 사신형(巳申刑)과 사유반합(巳酉半合)입니다."
+    },
+    {
+      "id": "transit_claim",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P3761",
+      "paragraph_sha256": "4ba6e829bcd3b4f09e7031f8a5ca1485e2fcea9656bf0f898e2ad593a240b32e",
+      "start": 0,
+      "end": 74,
+      "quote": "또한 축년이므로 인성이 마무리되는 시점으로 그동안 활동했던 인성적 활동이 사유축 삼합으로 분명하게 완성되는 시점이 된다는 의미입니다."
+    },
+    {
+      "id": "transit_limit",
+      "path": "정제본/사주공부-명리 초급 글모음.docx",
+      "sha256": "28e7f8c2f3092cd38be7f4d76aea763942228bfa9951bc11e147e355c04fca60",
+      "paragraph": "XML-P3762",
+      "paragraph_sha256": "411834fe384e9d671f62d47a9d879c05578f2f8f5a681520eb158ad7492c971b",
+      "start": 0,
+      "end": 105,
+      "quote": "※ 사유축이 완성되는 시점은 시주를 포함한 정확한 사주 구조와 현재 근황을 놓고 판단해야 합니다. 하지만 지금은 년주, 월주, 일주 삼주만 알기 때문에 삼주만 가지고 풀어보도록 하겠습니다."
+    },
+    {
+      "id": "conflict_year_a",
+      "path": "정제본/명리학입문 게시판 글모음.docx",
+      "sha256": "d428aaab9cdc0acfd7ba9ac713df35534d0bee30997faba9edc29e4068e8f329",
+      "paragraph": "XML-P897",
+      "paragraph_sha256": "64ab58f879e64e822309c5ba7da72d32d57cac24043a09246c21e60c732d76f7",
+      "start": 0,
+      "end": 55,
+      "quote": "예시로 적용할 명조는 양력 1995년 8월 25일 낮 15시 50분에 태어난 사람이라고 간주합니다."
+    },
+    {
+      "id": "conflict_year_b",
+      "path": "정제본/명리학입문 게시판 글모음.docx",
+      "sha256": "d428aaab9cdc0acfd7ba9ac713df35534d0bee30997faba9edc29e4068e8f329",
+      "paragraph": "XML-P899",
+      "paragraph_sha256": "45f00f302e63279ac452cf4ad4d828d7e52d1010c5ac59f40e4a8cf1df3a0542",
+      "start": 0,
+      "end": 32,
+      "quote": "달력에서 양력 1985년 8월 25일의 간지를 확인합니다."
+    },
+    {
+      "id": "conflict_year",
+      "path": "정제본/명리학입문 게시판 글모음.docx",
+      "sha256": "d428aaab9cdc0acfd7ba9ac713df35534d0bee30997faba9edc29e4068e8f329",
+      "paragraph": "XML-P900",
+      "paragraph_sha256": "bbf427769ca825cfaebc6d5909f0e73c1d83128d1ec31fb161348a7a3a43e06d",
+      "start": 0,
+      "end": 3,
+      "quote": "을해년"
+    },
+    {
+      "id": "conflict_month",
+      "path": "정제본/명리학입문 게시판 글모음.docx",
+      "sha256": "d428aaab9cdc0acfd7ba9ac713df35534d0bee30997faba9edc29e4068e8f329",
+      "paragraph": "XML-P901",
+      "paragraph_sha256": "baa5ca51fa7c3349dfb486e91687c05b5831a63d395271466bb7c30102e5e772",
+      "start": 0,
+      "end": 3,
+      "quote": "갑신월"
+    },
+    {
+      "id": "conflict_day",
+      "path": "정제본/명리학입문 게시판 글모음.docx",
+      "sha256": "d428aaab9cdc0acfd7ba9ac713df35534d0bee30997faba9edc29e4068e8f329",
+      "paragraph": "XML-P902",
+      "paragraph_sha256": "5642000d8caabf117bab28dcb23d287cd915b513a321e52ea8501b987b16d1a9",
+      "start": 0,
+      "end": 10,
+      "quote": "무자일로 나옵니다."
+    },
+    {
+      "id": "conflict_hour",
+      "path": "정제본/명리학입문 게시판 글모음.docx",
+      "sha256": "d428aaab9cdc0acfd7ba9ac713df35534d0bee30997faba9edc29e4068e8f329",
+      "paragraph": "XML-P905",
+      "paragraph_sha256": "3f892a35b01238d9346a46cc2cf0cadee2f3254cc7443c268e26ff0c62d22e83",
+      "start": 0,
+      "end": 116,
+      "quote": "시두법의 간지 조견표를 읽기 위해서는 일간을 먼저 찾아야 합니다. 이 명조에서는 무자일이므로 상단 부분의 일간이 [무,계]가 있는 줄에서 15시 30분을 찾으면 바로 시주가 됩니다. 여기서는 경신시가 됩니다."
+    },
+    {
+      "id": "conflict_order",
+      "path": "정제본/명리학입문 게시판 글모음.docx",
+      "sha256": "d428aaab9cdc0acfd7ba9ac713df35534d0bee30997faba9edc29e4068e8f329",
+      "paragraph": "XML-P906",
+      "paragraph_sha256": "23ced42058ccb197b4b55bfdaf0db913596675605f4e94d5a140407e64e54fe3",
+      "start": 0,
+      "end": 42,
+      "quote": "위처럼 연주, 월주, 일주, 시주 순으로 적어 주면 바로 사주팔자가 됩니다."
+    }
+  ],
+  "cases": [
+    {
+      "id": "clock_four_pillars",
+      "label": "작성 시각의 사주 구성 예시",
+      "origin": "source_clock_example",
+      "source_group": "sajustudy",
+      "subject_group": "sajustudy_clock_a",
+      "dependency_groups": [
+        "sajustudy",
+        "sajustudy_clock_a"
+      ],
+      "evidence_ids": [
+        "clock_context",
+        "clock_header",
+        "clock_stems",
+        "clock_branches",
+        "clock_read"
+      ],
+      "bindings": [
+        {
+          "at": "natal.year",
+          "value": "庚子",
+          "symbols": [
+            {
+              "evidence": "clock_stems",
+              "offset": 6
+            },
+            {
+              "evidence": "clock_branches",
+              "offset": 6
+            }
+          ],
+          "position_evidence": [
+            "clock_header"
+          ],
+          "position_note": "헤더 시·일·월·년 순서에서 같은 열의 천간과 지지를 읽었다."
+        },
+        {
+          "at": "natal.month",
+          "value": "辛巳",
+          "symbols": [
+            {
+              "evidence": "clock_stems",
+              "offset": 4
+            },
+            {
+              "evidence": "clock_branches",
+              "offset": 4
+            }
+          ],
+          "position_evidence": [
+            "clock_header"
+          ],
+          "position_note": "헤더 시·일·월·년 순서에서 같은 열의 천간과 지지를 읽었다."
+        },
+        {
+          "at": "natal.day",
+          "value": "丙子",
+          "symbols": [
+            {
+              "evidence": "clock_stems",
+              "offset": 2
+            },
+            {
+              "evidence": "clock_branches",
+              "offset": 2
+            }
+          ],
+          "position_evidence": [
+            "clock_header"
+          ],
+          "position_note": "헤더 시·일·월·년 순서에서 같은 열의 천간과 지지를 읽었다."
+        },
+        {
+          "at": "natal.hour",
+          "value": "甲午",
+          "symbols": [
+            {
+              "evidence": "clock_stems",
+              "offset": 0
+            },
+            {
+              "evidence": "clock_branches",
+              "offset": 0
+            }
+          ],
+          "position_evidence": [
+            "clock_header"
+          ],
+          "position_note": "헤더 시·일·월·년 순서에서 같은 열의 천간과 지지를 읽었다."
+        }
+      ],
+      "author_assertions": [
+        {
+          "summary": "저자는 글을 쓰는 시각의 명식을 제시하고 오른쪽에서 왼쪽으로 읽는 순서를 설명한다. 실제 사람의 출생 사례로 다루지 않는다.",
+          "evidence_refs": [
+            "clock_context",
+            "clock_read"
+          ]
+        }
+      ],
+      "issues": [],
+      "training_label": null
+    },
+    {
+      "id": "root_flower_example",
+      "label": "근묘화실 설명에 사용한 명식",
+      "origin": "source_illustration",
+      "source_group": "sajustudy",
+      "subject_group": "sajustudy_clock_b",
+      "dependency_groups": [
+        "sajustudy",
+        "sajustudy_clock_b"
+      ],
+      "evidence_ids": [
+        "root_context",
+        "root_header",
+        "root_stems",
+        "root_branches",
+        "root_theory"
+      ],
+      "bindings": [
+        {
+          "at": "natal.year",
+          "value": "庚子",
+          "symbols": [
+            {
+              "evidence": "root_stems",
+              "offset": 6
+            },
+            {
+              "evidence": "root_branches",
+              "offset": 6
+            }
+          ],
+          "position_evidence": [
+            "root_header"
+          ],
+          "position_note": "헤더 시·일·월·년 순서에서 같은 열의 천간과 지지를 읽었다."
+        },
+        {
+          "at": "natal.month",
+          "value": "辛巳",
+          "symbols": [
+            {
+              "evidence": "root_stems",
+              "offset": 4
+            },
+            {
+              "evidence": "root_branches",
+              "offset": 4
+            }
+          ],
+          "position_evidence": [
+            "root_header"
+          ],
+          "position_note": "헤더 시·일·월·년 순서에서 같은 열의 천간과 지지를 읽었다."
+        },
+        {
+          "at": "natal.day",
+          "value": "丁丑",
+          "symbols": [
+            {
+              "evidence": "root_stems",
+              "offset": 2
+            },
+            {
+              "evidence": "root_branches",
+              "offset": 2
+            }
+          ],
+          "position_evidence": [
+            "root_header"
+          ],
+          "position_note": "헤더 시·일·월·년 순서에서 같은 열의 천간과 지지를 읽었다."
+        },
+        {
+          "at": "natal.hour",
+          "value": "己酉",
+          "symbols": [
+            {
+              "evidence": "root_stems",
+              "offset": 0
+            },
+            {
+              "evidence": "root_branches",
+              "offset": 0
+            }
+          ],
+          "position_evidence": [
+            "root_header"
+          ],
+          "position_note": "헤더 시·일·월·년 순서에서 같은 열의 천간과 지지를 읽었다."
+        }
+      ],
+      "author_assertions": [
+        {
+          "summary": "저자는 글을 작성하는 시간에 태어난 아이를 가정하고 년월일시를 근묘화실에 대응시킨다. 실제 출생 관측 여부는 확인되지 않았다.",
+          "evidence_refs": [
+            "root_context",
+            "root_theory"
+          ]
+        }
+      ],
+      "issues": [],
+      "training_label": null
+    },
+    {
+      "id": "self_four_pillars",
+      "label": "저자가 직접 적은 네 기둥",
+      "origin": "source_self_report",
+      "source_group": "choco",
+      "subject_group": "choco_subject_a",
+      "dependency_groups": [
+        "choco",
+        "choco_subject_a"
+      ],
+      "evidence_ids": [
+        "self_chart",
+        "self_theory",
+        "self_interpretation"
+      ],
+      "bindings": [
+        {
+          "at": "natal.year",
+          "value": "乙丑",
+          "symbols": [
+            {
+              "evidence": "self_chart",
+              "offset": 42
+            },
+            {
+              "evidence": "self_chart",
+              "offset": 43
+            }
+          ],
+          "position_evidence": [
+            "self_chart"
+          ],
+          "position_note": "원문에서 을축의 기둥 위치를 직접 명시한다."
+        },
+        {
+          "at": "natal.month",
+          "value": "甲申",
+          "symbols": [
+            {
+              "evidence": "self_chart",
+              "offset": 50
+            },
+            {
+              "evidence": "self_chart",
+              "offset": 51
+            }
+          ],
+          "position_evidence": [
+            "self_chart"
+          ],
+          "position_note": "원문에서 갑신의 기둥 위치를 직접 명시한다."
+        },
+        {
+          "at": "natal.day",
+          "value": "丙午",
+          "symbols": [
+            {
+              "evidence": "self_chart",
+              "offset": 7
+            },
+            {
+              "evidence": "self_chart",
+              "offset": 8
+            }
+          ],
+          "position_evidence": [
+            "self_chart"
+          ],
+          "position_note": "원문에서 병오의 기둥 위치를 직접 명시한다."
+        },
+        {
+          "at": "natal.hour",
+          "value": "乙未",
+          "symbols": [
+            {
+              "evidence": "self_chart",
+              "offset": 58
+            },
+            {
+              "evidence": "self_chart",
+              "offset": 59
+            }
+          ],
+          "position_evidence": [
+            "self_chart"
+          ],
+          "position_note": "원문에서 을미의 기둥 위치를 직접 명시한다."
+        }
+      ],
+      "author_assertions": [
+        {
+          "summary": "저자는 일주 외에 연주·월주·시주도 원국을 구성하며 각 간지의 의미가 함께 작용한다고 설명한다.",
+          "evidence_refs": [
+            "self_chart",
+            "self_theory",
+            "self_interpretation"
+          ]
+        }
+      ],
+      "issues": [],
+      "training_label": null
+    },
+    {
+      "id": "same_subject_day_hour",
+      "label": "같은 대상의 일주·시주 해석",
+      "origin": "source_illustration",
+      "source_group": "choco",
+      "subject_group": "choco_subject_a",
+      "dependency_groups": [
+        "choco",
+        "choco_subject_a"
+      ],
+      "evidence_ids": [
+        "partial_chart",
+        "partial_interpretation",
+        "partial_link"
+      ],
+      "bindings": [
+        {
+          "at": "natal.day",
+          "value": "丙午",
+          "symbols": [
+            {
+              "evidence": "partial_chart",
+              "offset": 15
+            },
+            {
+              "evidence": "partial_chart",
+              "offset": 16
+            }
+          ],
+          "position_evidence": [
+            "partial_chart"
+          ],
+          "position_note": "원문에서 병오의 기둥 위치를 직접 명시한다."
+        },
+        {
+          "at": "natal.hour",
+          "value": "乙未",
+          "symbols": [
+            {
+              "evidence": "partial_chart",
+              "offset": 10
+            },
+            {
+              "evidence": "partial_chart",
+              "offset": 11
+            }
+          ],
+          "position_evidence": [
+            "partial_chart"
+          ],
+          "position_note": "원문에서 을미의 기둥 위치를 직접 명시한다."
+        }
+      ],
+      "author_assertions": [
+        {
+          "summary": "저자는 병오일주·을미시를 함께 놓고 겁재·정인·상관의 직업적 활용을 해석한다. 해당 해석의 타당성은 독립 검수 전이다.",
+          "evidence_refs": [
+            "partial_chart",
+            "partial_interpretation"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "code": "same_subject_reuse",
+          "summary": "원문 대조에서 앞 사례와 같은 대상의 재언급으로 묶었다. 이 글에 없는 년주·월주를 다른 글에서 복사하지 않는다.",
+          "evidence_refs": [
+            "partial_link",
+            "partial_chart"
+          ]
+        }
+      ],
+      "training_label": null
+    },
+    {
+      "id": "three_pillars_transits",
+      "label": "생시 미상과 대운·세운을 함께 다룬 사례",
+      "origin": "source_reported_chart",
+      "source_group": "sajustudy",
+      "subject_group": "sajustudy_subject_c",
+      "dependency_groups": [
+        "sajustudy",
+        "sajustudy_subject_c"
+      ],
+      "evidence_ids": [
+        "clock_header",
+        "transit_header",
+        "transit_stems",
+        "transit_branches",
+        "transit_daewoon",
+        "transit_yearly",
+        "transit_position",
+        "transit_framework",
+        "transit_claim",
+        "transit_limit"
+      ],
+      "bindings": [
+        {
+          "at": "natal.year",
+          "value": "庚午",
+          "symbols": [
+            {
+              "evidence": "transit_stems",
+              "offset": 6
+            },
+            {
+              "evidence": "transit_branches",
+              "offset": 6
+            }
+          ],
+          "position_evidence": [
+            "clock_header",
+            "transit_position"
+          ],
+          "position_note": "같은 원문 모음의 시·일·월·년 표기 설명과 사례의 갑신월주·계유일주 명시를 대조했다. 첫 열 ◎는 미상으로 남긴다. 위치 의미의 독립 전문가 검수는 아직 없다."
+        },
+        {
+          "at": "natal.month",
+          "value": "甲申",
+          "symbols": [
+            {
+              "evidence": "transit_stems",
+              "offset": 4
+            },
+            {
+              "evidence": "transit_branches",
+              "offset": 4
+            }
+          ],
+          "position_evidence": [
+            "clock_header",
+            "transit_position"
+          ],
+          "position_note": "같은 원문 모음의 시·일·월·년 표기 설명과 사례의 갑신월주·계유일주 명시를 대조했다. 첫 열 ◎는 미상으로 남긴다. 위치 의미의 독립 전문가 검수는 아직 없다."
+        },
+        {
+          "at": "natal.day",
+          "value": "癸酉",
+          "symbols": [
+            {
+              "evidence": "transit_stems",
+              "offset": 2
+            },
+            {
+              "evidence": "transit_branches",
+              "offset": 2
+            }
+          ],
+          "position_evidence": [
+            "clock_header",
+            "transit_position"
+          ],
+          "position_note": "같은 원문 모음의 시·일·월·년 표기 설명과 사례의 갑신월주·계유일주 명시를 대조했다. 첫 열 ◎는 미상으로 남긴다. 위치 의미의 독립 전문가 검수는 아직 없다."
+        },
+        {
+          "at": "time.daewoon",
+          "value": "辛巳",
+          "symbols": [
+            {
+              "evidence": "transit_daewoon",
+              "offset": 5
+            },
+            {
+              "evidence": "transit_daewoon",
+              "offset": 7
+            }
+          ],
+          "position_evidence": [
+            "transit_header",
+            "transit_daewoon"
+          ],
+          "position_note": "표의 대운·세운 제목과 해당 간지를 함께 읽었다. 정확한 시작일·종료일은 옮기지 않는다."
+        },
+        {
+          "at": "time.yearly",
+          "value": "辛丑",
+          "symbols": [
+            {
+              "evidence": "transit_yearly",
+              "offset": 8
+            },
+            {
+              "evidence": "transit_yearly",
+              "offset": 12
+            }
+          ],
+          "position_evidence": [
+            "transit_header",
+            "transit_yearly"
+          ],
+          "position_note": "표의 대운·세운 제목과 해당 간지를 함께 읽었다. 정확한 시작일·종료일은 옮기지 않는다."
+        }
+      ],
+      "author_assertions": [
+        {
+          "summary": "저자는 대운 틀 안에서 세운이 작용한다고 설명하며 사유축 완성을 주장한다. 이 주장은 대운과 세운을 함께 보는 문맥이다.",
+          "evidence_refs": [
+            "transit_framework",
+            "transit_claim"
+          ]
+        },
+        {
+          "summary": "저자도 완성 시점을 판단하려면 정확한 시주와 근황이 필요하다고 제한한다.",
+          "evidence_refs": [
+            "transit_limit"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "code": "unknown_hour",
+          "summary": "원문 표의 ◎와 설명에 따라 시주는 미상이다. 명시된 삼주만 사용한다.",
+          "evidence_refs": [
+            "transit_stems",
+            "transit_branches",
+            "transit_limit"
+          ]
+        },
+        {
+          "code": "different_scope",
+          "summary": "현재 검토 조건은 원국 두 글자에 운 하나가 들어오는 조건이다. 이 원문의 대운·세운 결합 주장을 그 조건의 정답으로 바꾸지 않는다.",
+          "evidence_refs": [
+            "transit_framework",
+            "transit_claim"
+          ]
+        },
+        {
+          "code": "undated_transit_interval",
+          "summary": "29대운·2021년 표기만 보존한다. 대운 시작 시각이나 세운의 정확한 평가 시각은 미상이다.",
+          "evidence_refs": [
+            "transit_daewoon",
+            "transit_yearly"
+          ]
+        }
+      ],
+      "training_label": null
+    },
+    {
+      "id": "conflicting_calendar_example",
+      "label": "출생 연도 표기가 충돌하는 작성 예시",
+      "origin": "source_illustration",
+      "source_group": "sajuplus",
+      "subject_group": "sajuplus_calendar_a",
+      "dependency_groups": [
+        "sajuplus",
+        "sajuplus_calendar_a"
+      ],
+      "evidence_ids": [
+        "conflict_year_a",
+        "conflict_year_b",
+        "conflict_year",
+        "conflict_month",
+        "conflict_day",
+        "conflict_hour",
+        "conflict_order"
+      ],
+      "bindings": [
+        {
+          "at": "natal.year",
+          "value": "乙亥",
+          "symbols": [
+            {
+              "evidence": "conflict_year",
+              "offset": 0
+            },
+            {
+              "evidence": "conflict_year",
+              "offset": 1
+            }
+          ],
+          "position_evidence": [
+            "conflict_year"
+          ],
+          "position_note": "원문에서 을해의 기둥 위치를 직접 명시한다."
+        },
+        {
+          "at": "natal.month",
+          "value": "甲申",
+          "symbols": [
+            {
+              "evidence": "conflict_month",
+              "offset": 0
+            },
+            {
+              "evidence": "conflict_month",
+              "offset": 1
+            }
+          ],
+          "position_evidence": [
+            "conflict_month"
+          ],
+          "position_note": "원문에서 갑신의 기둥 위치를 직접 명시한다."
+        },
+        {
+          "at": "natal.day",
+          "value": "戊子",
+          "symbols": [
+            {
+              "evidence": "conflict_day",
+              "offset": 0
+            },
+            {
+              "evidence": "conflict_day",
+              "offset": 1
+            }
+          ],
+          "position_evidence": [
+            "conflict_day"
+          ],
+          "position_note": "원문에서 무자의 기둥 위치를 직접 명시한다."
+        },
+        {
+          "at": "natal.hour",
+          "value": "庚申",
+          "symbols": [
+            {
+              "evidence": "conflict_hour",
+              "offset": 107
+            },
+            {
+              "evidence": "conflict_hour",
+              "offset": 108
+            }
+          ],
+          "position_evidence": [
+            "conflict_hour"
+          ],
+          "position_note": "원문에서 경신의 기둥 위치를 직접 명시한다."
+        }
+      ],
+      "author_assertions": [
+        {
+          "summary": "저자는 달력과 시간 간지 조견표를 사용해 사주를 작성하는 방법을 설명한다. 명시된 간지만 옮기며 계산이 맞았다는 뜻은 아니다.",
+          "evidence_refs": [
+            "conflict_year",
+            "conflict_month",
+            "conflict_day",
+            "conflict_hour",
+            "conflict_order"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "code": "conflicting_birth_year",
+          "summary": "동일 예시에서 1995년과 1985년이 함께 나온다. 어느 연도가 맞는지 정정하지 않고 양력 출생 요청 생성을 보류한다.",
+          "evidence_refs": [
+            "conflict_year_a",
+            "conflict_year_b"
+          ]
+        },
+        {
+          "code": "clock_precision_mismatch",
+          "summary": "처음에는 15시 50분, 조견표 설명에는 15시 30분이 나온다. 같은 시간 구간의 표기인지 오기인지는 미확인이다.",
+          "evidence_refs": [
+            "conflict_year_a",
+            "conflict_hour"
+          ]
+        }
+      ],
+      "training_label": null
+    }
+  ]
+}
