@@ -1,0 +1,3608 @@
+{
+  "schema_version": 1,
+  "captured_on": "2026-09-23",
+  "repository_base_commit": "05a5eab0122eda37235feb66114c6c3d8249a705",
+  "purpose": "Read-only reconciliation evidence; not a runtime graph or training dataset.",
+  "apply_to_runtime": false,
+  "use_as_training_labels": false,
+  "numeric_policy": "Retained legacy weights and P3 flags are historical values, not learned probabilities or new verification results.",
+  "scope": "Complete differences of TAXONOMY entries and top-level fields of the 12 matching P2 unit IDs. Not a complete local-folder archive or full builder diff.",
+  "inputs": [
+    {
+      "local_relative_path": "2. 정제작업/_현황판/build_concept_map.py",
+      "repository_path": "정제/_현황판/build_concept_map.py",
+      "local_sha256": "a824a81d0591c98360737330186c2209c199ab0bb91d0eb98539643c8f30b6f5",
+      "repository_sha256": "d7ba4d0b10bcd300c2968a48e206613deaea214585792d56470b2d19799f0ea1",
+      "byte_equal": false
+    },
+    {
+      "local_relative_path": "2. 정제작업/_현황판/data/정의카드.jsonl",
+      "repository_path": "정제/_현황판/data/정의카드.jsonl",
+      "local_sha256": "0235a7ae9c818cd641cbdb162277746e5f8f425b005e014c2edafa6c7a7fd861",
+      "repository_sha256": "64482f1110a4b077fe3b6c2316221f8b1278a6d51f62b7d4e4e505eb9d67b9f2",
+      "byte_equal": false
+    },
+    {
+      "local_relative_path": "2. 정제작업/_현황판/엔진갈림_선언.jsonl",
+      "repository_path": "정제/_현황판/엔진갈림_선언.jsonl",
+      "local_sha256": "bde0b206419b0a139b2a29b32fe076618d498ad445c8696e2cc66c36fb7be7f2",
+      "repository_sha256": "fed6a66ea998453a4aaa34a4a9413cd33d3d27505f76fbeeb6523277df70ab51",
+      "byte_equal": false
+    },
+    {
+      "local_relative_path": "2. 정제작업/P2_유닛/pilot_UJ.jsonl",
+      "repository_path": "정제/P2_유닛/pilot_UJ.jsonl",
+      "local_sha256": "3c3ca1572f14ae1d196dffb20b15f63153a7be45cde547afacc36b62685456f2",
+      "repository_sha256": "a0c3fc6e0a06a1d5d8f44c53cd15f956bf3c2a63e6805211e42e2be32356ecda",
+      "byte_equal": false
+    },
+    {
+      "local_relative_path": "2. 정제작업/P2_유닛/pilot_UI.jsonl",
+      "repository_path": "정제/P2_유닛/pilot_UI.jsonl",
+      "local_sha256": "a009f49d12e3ed46d0ec405518c89b67b8fbb1534b6e72b5f560d2f14a2278a2",
+      "repository_sha256": "fa459066f57569a452ac8e7d7acc2fe102d2216b32079b9b5d367def6b3ef9b8",
+      "byte_equal": false
+    }
+  ],
+  "taxonomy": {
+    "local_count": 264,
+    "repository_count": 271,
+    "name_union_count": 273,
+    "local_only": {
+      "충(총칭)": {
+        "category": "S04 합충형파해",
+        "group": "합",
+        "aliases": [
+          "충을 하",
+          "충이 되",
+          "충이 돼",
+          "충을 해"
+        ]
+      },
+      "합(총칭)": {
+        "category": "S04 합충형파해",
+        "group": "합",
+        "aliases": [
+          "합을 하",
+          "합이 되",
+          "합이 돼",
+          "합을 해"
+        ]
+      }
+    },
+    "repository_only": {
+      "12시진": {
+        "category": "S00 천문·자연",
+        "group": "주기·좌표",
+        "aliases": [
+          "십이시진",
+          "12시진",
+          "時辰",
+          "자시생",
+          "축시생",
+          "인시생",
+          "묘시생",
+          "진시생",
+          "사시생",
+          "오시생",
+          "미시생",
+          "신시생",
+          "유시생",
+          "술시생",
+          "해시생",
+          "시에 태어",
+          "출생 시각",
+          "태어난 시각"
+        ]
+      },
+      "계절": {
+        "category": "S00 천문·자연",
+        "group": "주기·좌표",
+        "aliases": [
+          "사계절",
+          "네 계절",
+          "계절의 변화",
+          "환절기"
+        ]
+      },
+      "운(총칭)": {
+        "category": "S14 기본 골격어",
+        "group": "골격",
+        "aliases": [
+          "운(運)",
+          "명과 운",
+          "운이라는 것",
+          "운이란"
+        ]
+      },
+      "자전축(23.5°)": {
+        "category": "S00 천문·자연",
+        "group": "천체 운동",
+        "aliases": [
+          "자전축",
+          "23.5도",
+          "23.5˚",
+          "황도경사",
+          "지구의 기울"
+        ]
+      },
+      "지구 공전": {
+        "category": "S00 천문·자연",
+        "group": "천체 운동",
+        "aliases": [
+          "지구의 공전",
+          "지구 공전",
+          "공전 주기",
+          "태양을 한 바퀴"
+        ]
+      },
+      "지구 자전": {
+        "category": "S00 천문·자연",
+        "group": "천체 운동",
+        "aliases": [
+          "지구의 자전",
+          "지구 자전",
+          "자전 주기"
+        ]
+      },
+      "태(態)": {
+        "category": "S14 기본 골격어",
+        "group": "골격",
+        "aliases": [
+          "태(態)",
+          "명·운·태",
+          "정해지지 않은 것",
+          "바꿀 수 있는 것"
+        ]
+      },
+      "행성 배속": {
+        "category": "S00 천문·자연",
+        "group": "주기·좌표",
+        "aliases": [
+          "오행과 행성",
+          "행성 배속",
+          "목성, 화성",
+          "화성, 토성",
+          "금성, 수성",
+          "수성, 금성",
+          "토성, 금성"
+        ]
+      },
+      "황도(태양황경)": {
+        "category": "S00 천문·자연",
+        "group": "천체 운동",
+        "aliases": [
+          "황도",
+          "태양황경",
+          "황경"
+        ]
+      }
+    },
+    "changed_shared": {
+      "건록": {
+        "local": {
+          "category": "S07 십이운성",
+          "group": "12단계",
+          "aliases": [
+            "건록"
+          ]
+        },
+        "repository": {
+          "category": "S07 십이운성",
+          "group": "12단계",
+          "aliases": [
+            "건록",
+            "建祿"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "겁재": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "비겁",
+          "aliases": [
+            "겁재"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "비겁",
+          "aliases": [
+            "겁재",
+            "劫財"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "격국 일반": {
+        "local": {
+          "category": "S08 강약·격국·구조",
+          "group": "격국",
+          "aliases": [
+            "격국"
+          ]
+        },
+        "repository": {
+          "category": "S08 강약·격국·구조",
+          "group": "격국",
+          "aliases": [
+            "격국",
+            "格局"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "고립·병존 구조": {
+        "local": {
+          "category": "S08 강약·격국·구조",
+          "group": "구조·상태",
+          "aliases": [
+            "고립",
+            "병존"
+          ]
+        },
+        "repository": {
+          "category": "S08 강약·격국·구조",
+          "group": "구조·상태",
+          "aliases": [
+            "고립"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "공망": {
+        "local": {
+          "category": "S06 신살",
+          "group": "흉신",
+          "aliases": [
+            "공망"
+          ]
+        },
+        "repository": {
+          "category": "S06 신살",
+          "group": "흉신",
+          "aliases": [
+            "공망",
+            "空亡",
+            "天中殺"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "관대": {
+        "local": {
+          "category": "S07 십이운성",
+          "group": "12단계",
+          "aliases": [
+            "관대"
+          ]
+        },
+        "repository": {
+          "category": "S07 십이운성",
+          "group": "12단계",
+          "aliases": [
+            "관대",
+            "冠帶"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "관성 일반": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "관성",
+          "aliases": [
+            "관성"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "관성",
+          "aliases": [
+            "관성",
+            "官星"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "괴강": {
+        "local": {
+          "category": "S06 신살",
+          "group": "흉신",
+          "aliases": [
+            "괴강"
+          ]
+        },
+        "repository": {
+          "category": "S06 신살",
+          "group": "흉신",
+          "aliases": [
+            "괴강",
+            "魁罡"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "귀문": {
+        "local": {
+          "category": "S04 합충형파해",
+          "group": "형·파·해·원진",
+          "aliases": [
+            "귀문"
+          ]
+        },
+        "repository": {
+          "category": "S04 합충형파해",
+          "group": "형·파·해·원진",
+          "aliases": [
+            "귀문",
+            "鬼門"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "대운": {
+        "local": {
+          "category": "S10 대운·세운·운해석",
+          "group": "운의 종류",
+          "aliases": [
+            "대운",
+            "해대운"
+          ]
+        },
+        "repository": {
+          "category": "S10 대운·세운·운해석",
+          "group": "운의 종류",
+          "aliases": [
+            "대운",
+            "해대운",
+            "大運"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "도화": {
+        "local": {
+          "category": "S06 신살",
+          "group": "도화·역마·화개",
+          "aliases": [
+            "도화"
+          ]
+        },
+        "repository": {
+          "category": "S06 신살",
+          "group": "도화·역마·화개",
+          "aliases": [
+            "도화",
+            "桃花"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "목욕": {
+        "local": {
+          "category": "S07 십이운성",
+          "group": "12단계",
+          "aliases": [
+            "목욕"
+          ]
+        },
+        "repository": {
+          "category": "S07 십이운성",
+          "group": "12단계",
+          "aliases": [
+            "목욕",
+            "沐浴"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "방합": {
+        "local": {
+          "category": "S04 합충형파해",
+          "group": "합",
+          "aliases": [
+            "방합",
+            "인묘진",
+            "사오미",
+            "신유술",
+            "해자축"
+          ]
+        },
+        "repository": {
+          "category": "S04 합충형파해",
+          "group": "합",
+          "aliases": [
+            "방합",
+            "인묘진",
+            "사오미",
+            "신유술",
+            "해자축",
+            "方合"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "배우자": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "육친",
+          "aliases": [
+            "배우자",
+            "남편",
+            "아내",
+            "처(妻)",
+            "부부간",
+            "부부관계",
+            "부부가",
+            "부부 사이"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "육친",
+          "aliases": [
+            "배우자",
+            "남편",
+            "아내",
+            "처(妻)"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "백호": {
+        "local": {
+          "category": "S06 신살",
+          "group": "흉신",
+          "aliases": [
+            "백호"
+          ]
+        },
+        "repository": {
+          "category": "S06 신살",
+          "group": "흉신",
+          "aliases": [
+            "백호",
+            "白虎"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "비겁 일반": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "비겁",
+          "aliases": [
+            "비겁"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "비겁",
+          "aliases": [
+            "비겁",
+            "比劫"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "비견": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "비겁",
+          "aliases": [
+            "비견"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "비겁",
+          "aliases": [
+            "비견",
+            "比肩"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "삼합": {
+        "local": {
+          "category": "S04 합충형파해",
+          "group": "합",
+          "aliases": [
+            "삼합",
+            "인오술",
+            "사유축",
+            "신자진",
+            "해묘미"
+          ]
+        },
+        "repository": {
+          "category": "S04 합충형파해",
+          "group": "합",
+          "aliases": [
+            "삼합",
+            "인오술",
+            "사유축",
+            "신자진",
+            "해묘미",
+            "三合"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "상관": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "식상",
+          "aliases": [
+            "상관"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "식상",
+          "aliases": [
+            "상관",
+            "傷官"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "상극": {
+        "local": {
+          "category": "S01 음양·오행",
+          "group": "오행 관계",
+          "aliases": [
+            "상극",
+            "목극토",
+            "토극수",
+            "수극화",
+            "화극금",
+            "금극목",
+            "극합니다",
+            "극하는 오행",
+            "극하니까",
+            "극을 하"
+          ]
+        },
+        "repository": {
+          "category": "S01 음양·오행",
+          "group": "오행 관계",
+          "aliases": [
+            "상극",
+            "목극토",
+            "토극수",
+            "수극화",
+            "화극금",
+            "금극목",
+            "相剋"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "상생": {
+        "local": {
+          "category": "S01 음양·오행",
+          "group": "오행 관계",
+          "aliases": [
+            "상생",
+            "생조",
+            "목생화",
+            "화생토",
+            "토생금",
+            "금생수",
+            "수생목"
+          ]
+        },
+        "repository": {
+          "category": "S01 음양·오행",
+          "group": "오행 관계",
+          "aliases": [
+            "상생",
+            "생조",
+            "목생화",
+            "화생토",
+            "토생금",
+            "금생수",
+            "수생목",
+            "相生"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "세운(연운)": {
+        "local": {
+          "category": "S10 대운·세운·운해석",
+          "group": "운의 종류",
+          "aliases": [
+            "세운",
+            "연운"
+          ]
+        },
+        "repository": {
+          "category": "S10 대운·세운·운해석",
+          "group": "운의 종류",
+          "aliases": [
+            "세운",
+            "연운",
+            "歲運"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "시주": {
+        "local": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "기둥(주)",
+          "aliases": [
+            "시주"
+          ]
+        },
+        "repository": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "기둥(주)",
+          "aliases": [
+            "시주",
+            "時柱"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "식상 일반": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "식상",
+          "aliases": [
+            "식상"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "식상",
+          "aliases": [
+            "식상",
+            "食傷"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "식신": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "식상",
+          "aliases": [
+            "식신"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "식상",
+          "aliases": [
+            "식신",
+            "食神"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "신강": {
+        "local": {
+          "category": "S08 강약·격국·구조",
+          "group": "강약",
+          "aliases": [
+            "신강"
+          ]
+        },
+        "repository": {
+          "category": "S08 강약·격국·구조",
+          "group": "강약",
+          "aliases": [
+            "신강",
+            "身强"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "신약": {
+        "local": {
+          "category": "S08 강약·격국·구조",
+          "group": "강약",
+          "aliases": [
+            "신약"
+          ]
+        },
+        "repository": {
+          "category": "S08 강약·격국·구조",
+          "group": "강약",
+          "aliases": [
+            "신약",
+            "身弱"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "십성(총칭)": {
+        "local": {
+          "category": "S14 기본 골격어",
+          "group": "골격",
+          "aliases": [
+            "십성",
+            "십신"
+          ]
+        },
+        "repository": {
+          "category": "S14 기본 골격어",
+          "group": "골격",
+          "aliases": [
+            "십성",
+            "십신",
+            "육신"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "십이운성 자체": {
+        "local": {
+          "category": "S07 십이운성",
+          "group": "이론·논쟁",
+          "aliases": [
+            "십이운성"
+          ]
+        },
+        "repository": {
+          "category": "S07 십이운성",
+          "group": "이론·논쟁",
+          "aliases": [
+            "십이운성",
+            "12운성",
+            "十二運星"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "양인": {
+        "local": {
+          "category": "S06 신살",
+          "group": "흉신",
+          "aliases": [
+            "양인"
+          ]
+        },
+        "repository": {
+          "category": "S06 신살",
+          "group": "흉신",
+          "aliases": [
+            "양인",
+            "羊刃"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "여기·중기·정기": {
+        "local": {
+          "category": "S03 지지·지장간",
+          "group": "지장간",
+          "aliases": [
+            "여기",
+            "중기",
+            "정기",
+            "본기"
+          ]
+        },
+        "repository": {
+          "category": "S03 지지·지장간",
+          "group": "지장간",
+          "aliases": [
+            "여기",
+            "중기",
+            "정기",
+            "본기",
+            "正氣"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "역마": {
+        "local": {
+          "category": "S06 신살",
+          "group": "도화·역마·화개",
+          "aliases": [
+            "역마"
+          ]
+        },
+        "repository": {
+          "category": "S06 신살",
+          "group": "도화·역마·화개",
+          "aliases": [
+            "역마",
+            "驛馬"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "오행(총칭)": {
+        "local": {
+          "category": "S14 기본 골격어",
+          "group": "골격",
+          "aliases": [
+            "오행"
+          ]
+        },
+        "repository": {
+          "category": "S14 기본 골격어",
+          "group": "골격",
+          "aliases": [
+            "오행",
+            "五行"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "용신(총칭)": {
+        "local": {
+          "category": "S14 기본 골격어",
+          "group": "골격",
+          "aliases": [
+            "용신"
+          ]
+        },
+        "repository": {
+          "category": "S14 기본 골격어",
+          "group": "골격",
+          "aliases": [
+            "용신",
+            "用神"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "원국·명식": {
+        "local": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "원국 전체",
+          "aliases": [
+            "원국",
+            "명식",
+            "사주팔자",
+            "팔자"
+          ]
+        },
+        "repository": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "원국 전체",
+          "aliases": [
+            "원국",
+            "명식",
+            "사주팔자",
+            "팔자",
+            "명조",
+            "命式"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "원진": {
+        "local": {
+          "category": "S04 합충형파해",
+          "group": "형·파·해·원진",
+          "aliases": [
+            "원진"
+          ]
+        },
+        "repository": {
+          "category": "S04 합충형파해",
+          "group": "형·파·해·원진",
+          "aliases": [
+            "원진",
+            "怨嗔"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "월간": {
+        "local": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "자리(지지·천간)",
+          "aliases": [
+            "월간"
+          ]
+        },
+        "repository": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "자리(지지·천간)",
+          "aliases": [
+            "월간",
+            "月干"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "월주": {
+        "local": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "기둥(주)",
+          "aliases": [
+            "월주"
+          ]
+        },
+        "repository": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "기둥(주)",
+          "aliases": [
+            "월주",
+            "月柱"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "월지": {
+        "local": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "자리(지지·천간)",
+          "aliases": [
+            "월지",
+            "월령"
+          ]
+        },
+        "repository": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "자리(지지·천간)",
+          "aliases": [
+            "월지",
+            "월령",
+            "月支"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "인성 일반": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "인성",
+          "aliases": [
+            "인성"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "인성",
+          "aliases": [
+            "인성",
+            "印星"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "일간": {
+        "local": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "자리(지지·천간)",
+          "aliases": [
+            "일간",
+            "일주 천간"
+          ]
+        },
+        "repository": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "자리(지지·천간)",
+          "aliases": [
+            "일간",
+            "일주 천간",
+            "日干"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "일주": {
+        "local": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "기둥(주)",
+          "aliases": [
+            "일주",
+            "해일주"
+          ]
+        },
+        "repository": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "기둥(주)",
+          "aliases": [
+            "일주",
+            "해일주",
+            "日柱"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "일지": {
+        "local": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "자리(지지·천간)",
+          "aliases": [
+            "일지"
+          ]
+        },
+        "repository": {
+          "category": "S13 자리(궁위)·원국 구조",
+          "group": "자리(지지·천간)",
+          "aliases": [
+            "일지",
+            "日支"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "장생": {
+        "local": {
+          "category": "S07 십이운성",
+          "group": "12단계",
+          "aliases": [
+            "장생"
+          ]
+        },
+        "repository": {
+          "category": "S07 십이운성",
+          "group": "12단계",
+          "aliases": [
+            "장생",
+            "長生"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "재성 일반": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "재성",
+          "aliases": [
+            "재성"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "재성",
+          "aliases": [
+            "재성",
+            "財星"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "전왕격": {
+        "local": {
+          "category": "S08 강약·격국·구조",
+          "group": "격국",
+          "aliases": [
+            "전왕"
+          ]
+        },
+        "repository": {
+          "category": "S08 강약·격국·구조",
+          "group": "격국",
+          "aliases": [
+            "전왕",
+            "곡직",
+            "염상",
+            "가색",
+            "종혁"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "정관": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "관성",
+          "aliases": [
+            "정관"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "관성",
+          "aliases": [
+            "정관",
+            "正官"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "정인": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "인성",
+          "aliases": [
+            "정인"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "인성",
+          "aliases": [
+            "정인",
+            "正印"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "정재": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "재성",
+          "aliases": [
+            "정재"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "재성",
+          "aliases": [
+            "정재",
+            "正財"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "제왕": {
+        "local": {
+          "category": "S07 십이운성",
+          "group": "12단계",
+          "aliases": [
+            "제왕"
+          ]
+        },
+        "repository": {
+          "category": "S07 십이운성",
+          "group": "12단계",
+          "aliases": [
+            "제왕",
+            "帝旺"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "조후 균형": {
+        "local": {
+          "category": "S08 강약·격국·구조",
+          "group": "구조·상태",
+          "aliases": [
+            "조후",
+            "한난조습",
+            "한난",
+            "추위",
+            "춥다",
+            "춥습니다",
+            "더위",
+            "덥습니다",
+            "따뜻한 기운"
+          ]
+        },
+        "repository": {
+          "category": "S08 강약·격국·구조",
+          "group": "구조·상태",
+          "aliases": [
+            "조후"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "조후용신": {
+        "local": {
+          "category": "S09 용신",
+          "group": "용신 5법",
+          "aliases": [
+            "조후용신",
+            "궁통보감"
+          ]
+        },
+        "repository": {
+          "category": "S09 용신",
+          "group": "용신 5법",
+          "aliases": [
+            "조후용신"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "지장간": {
+        "local": {
+          "category": "S03 지지·지장간",
+          "group": "지장간",
+          "aliases": [
+            "지장간",
+            "지장 간"
+          ]
+        },
+        "repository": {
+          "category": "S03 지지·지장간",
+          "group": "지장간",
+          "aliases": [
+            "지장간",
+            "지장 간",
+            "地藏干",
+            "암장"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "지지(총칭)": {
+        "local": {
+          "category": "S14 기본 골격어",
+          "group": "골격",
+          "aliases": [
+            "지지"
+          ]
+        },
+        "repository": {
+          "category": "S14 기본 골격어",
+          "group": "골격",
+          "aliases": [
+            "지지",
+            "십이지",
+            "地支"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "지지충": {
+        "local": {
+          "category": "S04 합충형파해",
+          "group": "충",
+          "aliases": [
+            "지지충",
+            "충을",
+            "충이 일어",
+            "자오충",
+            "묘유충",
+            "인신충",
+            "사해충",
+            "진술충",
+            "축미충"
+          ]
+        },
+        "repository": {
+          "category": "S04 합충형파해",
+          "group": "충",
+          "aliases": [
+            "지지충",
+            "상충",
+            "-상충되",
+            "-상충하",
+            "-상충관계",
+            "충을",
+            "충이 일어",
+            "자오충",
+            "묘유충",
+            "인신충",
+            "사해충",
+            "진술충",
+            "축미충"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "천간(총칭)": {
+        "local": {
+          "category": "S14 기본 골격어",
+          "group": "골격",
+          "aliases": [
+            "천간"
+          ]
+        },
+        "repository": {
+          "category": "S14 기본 골격어",
+          "group": "골격",
+          "aliases": [
+            "천간",
+            "십간",
+            "天干"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "천간합": {
+        "local": {
+          "category": "S04 합충형파해",
+          "group": "합",
+          "aliases": [
+            "천간합",
+            "갑기합",
+            "을경합",
+            "병신합",
+            "정임합",
+            "무계합"
+          ]
+        },
+        "repository": {
+          "category": "S04 합충형파해",
+          "group": "합",
+          "aliases": [
+            "천간합",
+            "간합",
+            "-어중간합",
+            "-애매간합",
+            "갑기합",
+            "을경합",
+            "병신합",
+            "정임합",
+            "무계합",
+            "天干合"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "천을귀인": {
+        "local": {
+          "category": "S06 신살",
+          "group": "길신",
+          "aliases": [
+            "천을귀인"
+          ]
+        },
+        "repository": {
+          "category": "S06 신살",
+          "group": "길신",
+          "aliases": [
+            "천을귀인",
+            "天乙貴人"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "통근": {
+        "local": {
+          "category": "S03 지지·지장간",
+          "group": "천간-지지 호응",
+          "aliases": [
+            "통근",
+            "뿌리내",
+            "뿌리가",
+            "뿌리를",
+            "뿌리로",
+            "뿌리는",
+            "뿌리도",
+            "뿌리 없"
+          ]
+        },
+        "repository": {
+          "category": "S03 지지·지장간",
+          "group": "천간-지지 호응",
+          "aliases": [
+            "통근",
+            "뿌리를 내",
+            "뿌리내",
+            "通根"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "투간·투출": {
+        "local": {
+          "category": "S03 지지·지장간",
+          "group": "천간-지지 호응",
+          "aliases": [
+            "투간",
+            "투출"
+          ]
+        },
+        "repository": {
+          "category": "S03 지지·지장간",
+          "group": "천간-지지 호응",
+          "aliases": [
+            "투간",
+            "투출",
+            "透出"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "편관(칠살)": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "관성",
+          "aliases": [
+            "편관",
+            "칠살"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "관성",
+          "aliases": [
+            "편관",
+            "칠살",
+            "偏官",
+            "七殺"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "편인": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "인성",
+          "aliases": [
+            "편인",
+            "효신"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "인성",
+          "aliases": [
+            "편인",
+            "효신",
+            "偏印"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "편재": {
+        "local": {
+          "category": "S05 십성·육친",
+          "group": "재성",
+          "aliases": [
+            "편재"
+          ]
+        },
+        "repository": {
+          "category": "S05 십성·육친",
+          "group": "재성",
+          "aliases": [
+            "편재",
+            "偏財"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "하건충 십성 대응": {
+        "local": {
+          "category": "S02 천간",
+          "group": "천간 이론",
+          "aliases": [
+            "하건충"
+          ]
+        },
+        "repository": {
+          "category": "S02 천간",
+          "group": "천간 이론",
+          "aliases": [
+            "하건충에 의하면",
+            "By 하건충",
+            "팔자심리추명학",
+            "하건충 십성"
+          ]
+        },
+        "review_status": "pending"
+      },
+      "화개": {
+        "local": {
+          "category": "S06 신살",
+          "group": "도화·역마·화개",
+          "aliases": [
+            "화개"
+          ]
+        },
+        "repository": {
+          "category": "S06 신살",
+          "group": "도화·역마·화개",
+          "aliases": [
+            "화개",
+            "화갯살",
+            "華蓋"
+          ]
+        },
+        "review_status": "pending"
+      }
+    }
+  },
+  "p2_units": [
+    {
+      "unit_id": "UJ-0001",
+      "repository_path": "정제/P2_유닛/pilot_UJ.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "links": {
+          "local": {
+            "계층": {
+              "대주제": "S08 강약·격국·구조",
+              "중주제": "신강·신약",
+              "개념": [
+                "신강",
+                "신약",
+                "중화"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "개념:일간",
+                "rel": "기준",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:비겁 일반",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:인성 일반",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:식상 일반",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:재성 일반",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:관성 일반",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:중화",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "UJ-0002",
+                "rel": "선행",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              }
+            ]
+          },
+          "repository": {
+            "계층": {
+              "대주제": "S08 강약·격국·구조",
+              "중주제": "신강·신약",
+              "개념": [
+                "신강",
+                "신약",
+                "중화"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "개념:일간",
+                "rel": "기준",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:비겁 일반",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:인성 일반",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:식상 일반",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:재성 일반",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:관성 일반",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:중화",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "UJ-0002",
+                "rel": "선행",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:억부용신",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "unit_id": "UJ-0002",
+      "repository_path": "정제/P2_유닛/pilot_UJ.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "links": {
+          "local": {
+            "계층": {
+              "대주제": "S08 강약·격국·구조",
+              "중주제": "신왕·간여지동",
+              "개념": [
+                "신왕",
+                "간여지동",
+                "통근"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UJ-0001",
+                "rel": "반증",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:통근",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "다저자합의",
+                "주": "저자 어휘는 «뿌리» — 술어 «통근»은 우리 번역어다",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:간여지동",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:신왕",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:일지",
+                "rel": "위치",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "UJ-0003",
+                "rel": "선행",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              }
+            ]
+          },
+          "repository": {
+            "계층": {
+              "대주제": "S08 강약·격국·구조",
+              "중주제": "신왕·간여지동",
+              "개념": [
+                "신왕",
+                "간여지동",
+                "통근"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UJ-0001",
+                "rel": "반증",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:간여지동",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:신왕",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:통근",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:일지",
+                "rel": "위치",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "UJ-0003",
+                "rel": "선행",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:병화(丙)",
+                "rel": "예시",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              }
+            ]
+          }
+        },
+        "평균강도": {
+          "local": 0.73,
+          "repository": 0.7
+        }
+      }
+    },
+    {
+      "unit_id": "UJ-0003",
+      "repository_path": "정제/P2_유닛/pilot_UJ.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "links": {
+          "local": {
+            "계층": {
+              "대주제": "S03 지지·지장간",
+              "중주제": "통근",
+              "개념": [
+                "통근",
+                "지장간",
+                "신약"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UJ-0002",
+                "rel": "정밀화",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:통근",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "다저자합의",
+                "주": "저자 어휘는 «뿌리» — 술어 «통근»은 우리 번역어다",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:지장간",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:신약",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "UJ-0004",
+                "rel": "선행",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              }
+            ]
+          },
+          "repository": {
+            "계층": {
+              "대주제": "S03 지지·지장간",
+              "중주제": "통근",
+              "개념": [
+                "통근",
+                "지장간",
+                "신약"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UJ-0002",
+                "rel": "정밀화",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:통근",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:지장간",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:경금(庚)",
+                "rel": "예시",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:진토(辰)",
+                "rel": "예시",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:신약",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:득령·득지·득세",
+                "rel": "관련",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "UJ-0004",
+                "rel": "선행",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              }
+            ]
+          }
+        },
+        "평균강도": {
+          "local": 0.74,
+          "repository": 0.7
+        }
+      }
+    },
+    {
+      "unit_id": "UJ-0004",
+      "repository_path": "정제/P2_유닛/pilot_UJ.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "delta": {
+          "local": {
+            "type": "판본추가",
+            "대조대상": [
+              "UJ-0003",
+              "개념:월지",
+              "개념:일지",
+              "개념:용신(총칭)"
+            ],
+            "무엇이_새로운가": "월지·일지 가중을 결론으로 담지 않고 **계산 분기**로 담는 첫 사례. 운영자 260722 계산분기 지시(둘의 결과가 어긋나는 지점을 역질문)의 적용 대상이 하나 늘었다.",
+            "가심비": "채택"
+          },
+          "repository": {
+            "type": "판본추가",
+            "대조대상": [
+              "UJ-0003",
+              "개념:월지",
+              "개념:일지",
+              "개념:용신 확정법"
+            ],
+            "무엇이_새로운가": "월지·일지 가중을 결론으로 담지 않고 **계산 분기**로 담는 첫 사례. 운영자 260722 계산분기 지시(둘의 결과가 어긋나는 지점을 역질문)의 적용 대상이 하나 늘었다.",
+            "가심비": "채택"
+          }
+        },
+        "links": {
+          "local": {
+            "계층": {
+              "대주제": "S13 자리(궁위)·원국 구조",
+              "중주제": "자리별 강도",
+              "개념": [
+                "월지",
+                "일지",
+                "연지"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "개념:통근",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "다저자합의",
+                "주": "저자 어휘는 «뿌리» — 술어 «통근»은 우리 번역어다",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:연지",
+                "rel": "비교",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "다저자합의",
+                "주": "연지가 가장 약하다는 데는 이견이 거의 없다(통설)",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:궁위·자리론",
+                "rel": "계층",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "다저자합의",
+                "주": "자리(궁위)에 강도 차이가 있다는 것은 근묘화실 이래 공통 전제",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:용신(총칭)",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.8,
+                "주": "어느 쪽을 택하든 용신이 갈린다는 사실 자체는 근거력이 있다(저자 축자로 명시)"
+              },
+              {
+                "to": "개념:시지",
+                "rel": "비교",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "주": "시지가 월지·일지보다 약하다는 서열은 이 저자의 서술",
+                "weight": 0.7
+              },
+              {
+                "to": "UJ-0003",
+                "rel": "정밀화",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "주": "무근 판정(UJ-0003) 위에 위치 가중을 얹는 관계",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:월지",
+                "rel": "분기후보",
+                "dir": "↔",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "권위·임상",
+                "주": "★우열 주장 아님 — 갑론을박 축. 약한 링크로만 보존(운영자 260725)",
+                "weight": 0.2
+              },
+              {
+                "to": "개념:일지",
+                "rel": "분기후보",
+                "dir": "↔",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "권위·임상",
+                "주": "★임상 근거뿐이라 권위 없음. '이런 의견도 있었다' 수준",
+                "weight": 0.2
+              }
+            ]
+          },
+          "repository": {
+            "계층": {
+              "대주제": "S13 자리(궁위)·원국 구조",
+              "중주제": "자리별 강도",
+              "개념": [
+                "월지",
+                "일지",
+                "연지"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "개념:연지",
+                "rel": "비교",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "다저자합의",
+                "주": "연지가 가장 약하다는 데는 이견이 거의 없다(통설)",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:통근",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "다저자합의",
+                "주": "뿌리(통근)를 본다는 전제 자체는 관법 무관하게 공통",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:궁위·자리론",
+                "rel": "계층",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "다저자합의",
+                "주": "자리(궁위)에 강도 차이가 있다는 것은 근묘화실 이래 공통 전제",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:용신 확정법",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.8,
+                "주": "어느 쪽을 택하든 용신이 갈린다는 사실 자체는 근거력이 있다(저자 축자로 명시)"
+              },
+              {
+                "to": "개념:시지",
+                "rel": "비교",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "주": "시지가 월지·일지보다 약하다는 서열은 이 저자의 서술",
+                "weight": 0.7
+              },
+              {
+                "to": "UJ-0003",
+                "rel": "정밀화",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "주": "무근 판정(UJ-0003) 위에 위치 가중을 얹는 관계",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:월지",
+                "rel": "분기후보",
+                "dir": "↔",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "권위·임상",
+                "주": "★우열 주장 아님 — 갑론을박 축. 약한 링크로만 보존(운영자 260725)",
+                "weight": 0.2
+              },
+              {
+                "to": "개념:일지",
+                "rel": "분기후보",
+                "dir": "↔",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "권위·임상",
+                "주": "★임상 근거뿐이라 권위 없음. '이런 의견도 있었다' 수준",
+                "weight": 0.2
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "unit_id": "UJ-0005",
+      "repository_path": "정제/P2_유닛/pilot_UJ.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "P3검증": {
+          "local": {
+            "chain채움": true,
+            "근거축자일치": true,
+            "정답문단인용": false,
+            "근거총자수": 460
+          },
+          "repository": {
+            "chain채움": true,
+            "근거축자일치": true,
+            "정답문단인용": false,
+            "근거총자수": 331
+          }
+        },
+        "links": {
+          "local": {
+            "계층": {
+              "대주제": "S04 합충형파해",
+              "중주제": "쟁충·쟁합",
+              "개념": [
+                "쟁충·쟁합",
+                "천간합",
+                "천간충"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "개념:쟁충·쟁합",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:갑목(甲)",
+                "rel": "예시",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:경금(庚)",
+                "rel": "예시",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:기토(己)",
+                "rel": "예시",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "UJ-0001",
+                "rel": "보정",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              }
+            ]
+          },
+          "repository": {
+            "계층": {
+              "대주제": "S04 합충형파해",
+              "중주제": "쟁충·쟁합",
+              "개념": [
+                "쟁충·쟁합",
+                "천간합",
+                "천간충"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "개념:천간합",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:천간충",
+                "rel": "구성",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:쟁충·쟁합",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:갑목(甲)",
+                "rel": "예시",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:경금(庚)",
+                "rel": "예시",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:기토(己)",
+                "rel": "예시",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:합화",
+                "rel": "관련",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "UJ-0001",
+                "rel": "보정",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              }
+            ]
+          }
+        },
+        "근거": {
+          "local": [
+            {
+              "para_id": "CT-P155-12",
+              "역할": "조건",
+              "quote": "사주에서 합이 되든 충이 되든 어떤 작용이 생기면요\n이 작용은 절대 사라지지 않고\n계속\n눈에 보이지 않게끔\n어쨌든 작용을 합니다\n그래서 합과 충이 어지럽게 되어있다\n2대1로 쟁충을 맞았는데\n1대1로 또 합도 동시에 되어있다\n또는\n3대1로 합이 되어있다\n그러면 1인예가 기운이 너무 흐려져요",
+              "file": "20240921_대세운의 합과 충 해석법 초명 명리 중급 심화 맛보기 강의_WiY1ku_AqNg.md",
+              "lines": [
+                332,
+                363
+              ]
+            },
+            {
+              "para_id": "CT-P155-12",
+              "역할": "결론",
+              "quote": "이러면 감목은\n감목처럼 안보일수도 있어요.\n너무 막\n합과 충이 복잡하게 되어있으며\n감목의 기운이 많이 흐려집니다.\n2대1로 쟁합이 돼도\n3대1로 쟁합이 돼도\n마찬가지로 기운이 흐려져요.",
+              "file": "20240921_대세운의 합과 충 해석법 초명 명리 중급 심화 맛보기 강의_WiY1ku_AqNg.md",
+              "lines": [
+                332,
+                363
+              ]
+            },
+            {
+              "para_id": "CT-P155-12",
+              "역할": "조건",
+              "quote": "예를 들어 원국에 간목이 있는데\n일간이라고 할게요 간목 일간입니다\n근데 청간에 경금이 두개가 있고\n있고 연간\n월간에 경금경금이 있고\n감목일간인데\n시간에는 기토가 있다고\n할게요. 그러면 2대1로\n충이 되면서 기토랑 합이 또 되잖아요.",
+              "file": "20240921_대세운의 합과 충 해석법 초명 명리 중급 심화 맛보기 강의_WiY1ku_AqNg.md",
+              "lines": [
+                332,
+                363
+              ]
+            },
+            {
+              "para_id": "CT-P155-12",
+              "역할": "결론",
+              "quote": "그럼 간목이 당연히 기토랑 1대 1로 합이 되는 것보다\n3대 1로 합이 되면 곱하기 3배만큼 더 기운이 흐려지는 겁니다.",
+              "file": "20240921_대세운의 합과 충 해석법 초명 명리 중급 심화 맛보기 강의_WiY1ku_AqNg.md",
+              "lines": [
+                332,
+                363
+              ]
+            }
+          ],
+          "repository": [
+            {
+              "para_id": "CT-P155-12",
+              "역할": "조건",
+              "quote": "사주에서 합이 되든 충이 되든 어떤 작용이 생기면요\n이 작용은 절대 사라지지 않고\n계속\n눈에 보이지 않게끔\n어쨌든 작용을 합니다\n그래서 합과 충이 어지럽게 되어있다\n2대1로 쟁충을 맞았는데\n1대1로 또 합도 동시에 되어있다\n또는\n3대1로 합이 되어있다\n그러면 1인예가 기운이 너무 흐려져요",
+              "file": "20240921_대세운의 합과 충 해석법 초명 명리 중급 심화 맛보기 강의_WiY1ku_AqNg.md",
+              "lines": [
+                332,
+                363
+              ]
+            },
+            {
+              "para_id": "CT-P155-12",
+              "역할": "결론",
+              "quote": "이러면 감목은\n감목처럼 안보일수도 있어요.\n너무 막\n합과 충이 복잡하게 되어있으며\n감목의 기운이 많이 흐려집니다.\n2대1로 쟁합이 돼도\n3대1로 쟁합이 돼도\n마찬가지로 기운이 흐려져요.",
+              "file": "20240921_대세운의 합과 충 해석법 초명 명리 중급 심화 맛보기 강의_WiY1ku_AqNg.md",
+              "lines": [
+                332,
+                363
+              ]
+            },
+            {
+              "para_id": "CT-P155-12",
+              "역할": "결론",
+              "quote": "그럼 간목이 당연히 기토랑 1대 1로 합이 되는 것보다\n3대 1로 합이 되면 곱하기 3배만큼 더 기운이 흐려지는 겁니다.",
+              "file": "20240921_대세운의 합과 충 해석법 초명 명리 중급 심화 맛보기 강의_WiY1ku_AqNg.md",
+              "lines": [
+                332,
+                363
+              ]
+            }
+          ]
+        },
+        "근거_접속어수": {
+          "local": 6,
+          "repository": 4
+        },
+        "근거_총자수": {
+          "local": 460,
+          "repository": 331
+        }
+      }
+    },
+    {
+      "unit_id": "UJ-0006",
+      "repository_path": "정제/P2_유닛/pilot_UJ.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "links": {
+          "local": {
+            "계층": {
+              "대주제": "S02 천간",
+              "중주제": "갑목의 계절별 편차",
+              "개념": [
+                "갑목(甲)",
+                "인목(寅)",
+                "조후 균형"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UJ-0003",
+                "rel": "반증",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "주": "뿌리 유무만으로 세기를 정하는 판정에 조후 보정을 요구",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:통근",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "다저자합의",
+                "주": "통근 자체는 관법 무관 공통 개념",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:경금(庚)",
+                "rel": "조건",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "주": "★'바로 앞·바로 뒤'라는 인접 조건이 축자에 명시 — 도화 위원의 옆칸 축과 교차 확증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:병화(丙)",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:식신",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:지장간",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "다저자합의",
+                "주": "지장간에만 있어도 발현이 관측된다는 주장의 전제",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:지지충",
+                "rel": "조건",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:격각",
+                "rel": "조건",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "주": "★사전 미등재. 인계서가 '155문단인데 노드 0개'로 지목한 개념이 판정 조건으로 실제 등장",
+                "weight": 0.7
+              }
+            ]
+          },
+          "repository": {
+            "계층": {
+              "대주제": "S02 천간",
+              "중주제": "갑목의 계절별 편차",
+              "개념": [
+                "갑목(甲)",
+                "인목(寅)",
+                "조후 균형"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UJ-0003",
+                "rel": "반증",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "주": "뿌리 유무만으로 세기를 정하는 판정에 조후 보정을 요구",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:통근",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "다저자합의",
+                "주": "통근 자체는 관법 무관 공통 개념",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:조후 균형",
+                "rel": "보정",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:경금(庚)",
+                "rel": "조건",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "주": "★'바로 앞·바로 뒤'라는 인접 조건이 축자에 명시 — 도화 위원의 옆칸 축과 교차 확증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:병화(丙)",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:식신",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:지장간",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "근거유형": "다저자합의",
+                "주": "지장간에만 있어도 발현이 관측된다는 주장의 전제",
+                "weight": 0.9
+              },
+              {
+                "to": "개념:지지충",
+                "rel": "조건",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:격각",
+                "rel": "조건",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "근거유형": "단일저자논증",
+                "주": "★사전 미등재. 인계서가 '155문단인데 노드 0개'로 지목한 개념이 판정 조건으로 실제 등장",
+                "weight": 0.7
+              },
+              {
+                "to": "개념:배우자",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "근거유형": "사례",
+                "주": "35~45세 구간은 저자가 '대략적'이라 명시 → 사례 등급",
+                "weight": 0.5
+              },
+              {
+                "to": "개념:물상",
+                "rel": "근거",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "근거유형": "단일저자논증",
+                "주": "'추위에 약하다'는 물상 추론이 판정의 근거로 쓰인다",
+                "weight": 0.7
+              }
+            ]
+          }
+        },
+        "평균강도": {
+          "local": 0.75,
+          "repository": 0.72
+        }
+      }
+    },
+    {
+      "unit_id": "UI-0001",
+      "repository_path": "정제/P2_유닛/pilot_UI.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "links": {
+          "local": {
+            "계층": {
+              "대주제": "S01 음양·오행",
+              "중주제": "오행의 다과·고립",
+              "개념": [
+                "오행(총칭)",
+                "고립·불급",
+                "대운"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "개념:고립·불급",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:대운",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0002",
+                "rel": "적용",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0003",
+                "rel": "적용",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0004",
+                "rel": "적용",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0005",
+                "rel": "적용",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0006",
+                "rel": "적용",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              }
+            ]
+          },
+          "repository": {
+            "계층": {
+              "대주제": "S01 음양·오행",
+              "중주제": "오행의 다과·고립",
+              "개념": [
+                "오행(총칭)",
+                "고립·불급",
+                "대운"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "개념:고립·불급",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:대운",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:음양",
+                "rel": "근거",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:상극",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0002",
+                "rel": "적용",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0003",
+                "rel": "적용",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0004",
+                "rel": "적용",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0005",
+                "rel": "적용",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0006",
+                "rel": "적용",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "unit_id": "UI-0002",
+      "repository_path": "정제/P2_유닛/pilot_UI.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "P3검증": {
+          "local": {
+            "chain채움": true,
+            "근거축자일치": true,
+            "정답문단인용": false,
+            "근거총자수": 429
+          },
+          "repository": {
+            "chain채움": true,
+            "근거축자일치": true,
+            "정답문단인용": false,
+            "근거총자수": 361
+          }
+        },
+        "근거": {
+          "local": [
+            {
+              "para_id": "ST-P0657-02",
+              "역할": "조건",
+              "quote": "심금을 쓰시는 분이라면 심금이 고립되어 있거나 아니면 금이 많거나 네 만약에 금이 너무 많거나 고립되어 있다 그러면 금 관련 건강 같은",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                14,
+                27
+              ]
+            },
+            {
+              "para_id": "ST-P0657-02",
+              "역할": "연결",
+              "quote": "목화의 기운이 또 함께 공존하게 됩니다 어 그렇게 되면은 이분 같은 경우에는",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                14,
+                27
+              ]
+            },
+            {
+              "para_id": "ST-P0657-02",
+              "역할": "결론",
+              "quote": "그러면 이렇게 우리가 생각해 볼 수가 있겠죠 미용실 가서 머리를 자른다 그러면 금이 많거나 고립되어 있는 가운데 목화의 기운이 사주원국에 있거나",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                14,
+                27
+              ]
+            },
+            {
+              "para_id": "ST-P0657-03",
+              "역할": "결론",
+              "quote": "미용실에 계시는 분들은 금을 쓰잖아요. 그럼 확실한 거 좋아하시겠다.",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                28,
+                41
+              ]
+            },
+            {
+              "para_id": "ST-P0657-02",
+              "역할": "조건",
+              "quote": "심금을 쓰고 계시는 분일 거란 말이에요 또는 이제 경금인 경우도 간혹 있긴 있습니다만",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                14,
+                27
+              ]
+            },
+            {
+              "para_id": "ST-P0657-02",
+              "역할": "결론",
+              "quote": "조심하셔야 되겠죠 호흡기 라든가 네 또는 뭐 금과 관련된 게 소화기관",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                14,
+                27
+              ]
+            },
+            {
+              "para_id": "ST-P0657-03",
+              "역할": "결론",
+              "quote": "확실한 거 좋아하시니까 이분들한테는 뭔가 똑부러지게 이야기하는 게 좋겠다.",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                28,
+                41
+              ]
+            },
+            {
+              "para_id": "ST-P0657-02",
+              "역할": "연결",
+              "quote": "대운으로 왔겠구나 사주원국에 계신 분은 계속 미용업을 하실 수 있을 거고 대운으로 오신 분은 이 대운이 빠져나가면 미용업을",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                14,
+                27
+              ]
+            }
+          ],
+          "repository": [
+            {
+              "para_id": "ST-P0657-02",
+              "역할": "조건",
+              "quote": "심금을 쓰시는 분이라면 심금이 고립되어 있거나 아니면 금이 많거나 네 만약에 금이 너무 많거나 고립되어 있다 그러면 금 관련 건강 같은",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                14,
+                27
+              ]
+            },
+            {
+              "para_id": "ST-P0657-02",
+              "역할": "연결",
+              "quote": "목화의 기운이 또 함께 공존하게 됩니다 어 그렇게 되면은 이분 같은 경우에는",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                14,
+                27
+              ]
+            },
+            {
+              "para_id": "ST-P0657-02",
+              "역할": "결론",
+              "quote": "그러면 이렇게 우리가 생각해 볼 수가 있겠죠 미용실 가서 머리를 자른다 그러면 금이 많거나 고립되어 있는 가운데 목화의 기운이 사주원국에 있거나",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                14,
+                27
+              ]
+            },
+            {
+              "para_id": "ST-P0657-03",
+              "역할": "결론",
+              "quote": "미용실에 계시는 분들은 금을 쓰잖아요. 그럼 확실한 거 좋아하시겠다.",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                28,
+                41
+              ]
+            },
+            {
+              "para_id": "ST-P0657-02",
+              "역할": "조건",
+              "quote": "심금을 쓰고 계시는 분일 거란 말이에요 또는 이제 경금인 경우도 간혹 있긴 있습니다만",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                14,
+                27
+              ]
+            },
+            {
+              "para_id": "ST-P0657-02",
+              "역할": "결론",
+              "quote": "조심하셔야 되겠죠 호흡기 라든가 네 또는 뭐 금과 관련된 게 소화기관",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                14,
+                27
+              ]
+            },
+            {
+              "para_id": "ST-P0657-03",
+              "역할": "결론",
+              "quote": "확실한 거 좋아하시니까 이분들한테는 뭔가 똑부러지게 이야기하는 게 좋겠다.",
+              "file": "20230505_생활속 사주_1Wf7fliNvEM.md",
+              "lines": [
+                28,
+                41
+              ]
+            }
+          ]
+        },
+        "근거_총자수": {
+          "local": 429,
+          "repository": 361
+        }
+      }
+    },
+    {
+      "unit_id": "UI-0003",
+      "repository_path": "정제/P2_유닛/pilot_UI.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "links": {
+          "local": {
+            "계층": {
+              "대주제": "S01 음양·오행",
+              "중주제": "목",
+              "개념": [
+                "목(木)",
+                "고립·불급",
+                "대운"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UI-0001",
+                "rel": "적용받음",
+                "dir": "←",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:목(木)",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:고립·불급",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:대운",
+                "rel": "조건",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0002",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              }
+            ]
+          },
+          "repository": {
+            "계층": {
+              "대주제": "S01 음양·오행",
+              "중주제": "목",
+              "개념": [
+                "목(木)",
+                "고립·불급",
+                "대운"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UI-0001",
+                "rel": "적용받음",
+                "dir": "←",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:목(木)",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:금(金)",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:고립·불급",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:대운",
+                "rel": "조건",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0002",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "unit_id": "UI-0004",
+      "repository_path": "정제/P2_유닛/pilot_UI.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "links": {
+          "local": {
+            "계층": {
+              "대주제": "S05 십성·육친",
+              "중주제": "편관·편인",
+              "개념": [
+                "편관(칠살)",
+                "편인",
+                "지장간"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UI-0001",
+                "rel": "적용받음",
+                "dir": "←",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:편관(칠살)",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:편인",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:지장간",
+                "rel": "조건",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0005",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0006",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              }
+            ]
+          },
+          "repository": {
+            "계층": {
+              "대주제": "S05 십성·육친",
+              "중주제": "편관·편인",
+              "개념": [
+                "편관(칠살)",
+                "편인",
+                "지장간"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UI-0001",
+                "rel": "적용받음",
+                "dir": "←",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:편관(칠살)",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:편인",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:지장간",
+                "rel": "조건",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:살인상생",
+                "rel": "인접",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0005",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0006",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "unit_id": "UI-0005",
+      "repository_path": "정제/P2_유닛/pilot_UI.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "links": {
+          "local": {
+            "계층": {
+              "대주제": "S05 십성·육친",
+              "중주제": "관성·인성",
+              "개념": [
+                "관성 일반",
+                "편관(칠살)",
+                "인성 일반"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UI-0001",
+                "rel": "적용받음",
+                "dir": "←",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:편관(칠살)",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:인성 일반",
+                "rel": "대안",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0006",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              }
+            ]
+          },
+          "repository": {
+            "계층": {
+              "대주제": "S05 십성·육친",
+              "중주제": "관성·인성",
+              "개념": [
+                "관성 일반",
+                "편관(칠살)",
+                "인성 일반"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UI-0001",
+                "rel": "적용받음",
+                "dir": "←",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:관인상생",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:편관(칠살)",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:인성 일반",
+                "rel": "대안",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:상극",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0006",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "unit_id": "UI-0006",
+      "repository_path": "정제/P2_유닛/pilot_UI.jsonl",
+      "review_status": "pending",
+      "changes": {
+        "links": {
+          "local": {
+            "계층": {
+              "대주제": "S05 십성·육친",
+              "중주제": "편관",
+              "개념": [
+                "편관(칠살)",
+                "일간",
+                "상극"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UI-0001",
+                "rel": "적용받음",
+                "dir": "←",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:편관(칠살)",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:일간",
+                "rel": "대상",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0004",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0005",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              }
+            ]
+          },
+          "repository": {
+            "계층": {
+              "대주제": "S05 십성·육친",
+              "중주제": "편관",
+              "개념": [
+                "편관(칠살)",
+                "일간",
+                "상극"
+              ]
+            },
+            "횡단": [
+              {
+                "to": "UI-0001",
+                "rel": "적용받음",
+                "dir": "←",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:편관(칠살)",
+                "rel": "전제",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:일간",
+                "rel": "대상",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:상극",
+                "rel": "관계",
+                "dir": "→",
+                "adjacent": true,
+                "polarity": "-",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "개념:건강·질병",
+                "rel": "귀결",
+                "dir": "→",
+                "adjacent": false,
+                "polarity": "-",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0004",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              },
+              {
+                "to": "UI-0005",
+                "rel": "형제",
+                "dir": "↔",
+                "adjacent": false,
+                "polarity": "+",
+                "weight": 0.7,
+                "근거유형": "단일저자논증"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "repository_hash_basis": "SHA-256 of git blob bytes at repository_base_commit; checkout CRLF conversion is excluded."
+}
