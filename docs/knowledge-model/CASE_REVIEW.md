@@ -66,4 +66,4 @@ python3 docs/knowledge-model/case_review.py --input docs/knowledge-model/data/ca
 
 ## 실제 원문에서 옮긴 별도 검토 자료
 
-`SOURCE_CASES.md`·`data/source_cases.json`에는 원문 명식 6개와 저자 설명·미상·충돌을 수록했다. 양력 출생 요청을 임의로 만드는 대신 `source_case_review.py`가 원문 간지를 직접 대조한다. 이 입력은 위 전문가 라벨 양식과 다르며 자동 학습 변환 경로가 없다. 현재 을목 목표의 충족 사례는 이 묶음에 없고, 독립 의미·목표·척도 검토도 남아 있다.
+`SOURCE_CASES.md`·`data/source_cases.json`에는 문헌 검토 항목 10개와 저자 설명·미상·충돌을 수록했다. 일반 일주 유형/세운 설명 1개도 포함하므로 관측 인물 10명으로 세지 않는다. 양력 출생 요청을 임의로 만드는 대신 `source_case_review.py`가 원문 간지를 직접 대조한다. 이 입력은 위 전문가 라벨 양식과 다르며 자동 학습 변환 경로가 없다. 현재 을목 선행 조건의 충족 1개·미충족 8개·정보 부족 1개를 확인했지만 해석 효과의 긍정/부정 라벨은 없고, 독립 의미·목표·척도 검토도 남아 있다.
