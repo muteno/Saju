@@ -1429,15 +1429,28 @@
         "通根",
         "뿌리를 내"
       ],
-      "reason": "뿌리 구어는 실제 통근 문맥과 그림세계의 뿌리 같은 비유를 모두 담는다. 기존 通根·뿌리를 내 표기는 보존하고 로컬의 넓은 활용형 6개는 추가하지 않는다.",
+      "reason": "Figma 동일 글자·초코서당/명리학탐구 동일 오행·현묘 일부 글의 생조 포함 범위를 원문별로 분리했다. 넓은 뿌리 구어 6개는 학문/조상 기원, 씨 뿌리기, 나무 물상과 섞여 계속 보류한다. 기존 뿌리를 내도 물상 용례를 검색하므로 의미 안전 승인과 구별한다. FOUNDATION_ROOTING.md 및 미적용 가상 실험 참조.",
       "target_file": "정제/_현황판/build_concept_map.py",
       "bundle_pointer": "/taxonomy/changed_shared/통근",
       "evidence_ids": [
         "root_positive",
-        "root_figurative"
+        "root_figurative",
+        "root_figma_same_character",
+        "root_choco_same_element",
+        "root_choco_time_scope",
+        "root_hyeonmyo_supporting_element",
+        "root_myeongri_same_element",
+        "root_strength_qualified",
+        "root_shared_intellectual_origin",
+        "root_sowing_verb",
+        "root_ancestral_origin",
+        "root_literal_tree_existing_alias",
+        "root_ancestry_near_stem",
+        "root_tree_without_roots",
+        "root_ancestral_too"
       ],
       "applied_aliases": [],
-      "next_action": "일간·일지·지장간의 자리 맥락을 함께 검수한다. 좁은 표현도 긴 별칭이 기존 자리 노드를 가리는지 검사한다."
+      "next_action": "통근 1차 후속 검수 완료·실행 추가0. 다음 F01 조후→상극. 통근 재개는 대상 천간·지지/지장간·동일성/생조·부정/강도·원국/운을 구별하고 자리 노드를 보존하는 관계 단위 추출 기준과 검토 사례가 준비될 때. 긴 일지의 뿌리가 별칭은 일지 소실로 적용하지 않는다."
     },
     {
       "concept": "투간·투출",
@@ -2593,6 +2606,162 @@
       "legacy_para_id": "SG-SINSAL-P015-01",
       "quote": "신살론 - 신살 화개(華蓋), 화개살(華蓋殺), 입묘(入墓)",
       "role": "literal_candidate_only"
+    },
+    {
+      "id": "root_figma_same_character",
+      "path": "docs/knowledge-model/data/figma_live_bindings.json",
+      "sha256": "de620357fe8f87ecbb4554439db643873a9cb5295df07dfc4f3e36b461c07555",
+      "lines": [
+        915,
+        920
+      ],
+      "legacy_para_id": null,
+      "quote": "통근: 천간의 글자가 지지의 지장간에 같은 글자가 있는 것",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_choco_same_element",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+      "lines": [
+        33,
+        53
+      ],
+      "legacy_para_id": null,
+      "quote": "통근은 천간이 지지에 동일한 간지나, 같은 오행을 뿌리로 두고 있다는 뜻입니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_choco_time_scope",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+      "lines": [
+        132,
+        145
+      ],
+      "legacy_para_id": null,
+      "quote": "대세운과 원국을 포함하여 천간을 기준으로 지지나 지장간에 같은 오행을 두고 있을 때는 통근했다거나 뿌리를 내렸다고 말할 수 있습니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_hyeonmyo_supporting_element",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/원국 분석 및 용신 글모음.txt",
+      "sha256": "8310e5086adfa724ae3ac2e82ebf98689f73a77a590891c4e368686e189cbc52",
+      "lines": [
+        698,
+        712
+      ],
+      "legacy_para_id": null,
+      "quote": "천간의 통근은 지지에 같은 오행이 있거나 생해주는 오행이 있을 경우에 통근이라고 볼 수 있습니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_myeongri_same_element",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학탐구(기초) 전체 글모음 001-086.txt",
+      "sha256": "c04505583b3f30183b3553989fee7c0e0af0adc9cd50576c00840496c3ad119c",
+      "lines": [
+        1732,
+        1736
+      ],
+      "legacy_para_id": null,
+      "quote": "천간의 오행이 지지의 지장간에 같은 오행이 있으면 통근으로 봅니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_strength_qualified",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20240719_사주를 해석하는 순서와 방법_yPla-nmSoow.md",
+      "sha256": "c86a7f5f3bf8aaac75deb39588875fb289a866974d0098cd5ae8c82b18460ca3",
+      "lines": [
+        750,
+        760
+      ],
+      "legacy_para_id": "CT-P146-38",
+      "quote": "진중계수의 뿌리가 있다고 보기는 조금 어렵습니다",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_shared_intellectual_origin",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20211028_😀우리 아프지 말고 사주팔자로 건강 먼저 챙깁시다_io5_Y2q1rQo.md",
+      "sha256": "7ef7839d240b705fc4edd4c22fc58a2ba69cc2b8a28086cfca9527c7b4c59fb3",
+      "lines": [
+        16,
+        24
+      ],
+      "legacy_para_id": "CT-P013-02",
+      "quote": "당연히 뿌리가 같으니까요",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_sowing_verb",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학탐구(초급) 게시판 글모음.txt",
+      "sha256": "fac202c4e6d24654ba194d125cac8e786bd52be513d357ee25e8af9e0b2c9fee",
+      "lines": [
+        783,
+        789
+      ],
+      "legacy_para_id": "MT-CHO-P016-02",
+      "quote": "오월 : 망종부터 시작하며 씨를 뿌리는 시기가 됩니다",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_ancestral_origin",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20240105_사주로 배우자 보는 법 알려드림_cAgaUmwqL_E.md",
+      "sha256": "8c4a0758f761bd964db42da27dc59c78a7851f0fe0cf18be00c2a5d48fd303fa",
+      "lines": [
+        42,
+        51
+      ],
+      "legacy_para_id": "CT-P101-03",
+      "quote": "이 뿌리로부터 싹이 피는 거예요",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_literal_tree_existing_alias",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20210928_🟫내 사주에 토(土)가 많다면 [토 과다, 발달, 고립 시 성격, 건강 정보]_fNqXQ1de6Co.md",
+      "sha256": "edbb9f0bc3eab9b045d343c2a132646aeccf9a82130811c2a989c01f4b034bba",
+      "lines": [
+        54,
+        63
+      ],
+      "legacy_para_id": "CT-P007-05",
+      "quote": "흙은요 나무가 뿌리를 내리고 자라나는 기반이잖아요",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_ancestry_near_stem",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20250426_일지로 배우자, 건강, 직업을 알 수 있는 이유는_WzDcx1eYpLI.md",
+      "sha256": "fa8de4bfdc02f21ff187488128a9d8bdd03e6fca4a0902bea902ba07c39622e1",
+      "lines": [
+        19,
+        35
+      ],
+      "legacy_para_id": "CT-P191-02",
+      "quote": "그 뿌리가 조상이고요.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_tree_without_roots",
+      "path": "정제/원본/전사/6. 남석운명과명리학/남석운명과명리학/20190829_346강. 을목乙木 일간日干의 이해. 명리학_OAaCPIy59Io.md",
+      "sha256": "470594d1f8a96fd74047c48024b71d054e5dcb32974df64401f86d496bb23e5a",
+      "lines": [
+        33,
+        43
+      ],
+      "legacy_para_id": "T-87daa60b24-0000",
+      "quote": "정말 뿌리 없는 나무가 살아있을 리가 없고",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "root_ancestral_too",
+      "path": "정제/원본/전사/3. 석우당/석우당/20210721_육친괸계를 십성만으로 보면 절대 안 된다!(석우당 왕초보 명리학)_0xE3AAsF_Cg.md",
+      "sha256": "55b2938df0ed1bd2475f0c725ea868a9b237b88b13bb044738672e90c3ad2ad6",
+      "lines": [
+        561,
+        571
+      ],
+      "legacy_para_id": "T-bb33e573ca-0003",
+      "quote": "뿌리도 되는 거야.",
+      "role": "source_scope_or_boundary_review_not_training_label"
     }
   ]
 }
