@@ -9,8 +9,9 @@
 | 파일 | 역할 |
 |---|---|
 | `PROJECT_AGENDA.md` | 진화 가능한 프로젝트 목적·설계 원칙·완료 기준 |
-| `USER_INTENT_LOG.md` | 사용자의 관련 발언 33개와 이해 수정의 흐름 |
+| `USER_INTENT_LOG.md` | 누적 사용자 원문과 이해 수정의 흐름 |
 | `FOUNDATION_HANDOFF.md`, `FOUNDATION_BLUEPRINT.md`, `FOUNDATION_AUDIT.md` | 기초 보강 시작점·단계별 완료 기준·17개 기존 설계의 반영 점검 |
+| `FOUNDATION_MONTH_COMMAND.md`, `measure_month_command.py` | 월률분야·사령의 원문 범위/판본·제외/보류와 동일 코퍼스 전후 측정 |
 | `data/foundation_snapshot.json`, `data/foundation_review_bundle.json` | 판본·해시·수량과 사전/P2의 실제 차이. 비활성 검토 자료 |
 | `MATHEMATICAL_DESIGN.md` | 논문에 근거한 수학적 후보와 현재 기준 모델 |
 | `학습과평가설계.md` | 원문 추출·라벨링·조합·시간·출처 분리 평가 |

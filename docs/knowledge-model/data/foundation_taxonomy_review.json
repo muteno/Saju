@@ -3733,6 +3733,30 @@
       "legacy_para_id": "T-570ff780cb-0001",
       "quote": "박민군 사령원으로서 오다 가문의 주꼬구 방면의 사령관 지역사령관 공략하는",
       "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_unregistered_hanja_context",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        881,
+        915
+      ],
+      "legacy_para_id": "CHO-GANJI-P007-14",
+      "quote": "靜翕動闢(정흡동벽) 萬物司令(만물사명)",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_unregistered_ryeongyongsa",
+      "path": "정제/원본/전사/6. 남석운명과명리학/남석운명과명리학/20240304_2002강의. 월주月柱 논명論命, 생월간지生月干支 논명論命, 인문명리학, 주역강의, 인문역사 강의, Eastern philosophy, Book of change,_t1JDNUrc__M.md",
+      "sha256": "a33815f26b30d791a444673d5dda58f88e0abb84222cf48190522faec0bd5725",
+      "lines": [
+        180,
+        196
+      ],
+      "legacy_para_id": "T-326a8b75b6-0002",
+      "quote": "월령용사법에 적용시킨 일수 계산이다",
+      "role": "month_scope_or_counterexample_not_training_label"
     }
   ]
 }
