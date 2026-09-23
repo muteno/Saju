@@ -136,6 +136,41 @@ class FoundationReviewTests(unittest.TestCase):
             with self.subTest(evidence=eid):
                 self.assertNotIn("배우자", self.matcher.concepts_in(text))
 
+    def test_supplement_source_does_not_become_branch_clash(self):
+        evidence = {e["id"]: e for e in self.review["evidence"]}
+        for text in (evidence["clash_substring"]["quote"],
+                     "목 기운의 보충이 일어납니다.", "보충을 하고 보충을 해요."):
+            with self.subTest(text=text):
+                self.assertNotIn("지지충", self.matcher.concepts_in(text))
+        # Preserve the old retrieval behavior; this is not subtype certification.
+        self.assertIn("지지충", self.matcher.concepts_in(evidence["clash_positive"]["quote"]))
+
+    def test_supplement_exclusion_keeps_real_mentions_and_component_nodes(self):
+        import unicodedata
+        for text in ("자오충을 봅니다.", "보충을 하고, 충을 살핍니다.",
+                     "보충이 일어나도 충이 일어나는지는 따로 봅니다.",
+                     "보충을 논한 뒤 묘유충을 봅니다."):
+            with self.subTest(text=text):
+                self.assertIn("지지충", self.matcher.concepts_in(text))
+        text = "보충을 하며 일지의 오행을 봅니다."
+        self.assertTrue({"일지", "오행(총칭)"} <= self.matcher.concepts_in(text))
+        self.assertNotIn("지지충", self.matcher.concepts_in(unicodedata.normalize("NFD", text)))
+
+    def test_concept_map_uses_the_same_occurrence_exclusion(self):
+        import sys
+        from types import SimpleNamespace
+        spec = importlib.util.spec_from_file_location("f01_cmap", REPO / TAXONOMY)
+        cmap = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cmap)
+        texts = ["목 기운을 보충을 해줘야겠죠", "보충이 일어납니다", "보충을 한 뒤 자오충을 봅니다",
+                 "보충을 한 뒤 충을 봅니다", "자오충을 봅니다"]
+        corpus = [{"q": {"para_id": str(i)}, "post": {}, "text": text} for i, text in enumerate(texts)]
+        with patch.object(cmap, "load", return_value=({}, [])), patch.dict(
+                sys.modules, {"코퍼스": SimpleNamespace(문단들=lambda **kw: corpus)}):
+            result, _, n = cmap.build()
+        self.assertEqual(n, 5)
+        self.assertEqual([q["para_id"] for q, _ in result["S04 합충형파해"]["충"]["지지충"]], ["2", "3", "4"])
+
 
 if __name__ == "__main__":
     unittest.main()

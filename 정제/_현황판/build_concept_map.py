@@ -677,6 +677,11 @@ def build():
                     for a in pos:
                         if a not in t:
                             continue
+                        # 같은 문단에 보충과 실제 충이 함께 있어도 실제 용례는 보존.
+                        if not any(_bnm.alias_occurrence_allowed(a, t, m.start())
+                                   for m in re.finditer(re.escape(a), t)):
+                            GATED[small] += 1
+                            continue
                         g = _bnm.AMBIG_RE.get(a)
                         if g and not g.search(t):
                             GATED[small] += 1

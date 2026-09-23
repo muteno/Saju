@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "measured_on": "2026-09-23",
+  "base_commit": "5a6e4cd8ad02a54a5ac7e0b09664c4e237630bb4",
+  "scope": "Legacy retrieval only; no generated map, P2, D5 or app publication",
+  "corpus_rows": 56202,
+  "reader_labels": {
+    "웹": 21251,
+    "전사": 34951
+  },
+  "independent_evidence_count": null,
+  "probability": null,
+  "training_labels": false,
+  "taxonomy_unchanged": true,
+  "builders": {
+    "neuron": {
+      "지지충": {
+        "before": 2108,
+        "after": 2068,
+        "removed_ids": [
+          "CT-P002-10",
+          "CT-P014-02",
+          "CT-P014-10",
+          "CT-P021-12",
+          "CT-P024-13",
+          "CT-P091-20",
+          "CT-P112-13",
+          "CT-P155-51",
+          "CT-P181-13",
+          "CT-P183-09",
+          "CT-P191-09",
+          "ST-P0074-07",
+          "ST-P0605-03",
+          "T-0bf7e52bcc-0013",
+          "T-12985b9566-0001",
+          "T-12985b9566-0002",
+          "T-3d38364493-0007",
+          "T-4b282dc677-0027",
+          "T-53cd3ef0d7-0000",
+          "T-546fd2b3f6-0020",
+          "T-5d32157105-0002",
+          "T-6063a28e04-0000",
+          "T-60d6947fc4-0006",
+          "T-6bdd2049d3-0022",
+          "T-7e5c8b3e5b-0000",
+          "T-874e6a25eb-0008",
+          "T-8dab783646-0001",
+          "T-b1e4178826-0000",
+          "T-b8b40352a0-0007",
+          "T-c6cd2a2fda-0000",
+          "T-d705ffb1ef-0000",
+          "T-d8155df097-0000",
+          "T-da1e926077-0003",
+          "T-ddda1ac045-0020",
+          "T-e6aef8dc7f-0001",
+          "T-e772583388-0001",
+          "T-e772583388-0002",
+          "T-ebecc9e5f0-0000",
+          "T-ebecc9e5f0-0010",
+          "T-f219d80cbf-0102"
+        ],
+        "added_ids": []
+      }
+    },
+    "concept_map": {
+      "지지충": {
+        "before": 2152,
+        "after": 2112,
+        "removed_ids": [
+          "CT-P002-10",
+          "CT-P014-02",
+          "CT-P014-10",
+          "CT-P021-12",
+          "CT-P024-13",
+          "CT-P091-20",
+          "CT-P112-13",
+          "CT-P155-51",
+          "CT-P181-13",
+          "CT-P183-09",
+          "CT-P191-09",
+          "ST-P0074-07",
+          "ST-P0605-03",
+          "T-0bf7e52bcc-0013",
+          "T-12985b9566-0001",
+          "T-12985b9566-0002",
+          "T-3d38364493-0007",
+          "T-4b282dc677-0027",
+          "T-53cd3ef0d7-0000",
+          "T-546fd2b3f6-0020",
+          "T-5d32157105-0002",
+          "T-6063a28e04-0000",
+          "T-60d6947fc4-0006",
+          "T-6bdd2049d3-0022",
+          "T-7e5c8b3e5b-0000",
+          "T-874e6a25eb-0008",
+          "T-8dab783646-0001",
+          "T-b1e4178826-0000",
+          "T-b8b40352a0-0007",
+          "T-c6cd2a2fda-0000",
+          "T-d705ffb1ef-0000",
+          "T-d8155df097-0000",
+          "T-da1e926077-0003",
+          "T-ddda1ac045-0020",
+          "T-e6aef8dc7f-0001",
+          "T-e772583388-0001",
+          "T-e772583388-0002",
+          "T-ebecc9e5f0-0000",
+          "T-ebecc9e5f0-0010",
+          "T-f219d80cbf-0102"
+        ],
+        "added_ids": []
+      }
+    }
+  },
+  "candidate_aliases": {
+    "합을 하": {
+      "substring_occurrences": 1417,
+      "left_boundary_occurrences": 691,
+      "left_boundary_rows": 507,
+      "applied": false
+    },
+    "합을 해": {
+      "substring_occurrences": 628,
+      "left_boundary_occurrences": 238,
+      "left_boundary_rows": 196,
+      "applied": false
+    },
+    "합이 돼": {
+      "substring_occurrences": 226,
+      "left_boundary_occurrences": 65,
+      "left_boundary_rows": 59,
+      "applied": false
+    },
+    "합이 되": {
+      "substring_occurrences": 1056,
+      "left_boundary_occurrences": 449,
+      "left_boundary_rows": 323,
+      "applied": false
+    },
+    "충을 하": {
+      "substring_occurrences": 682,
+      "left_boundary_occurrences": 336,
+      "left_boundary_rows": 237,
+      "applied": false
+    },
+    "충을 해": {
+      "substring_occurrences": 213,
+      "left_boundary_occurrences": 75,
+      "left_boundary_rows": 62,
+      "applied": false
+    },
+    "충이 돼": {
+      "substring_occurrences": 57,
+      "left_boundary_occurrences": 21,
+      "left_boundary_rows": 21,
+      "applied": false
+    },
+    "충이 되": {
+      "substring_occurrences": 527,
+      "left_boundary_occurrences": 278,
+      "left_boundary_rows": 213,
+      "applied": false
+    }
+  },
+  "code": {
+    "neuron_before": "fd0a6bccb45257d455fde050fa67da764bd3265a56d4da198cd2a88e84023c39",
+    "neuron_after": "cbbc9837eae9e3a6144a3328aa2bd186adf7a4dd90155374e9384029ee887298",
+    "concept_map_before": "6af0aabb5b6667e9e22054c808dc2262bf9eaa44dd795ff280b4cab8100cfd9d",
+    "concept_map_after": "694761e77ef3d1e1708fc7d68c4ece17665681837ab0791737787f89fd7e07ea"
+  },
+  "inputs": [
+    {
+      "path": "정제/_현황판/build_dashboard.py",
+      "sha256": "dd757eb82df149afd79d79ac003538ba53b7bea4a1be633bff5cf9ee9b7986a3"
+    },
+    {
+      "path": "정제/_현황판/ingest_transcripts.py",
+      "sha256": "8ae09de042f849183311ebde140fd596c542ec07b3b7af5a7053598f753d5e2b"
+    },
+    {
+      "path": "정제/_현황판/코퍼스.py",
+      "sha256": "b4f6d73dde620725f3f9f803782bbc24d4441b308b61090fe6fbbdfe278b2028"
+    },
+    {
+      "path": "정제/_현황판/data/posts_all.jsonl",
+      "sha256": "1d084c1dbacbeefabe61e97a48d462e5754d1291967bef42fad7e8772dc3be1b"
+    },
+    {
+      "path": "정제/_현황판/data/paras_all.jsonl",
+      "sha256": "d8e937f1293eee14872ec527b58377393700bb8ae19017b8a9febfa3f6ff77cb"
+    },
+    {
+      "path": "정제/_현황판/data/전사_글.jsonl",
+      "sha256": "0d16d64e15fef36c3f39d79259f72c2b405aa9c5dde024aba65d601ca18c9205"
+    },
+    {
+      "path": "정제/_현황판/data/전사_문단.jsonl",
+      "sha256": "dfa46421686fec3c3f798eed70fb54c49b9c9e460a7da9d3a183a76f0c0f4a91"
+    }
+  ]
+}
