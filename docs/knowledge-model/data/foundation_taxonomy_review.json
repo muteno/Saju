@@ -906,7 +906,10 @@
         "stages_historical_middle",
         "stages_historical_food",
         "stages_mixed_here_middle",
-        "stages_negated_exposure"
+        "stages_negated_exposure",
+        "stages_prayer_overlap_one",
+        "stages_prayer_overlap_two",
+        "stages_unverified_transcription_overlap"
       ],
       "applied_aliases": [],
       "next_action": "FOUNDATION_HIDDEN_STAGES.md의 발생 위치별 동반어 검수로 자기 승인과 일상어를 구분한다. 혼합 문단의 실제 중기와 부정문은 보존하고, 초기/餘氣/本氣의 전역 추가는 보류한다. 월률분야·사령에서 기간·구성·강도의 판본을 이어 대조한다."
@@ -3418,6 +3421,42 @@
       "legacy_para_id": "CT-P027-16",
       "quote": "이 신금 안에 있는 초기 무토, 중기 임수, 정기 경금 모두 투관을 하지 않았습니다",
       "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_prayer_overlap_one",
+      "path": "정제/원본/전사/3. 석우당/석우당/20220314_자연(自然) 스스로 그러하다!(석우당 논상탐구)_hJ8ZcIACiwA.md",
+      "sha256": "8a4960a57d8b0933fe392210bb33ab5cb5686f0f4cd6bfe6e32d262fac20cb11",
+      "lines": [
+        224,
+        226
+      ],
+      "legacy_para_id": "T-f0c939c1de-0002",
+      "quote": "양인 백호 백호 이걸로 치면 또 다 양인이잖아 축소민이 사명에\n신중기도를 하는데 신중님이 옛날 식으로 나타난 게 아니라 군인식으로 나타난\n탱크하고 병사들 내서",
+      "role": "stage_builder_disagreement_not_training_label"
+    },
+    {
+      "id": "stages_prayer_overlap_two",
+      "path": "정제/원본/전사/3. 석우당/석우당/20220621_사대보살은 어떤 오행일까(석우당 왕초보 명리학)_fEjxmEh-7Io.md",
+      "sha256": "80de953916bcb8057d6efcca2c465fe1e394a57abbd993f9161070e37bbc355d",
+      "lines": [
+        101,
+        103
+      ],
+      "legacy_para_id": "T-09ccdde215-0001",
+      "quote": "신중, 지켜주는 사람도 돼\n호의, 신중, 그러니까 신중기도를 하면\n두려움이 없어진다",
+      "role": "stage_builder_disagreement_not_training_label"
+    },
+    {
+      "id": "stages_unverified_transcription_overlap",
+      "path": "정제/원본/전사/6. 남석운명과명리학/남석운명과명리학/20210118_1111강의. 신축년 용신에 비견의 운세. 명리학 정통법칙 해석, 인문 명리학 강의, Eastern philosophy_BT8_VHjGK9c.md",
+      "sha256": "59a3fd877313ebe93c2ef05db3b8bb065e43b60c0c9d759d2c93106d0fa1bcdf",
+      "lines": [
+        247,
+        250
+      ],
+      "legacy_para_id": "T-3b2e8d06e5-0000",
+      "quote": "안그러면 용신을 못잡아서 그냥 용신이 희심일 상황이냐에 따라서\n우리가 오늘의 신중기현이 어떻게 내한테 작용할 것인가를 우리가 알아볼 수가 있는 겁니다.\n그럼 이 부분을 가지고 일관에서의 신중기현하고 대입을 해서 같이 합해보면\n아 요렇게 되겠구나 하는 셈을 알 수가 있는 겁니다.",
+      "role": "stage_builder_disagreement_not_training_label"
     }
   ]
 }
