@@ -3457,6 +3457,282 @@
       "legacy_para_id": "T-3b2e8d06e5-0000",
       "quote": "안그러면 용신을 못잡아서 그냥 용신이 희심일 상황이냐에 따라서\n우리가 오늘의 신중기현이 어떻게 내한테 작용할 것인가를 우리가 알아볼 수가 있는 겁니다.\n그럼 이 부분을 가지고 일관에서의 신중기현하고 대입을 해서 같이 합해보면\n아 요렇게 되겠구나 하는 셈을 알 수가 있는 겁니다.",
       "role": "stage_builder_disagreement_not_training_label"
+    },
+    {
+      "id": "month_board_scope",
+      "path": "dosa-app/methodology/figjam_board_full.md",
+      "sha256": "442c1892203cb5edde66db53dec733ea0d352d5682447f1ed4515835b16a20d6",
+      "lines": [
+        2337,
+        2337
+      ],
+      "legacy_para_id": null,
+      "quote": "일간이 월지의 사령(司令)을 얻은 경우 월지의 지장간에 해당하는 기간에 태어난 경우",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_choco_period",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1590,
+        1602
+      ],
+      "legacy_para_id": "CHO-GANJI-P012-02",
+      "quote": "생지: 초기 7일, 중기 7일, 정기 16일\n왕지: 초기 10일, 정기 20일 (*단 오화의 경우 초기 10일, 중기 10일, 정기 10일)\n고지: 초기 9일, 중기 3일, 정기 18일",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_choco_not_mechanical",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1603,
+        1622
+      ],
+      "legacy_para_id": "CHO-GANJI-P012-03",
+      "quote": "저는 지장간 내에서도 상생상극의 흐름이 이어지기 때문에,\n지장간의 날짜를 기계적으로 배분하면 안 된다는 입장을 갖고 있습니다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_choco_stage_conflict",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1646,
+        1661
+      ],
+      "legacy_para_id": "CHO-GANJI-P012-05",
+      "quote": "9월 4일생인 이 사주의 경우 신월의 지장간 중에서도 중기인 경금(庚)이 가장 큰 영향력을 갖게 됩니다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_choco_command",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1656,
+        1671
+      ],
+      "legacy_para_id": "CHO-GANJI-P012-05",
+      "quote": "이 사주의 주체가 월률분야에 따라 월지 신금의 지장간 중 정기인 경금이 가장 강한 날에 태어났다고 했을 때,\n사주의 천간에 경금이 있었다면,\n사령(司令) 했다, 또는 당령(當令)했다, 라고 말할 수 있게 되는 것이죠.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_choco_other_positions",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1689,
+        1704
+      ],
+      "legacy_para_id": "CHO-GANJI-P012-07",
+      "quote": "인원용사는 나머지 연지, 일지, 시지의 지장간을 파악하는 이론입니다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_choco_schools",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1705,
+        1712
+      ],
+      "legacy_para_id": "CHO-GANJI-P012-07",
+      "quote": "하지만 통일된 기준 없이 『연해자평』, 『명리정종』, 『삼명통회』 등 고서마다 월률분야의 사령일수가 각각 다르다 보니, 이렇듯 학파마다 해석과 적용 방식에 조금씩 차이를 보이게 된 것이죠.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_sagong_scope",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-사공 저서 글모음.txt",
+      "sha256": "84eb9a7240a299aa34715381b5302b43159a12d227296a3ef547a7df8698d968",
+      "lines": [
+        88,
+        97
+      ],
+      "legacy_para_id": null,
+      "quote": "필자는 월률분야와 인원용사를 구분하여 사용한다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_sagong_wu_table",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-사공 저서 글모음.txt",
+      "sha256": "84eb9a7240a299aa34715381b5302b43159a12d227296a3ef547a7df8698d968",
+      "lines": [
+        95,
+        103
+      ],
+      "legacy_para_id": null,
+      "quote": "중기 | | 辛 3 | 丙 7 | | 癸 3 | 庚 7 | 己 9 | 乙 3 | 壬 7 | | 丁 3 | 甲 7",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_sagong_other_stems",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-사공 저서 글모음.txt",
+      "sha256": "84eb9a7240a299aa34715381b5302b43159a12d227296a3ef547a7df8698d968",
+      "lines": [
+        104,
+        107
+      ],
+      "legacy_para_id": null,
+      "quote": "장간 | 癸 | 癸 辛 己 | 戊 丙 甲 | 乙 | 乙 癸 戊 | 戊 庚 丙 | 己 丁 | 丁 乙 己 | 戊 壬 庚 | 辛 | 辛 丁 戊 | 甲 壬",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_sagong_unverified_dates",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-사공 저서 글모음.txt",
+      "sha256": "84eb9a7240a299aa34715381b5302b43159a12d227296a3ef547a7df8698d968",
+      "lines": [
+        114,
+        119
+      ],
+      "legacy_para_id": null,
+      "quote": "예를 들어 22년 9월 8일 한로부터 10월 7일 입동 전이 술월이다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_sagong_dangnyeong",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-사공 저서 글모음.txt",
+      "sha256": "84eb9a7240a299aa34715381b5302b43159a12d227296a3ef547a7df8698d968",
+      "lines": [
+        120,
+        122
+      ],
+      "legacy_para_id": null,
+      "quote": "사령과 당령을 동일시하는 학파도 있는데 대부분 사령한 지장간과 똑같은 천간이 사주에 있을 때 당령했다고 한다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_sagong_deuknyeong",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-사공 저서 글모음.txt",
+      "sha256": "84eb9a7240a299aa34715381b5302b43159a12d227296a3ef547a7df8698d968",
+      "lines": [
+        128,
+        139
+      ],
+      "legacy_para_id": null,
+      "quote": "일간에게 이득이 되려면 월지 정기(正氣)가 일간과 같은 오행이거나 일간을 생하는 오행이어야 한다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_tamgu_dangnyeong",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학탐구(중급1) 게시판 글모음.txt",
+      "sha256": "e3aa232bcad86e4274e4e1785bef1f9a837c3455ab11723f5f1cdd026ad5b858",
+      "lines": [
+        360,
+        365
+      ],
+      "legacy_para_id": null,
+      "quote": "득령은 일간이 월지의 세력을 얻은 것을 말하는 것으로 월령, 당령 또는 당왕 등의 어려운 말들로 쓰이기도 하나, 모두 같은 말로 이해하시면 됩니다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_hq_body",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/현묘의 사주 이야기 글모음.txt",
+      "sha256": "8d1572c34715bbd99ad90a08935a60a9604a722d7a26d66a4764fc0a6355cd1a",
+      "lines": [
+        2024,
+        2029
+      ],
+      "legacy_para_id": "HM-P029-04",
+      "quote": "호르몬은 신체의 여러 기관에서 분비되지만, 호르몬의 분비를 좌우하는 사령부는 바로 우리 뇌 속에 있는 뇌하수체입니다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_hq_rooting",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/원국 분석 및 용신 글모음.txt",
+      "sha256": "8310e5086adfa724ae3ac2e82ebf98689f73a77a590891c4e368686e189cbc52",
+      "lines": [
+        411,
+        422
+      ],
+      "legacy_para_id": "PL-YONGSIN-P005-01",
+      "quote": "사령부와 예하부대가 협력하는 의미,",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_hq_positions",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/십신과 합충 글모음.txt",
+      "sha256": "a82aeb767011d07cd2a3c47099a530853c70a4b51c6fc01635a89b32aac62e2e",
+      "lines": [
+        2498,
+        2505
+      ],
+      "legacy_para_id": "PL-SIPSIN-P036-02",
+      "quote": "인간이 딛고 서있는 기반, 잠재력의 총집결지, 무의식적 추동의 사령부가 되는 것입니다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_commander_trine",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/십신과 합충 글모음.txt",
+      "sha256": "a82aeb767011d07cd2a3c47099a530853c70a4b51c6fc01635a89b32aac62e2e",
+      "lines": [
+        2610,
+        2623
+      ],
+      "legacy_para_id": "PL-SIPSIN-P038-02",
+      "quote": "子(자수)는 중심이 되는 기운으로 \"사령관\", \"본부(HQ)\"의 역할을 합니다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_commander_history",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        2610,
+        2617
+      ],
+      "legacy_para_id": "CHO-STORY-P017-11",
+      "quote": "후주와 요나라가 한판 붙을 때 조광윤이라는 사람이 사령관에 임명이 되는데,",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_mixed_solstice",
+      "path": "정제/원본/전사/3. 석우당/석우당/20260603_亥중 甲木용신 희망 전도사, 子중 壬水용신 정신 물장사!_STsZu5ErP0s.md",
+      "sha256": "1489dec67a3f36a4712e6f04135493609a5841dfe145cedfdbe92453da5bc4ca",
+      "lines": [
+        21,
+        27
+      ],
+      "legacy_para_id": "T-a8eb288610-0000",
+      "quote": "이해 되죠? 그러면 동지 전에는 임수가 사령을 합니다\n동지 후에는 계수가 사령을 한다는 뜻이 뭐냐면",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_mixed_chen",
+      "path": "정제/원본/전사/6. 남석운명과명리학/남석운명과명리학/20250417_2232강의, 삼사월 무토생월戊土生月,삼사월무토三月戊土 천간론天干論 복습 2, 인문명리학, 주역강의, 인문역사 강의, Human Future, Eastern Philosophy,_ZGsE1WbaS9s.md",
+      "sha256": "fcb4b1389d0d5dcf21819e8670f82f20ff901d25d5d85c7a969713a268a4fc9d",
+      "lines": [
+        21,
+        22
+      ],
+      "legacy_para_id": "T-1bd1f01447-0000",
+      "quote": "3월생무토는 무토의 사령이 되기 때문에 우선 진토속의 암장무토가 사령관이 되는 겁니다.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_commander_topic_only",
+      "path": "정제/원본/전사/3. 석우당/석우당/20260613_병오년 월지 자오충운 청소하는 마음으로_11AerrNZ2mk.md",
+      "sha256": "a8a3f1c8e799b47dcd2446351b3d759d8321c5c45c87c10b6da1265303303ec8",
+      "lines": [
+        40,
+        46
+      ],
+      "legacy_para_id": "T-5c1fad8dc1-0000",
+      "quote": "현재 나의. 그러면 화신은 뭐냐. 천백억 화신. 월지야. 월지사령관.",
+      "role": "month_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "month_commander_unverified_transcription",
+      "path": "정제/원본/전사/6. 남석운명과명리학/남석운명과명리학/20240731_2104강의, 과도기인물히데요시, 노부나가히데요시이에야스삼영걸2, 인문명리학, 주역강의, 인문역사 강의, Human future, Eastern philosophy,_zCAOPnm75WY.md",
+      "sha256": "6dd3de5f9a30e328288081deae33ab2be52d0793c0b630d282cab6d950644b0d",
+      "lines": [
+        133,
+        138
+      ],
+      "legacy_para_id": "T-570ff780cb-0001",
+      "quote": "박민군 사령원으로서 오다 가문의 주꼬구 방면의 사령관 지역사령관 공략하는",
+      "role": "month_scope_or_counterexample_not_training_label"
     }
   ]
 }

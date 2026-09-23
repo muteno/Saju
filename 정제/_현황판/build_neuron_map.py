@@ -205,7 +205,9 @@ _구조어 = (r"일간|일지|월지|시지|연지|원국|명식|사주|대운|�
 #       `concepts_in()`엔 없었다 — **또 한쪽만**이라 여기서 짝을 맞춘다.
 NEG_ADJACENT = {
     # 별칭: (매치 앞뒤로 이 정규식이 걸리면 버린다, 좌우 창)
-    "사령": (r"사령부|사령관|사령탑", 3),
+    # 사령부는 아래 공용 발생 위치 검사로 이동. 사령관/탑은 이 빌더의 기존 정책만 유지.
+    # 사령관의 실제 월지 비유가 있어 개념지도에는 이 둘을 일괄 이식하지 않는다.
+    "사령": (r"사령관|사령탑", 3),
     "탕화": (r"바탕화|배경화", 3),
     # ★260728 — 「유리한 **운명**이 아니다」의 «운명»이 «유리한 운»으로 잘렸다.
     #   전수 검수 44건 중 이것 **1건만** 오탐이라 게이트(문맥 요구)는 과잉이다 —
@@ -307,9 +309,14 @@ def alias_occurrence_allowed(alias, text, start):
     This narrow exclusion does not certify those aliases' subtype semantics.
     Keep valid compounds (자오충을, 천간충을, etc.) and later real mentions.
     F01 control phrases require a left word boundary (자극/연극 are not 剋).
+    F01 month-command review excludes only the occurrence inside 사령부.
+    Commander metaphors (사령관) need separate context review before sharing
+    the neuron's existing exclusion with the concept-map builder.
     This is retrieval only: it does not establish participants or polarity.
     The concept-map builder uses the same per-occurrence check.
     """
+    if alias == "사령" and text.startswith("사령부", start):
+        return False
     if (alias in {"극을 하", "극하니까", "극합니다"} and start > 0
             and (text[start - 1].isalnum() or text[start - 1] == "_")):
         return False

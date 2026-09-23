@@ -265,6 +265,48 @@ class FoundationReviewTests(unittest.TestCase):
                 self.assertEqual(hits[concept], neuron_ids)
         self.assertEqual(hits["지장간"], {"0", "1", "2"})
 
+    def test_month_command_hq_exclusion_keeps_actual_and_negated_mentions(self):
+        import unicodedata
+        for text in ("월지와 일지는 사령부입니다", "사령부사령부", "일간의 사령부와 오행"):
+            with self.subTest(text=text):
+                self.assertNotIn("월률분야·사령", self.matcher.concepts_in(text))
+        for text in ("사령부사령", "사령사령부", "사령부와 월지의 사령을 구별한다",
+                     "사령하지 않는다", "당령하지 않았다", "월령분일용사", "인원용사"):
+            with self.subTest(text=text):
+                self.assertIn("월률분야·사령", self.matcher.concepts_in(unicodedata.normalize("NFD", text)))
+        self.assertTrue({"일간", "오행(총칭)"} <= self.matcher.concepts_in("일간의 사령부와 오행"))
+
+    def test_both_builders_exclude_only_reviewed_hq_occurrences(self):
+        import sys
+        from types import SimpleNamespace
+        spec = importlib.util.spec_from_file_location("month_cmap", REPO / TAXONOMY)
+        cmap = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cmap)
+        texts = ["일간의 사령부와 오행", "사령부사령", "사령사령부", "사령하지 않는다",
+                 "사령부와 인원용사", "월지사령관", "사령탑", "사령부사령부"]
+        rows = [{"q": {"para_id": str(i)}, "post": {}, "text": t} for i, t in enumerate(texts)]
+        with patch.object(cmap, "load", return_value=({}, [])), patch.dict(
+                sys.modules, {"코퍼스": SimpleNamespace(문단들=lambda **kw: rows)}):
+            result, _, n = cmap.build()
+        hits = {name: {q["para_id"] for q, _ in matches}
+                for groups in result.values() for concepts in groups.values() for name, matches in concepts.items()}
+        self.assertEqual(n, len(rows))
+        self.assertEqual(hits["월률분야·사령"], {"1", "2", "3", "4", "5", "6"})
+        neuron_ids = {str(i) for i, t in enumerate(texts) if "월률분야·사령" in self.matcher.concepts_in(t)}
+        # Existing commander policy differs; do not silently broaden this repair.
+        self.assertEqual(neuron_ids, {"1", "2", "3", "4"})
+        self.assertIn("0", hits["일간"])
+        self.assertIn("0", hits["오행(총칭)"])
+
+    def test_month_command_source_metaphors_keep_distinct_scopes(self):
+        evidence = {e["id"]: e for e in self.review["evidence"]}
+        for eid in ("month_hq_body", "month_hq_rooting", "month_hq_positions"):
+            with self.subTest(evidence=eid):
+                self.assertNotIn("월률분야·사령", self.matcher.concepts_in(evidence[eid]["quote"]))
+        for eid in ("month_mixed_solstice", "month_mixed_chen"):
+            with self.subTest(evidence=eid):
+                self.assertIn("월률분야·사령", self.matcher.concepts_in(evidence[eid]["quote"]))
+
 
 if __name__ == "__main__":
     unittest.main()
