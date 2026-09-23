@@ -58,8 +58,13 @@ for big, mids in TAXONOMY.items():
                     dropped.append((concept, a))
                     continue
                 alias2concept.setdefault(a, set()).add(concept)
+# F02 명칭은 기존 검색에 더한다. 편인도식/상관패인이 편인/상관을
+# 가리지 않도록 기존 별칭의 순서·겹침 정책은 유지한다. 사전 정본은 위 하나다.
+ADDITIVE_TOPIC_CONCEPTS = frozenset({"편인도식", "상관패인", "재생관", "관살혼잡", "사길신", "사흉신"})
+TOPIC_ALIASES = {a for a, concepts in alias2concept.items() if concepts <= ADDITIVE_TOPIC_CONCEPTS}
 ALIASES = sorted(alias2concept, key=len, reverse=True)
-ALIAS_RE = re.compile("|".join(re.escape(a) for a in ALIASES))
+ALIAS_RE = re.compile("|".join(re.escape(a) for a in ALIASES if a not in TOPIC_ALIASES))
+TOPIC_RE = re.compile("|".join(re.escape(a) for a in ALIASES if a in TOPIC_ALIASES) or r"(?!x)x")
 
 # F01: 시지장간 / 연월지장 간은 자리 별칭의 마지막 '지'를 공유한다.
 # 전체 별칭의 겹침 정책은 유지하고, 확인된 지장간 표기만 자리와 함께 보존한다.
@@ -315,6 +320,9 @@ def alias_occurrence_allowed(alias, text, start):
     This is retrieval only: it does not establish participants or polarity.
     The concept-map builder uses the same per-occurrence check.
     """
+    if alias == "재생관" and text.startswith(("재생관련", "재생관리"), start):
+        # 일반어 부분문자와 미검수 전사 접미는 보류. 뒤의 실제 언급은 검색한다.
+        return False
     if alias == "사령" and text.startswith("사령부", start):
         return False
     if (alias in {"극을 하", "극하니까", "극합니다"} and start > 0
@@ -325,7 +333,7 @@ def alias_occurrence_allowed(alias, text, start):
 
 
 def concepts_in(text):
-    """한 문단의 텍스트에서 등장하는 개념 집합. 긴 별칭이 짧은 것을 덮도록 겹침 제거."""
+    """기존 겹침 정책으로 검색한 뒤 F02 명칭만 추가한다. 의미 성립 판정은 아니다."""
     if not text:
         return set()
     text = unicodedata.normalize("NFC", text)
@@ -364,6 +372,10 @@ def concepts_in(text):
             if hidden:
                 # 기존 등록 표기만 회수한다. 지장간의 존재·구성·관계를 판정하지 않는다.
                 found |= alias2concept.get(hidden.group(), set())
+    for match in TOPIC_RE.finditer(text):
+        # 부정·비판·인용도 주제 언급이다. 관계 성립이나 길흉을 추론하지 않는다.
+        if alias_occurrence_allowed(match.group(), text, match.start()):
+            found |= alias2concept[match.group()]
     return found
 
 
