@@ -295,6 +295,18 @@ for _big, _mids in TAXONOMY.items():
                 CONCEPT_MARKER_RE[_c] = re.compile(_p)
 
 
+def alias_occurrence_allowed(alias, text, start):
+    """Reject the observed 보충 substring, not every occurrence in the paragraph.
+
+    F01 general-term review: 충을 / 충이 일어 are legacy 지지충 aliases.
+    This narrow exclusion does not certify those aliases' subtype semantics.
+    Keep valid compounds (자오충을, 천간충을, etc.) and later real mentions.
+    The concept-map builder uses the same per-occurrence check.
+    """
+    return not (alias in {"충을", "충이 일어"}
+                and start > 0 and text[start - 1] == "보")
+
+
 def concepts_in(text):
     """한 문단의 텍스트에서 등장하는 개념 집합. 긴 별칭이 짧은 것을 덮도록 겹침 제거."""
     if not text:
@@ -306,6 +318,8 @@ def concepts_in(text):
         if any(s < te and ts < e for ts, te in taken):
             continue          # 이미 더 긴 별칭이 먹은 구간
         a = m.group()
+        if not alias_occurrence_allowed(a, text, s):
+            continue
         if a in AMBIG_RE and not AMBIG_RE[a].search(text):
             continue          # 동반어 없음 → 일상어로 보고 버린다
         # ★260727 — **국소 게이트.** 위 검사는 «문단 어딘가에» 동반어가 있으면 통과시킨다.
