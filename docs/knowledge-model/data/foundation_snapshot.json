@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "captured_on": "2026-09-23",
+  "repository_base_commit": "05a5eab0122eda37235feb66114c6c3d8249a705",
+  "local_root_alias": "SAJU_SOURCE_ROOT",
+  "count_policy": "File/record counts are not unique source counts, correctness, or implementation completion.",
+  "local_inventory": {
+    "1. 원본 라이브러리/2. 웹 스크랩": {
+      "files": 77,
+      "extensions": {
+        ".docx": 76,
+        ".md": 1
+      },
+      "subfolders": {}
+    },
+    "1. 원본 라이브러리/3. 전사본": {
+      "files": 2168,
+      "extensions": {
+        ".md": 2168
+      },
+      "subfolders": {
+        "도화도레_사주": 246,
+        "사람공부_사주": 73,
+        "산책처럼_사주": 1231,
+        "정이철학원_사주": 174,
+        "초코서당_사주": 249,
+        "하나사주_사주": 188
+      }
+    },
+    "2. 정제작업/00_설계정본": {
+      "files": 17,
+      "extensions": {
+        ".md": 17
+      },
+      "subfolders": {}
+    },
+    "2. 정제작업/P2_유닛": {
+      "files": 5,
+      "extensions": {
+        ".md": 1,
+        ".py": 2,
+        ".jsonl": 2
+      },
+      "subfolders": {}
+    },
+    "6. 사주 앱에 기존에 담겼던 내용": {
+      "files": 26,
+      "extensions": {
+        ".md": 26
+      },
+      "subfolders": {
+        "1. 방법론": 1,
+        "2. 발췌본(저자별)": 24
+      }
+    },
+    "7. 옵시디언 볼트": {
+      "files": 333,
+      "extensions": {
+        ".md": 333
+      },
+      "subfolders": {
+        "00 시작": 4,
+        "01 대주제": 15,
+        "02 중주제": 52,
+        "03 개념": 262
+      }
+    },
+    "2. 정제작업/_현황판/data/정의카드.jsonl": {
+      "rows": 262
+    },
+    "2. 정제작업/_현황판/data/링크망.jsonl": {
+      "rows": 6785
+    },
+    "2. 정제작업/_현황판/data/조건부간선.jsonl": {
+      "rows": 372
+    },
+    "2. 정제작업/_현황판/data/조건부간선_수기.jsonl": {
+      "rows": 21
+    },
+    "2. 정제작업/_현황판/data/분기간선.jsonl": {
+      "rows": 340
+    },
+    "local_P0_posts": {
+      "batches": 90,
+      "rows": 3845
+    },
+    "local_P0_paras": {
+      "batches": 90,
+      "rows": 38072
+    }
+  },
+  "design_documents": [
+    {
+      "name": "20260721_170000_정제틀_설계_v2.md",
+      "repository_path": "정제/문서/설계정본/20260721_170000_정제틀_설계_v2.md",
+      "local_sha256": "f58108061b885d8d3b17a63e6e01df4dec773cd2d1475b28838425513d596dd1",
+      "repository_sha256": "f58108061b885d8d3b17a63e6e01df4dec773cd2d1475b28838425513d596dd1",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260721_214500_W0_용어사전_v1.md",
+      "repository_path": "정제/문서/설계정본/20260721_214500_W0_용어사전_v1.md",
+      "local_sha256": "b70ec4eb4ab30a3a5cfb3f7b8c079da7ec005fcdb8e9b47b901fc50b11fee116",
+      "repository_sha256": "b70ec4eb4ab30a3a5cfb3f7b8c079da7ec005fcdb8e9b47b901fc50b11fee116",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260721_215500_W0_Q카탈로그_v1.md",
+      "repository_path": "정제/문서/설계정본/20260721_215500_W0_Q카탈로그_v1.md",
+      "local_sha256": "b1e9897cccab47450088d270f29c2229446c5aa152259e5622442ee4c7f9d5d4",
+      "repository_sha256": "b1e9897cccab47450088d270f29c2229446c5aa152259e5622442ee4c7f9d5d4",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260722_000000_P0_스펙_v1.md",
+      "repository_path": "정제/문서/설계정본/20260722_000000_P0_스펙_v1.md",
+      "local_sha256": "d1d6936cbbb2daf520dd3702e2f53eb0b7d04865cce2dc44a2582d7c3338e381",
+      "repository_sha256": "aafef093857e16a71e178cb27fed2fa2ddb21f024247c90da8a70b19a81901ad",
+      "byte_equal": false,
+      "reviewed_difference": "personal-path redaction only (content diff inspected 2026-09-23)"
+    },
+    {
+      "name": "20260722_022000_P0_스펙_v1.1_운세확장.md",
+      "repository_path": "정제/문서/설계정본/20260722_022000_P0_스펙_v1.1_운세확장.md",
+      "local_sha256": "07f130232479ad213d681d6aeaae35e1466e81026165cf9b78dea29f282a82e0",
+      "repository_sha256": "8c4d91cf150bb3c37f8eec9567dc20d5743fc8ba0fd60541ffa40657659828b8",
+      "byte_equal": false,
+      "reviewed_difference": "personal-path redaction only (content diff inspected 2026-09-23)"
+    },
+    {
+      "name": "20260722_025000_P0_스펙_v1.2_웨이브2.md",
+      "repository_path": "정제/문서/설계정본/20260722_025000_P0_스펙_v1.2_웨이브2.md",
+      "local_sha256": "de55e8f6390518865588d82cef6282012c46bce782726641dda6c227c837605e",
+      "repository_sha256": "2399ff16f55136d01ba29ab04e614239ba187034b0bf0842975f7d54e838f15f",
+      "byte_equal": false,
+      "reviewed_difference": "personal-path redaction only (content diff inspected 2026-09-23)"
+    },
+    {
+      "name": "20260722_031500_P1_스펙_초안_v0.9.md",
+      "repository_path": "정제/문서/설계정본/20260722_031500_P1_스펙_초안_v0.9.md",
+      "local_sha256": "8a7a07f07fbf4c7e2881dc06c3930bab04df6f3b93dcf07021655a3c662e9f48",
+      "repository_sha256": "8a7a07f07fbf4c7e2881dc06c3930bab04df6f3b93dcf07021655a3c662e9f48",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260722_040000_계산분기카드_v1_자시축시일주.md",
+      "repository_path": "정제/문서/설계정본/20260722_040000_계산분기카드_v1_자시축시일주.md",
+      "local_sha256": "fe1d5bd80739e0b00eb6bf34e59b88304489e2d89a7f4a8908fa7cfebad6ac0c",
+      "repository_sha256": "fe1d5bd80739e0b00eb6bf34e59b88304489e2d89a7f4a8908fa7cfebad6ac0c",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260722_042500_P0_스펙_v1.3_전사.md",
+      "repository_path": "정제/문서/설계정본/20260722_042500_P0_스펙_v1.3_전사.md",
+      "local_sha256": "6b04d12031b42efc890e36123e4165e632769ba8e3450208a8e05a1c712e4bba",
+      "repository_sha256": "f97fe9fc6051fbea0dd922afb25c25013bab1bea6a097ac43dc379ee5d7d6779",
+      "byte_equal": false,
+      "reviewed_difference": "personal-path redaction only (content diff inspected 2026-09-23)"
+    },
+    {
+      "name": "20260723_074500_증류공백진단_이론과해석사이_v1.md",
+      "repository_path": "정제/문서/설계정본/20260723_074500_증류공백진단_이론과해석사이_v1.md",
+      "local_sha256": "225204b4b4a299ac0102d8c7a0582b32cca0694151c9b94932d4a41fb827b1ab",
+      "repository_sha256": "225204b4b4a299ac0102d8c7a0582b32cca0694151c9b94932d4a41fb827b1ab",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260723_083000_관법프로파일_도화메인_v1.md",
+      "repository_path": "정제/문서/설계정본/20260723_083000_관법프로파일_도화메인_v1.md",
+      "local_sha256": "9475c12e2e48acff445970f2a3a03f42cad03c4c576b265242bbbbbc3d5cc344",
+      "repository_sha256": "9475c12e2e48acff445970f2a3a03f42cad03c4c576b265242bbbbbc3d5cc344",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260724_112500_P0_스펙_v1.4_전사확장_초코산책.md",
+      "repository_path": "정제/문서/설계정본/20260724_112500_P0_스펙_v1.4_전사확장_초코산책.md",
+      "local_sha256": "4513aaf13fbc98f3f719bb164ae0d68dcc303ab1e3af25054c2499c6f33ff740",
+      "repository_sha256": "4513aaf13fbc98f3f719bb164ae0d68dcc303ab1e3af25054c2499c6f33ff740",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260725_0930_평의회1차_링크구조_종합_v1.md",
+      "repository_path": "정제/문서/설계정본/20260725_0930_평의회1차_링크구조_종합_v1.md",
+      "local_sha256": "050d8a4e5558202da158b1bb3a1c447e9f776b091b751ad041643f06a2643900",
+      "repository_sha256": "050d8a4e5558202da158b1bb3a1c447e9f776b091b751ad041643f06a2643900",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260725_1300_P2_유닛스키마_v3_경로중심.md",
+      "repository_path": "정제/문서/설계정본/20260725_1300_P2_유닛스키마_v3_경로중심.md",
+      "local_sha256": "7ee9571c321f5e4f49dbc061ae190bd7df5d9c6ba293aa23202522cba8c44382",
+      "repository_sha256": "7ee9571c321f5e4f49dbc061ae190bd7df5d9c6ba293aa23202522cba8c44382",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260725_2300_방법론보드_대조표_v1.md",
+      "repository_path": "정제/문서/설계정본/20260725_2300_방법론보드_대조표_v1.md",
+      "local_sha256": "66ffeef69721fca6f37fd7d624ac4d77cab11309022cefd05b7268ef4d4b2261",
+      "repository_sha256": "66ffeef69721fca6f37fd7d624ac4d77cab11309022cefd05b7268ef4d4b2261",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260726_관법대립축_전수정리_v1.md",
+      "repository_path": "정제/문서/설계정본/20260726_관법대립축_전수정리_v1.md",
+      "local_sha256": "01407d50a26076be5e7e4b0d2d9d4481823fa1e6517b6f1a723fe0ef48bf543e",
+      "repository_sha256": "01407d50a26076be5e7e4b0d2d9d4481823fa1e6517b6f1a723fe0ef48bf543e",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    },
+    {
+      "name": "20260726_사전공백31_코퍼스실측_v1.md",
+      "repository_path": "정제/문서/설계정본/20260726_사전공백31_코퍼스실측_v1.md",
+      "local_sha256": "f2fd291007dfb14c832b27a3c41bd56ef18e57b5e918cf558312f43911139bb4",
+      "repository_sha256": "f2fd291007dfb14c832b27a3c41bd56ef18e57b5e918cf558312f43911139bb4",
+      "byte_equal": true,
+      "reviewed_difference": "identical"
+    }
+  ],
+  "repository_counts": {
+    "p0_batches": 91,
+    "p0_posts": 3881,
+    "p0_paragraphs": 38367,
+    "definitions": 271,
+    "links": 7295,
+    "p2_units": 12,
+    "mapped_legacy_concepts": 51,
+    "legacy_candidates": 767,
+    "research_nodes": 58,
+    "research_relations": 132,
+    "context_reviews": 8,
+    "source_case_items": 10,
+    "active_probability_rules": 0
+  },
+  "source_references": [
+    {
+      "local_relative_path": "2. 정제작업/_현황판/build_concept_map.py",
+      "repository_path": "정제/_현황판/build_concept_map.py",
+      "local_sha256": "a824a81d0591c98360737330186c2209c199ab0bb91d0eb98539643c8f30b6f5",
+      "repository_sha256": "d7ba4d0b10bcd300c2968a48e206613deaea214585792d56470b2d19799f0ea1",
+      "byte_equal": false
+    },
+    {
+      "local_relative_path": "2. 정제작업/_현황판/data/정의카드.jsonl",
+      "repository_path": "정제/_현황판/data/정의카드.jsonl",
+      "local_sha256": "0235a7ae9c818cd641cbdb162277746e5f8f425b005e014c2edafa6c7a7fd861",
+      "repository_sha256": "64482f1110a4b077fe3b6c2316221f8b1278a6d51f62b7d4e4e505eb9d67b9f2",
+      "byte_equal": false
+    },
+    {
+      "local_relative_path": "2. 정제작업/_현황판/엔진갈림_선언.jsonl",
+      "repository_path": "정제/_현황판/엔진갈림_선언.jsonl",
+      "local_sha256": "bde0b206419b0a139b2a29b32fe076618d498ad445c8696e2cc66c36fb7be7f2",
+      "repository_sha256": "fed6a66ea998453a4aaa34a4a9413cd33d3d27505f76fbeeb6523277df70ab51",
+      "byte_equal": false
+    },
+    {
+      "local_relative_path": "2. 정제작업/P2_유닛/pilot_UJ.jsonl",
+      "repository_path": "정제/P2_유닛/pilot_UJ.jsonl",
+      "local_sha256": "3c3ca1572f14ae1d196dffb20b15f63153a7be45cde547afacc36b62685456f2",
+      "repository_sha256": "a0c3fc6e0a06a1d5d8f44c53cd15f956bf3c2a63e6805211e42e2be32356ecda",
+      "byte_equal": false
+    },
+    {
+      "local_relative_path": "2. 정제작업/P2_유닛/pilot_UI.jsonl",
+      "repository_path": "정제/P2_유닛/pilot_UI.jsonl",
+      "local_sha256": "a009f49d12e3ed46d0ec405518c89b67b8fbb1534b6e72b5f560d2f14a2278a2",
+      "repository_sha256": "fa459066f57569a452ac8e7d7acc2fe102d2216b32079b9b5d367def6b3ef9b8",
+      "byte_equal": false
+    }
+  ],
+  "not_verified": [
+    "all source deduplication",
+    "full legacy pipeline regeneration",
+    "semantic approval of taxonomy changes",
+    "app adoption of new foundations",
+    "prediction accuracy"
+  ],
+  "repository_hash_basis": "SHA-256 of git blob bytes at repository_base_commit; checkout CRLF conversion is excluded."
+}

@@ -4,8 +4,9 @@
 
 1. [사용자 의도 원문](docs/knowledge-model/USER_INTENT_LOG.md)
 2. [진화 가능한 프로젝트 아젠다](docs/knowledge-model/PROJECT_AGENDA.md)
-3. [현재 구현 범위](docs/knowledge-model/CURRENT_STATE.md)와 [기본 풀이 계획](docs/knowledge-model/BASIC_READING_PLAN.md)
-4. [세션 현황](dosa-app/STATUS.md), [저장소 작업 규칙](CLAUDE.md)
+3. [기초 보강 인계](docs/knowledge-model/FOUNDATION_HANDOFF.md) — 현재 작업 순서, 청사진·반영 점검·로컬/저장소 차이 자료의 입구
+4. [현재 구현 범위](docs/knowledge-model/CURRENT_STATE.md)와 [기본 풀이 계획](docs/knowledge-model/BASIC_READING_PLAN.md)
+5. [세션 현황](dosa-app/STATUS.md), [저장소 작업 규칙](CLAUDE.md)
 
 ## 유지할 방향
 

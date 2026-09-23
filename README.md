@@ -4,6 +4,8 @@
 
 ## 작업을 이어받을 때
 
+**현재 우선 작업은 [기초 보강 인계](docs/knowledge-model/FOUNDATION_HANDOFF.md)에서 시작합니다.** [청사진](docs/knowledge-model/FOUNDATION_BLUEPRINT.md)·[17개 문서 점검](docs/knowledge-model/FOUNDATION_AUDIT.md)·실제 판본 차이를 기존 설계와 연결했습니다. 기초 구현 완료라는 뜻은 아닙니다.
+
 - [사용자 원문 기록](docs/knowledge-model/USER_INTENT_LOG.md): 최초 설명부터 수정 과정까지 보존합니다.
 - [프로젝트 아젠다](docs/knowledge-model/PROJECT_AGENDA.md): 현재 목표와 아직 열려 있는 설계 질문입니다.
 - [기본 풀이 개발 계획](docs/knowledge-model/BASIC_READING_PLAN.md): 일주·기본 성향 풀이를 먼저 갖추는 순서입니다.

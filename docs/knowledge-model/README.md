@@ -2,14 +2,16 @@
 
 기본 개념을 추출하고, 함께 놓이는 키워드·다중 변수·시점에 따라 달라지는 관계를 학습하기 위한 첫 작업본이다. 특정 앱에서 여는 노트가 목표가 아니며, 사용자 설명에 등장한 예시를 정답이나 규칙으로 채택하지 않는다.
 
-먼저 `READ_FIRST.md`, `USER_INTENT_LOG.md`, `PROJECT_AGENDA.md`, `BASIC_READING_PLAN.md`를 읽는다. 원문 기록은 최신 요약으로 덮어쓰지 않는다.
+먼저 [READ_FIRST.md](READ_FIRST.md), [USER_INTENT_LOG.md](USER_INTENT_LOG.md), [PROJECT_AGENDA.md](PROJECT_AGENDA.md), [FOUNDATION_HANDOFF.md](FOUNDATION_HANDOFF.md)를 읽는다. 기초 보강이 현재 우선 작업이며 [BASIC_READING_PLAN.md](BASIC_READING_PLAN.md)는 그다음 적용 경로다. 원문 기록은 최신 요약으로 덮어쓰지 않는다.
 
 ## 포함한 것
 
 | 파일 | 역할 |
 |---|---|
 | `PROJECT_AGENDA.md` | 진화 가능한 프로젝트 목적·설계 원칙·완료 기준 |
-| `USER_INTENT_LOG.md` | 사용자의 관련 발언 27개와 이해 수정의 흐름 |
+| `USER_INTENT_LOG.md` | 사용자의 관련 발언 33개와 이해 수정의 흐름 |
+| `FOUNDATION_HANDOFF.md`, `FOUNDATION_BLUEPRINT.md`, `FOUNDATION_AUDIT.md` | 기초 보강 시작점·단계별 완료 기준·17개 기존 설계의 반영 점검 |
+| `data/foundation_snapshot.json`, `data/foundation_review_bundle.json` | 판본·해시·수량과 사전/P2의 실제 차이. 비활성 검토 자료 |
 | `MATHEMATICAL_DESIGN.md` | 논문에 근거한 수학적 후보와 현재 기준 모델 |
 | `학습과평가설계.md` | 원문 추출·라벨링·조합·시간·출처 분리 평가 |
 | `knowledge_graph.json` | 기본 개념 18개를 포함한 58개 노드, 132개 관계, 11개 다중 입력 관계 |
