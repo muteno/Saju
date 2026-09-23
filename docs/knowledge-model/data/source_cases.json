@@ -323,6 +323,256 @@
       "start": 0,
       "end": 42,
       "quote": "위처럼 연주, 월주, 일주, 시주 순으로 적어 주면 바로 사주팔자가 됩니다."
+    },
+    {
+      "id": "eul_shen_metadata",
+      "path": "정제본/사주공부-신살론 글모음.docx",
+      "sha256": "69a53a5cd70515325e8fb7c8972a9e60f76dbe6429056041efed04b42e90f20c",
+      "paragraph": "XML-P394",
+      "paragraph_sha256": "a6dd44f3139b4809f2a684718cc3debc5d4d3e489a32428087c15139924d8aa4",
+      "start": 0,
+      "end": 49,
+      "quote": "작성일 2021-02-16 · 분류 신살론 · 원문 www.sajustudy.com/80"
+    },
+    {
+      "id": "eul_shen_limit",
+      "path": "정제본/사주공부-신살론 글모음.docx",
+      "sha256": "69a53a5cd70515325e8fb7c8972a9e60f76dbe6429056041efed04b42e90f20c",
+      "paragraph": "XML-P476",
+      "paragraph_sha256": "22d423446ecb59ac82131c61e7ac385be51dd0f9a1dda1f23bf584507963f498",
+      "start": 0,
+      "end": 71,
+      "quote": "아래 예시는 파에 관련된 통변 중 단식 판단만 한 것입니다. 파만 가지고 통변을 하기에는 한계가 있으니 참고만 하시기 바랍니다."
+    },
+    {
+      "id": "eul_shen_stems",
+      "path": "정제본/사주공부-신살론 글모음.docx",
+      "sha256": "69a53a5cd70515325e8fb7c8972a9e60f76dbe6429056041efed04b42e90f20c",
+      "paragraph": "XML-P500",
+      "paragraph_sha256": "e2410fbe31649425c4023038376d7f416d06af9e27e8721f58f45b41d4c5a4f8",
+      "start": 0,
+      "end": 7,
+      "quote": "庚 乙 丙 丙"
+    },
+    {
+      "id": "eul_shen_branches",
+      "path": "정제본/사주공부-신살론 글모음.docx",
+      "sha256": "69a53a5cd70515325e8fb7c8972a9e60f76dbe6429056041efed04b42e90f20c",
+      "paragraph": "XML-P501",
+      "paragraph_sha256": "263cf26d7fc810ffec88c6af4384684b1759a8d725e6fe4545fad19dcc632c56",
+      "start": 0,
+      "end": 7,
+      "quote": "辰 丑 申 戌"
+    },
+    {
+      "id": "eul_shen_claim",
+      "path": "정제본/사주공부-신살론 글모음.docx",
+      "sha256": "69a53a5cd70515325e8fb7c8972a9e60f76dbe6429056041efed04b42e90f20c",
+      "paragraph": "XML-P502",
+      "paragraph_sha256": "ca75ad512f5a268c7fd1407f329f79793efccb2b9c7f7263ccb280b8200451cb",
+      "start": 0,
+      "end": 5,
+      "quote": "→ 축진파"
+    },
+    {
+      "id": "eul_shen_position",
+      "path": "정제본/사주공부-신살론 글모음.docx",
+      "sha256": "69a53a5cd70515325e8fb7c8972a9e60f76dbe6429056041efed04b42e90f20c",
+      "paragraph": "XML-P474",
+      "paragraph_sha256": "9cbf5a082dc2579a1249093c5fcc00cdf1bf0fa61bf1c290994ed031bf9596d7",
+      "start": 0,
+      "end": 65,
+      "quote": "일지와 시지의 파는 개인과 내 가족을 의미하는 것으로 직업, 배우자, 자식, 중년과 노년기의 변화 변동을 암시합니다."
+    },
+    {
+      "id": "eul_mi_title",
+      "path": "정제본/사주공부-명리 중급 글모음.docx",
+      "sha256": "c6e81caad60bcda4fd076f848758ba8b60c3041c645c05ad02cc3a648281d728",
+      "paragraph": "XML-P5751",
+      "paragraph_sha256": "3ceaf2f476138b961971c008fa330b59f3bf3c441f9fff73edbadfebecdb1e28",
+      "start": 0,
+      "end": 10,
+      "quote": "신왕합살 사주의 예"
+    },
+    {
+      "id": "eul_mi_order",
+      "path": "정제본/사주공부-명리 중급 글모음.docx",
+      "sha256": "c6e81caad60bcda4fd076f848758ba8b60c3041c645c05ad02cc3a648281d728",
+      "paragraph": "XML-P5754",
+      "paragraph_sha256": "69654fac5bb560136c78aaf3ef403008cec7891c933b93ecdcc6525b0fb832f1",
+      "start": 0,
+      "end": 22,
+      "quote": "예를 들어 신축년 을미월 을묘일 병자시는"
+    },
+    {
+      "id": "eul_mi_stems",
+      "path": "정제본/사주공부-명리 중급 글모음.docx",
+      "sha256": "c6e81caad60bcda4fd076f848758ba8b60c3041c645c05ad02cc3a648281d728",
+      "paragraph": "XML-P5755",
+      "paragraph_sha256": "7dad4ec1211a093518f06475e9737daf056f053dcff05b2c769025ccf0f3d763",
+      "start": 0,
+      "end": 7,
+      "quote": "丙 乙 乙 辛"
+    },
+    {
+      "id": "eul_mi_branches",
+      "path": "정제본/사주공부-명리 중급 글모음.docx",
+      "sha256": "c6e81caad60bcda4fd076f848758ba8b60c3041c645c05ad02cc3a648281d728",
+      "paragraph": "XML-P5756",
+      "paragraph_sha256": "9378fb5d7e8a96abe9ace30b979b410a533383965738888743f9ff8ab015bc11",
+      "start": 0,
+      "end": 7,
+      "quote": "子 卯 未 丑"
+    },
+    {
+      "id": "eul_mi_claim",
+      "path": "정제본/사주공부-명리 중급 글모음.docx",
+      "sha256": "c6e81caad60bcda4fd076f848758ba8b60c3041c645c05ad02cc3a648281d728",
+      "paragraph": "XML-P5762",
+      "paragraph_sha256": "96c8fb75ffcecd094bb59e0a83eba27384bddf55e1430ae2538899554a5626a0",
+      "start": 0,
+      "end": 44,
+      "quote": "기뻐할 것은 병자시와 신축년이 칠살을 합하는 것으로 귀하고 권위가 있게 되었다."
+    },
+    {
+      "id": "eul_myo_title",
+      "path": "정제본/name-이름게시판 게시판 글모음.docx",
+      "sha256": "b054a4d9d4cd63d2f3dcb42cd5b87720f70f0b12138b98bc7c877d83ce132dbb",
+      "paragraph": "XML-P516",
+      "paragraph_sha256": "bb76d9745b9dc7e5f84f58c3a5e40e16991c16ac8243be48992bf8884c756347",
+      "start": 0,
+      "end": 31,
+      "quote": "작명연습(5) - 한자사전을 이용한 한자고르기와 작명완성"
+    },
+    {
+      "id": "eul_myo_header",
+      "path": "정제본/name-이름게시판 게시판 글모음.docx",
+      "sha256": "b054a4d9d4cd63d2f3dcb42cd5b87720f70f0b12138b98bc7c877d83ce132dbb",
+      "paragraph": "XML-P519",
+      "paragraph_sha256": "bda4de75c55f71ca807482f8a30eea1b9cdf735b85831717bf64785d4895487f",
+      "start": 0,
+      "end": 7,
+      "quote": "시 일 월 년"
+    },
+    {
+      "id": "eul_myo_stems",
+      "path": "정제본/name-이름게시판 게시판 글모음.docx",
+      "sha256": "b054a4d9d4cd63d2f3dcb42cd5b87720f70f0b12138b98bc7c877d83ce132dbb",
+      "paragraph": "XML-P520",
+      "paragraph_sha256": "b4fcc8c7cd510561fffdc87fb39c7cb899349caaecbdef30517ef69f9bf3a868",
+      "start": 0,
+      "end": 7,
+      "quote": "甲 乙 辛 辛"
+    },
+    {
+      "id": "eul_myo_branches",
+      "path": "정제본/name-이름게시판 게시판 글모음.docx",
+      "sha256": "b054a4d9d4cd63d2f3dcb42cd5b87720f70f0b12138b98bc7c877d83ce132dbb",
+      "paragraph": "XML-P521",
+      "paragraph_sha256": "aba732bc25a78438245c3271bfd36f3fb0b2d67762432c60a8fd119182b95662",
+      "start": 0,
+      "end": 7,
+      "quote": "申 丑 卯 丑"
+    },
+    {
+      "id": "eul_myo_claim",
+      "path": "정제본/name-이름게시판 게시판 글모음.docx",
+      "sha256": "b054a4d9d4cd63d2f3dcb42cd5b87720f70f0b12138b98bc7c877d83ce132dbb",
+      "paragraph": "XML-P522",
+      "paragraph_sha256": "914672b4f683a0bed6356b3ed96dbb9a6bce177ccb2b45d52ea8008651f6cb52",
+      "start": 57,
+      "end": 93,
+      "quote": "사주상으로는 수와 목기운이 보강되어야 하는 명조로 분석을 했구요."
+    },
+    {
+      "id": "eulyu_yearly_title",
+      "path": "정제본/2026년 병오년 운세 글모음.docx",
+      "sha256": "526026b7902104842fedcf12064a43c3453f39da5a0497dbf9aaa346c3df33ff",
+      "paragraph": "XML-P9152",
+      "paragraph_sha256": "78b13b4dc5e21f2799d9b66b201b3e6456894fa5bbe0ff2135f60299ab466f74",
+      "start": 0,
+      "end": 18,
+      "quote": "2026년 병오년 운세(을유일주)"
+    },
+    {
+      "id": "eulyu_yearly_metadata",
+      "path": "정제본/2026년 병오년 운세 글모음.docx",
+      "sha256": "526026b7902104842fedcf12064a43c3453f39da5a0497dbf9aaa346c3df33ff",
+      "paragraph": "XML-P9153",
+      "paragraph_sha256": "1cd63dca27a246c77cb4cb3371f1ef0e520556f39f60079e495a1506bf860ca6",
+      "start": 0,
+      "end": 44,
+      "quote": "작성일 2025-11-26 · 원문 yavares.tistory.com/1251"
+    },
+    {
+      "id": "eulyu_yearly_scope",
+      "path": "정제본/2026년 병오년 운세 글모음.docx",
+      "sha256": "526026b7902104842fedcf12064a43c3453f39da5a0497dbf9aaa346c3df33ff",
+      "paragraph": "XML-P9212",
+      "paragraph_sha256": "9c9ceebbf65c134a8eb25fbde674c20ed48d1c54bdb6a634d971df71c44e8e26",
+      "start": 0,
+      "end": 75,
+      "quote": "십신으로 한 해의 운을 추론하기 위해서는 일간-태어난 날의 천간- 을 기준으로 일간과 그 해에 해당하는 간지와의 관계를 살펴야 합니다."
+    },
+    {
+      "id": "eulyu_yearly_pillars",
+      "path": "정제본/2026년 병오년 운세 글모음.docx",
+      "sha256": "526026b7902104842fedcf12064a43c3453f39da5a0497dbf9aaa346c3df33ff",
+      "paragraph": "XML-P9213",
+      "paragraph_sha256": "e01ee47aa037a593fedc35c4c8862f6aabf0f45f1233c61175db29ed5f6eff3b",
+      "start": 0,
+      "end": 51,
+      "quote": "을유일주의 일간은 을목이기 때문에, 을목을 기준으로 병오의 병화, 오화와의 관계를 따집니다."
+    },
+    {
+      "id": "eulyu_yearly_claim",
+      "path": "정제본/2026년 병오년 운세 글모음.docx",
+      "sha256": "526026b7902104842fedcf12064a43c3453f39da5a0497dbf9aaa346c3df33ff",
+      "paragraph": "XML-P9226",
+      "paragraph_sha256": "08c8e0ba1568c7e0c6631e26cc2a27e8f8bcae8d639f95843127d537bb5c4dcb",
+      "start": 0,
+      "end": 75,
+      "quote": "이러한 을유일주에게 병화 상관은 일지 유금, 편관이 가질 수 있는 예민함의 부담을 줄여줄 수 있기에 긍정적인 해로 해석할 수 있습니다."
+    },
+    {
+      "id": "eulyu_wood_scope",
+      "path": "정제본/2026년 병오년 운세 글모음.docx",
+      "sha256": "526026b7902104842fedcf12064a43c3453f39da5a0497dbf9aaa346c3df33ff",
+      "paragraph": "XML-P9241",
+      "paragraph_sha256": "ade2b08a73d02f8903e49b6dec8ace21cf9be75447eaea2bd8f61ddfe2c87287",
+      "start": 0,
+      "end": 24,
+      "quote": "(가) 목 기운이 많은 을유일주 병오년 운세"
+    },
+    {
+      "id": "eulyu_wood_transit_caveat",
+      "path": "정제본/2026년 병오년 운세 글모음.docx",
+      "sha256": "526026b7902104842fedcf12064a43c3453f39da5a0497dbf9aaa346c3df33ff",
+      "paragraph": "XML-P9250",
+      "paragraph_sha256": "cdac544d4ca550d3253adbe06f400ec7e64977e6a5d7e3f8ecd8b60eca593d91",
+      "start": 0,
+      "end": 56,
+      "quote": "금 대운은 원국상 용신 대운이므로 세운의 화기운이 일시적으로 직장생활 스트레스로 작용할 수 있습니다."
+    },
+    {
+      "id": "eulyu_fire_scope",
+      "path": "정제본/2026년 병오년 운세 글모음.docx",
+      "sha256": "526026b7902104842fedcf12064a43c3453f39da5a0497dbf9aaa346c3df33ff",
+      "paragraph": "XML-P9254",
+      "paragraph_sha256": "2ef254bd41db58efcc3e2efa4502b86bd22e0f5860b39a9130a5da9e5f25a051",
+      "start": 0,
+      "end": 24,
+      "quote": "(나) 화 기운이 많은 을유일주 병오년 운세"
+    },
+    {
+      "id": "eulyu_fire_transit_caveat",
+      "path": "정제본/2026년 병오년 운세 글모음.docx",
+      "sha256": "526026b7902104842fedcf12064a43c3453f39da5a0497dbf9aaa346c3df33ff",
+      "paragraph": "XML-P9263",
+      "paragraph_sha256": "7799036998f2b4a7eb2c3afbcb2733f9994eefb4c892d668272ca32da5294c16",
+      "start": 0,
+      "end": 67,
+      "quote": "금 대운 즉 경신, 신유대운도 강한 화기운의 영향으로 사회적인 활동력이나 직장에서의 스트레스가 증가할 수 있는 해입니다."
     }
   ],
   "cases": [
@@ -991,6 +1241,475 @@
           "evidence_refs": [
             "conflict_year_a",
             "conflict_hour"
+          ]
+        }
+      ],
+      "training_label": null
+    },
+    {
+      "id": "eul_shen_visible_fire",
+      "label": "신월 을목과 표면 병화를 함께 적은 문헌 명식",
+      "origin": "source_reported_chart",
+      "source_group": "sajustudy",
+      "subject_group": "sajustudy_reported_eul_shen",
+      "dependency_groups": [
+        "sajustudy",
+        "sajustudy_reported_eul_shen"
+      ],
+      "evidence_ids": [
+        "eul_shen_metadata",
+        "eul_shen_limit",
+        "eul_shen_stems",
+        "eul_shen_branches",
+        "eul_shen_claim",
+        "eul_shen_position",
+        "clock_header"
+      ],
+      "bindings": [
+        {
+          "at": "natal.year",
+          "value": "丙戌",
+          "symbols": [
+            {
+              "evidence": "eul_shen_stems",
+              "offset": 6
+            },
+            {
+              "evidence": "eul_shen_branches",
+              "offset": 6
+            }
+          ],
+          "position_evidence": [
+            "clock_header",
+            "eul_shen_position",
+            "eul_shen_claim"
+          ],
+          "position_note": "같은 저자 초급 모음의 시·일·월·년 헤더를 적용하고, 이 글의 일시지 파 설명 및 축진파 표기를 대조했다. 해당 표 자체에는 헤더가 없으므로 열 배치의 독립 전문가 검수는 미완료다."
+        },
+        {
+          "at": "natal.month",
+          "value": "丙申",
+          "symbols": [
+            {
+              "evidence": "eul_shen_stems",
+              "offset": 4
+            },
+            {
+              "evidence": "eul_shen_branches",
+              "offset": 4
+            }
+          ],
+          "position_evidence": [
+            "clock_header",
+            "eul_shen_position",
+            "eul_shen_claim"
+          ],
+          "position_note": "같은 저자 초급 모음의 시·일·월·년 헤더를 적용하고, 이 글의 일시지 파 설명 및 축진파 표기를 대조했다. 해당 표 자체에는 헤더가 없으므로 열 배치의 독립 전문가 검수는 미완료다."
+        },
+        {
+          "at": "natal.day",
+          "value": "乙丑",
+          "symbols": [
+            {
+              "evidence": "eul_shen_stems",
+              "offset": 2
+            },
+            {
+              "evidence": "eul_shen_branches",
+              "offset": 2
+            }
+          ],
+          "position_evidence": [
+            "clock_header",
+            "eul_shen_position",
+            "eul_shen_claim"
+          ],
+          "position_note": "같은 저자 초급 모음의 시·일·월·년 헤더를 적용하고, 이 글의 일시지 파 설명 및 축진파 표기를 대조했다. 해당 표 자체에는 헤더가 없으므로 열 배치의 독립 전문가 검수는 미완료다."
+        },
+        {
+          "at": "natal.hour",
+          "value": "庚辰",
+          "symbols": [
+            {
+              "evidence": "eul_shen_stems",
+              "offset": 0
+            },
+            {
+              "evidence": "eul_shen_branches",
+              "offset": 0
+            }
+          ],
+          "position_evidence": [
+            "clock_header",
+            "eul_shen_position",
+            "eul_shen_claim"
+          ],
+          "position_note": "같은 저자 초급 모음의 시·일·월·년 헤더를 적용하고, 이 글의 일시지 파 설명 및 축진파 표기를 대조했다. 해당 표 자체에는 헤더가 없으므로 열 배치의 독립 전문가 검수는 미완료다."
+        }
+      ],
+      "author_assertions": [
+        {
+          "summary": "저자는 축진파의 예로 이 명식을 제시하며, 파만으로 판단하는 것에는 한계가 있다고 명시한다.",
+          "evidence_refs": [
+            "eul_shen_claim",
+            "eul_shen_limit"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "code": "target_effect_not_assessed",
+          "summary": "이 원문은 파를 설명한다. 을목·병정화 조건 충족은 다른 문헌 조건과의 기호 대조일 뿐, 금을 감당한다는 효과의 확인 사례나 긍정 라벨이 아니다.",
+          "evidence_refs": [
+            "eul_shen_claim",
+            "eul_shen_limit"
+          ]
+        },
+        {
+          "code": "cross_document_column_mapping",
+          "summary": "표의 읽기 순서는 같은 저자의 별도 초급 자료와 이 문맥의 일시지 설명을 함께 사용했다. 실제 인물의 출생 정보나 달력 일치는 검증하지 않았다.",
+          "evidence_refs": [
+            "clock_header",
+            "eul_shen_position",
+            "eul_shen_stems",
+            "eul_shen_branches"
+          ]
+        }
+      ],
+      "training_label": null
+    },
+    {
+      "id": "eul_mi_fire_outside_scope",
+      "label": "미월 을묘일과 병자시를 적은 고전 설명 예시",
+      "origin": "source_illustration",
+      "source_group": "sajustudy",
+      "subject_group": "sajustudy_classical_eul_mi",
+      "dependency_groups": [
+        "sajustudy",
+        "sajustudy_classical_eul_mi"
+      ],
+      "evidence_ids": [
+        "eul_mi_title",
+        "eul_mi_order",
+        "eul_mi_stems",
+        "eul_mi_branches",
+        "eul_mi_claim"
+      ],
+      "bindings": [
+        {
+          "at": "natal.year",
+          "value": "辛丑",
+          "symbols": [
+            {
+              "evidence": "eul_mi_stems",
+              "offset": 6
+            },
+            {
+              "evidence": "eul_mi_branches",
+              "offset": 6
+            }
+          ],
+          "position_evidence": [
+            "eul_mi_order"
+          ],
+          "position_note": "바로 앞 문장이 신축년·을미월·을묘일·병자시를 명시한다. 이 순서와 역순으로 놓인 두 행의 같은 열을 대조했다."
+        },
+        {
+          "at": "natal.month",
+          "value": "乙未",
+          "symbols": [
+            {
+              "evidence": "eul_mi_stems",
+              "offset": 4
+            },
+            {
+              "evidence": "eul_mi_branches",
+              "offset": 4
+            }
+          ],
+          "position_evidence": [
+            "eul_mi_order"
+          ],
+          "position_note": "바로 앞 문장이 신축년·을미월·을묘일·병자시를 명시한다. 이 순서와 역순으로 놓인 두 행의 같은 열을 대조했다."
+        },
+        {
+          "at": "natal.day",
+          "value": "乙卯",
+          "symbols": [
+            {
+              "evidence": "eul_mi_stems",
+              "offset": 2
+            },
+            {
+              "evidence": "eul_mi_branches",
+              "offset": 2
+            }
+          ],
+          "position_evidence": [
+            "eul_mi_order"
+          ],
+          "position_note": "바로 앞 문장이 신축년·을미월·을묘일·병자시를 명시한다. 이 순서와 역순으로 놓인 두 행의 같은 열을 대조했다."
+        },
+        {
+          "at": "natal.hour",
+          "value": "丙子",
+          "symbols": [
+            {
+              "evidence": "eul_mi_stems",
+              "offset": 0
+            },
+            {
+              "evidence": "eul_mi_branches",
+              "offset": 0
+            }
+          ],
+          "position_evidence": [
+            "eul_mi_order"
+          ],
+          "position_note": "바로 앞 문장이 신축년·을미월·을묘일·병자시를 명시한다. 이 순서와 역순으로 놓인 두 행의 같은 열을 대조했다."
+        }
+      ],
+      "author_assertions": [
+        {
+          "summary": "저자는 신왕합살의 예로 병자시와 신축년의 관계를 설명한다. 검토 대상인 신유월 또는 을유일의 조건과는 다른 문맥이다.",
+          "evidence_refs": [
+            "eul_mi_title",
+            "eul_mi_order",
+            "eul_mi_claim"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "code": "different_scope",
+          "summary": "병화가 있다는 사실만으로 신월·유월 또는 을유일 조건까지 충족했다고 보지 않는다. 이 미충족은 저자의 별도 해석을 반증하거나 부정 라벨을 만들지 않는다.",
+          "evidence_refs": [
+            "eul_mi_order",
+            "eul_mi_claim"
+          ]
+        }
+      ],
+      "training_label": null
+    },
+    {
+      "id": "eul_myo_no_visible_fire",
+      "label": "묘월 을축일의 작명 연습 명식",
+      "origin": "source_illustration",
+      "source_group": "sajuplus",
+      "subject_group": "sajuplus_naming_eul_myo",
+      "dependency_groups": [
+        "sajuplus",
+        "sajuplus_naming_eul_myo"
+      ],
+      "evidence_ids": [
+        "eul_myo_title",
+        "eul_myo_header",
+        "eul_myo_stems",
+        "eul_myo_branches",
+        "eul_myo_claim"
+      ],
+      "bindings": [
+        {
+          "at": "natal.year",
+          "value": "辛丑",
+          "symbols": [
+            {
+              "evidence": "eul_myo_stems",
+              "offset": 6
+            },
+            {
+              "evidence": "eul_myo_branches",
+              "offset": 6
+            }
+          ],
+          "position_evidence": [
+            "eul_myo_header"
+          ],
+          "position_note": "같은 표의 시·일·월·년 헤더와 두 행의 열을 직접 대조했다."
+        },
+        {
+          "at": "natal.month",
+          "value": "辛卯",
+          "symbols": [
+            {
+              "evidence": "eul_myo_stems",
+              "offset": 4
+            },
+            {
+              "evidence": "eul_myo_branches",
+              "offset": 4
+            }
+          ],
+          "position_evidence": [
+            "eul_myo_header"
+          ],
+          "position_note": "같은 표의 시·일·월·년 헤더와 두 행의 열을 직접 대조했다."
+        },
+        {
+          "at": "natal.day",
+          "value": "乙丑",
+          "symbols": [
+            {
+              "evidence": "eul_myo_stems",
+              "offset": 2
+            },
+            {
+              "evidence": "eul_myo_branches",
+              "offset": 2
+            }
+          ],
+          "position_evidence": [
+            "eul_myo_header"
+          ],
+          "position_note": "같은 표의 시·일·월·년 헤더와 두 행의 열을 직접 대조했다."
+        },
+        {
+          "at": "natal.hour",
+          "value": "甲申",
+          "symbols": [
+            {
+              "evidence": "eul_myo_stems",
+              "offset": 0
+            },
+            {
+              "evidence": "eul_myo_branches",
+              "offset": 0
+            }
+          ],
+          "position_evidence": [
+            "eul_myo_header"
+          ],
+          "position_note": "같은 표의 시·일·월·년 헤더와 두 행의 열을 직접 대조했다."
+        }
+      ],
+      "author_assertions": [
+        {
+          "summary": "원문은 작명 연습 자료이며 수와 목 기운 보강을 주장한다. 이름·출생일은 새 발췌에 포함하지 않는다.",
+          "evidence_refs": [
+            "eul_myo_title",
+            "eul_myo_claim"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "code": "antecedent_negative_not_outcome_counterexample",
+          "summary": "네 천간에는 병정화가 없고, 월지는 묘이며 일지는 축이다. 현재 선행 조건 미충족을 을목 해석의 실제 반례나 정답으로 삼지 않는다.",
+          "evidence_refs": [
+            "eul_myo_header",
+            "eul_myo_stems",
+            "eul_myo_branches"
+          ]
+        }
+      ],
+      "training_label": null
+    },
+    {
+      "id": "eulyu_yearly_fire_scope",
+      "label": "을유일주 일반 유형과 병오 세운의 범위 설명",
+      "origin": "source_illustration",
+      "source_group": "hyunmyo_yavares",
+      "subject_group": "hyunmyo_eulyu_2026_category",
+      "dependency_groups": [
+        "hyunmyo_yavares",
+        "hyunmyo_eulyu_2026_category"
+      ],
+      "evidence_ids": [
+        "eulyu_yearly_title",
+        "eulyu_yearly_metadata",
+        "eulyu_yearly_scope",
+        "eulyu_yearly_pillars",
+        "eulyu_yearly_claim",
+        "eulyu_wood_scope",
+        "eulyu_wood_transit_caveat",
+        "eulyu_fire_scope",
+        "eulyu_fire_transit_caveat"
+      ],
+      "bindings": [
+        {
+          "at": "natal.day",
+          "value": "乙酉",
+          "symbols": [
+            {
+              "evidence": "eulyu_yearly_title",
+              "offset": 13
+            },
+            {
+              "evidence": "eulyu_yearly_title",
+              "offset": 14
+            }
+          ],
+          "position_evidence": [
+            "eulyu_yearly_title",
+            "eulyu_yearly_scope"
+          ],
+          "position_note": "제목의 을유일주와 병오년, 본문의 그 해 간지 설명을 대조했다. 연월시주나 정확한 평가 시각을 보충하지 않는다."
+        },
+        {
+          "at": "time.yearly",
+          "value": "丙午",
+          "symbols": [
+            {
+              "evidence": "eulyu_yearly_title",
+              "offset": 6
+            },
+            {
+              "evidence": "eulyu_yearly_title",
+              "offset": 7
+            }
+          ],
+          "position_evidence": [
+            "eulyu_yearly_title",
+            "eulyu_yearly_scope"
+          ],
+          "position_note": "제목의 을유일주와 병오년, 본문의 그 해 간지 설명을 대조했다. 연월시주나 정확한 평가 시각을 보충하지 않는다."
+        }
+      ],
+      "author_assertions": [
+        {
+          "summary": "저자는 병오년에 들어오는 병화가 을유일주의 유금 부담을 줄일 수 있다고 설명한다. 개별 인물의 완전한 명식 사례가 아니라 일주 일반 유형의 운세 글이다.",
+          "evidence_refs": [
+            "eulyu_yearly_title",
+            "eulyu_yearly_scope",
+            "eulyu_yearly_claim"
+          ]
+        },
+        {
+          "summary": "같은 글은 목이 많은 유형의 금 대운, 화가 많은 유형의 금 대운에서 세운 화의 부담도 따로 설명한다. 유리한 해라는 문장만 떼어 전체 유형에 적용하지 않는다.",
+          "evidence_refs": [
+            "eulyu_wood_scope",
+            "eulyu_wood_transit_caveat",
+            "eulyu_fire_scope",
+            "eulyu_fire_transit_caveat"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "code": "yearly_fire_is_not_natal_fire",
+          "summary": "병오는 세운이다. 원국의 병정화 존재를 채우지 않으며, 년·월·시주 미상과 원국 조건의 정보 부족을 유지한다.",
+          "evidence_refs": [
+            "eulyu_yearly_title",
+            "eulyu_yearly_scope",
+            "eulyu_yearly_pillars"
+          ]
+        },
+        {
+          "code": "qualitative_subgroups_not_measured",
+          "summary": "목/화가 많다는 유형과 그 유형의 대운 제한은 별도 조건이다. 이를 이 단일 일주 입력의 측정값이나 확정 대운으로 변환하지 않는다.",
+          "evidence_refs": [
+            "eulyu_wood_scope",
+            "eulyu_wood_transit_caveat",
+            "eulyu_fire_scope",
+            "eulyu_fire_transit_caveat"
+          ]
+        },
+        {
+          "code": "category_not_individual_case",
+          "summary": "이 항목은 개인 관측 사례가 아니며 유리/불리 라벨, 확률 또는 독립 반례로 사용하지 않는다.",
+          "evidence_refs": [
+            "eulyu_yearly_title",
+            "eulyu_yearly_claim"
           ]
         }
       ],

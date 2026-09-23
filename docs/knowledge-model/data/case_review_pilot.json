@@ -3,7 +3,7 @@
   "purpose": "unlabelled_review_workflow_fixture_not_training_data",
   "spec": {
     "feature_policy": "chart-observations-v1",
-    "review_sha256": "2939c7f8b637186af0dbbf44c1ad8510d55a4ec66b4248985c899abaf2400834",
+    "review_sha256": "902df1cdb16cdc64918c148e0d061e28f3c43d98ae3cc1b4921ec730bae41b8b",
     "target_kind": "literature_applicability",
     "targets": [
       {

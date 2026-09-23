@@ -20,8 +20,8 @@ class SourceCaseReviewTests(unittest.TestCase):
         cls.evidence = {e['id']: e for e in cls.bundle['evidence']}
 
     def test_literal_corpus_and_column_order(self):
-        self.assertEqual((self.result['case_count'], self.result['source_file_count']), (6, 4))
-        self.assertEqual(len(self.evidence), 32)
+        self.assertEqual((self.result['case_count'], self.result['source_file_count']), (10, 8))
+        self.assertEqual(len(self.evidence), 57)
         self.assertEqual(self.rows['clock_four_pillars']['reported_input'],
                          {'year': 36, 'month': 17, 'day': 12, 'hour': 30})
         self.assertEqual(self.rows['root_flower_example']['reported_input'],
@@ -66,7 +66,8 @@ class SourceCaseReviewTests(unittest.TestCase):
         self.assertEqual(self.result['training_eligible_count'], 0)
         self.assertFalse(self.result['training_labels_created'])
         self.assertFalse(self.result['position_mapping_expert_verified'])
-        self.assertEqual(self.result['condition_coverage']['eul_wood_fire_context'], {'not_matched': 6})
+        self.assertEqual(self.result['condition_coverage']['eul_wood_fire_context'],
+                         {'not_matched': 8, 'matched': 1, 'needs_context': 1})
         for row in self.result['cases']:
             self.assertFalse(row['training_eligible'])
             self.assertIsNone(row['training_label'])
@@ -121,7 +122,74 @@ class SourceCaseReviewTests(unittest.TestCase):
             c['source_group'] = f'source_{i}'; c['subject_group'] = f'subject_{i}'
             c['dependency_groups'] = [f'dependency_{i}']
         groups = dependency_components(cases, self.evidence)
-        self.assertIn(['clock_four_pillars', 'root_flower_example', 'three_pillars_transits'], groups)
+        self.assertIn(['clock_four_pillars', 'root_flower_example', 'three_pillars_transits',
+                       'eul_shen_visible_fire'], groups)
+
+    def test_matched_source_chart_does_not_verify_interpretation(self):
+        row = self.rows['eul_shen_visible_fire']
+        self.assertEqual(row['reported_input'], {'year': 22, 'month': 32, 'day': 1, 'hour': 16})
+        condition = next(c for c in row['conditions'] if c['id'] == 'eul_wood_fire_context')
+        self.assertEqual(condition['condition_value'], 1)
+        self.assertEqual(condition['evaluation_scope'], 'reviewed_antecedent_only_not_full_interpretation')
+        self.assertIn('target_effect_not_assessed', {i['code'] for i in row['issues']})
+        self.assertIn('cross_document_column_mapping', {i['code'] for i in row['issues']})
+        self.assertFalse(row['training_eligible'])
+        self.assertIsNone(row['training_label'])
+        self.assertIsNone(row['prediction']['probability'])
+
+    def test_fire_presence_alone_does_not_satisfy_season_or_day_scope(self):
+        row = self.rows['eul_mi_fire_outside_scope']
+        self.assertEqual(row['observations']['natal.day.stem.乙'], 1)
+        self.assertEqual(row['observations']['natal.stem.丙.present'], 1)
+        for key in ('natal.month.branch.申', 'natal.month.branch.酉', 'natal.day.branch.酉'):
+            self.assertEqual(row['observations'][key], 0)
+        self.assertEqual(next(c['condition_value'] for c in row['conditions']
+                              if c['id'] == 'eul_wood_fire_context'), 0)
+        no_fire = self.rows['eul_myo_no_visible_fire']
+        self.assertEqual(no_fire['observations']['natal.stem.丙.present'], 0)
+        self.assertEqual(no_fire['observations']['natal.stem.丁.present'], 0)
+        self.assertIn('antecedent_negative_not_outcome_counterexample',
+                      {i['code'] for i in no_fire['issues']})
+        self.assertIsNone(no_fire['training_label'])
+
+    def test_yearly_type_example_does_not_fill_missing_natal_fire_or_daewoon(self):
+        row = self.rows['eulyu_yearly_fire_scope']
+        self.assertEqual(row['reported_input'], {'year': None, 'month': None, 'day': 21, 'hour': None})
+        self.assertEqual(row['time_context']['yearly']['pillar'], 42)
+        self.assertEqual(row['observations']['time.yearly.stem.丙'], 1)
+        self.assertIsNone(row['observations']['natal.stem.丙.present'])
+        self.assertIsNone(row['observations']['natal.stem.丁.present'])
+        self.assertIsNone(row['time_context']['daewoon']['pillar'])
+        self.assertIsNone(row['evaluated_at'])
+        self.assertIsNone(next(c['condition_value'] for c in row['conditions']
+                               if c['id'] == 'eul_wood_fire_context'))
+        self.assertIn('category_not_individual_case', {i['code'] for i in row['issues']})
+        self.assertFalse(row['training_eligible'])
+
+    def test_context_caveats_survive_audit_with_their_subgroup_evidence(self):
+        row = self.rows['eulyu_yearly_fire_scope']
+        caveat = next(i for i in row['issues'] if i['code'] == 'qualitative_subgroups_not_measured')
+        self.assertEqual(set(caveat['evidence_refs']),
+                         {'eulyu_wood_scope', 'eulyu_wood_transit_caveat',
+                          'eulyu_fire_scope', 'eulyu_fire_transit_caveat'})
+        # Both cautions belong to narrower subgroups, not an unconditional negative label.
+        self.assertIn('목 기운이 많은', self.evidence['eulyu_wood_scope']['quote'])
+        self.assertIn('화 기운이 많은', self.evidence['eulyu_fire_scope']['quote'])
+        self.assertIn('금 대운', self.evidence['eulyu_wood_transit_caveat']['quote'])
+        self.assertIn('금 대운', self.evidence['eulyu_fire_transit_caveat']['quote'])
+        review = next(r for r in self.reviews['reviews'] if r['id'] == 'eul_wood_fire_context')
+        context = next(c for c in review['source_context'] if c['start'] == 294)
+        self.assertEqual(context['end'], 302)
+        self.assertIn('대세운', context['quote'])
+        self.assertIn('지지에 오화', context['quote'])
+
+    def test_new_files_do_not_make_same_author_cases_independent(self):
+        groups = self.result['dependency_components']
+        self.assertEqual(len(groups), 4)
+        for pair in [('clock_four_pillars', 'eul_mi_fire_outside_scope'),
+                     ('conflicting_calendar_example', 'eul_myo_no_visible_fire')]:
+            self.assertTrue(any(set(pair) <= set(group) for group in groups))
+        self.assertIn(['eulyu_yearly_fire_scope'], groups)
 
     def test_reported_adapter_rejects_calendar_or_model_payloads(self):
         good = case_request(self.bundle['cases'][0], self.evidence)
