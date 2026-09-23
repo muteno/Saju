@@ -1323,21 +1323,30 @@
       "concept": "지장간",
       "difference_kind": "changed_shared",
       "decision": "채택",
-      "scope": "existing_edition_only",
-      "source_review": "literal_candidate_only",
+      "scope": "existing_retrieval_aliases_kept_with_polysemy_recorded",
+      "source_review": "reviewed_examples",
       "local_only_aliases": [],
       "repository_only_aliases": [
         "地藏干",
         "암장"
       ],
-      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "reason": "地藏干은 원문 정의에서 확인했다. 암장은 실제 숨은 천간을 가리키는 용례와 숨은 전제를 말하는 비유·오전사가 섞여 있다. 기존4별칭은 문헌 주제 검색으로 유지하며 의미 전수 승인으로 보지 않는다. 장간의 구성·본기 순서와 저자의 작용력 비율/사령 기간/개인 해석을 구별하고 앱 구성표를 바꾸지 않는다.",
       "target_file": "정제/_현황판/build_concept_map.py",
       "bundle_pointer": "/taxonomy/changed_shared/지장간",
       "evidence_ids": [
-        "candidate_074"
+        "candidate_074",
+        "hidden_board_chen",
+        "hidden_choco_wu",
+        "hidden_hyeonmyo_zi",
+        "hidden_hyeonmyo_stages",
+        "hidden_hyeonmyo_wu_exception",
+        "hidden_amjang_web",
+        "hidden_amjang_transcript",
+        "hidden_amjang_metaphor",
+        "hidden_amjang_transcription"
       ],
       "applied_aliases": [],
-      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+      "next_action": "암장 삭제 가상 시험의 두 빌더 전후 ID와 반례를 기록한다. 단순 구조어 동반을 자동 승인 조건으로 쓰지 않는다. 장간 구성은 엔진 정본, 비율·사령·강약은 별도 F03 판본으로 검수하고 다음 여기·중기·정기/사령·월령으로 이어간다."
     },
     {
       "concept": "지지(총칭)",
@@ -1487,20 +1496,31 @@
       "concept": "투간·투출",
       "difference_kind": "changed_shared",
       "decision": "채택",
-      "scope": "existing_edition_only",
-      "source_review": "literal_candidate_only",
+      "scope": "existing_retrieval_group_source_definitions_distinct",
+      "source_review": "reviewed_examples",
       "local_only_aliases": [],
       "repository_only_aliases": [
         "透出"
       ],
-      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "reason": "기존 투간/투출/透出 검색 묶음은 보존하되 의미 동의어로 승인하지 않는다. 보존 보드·초코서당은 같은 글자/같은 오행 범위를 구별하고, 현묘·명리학탐구의 투출은 같은 글자 중심이다. 초코서당의 일간 제외와 명리학탐구의 일반 투출/격국 문맥 차이, 월지·동주·거리·변격·원국→운의 조건 및 같은 글의 표현 차이를 보존한다.",
       "target_file": "정제/_현황판/build_concept_map.py",
       "bundle_pointer": "/taxonomy/changed_shared/투간·투출",
       "evidence_ids": [
-        "candidate_081"
+        "candidate_081",
+        "exposure_board_terms",
+        "exposure_choco_direction",
+        "exposure_choco_exact",
+        "exposure_choco_variation",
+        "exposure_choco_restricted_views",
+        "exposure_choco_time_examples",
+        "exposure_choco_time_direction",
+        "exposure_choco_editorial_policy",
+        "exposure_hyeonmyo_exact",
+        "exposure_myeongri_exact",
+        "exposure_myeongri_daymaster_scope"
       ],
       "applied_aliases": [],
-      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+      "next_action": "검색 노드를 실제 관계로 쓰기 전에 저자/용어/출발 자리/도착 자리/글자·오행 동일성/일간 포함/원국·운/부정·강도를 별도로 보존한다. 透干은 원문에 있으나 이번 신규 별칭은0이다. 격국 성립 판단과 분리 검수한다."
     },
     {
       "concept": "편관(칠살)",
@@ -2961,6 +2981,246 @@
       "legacy_para_id": null,
       "quote": "금은 목을 극합니다.",
       "role": "reviewed_retrieval_expression_not_interpretation_label"
+    },
+    {
+      "id": "exposure_board_terms",
+      "path": "dosa-app/methodology/figjam_board_full.md",
+      "sha256": "442c1892203cb5edde66db53dec733ea0d352d5682447f1ed4515835b16a20d6",
+      "lines": [
+        2333,
+        2335
+      ],
+      "legacy_para_id": null,
+      "quote": "투출: 지장간의 오행이 사주 천간에 있는 것",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "exposure_choco_direction",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+      "lines": [
+        54,
+        65
+      ],
+      "legacy_para_id": null,
+      "quote": "지장간을 포함하여, 지지의 글자를 기준으로 천간에 동일한 간지나 오행이 떠 있을 경우 투간이나 투출이라는 용어를 쓸 수 있습니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "exposure_choco_exact",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+      "lines": [
+        66,
+        86
+      ],
+      "legacy_para_id": null,
+      "quote": "축토의 중기인 신금과 시간 경금은 오행은 같더라도, 엄연히 다른 간지이기 때문입니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "exposure_choco_variation",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+      "lines": [
+        87,
+        97
+      ],
+      "legacy_para_id": null,
+      "quote": "‘변격’은 월지 지장간의 투간을 중요하게 여기던 격국론적 관점에서 만들어진 용어입니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "exposure_choco_restricted_views",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+      "lines": [
+        98,
+        117
+      ],
+      "legacy_para_id": null,
+      "quote": "투간은 지지나 지장간의 글자가 원국 내 가까운 천간에 떠 있을 때만 쓸 수 있다며, 용어의 사용을 더욱 엄격하게 제한하고 있기도 합니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "exposure_choco_time_examples",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+      "lines": [
+        118,
+        130
+      ],
+      "legacy_para_id": null,
+      "quote": "“시지 신중 무토가 세운에서 변격으로 기토로 투간했다”",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "exposure_choco_time_direction",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+      "lines": [
+        140,
+        145
+      ],
+      "legacy_para_id": null,
+      "quote": "다만, 대운의 지지 축중 계수가 월간 임수로 투간했다거나 투출했다고 표현하지는 않습니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "exposure_choco_editorial_policy",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+      "lines": [
+        147,
+        151
+      ],
+      "legacy_para_id": null,
+      "quote": "원국 내에서 천간과 지지가 같은 간지로 호응하는 경우에는 투간 또는 투출로, 원국 내 요소가 대세운의 천간과 같은 간지로 호응하는 경우에는 투출로 표기해나가려 합니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "exposure_hyeonmyo_exact",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/원국 분석 및 용신 글모음.txt",
+      "sha256": "8310e5086adfa724ae3ac2e82ebf98689f73a77a590891c4e368686e189cbc52",
+      "lines": [
+        700,
+        716
+      ],
+      "legacy_para_id": null,
+      "quote": "지지의 투간의 경우는 똑같은 간지가 천간에 떠 있을 경우만 투간으로 인정됩니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "exposure_myeongri_exact",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학탐구(기초) 전체 글모음 001-086.txt",
+      "sha256": "c04505583b3f30183b3553989fee7c0e0af0adc9cd50576c00840496c3ad119c",
+      "lines": [
+        1735,
+        1737
+      ],
+      "legacy_para_id": null,
+      "quote": "투출은 같은 오행으로만으로는 부족하고, 반드시 같은 글자여야 합니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "exposure_myeongri_daymaster_scope",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학탐구(기초) 전체 글모음 001-086.txt",
+      "sha256": "c04505583b3f30183b3553989fee7c0e0af0adc9cd50576c00840496c3ad119c",
+      "lines": [
+        2770,
+        2771
+      ],
+      "legacy_para_id": null,
+      "quote": "격국은 기본적으로 월지의 지장간이 천간에 투출하고 있는지를 살피되, 일간은 제외합니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "hidden_board_chen",
+      "path": "dosa-app/methodology/figjam_board_full.md",
+      "sha256": "442c1892203cb5edde66db53dec733ea0d352d5682447f1ed4515835b16a20d6",
+      "lines": [
+        1993,
+        2005
+      ],
+      "legacy_para_id": null,
+      "quote": "乙[여기, 현 계절] | 癸[중기, 전 계절] | 戊[정기, 자기 자신]",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "hidden_choco_wu",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        2177,
+        2182
+      ],
+      "legacy_para_id": null,
+      "quote": "그 작용력을 병화(丙) 33%, 기토(己) 30%, 정화(丁) 37% 정도 봅니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "hidden_hyeonmyo_zi",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/천간과 지지 글모음.txt",
+      "sha256": "2fd224b3039bc8841ecd8a5e694dd8f144d720bc1b0c1dc395f6e06c4a01bd46",
+      "lines": [
+        568,
+        575
+      ],
+      "legacy_para_id": null,
+      "quote": "子(자수)의 지장간은 임(壬)과 계(癸)로 이루어져 있습니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "hidden_hyeonmyo_stages",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/천간과 지지 글모음.txt",
+      "sha256": "2fd224b3039bc8841ecd8a5e694dd8f144d720bc1b0c1dc395f6e06c4a01bd46",
+      "lines": [
+        1274,
+        1280
+      ],
+      "legacy_para_id": null,
+      "quote": "지장간은 초기(여기)와 중기, 정기(본기)로 나눠지며,",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "hidden_hyeonmyo_wu_exception",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/천간과 지지 글모음.txt",
+      "sha256": "2fd224b3039bc8841ecd8a5e694dd8f144d720bc1b0c1dc395f6e06c4a01bd46",
+      "lines": [
+        1305,
+        1308
+      ],
+      "legacy_para_id": null,
+      "quote": "午(오화)의 경우는 예외이지만, 자오묘유의 지장간은 모두 두 개의 천간으로만 이루어져 있습니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "hidden_amjang_web",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주풀이 게시판 글모음.txt",
+      "sha256": "d626944671715d12b484035bd408545cc7f61074f16ccf901bdea9d5a30039de",
+      "lines": [
+        251,
+        252
+      ],
+      "legacy_para_id": null,
+      "quote": "원국에 재성은 투출하지 못하고, 월지 신금과 시지 진토속에 편재와 정재가 암장되어 있습니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "hidden_amjang_transcript",
+      "path": "정제/원본/전사/6. 남석운명과명리학/남석운명과명리학/20250514_2243강의,십이월 기토생월己土生月, 십이월기토十二月己土 천간론天干論 복습 6, 인문명리학, 주역강의, 인문역사 강의,Human Future, Eastern Philosophy,_0-MFRtabv2s.md",
+      "sha256": "0acf1f60c24db3621ff585c5a1c4f59723b907e6e0e35895f9020441d7417234",
+      "lines": [
+        109,
+        112
+      ],
+      "legacy_para_id": "T-314074aef2-0001",
+      "quote": "그 다음째, 사조에서 금이 왕세를 띄고 병화가 지지에 암장되어 있다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "hidden_amjang_metaphor",
+      "path": "정제/원본/전사/6. 남석운명과명리학/남석운명과명리학/20220504_1496강의. 팔자八字 센 여자는 누구 강한여자 센여자 , 미래학 강의, 인문 명리학 강의Human future, Eastern philosophy,_qpoD3khwEE0.md",
+      "sha256": "bdf7ec7c492f5466a5432efb2380f68d0ec26a9d4095bcda9f61823ba999dcee",
+      "lines": [
+        167,
+        168
+      ],
+      "legacy_para_id": "T-74cd923110-0001",
+      "quote": "남자와의 관계가 암장되어 있는 겁니다.",
+      "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "hidden_amjang_transcription",
+      "path": "정제/원본/전사/6. 남석운명과명리학/남석운명과명리학/20230821_1869 강의. 용신用神과 격국格局,용신用神 활용 격국格局과 유용有用, 인문명리학 강의, 주역강의, 미래학 강의, Human future, Eastern philosophy,_EAOHVvkeS7U.md",
+      "sha256": "e9a65485fd8731a0b1316c90b12dea87d323b21abe9b3086c7ed9a54ea1d6f53",
+      "lines": [
+        36,
+        40
+      ],
+      "legacy_para_id": "T-84dac440c0-0000",
+      "quote": "월지에 암장되어 있는 암장관을 중심으로 해서 격국을 결정하고 용신을 결정하는 경우가 많습니다",
+      "role": "source_scope_or_boundary_review_not_training_label"
     }
   ]
 }
