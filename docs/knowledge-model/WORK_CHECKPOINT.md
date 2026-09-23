@@ -1,5 +1,14 @@
 # 작업 체크포인트
 
+## 2026-09-23 청사진 v2 → 통근 검수 (진행 중)
+
+- 기준 main: `ec26ac92834a7df3c21dd6b7a07dd26c85cb6dfc` (PR #185 병합 확인). 브랜치 `feat/foundation-execution-root-20260923`.
+- 완료: 청사진 §0에 F00~F06 순서·통과/보류 조건·인계/복구 양식 추가, 사용자 원문 39~40 보존.
+- 검사: `SMOKE_CHROMIUM=/tmp/chromium npm run verify` 8단계 통과(실제 브라우저 포함, Python125). 계획 저장 커밋·원격 보존을 진행한다.
+- 입력 준비: `build_dashboard.merge()`와 `ingest_transcripts.py`로 생성 코퍼스 56,202행을 복원했다. 이때 생긴 과거 전사 적재 리포트와 npm 잠금파일 변경은 이번 산출물에서 제외했다.
+- 바로 다음: 통근 근거 `root_positive`/`root_figurative`, Figma `통근` 정의와 `changed_shared/통근` 재독 → 같은 글자/오행의 범위 → 기존/후보 별칭의 실제·비유 용례 측정 → 최소 적용 여부 결정.
+- 유지: 기준 사전271/판정76/구간86, 합·충 보류, P2/D5·앱·학습 미변경. 학습 확률은 없음.
+
 ## 2026-09-23 합·충 총칭 후속 — PR #185
 
 - 기준: PR #184 main `5a6e4cd8ad02a54a5ac7e0b09664c4e237630bb4`, 작업 브랜치 `feat/f01-general-relations-20260923`. 중간 기록은 원격 `a548c980a45b7d822c274b8824ead9717c84696f`로 저장·읽기 확인했다.
