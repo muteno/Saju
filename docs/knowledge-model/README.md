@@ -9,7 +9,7 @@
 | 파일 | 역할 |
 |---|---|
 | `PROJECT_AGENDA.md` | 진화 가능한 프로젝트 목적·설계 원칙·완료 기준 |
-| `USER_INTENT_LOG.md` | 사용자의 관련 발언 26개와 이해 수정의 흐름 |
+| `USER_INTENT_LOG.md` | 사용자의 관련 발언 27개와 이해 수정의 흐름 |
 | `MATHEMATICAL_DESIGN.md` | 논문에 근거한 수학적 후보와 현재 기준 모델 |
 | `학습과평가설계.md` | 원문 추출·라벨링·조합·시간·출처 분리 평가 |
 | `knowledge_graph.json` | 기본 개념 18개를 포함한 58개 노드, 132개 관계, 11개 다중 입력 관계 |
@@ -26,7 +26,7 @@
 | `data/context_reviews.json`, `CONTEXT_BRIDGE.md` | 조건식·주변 원문·해시와 입력·측정·미상 처리 규약 |
 | `case_review.py`, `compare_models.py`, `CASE_REVIEW.md` | 사례·라벨·의존 자료·시점 검사와 같은 자료에서 조합 유무 모델 비교 |
 | `data/case_review_pilot.json` | 검토용 계산 예제 6개와 제안 목표·빈 라벨. 실제 학습 자료가 아님 |
-| `source_case_review.py`, `reported_context.mjs`, `data/source_cases.json`, `SOURCE_CASES.md` | 원문 명식 6개·32개 인용 검토, 미상/충돌/중복 보존과 조건 대조. 학습 라벨 아님 |
+| `source_case_review.py`, `reported_context.mjs`, `data/source_cases.json`, `SOURCE_CASES.md` | 문헌 검토 항목 10개·8 DOCX·57개 인용. 일반 유형/세운 설명 포함, 미상/충돌/중복 보존과 조건 대조. 학습 라벨 아님 |
 | `rules_engine.py` | 별도 부록: 천간·생극·십신 기호 분류 검증 |
 | `evaluation_rubric.json` | 아직 수행하지 않은 사람 검수 과제 10개 |
 | `validation_report.json` | 이번에 실제 수행한 코드·원문 확인 결과 |
