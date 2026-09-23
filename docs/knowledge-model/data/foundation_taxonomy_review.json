@@ -647,8 +647,8 @@
     {
       "concept": "상극",
       "difference_kind": "changed_shared",
-      "decision": "보류",
-      "scope": "reviewed_examples_only",
+      "decision": "채택",
+      "scope": "bounded_retrieval_phrases_only_long_phrase_held",
       "source_review": "reviewed_examples",
       "local_only_aliases": [
         "극을 하",
@@ -659,15 +659,32 @@
       "repository_only_aliases": [
         "相剋"
       ],
-      "reason": "극합니다 등은 자극합니다의 일부에도 걸린다. 극하는 오행은 의미가 맞는 용례가 있지만 현 긴 별칭 우선 매칭에서 오행(총칭)을 가릴 수 있다. 相剋은 보존한다.",
+      "reason": "원문에서 확인한 짧은 구어3개는 앞 단어 경계를 검사하는 주제 검색 표현으로 채택한다. 자극/연극/북극 등의 부분문자는 제외하며 같은 문단의 뒤쪽 실제 용례는 유지한다. 극하는 오행은 긴 매치가 오행 노드를 가려 보류한다. 검색 발견을 극의 성립·강도·방향·길흉 판단으로 쓰지 않는다.",
       "target_file": "정제/_현황판/build_concept_map.py",
       "bundle_pointer": "/taxonomy/changed_shared/상극",
       "evidence_ids": [
         "control_positive",
-        "control_substring"
+        "control_substring",
+        "control_board_legend",
+        "control_phrase_verb",
+        "control_phrase_because",
+        "control_phrase_formal"
       ],
-      "applied_aliases": [],
-      "next_action": "긍정·일반어 반례와 기존 오행 노드 보존을 함께 통과하는 매칭을 먼저 마련한다."
+      "applied_aliases": [
+        {
+          "alias": "극을 하",
+          "evidence_id": "control_phrase_verb"
+        },
+        {
+          "alias": "극하니까",
+          "evidence_id": "control_phrase_because"
+        },
+        {
+          "alias": "극합니다",
+          "evidence_id": "control_phrase_formal"
+        }
+      ],
+      "next_action": "같은56,202행에서 실제3표현은 양쪽 빌더 모두 상극273문단 추가·다른 개념 변화0. 경계 없는4표현 가상 시험은 뉴런 오행26문단을 가려 긴 표현을 보류한다. 참여자·부정·강도·관법 추출은 후속이며 F01 나머지 다의어 의미 검수로 이어간다."
     },
     {
       "concept": "상생",
@@ -1279,24 +1296,28 @@
         "climate_time_interaction"
       ],
       "applied_aliases": [],
-      "next_action": "조후 후속 원문 검수 완료·추가0. 같은 코퍼스에서 가상 추가 영향을 측정하고 상극 검수를 이어간다. 재개는 기온/한난조습 언급과 균형 판단, 원국/운·자리·예외·관법을 구절 단위로 분리할 때."
+      "next_action": "조후 후속 원문 검수·가상 측정 완료, 실제 추가0. 가상8표현은 뉴런892/개념지도885문단을 늘리지만 의미 혼동을 해결하지 못한다. 재개는 기온/한난조습 언급과 균형 판단, 원국/운·자리·예외·관법을 구절 단위로 분리할 때."
     },
     {
       "concept": "조후용신",
       "difference_kind": "changed_shared",
       "decision": "분리",
       "scope": "reviewed_examples_only",
-      "source_review": "pending",
+      "source_review": "reviewed_examples",
       "local_only_aliases": [
         "궁통보감"
       ],
       "repository_only_aliases": [],
-      "reason": "궁통보감은 책 이름이며 조후용신은 방법이다. 책 제목만으로 방법 설명을 인용했다고 판정하지 않는다. 기존 별도 노드와 저장소 별칭을 유지한다.",
+      "reason": "궁통보감은 책 이름이고 조후용신은 취용 방법이다. 새로 읽은 문헌의 정의·관법 우선순위가 서로 다름을 확인했다. 책 언급을 방법 성립이나 균형 판단으로 자동 전환하지 않고 별도 노드와 별칭을 유지한다.",
       "target_file": "정제/_현황판/build_concept_map.py",
       "bundle_pointer": "/taxonomy/changed_shared/조후용신",
-      "evidence_ids": [],
+      "evidence_ids": [
+        "climate_definition",
+        "climate_method_priority",
+        "climate_secondary_method"
+      ],
       "applied_aliases": [],
-      "next_action": "궁통보감와의 관계는 별칭 병합 대신 유형을 구분한 관계로 검수한다. 현재 노드는 추가·병합하지 않는다."
+      "next_action": "책→방법의 문헌상 관계는 별칭 병합과 별도로 보존한다. 실제 취용은 원국·강약·자리/시점·관법과 예외를 검수할 때 재개한다."
     },
     {
       "concept": "지장간",
@@ -2892,6 +2913,54 @@
       "legacy_para_id": null,
       "quote": "사주에 수 기운이 강할 때, 대운이나 세운에서 인목이 하나만 들어와도, 원국 내 강한 수의 기운을 어느 정도 조절할 수 있게 되겠네요.",
       "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "control_board_legend",
+      "path": "docs/knowledge-model/data/figma_live_bindings.json",
+      "sha256": "de620357fe8f87ecbb4554439db643873a9cb5295df07dfc4f3e36b461c07555",
+      "lines": [
+        204,
+        211
+      ],
+      "legacy_para_id": null,
+      "quote": "2칸: 극(剋)",
+      "role": "reviewed_retrieval_expression_not_interpretation_label"
+    },
+    {
+      "id": "control_phrase_verb",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/십신과 합충 글모음.txt",
+      "sha256": "a82aeb767011d07cd2a3c47099a530853c70a4b51c6fc01635a89b32aac62e2e",
+      "lines": [
+        2578,
+        2582
+      ],
+      "legacy_para_id": null,
+      "quote": "오행은 서로 생하기만 하는 것이 아니라 서로 극을 하기도 합니다.",
+      "role": "reviewed_retrieval_expression_not_interpretation_label"
+    },
+    {
+      "id": "control_phrase_because",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20210930_🧈금(金)에 대한 모든 것[과다, 발달, 고립, 건강 등]_60aHa48_BsY.md",
+      "sha256": "eb8ad4a4ffc2a4a329ec5db1d1e7d55ad37712bda8d57cce26c00e5b94a4633a",
+      "lines": [
+        23,
+        27
+      ],
+      "legacy_para_id": null,
+      "quote": "금이 목을 극하니까요",
+      "role": "reviewed_retrieval_expression_not_interpretation_label"
+    },
+    {
+      "id": "control_phrase_formal",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        290,
+        294
+      ],
+      "legacy_para_id": null,
+      "quote": "금은 목을 극합니다.",
+      "role": "reviewed_retrieval_expression_not_interpretation_label"
     }
   ]
 }
