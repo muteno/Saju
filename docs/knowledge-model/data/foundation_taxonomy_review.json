@@ -1330,7 +1330,7 @@
         "地藏干",
         "암장"
       ],
-      "reason": "地藏干은 원문 정의에서 확인했다. 암장은 실제 숨은 천간을 가리키는 용례와 숨은 전제를 말하는 비유·오전사가 섞여 있다. 기존4별칭은 문헌 주제 검색으로 유지하며 의미 전수 승인으로 보지 않는다. 장간의 구성·본기 순서와 저자의 작용력 비율/사령 기간/개인 해석을 구별하고 앱 구성표를 바꾸지 않는다.",
+      "reason": "地藏干은 원문 정의에서 확인했다. 암장은 실제 숨은 천간을 가리키는 용례와 숨은 전제를 말하는 비유·별도 확인이 필요한 전사 표기가 섞여 있다. 기존4별칭은 문헌 주제 검색으로 유지하며 의미 전수 승인으로 보지 않는다. 장간의 구성·본기 순서와 저자의 작용력 비율/사령 기간/개인 해석을 구별하고 앱 구성표를 바꾸지 않는다.",
       "target_file": "정제/_현황판/build_concept_map.py",
       "bundle_pointer": "/taxonomy/changed_shared/지장간",
       "evidence_ids": [
@@ -1343,10 +1343,12 @@
         "hidden_amjang_web",
         "hidden_amjang_transcript",
         "hidden_amjang_metaphor",
-        "hidden_amjang_transcription"
+        "hidden_amjang_transcription",
+        "hidden_overlap_hour_branch",
+        "hidden_overlap_month_branch"
       ],
       "applied_aliases": [],
-      "next_action": "암장 삭제 가상 시험의 두 빌더 전후 ID와 반례를 기록한다. 단순 구조어 동반을 자동 승인 조건으로 쓰지 않는다. 장간 구성은 엔진 정본, 비율·사령·강약은 별도 F03 판본으로 검수하고 다음 여기·중기·정기/사령·월령으로 이어간다."
+      "next_action": "같은56,202행에서 암장 가상 삭제는 두 빌더 모두 지장간399문단을 제거하며 실제 용례·비유가 함께 빠져 미적용. 기존 뉴런 검색은 시지장간/연월지장 간의 겹침 때문에 개념지도보다4문단을 놓친다. 두 원문 구절과 중복 행을 보존했다. 다음 먼저 자리·지장간 동시 보존을 검수한 뒤 여기·중기·정기/월률분야·사령으로 이어간다."
     },
     {
       "concept": "지지(총칭)",
@@ -3221,6 +3223,30 @@
       "legacy_para_id": "T-84dac440c0-0000",
       "quote": "월지에 암장되어 있는 암장관을 중심으로 해서 격국을 결정하고 용신을 결정하는 경우가 많습니다",
       "role": "source_scope_or_boundary_review_not_training_label"
+    },
+    {
+      "id": "hidden_overlap_hour_branch",
+      "path": "정제/원본/전사/2. 산책처럼사주/산책처럼사주/20251104_인성운인데 왜 합격을 못하죠_-UwE2xS7j4g.md",
+      "sha256": "e631470d08352c734f8a59d33a97d0440b3e9594b7f165c4603710d2baa4e711",
+      "lines": [
+        56,
+        58
+      ],
+      "legacy_para_id": "T-53ebbe2d99-0000",
+      "quote": "시지장간에만 정인이 들어가 있는 경우가 있어요",
+      "role": "retrieval_overlap_example_not_training_label"
+    },
+    {
+      "id": "hidden_overlap_month_branch",
+      "path": "정제/원본/전사/2. 산책처럼사주/산책처럼사주/20251104_인성운인데 왜 합격을 못하죠_-UwE2xS7j4g.md",
+      "sha256": "e631470d08352c734f8a59d33a97d0440b3e9594b7f165c4603710d2baa4e711",
+      "lines": [
+        109,
+        111
+      ],
+      "legacy_para_id": "T-53ebbe2d99-0003",
+      "quote": "연월지장 간에 정인 같은 것들이 이렇게 하다못해 있다라거나",
+      "role": "retrieval_overlap_example_not_training_label"
     }
   ]
 }
