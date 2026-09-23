@@ -21,7 +21,7 @@ class FoundationReviewTests(unittest.TestCase):
     def test_review_covers_both_editions_and_remains_untrained(self):
         result = validate(self.review)
         self.assertEqual((result["differences"], result["concepts"], result["name_union"]), (76, 271, 273))
-        self.assertEqual(result["applied_aliases"], 1)
+        self.assertEqual(result["applied_aliases"], 4)
         self.assertIsNone(result["probability"])
         self.assertFalse(result["training_labels"])
 
@@ -170,6 +170,53 @@ class FoundationReviewTests(unittest.TestCase):
             result, _, n = cmap.build()
         self.assertEqual(n, 5)
         self.assertEqual([q["para_id"] for q, _ in result["S04 합충형파해"]["충"]["지지충"]], ["2", "3", "4"])
+
+    def test_control_phrases_reject_stimulation_and_theater(self):
+        for text in ("보호본능을 자극합니다", "관성을 자극하니까요", "사주로 연극을 하는 배우",
+                     "일간의 북극을 하루 만에 찾는다", "사주의 자극을 하니까", "abc극합니다", "_극하니까"):
+            with self.subTest(text=text):
+                self.assertNotIn("상극", self.matcher.concepts_in(text))
+        for text in ("금은 목을 극합니다.", "금이 목을 극하니까요", "천간은 서로 극을 하기도 합니다.",
+                     "자극합니다. 그런데 편인은 식신을 극합니다.", "연극을 하는 중, 목이 토를 극하니까요"):
+            with self.subTest(text=text):
+                self.assertIn("상극", self.matcher.concepts_in(text))
+
+    def test_control_search_preserves_components_and_negation(self):
+        import unicodedata
+        text = "일간이 오행을 극을 하지 못합니다."
+        self.assertTrue({"일간", "오행(총칭)", "상극"} <= self.matcher.concepts_in(text))
+        self.assertIn("상극", self.matcher.concepts_in(unicodedata.normalize("NFD", "금은 목을 극합니다")))
+        # The longer phrase remains withheld: the old component is still found.
+        self.assertIn("오행(총칭)", self.matcher.concepts_in("극하는 오행"))
+        self.assertNotIn("상극", self.matcher.concepts_in("극하는 오행"))
+
+    def test_control_boundary_is_shared_by_the_concept_map(self):
+        import sys
+        from types import SimpleNamespace
+        spec = importlib.util.spec_from_file_location("control_cmap", REPO / TAXONOMY)
+        cmap = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cmap)
+        texts = ["보호본능을 자극합니다", "관성을 자극하니까요", "사주로 연극을 하는 배우",
+                 "금은 목을 극합니다", "금이 목을 극하니까요", "일간이 오행을 극을 하지 못합니다",
+                 "자극합니다. 그런데 편인은 식신을 극합니다."]
+        rows = [{"q": {"para_id": str(i)}, "post": {}, "text": t} for i, t in enumerate(texts)]
+        with patch.object(cmap, "load", return_value=({}, [])), patch.dict(
+                sys.modules, {"코퍼스": SimpleNamespace(문단들=lambda **kw: rows)}):
+            result, _, n = cmap.build()
+        hits = {name: {q["para_id"] for q, _ in matches}
+                for groups in result.values() for concepts in groups.values() for name, matches in concepts.items()}
+        self.assertEqual(n, len(rows))
+        self.assertEqual(hits["상극"], {"3", "4", "5", "6"})
+        self.assertIn("5", hits["일간"])
+        self.assertIn("5", hits["오행(총칭)"])
+
+    def test_temperature_and_hannanjoseup_do_not_establish_balance(self):
+        self.assertNotIn("조후 균형", self.matcher.concepts_in("날씨가 덥습니다. 추위와 더위를 봅니다."))
+        concepts = self.matcher.concepts_in("한난조습")
+        self.assertIn("한난조습", concepts)
+        self.assertNotIn("조후 균형", concepts)
+        # Existing 조후 is a topic label, including negated balance discussions.
+        self.assertIn("조후 균형", self.matcher.concepts_in("조후가 균형을 이루지 못했다."))
 
 
 if __name__ == "__main__":

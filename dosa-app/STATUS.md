@@ -1,5 +1,11 @@
 # STATUS — 세션 인수인계 (어느 세션·어느 모델이든 이 파일부터)
 
+## 2026-09-23 조후 → 상극 후속 — 원문 41
+
+[조후·상극 검수](../docs/knowledge-model/FOUNDATION_CLIMATE_CONTROL.md)를 진행했다. 기온 표현·한난조습·조후의 균형 판단과 저자별 취용 순서를 구분하고 조후 후보8개를 보류했다. 조후용신/궁통보감도 방법과 책을 구별한 원문 근거를 연결했다. 상극은 `극을 하/극하니까/극합니다`3개를 앞 단어 경계 검사와 함께 검색에 추가하고, 오행 노드를 가리는 긴 표현은 보류했다.
+
+근거113·사전271·판정76·적용 별칭4(배우자1+상극3), F01회귀19개. 같은 자료의 실제/가상 결과와 코드·입력 해시는 [측정](../docs/knowledge-model/data/foundation_climate_control_measurement.json), 검사·원격·병합은 [체크포인트](../docs/knowledge-model/WORK_CHECKPOINT.md)를 확인한다. 앱/P2/D5·학습은 미변경(적격0·확률null). 다음은 [인계 §5.1](../docs/knowledge-model/FOUNDATION_HANDOFF.md)의 투간·투출→지장간이다. 아래는 이전 이력이다.
+
 ## 2026-09-23 청사진 v2와 통근 후속 — 원문 39~40
 
 [청사진 v2 §0](../docs/knowledge-model/FOUNDATION_BLUEPRINT.md)에 실행 순서·산출물·통과/보류 조건·중간 저장·복구 방법을 먼저 정리하고 원격 중간 저장 후 통근을 검수했다. [통근 후속](../docs/knowledge-model/FOUNDATION_ROOTING.md)에 동일 글자/동일 오행/생조 포함 범위와 뿌리의 실제·비유 용례를 분리했다. 원문13구간 추가로 총99구간이며, 넓은 별칭6개와 긴 별칭은 보류했다. 실험 코드는 미적용 가상 결과를 보존하며 사전·매칭기·앱 계산 변경은0이다.

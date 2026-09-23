@@ -296,13 +296,18 @@ for _big, _mids in TAXONOMY.items():
 
 
 def alias_occurrence_allowed(alias, text, start):
-    """Reject the observed 보충 substring, not every occurrence in the paragraph.
+    """Reject word-internal matches, not every occurrence in the paragraph.
 
     F01 general-term review: 충을 / 충이 일어 are legacy 지지충 aliases.
     This narrow exclusion does not certify those aliases' subtype semantics.
     Keep valid compounds (자오충을, 천간충을, etc.) and later real mentions.
+    F01 control phrases require a left word boundary (자극/연극 are not 剋).
+    This is retrieval only: it does not establish participants or polarity.
     The concept-map builder uses the same per-occurrence check.
     """
+    if (alias in {"극을 하", "극하니까", "극합니다"} and start > 0
+            and (text[start - 1].isalnum() or text[start - 1] == "_")):
+        return False
     return not (alias in {"충을", "충이 일어"}
                 and start > 0 and text[start - 1] == "보")
 
