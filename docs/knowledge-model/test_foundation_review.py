@@ -218,6 +218,53 @@ class FoundationReviewTests(unittest.TestCase):
         # Existing 조후 is a topic label, including negated balance discussions.
         self.assertIn("조후 균형", self.matcher.concepts_in("조후가 균형을 이루지 못했다."))
 
+    def test_hidden_stem_overlap_preserves_source_positions_and_other_concepts(self):
+        evidence = {e["id"]: e for e in self.review["evidence"]}
+        for eid, position in (("hidden_overlap_hour_branch", "시지"),
+                              ("hidden_overlap_month_branch", "월지")):
+            with self.subTest(evidence=eid):
+                found = self.matcher.concepts_in(evidence[eid]["quote"])
+                self.assertTrue({position, "지장간", "정인"} <= found)
+
+    def test_hidden_stem_overlap_is_scoped_and_unicode_normalized(self):
+        import unicodedata
+        for alias, position in (("연지", "연지"), ("년지", "연지"), ("월지", "월지"),
+                                ("일지", "일지"), ("시지", "시지")):
+            for spelling in ("지장간", "지장 간"):
+                text = alias[:-1] + spelling + "의 오행을 봅니다."
+                with self.subTest(alias=alias, spelling=spelling):
+                    self.assertTrue({position, "지장간", "오행(총칭)"} <=
+                                    self.matcher.concepts_in(unicodedata.normalize("NFD", text)))
+        for text in ("시지를 살핍니다", "월지장부를 봅니다", "일지장관", "월지장  간"):
+            with self.subTest(text=text):
+                self.assertNotIn("지장간", self.matcher.concepts_in(text))
+        # Negative statements are still topic mentions, not positive relation labels.
+        self.assertTrue({"시지", "지장간", "정인"} <=
+                        self.matcher.concepts_in("시지장간에는 정인이 없습니다."))
+
+    def test_both_builders_preserve_hidden_stems_and_positions(self):
+        import sys
+        from types import SimpleNamespace
+        spec = importlib.util.spec_from_file_location("hidden_cmap", REPO / TAXONOMY)
+        cmap = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cmap)
+        texts = ["시지장간에만 정인이 들어가 있는 경우가 있어요",
+                 "연월지장 간에 정인 같은 것들이 이렇게 하다못해 있다라거나",
+                 "시지장간에는 정인이 없습니다.", "월지장부를 봅니다"]
+        rows = [{"q": {"para_id": str(i)}, "post": {}, "text": t} for i, t in enumerate(texts)]
+        with patch.object(cmap, "load", return_value=({}, [])), patch.dict(
+                sys.modules, {"코퍼스": SimpleNamespace(문단들=lambda **kw: rows)}):
+            result, _, n = cmap.build()
+        hits = {name: {q["para_id"] for q, _ in matches}
+                for groups in result.values() for concepts in groups.values() for name, matches in concepts.items()}
+        self.assertEqual(n, len(rows))
+        for concept in ("지장간", "시지", "월지", "정인"):
+            with self.subTest(concept=concept):
+                neuron_ids = {str(i) for i, text in enumerate(texts)
+                              if concept in self.matcher.concepts_in(text)}
+                self.assertEqual(hits[concept], neuron_ids)
+        self.assertEqual(hits["지장간"], {"0", "1", "2"})
+
 
 if __name__ == "__main__":
     unittest.main()

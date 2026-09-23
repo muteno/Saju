@@ -61,6 +61,11 @@ for big, mids in TAXONOMY.items():
 ALIASES = sorted(alias2concept, key=len, reverse=True)
 ALIAS_RE = re.compile("|".join(re.escape(a) for a in ALIASES))
 
+# F01: 시지장간 / 연월지장 간은 자리 별칭의 마지막 '지'를 공유한다.
+# 전체 별칭의 겹침 정책은 유지하고, 확인된 지장간 표기만 자리와 함께 보존한다.
+_BRANCH_POSITION_ALIASES = {"연지", "년지", "월지", "일지", "시지"}
+_HIDDEN_STEM_OVERLAP_RE = re.compile("지장간|지장 간")
+
 # ⚠일상어와 철자가 겹치는 별칭 — 같은 문단에 '동반어'가 있을 때만 인정한다.
 # 실측 오탐률(260725, 문단 33,815 기준):
 #   여기 59%(여기서·여기에·여기는)  ·  본기(기본기 안에 들어앉음)  ·  정기 9%(정기적)
@@ -347,6 +352,11 @@ def concepts_in(text):
                 continue
         taken.append((s, e))
         found |= alias2concept[a]
+        if a in _BRANCH_POSITION_ALIASES:
+            hidden = _HIDDEN_STEM_OVERLAP_RE.match(text, e - 1)
+            if hidden:
+                # 기존 등록 표기만 회수한다. 지장간의 존재·구성·관계를 판정하지 않는다.
+                found |= alias2concept.get(hidden.group(), set())
     return found
 
 

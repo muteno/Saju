@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "base_commit": "13255abe7512e7ac265a4cc3ec3814f2de11aa36",
+  "scope": "Legacy topic retrieval; stage false positives are reviewed, not relabeled or learned",
+  "corpus_rows": 56202,
+  "reader_labels": {
+    "웹": 21251,
+    "전사": 34951
+  },
+  "title_included": true,
+  "gist_included": false,
+  "independent_evidence_count": null,
+  "probability": null,
+  "training_labels": false,
+  "actual_alias_additions": [],
+  "actual_alias_removals": [],
+  "code": {
+    "before": {
+      "neuron": "2f5b791638ef0d545baaafc0b41942b21532290a02c43093018e669fe531cb12",
+      "concept_map": "0ad666a77577ae2fc08ed28c291c3f9b4e7bb0328424026501bbe5affccee105"
+    },
+    "after": {
+      "neuron": "253573bcb2a2c4ad076aa5434f7ca15bb3e3e2c71e0ba55c3e3b634ae8c405ac",
+      "concept_map": "0ad666a77577ae2fc08ed28c291c3f9b4e7bb0328424026501bbe5affccee105"
+    },
+    "unchanged": {
+      "dosa-app/engine/src/tables.js": "94988a5b27d831a4e30b6d503040fb9235d5b103943a86f8f66a247f9b71f2e3",
+      "docs/knowledge-model/chart_context.mjs": "c40b8099fefc3dad83256a86f85d1d0b70bd44662d9fcd7361a09338b1bece66"
+    }
+  },
+  "measurement_sha256": "8c216896733ab10b42aaabd5882c5f6b5664a43d0b4c1c6f6cf637155091121f",
+  "counts": {
+    "before": {
+      "neuron": {
+        "지장간": 3682,
+        "여기·중기·정기": 2164,
+        "연지": 1122,
+        "월지": 5241,
+        "일지": 5270,
+        "시지": 2522
+      },
+      "concept_map": {
+        "지장간": 3686,
+        "여기·중기·정기": 2167,
+        "연지": 1122,
+        "월지": 5242,
+        "일지": 5271,
+        "시지": 2522
+      }
+    },
+    "after": {
+      "neuron": {
+        "지장간": 3686,
+        "여기·중기·정기": 2164,
+        "연지": 1122,
+        "월지": 5241,
+        "일지": 5270,
+        "시지": 2522
+      },
+      "concept_map": {
+        "지장간": 3686,
+        "여기·중기·정기": 2167,
+        "연지": 1122,
+        "월지": 5242,
+        "일지": 5271,
+        "시지": 2522
+      }
+    }
+  },
+  "actual_concept_assignment_changes": {
+    "neuron": {
+      "지장간": {
+        "before": 3682,
+        "after": 3686,
+        "added_ids": [
+          "ST-P1078-05",
+          "ST-P1078-10",
+          "T-53ebbe2d99-0000",
+          "T-53ebbe2d99-0003"
+        ],
+        "removed_ids": []
+      }
+    },
+    "concept_map": {}
+  },
+  "stage_alias_occurrences": {
+    "여기": {
+      "substring_rows": 17876,
+      "substring_occurrences": 36459,
+      "paragraph_gate_present": true,
+      "paragraph_gate_pass_rows": 1855
+    },
+    "중기": {
+      "substring_rows": 443,
+      "substring_occurrences": 836,
+      "paragraph_gate_present": false,
+      "paragraph_gate_pass_rows": 443
+    },
+    "정기": {
+      "substring_rows": 651,
+      "substring_occurrences": 1163,
+      "paragraph_gate_present": true,
+      "paragraph_gate_pass_rows": 415
+    },
+    "본기": {
+      "substring_rows": 175,
+      "substring_occurrences": 257,
+      "paragraph_gate_present": true,
+      "paragraph_gate_pass_rows": 136
+    },
+    "正氣": {
+      "substring_rows": 71,
+      "substring_occurrences": 73,
+      "paragraph_gate_present": false,
+      "paragraph_gate_pass_rows": 71
+    }
+  },
+  "unregistered_spellings": {
+    "초기": {
+      "applied": false,
+      "substring_rows": 456,
+      "currently_unrecalled_rows": {
+        "neuron": 138,
+        "concept_map": 138
+      }
+    },
+    "餘氣": {
+      "applied": false,
+      "substring_rows": 8,
+      "currently_unrecalled_rows": {
+        "neuron": 0,
+        "concept_map": 0
+      }
+    },
+    "本氣": {
+      "applied": false,
+      "substring_rows": 5,
+      "currently_unrecalled_rows": {
+        "neuron": 0,
+        "concept_map": 0
+      }
+    }
+  },
+  "reviewed_stage_cases": {
+    "PL-GANJI-P025-01": {
+      "file": "천간과 지지 글모음.txt",
+      "stage_hits": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "aliases_in_text": [
+        "여기",
+        "중기",
+        "정기",
+        "본기"
+      ]
+    },
+    "PL-ILJU-P002-13": {
+      "file": "일주론 글모음.txt",
+      "stage_hits": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "aliases_in_text": [
+        "중기",
+        "정기",
+        "正氣"
+      ]
+    },
+    "CT-P005-07": {
+      "file": "20210922_🙏🏻사주 어떻게 활용해야 할까 좋은 사주 나쁜 사주가 따로 있을까__IC3eXK0jME.md",
+      "stage_hits": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "aliases_in_text": [
+        "여기",
+        "정기"
+      ]
+    },
+    "ST-P0589-08": {
+      "file": "20230221_감정의 기복이 심할 수 있는 명식들_O1ll1uj-2CI.md",
+      "stage_hits": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "aliases_in_text": [
+        "여기",
+        "정기"
+      ]
+    },
+    "DR-P625-07": {
+      "file": "도화로운 사주 칼럼 글모음.txt",
+      "stage_hits": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "aliases_in_text": [
+        "여기",
+        "본기"
+      ]
+    },
+    "PL-SINSAL-P001-03": {
+      "file": "신살 글모음.txt",
+      "stage_hits": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "aliases_in_text": [
+        "중기"
+      ]
+    },
+    "PL-JEOLGI-P014-03": {
+      "file": "24절기 글모음.txt",
+      "stage_hits": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "aliases_in_text": [
+        "중기"
+      ]
+    },
+    "CT-P024-09": {
+      "file": "20220209_사주의 핵심은 대운이다(원국과 대운 함께 보기)_z11ZeoBtYC0.md",
+      "stage_hits": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "aliases_in_text": [
+        "여기",
+        "중기"
+      ]
+    },
+    "CT-P027-16": {
+      "file": "20220423_내 사주 내가 보기(3시간30분 주의!)_0W1EFtPy85w.md",
+      "stage_hits": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "aliases_in_text": [
+        "중기",
+        "정기"
+      ]
+    }
+  },
+  "stage_builder_differences": {
+    "neuron_only_ids": [],
+    "concept_map_only_ids": [
+      "T-09ccdde215-0001",
+      "T-3b2e8d06e5-0000",
+      "T-f0c939c1de-0002"
+    ]
+  },
+  "inputs": [
+    {
+      "path": "정제/_현황판/build_dashboard.py",
+      "sha256": "dd757eb82df149afd79d79ac003538ba53b7bea4a1be633bff5cf9ee9b7986a3"
+    },
+    {
+      "path": "정제/_현황판/ingest_transcripts.py",
+      "sha256": "8ae09de042f849183311ebde140fd596c542ec07b3b7af5a7053598f753d5e2b"
+    },
+    {
+      "path": "정제/_현황판/코퍼스.py",
+      "sha256": "b4f6d73dde620725f3f9f803782bbc24d4441b308b61090fe6fbbdfe278b2028"
+    },
+    {
+      "path": "정제/_현황판/data/posts_all.jsonl",
+      "sha256": "1d084c1dbacbeefabe61e97a48d462e5754d1291967bef42fad7e8772dc3be1b"
+    },
+    {
+      "path": "정제/_현황판/data/paras_all.jsonl",
+      "sha256": "d8e937f1293eee14872ec527b58377393700bb8ae19017b8a9febfa3f6ff77cb"
+    },
+    {
+      "path": "정제/_현황판/data/전사_글.jsonl",
+      "sha256": "0d16d64e15fef36c3f39d79259f72c2b405aa9c5dde024aba65d601ca18c9205"
+    },
+    {
+      "path": "정제/_현황판/data/전사_문단.jsonl",
+      "sha256": "dfa46421686fec3c3f798eed70fb54c49b9c9e460a7da9d3a183a76f0c0f4a91"
+    }
+  ],
+  "corpus_sha256": "51cf9056c86108448913e507b6f17822edc20cea418a7015526903edd7f42dc3"
+}

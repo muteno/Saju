@@ -882,19 +882,37 @@
       "difference_kind": "changed_shared",
       "decision": "채택",
       "scope": "existing_edition_only",
-      "source_review": "literal_candidate_only",
+      "source_review": "reviewed_examples",
       "local_only_aliases": [],
       "repository_only_aliases": [
         "正氣"
       ],
-      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "reason": "기존 검색 묶음은 보존하되 단계의 역할과 초기(여기)/정기(본기) 명칭, 正氣 표기를 원문 사례로 확인했다. 중기 없음·부정·문헌의 기간/비율과 같은 글의 상충 수치는 별도로 보존한다. 여기저기/정기적·감정기복·기본기·역사 시기의 중기에서 기존 게이트의 오탐을 확인했으며, 전체 별칭의 의미 안전 승인은 아니다.",
       "target_file": "정제/_현황판/build_concept_map.py",
       "bundle_pointer": "/taxonomy/changed_shared/여기·중기·정기",
       "evidence_ids": [
-        "candidate_054"
+        "candidate_054",
+        "hidden_board_chen",
+        "hidden_hyeonmyo_stages",
+        "stages_choco_names",
+        "stages_choco_in_period",
+        "stages_choco_myo_ratio",
+        "stages_choco_wang_ratio",
+        "stages_choco_period_summary",
+        "stages_zi_no_middle",
+        "stages_periodic_here",
+        "stages_emotion_here",
+        "stages_basic_here",
+        "stages_historical_middle",
+        "stages_historical_food",
+        "stages_mixed_here_middle",
+        "stages_negated_exposure",
+        "stages_prayer_overlap_one",
+        "stages_prayer_overlap_two",
+        "stages_unverified_transcription_overlap"
       ],
       "applied_aliases": [],
-      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+      "next_action": "FOUNDATION_HIDDEN_STAGES.md의 발생 위치별 동반어 검수로 자기 승인과 일상어를 구분한다. 혼합 문단의 실제 중기와 부정문은 보존하고, 초기/餘氣/本氣의 전역 추가는 보류한다. 월률분야·사령에서 기간·구성·강도의 판본을 이어 대조한다."
     },
     {
       "concept": "역마",
@@ -3247,6 +3265,198 @@
       "legacy_para_id": "T-53ebbe2d99-0003",
       "quote": "연월지장 간에 정인 같은 것들이 이렇게 하다못해 있다라거나",
       "role": "retrieval_overlap_example_not_training_label"
+    },
+    {
+      "id": "stages_choco_names",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1267,
+        1268
+      ],
+      "legacy_para_id": null,
+      "quote": "참고로 초기를 이전 달(月)의 기운이 그대로 남아있다 하여, 한자로 남을 여(餘), 기운 기(氣)를 써서 여기(餘氣)라고 부르기도 합니다.\n중기는 초기와 정기의 중간(中)에 있는 기운이라는 뜻이구요. 정기는 해당 지지를 대표하는 본질적인 기운이라 하여 근본 본(本) 자를 써서 본기(本氣)라고도 부릅니다.",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_choco_in_period",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1250,
+        1252
+      ],
+      "legacy_para_id": null,
+      "quote": "인월을 한달 30일로 보았을 때, 초기 무토(戊)는 7일, 중기 병화(丙)는 7일, 정기 갑목(甲)은 16일 정도의 기운을 드러내고 있다고 볼 수 있습니다.",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_choco_myo_ratio",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1255,
+        1258
+      ],
+      "legacy_para_id": null,
+      "quote": "초기인 갑목(甲)은 33%의 작용력을, 정기인 을목(乙)은 67%의 작용력을 가집니다.",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_choco_wang_ratio",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1263,
+        1266
+      ],
+      "legacy_para_id": null,
+      "quote": "이중 묘목(卯), 유금(酉), 자수(子)는 초기가 30%, 정기는 60%로 이루어져 있습니다.",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_choco_period_summary",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1270,
+        1273
+      ],
+      "legacy_para_id": null,
+      "quote": "생지 – 한 달 30일 기준으로 초기 7일, 중기 7일, 정기 16일\n왕지 – 한 달 30일 기준으로 초기 10일, 정기 20일\n고지 – 한 달 30일 기준으로 초기 9일, 중기 3일, 정기 18일",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_zi_no_middle",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/일주론 글모음.txt",
+      "sha256": "253ba62a40e58b53859d68ca853f97afea7f06b00403552b562afa180307aaf1",
+      "lines": [
+        232,
+        239
+      ],
+      "legacy_para_id": "PL-ILJU-P002-13",
+      "quote": "초기 : 10일 - 壬(임수)\n중기 : 없음\n정기 : 20일 - 癸(계수)",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_periodic_here",
+      "path": "정제/원본/전사/1. 초코명리/초코서당(초명)/20210922_🙏🏻사주 어떻게 활용해야 할까 좋은 사주 나쁜 사주가 따로 있을까__IC3eXK0jME.md",
+      "sha256": "51ff86b2d033538cb0dc3a3ca18663dfafffb8c194d9bc1822b1323e5df1a104",
+      "lines": [
+        111,
+        116
+      ],
+      "legacy_para_id": "CT-P005-07",
+      "quote": "누구는 정기적으로 엔진오일을 갈아주니까\n10년, 15년 지나도 차가 멀쩡해요\n누구는 매일 과속운전을 하다보니까\n차에 여기저기 흠집도 나고 차 상태가 너무 안좋습니다",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_emotion_here",
+      "path": "정제/원본/전사/2. 산책처럼사주/산책처럼사주/20230221_감정의 기복이 심할 수 있는 명식들_O1ll1uj-2CI.md",
+      "sha256": "2108fc70ddc9a1403e8b519ff482a0ef4a0aaed0d2d339c1a361e3801d91e6ed",
+      "lines": [
+        124,
+        127
+      ],
+      "legacy_para_id": "ST-P0589-08",
+      "quote": "여기는 금이고요. 그럼 목하고 금 또 목하고 금 이렇게 부딪히는 경우가 생긴단 말입니다.\n이렇게 서로 반대되는 기운이 계속 충돌하게 되면요. 사람이 이랬다 저랬다 하는 감정기복이 심해질 수밖에 없습니다.",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_basic_here",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        27397,
+        27399
+      ],
+      "legacy_para_id": "DR-P625-07",
+      "quote": "십성이 점수별로 어떻게 다르게 해석되는지, 그리고 같은 십성이 '발달한' 사주와 '과다한' 사주에서 직업 적성이 어떻게 갈리는지는 도화록(1차 클래스) 십성론 기초 챕터에서 체계적으로 배울 수 있어요. 홍염살의 강약을 제대로 읽으려면, 십성 개념이 기본기가 되거든요.",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_historical_middle",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/신살 글모음.txt",
+      "sha256": "37027ba36a6c3d07a37e79ae82b7472f238d348ac81a9f9bc7847898894810a4",
+      "lines": [
+        61,
+        65
+      ],
+      "legacy_para_id": "PL-SINSAL-P001-03",
+      "quote": "조선 중기 승려 영관(靈觀)의 저서인 『잡록』에서는 일상생활의 가장 무서운 살이 태백살(=손)이라고 지적하며 몇 가지 실례를 들고 있습니다.",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_historical_food",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/24절기 글모음.txt",
+      "sha256": "fe9ce1d1ad859adf4a5c03ca6c83f3b4f393faf6c2f4746fd59419473d94233d",
+      "lines": [
+        879,
+        883
+      ],
+      "legacy_para_id": "PL-JEOLGI-P014-03",
+      "quote": "조선 중기의 문신 신속(申洬)이 펴낸 <농가집성(農家集成)> 중 <사시찬요초(四時纂要抄)> 에는, 한로와 상강에 백성들이 추어탕(鰍魚湯)을 즐겨먹었다는 내용이 나옵니다.",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_mixed_here_middle",
+      "path": "정제/원본/전사/1. 초코명리/초코서당(초명)/20220209_사주의 핵심은 대운이다(원국과 대운 함께 보기)_z11ZeoBtYC0.md",
+      "sha256": "6293347a3de330d5c99b47f8b4bb54ac1fea9b85fb5f2247fb23db3149e981f4",
+      "lines": [
+        287,
+        293
+      ],
+      "legacy_para_id": "CT-P024-09",
+      "quote": "여기 진토를 보면 중기에 지금 개수가 있죠.",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_negated_exposure",
+      "path": "정제/원본/전사/1. 초코명리/초코서당(초명)/20220423_내 사주 내가 보기(3시간30분 주의!)_0W1EFtPy85w.md",
+      "sha256": "b44f58fb6a87fda6f4da3f5b126eadc06091d4b8a5d1b8468713024c0ad16371",
+      "lines": [
+        824,
+        828
+      ],
+      "legacy_para_id": "CT-P027-16",
+      "quote": "이 신금 안에 있는 초기 무토, 중기 임수, 정기 경금 모두 투관을 하지 않았습니다",
+      "role": "stage_scope_or_counterexample_not_training_label"
+    },
+    {
+      "id": "stages_prayer_overlap_one",
+      "path": "정제/원본/전사/3. 석우당/석우당/20220314_자연(自然) 스스로 그러하다!(석우당 논상탐구)_hJ8ZcIACiwA.md",
+      "sha256": "8a4960a57d8b0933fe392210bb33ab5cb5686f0f4cd6bfe6e32d262fac20cb11",
+      "lines": [
+        224,
+        226
+      ],
+      "legacy_para_id": "T-f0c939c1de-0002",
+      "quote": "양인 백호 백호 이걸로 치면 또 다 양인이잖아 축소민이 사명에\n신중기도를 하는데 신중님이 옛날 식으로 나타난 게 아니라 군인식으로 나타난\n탱크하고 병사들 내서",
+      "role": "stage_builder_disagreement_not_training_label"
+    },
+    {
+      "id": "stages_prayer_overlap_two",
+      "path": "정제/원본/전사/3. 석우당/석우당/20220621_사대보살은 어떤 오행일까(석우당 왕초보 명리학)_fEjxmEh-7Io.md",
+      "sha256": "80de953916bcb8057d6efcca2c465fe1e394a57abbd993f9161070e37bbc355d",
+      "lines": [
+        101,
+        103
+      ],
+      "legacy_para_id": "T-09ccdde215-0001",
+      "quote": "신중, 지켜주는 사람도 돼\n호의, 신중, 그러니까 신중기도를 하면\n두려움이 없어진다",
+      "role": "stage_builder_disagreement_not_training_label"
+    },
+    {
+      "id": "stages_unverified_transcription_overlap",
+      "path": "정제/원본/전사/6. 남석운명과명리학/남석운명과명리학/20210118_1111강의. 신축년 용신에 비견의 운세. 명리학 정통법칙 해석, 인문 명리학 강의, Eastern philosophy_BT8_VHjGK9c.md",
+      "sha256": "59a3fd877313ebe93c2ef05db3b8bb065e43b60c0c9d759d2c93106d0fa1bcdf",
+      "lines": [
+        247,
+        250
+      ],
+      "legacy_para_id": "T-3b2e8d06e5-0000",
+      "quote": "안그러면 용신을 못잡아서 그냥 용신이 희심일 상황이냐에 따라서\n우리가 오늘의 신중기현이 어떻게 내한테 작용할 것인가를 우리가 알아볼 수가 있는 겁니다.\n그럼 이 부분을 가지고 일관에서의 신중기현하고 대입을 해서 같이 합해보면\n아 요렇게 되겠구나 하는 셈을 알 수가 있는 겁니다.",
+      "role": "stage_builder_disagreement_not_training_label"
     }
   ]
 }
