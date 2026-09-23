@@ -12,6 +12,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from foundation_additions import REVIEW as F02_REVIEW, validate_and_strip
+
 REPO = Path(__file__).resolve().parents[2]
 BUNDLE = "docs/knowledge-model/data/foundation_review_bundle.json"
 REVIEW = "docs/knowledge-model/data/foundation_taxonomy_review.json"
@@ -111,7 +113,9 @@ def validate(review, repo=REPO, taxonomy=None):
         require(bool(e["quote"].strip()) and e["quote"] in "\n".join(lines[start-1:end]),
                 f"Quote mismatch: {e['id']}")
 
-    current = deepcopy(taxonomy if taxonomy is not None else load_taxonomy(repo / TAXONOMY))
+    executable = taxonomy if taxonomy is not None else load_taxonomy(repo / TAXONOMY)
+    f02 = json.loads((repo / F02_REVIEW).read_text(encoding="utf-8"))
+    current, f02_result = validate_and_strip(f02, executable, repo)
     flat = flatten(current)
     applied = []
     for row in rows:
@@ -158,6 +162,7 @@ def validate(review, repo=REPO, taxonomy=None):
     return {"differences": len(rows), "decisions": dict(Counter(r["decision"] for r in rows)),
             "concepts": len(flat), "name_union": old["name_union_count"],
             "applied_aliases": len(applied), "evidence_ranges": len(evidence),
+            "executable_concepts": len(flatten(executable)), "f02": f02_result,
             "probability": None, "training_labels": False}
 
 
