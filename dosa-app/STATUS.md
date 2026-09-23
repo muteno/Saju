@@ -1,5 +1,12 @@
 # STATUS — 세션 인수인계 (어느 세션·어느 모델이든 이 파일부터)
 
+## 2026-09-23 F01 사전 판본 1차 처리·검색 표현 첫 적용
+
+- 사용자 원문 34에 따라 PR #182/main `19dd97f`에서 재개했다. [F01 검토표](../docs/knowledge-model/FOUNDATION_REVIEW.md)에 차이 76개(로컬 전용 2·저장소 전용 9·공통 변경 65)를 기록했다. 66채택 중 65는 기존판 보존, 5분리, 5보류이며 의미 검수 전체 완료가 아니다.
+- `build_concept_map.py`의 배우자 검색 표현에 `부부 사이`만 추가했다. 개념 271개 유지. 넓은 별칭의 `결합/보충/자극` 오탐과 뿌리·기온의 다른 뜻은 원문 위치와 함께 보류했다.
+- `foundation_review.py --check`와 회귀 12개를 필수 검사에 연결했다. 같은 입력 56,202행의 전후 비교에서 배우자 문단은 개념지도 +15·뉴런 매칭 +15, 다른 개념 손실 0개였다. 입력 행에는 중복·같은 저자가 있으므로 독립 근거나 정확도 수치로 세지 않는다.
+- 검토 JSON·원문 검사와 주제 검색 사전만 적용했다. 생성 HTML·P2·D5·앱 계산·UI·학습 계수는 변경하지 않았다. 검사와 병합 영수증은 해당 PR, 재개 우선순위는 [기초 보강 인계](../docs/knowledge-model/FOUNDATION_HANDOFF.md)의 F01 잔여 항목을 따른다.
+
 ## 2026-09-23 최신 인계 — 기초 보강 문서·검토 자료 연결
 
 - 사용자 원문 28~33을 누적 기록하고 [기초 보강 인계](../docs/knowledge-model/FOUNDATION_HANDOFF.md)·[청사진](../docs/knowledge-model/FOUNDATION_BLUEPRINT.md)·[반영 점검](../docs/knowledge-model/FOUNDATION_AUDIT.md)을 기존 설계·이관·기본 풀이·수학 모델 계획과 연결했다.

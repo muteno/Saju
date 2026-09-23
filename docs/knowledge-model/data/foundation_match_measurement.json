@@ -1,0 +1,78 @@
+{
+  "measured_on": "2026-09-23",
+  "work_base_commit": "19dd97f7bd9371975da4e76300d0a72588835a33",
+  "scope": "Full legacy concept-map build() and neuron concepts_in() on the same regenerated corpus; no graph/UI publish or P2 rebuild.",
+  "corpus_rows": 56202,
+  "reader_labels": {
+    "웹": 21251,
+    "전사": 34951
+  },
+  "corpus_warning": "The legacy web label includes P0 transcript snapshots. Raw transcript ingestion overlaps P0 and authors; rows are not independent or unique sources.",
+  "concepts": 271,
+  "concept_map_spouse": [
+    5646,
+    5661
+  ],
+  "neuron_spouse": [
+    5125,
+    5140
+  ],
+  "neuron_added_paragraph_ids": [
+    "CT-P077-23",
+    "MT-BASIC-P056-02",
+    "PL-ETC-P026-03",
+    "PL-ILJU-P021-08",
+    "PL-SINSAL-P028-03",
+    "PL-UNSEONG-P007-03",
+    "ST-P0684-05",
+    "T-00f2e8bb9e-0000",
+    "T-1077397623-0031",
+    "T-32d931daa0-0046",
+    "T-3faedda586-0015",
+    "T-3faedda586-0016",
+    "T-414cf0d9fb-0001",
+    "T-d86b0e2975-0000",
+    "T-ebe433f279-0001"
+  ],
+  "lost_concept_assignments": 0,
+  "changed_other_concepts": 0,
+  "meaning": "Topic retrieval counts only; not interpretation accuracy, training labels or probabilities.",
+  "inputs": [
+    {
+      "path": "정제/_현황판/build_concept_map.py",
+      "sha256": "6af0aabb5b6667e9e22054c808dc2262bf9eaa44dd795ff280b4cab8100cfd9d"
+    },
+    {
+      "path": "정제/_현황판/build_neuron_map.py",
+      "sha256": "fd0a6bccb45257d455fde050fa67da764bd3265a56d4da198cd2a88e84023c39"
+    },
+    {
+      "path": "정제/_현황판/코퍼스.py",
+      "sha256": "b4f6d73dde620725f3f9f803782bbc24d4441b308b61090fe6fbbdfe278b2028"
+    },
+    {
+      "path": "정제/_현황판/build_dashboard.py",
+      "sha256": "dd757eb82df149afd79d79ac003538ba53b7bea4a1be633bff5cf9ee9b7986a3"
+    },
+    {
+      "path": "정제/_현황판/ingest_transcripts.py",
+      "sha256": "8ae09de042f849183311ebde140fd596c542ec07b3b7af5a7053598f753d5e2b"
+    },
+    {
+      "path": "정제/_현황판/data/posts_all.jsonl",
+      "sha256": "1d084c1dbacbeefabe61e97a48d462e5754d1291967bef42fad7e8772dc3be1b"
+    },
+    {
+      "path": "정제/_현황판/data/paras_all.jsonl",
+      "sha256": "d8e937f1293eee14872ec527b58377393700bb8ae19017b8a9febfa3f6ff77cb"
+    },
+    {
+      "path": "정제/_현황판/data/전사_글.jsonl",
+      "sha256": "0d16d64e15fef36c3f39d79259f72c2b405aa9c5dde024aba65d601ca18c9205"
+    },
+    {
+      "path": "정제/_현황판/data/전사_문단.jsonl",
+      "sha256": "dfa46421686fec3c3f798eed70fb54c49b9c9e460a7da9d3a183a76f0c0f4a91"
+    }
+  ]
+}
