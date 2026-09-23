@@ -12,6 +12,7 @@ step "1/8 기틀 게이트(check_refs — 정적이라 최우선) + 파생물 �
 python3 shared/check_refs.py || fail=1
 python3 dosa-app/kb-tools/extract_bodies.py || fail=1
 python3 docs/knowledge-model/legacy_import.py --check || fail=1
+python3 docs/knowledge-model/foundation_review.py --check || fail=1
 python3 -m unittest discover -s docs/knowledge-model -p 'test_*.py' || fail=1
 node --test docs/knowledge-model/test_chart_context.mjs || fail=1
 

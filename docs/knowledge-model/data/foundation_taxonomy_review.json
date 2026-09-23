@@ -1,0 +1,2598 @@
+{
+  "hash_policy": "sha256_lf_git_text",
+  "schema_version": 1,
+  "reviewed_on": "2026-09-23",
+  "work_base_commit": "19dd97f7bd9371975da4e76300d0a72588835a33",
+  "repository_base_commit": "05a5eab0122eda37235feb66114c6c3d8249a705",
+  "bundle_sha256": "1b0191efe1f19daed6d100523bd539cecf4193ab60253fd042ab4665e47e6dad",
+  "baseline_taxonomy_sha256": "6d447d576e5c55fd9130f8a10201f0959311b63895ff53a0f59f94685c19f75a",
+  "apply_to_probability_model": false,
+  "use_as_training_labels": false,
+  "scope": "F01 initial disposition of 76 edition differences; 1 topic-search alias applied. Not full semantic certification.",
+  "evidence_policy": "File hash and physical lines verify literal evidence only. Candidate excerpts are not semantic approvals; sources can repeat the same author.",
+  "decisions": [
+    {
+      "concept": "충(총칭)",
+      "difference_kind": "local_only",
+      "decision": "분리",
+      "scope": "reviewed_examples_only",
+      "source_review": "reviewed_examples",
+      "local_only_aliases": [
+        "충을 하",
+        "충을 해",
+        "충이 돼",
+        "충이 되"
+      ],
+      "repository_only_aliases": [],
+      "reason": "총칭을 지지충으로 고정하지 않는다. 충을 해 후보가 보충을 해에 걸린다. 로컬 분류의 중주제 합도 그대로 복사하지 않는다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/local_only/충(총칭)",
+      "evidence_ids": [
+        "clash_positive",
+        "clash_substring"
+      ],
+      "applied_aliases": [],
+      "next_action": "충 중주제와 총칭/하위 관계를 정하고 보충 등 일반어의 경계 반례를 통과시킨다."
+    },
+    {
+      "concept": "합(총칭)",
+      "difference_kind": "local_only",
+      "decision": "분리",
+      "scope": "reviewed_examples_only",
+      "source_review": "reviewed_examples",
+      "local_only_aliases": [
+        "합을 하",
+        "합을 해",
+        "합이 돼",
+        "합이 되"
+      ],
+      "repository_only_aliases": [],
+      "reason": "총칭은 천간합·육합 등 하위 종류와 구분한다. 구어 후보가 결합을 해 같은 일반 결합 표현에도 걸린다. 새 노드·별칭은 아직 적용하지 않는다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/local_only/합(총칭)",
+      "evidence_ids": [
+        "combine_positive",
+        "combine_substring"
+      ],
+      "applied_aliases": [],
+      "next_action": "합의 범위·하위 관계와 단어 경계를 검수한 뒤 노드 추가 여부를 결정한다."
+    },
+    {
+      "concept": "12시진",
+      "difference_kind": "repository_only",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "12시진",
+        "時辰",
+        "묘시생",
+        "미시생",
+        "사시생",
+        "술시생",
+        "시에 태어",
+        "신시생",
+        "십이시진",
+        "오시생",
+        "유시생",
+        "인시생",
+        "자시생",
+        "진시생",
+        "축시생",
+        "출생 시각",
+        "태어난 시각",
+        "해시생"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/repository_only/12시진",
+      "evidence_ids": [
+        "candidate_017"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "계절",
+      "difference_kind": "repository_only",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "계절의 변화",
+        "네 계절",
+        "사계절",
+        "환절기"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/repository_only/계절",
+      "evidence_ids": [
+        "candidate_018"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "운(총칭)",
+      "difference_kind": "repository_only",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "명과 운",
+        "운(運)",
+        "운이라는 것",
+        "운이란"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/repository_only/운(총칭)",
+      "evidence_ids": [
+        "candidate_019"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "자전축(23.5°)",
+      "difference_kind": "repository_only",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "23.5˚",
+        "23.5도",
+        "자전축",
+        "지구의 기울",
+        "황도경사"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/repository_only/자전축(23.5°)",
+      "evidence_ids": [
+        "candidate_020"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "지구 공전",
+      "difference_kind": "repository_only",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "공전 주기",
+        "지구 공전",
+        "지구의 공전",
+        "태양을 한 바퀴"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/repository_only/지구 공전",
+      "evidence_ids": [
+        "candidate_021"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "지구 자전",
+      "difference_kind": "repository_only",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "자전 주기",
+        "지구 자전",
+        "지구의 자전"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/repository_only/지구 자전",
+      "evidence_ids": [
+        "candidate_022"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "태(態)",
+      "difference_kind": "repository_only",
+      "decision": "보류",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "명·운·태",
+        "바꿀 수 있는 것",
+        "정해지지 않은 것",
+        "태(態)"
+      ],
+      "reason": "문자열 후보 바꿀 수 있는 것은 사주를 바꿀 수 없다는 반대 문맥에도 나타난다. 보드의 태 개념과 일반어를 구분해야 한다. 기존 실행값은 보존하고 새 통합은 하지 않는다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/repository_only/태(態)",
+      "evidence_ids": [
+        "candidate_023"
+      ],
+      "applied_aliases": [],
+      "next_action": "정본 정의의 긍정 용례와 동명이의 반례를 함께 검수한다."
+    },
+    {
+      "concept": "행성 배속",
+      "difference_kind": "repository_only",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "금성, 수성",
+        "목성, 화성",
+        "수성, 금성",
+        "오행과 행성",
+        "토성, 금성",
+        "행성 배속",
+        "화성, 토성"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/repository_only/행성 배속",
+      "evidence_ids": [
+        "candidate_024"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "황도(태양황경)",
+      "difference_kind": "repository_only",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "태양황경",
+        "황경",
+        "황도"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/repository_only/황도(태양황경)",
+      "evidence_ids": [
+        "candidate_025"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "건록",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "建祿"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/건록",
+      "evidence_ids": [
+        "candidate_026"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "겁재",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "劫財"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/겁재",
+      "evidence_ids": [
+        "candidate_027"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "격국 일반",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "格局"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/격국 일반",
+      "evidence_ids": [
+        "candidate_028"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "고립·병존 구조",
+      "difference_kind": "changed_shared",
+      "decision": "분리",
+      "scope": "reviewed_examples_only",
+      "source_review": "pending",
+      "local_only_aliases": [
+        "병존"
+      ],
+      "repository_only_aliases": [],
+      "reason": "같은 이름의 병존 정본 노드가 이미 있다. 고립과 병존을 동의어로 합치지 않는다. 기존 별도 노드와 저장소 별칭을 유지한다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/고립·병존 구조",
+      "evidence_ids": [],
+      "applied_aliases": [],
+      "next_action": "병존와의 관계는 별칭 병합 대신 유형을 구분한 관계로 검수한다. 현재 노드는 추가·병합하지 않는다."
+    },
+    {
+      "concept": "공망",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "天中殺",
+        "空亡"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/공망",
+      "evidence_ids": [
+        "candidate_029"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "관대",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "冠帶"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/관대",
+      "evidence_ids": [
+        "candidate_030"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "관성 일반",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "官星"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/관성 일반",
+      "evidence_ids": [
+        "candidate_031"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "괴강",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "魁罡"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/괴강",
+      "evidence_ids": [
+        "candidate_032"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "귀문",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "鬼門"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/귀문",
+      "evidence_ids": [
+        "candidate_033"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "대운",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "大運"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/대운",
+      "evidence_ids": [
+        "candidate_034"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "도화",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "桃花"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/도화",
+      "evidence_ids": [
+        "candidate_035"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "목욕",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "沐浴"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/목욕",
+      "evidence_ids": [
+        "candidate_036"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "방합",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "方合"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/방합",
+      "evidence_ids": [
+        "candidate_037"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "배우자",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "topic_search_only",
+      "source_review": "reviewed_examples",
+      "local_only_aliases": [
+        "부부 사이",
+        "부부가",
+        "부부간",
+        "부부관계"
+      ],
+      "repository_only_aliases": [],
+      "reason": "부부 사이만 배우자 관련 문헌의 주제 검색 표현으로 추가한다. 사람과 관계가 같은 개념이라는 뜻이나 결혼 결과·성향 판정은 아니다. 부부가는 책 소개, 부부관계는 천간합의 비유 용례를 확인해 보류한다. 부부간도 육합의 비유와 실제 관계 구분이 더 필요해 이번에는 보류한다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/배우자",
+      "evidence_ids": [
+        "spouse_among",
+        "spouse_relationship",
+        "spouse_between",
+        "spouse_title",
+        "spouse_metaphor",
+        "spouse_among_analogy"
+      ],
+      "applied_aliases": [
+        {
+          "alias": "부부 사이",
+          "evidence_id": "spouse_between"
+        }
+      ],
+      "next_action": "부부가·부부관계·부부간 및 일상 언급의 적용 범위를 별도 검수한다. 별칭 판정 재생성은 D5 허용 표현을 넓힐 수 있으므로 P2 인용 자격을 별도 검수해야 한다. 현재 앱 해석·학습 라벨에는 적용하지 않는다."
+    },
+    {
+      "concept": "백호",
+      "difference_kind": "changed_shared",
+      "decision": "보류",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "白虎"
+      ],
+      "reason": "문자열 후보 白虎가 백호통의라는 책 이름에 포함돼 있다. 白虎 단독 후보의 의미 안전을 이번 표본만으로 승인할 수 없다. 기존 실행값은 보존하고 새 통합은 하지 않는다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/백호",
+      "evidence_ids": [
+        "candidate_038"
+      ],
+      "applied_aliases": [],
+      "next_action": "정본 정의의 긍정 용례와 동명이의 반례를 함께 검수한다."
+    },
+    {
+      "concept": "비겁 일반",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "比劫"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/비겁 일반",
+      "evidence_ids": [
+        "candidate_039"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "비견",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "比肩"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/비견",
+      "evidence_ids": [
+        "candidate_040"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "삼합",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "三合"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/삼합",
+      "evidence_ids": [
+        "candidate_041"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "상관",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "傷官"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/상관",
+      "evidence_ids": [
+        "candidate_042"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "상극",
+      "difference_kind": "changed_shared",
+      "decision": "보류",
+      "scope": "reviewed_examples_only",
+      "source_review": "reviewed_examples",
+      "local_only_aliases": [
+        "극을 하",
+        "극하는 오행",
+        "극하니까",
+        "극합니다"
+      ],
+      "repository_only_aliases": [
+        "相剋"
+      ],
+      "reason": "극합니다 등은 자극합니다의 일부에도 걸린다. 극하는 오행은 의미가 맞는 용례가 있지만 현 긴 별칭 우선 매칭에서 오행(총칭)을 가릴 수 있다. 相剋은 보존한다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/상극",
+      "evidence_ids": [
+        "control_positive",
+        "control_substring"
+      ],
+      "applied_aliases": [],
+      "next_action": "긍정·일반어 반례와 기존 오행 노드 보존을 함께 통과하는 매칭을 먼저 마련한다."
+    },
+    {
+      "concept": "상생",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "相生"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/상생",
+      "evidence_ids": [
+        "candidate_044"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "세운(연운)",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "歲運"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/세운(연운)",
+      "evidence_ids": [
+        "candidate_045"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "시주",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "時柱"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/시주",
+      "evidence_ids": [
+        "candidate_046"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "식상 일반",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "食傷"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/식상 일반",
+      "evidence_ids": [
+        "candidate_047"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "식신",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "食神"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/식신",
+      "evidence_ids": [
+        "candidate_048"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "신강",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "身强"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/신강",
+      "evidence_ids": [
+        "candidate_049"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "신약",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "身弱"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/신약",
+      "evidence_ids": [
+        "candidate_050"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "십성(총칭)",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "육신"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/십성(총칭)",
+      "evidence_ids": [
+        "candidate_051"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "십이운성 자체",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "12운성",
+        "十二運星"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/십이운성 자체",
+      "evidence_ids": [
+        "candidate_052"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "양인",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "羊刃"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/양인",
+      "evidence_ids": [
+        "candidate_053"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "여기·중기·정기",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "正氣"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/여기·중기·정기",
+      "evidence_ids": [
+        "candidate_054"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "역마",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "驛馬"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/역마",
+      "evidence_ids": [
+        "candidate_055"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "오행(총칭)",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "五行"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/오행(총칭)",
+      "evidence_ids": [
+        "candidate_056"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "용신(총칭)",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "用神"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/용신(총칭)",
+      "evidence_ids": [
+        "candidate_057"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "원국·명식",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "命式",
+        "명조"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/원국·명식",
+      "evidence_ids": [
+        "candidate_058"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "원진",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "怨嗔"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/원진",
+      "evidence_ids": [
+        "candidate_059"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "월간",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "月干"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/월간",
+      "evidence_ids": [
+        "candidate_060"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "월주",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "月柱"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/월주",
+      "evidence_ids": [
+        "candidate_061"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "월지",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "月支"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/월지",
+      "evidence_ids": [
+        "candidate_062"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "인성 일반",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "印星"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/인성 일반",
+      "evidence_ids": [
+        "candidate_063"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "일간",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "日干"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/일간",
+      "evidence_ids": [
+        "candidate_064"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "일주",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "日柱"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/일주",
+      "evidence_ids": [
+        "candidate_065"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "일지",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "日支"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/일지",
+      "evidence_ids": [
+        "candidate_066"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "장생",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "長生"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/장생",
+      "evidence_ids": [
+        "candidate_067"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "재성 일반",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "財星"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/재성 일반",
+      "evidence_ids": [
+        "candidate_068"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "전왕격",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "가색",
+        "곡직",
+        "염상",
+        "종혁"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/전왕격",
+      "evidence_ids": [
+        "candidate_069"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "정관",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "正官"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/정관",
+      "evidence_ids": [
+        "candidate_070"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "정인",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "正印"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/정인",
+      "evidence_ids": [
+        "candidate_071"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "정재",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "正財"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/정재",
+      "evidence_ids": [
+        "candidate_072"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "제왕",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "帝旺"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/제왕",
+      "evidence_ids": [
+        "candidate_073"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "조후 균형",
+      "difference_kind": "changed_shared",
+      "decision": "보류",
+      "scope": "reviewed_examples_only",
+      "source_review": "reviewed_examples",
+      "local_only_aliases": [
+        "더위",
+        "덥습니다",
+        "따뜻한 기운",
+        "추위",
+        "춥다",
+        "춥습니다",
+        "한난",
+        "한난조습"
+      ],
+      "repository_only_aliases": [],
+      "reason": "한난·한난조습은 별도 한난조습 노드에 남긴다. 더위·추위·춥다 등은 조후 문맥과 실제 날씨·속담이 섞인다. 온도 언급을 균형 성립으로 해석하지 않는다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/조후 균형",
+      "evidence_ids": [
+        "temperature_positive",
+        "temperature_weather"
+      ],
+      "applied_aliases": [],
+      "next_action": "기온·문헌 조후·균형 판단을 구분하는 문맥 검수 후 적용한다."
+    },
+    {
+      "concept": "조후용신",
+      "difference_kind": "changed_shared",
+      "decision": "분리",
+      "scope": "reviewed_examples_only",
+      "source_review": "pending",
+      "local_only_aliases": [
+        "궁통보감"
+      ],
+      "repository_only_aliases": [],
+      "reason": "궁통보감은 책 이름이며 조후용신은 방법이다. 책 제목만으로 방법 설명을 인용했다고 판정하지 않는다. 기존 별도 노드와 저장소 별칭을 유지한다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/조후용신",
+      "evidence_ids": [],
+      "applied_aliases": [],
+      "next_action": "궁통보감와의 관계는 별칭 병합 대신 유형을 구분한 관계로 검수한다. 현재 노드는 추가·병합하지 않는다."
+    },
+    {
+      "concept": "지장간",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "地藏干",
+        "암장"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/지장간",
+      "evidence_ids": [
+        "candidate_074"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "지지(총칭)",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "地支",
+        "십이지"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/지지(총칭)",
+      "evidence_ids": [
+        "candidate_075"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "지지충",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "-상충관계",
+        "-상충되",
+        "-상충하",
+        "상충"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/지지충",
+      "evidence_ids": [
+        "candidate_076"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "천간(총칭)",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "天干",
+        "십간"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/천간(총칭)",
+      "evidence_ids": [
+        "candidate_077"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "천간합",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "-애매간합",
+        "-어중간합",
+        "天干合",
+        "간합"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/천간합",
+      "evidence_ids": [
+        "candidate_078"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "천을귀인",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "天乙貴人"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/천을귀인",
+      "evidence_ids": [
+        "candidate_079"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "통근",
+      "difference_kind": "changed_shared",
+      "decision": "보류",
+      "scope": "reviewed_examples_only",
+      "source_review": "reviewed_examples",
+      "local_only_aliases": [
+        "뿌리 없",
+        "뿌리가",
+        "뿌리는",
+        "뿌리도",
+        "뿌리로",
+        "뿌리를"
+      ],
+      "repository_only_aliases": [
+        "通根",
+        "뿌리를 내"
+      ],
+      "reason": "뿌리 구어는 실제 통근 문맥과 그림세계의 뿌리 같은 비유를 모두 담는다. 기존 通根·뿌리를 내 표기는 보존하고 로컬의 넓은 활용형 6개는 추가하지 않는다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/통근",
+      "evidence_ids": [
+        "root_positive",
+        "root_figurative"
+      ],
+      "applied_aliases": [],
+      "next_action": "일간·일지·지장간의 자리 맥락을 함께 검수한다. 좁은 표현도 긴 별칭이 기존 자리 노드를 가리는지 검사한다."
+    },
+    {
+      "concept": "투간·투출",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "透出"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/투간·투출",
+      "evidence_ids": [
+        "candidate_081"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "편관(칠살)",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "七殺",
+        "偏官"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/편관(칠살)",
+      "evidence_ids": [
+        "candidate_082"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "편인",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "偏印"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/편인",
+      "evidence_ids": [
+        "candidate_083"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "편재",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "偏財"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/편재",
+      "evidence_ids": [
+        "candidate_084"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    },
+    {
+      "concept": "하건충 십성 대응",
+      "difference_kind": "changed_shared",
+      "decision": "분리",
+      "scope": "reviewed_examples_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [
+        "하건충"
+      ],
+      "repository_only_aliases": [
+        "By 하건충",
+        "팔자심리추명학",
+        "하건충 십성",
+        "하건충에 의하면"
+      ],
+      "reason": "인물명과 그 인물의 특정 이론을 구분한다. 이름만 나온 문단을 십성 대응의 근거로 삼지 않는다. 기존 별도 노드와 저장소 별칭을 유지한다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/하건충 십성 대응",
+      "evidence_ids": [
+        "candidate_085"
+      ],
+      "applied_aliases": [],
+      "next_action": "하건충와의 관계는 별칭 병합 대신 유형을 구분한 관계로 검수한다. 현재 노드는 추가·병합하지 않는다."
+    },
+    {
+      "concept": "화개",
+      "difference_kind": "changed_shared",
+      "decision": "채택",
+      "scope": "existing_edition_only",
+      "source_review": "literal_candidate_only",
+      "local_only_aliases": [],
+      "repository_only_aliases": [
+        "華蓋",
+        "화갯살"
+      ],
+      "reason": "현재 저장소 판본을 보존한다. 로컬의 누락만으로 기존 표기·개념을 삭제하지 않는다. 별칭 전체의 의미 안전 승인이나 해석 규칙 채택은 아니다.",
+      "target_file": "정제/_현황판/build_concept_map.py",
+      "bundle_pointer": "/taxonomy/changed_shared/화개",
+      "evidence_ids": [
+        "candidate_086"
+      ],
+      "applied_aliases": [],
+      "next_action": "후속 의미 검수에서 각 별칭의 정의·다른 뜻·제외어를 대조한다. 현재 실행값은 유지한다."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "spouse_between",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-십성, 육친 글모음.txt",
+      "sha256": "9cc4922936379a5ea30a247aa29bfc106e2b7bfffc600adb3cf6a1860d8305ab",
+      "lines": [
+        163,
+        167
+      ],
+      "legacy_para_id": "CHO-SIPSEONG-P002-03",
+      "quote": "이는 부부 사이에서 각자의 역할이 중요하다는 뜻이기도 합니다.",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "spouse_relationship",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20240426_공망 - 비어있고 망했다구요!_xghJMZ9PsAY.md",
+      "sha256": "1d43b3b8dcc21f3b0175f99f6797a041b8ab4c68d00b0e7a0f296dad671cd32e",
+      "lines": [
+        355,
+        359
+      ],
+      "legacy_para_id": "CT-P129-12",
+      "quote": "요즘은 핵가족 시대니까 부부관계의 안정성이 오히려 더 중요해졌다고도 보거든요.",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "spouse_among",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-신살론 글모음.txt",
+      "sha256": "7feaaa22d958f4dcbd1fe6b53c1bfce1a8bf3849db1523deb98e6ca56714f18e",
+      "lines": [
+        882,
+        886
+      ],
+      "legacy_para_id": "SG-SINSAL-P008-03",
+      "quote": "부부간에 해로하기 힘들다고 나와있습니다.",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "root_positive",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20240719_사주를 해석하는 순서와 방법_yPla-nmSoow.md",
+      "sha256": "c86a7f5f3bf8aaac75deb39588875fb289a866974d0098cd5ae8c82b18460ca3",
+      "lines": [
+        754,
+        758
+      ],
+      "legacy_para_id": "CT-P146-38",
+      "quote": "그런데 일지의 뿌리가 있잖아요",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "root_figurative",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/현묘의 사주 이야기 글모음.txt",
+      "sha256": "8d1572c34715bbd99ad90a08935a60a9604a722d7a26d66a4764fc0a6355cd1a",
+      "lines": [
+        6103,
+        6107
+      ],
+      "legacy_para_id": "HM-P069-02",
+      "quote": "더욱더 신실하게 나의 그림세계의 뿌리를 찾아야겠소이다.",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "temperature_positive",
+      "path": "정제/원본/P0_인벤토리/transcript_sanchaek_v1/20211121_조후 아니, 그냥 온도!__tPWm_KWLYM.md",
+      "sha256": "c45afc694f19f3e31c9faf3b20985672ccf5a93830f0b2beb6ab1ced5059382e",
+      "lines": [
+        144,
+        148
+      ],
+      "legacy_para_id": "ST-P0053-07",
+      "quote": "미월이 가장 덥습니다",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "temperature_weather",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/24절기 글모음.txt",
+      "sha256": "fe9ce1d1ad859adf4a5c03ca6c83f3b4f393faf6c2f4746fd59419473d94233d",
+      "lines": [
+        1265,
+        1269
+      ],
+      "legacy_para_id": "PL-JEOLGI-P020-03",
+      "quote": "단어의 뜻을 보면 대한(大寒)-큰 추위-이 더 추운 것처럼 보이지만, 실제 날씨는 소한(小寒)이 더 춥다는 경험에서 비롯한 재밌는 속담입니다.",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "control_positive",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        339,
+        343
+      ],
+      "legacy_para_id": "CHO-STORY-P004-08",
+      "quote": "2) 수 오행을 극하는 오행은 토 오행입니다.",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "control_substring",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20231009_계해일주 계해시 VS 계해일주 임자시__xoABm6Vd64.md",
+      "sha256": "52f9fc481582363a1ae80dcd2823782eae7a1bf1ab64353e57c7c1677f158b4b",
+      "lines": [
+        220,
+        222
+      ],
+      "legacy_para_id": "CT-P080-10",
+      "quote": "그리고 더 크게 보호본능을 자극합니다",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "combine_substring",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20211014_👀오행으로만 사주를 판단하시면 안돼요_VRuJMkbkr2w.md",
+      "sha256": "903793cba60bd118a229ce165e6717b760281af63598348bd6d9a1abce96c08c",
+      "lines": [
+        112,
+        115
+      ],
+      "legacy_para_id": "CT-P011-06",
+      "quote": "이런 식으로 5행의 속성을 10성하고 결합을 해야지",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "clash_substring",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20210916_🌳목(木)은 나무가 아니다 목(木) 발달, 과다 시 특징, 활용법_L639l5IANpo.md",
+      "sha256": "de1bcc42fcdf2d839faf111cc58778b1299e6a87ba0af2f62fc9f4e31f2728e7",
+      "lines": [
+        244,
+        248
+      ],
+      "legacy_para_id": "CT-P002-10",
+      "quote": "그럴 때는 역시 목의 기운을 잘 보충을 해줘야겠죠",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "combine_positive",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20211028_😀우리 아프지 말고 사주팔자로 건강 먼저 챙깁시다_io5_Y2q1rQo.md",
+      "sha256": "7ef7839d240b705fc4edd4c22fc58a2ba69cc2b8a28086cfca9527c7b4c59fb3",
+      "lines": [
+        73,
+        77
+      ],
+      "legacy_para_id": "CT-P013-04",
+      "quote": "그리고 또 유금과 진토가 서로 합을 하려고 해요",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "clash_positive",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20211028_😀우리 아프지 말고 사주팔자로 건강 먼저 챙깁시다_io5_Y2q1rQo.md",
+      "sha256": "7ef7839d240b705fc4edd4c22fc58a2ba69cc2b8a28086cfca9527c7b4c59fb3",
+      "lines": [
+        122,
+        126
+      ],
+      "legacy_para_id": "CT-P013-06",
+      "quote": "어떤 하나의 오행으로 치우쳐진 사주가 있다면 그 오행과 충을 하거나",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "spouse_title",
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20220423_내 사주 내가 보기(3시간30분 주의!)_0W1EFtPy85w.md",
+      "sha256": "b44f58fb6a87fda6f4da3f5b126eadc06091d4b8a5d1b8468713024c0ad16371",
+      "lines": [
+        4222,
+        4226
+      ],
+      "legacy_para_id": "CT-P027-79",
+      "quote": "부부가 둘 다 놀고 있습니다 라는 책을 인상 깊게 읽었는데",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "spouse_metaphor",
+      "path": "정제/원본/P0_인벤토리/transcript_sanchaek_v1/20211030_천간합_Gof3tkijizU.md",
+      "sha256": "d1e12349a74a7e69dfe263af5da0802f534d6f0d2f020bdf673daa6ab3b96a4b",
+      "lines": [
+        39,
+        43
+      ],
+      "legacy_para_id": "ST-P0020-03",
+      "quote": "실제로 부부라는 뜻은 아니고요",
+      "role": "reviewed_example_not_interpretation_label"
+    },
+    {
+      "id": "spouse_among_analogy",
+      "path": "정제/원본/전사/6. 남석운명과명리학/남석운명과명리학/20200607_815강. 사랑이 지나치면 병病이 된다. 명리학 정통법칙 해석, 인문명리학_8plnfpIMtQE.md",
+      "sha256": "30ae165b03215982b8a2731e8be4b1a5944ace80de745b9eea578a84d461a8e3",
+      "lines": [
+        92,
+        98
+      ],
+      "legacy_para_id": "T-cf30973610-0000",
+      "quote": "육합이라는 것은 우리가 부부간의 관계 또는 모자간의 관계 이렇게 해석할 만큼 육합이 상당히 작용하는 힘이 강하다고 해석하는 겁니다.",
+      "role": "reviewed_analogy_boundary_pending_not_categorical_false_positive"
+    },
+    {
+      "id": "candidate_017",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        907,
+        909
+      ],
+      "legacy_para_id": "CHO-STORY-P008-05",
+      "quote": "사오미(巳午未), 신유술(申酉戌) 시, 즉 12시진(時辰)이 그것이죠.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_018",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        419,
+        423
+      ],
+      "legacy_para_id": "CHO-STORY-P005-03",
+      "quote": "세분하면 사계절인 봄, 여름, 가을, 겨울은, 각 6개의 절기로 구성됩니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_019",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        1281,
+        1284
+      ],
+      "legacy_para_id": "CHO-STORY-P010-04",
+      "quote": "그럼 운(運)은 어떻게 결정될까요?",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_020",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        783,
+        787
+      ],
+      "legacy_para_id": "CHO-STORY-P007-09",
+      "quote": "타원형인 지구는 태양을 중심으로 타원 궤도를 따라 공전합니다. 게다가 자전축이 23.5도 기울어져 있어, 실제 태양의 고도에 따른 하루의 길이가 균일하지 않습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_021",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        429,
+        433
+      ],
+      "legacy_para_id": "CHO-STORY-P005-04",
+      "quote": "지구가 태양을 한 바퀴 도는 주기를 24등분한 24절기는, 이러한 필요에 따라 만들어진 것입니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_022",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        781,
+        784
+      ],
+      "legacy_para_id": "CHO-STORY-P007-09",
+      "quote": "사주명리학의 만세력은 실제 태양의 고도와 밀접한 연관이 있습니다. 태양의 황도상 위치를 중심으로 절기를 나눈다면, 시간 단위에서는 지구의 자전과 태양의 고도를 기준으로 시간을 12개로 나누고 있죠.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_023",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/현묘의 사주 이야기 글모음.txt",
+      "sha256": "8d1572c34715bbd99ad90a08935a60a9604a722d7a26d66a4764fc0a6355cd1a",
+      "lines": [
+        11628,
+        11631
+      ],
+      "legacy_para_id": "HM-P262-02",
+      "quote": "수천만원 들여서 굿을 해서 바꿀 수 있는 것이 아닙니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_024",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-음양, 오행 글모음.txt",
+      "sha256": "5ee0d4e6f12fbd3dcc8c8de093a72d2decd3abae1d9a034329d181d42ae4f00f",
+      "lines": [
+        645,
+        648
+      ],
+      "legacy_para_id": "CHO-OHENG-P008-06",
+      "quote": "목성, 화성, 토성, 금성, 수성은 고대 중국, 바빌로니아, 그리스, 이집트 등에서 이미 관측되고 기록된 행성들입니다. 인류가 하늘을 관측한 이래로 언제나 인식하고 있던 존재들이죠.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_025",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        621,
+        625
+      ],
+      "legacy_para_id": "CHO-STORY-P006-07",
+      "quote": "예를 들어, 을사년의 입춘 절입시간이 2025년 2월 3일 밤 11시 10분이라면, 이 시간에 태양이 황도상의 입춘 지점(황경 315도)에 도달했다는 의미입니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_026",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-신살론 글모음.txt",
+      "sha256": "7feaaa22d958f4dcbd1fe6b53c1bfce1a8bf3849db1523deb98e6ca56714f18e",
+      "lines": [
+        1284,
+        1286
+      ],
+      "legacy_para_id": "SG-SINSAL-P011-01",
+      "quote": "신살론 - 신살 십간록(十干祿), 건록(建祿), 협록(夾祿), 암록(暗綠), 금여록(金輿綠)",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_027",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        10392,
+        10395
+      ],
+      "legacy_para_id": "DR-P304-03",
+      "quote": "겁재(劫財)란 내 재물을 빼앗는다, 겁탈한다라는 뜻을 가진 십성을 의미합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_028",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        25832,
+        25834
+      ],
+      "legacy_para_id": "DR-P615-11",
+      "quote": "격국용신(格局用神)",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_029",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        12931,
+        12934
+      ],
+      "legacy_para_id": "DR-P313-03",
+      "quote": "공망(空亡)이란, 공허하고 비어있어서 힘을 못 쓴다는 뜻을 가지고 있습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_030",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        2237,
+        2241
+      ],
+      "legacy_para_id": "CHO-GANJI-P016-05",
+      "quote": "십이운성은 장생(長生), 목욕(沐浴), 관대(冠帶), 건록(乾祿), 제왕(帝旺), 쇠(衰), 병(病), 사(死), 묘(墓), 절(絶), 태(胎), 양(養) 12단계로 이루어져 있습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_031",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/현묘의 사주 이야기 글모음.txt",
+      "sha256": "8d1572c34715bbd99ad90a08935a60a9604a722d7a26d66a4764fc0a6355cd1a",
+      "lines": [
+        6472,
+        6475
+      ],
+      "legacy_para_id": "HM-P201-02",
+      "quote": "사주에서 관성(官星)은 우리를 규제하는 체제와 시스템이라는 말씀을 드린 적이 있습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_032",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-일주론 글모음.txt",
+      "sha256": "81a964a949d8a98c75824ea357fbc2f9e48a8616aaa080be52e8d8f0afea52b6",
+      "lines": [
+        94,
+        97
+      ],
+      "legacy_para_id": "CHO-ILJU-P001-09",
+      "quote": "십이운성만 보면 양(養)이라 힘이 강한 듯하지만, 백호(白虎), 양인(羊刃), 괴강(魁罡) 같은 자기 전문성으로 발현되는 강한 신살이 하나도 없기 때문입니다. 만약 일간이 묘지(墓地)에 놓인 무술(戊戌)이나 임진(壬辰)처럼 십이운성의 힘은 약하더라도, 괴강(魁罡), 백호(白虎), 양인(羊刃) 같은 파괴력 있는 신살을 하나라도 지니고 있었다면 신축(辛丑) 역시 간여지동급 간지로 분류될 수 있었을 것입니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_033",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-신살론 글모음.txt",
+      "sha256": "7feaaa22d958f4dcbd1fe6b53c1bfce1a8bf3849db1523deb98e6ca56714f18e",
+      "lines": [
+        656,
+        658
+      ],
+      "legacy_para_id": "SG-SINSAL-P006-01",
+      "quote": "신살론 - 신살 원진(怨嗔), 원진살(怨嗔殺), 귀문(鬼門), 귀문살(鬼門殺), 귀문관살(鬼門關殺)",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_034",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/십신과 합충 글모음.txt",
+      "sha256": "a82aeb767011d07cd2a3c47099a530853c70a4b51c6fc01635a89b32aac62e2e",
+      "lines": [
+        1274,
+        1276
+      ],
+      "legacy_para_id": "PL-SIPSIN-P020-01",
+      "quote": "대운수(大運數)란? 대운수(大運數) 구하는 방법",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_035",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-신살론 글모음.txt",
+      "sha256": "7feaaa22d958f4dcbd1fe6b53c1bfce1a8bf3849db1523deb98e6ca56714f18e",
+      "lines": [
+        1462,
+        1464
+      ],
+      "legacy_para_id": "SG-SINSAL-P012-02",
+      "quote": "도화(桃花)란?",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_036",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        2237,
+        2241
+      ],
+      "legacy_para_id": "CHO-GANJI-P016-05",
+      "quote": "십이운성은 장생(長生), 목욕(沐浴), 관대(冠帶), 건록(乾祿), 제왕(帝旺), 쇠(衰), 병(病), 사(死), 묘(墓), 절(絶), 태(胎), 양(養) 12단계로 이루어져 있습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_037",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/십신과 합충 글모음.txt",
+      "sha256": "a82aeb767011d07cd2a3c47099a530853c70a4b51c6fc01635a89b32aac62e2e",
+      "lines": [
+        2120,
+        2122
+      ],
+      "legacy_para_id": "PL-SIPSIN-P032-04",
+      "quote": "라. 월지를 차지하고 있는 지지가 왕지일 경우, 진방합(眞方合)이라고 부르고 방합의 힘이 훨씬 강력하게 유지된다고 본다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_038",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        312,
+        315
+      ],
+      "legacy_para_id": "CHO-GANJI-P002-15",
+      "quote": "백호통의(白虎通義)에서는 ‘을(乙)은 만물이 빼곡하게 구부러져 있다가 절기에 맞춰 나가려는 것”이라고 했습니다. 여기에서 절기에 맞춰 나가려 한다는 것은, 씨앗이 때가 되어 껍질을 뚫고 나아가려 한다는 뜻입니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_039",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        26463,
+        26467
+      ],
+      "legacy_para_id": "DR-P619-02",
+      "quote": "그런데 병화·정화 일간 분들에게 이 화(火)는 비겁(比劫)이에요.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_040",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        10134,
+        10137
+      ],
+      "legacy_para_id": "DR-P303-04",
+      "quote": "비견(比肩)이란 어깨를 견주다 또는 나란히 한다는 뜻을 가진 십성을 의미합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_041",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/현묘의 사주 이야기 글모음.txt",
+      "sha256": "8d1572c34715bbd99ad90a08935a60a9604a722d7a26d66a4764fc0a6355cd1a",
+      "lines": [
+        725,
+        727
+      ],
+      "legacy_para_id": "HM-P012-02",
+      "quote": "2. 삼합(三合)",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_042",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        10913,
+        10916
+      ],
+      "legacy_para_id": "DR-P306-03",
+      "quote": "사주 상관(傷官)은 상하게할 상, 관 관을 쓰며 관성을 상하게 한다는 뜻을 가진 십성을 의미합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_043",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 초급 글모음.txt",
+      "sha256": "d923a1db95cdcb7a5283893a6cab0186f1504e640c61b8c3963fefd4168f062e",
+      "lines": [
+        303,
+        305
+      ],
+      "legacy_para_id": "SG-BASIC-P012-01",
+      "quote": "사주명리 입문 - 상생(相生)과 상극(相剋)",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_044",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/현묘의 사주 이야기 글모음.txt",
+      "sha256": "8d1572c34715bbd99ad90a08935a60a9604a722d7a26d66a4764fc0a6355cd1a",
+      "lines": [
+        7018,
+        7022
+      ],
+      "legacy_para_id": "HM-P206-04",
+      "quote": "준만큼 받을 수 있기 때문에 명리학에는 실은 生이라는 단어는 없습니다. 오로지 상생(相生)이라는 단어가 生의 작용을 간신히 포착할 수 있습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_045",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/현묘의 사주 이야기 글모음.txt",
+      "sha256": "8d1572c34715bbd99ad90a08935a60a9604a722d7a26d66a4764fc0a6355cd1a",
+      "lines": [
+        11541,
+        11545
+      ],
+      "legacy_para_id": "HM-P261-03",
+      "quote": "세운(歲運)이라는 한 해의 기운이 특정 국가, 특정 민족에게만 작용해 역사적 사건을 일으켰다고 보는 게 맞을까요?",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_046",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 초급 글모음.txt",
+      "sha256": "d923a1db95cdcb7a5283893a6cab0186f1504e640c61b8c3963fefd4168f062e",
+      "lines": [
+        1059,
+        1063
+      ],
+      "legacy_para_id": "SG-BASIC-P042-01",
+      "quote": "네 개의 기둥은 각각 년주(年柱), 월주(月柱), 일주(日柱), 시주(時柱)라고 합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_047",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/십신과 합충 글모음.txt",
+      "sha256": "a82aeb767011d07cd2a3c47099a530853c70a4b51c6fc01635a89b32aac62e2e",
+      "lines": [
+        453,
+        457
+      ],
+      "legacy_para_id": "PL-SIPSIN-P007-04",
+      "quote": "식신(食神)과 상관(傷官)을 묶어 식상(食傷),",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_048",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        10646,
+        10649
+      ],
+      "legacy_para_id": "DR-P305-03",
+      "quote": "사주 식신(食神)이란 밥 식, 귀신 신을 쓰며 먹을 복을 타고 났다는 뜻을 가진 십성을 의미합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_049",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/원국 분석 및 용신 글모음.txt",
+      "sha256": "8310e5086adfa724ae3ac2e82ebf98689f73a77a590891c4e368686e189cbc52",
+      "lines": [
+        869,
+        873
+      ],
+      "legacy_para_id": "PL-YONGSIN-P010-02",
+      "quote": "힘이 강한 일간을 신강(身强)이라 하고, 이런 사주를 신강한 사주라고 부릅니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_050",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/원국 분석 및 용신 글모음.txt",
+      "sha256": "8310e5086adfa724ae3ac2e82ebf98689f73a77a590891c4e368686e189cbc52",
+      "lines": [
+        870,
+        873
+      ],
+      "legacy_para_id": "PL-YONGSIN-P010-02",
+      "quote": "힘이 부족한 일간을 신약(身弱)이라 하고, 이런 사주를 신약한 사주라고 부릅니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_051",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/십신과 합충 글모음.txt",
+      "sha256": "a82aeb767011d07cd2a3c47099a530853c70a4b51c6fc01635a89b32aac62e2e",
+      "lines": [
+        418,
+        420
+      ],
+      "legacy_para_id": "PL-SIPSIN-P007-01",
+      "quote": "오행에서 음양으로 세분화하니 5(오행) × 2(음양) = 10 해서 십신(十神)이 되는 것입니다. 십신은 학자에 따라 십성(十聖)이라고 부르기도 합니다. 또는 십신과 육친을 통틀어 육친(六親)이라고 부르기도 하며, 육신(六神)이라고 부르기도 합니다. 하지만 어떻게 부르든 오행의 관계성을 인간 삶으로 끌어온 개념이라는 사실이 중요합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_052",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/십이운성 글모음.txt",
+      "sha256": "56a7e1f98627133c83668febf7d39bd9c2a899a687c2bc0918e13879db960c4f",
+      "lines": [
+        175,
+        179
+      ],
+      "legacy_para_id": "PL-UNSEONG-P004-01",
+      "quote": "오늘은 십이운성(十二運星) 양(養)에 대해서 정리해 보겠습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_053",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-일주론 글모음.txt",
+      "sha256": "81a964a949d8a98c75824ea357fbc2f9e48a8616aaa080be52e8d8f0afea52b6",
+      "lines": [
+        94,
+        97
+      ],
+      "legacy_para_id": "CHO-ILJU-P001-09",
+      "quote": "십이운성만 보면 양(養)이라 힘이 강한 듯하지만, 백호(白虎), 양인(羊刃), 괴강(魁罡) 같은 자기 전문성으로 발현되는 강한 신살이 하나도 없기 때문입니다. 만약 일간이 묘지(墓地)에 놓인 무술(戊戌)이나 임진(壬辰)처럼 십이운성의 힘은 약하더라도, 괴강(魁罡), 백호(白虎), 양인(羊刃) 같은 파괴력 있는 신살을 하나라도 지니고 있었다면 신축(辛丑) 역시 간여지동급 간지로 분류될 수 있었을 것입니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_054",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/일주론 글모음.txt",
+      "sha256": "253ba62a40e58b53859d68ca853f97afea7f06b00403552b562afa180307aaf1",
+      "lines": [
+        237,
+        241
+      ],
+      "legacy_para_id": "PL-ILJU-P002-13",
+      "quote": "子(자수)의 지장간 중에서 정기(正氣) -순서상 가장 마지막, 가장 큰 비중을 차지하는 기운- 는 癸(계수)입니다. 따라서 갑자일주를 대표하는 육친은 정인(正印)이 됩니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_055",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        2708,
+        2711
+      ],
+      "legacy_para_id": "DR-P013-02",
+      "quote": "역마살(驛馬煞)은 정착하지 못하고 이리저리 돌아다니는 팔자라 불렸던 12신살 중 하나입니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_056",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        1337,
+        1340
+      ],
+      "legacy_para_id": "CHO-STORY-P010-09",
+      "quote": "명리학에서 오행(五行)은 질병과 상호연관성이 있어요. 특정 오행이 과다하거나/부족함에 따라 건강적인 부분에서 불리한 요소로 나타나거든요.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_057",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        25678,
+        25680
+      ],
+      "legacy_para_id": "DR-P615-03",
+      "quote": "용신(用神)이란?",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_058",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학탐구(기초) 전체 글모음 001-086.txt",
+      "sha256": "c04505583b3f30183b3553989fee7c0e0af0adc9cd50576c00840496c3ad119c",
+      "lines": [
+        2456,
+        2458
+      ],
+      "legacy_para_id": "MT-BASIC-P061-03",
+      "quote": "위 명조에서 일지 미토의 일주공망은 8세의 을미세운에는 공망의 글자가 오게 되어 전실로 공망이 해소 됩니다. 아울러 12세의 기해세운에는 년지 자수의 글자가 오게 되어 역시 해공이 됩니다. 참고로, 공망은 세운과 일운만 적용을 하고, 대운과 얼운은 공망을 적용하지 않습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_059",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-신살론 글모음.txt",
+      "sha256": "7feaaa22d958f4dcbd1fe6b53c1bfce1a8bf3849db1523deb98e6ca56714f18e",
+      "lines": [
+        656,
+        658
+      ],
+      "legacy_para_id": "SG-SINSAL-P006-01",
+      "quote": "신살론 - 신살 원진(怨嗔), 원진살(怨嗔殺), 귀문(鬼門), 귀문살(鬼門殺), 귀문관살(鬼門關殺)",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_060",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        284,
+        288
+      ],
+      "legacy_para_id": "CHO-STORY-P004-06",
+      "quote": "한자 뜻 그대로 ‘월두(月頭)’란 월주의 머리, 즉 월간(月干)을 의미하죠.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_061",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 초급 글모음.txt",
+      "sha256": "d923a1db95cdcb7a5283893a6cab0186f1504e640c61b8c3963fefd4168f062e",
+      "lines": [
+        1059,
+        1063
+      ],
+      "legacy_para_id": "SG-BASIC-P042-01",
+      "quote": "네 개의 기둥은 각각 년주(年柱), 월주(月柱), 일주(日柱), 시주(時柱)라고 합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_062",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        25834,
+        25838
+      ],
+      "legacy_para_id": "DR-P615-11",
+      "quote": "월지(月支)를 중심으로 사주의 격(格)을 정하고,",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_063",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-일주론 글모음.txt",
+      "sha256": "81a964a949d8a98c75824ea357fbc2f9e48a8616aaa080be52e8d8f0afea52b6",
+      "lines": [
+        91,
+        94
+      ],
+      "legacy_para_id": "CHO-ILJU-P001-09",
+      "quote": "잠깐, 일지가 인성(印星)인 일주 중에서 신축(辛丑)일주만 추가로 다뤄보도록 하겠습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_064",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        25344,
+        25348
+      ],
+      "legacy_para_id": "DR-P614-03",
+      "quote": "'일간(日干)'과 '일지(日支)'를 모르신다면,",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_065",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        25355,
+        25359
+      ],
+      "legacy_para_id": "DR-P614-03",
+      "quote": "왼쪽에서 두 번째 세로줄을 '일주(日柱)'라고 합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_066",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        25344,
+        25348
+      ],
+      "legacy_para_id": "DR-P614-03",
+      "quote": "'일간(日干)'과 '일지(日支)'를 모르신다면,",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_067",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        2237,
+        2241
+      ],
+      "legacy_para_id": "CHO-GANJI-P016-05",
+      "quote": "십이운성은 장생(長生), 목욕(沐浴), 관대(冠帶), 건록(乾祿), 제왕(帝旺), 쇠(衰), 병(病), 사(死), 묘(墓), 절(絶), 태(胎), 양(養) 12단계로 이루어져 있습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_068",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        26913,
+        26916
+      ],
+      "legacy_para_id": "DR-P622-02",
+      "quote": "수(水) 일간에게 2026년 병오(丙午)의 화(火)는 재성(財星)이에요.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_069",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-음양, 오행 글모음.txt",
+      "sha256": "5ee0d4e6f12fbd3dcc8c8de093a72d2decd3abae1d9a034329d181d42ae4f00f",
+      "lines": [
+        404,
+        407
+      ],
+      "legacy_para_id": "CHO-OHENG-P005-02",
+      "quote": "금의 기운이 강한 사주의 예시. 지지는 신유술 방합을 이루고 있다. 금 관성의 기운이 사주 전체를 지배하니, 어린 아이임에도 다른 아이와 비교될 만큼 차분하고 조용한 성정임을 엿볼 수 있다. 금의 기운이 원국 전체를 지배하여 격을 이룬 전왕 사주를 종혁(從革)격이라고도 한다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_070",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-합, 충, 형 글모음.txt",
+      "sha256": "5b742ce470915c5dfaa95373fbc4ebeb477a5471d2b17cdd899b67d2a41eec45",
+      "lines": [
+        225,
+        229
+      ],
+      "legacy_para_id": "CHO-HAP-P002-10",
+      "quote": "이런 음간(陰干)이 안정적으로 합(合)을 이루려 할 때, 반드시 그 대상은 양간(陽干) 중에서 정관(正官)이 됩니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_071",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        13196,
+        13199
+      ],
+      "legacy_para_id": "DR-P314-03",
+      "quote": "사주 정인(正印)은 바를 정, 도장 인을 쓰며 이성적이고 합리적인 십성을 의미합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_072",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        11830,
+        11833
+      ],
+      "legacy_para_id": "DR-P309-03",
+      "quote": "정재(正財)란, 바른 재물이란 뜻으로 재물의 흐름이 규칙적인 특징을 가진 십성을 의미합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_073",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        2237,
+        2241
+      ],
+      "legacy_para_id": "CHO-GANJI-P016-05",
+      "quote": "십이운성은 장생(長生), 목욕(沐浴), 관대(冠帶), 건록(乾祿), 제왕(帝旺), 쇠(衰), 병(病), 사(死), 묘(墓), 절(絶), 태(胎), 양(養) 12단계로 이루어져 있습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_074",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        2172,
+        2176
+      ],
+      "legacy_para_id": "CHO-GANJI-P016-02",
+      "quote": "지지 속에 저장되어 있는 천간의 기운을 땅 지(地), 감출 장(藏), 사이 간(干)자를 써서 ‘지장간(地藏干)‘이라 부릅니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_075",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-음양, 오행 글모음.txt",
+      "sha256": "5ee0d4e6f12fbd3dcc8c8de093a72d2decd3abae1d9a034329d181d42ae4f00f",
+      "lines": [
+        663,
+        667
+      ],
+      "legacy_para_id": "CHO-OHENG-P008-07",
+      "quote": "천간(天干)과 지지(地支)는 원래 고대 중국의 천문학과 역법(曆法)에서 유래한 기호입니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_076",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/24절기 글모음.txt",
+      "sha256": "fe9ce1d1ad859adf4a5c03ca6c83f3b4f393faf6c2f4746fd59419473d94233d",
+      "lines": [
+        421,
+        423
+      ],
+      "legacy_para_id": "PL-JEOLGI-P007-02",
+      "quote": "한방에서는 하지가 되면 양기가 올라 음양의 기운이 서로 상충하게 되므로, 자칫하면 육신의 균형을 잃기 쉬운 날이라고 보았습니다. 따라서 격렬한 운동을 금지하고 남녀간의 관계도 피하며 심신을 편안하게 하도록 권했습니다. 몸의 균형을 잃어 탈이 날 수 있기 때문에 음식을 조심하며, 경솔하게 돌아다니거나 화를 내는 것도 금기로 여겼습니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_077",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-음양, 오행 글모음.txt",
+      "sha256": "5ee0d4e6f12fbd3dcc8c8de093a72d2decd3abae1d9a034329d181d42ae4f00f",
+      "lines": [
+        663,
+        667
+      ],
+      "legacy_para_id": "CHO-OHENG-P008-07",
+      "quote": "천간(天干)과 지지(地支)는 원래 고대 중국의 천문학과 역법(曆法)에서 유래한 기호입니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_078",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주이야기 글모음.txt",
+      "sha256": "5f036f15830a30cca70071329745ea9a780506f39dd28f848ca48488e3118af5",
+      "lines": [
+        221,
+        225
+      ],
+      "legacy_para_id": "CHO-STORY-P004-03",
+      "quote": "첫째, 일간 갑목과 천간합화하는 오행을 찾는다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_079",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-신살론 글모음.txt",
+      "sha256": "7feaaa22d958f4dcbd1fe6b53c1bfce1a8bf3849db1523deb98e6ca56714f18e",
+      "lines": [
+        111,
+        113
+      ],
+      "legacy_para_id": "SG-SINSAL-P002-01",
+      "quote": "신살론 - 신살 천을귀인(天乙貴人), 옥당귀인(玉堂貴人)",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_080",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+      "lines": [
+        8,
+        12
+      ],
+      "legacy_para_id": "CHO-DICT-P001-01",
+      "quote": "오늘은 “투간(透干), 투출(透出), 통근(通根)”에 대한 기본 개념을 이해하고,",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_081",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+      "lines": [
+        8,
+        12
+      ],
+      "legacy_para_id": "CHO-DICT-P001-01",
+      "quote": "오늘은 “투간(透干), 투출(透出), 통근(通根)”에 대한 기본 개념을 이해하고,",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_082",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        666,
+        669
+      ],
+      "legacy_para_id": "CHO-GANJI-P006-03",
+      "quote": "병화는 십성으로 편관(偏官)적 경향을 보이는데, 이는 긍정적으로 발현될 때 명랑한 성격으로 드러납니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_083",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        1173,
+        1176
+      ],
+      "legacy_para_id": "CHO-GANJI-P009-04",
+      "quote": "무토의 성향은 십성으로 편인(偏印)에 가깝습니다. 현실 감각이 부족한 황당함으로 주변 사람들을 의아하게 만들기도 합니다. 아직 발산하고 행동하려는 화의 특성이 남아 있어서 돌발성에서 나오는 창의성과 과감한 면도 강합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_084",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/도화로운 사주 칼럼 글모음.txt",
+      "sha256": "405ae69ae3e6925c59fffc6eb919e1fd5a55e90559819f8bc0bcf09ca3369471",
+      "lines": [
+        11243,
+        11246
+      ],
+      "legacy_para_id": "DR-P307-03",
+      "quote": "편재(偏財)란, 치우친 재물이란 뜻으로 재물의 흐름이 치우친 경향성을 가진 십성을 의미합니다.",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_085",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "lines": [
+        90,
+        92
+      ],
+      "legacy_para_id": "CHO-GANJI-P001-08",
+      "quote": "십성으로 보는 갑목의 특성(By 하건충)",
+      "role": "literal_candidate_only"
+    },
+    {
+      "id": "candidate_086",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-신살론 글모음.txt",
+      "sha256": "7feaaa22d958f4dcbd1fe6b53c1bfce1a8bf3849db1523deb98e6ca56714f18e",
+      "lines": [
+        2266,
+        2268
+      ],
+      "legacy_para_id": "SG-SINSAL-P015-01",
+      "quote": "신살론 - 신살 화개(華蓋), 화개살(華蓋殺), 입묘(入墓)",
+      "role": "literal_candidate_only"
+    }
+  ]
+}
