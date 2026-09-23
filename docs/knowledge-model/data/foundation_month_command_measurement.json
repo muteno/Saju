@@ -1,0 +1,424 @@
+{
+  "schema_version": 1,
+  "base_commit": "f96a7e2bd8606dd32899164a887a46fc17a9abb4",
+  "scope": "Legacy topic retrieval: only HQ substring exclusion shared; commander metaphors held",
+  "corpus_rows": 56202,
+  "reader_labels": {
+    "웹": 21251,
+    "전사": 34951
+  },
+  "title_included": true,
+  "gist_included": false,
+  "independent_evidence_count": null,
+  "probability": null,
+  "training_labels": false,
+  "actual_alias_additions": [],
+  "actual_alias_removals": [],
+  "code": {
+    "before": {
+      "neuron": "253573bcb2a2c4ad076aa5434f7ca15bb3e3e2c71e0ba55c3e3b634ae8c405ac",
+      "concept_map": "0ad666a77577ae2fc08ed28c291c3f9b4e7bb0328424026501bbe5affccee105"
+    },
+    "after": {
+      "neuron": "1a5304c01deb69d823008325268e22a0f33e8fde17016f679d4b042e1e5b33b5",
+      "concept_map": "0ad666a77577ae2fc08ed28c291c3f9b4e7bb0328424026501bbe5affccee105"
+    },
+    "unchanged": {
+      "dosa-app/engine/src/tables.js": "94988a5b27d831a4e30b6d503040fb9235d5b103943a86f8f66a247f9b71f2e3",
+      "docs/knowledge-model/chart_context.mjs": "c40b8099fefc3dad83256a86f85d1d0b70bd44662d9fcd7361a09338b1bece66"
+    }
+  },
+  "measurement_sha256": "bc65b59dd4371992686f2a75e69442fe670abb565d10fda2e54761eecb36bd02",
+  "measurement_dependencies": [
+    {
+      "path": "docs/knowledge-model/measure_hidden_stages.py",
+      "sha256": "8c216896733ab10b42aaabd5882c5f6b5664a43d0b4c1c6f6cf637155091121f"
+    }
+  ],
+  "counts": {
+    "before": {
+      "neuron": {
+        "월률분야·사령": 281,
+        "지장간": 3686,
+        "여기·중기·정기": 2164,
+        "월지": 5241,
+        "일지": 5270,
+        "일간": 9472
+      },
+      "concept_map": {
+        "월률분야·사령": 337,
+        "지장간": 3686,
+        "여기·중기·정기": 2167,
+        "월지": 5242,
+        "일지": 5271,
+        "일간": 9543
+      }
+    },
+    "after": {
+      "neuron": {
+        "월률분야·사령": 281,
+        "지장간": 3686,
+        "여기·중기·정기": 2164,
+        "월지": 5241,
+        "일지": 5270,
+        "일간": 9472
+      },
+      "concept_map": {
+        "월률분야·사령": 309,
+        "지장간": 3686,
+        "여기·중기·정기": 2167,
+        "월지": 5242,
+        "일지": 5271,
+        "일간": 9543
+      }
+    }
+  },
+  "actual_concept_assignment_changes": {
+    "neuron": {},
+    "concept_map": {
+      "월률분야·사령": {
+        "before": 337,
+        "after": 309,
+        "added_ids": [],
+        "removed_ids": [
+          "CT-P021-08",
+          "CT-P024-12",
+          "CT-P027-20",
+          "CT-P028-05",
+          "CT-P084-02",
+          "CT-P143-31",
+          "CT-P146-10",
+          "CT-P147-16",
+          "CT-P158-10",
+          "CT-P224-03",
+          "CT-P242-12",
+          "HM-P029-04",
+          "PL-SIPSIN-P010-05",
+          "PL-SIPSIN-P036-02",
+          "PL-YONGSIN-P005-01",
+          "PL-YONGSIN-P015-03",
+          "T-2e7862dc48-0056",
+          "T-2f4fb77cc6-0013",
+          "T-2f4fb77cc6-0014",
+          "T-4b282dc677-0024",
+          "T-4c9a7168d4-0009",
+          "T-546fd2b3f6-0015",
+          "T-6570346ac8-0001",
+          "T-6cb5e73361-0000",
+          "T-b65140fa30-0033",
+          "T-b687643b70-0010",
+          "T-cafa878620-0011",
+          "T-e54a982a58-0002"
+        ]
+      }
+    }
+  },
+  "alias_occurrences": {
+    "월률분야": {
+      "substring_rows": 22,
+      "substring_occurrences": 53
+    },
+    "월령분일용사": {
+      "substring_rows": 4,
+      "substring_occurrences": 12
+    },
+    "사령": {
+      "substring_rows": 244,
+      "substring_occurrences": 446
+    },
+    "당령": {
+      "substring_rows": 137,
+      "substring_occurrences": 229
+    },
+    "인원용사": {
+      "substring_rows": 31,
+      "substring_occurrences": 81
+    }
+  },
+  "unregistered_spellings": {
+    "월률분일용사": {
+      "applied": false,
+      "substring_rows": 8,
+      "currently_unrecalled_rows": {
+        "neuron": 0,
+        "concept_map": 0
+      }
+    },
+    "월령용사": {
+      "applied": false,
+      "substring_rows": 6,
+      "currently_unrecalled_rows": {
+        "neuron": 1,
+        "concept_map": 1
+      }
+    },
+    "月律分野": {
+      "applied": false,
+      "substring_rows": 6,
+      "currently_unrecalled_rows": {
+        "neuron": 0,
+        "concept_map": 0
+      }
+    },
+    "司令": {
+      "applied": false,
+      "substring_rows": 3,
+      "currently_unrecalled_rows": {
+        "neuron": 1,
+        "concept_map": 1
+      }
+    },
+    "當令": {
+      "applied": false,
+      "substring_rows": 2,
+      "currently_unrecalled_rows": {
+        "neuron": 0,
+        "concept_map": 0
+      }
+    },
+    "人元用事": {
+      "applied": false,
+      "substring_rows": 8,
+      "currently_unrecalled_rows": {
+        "neuron": 0,
+        "concept_map": 0
+      }
+    }
+  },
+  "compound_rows": {
+    "사령부": 28,
+    "사령관": 33,
+    "사령탑": 0
+  },
+  "whole_paragraph_exclusion_probe": {
+    "applied": false,
+    "rows": 61,
+    "currently_retrieved_neuron_ids_that_would_be_lost": [
+      "T-1bd1f01447-0000",
+      "T-570ff780cb-0001",
+      "T-a8eb288610-0000",
+      "T-a8eb288610-0001",
+      "T-cb20c115de-0000"
+    ]
+  },
+  "reviewed_cases": {
+    "CHO-GANJI-P012-05": {
+      "file": "초코서당-천간, 지지 글모음.txt",
+      "before": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": true,
+        "concept_map": true
+      }
+    },
+    "CT-P021-08": {
+      "file": "20211224_사주를 풀이하는 일반적인 순서와 방법_fCLH1u1mxtk.md",
+      "before": {
+        "neuron": false,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": false,
+        "concept_map": false
+      }
+    },
+    "HM-P029-04": {
+      "file": "현묘의 사주 이야기 글모음.txt",
+      "before": {
+        "neuron": false,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": false,
+        "concept_map": false
+      }
+    },
+    "PL-YONGSIN-P005-01": {
+      "file": "원국 분석 및 용신 글모음.txt",
+      "before": {
+        "neuron": false,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": false,
+        "concept_map": false
+      }
+    },
+    "PL-SIPSIN-P036-02": {
+      "file": "십신과 합충 글모음.txt",
+      "before": {
+        "neuron": false,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": false,
+        "concept_map": false
+      }
+    },
+    "PL-SIPSIN-P038-02": {
+      "file": "십신과 합충 글모음.txt",
+      "before": {
+        "neuron": false,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": false,
+        "concept_map": true
+      }
+    },
+    "CHO-STORY-P017-11": {
+      "file": "초코서당-사주이야기 글모음.txt",
+      "before": {
+        "neuron": false,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": false,
+        "concept_map": true
+      }
+    },
+    "T-a8eb288610-0000": {
+      "file": "3. 석우당/석우당/20260603_亥중 甲木용신 희망 전도사, 子중 壬水용신 정신 물장사!_STsZu5ErP0s.md",
+      "before": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": true,
+        "concept_map": true
+      }
+    },
+    "T-a8eb288610-0001": {
+      "file": "3. 석우당/석우당/20260603_亥중 甲木용신 희망 전도사, 子중 壬水용신 정신 물장사!_STsZu5ErP0s.md",
+      "before": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": true,
+        "concept_map": true
+      }
+    },
+    "T-cb20c115de-0000": {
+      "file": "3. 석우당/석우당/20260715_직장(격)과 직업(사령) 구분법!!!_Lg80JD9A2vg.md",
+      "before": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": true,
+        "concept_map": true
+      }
+    },
+    "T-1bd1f01447-0000": {
+      "file": "6. 남석운명과명리학/남석운명과명리학/20250417_2232강의, 삼사월 무토생월戊土生月,삼사월무토三月戊土 천간론天干論 복습 2, 인문명리학, 주역강의, 인문역사 강의, Human Future, Eastern Philosophy,_ZGsE1WbaS9s.md",
+      "before": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": true,
+        "concept_map": true
+      }
+    },
+    "T-5c1fad8dc1-0000": {
+      "file": "3. 석우당/석우당/20260613_병오년 월지 자오충운 청소하는 마음으로_11AerrNZ2mk.md",
+      "before": {
+        "neuron": false,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": false,
+        "concept_map": true
+      }
+    },
+    "T-5c1fad8dc1-0001": {
+      "file": "3. 석우당/석우당/20260613_병오년 월지 자오충운 청소하는 마음으로_11AerrNZ2mk.md",
+      "before": {
+        "neuron": false,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": false,
+        "concept_map": true
+      }
+    },
+    "T-570ff780cb-0001": {
+      "file": "6. 남석운명과명리학/남석운명과명리학/20240731_2104강의, 과도기인물히데요시, 노부나가히데요시이에야스삼영걸2, 인문명리학, 주역강의, 인문역사 강의, Human future, Eastern philosophy,_zCAOPnm75WY.md",
+      "before": {
+        "neuron": true,
+        "concept_map": true
+      },
+      "after": {
+        "neuron": true,
+        "concept_map": true
+      }
+    }
+  },
+  "remaining_builder_differences": {
+    "neuron_only_ids": [],
+    "concept_map_only_ids": [
+      "CHO-STORY-P017-11",
+      "CHO-STORY-P017-14",
+      "CHO-STORY-P017-17",
+      "MT-BASIC-P078-01",
+      "PL-SIPSIN-P038-02",
+      "T-0db1a9c5bf-0000",
+      "T-0f5b903a7e-0000",
+      "T-3e2cfb1269-0001",
+      "T-56b0bf1969-0000",
+      "T-5c1fad8dc1-0000",
+      "T-5c1fad8dc1-0001",
+      "T-6f651a6043-0000",
+      "T-702d8ebd10-0000",
+      "T-7abe6d3ae2-0000",
+      "T-7dd9c7a85c-0000",
+      "T-8524434ffb-0001",
+      "T-86a735ac04-0000",
+      "T-93464a048d-0001",
+      "T-a7925e24c2-0000",
+      "T-ab63e7319e-0008",
+      "T-c32ea7aac4-0000",
+      "T-d5c7b98fd3-0000",
+      "T-d5c7b98fd3-0002",
+      "T-dfbeeb2132-0002",
+      "T-e432efd637-0000",
+      "T-ee8e90c709-0000",
+      "T-eee2ad7182-0000",
+      "T-f1454d28e6-0000"
+    ]
+  },
+  "inputs": [
+    {
+      "path": "정제/_현황판/build_dashboard.py",
+      "sha256": "dd757eb82df149afd79d79ac003538ba53b7bea4a1be633bff5cf9ee9b7986a3"
+    },
+    {
+      "path": "정제/_현황판/ingest_transcripts.py",
+      "sha256": "8ae09de042f849183311ebde140fd596c542ec07b3b7af5a7053598f753d5e2b"
+    },
+    {
+      "path": "정제/_현황판/코퍼스.py",
+      "sha256": "b4f6d73dde620725f3f9f803782bbc24d4441b308b61090fe6fbbdfe278b2028"
+    },
+    {
+      "path": "정제/_현황판/data/posts_all.jsonl",
+      "sha256": "1d084c1dbacbeefabe61e97a48d462e5754d1291967bef42fad7e8772dc3be1b"
+    },
+    {
+      "path": "정제/_현황판/data/paras_all.jsonl",
+      "sha256": "d8e937f1293eee14872ec527b58377393700bb8ae19017b8a9febfa3f6ff77cb"
+    },
+    {
+      "path": "정제/_현황판/data/전사_글.jsonl",
+      "sha256": "0d16d64e15fef36c3f39d79259f72c2b405aa9c5dde024aba65d601ca18c9205"
+    },
+    {
+      "path": "정제/_현황판/data/전사_문단.jsonl",
+      "sha256": "dfa46421686fec3c3f798eed70fb54c49b9c9e460a7da9d3a183a76f0c0f4a91"
+    }
+  ],
+  "corpus_sha256": "51cf9056c86108448913e507b6f17822edc20cea418a7015526903edd7f42dc3"
+}
