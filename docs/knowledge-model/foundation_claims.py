@@ -14,7 +14,8 @@ from legacy_import import graph_fingerprint
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parents[1]
 CATALOG = "docs/knowledge-model/data/foundation_claim_links.json"
-TOPICS = {"review_편인도식": "편인도식", "review_상관패인": "상관패인"}
+TOPICS = {"review_편인도식": "편인도식", "review_상관패인": "상관패인",
+          "review_재생관": "재생관", "review_관살혼잡": "관살혼잡"}
 KINDS = {"definition", "condition", "exception", "disagreement", "retrieval_limit"}
 # Finite source-reviewed batch. A later topic/claim needs an explicit provenance
 # review instead of silently reassigning an existing statement to another source.
@@ -29,6 +30,20 @@ CLAIM_SOURCES = {
     "paein_sagong": ("review_상관패인", {"sagong_paein"}),
     "paein_transcription": ("review_상관패인", {"sanchaek_sequence"}),
     "paein_ordinary": ("review_상관패인", {"ordinary_paein"}),
+    "generation_definition": ("review_재생관", {"sagong_generation"}),
+    "generation_planes": ("review_재생관", {"sagong_planes", "sagong_generation_examples"}),
+    "generation_hidden": ("review_재생관", {"hyeonmyo_branch_generation"}),
+    "generation_year": ("review_재생관", {"hyeonmyo_generation_variant", "hyeonmyo_generation_exception"}),
+    "generation_transcription": ("review_재생관", {"generation_suffix"}),
+    "mixed_board": ("review_관살혼잡", {"board_mixed"}),
+    "mixed_hyeonmyo": ("review_관살혼잡", {"hyeonmyo_mixed"}),
+    "mixed_determinism": ("review_관살혼잡", {"choco_determinism"}),
+}
+# Additional adjacent passages; the frozen F02 review is never rewritten.
+# Each addition inherits its source identity from the original reviewed passage.
+SUPPLEMENT_SOURCES = {
+    "sagong_generation_examples": ("sagong_planes", (1021, 1060)),
+    "hyeonmyo_generation_exception": ("hyeonmyo_generation_variant", (380, 384)),
 }
 
 
@@ -47,8 +62,8 @@ def validate(catalog, graph, review, repo=REPO):
                 and all(isinstance(v, str) and v.strip() for v in values)
                 and len(values) == len(set(values)), "Invalid claim-layer string list")
 
-    fields(catalog, "schema_version scope inference_enabled use_as_training_labels probability graph_fingerprint review_sha256 topics claims")
-    require(type(catalog["schema_version"]) is int and catalog["schema_version"] == 1,
+    fields(catalog, "schema_version scope inference_enabled use_as_training_labels probability graph_fingerprint review_sha256 supplemental_evidence topics claims")
+    require(type(catalog["schema_version"]) is int and catalog["schema_version"] == 2,
             "Unsupported claim-layer schema")
     require(catalog["scope"] == "source_claim_retrieval"
             and catalog["inference_enabled"] is False
@@ -61,9 +76,29 @@ def validate(catalog, graph, review, repo=REPO):
     validate_and_strip(review, load_taxonomy(repo / TAXONOMY), repo)
     nodes = {n["id"]: n for n in graph["nodes"]}
     evidence = {e["id"]: e for e in review["evidence"]}
+    supplements = catalog["supplemental_evidence"]
+    require(isinstance(supplements, list) and len(supplements) == len(SUPPLEMENT_SOURCES)
+            and {e["id"] for e in supplements} == set(SUPPLEMENT_SOURCES),
+            "Missing or unreviewed supplemental evidence")
+    for item in supplements:
+        fields(item, "id path sha256 lines quote source_profile kind")
+        parent_id, bounds = SUPPLEMENT_SOURCES[item["id"]]
+        parent = evidence[parent_id]
+        require(item["id"] not in evidence, "Duplicate supplemental evidence")
+        require(all(item[k] == parent[k] for k in ("path", "sha256", "source_profile", "kind")),
+                "Supplemental evidence attribution changed")
+        require(item["lines"] == list(bounds)
+                and all(type(n) is int for n in item["lines"]), "Supplemental range changed")
+        raw = (repo / item["path"]).read_bytes()
+        lines = raw.decode("utf-8-sig").splitlines()
+        start, end = bounds
+        require(item["sha256"] == text_sha(raw) and end <= len(lines)
+                and item["quote"] == "\n".join(lines[start-1:end]),
+                "Supplemental source quote mismatch")
+        evidence[item["id"]] = item
     decisions = {r["concept"]: r for r in review["decisions"]}
     topics, claims = catalog["topics"], catalog["claims"]
-    require(isinstance(topics, list) and len(topics) == 2, "Expected two reviewed topics")
+    require(isinstance(topics, list) and len(topics) == len(TOPICS), "Expected four reviewed topics")
     require({t["id"] for t in topics} == set(TOPICS), "Missing or duplicate reviewed topic")
     require(isinstance(claims, list) and bool(claims), "Missing source claims")
     require(len({c["id"] for c in claims}) == len(claims), "Duplicate source claim")
@@ -92,6 +127,7 @@ def validate(catalog, graph, review, repo=REPO):
                 "Source claim attribution differs from reviewed binding")
         decision = decisions[TOPICS[claim["topic_id"]]]
         allowed = {e for c in decision["claims"] for e in c["evidence_ids"]}
+        allowed.update(eid for eid, (parent, _) in SUPPLEMENT_SOURCES.items() if parent in allowed)
         require(set(claim["evidence_ids"]) <= allowed, "Evidence belongs to another topic")
         require(len({evidence[e]["source_profile"] for e in claim["evidence_ids"]}) == 1,
                 "Different source profiles must remain separate claims")
@@ -148,7 +184,8 @@ class ClaimIndex:
         for decision in decisions:
             refs.update(decision["alias_evidence_ids"])
             refs.update(e for c in decision["claims"] for e in c["evidence_ids"])
-        evidence = [e for e in self._review["evidence"] if e["id"] in refs]
+        evidence = [e for e in self._review["evidence"] + self._catalog["supplemental_evidence"]
+                    if e["id"] in refs]
         by_id = {e["id"]: e for e in evidence}
         records = [{**c, "source_profile": by_id[c["evidence_ids"][0]]["source_profile"],
                     "status": "source_claim", "application_status": "not_evaluated",

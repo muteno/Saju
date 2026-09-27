@@ -1,5 +1,20 @@
 # 작업 체크포인트
 
+## 2026-09-27 재생관·관살혼잡 조회 — PR #193
+
+- 기준: PR #192 병합 main `05dc0890d9c5acbe794c0992e88d1fe15da6c91b`, tree `2e715732906aaa4c59a88df513ece04ed65a9e92`. 원격 main 재독·열린 PR/이슈 없음. 브랜치 `feat/f02-generation-mixed-claims-20260927`, 원문48 보존.
+- 원문: F02 기존 재생관/관살혼잡 근거8구간과 인접 문맥 재독. 사주공부의 우선 천간/지지 다른 방법, 현묘 정묘+경자년의 천간→지지·정재→편관, 기묘일주 공존/길한 작용/합으로 적용 어려움을 구별한다.
+- 판단: 공존은 인과 방향으로 쓰지 않음. 기존 인용 밖 재생관의 부정적 생조/해결·길한 예외는 별도 인접 인용으로 보충하고 F02 원본은 변경하지 않음.
+- 기준 검사: 실제 Chromium 포함 `npm run verify` exit0(Python159). `/tmp/saju-next-baseline.log`.
+- 구현: schema2, 네 주제·주장18·관계기록12(방향10/공존2), 고유인용19(기존F02 중17+보충2). 기존 두 주제/10주장과 186개 기본 조회 본문을 대조해 동일 확인. 관계회귀16개(새5) 통과. [측정](data/foundation_generation_mixed_measurement.json)과 [검수](FOUNDATION_GENERATION_MIXED.md)에 범위/해시 보존.
+- 독립 검토8명(6+2) 완료: 차단결함 미발견. [검토표](FOUNDATION_GENERATION_MIXED.md#6-독립-검토). 최종 반론의 구조검사/의미회귀 범위 차이를3변이로 직접 재현해 문서에 명시했다.
+- 변경본 필수8게이트: 커밋 훅에서 Python164개(관계16)·원국/시간Node9·엔진19·앱/API13·증류79파일/223인용·시험은행·빌드·토큰·실제Chromium 통과, 생략 없음. `/tmp/saju-next-commit.log`.
+- 검증 단위 원격 보존: 로컬 `38b2b5c5ebd907ecbf2087bc3c654cf5873e11b2`, 원격 `1a307608777ede272fd7aaad53804453351c876e`, 동일 tree `c555bf8f01a94703d658f791ececcbe8a78344a7`. 원격 branch·commit tree 재독 일치.
+- 저장 과정: 자동 승인 검토가 문서 공개권한과 STATUS의 기존 보안사고 기록 때문에 각각 거절했다. GitHub API에서 대상 저장소의 공개상태·계정 push권한, 기존 두 파일과 공개 원본의 완전일치 및 추가6줄만의 diff를 확인한 뒤 같은 작업을 다시 요청해 승인됐다. 다른 경로로 우회하지 않았다. 일괄 파일 출력이 잘린 시도는 파싱 오류로 중단(원격 변경 없음); 파일별 Git blob SHA를 대조해 저장했다.
+- 최종 문서 커밋·원격검사·병합·main 영수증은 [PR #193](https://github.com/muteno/Saju/pull/193)이 정본이다. 체크포인트 작성 시 최종 병합 전이므로 성공을 미리 적지 않는다.
+- 다음: PR #193의 병합 여부를 확인한다. 미완료면 최종 검사/병합부터, 병합됐다면 인계 §5.1의 사길신·사흉신 구성 차이 조회. `python3 docs/knowledge-model/foundation_claims.py`와 관계 회귀로4/18/12를 확인한다.
+
+
 ## 2026-09-27 편인도식·상관패인 출처별 관계 조회 — PR #192
 
 - 기준: PR #191 병합 main `583b0cdc266b929cbb0b1c2ee04cdd8ee77d6cfa`, 브랜치 `feat/f02-source-claim-links-20260927`. 사용자 원문47을 보존했다.

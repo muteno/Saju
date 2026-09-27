@@ -1,4 +1,6 @@
-# F02 관계 조회 — 편인도식·상관패인
+# F02 관계 조회 — 편인도식·상관패인 (PR #192 보존 기록)
+
+현재 네 주제 계약과 후속 수량·검사·다음 단계는 [재생관·관살혼잡 검수](FOUNDATION_GENERATION_MIXED.md)와 [인계 §5.1](FOUNDATION_HANDOFF.md)을 따른다. 아래 두 주제·10주장·7방향 관계·schema1 설명은 PR #192 당시 기록이다.
 
 2026-09-27 · 사용자 원문47 · 기준 main `583b0cdc266b929cbb0b1c2ee04cdd8ee77d6cfa` / PR #191.
 
