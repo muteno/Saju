@@ -61,15 +61,22 @@ for big, mids in TAXONOMY.items():
 # F02 명칭은 기존 검색에 더한다. 편인도식/상관패인이 편인/상관을
 # 가리지 않도록 기존 별칭의 순서·겹침 정책은 유지한다. 사전 정본은 위 하나다.
 ADDITIVE_TOPIC_CONCEPTS = frozenset({"편인도식", "상관패인", "재생관", "관살혼잡", "사길신", "사흉신",
-                                       "활인업", "재고귀인", "진도화", "가도화"})
+                                       "활인업", "재고귀인", "진도화", "가도화", "자묘형"})
 # 기존 공망 별칭 정책은 유지하고 새 두 표기만 추가 검색한다.
 # 천중살인상생처럼 붙인 문자열에서도 기존 살인상생을 가리지 않는다.
-ADDITIVE_ALIASES = frozenset({"천중살", "天中煞"})
+ADDITIVE_ALIASES = frozenset({"천중살", "天中煞", "반형", "인사 형살", "인사\n형살", "축술 형살"})
 TOPIC_ALIASES = ({a for a, concepts in alias2concept.items() if concepts <= ADDITIVE_TOPIC_CONCEPTS}
                  | (ADDITIVE_ALIASES & alias2concept.keys()))
 ALIASES = sorted(alias2concept, key=len, reverse=True)
 ALIAS_RE = re.compile("|".join(re.escape(a) for a in ALIASES if a not in TOPIC_ALIASES))
-TOPIC_RE = re.compile("|".join(re.escape(a) for a in ALIASES if a in TOPIC_ALIASES) or r"(?!x)x")
+# 기존 추가 주제의 끝 글자와 새 표기가 겹쳐도 둘 다 남긴다.
+# 예: 상관패인 + 인사 형살. 기존 추가 주제의 매칭 정책은 그대로 둔다.
+PARTIAL_TOPIC_ALIASES = frozenset({"반형", "인사 형살", "인사\n형살", "축술 형살",
+                                   "자묘형", "자묘상형", "자묘 형살"}) & TOPIC_ALIASES
+TOPIC_RE = re.compile("|".join(re.escape(a) for a in ALIASES
+                             if a in TOPIC_ALIASES - PARTIAL_TOPIC_ALIASES) or r"(?!x)x")
+PARTIAL_TOPIC_RE = re.compile("(?=(" + "|".join(re.escape(a) for a in ALIASES
+                                              if a in PARTIAL_TOPIC_ALIASES) + "))")
 
 # F01: 시지장간 / 연월지장 간은 자리 별칭의 마지막 '지'를 공유한다.
 # 전체 별칭의 겹침 정책은 유지하고, 확인된 지장간 표기만 자리와 함께 보존한다.
@@ -325,6 +332,12 @@ def alias_occurrence_allowed(alias, text, start):
     This is retrieval only: it does not establish participants or polarity.
     The concept-map builder uses the same per-occurrence check.
     """
+    if alias == "반형":
+        # 검수한 9문단의 표기/조사만 허용. 일반형·반형식의 부분문자는 제외.
+        # 미검수 어미까지 무차별 확장하지 않으며 언급 검색만 수행한다.
+        if start > 0 and re.match(r"[가-힣A-Za-z0-9_]", text[start - 1]):
+            return False
+        return bool(re.match(r"반형(?:살을|이죠|이다|이|을)?(?=$|[^가-힣A-Za-z0-9_])", text[start:]))
     if alias == "재생관" and text.startswith(("재생관련", "재생관리"), start):
         # 일반어 부분문자와 미검수 전사 접미는 보류. 뒤의 실제 언급은 검색한다.
         return False
@@ -381,6 +394,10 @@ def concepts_in(text):
         # 부정·비판·인용도 주제 언급이다. 관계 성립이나 길흉을 추론하지 않는다.
         if alias_occurrence_allowed(match.group(), text, match.start()):
             found |= alias2concept[match.group()]
+    for match in PARTIAL_TOPIC_RE.finditer(text):
+        alias = match.group(1)
+        if alias_occurrence_allowed(alias, text, match.start()):
+            found |= alias2concept[alias]
     return found
 
 
