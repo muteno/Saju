@@ -9,7 +9,8 @@ HERE = Path(__file__).resolve().parent
 
 class CalculationAuditTests(unittest.TestCase):
     def run_node(self, *args):
-        result = subprocess.run(['node', *map(str, args)], cwd=ROOT,
+        relative = [str(a.relative_to(ROOT)) if isinstance(a, Path) else str(a) for a in args]
+        result = subprocess.run(['node', str(HERE / 'frozen_app_audit.mjs'), *relative], cwd=ROOT,
                                 capture_output=True, text=True, timeout=180)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 

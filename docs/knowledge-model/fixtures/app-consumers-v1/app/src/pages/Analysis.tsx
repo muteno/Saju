@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import StatusBar from '../components/StatusBar'
 import MyeongShell from '../components/MyeongShell'
 import CharacterStage from '../components/CharacterStage'
-import { DaeunRail, SectionTitle, GlassButton, ReportCard } from '../components/ReportParts'
+import { DaeunRail, SectionTitle, GlassButton } from '../components/ReportParts'
 import TopicAccordion from '../components/TopicAccordion'
 import BrainPanel, { type Brain } from '../components/BrainPanel'
 
@@ -34,8 +34,7 @@ export default function Analysis() {
   // 팩 로드는 fail-soft: 못 받으면 패널만 안 뜨고 분석 화면은 그대로다.
   const [brain, setBrain] = useState<Brain | null>(null)
   useEffect(() => {
-    setBrain(null)
-    if (resolved.broken || resolved.hourUnknown) return
+    if (resolved.broken) return
     let alive = true
     loadBrain()
       .then(() => { if (alive) setBrain(brainReading(resolved.input)) })
@@ -64,12 +63,12 @@ export default function Analysis() {
   const strength = (() => {
     if (resolved.hourUnknown) return null
     try {
-      return jeonggokRaw(resolved.input)?.strength.label ?? null
+      return jeonggokRaw(resolved.input).strength.label
     } catch {
       return null
     }
   })()
-  const subline = [ilju ? `일주 ${ilju}` : null, strength, resolved.hourUnknown ? '시간 모름' : null].filter(Boolean).join(' · ')
+  const subline = [`일주 ${ilju}`, strength, resolved.hourUnknown ? '시간 모름' : null].filter(Boolean).join(' · ')
 
   return (
     <MyeongShell active="analysis" gate={false}>
@@ -90,13 +89,11 @@ export default function Analysis() {
 
         <Box sx={{ px: 2.5, pb: '120px' }}>
           {/* 근거 리포트 — 독자 관심축 주제 아코디언(접힘 기본 · 누르면 그 주제의 근거만) */}
-          {resolved.hourUnknown ? reading.cards.map((card) => (
-            <ReportCard key={card.id} card={card} onFillHour={() => nav('/input')} />
-          )) : buildTopicGroups(reading).map((group) => (
+          {buildTopicGroups(reading).map((group) => (
             <TopicAccordion key={group.id} group={group} onFillHour={() => nav('/input')} />
           ))}
 
-          {!resolved.hourUnknown && chart.daeun && (
+          {!resolved.hourUnknown && (
             <>
               <SectionTitle>대운 흐름</SectionTitle>
               <DaeunRail daeun={chart.daeun} birthYear={resolved.input.year} />
@@ -104,7 +101,7 @@ export default function Analysis() {
           )}
 
           {/* ★두뇌 패널 — 정제 지도가 이 사주에서 읽은 관계·조건(근거 화면의 마지막 층) */}
-          {!resolved.hourUnknown && <BrainPanel brain={brain} />}
+          <BrainPanel brain={brain} />
 
           {/* 다음 단계 = 3단계 상담 */}
           <SectionTitle>더 물어보기</SectionTitle>

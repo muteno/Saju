@@ -59,6 +59,38 @@ try {
   // 입력행이 하단을 맡게 바뀌어 그 글자가 사라졌다. 화면 고유의 것(입력행)으로 바꿔 본다.
   if (!(await pg.$('textarea[aria-label="도사에게 직접 묻기"]'))) fails.push('/talk에 상담 입력행 없음')
 
+  // Unknown birth time must survive every consumer, including known→unknown SPA navigation.
+  const unknownQuery = '?y=2024&mo=2&d=4&g=F&city=서울&hu=1&n=검수'
+  await pg.goto(`${base}/loading${unknownQuery}&hold=1`, { waitUntil: 'networkidle' })
+  const unknownLoading = await pg.locator('body').innerText()
+  if (!unknownLoading.includes('출생 시간을') || !unknownLoading.includes('확인해 주세요') || /[庚丙亥戌]/.test(unknownLoading))
+    fails.push('생시 미상 로딩에 예시 원국이 남음')
+  await pg.goto(`${base}/analysis?y=2024&mo=2&d=4&g=F&city=서울&t=17:28`, { waitUntil: 'networkidle' })
+  await pg.evaluate((query) => { history.pushState(null, '', `/analysis${query}`); dispatchEvent(new PopStateEvent('popstate')) }, unknownQuery)
+  await pg.waitForTimeout(600)
+  const unknownAnalysis = await pg.locator('body').innerText()
+  if (!unknownAnalysis.includes('출생 시간 확인 필요') || /일주 무술|이 사주에서 읽은 관계|대운 흐름/.test(unknownAnalysis))
+    fails.push('생시 미상 분석에 이전 원국/Brain/대운이 남음')
+  await pg.goto(`${base}/result${unknownQuery}`, { waitUntil: 'networkidle' })
+  const unknownIntro = await pg.locator('body').innerText()
+  if (!unknownIntro.includes('오늘의 운세를 보류') || /일원|십성|오늘의 운세\n/.test(unknownIntro))
+    fails.push('생시 미상 인트로가 임시 정오 원국/점수를 표시')
+  let unknownRequests = 0
+  const trackUnknown = req => { if (new URL(req.url()).pathname === '/api/dosa') unknownRequests++ }
+  pg.on('request', trackUnknown)
+  await pg.goto(`${base}/talk${unknownQuery}`, { waitUntil: 'networkidle' })
+  await pg.waitForTimeout(1600)
+  // Enter submits a free question; unknown-time guidance is resolved locally, including prefetch.
+  const question = pg.locator('textarea[aria-label="도사에게 직접 묻기"]')
+  await question.fill('내 성격은 어때?')
+  await question.press('Enter')
+  await pg.waitForTimeout(800)
+  if (unknownRequests !== 0) fails.push(`생시 미상 상담 API 호출 ${unknownRequests}건`)
+  const unknownTalk = await pg.locator('body').innerText()
+  if (!unknownTalk.includes('개인 사주 풀이와 오늘의 운세를 보류') || unknownTalk.includes('검수(노랑개)'))
+    fails.push('생시 미상 상담 안내/일주 별명 차단 실패')
+  pg.off('request', trackUnknown)
+
   // 차용 기틀 하한 감사(260725) — Apple HIG: 텍스트 11pt(Caption 2) · 탭 타깃 44x44pt.
   // 값 정본 = app/src/theme.ts tokens.minFont / minTap. 대표데이터(?qa=1) 3화면에서 검사.
   for (const view of ['result', 'analysis', 'talk']) {

@@ -167,7 +167,7 @@ export function OhaengStrip({ ohaeng, total, bare = false }: { ohaeng: OhaengSta
 }
 
 /** 대운 흐름 가로 레일 — 간·지 모두 OhaengTile(원국표와 같은 계층=같은 문법), 현재 대운 하이라이트 */
-export function DaeunRail({ daeun, birthYear }: { daeun: UiChart['daeun']; birthYear: number }) {
+export function DaeunRail({ daeun, birthYear }: { daeun: NonNullable<UiChart['daeun']>; birthYear: number }) {
   const nowYear = todayKST().year
   const curAge = nowYear - birthYear
   const activeIdx = daeun.list.reduce((acc, it, i) => (it.age <= curAge ? i : acc), -1)

@@ -5,7 +5,7 @@ import MiniChart from './MiniChart'
 import { Pict } from './MyeongShell'
 import { tokens } from '../theme'
 import type { OhaengKey } from '../theme'
-import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines } from '../data/dosaTopics'
+import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, HOUR_UNKNOWN_NOTICE } from '../data/dosaTopics'
 import type { Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
 import { requestDosaText, shouldSendOnEnter } from '../data/dosaClient'
@@ -14,6 +14,7 @@ import type { Chef } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
 import type { Pillar } from '../data/saju'
 import type { ReportBundle } from '../engine'
+import { hasUnknownBirthTime } from '../engine/birthTime'
 import { useReducedMotion } from './Motion'
 
 /**
@@ -450,7 +451,7 @@ export default function DosaChat({
   report,
   pillars,
   profileName,
-  hourUnknown,
+  hourUnknown: hourUnknownFlag,
   jeonggok,
   gender,
   onChef,
@@ -486,6 +487,7 @@ export default function DosaChat({
    */
   switchSignal?: number
 }) {
+  const hourUnknown = hasUnknownBirthTime(report, hourUnknownFlag)
   const [chef, setChef] = useState(() => chefForGender(gender))
   /** 대화 로그 — 위에서 아래로 쌓인다(질문이 위에 남는다) */
   const [log, setLog] = useState<Msg[]>([])
@@ -596,7 +598,7 @@ export default function DosaChat({
     setStage(jeonggok ? 'jeonggok' : 'menu')
     onChef?.(c)
     const v = voiceOf(c.id)
-    const first = jeonggok
+    const first = hourUnknown ? [HOUR_UNKNOWN_NOTICE] : jeonggok
       ? [nar('판을 펼쳐 손끝으로 짚어 내려간다.'), v.opening, jeonggok.line, jeonggok.ask]
       : [nar('찻잔을 내려놓고 고개를 든다.'), '뭐가 궁금해서 오셨는가?']
     setLog([{ who: 'ai', text: first[0], ...(isNar(first[0]) ? { narration: true as const } : {}) }])
@@ -740,8 +742,8 @@ export default function DosaChat({
     // 정제된 줄이 하나도 없으면 아는 척하지 않고 그렇게 말한다.
     const spoken = fallback.filter((l) => !l.raw).map((l) => l.text)
     say([
-      nar('붓을 들어 판 위에 한 획을 긋는다.'),
-      ...(intro ? [intro] : []),
+      ...(!hourUnknown ? [nar('붓을 들어 판 위에 한 획을 긋는다.')] : []),
+      ...(!hourUnknown && intro ? [intro] : []),
       ...(ready ?? (spoken.length ? spoken : ['이 대목은 아직 내가 제대로 풀어 둔 게 없군. 분석 탭의 근거를 직접 보게.'])),
     ])
     readRef.current = 0
@@ -805,7 +807,7 @@ export default function DosaChat({
    * 정곡을 던지는 중 = 판을 짚는 손 · 답을 기다림 = 눈을 들어 봄 · 풀이 중 = 붓을 놀림 ·
    * 자유 질문 대기 = 판을 다시 들여다봄.
    */
-  const beat = asking
+  const beat = hourUnknown ? '출생 시간을 기다립니다' : asking
     ? '판을 다시 들여다봅니다'
     : // ⚠ 정곡은 **타이핑 판정보다 먼저** 본다 — 이 국면은 늘 말이 흐르는 중이라
       // 뒤에 두면 「판을 짚어 내려갑니다」가 한 번도 안 뜬다(260727 실측).

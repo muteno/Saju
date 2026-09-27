@@ -1,5 +1,6 @@
 import { chartSummaryOf, type DosaLine } from './dosaTopics'
 import type { ReportBundle } from '../engine'
+import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
 
 /** 상담 화면과 통신을 분리한다. 엔진 재구축 시 ReportBundle 경계만 교체한다. */
 export async function requestDosaText(options: {
@@ -14,6 +15,9 @@ export async function requestDosaText(options: {
   timeoutMs?: number
   signal?: AbortSignal
 }): Promise<string | null> {
+  if (options.signal?.aborted) return null
+  // No personal grounding is verified yet: do not send stale caller-supplied lines to the provider.
+  if (hasUnknownBirthTime(options.report, options.hourUnknown)) return UNKNOWN_BIRTH_TIME_NOTICE
   const ctrl = new AbortController()
   const abort = () => ctrl.abort()
   options.signal?.addEventListener('abort', abort, { once: true })

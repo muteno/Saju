@@ -39,8 +39,9 @@ export interface DaeunItem {
 export interface UiChart {
   pillars: Pillar[]
   ohaeng: OhaengStat[]
-  daeun: { su: number; forward: boolean; list: DaeunItem[] }
-  dayMaster: { ganK: string; gan: string; element: OhaengKey }
+  daeun: { su: number; forward: boolean; list: DaeunItem[] } | null
+  dayMaster: { ganK: string; gan: string; element: OhaengKey } | null
+  birthTime?: import('./birthTime').UnknownBirthTime
   corrected: { hh: number; mm: number; minutes: number } | null
 }
 
@@ -48,8 +49,9 @@ export interface ChartInput {
   year: number
   month: number
   day: number
-  hour: number
-  minute: number
+  hour: number | null
+  minute: number | null
+  hourUnknown?: boolean
   gender: 'M' | 'F'
   /** 출생지 동경(진태양시 보정) — 생략 시 서울 126.978 */
   longitude?: number
@@ -72,6 +74,7 @@ export function todayIljin(year: number, month: number, day: number): TodayIljin
 // L3 근거 리포트 (섹션 구조는 report.js 참조 — 앱은 필요한 필드만 골라 씀)
 export interface ReportBundle {
   input: unknown
+  birthTime?: import('./birthTime').UnknownBirthTime
   sections: Array<{
     id: string
     title: string
@@ -118,7 +121,7 @@ export interface TodayFortune {
   basis: string[]
 }
 /** 오늘의 운세 — 엔진 diaryDayInfo(일진 vs 원국 관계) 기반. 점수=정책 매핑(근거 관계 병기 필수). */
-export function todayFortune(input: ChartInput): TodayFortune
+export function todayFortune(input: ChartInput): TodayFortune | null
 
 // ── 정곡 원자료(선별은 data/jeonggok.ts) ──
 export interface JeonggokPillar {
@@ -156,4 +159,4 @@ export interface JeonggokRaw {
   birthYear: number
   nowYear: number
 }
-export function jeonggokRaw(input: ChartInput): JeonggokRaw
+export function jeonggokRaw(input: ChartInput): JeonggokRaw | null

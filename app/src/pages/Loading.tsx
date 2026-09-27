@@ -7,6 +7,7 @@ import { tokens, type OhaengKey } from '../theme'
 import { computeChartUI } from '../engine'
 import { parseShare } from '../data/profiles'
 import type { Pillar } from '../data/saju'
+import { hasUnknownBirthTime } from '../engine/birthTime'
 
 interface Tile {
   ch: string | null // null = ✦ 필러
@@ -48,6 +49,10 @@ export default function Loading() {
   const nav = useNavigate()
   const loc = useLocation()
   const flow = new URLSearchParams(loc.search).get('flow')
+  const shared = parseShare(loc.search)
+  const state = loc.state as { input?: unknown; chart?: { pillars: Pillar[]; birthTime?: { status: string } } } | null
+  const hourUnknown = flow !== 'enter' && (hasUnknownBirthTime(shared?.input) ||
+    hasUnknownBirthTime(state?.input) || hasUnknownBirthTime(state?.chart))
 
   useEffect(() => {
     if (new URLSearchParams(loc.search).has('hold')) return // 스크린샷용 정지
@@ -62,6 +67,8 @@ export default function Loading() {
   }, [nav, loc.search, loc.state, flow])
 
   const tiles = useMemo(() => {
+    // Missing time takes precedence over cached/state pillars, including old noon charts.
+    if (hourUnknown) return fallbackTiles.map(t => ({ ...t, ch: t.ch ? '?' : null }))
     let pillars = (loc.state as { chart?: { pillars: Pillar[] } } | null)?.chart?.pillars
     if (!pillars?.length && flow !== 'enter') {
       const shared = parseShare(loc.search)
@@ -74,7 +81,7 @@ export default function Loading() {
       }
     }
     return pillars?.length ? tilesFromPillars(pillars) : fallbackTiles
-  }, [loc.state, loc.search, flow])
+  }, [loc.state, loc.search, flow, hourUnknown])
 
   return (
     <Screen>
@@ -116,9 +123,9 @@ export default function Loading() {
         </Box>
 
         <Typography sx={{ mt: 7, fontSize: 22, fontWeight: 800, color: tokens.color.primary, textAlign: 'center', lineHeight: 1.45, letterSpacing: 'var(--tracking)' }}>
-          연리가 만세력을
+          {hourUnknown ? '출생 시간을' : '연리가 만세력을'}
           <br />
-          정리 중이에요.
+          {hourUnknown ? '확인해 주세요.' : '정리 중이에요.'}
         </Typography>
         <Typography sx={{ mt: 1.75, fontSize: 13, color: tokens.color.inkFaint, textAlign: 'center', fontWeight: 600 }}>
           띠는 입춘(약 2월 3~4일)을 기준으로 바뀐답니다.

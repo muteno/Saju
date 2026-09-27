@@ -9,7 +9,6 @@ import { twelveSinsal, gongmang } from './vendor/sinsal.js'
 import { strengthJudge, elementProfile } from './vendor/judge.js'
 import { detectRelations } from './vendor/relations.js'
 import solarTerms from './vendor/data/solar_terms.json'
-import { hasUnknownBirthTime, unknownBirthTime } from './birthTime.js'
 // kb_ref.json = 빌드 산출물(.gitignore 등재) — fresh clone에는 없다.
 // 정적 import면 파일이 없을 때 빌드가 UNRESOLVED_IMPORT로 깨지므로, 선택적 glob으로 읽고 없으면 기본 포인터로 폴백.
 const _kbRefMods = import.meta.glob('./vendor/kb_ref.json', { eager: true })
@@ -92,9 +91,6 @@ function ohaengDist(pillars) {
 }
 
 export function computeChartUI(input) {
-  if (hasUnknownBirthTime(input)) return {
-    birthTime: unknownBirthTime(), pillars: [], ohaeng: [], daeun: null, dayMaster: null, corrected: null,
-  }
   const c = computeChart(input, terms)
   const s = c.saju
   const ss = twelveSinsal(c.pillarsIdx)
@@ -138,10 +134,6 @@ export function currentUnseYearName() {
 // L3 근거 리포트 — computeChart → chartToKeys → buildReport(번들 KB). 절대 원칙: 검색 없이 키 결정론 조회.
 // 반환 sections는 전부 코퍼스 근거(증류본/발췌+출처). 근거 없으면 empty(=소장 문헌 없음).
 export function buildReading(input, unseYearName = currentUnseYearName()) {
-  if (hasUnknownBirthTime(input)) return {
-    input: { ...input, hour: null, minute: null, hourUnknown: true },
-    birthTime: unknownBirthTime(), sections: [],
-  }
   if (!kb) throw new Error('KB 미로드 — main.tsx가 loadKb() 완료 후 렌더해야 한다')
   const chart = computeChart(input, terms)
   const keyset = chartToKeys(chart, { unseYearName })
@@ -196,7 +188,6 @@ function ganjiIdx60(name) {
 }
 
 export function jeonggokRaw(input) {
-  if (hasUnknownBirthTime(input)) return null
   const chart = computeChart(input, terms)
   const s = chart.saju
   const ss = twelveSinsal(chart.pillarsIdx)
@@ -232,7 +223,6 @@ export function jeonggokRaw(input) {
 }
 
 export function todayFortune(input) {
-  if (hasUnknownBirthTime(input)) return null
   const t = todayKST()
   const chart = computeChart(input, terms)
   const info = diaryDayInfo(chart, t.year, t.month, t.day)
@@ -273,7 +263,6 @@ import { readChart as brainReadChart } from './brain.js'
 
 /** 계산된 키셋 → 두뇌 조회. 검색(RAG) 금지 원칙 그대로 — keyset.js가 만든 키만 태운다. */
 export function brainReading(input, unseYearName = currentUnseYearName()) {
-  if (hasUnknownBirthTime(input)) return { 노드: [], 관계: [], 조견표: [], 못맞춘키: [] }
   const chart = computeChart(input, terms)
   const { keys } = chartToKeys(chart, { unseYearName })
   return brainReadChart(keys)

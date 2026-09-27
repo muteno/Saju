@@ -88,8 +88,7 @@ export function useReport(): ReportData {
   const jeonggok = useMemo<JeonggokPick | null>(() => {
     if (!chart || resolved.hourUnknown) return null
     try {
-      const raw = jeonggokRaw(resolved.input)
-      return raw ? selectJeonggok(raw) : null
+      return selectJeonggok(jeonggokRaw(resolved.input))
     } catch {
       return null
     }
