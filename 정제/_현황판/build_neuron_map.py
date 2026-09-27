@@ -60,8 +60,13 @@ for big, mids in TAXONOMY.items():
                 alias2concept.setdefault(a, set()).add(concept)
 # F02 명칭은 기존 검색에 더한다. 편인도식/상관패인이 편인/상관을
 # 가리지 않도록 기존 별칭의 순서·겹침 정책은 유지한다. 사전 정본은 위 하나다.
-ADDITIVE_TOPIC_CONCEPTS = frozenset({"편인도식", "상관패인", "재생관", "관살혼잡", "사길신", "사흉신"})
-TOPIC_ALIASES = {a for a, concepts in alias2concept.items() if concepts <= ADDITIVE_TOPIC_CONCEPTS}
+ADDITIVE_TOPIC_CONCEPTS = frozenset({"편인도식", "상관패인", "재생관", "관살혼잡", "사길신", "사흉신",
+                                       "활인업", "재고귀인", "진도화", "가도화"})
+# 기존 공망 별칭 정책은 유지하고 새 두 표기만 추가 검색한다.
+# 천중살인상생처럼 붙인 문자열에서도 기존 살인상생을 가리지 않는다.
+ADDITIVE_ALIASES = frozenset({"천중살", "天中煞"})
+TOPIC_ALIASES = ({a for a, concepts in alias2concept.items() if concepts <= ADDITIVE_TOPIC_CONCEPTS}
+                 | (ADDITIVE_ALIASES & alias2concept.keys()))
 ALIASES = sorted(alias2concept, key=len, reverse=True)
 ALIAS_RE = re.compile("|".join(re.escape(a) for a in ALIASES if a not in TOPIC_ALIASES))
 TOPIC_RE = re.compile("|".join(re.escape(a) for a in ALIASES if a in TOPIC_ALIASES) or r"(?!x)x")

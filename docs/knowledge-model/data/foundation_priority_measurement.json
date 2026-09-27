@@ -1,0 +1,4440 @@
+{
+  "schema_version": 1,
+  "base_commit": "8d0a8226ef00c16fa552ca3ae2600699097b1a91",
+  "scope": "lexical_retrieval_only",
+  "corpus_rows": 56202,
+  "corpus_sha256": "51cf9056c86108448913e507b6f17822edc20cea418a7015526903edd7f42dc3",
+  "title_included": true,
+  "gist_included": false,
+  "independent_evidence_count": null,
+  "inference_enabled": false,
+  "use_as_training_labels": false,
+  "probability": null,
+  "old_concepts_checked": 277,
+  "executable_concepts": 281,
+  "extension": {
+    "reviewed_subjects": 6,
+    "added_concepts": 4,
+    "added_existing_aliases": 2,
+    "evidence_ranges": 34,
+    "relation_reviews_only": 1,
+    "probability": null,
+    "training_labels": false
+  },
+  "code": {
+    "before": {
+      "neuron": "4beb85575a160274ed0fe736f3968f8c036ebc59486dd5493a0c2d9c1dbd997e",
+      "concept_map": "e06f371db3313231ef5f70fe2946816f528b7c4ac742c0ff2f1cfe76f646788f"
+    },
+    "after": {
+      "neuron": "e52dc8afa752b5fb95342aa72ce2225ad80fe1d45277b049f2203907c6345386",
+      "concept_map": "1990d71edffa0fea1848e4e2aad43880093c84b21fe4ed515457a7b0cac2820d"
+    }
+  },
+  "inputs": {
+    "정제/_현황판/build_dashboard.py": "dd757eb82df149afd79d79ac003538ba53b7bea4a1be633bff5cf9ee9b7986a3",
+    "정제/_현황판/ingest_transcripts.py": "8ae09de042f849183311ebde140fd596c542ec07b3b7af5a7053598f753d5e2b",
+    "정제/_현황판/코퍼스.py": "b4f6d73dde620725f3f9f803782bbc24d4441b308b61090fe6fbbdfe278b2028",
+    "정제/_현황판/data/posts_all.jsonl": "1d084c1dbacbeefabe61e97a48d462e5754d1291967bef42fad7e8772dc3be1b",
+    "정제/_현황판/data/paras_all.jsonl": "d8e937f1293eee14872ec527b58377393700bb8ae19017b8a9febfa3f6ff77cb",
+    "정제/_현황판/data/전사_글.jsonl": "0d16d64e15fef36c3f39d79259f72c2b405aa9c5dde024aba65d601ca18c9205",
+    "정제/_현황판/data/전사_문단.jsonl": "dfa46421686fec3c3f798eed70fb54c49b9c9e460a7da9d3a183a76f0c0f4a91",
+    "정제/_현황판/data/정의카드.jsonl": "64482f1110a4b077fe3b6c2316221f8b1278a6d51f62b7d4e4e505eb9d67b9f2",
+    "docs/knowledge-model/measure_priority_topics.py": "9f6ffbd577b459b4801a9335768ad9ebb8efd5186377a5d71c64bd8c3a53e23e",
+    "docs/knowledge-model/measure_hidden_stages.py": "8c216896733ab10b42aaabd5882c5f6b5664a43d0b4c1c6f6cf637155091121f",
+    "정제/문서/설계정본/20260726_사전공백31_코퍼스실측_v1.md": "f2fd291007dfb14c832b27a3c41bd56ef18e57b5e918cf558312f43911139bb4",
+    "docs/knowledge-model/foundation_claims.py": "7f21f2b90c764181a505eca0cb1262f4916a9dd0c6cbc462b4fbe6931ebaa379",
+    "docs/knowledge-model/knowledge_query.py": "de2316717670b8f14db3de815316c18001849d0a001e1fffaddba29c66b10371",
+    "docs/knowledge-model/foundation_priority.py": "035a47aa0f260f5fa4f4d6299cfc37ce310db8a01f9f6e13d7030fe2b575fdb4",
+    "docs/knowledge-model/data/foundation_priority_review.json": "fc3c799e885f5b2e963bfd3a172efd9943d1c37faf9f365e5e7a957c1b286b0c",
+    "docs/knowledge-model/knowledge_graph.json": "40196a3017e9111d3ffb9ad79a529f26ec7dccb9836c2c39cd96eb205c52df90",
+    "docs/knowledge-model/data/foundation_claim_links.json": "f395ecf98d556b38612e1c99f437021ed509f911885354c6445ba286b13640ff",
+    "docs/knowledge-model/data/context_reviews.json": "a5bcdfc123cd3f6e3df8616f7bc3038526c00407c234d7660650c97ec4c58899"
+  },
+  "old_concept_id_set_sha256": {
+    "neuron": {
+      "before": "278c6dbb56e44ca61df12dd0f564e65e95af393c463644122a02da0f405495b2",
+      "after": "278c6dbb56e44ca61df12dd0f564e65e95af393c463644122a02da0f405495b2"
+    },
+    "concept_map": {
+      "before": "75a3dac910a8d1235bb625925d7303f387ff62070394af9cd48d78e5069f4379",
+      "after": "75a3dac910a8d1235bb625925d7303f387ff62070394af9cd48d78e5069f4379"
+    }
+  },
+  "counts": {
+    "neuron": {
+      "활인업": 91,
+      "재고귀인": 53,
+      "진도화": 40,
+      "가도화": 21,
+      "공망": 513,
+      "삼형": 1078,
+      "도화": 1279
+    },
+    "concept_map": {
+      "활인업": 91,
+      "재고귀인": 53,
+      "진도화": 40,
+      "가도화": 21,
+      "공망": 513,
+      "삼형": 1078,
+      "도화": 1282
+    }
+  },
+  "actual_concept_assignment_changes": {
+    "neuron": {
+      "가도화": {
+        "before": 0,
+        "after": 21,
+        "added_ids": [
+          "DT-P006-07",
+          "DT-P026-04",
+          "SG-SINSAL-P012-01",
+          "SG-SINSAL-P012-02",
+          "SG-SINSAL-P012-03",
+          "SG-SINSAL-P012-04",
+          "SG-SINSAL-P012-05",
+          "SG-SINSAL-P012-06",
+          "SG-SINSAL-P012-07",
+          "SG-SINSAL-P012-08",
+          "SG-SINSAL-P012-09",
+          "SG-SINSAL-P012-10",
+          "SG-SINSAL-P012-11",
+          "SG-SINSAL-P012-12",
+          "SG-SINSAL-P012-13",
+          "SG-SINSAL-P012-14",
+          "SG-SINSAL-P012-15",
+          "SG-SINSAL-P012-16",
+          "T-39729baa35-0000",
+          "T-559c4ad01b-0005",
+          "T-c2a29d1c41-0002"
+        ],
+        "removed_ids": []
+      },
+      "재고귀인": {
+        "before": 0,
+        "after": 53,
+        "added_ids": [
+          "DR-P010-02",
+          "DR-P010-03",
+          "DR-P010-04",
+          "DR-P010-05",
+          "DR-P010-06",
+          "DR-P010-07",
+          "DR-P010-08",
+          "DR-P010-09",
+          "DR-P010-10",
+          "DR-P310-08",
+          "DT-P035-03",
+          "DT-P035-04",
+          "DT-P035-05",
+          "DT-P035-06",
+          "DT-P035-07",
+          "DT-P035-08",
+          "DT-P035-09",
+          "DT-P035-10",
+          "DT-P035-11",
+          "DT-P035-12",
+          "DT-P035-13",
+          "DT-P035-14",
+          "DT-P035-15",
+          "DT-P035-16",
+          "DT-P035-17",
+          "DT-P096-12",
+          "PL-FAMOUS-P005-06",
+          "PL-FAMOUS-P009-08",
+          "PL-INTRO-P017-02",
+          "SG-SINSAL-P001-03",
+          "ST-P0118-09",
+          "T-18f00c0acc-0005",
+          "T-60f64d2fa8-0001",
+          "T-60f64d2fa8-0002",
+          "T-7d8c098c2c-0000",
+          "T-9359355a73-0002",
+          "T-a16e72db85-0000",
+          "T-a16e72db85-0001",
+          "T-a16e72db85-0002",
+          "T-a16e72db85-0003",
+          "T-a16e72db85-0004",
+          "T-a16e72db85-0005",
+          "T-a16e72db85-0006",
+          "T-a16e72db85-0007",
+          "T-a16e72db85-0008",
+          "T-a16e72db85-0009",
+          "T-a16e72db85-0010",
+          "T-a16e72db85-0011",
+          "T-a16e72db85-0012",
+          "T-a16e72db85-0013",
+          "T-a16e72db85-0014",
+          "T-a16e72db85-0015",
+          "T-fef88baf08-0003"
+        ],
+        "removed_ids": []
+      },
+      "진도화": {
+        "before": 0,
+        "after": 40,
+        "added_ids": [
+          "DR-P627-11",
+          "DT-P006-07",
+          "DT-P026-04",
+          "DT-P026-05",
+          "DT-P026-06",
+          "DT-P026-10",
+          "DT-P026-12",
+          "DT-P246-32",
+          "PL-FAMOUS-P005-06",
+          "SG-SINSAL-P012-01",
+          "SG-SINSAL-P012-02",
+          "SG-SINSAL-P012-03",
+          "SG-SINSAL-P012-04",
+          "SG-SINSAL-P012-05",
+          "SG-SINSAL-P012-06",
+          "SG-SINSAL-P012-07",
+          "SG-SINSAL-P012-08",
+          "SG-SINSAL-P012-09",
+          "SG-SINSAL-P012-10",
+          "SG-SINSAL-P012-11",
+          "SG-SINSAL-P012-12",
+          "SG-SINSAL-P012-13",
+          "SG-SINSAL-P012-14",
+          "SG-SINSAL-P012-15",
+          "SG-SINSAL-P012-16",
+          "T-39729baa35-0000",
+          "T-39729baa35-0001",
+          "T-39729baa35-0002",
+          "T-39729baa35-0003",
+          "T-39729baa35-0004",
+          "T-559c4ad01b-0005",
+          "T-6224104b90-0001",
+          "T-c2a29d1c41-0002",
+          "T-c2a29d1c41-0003",
+          "T-c2a29d1c41-0006",
+          "T-c2a29d1c41-0010",
+          "T-cee38cf8c9-0000",
+          "T-d2eddee3cb-0015",
+          "T-d83310fa5b-0027",
+          "T-e805ee532c-0001"
+        ],
+        "removed_ids": []
+      },
+      "활인업": {
+        "before": 0,
+        "after": 91,
+        "added_ids": [
+          "CT-P028-14",
+          "CT-P189-06",
+          "CT-P218-19",
+          "CT-P220-16",
+          "DR-P017-07",
+          "DR-P017-09",
+          "DR-P035-05",
+          "DR-P613-15",
+          "DT-P022-07",
+          "DT-P022-13",
+          "DT-P145-06",
+          "DT-P150-07",
+          "DT-P240-16",
+          "ETC-USE-P004-02",
+          "MT-BASIC-P056-02",
+          "MT-BASIC-P060-02",
+          "MT-CHO-P015-05",
+          "PL-FAMOUS-P006-07",
+          "PL-GANJI-P009-03",
+          "PL-GANJI-P013-03",
+          "PL-ILJU-P007-05",
+          "PL-ILJU-P011-05",
+          "PL-ILJU-P012-07",
+          "PL-ILJU-P013-06",
+          "PL-ILJU-P018-07",
+          "PL-ILJU-P031-08",
+          "PL-ILJU-P031-10",
+          "PL-ILJU-P034-11",
+          "PL-ILJU-P043-06",
+          "PL-ILJU-P045-08",
+          "PL-ILJU-P048-08",
+          "PL-ILJU-P055-08",
+          "PL-INTRO-P002-04",
+          "PL-INTRO-P037-05",
+          "PL-JAPYEONG-P019-02",
+          "PL-JAPYEONG-P023-02",
+          "PL-MANSE-P025-06",
+          "PL-READ-P009-04",
+          "PL-READ-P027-04",
+          "PL-SINSAL-P004-02",
+          "PL-SINSAL-P024-02",
+          "SG-BASIC-P038-01",
+          "SG-BASIC-P040-01",
+          "SG-BASIC-P058-04",
+          "SG-BASIC-P059-05",
+          "SG-BASIC-P068-01",
+          "SG-BASIC-P068-02",
+          "SG-BASIC-P069-01",
+          "SG-BASIC-P069-03",
+          "SG-BASIC-P071-02",
+          "SG-BASIC-P073-01",
+          "SG-MID-P021-12",
+          "SG-SINSAL-P003-07",
+          "SG-SINSAL-P003-09",
+          "SG-SINSAL-P015-05",
+          "ST-P0455-13",
+          "ST-P0527-03",
+          "ST-P0673-06",
+          "T-0140af06bc-0008",
+          "T-08b43ba782-0000",
+          "T-12533d6e6e-0001",
+          "T-179cfbb1e4-0014",
+          "T-1d162e17f9-0006",
+          "T-25f2dbe005-0000",
+          "T-292ed37c0a-0005",
+          "T-2fcba94448-0001",
+          "T-44e409e5c9-0006",
+          "T-44e409e5c9-0012",
+          "T-601169561a-0002",
+          "T-697062e649-0000",
+          "T-872df89b48-0012",
+          "T-872df89b48-0014",
+          "T-8a0e9854bc-0000",
+          "T-8af3cadea5-0021",
+          "T-9275eafdfc-0000",
+          "T-96c1417212-0002",
+          "T-97cc4972e0-0008",
+          "T-a764ce2cc5-0002",
+          "T-b0cd577b38-0002",
+          "T-b0cd577b38-0005",
+          "T-b0cd577b38-0006",
+          "T-c69f84e846-0003",
+          "T-e54a982a58-0023",
+          "T-e62590fa8d-0013",
+          "T-f64eeb9136-0001",
+          "T-fd27ca88a1-0004",
+          "XT-MEHWA-P001-06",
+          "XT-MEHWA-P007-05",
+          "XT-MEHWA-P013-05",
+          "XT-MEHWA-P018-13",
+          "XT-MEHWA-P018-17"
+        ],
+        "removed_ids": []
+      }
+    },
+    "concept_map": {
+      "가도화": {
+        "before": 0,
+        "after": 21,
+        "added_ids": [
+          "DT-P006-07",
+          "DT-P026-04",
+          "SG-SINSAL-P012-01",
+          "SG-SINSAL-P012-02",
+          "SG-SINSAL-P012-03",
+          "SG-SINSAL-P012-04",
+          "SG-SINSAL-P012-05",
+          "SG-SINSAL-P012-06",
+          "SG-SINSAL-P012-07",
+          "SG-SINSAL-P012-08",
+          "SG-SINSAL-P012-09",
+          "SG-SINSAL-P012-10",
+          "SG-SINSAL-P012-11",
+          "SG-SINSAL-P012-12",
+          "SG-SINSAL-P012-13",
+          "SG-SINSAL-P012-14",
+          "SG-SINSAL-P012-15",
+          "SG-SINSAL-P012-16",
+          "T-39729baa35-0000",
+          "T-559c4ad01b-0005",
+          "T-c2a29d1c41-0002"
+        ],
+        "removed_ids": []
+      },
+      "재고귀인": {
+        "before": 0,
+        "after": 53,
+        "added_ids": [
+          "DR-P010-02",
+          "DR-P010-03",
+          "DR-P010-04",
+          "DR-P010-05",
+          "DR-P010-06",
+          "DR-P010-07",
+          "DR-P010-08",
+          "DR-P010-09",
+          "DR-P010-10",
+          "DR-P310-08",
+          "DT-P035-03",
+          "DT-P035-04",
+          "DT-P035-05",
+          "DT-P035-06",
+          "DT-P035-07",
+          "DT-P035-08",
+          "DT-P035-09",
+          "DT-P035-10",
+          "DT-P035-11",
+          "DT-P035-12",
+          "DT-P035-13",
+          "DT-P035-14",
+          "DT-P035-15",
+          "DT-P035-16",
+          "DT-P035-17",
+          "DT-P096-12",
+          "PL-FAMOUS-P005-06",
+          "PL-FAMOUS-P009-08",
+          "PL-INTRO-P017-02",
+          "SG-SINSAL-P001-03",
+          "ST-P0118-09",
+          "T-18f00c0acc-0005",
+          "T-60f64d2fa8-0001",
+          "T-60f64d2fa8-0002",
+          "T-7d8c098c2c-0000",
+          "T-9359355a73-0002",
+          "T-a16e72db85-0000",
+          "T-a16e72db85-0001",
+          "T-a16e72db85-0002",
+          "T-a16e72db85-0003",
+          "T-a16e72db85-0004",
+          "T-a16e72db85-0005",
+          "T-a16e72db85-0006",
+          "T-a16e72db85-0007",
+          "T-a16e72db85-0008",
+          "T-a16e72db85-0009",
+          "T-a16e72db85-0010",
+          "T-a16e72db85-0011",
+          "T-a16e72db85-0012",
+          "T-a16e72db85-0013",
+          "T-a16e72db85-0014",
+          "T-a16e72db85-0015",
+          "T-fef88baf08-0003"
+        ],
+        "removed_ids": []
+      },
+      "진도화": {
+        "before": 0,
+        "after": 40,
+        "added_ids": [
+          "DR-P627-11",
+          "DT-P006-07",
+          "DT-P026-04",
+          "DT-P026-05",
+          "DT-P026-06",
+          "DT-P026-10",
+          "DT-P026-12",
+          "DT-P246-32",
+          "PL-FAMOUS-P005-06",
+          "SG-SINSAL-P012-01",
+          "SG-SINSAL-P012-02",
+          "SG-SINSAL-P012-03",
+          "SG-SINSAL-P012-04",
+          "SG-SINSAL-P012-05",
+          "SG-SINSAL-P012-06",
+          "SG-SINSAL-P012-07",
+          "SG-SINSAL-P012-08",
+          "SG-SINSAL-P012-09",
+          "SG-SINSAL-P012-10",
+          "SG-SINSAL-P012-11",
+          "SG-SINSAL-P012-12",
+          "SG-SINSAL-P012-13",
+          "SG-SINSAL-P012-14",
+          "SG-SINSAL-P012-15",
+          "SG-SINSAL-P012-16",
+          "T-39729baa35-0000",
+          "T-39729baa35-0001",
+          "T-39729baa35-0002",
+          "T-39729baa35-0003",
+          "T-39729baa35-0004",
+          "T-559c4ad01b-0005",
+          "T-6224104b90-0001",
+          "T-c2a29d1c41-0002",
+          "T-c2a29d1c41-0003",
+          "T-c2a29d1c41-0006",
+          "T-c2a29d1c41-0010",
+          "T-cee38cf8c9-0000",
+          "T-d2eddee3cb-0015",
+          "T-d83310fa5b-0027",
+          "T-e805ee532c-0001"
+        ],
+        "removed_ids": []
+      },
+      "활인업": {
+        "before": 0,
+        "after": 91,
+        "added_ids": [
+          "CT-P028-14",
+          "CT-P189-06",
+          "CT-P218-19",
+          "CT-P220-16",
+          "DR-P017-07",
+          "DR-P017-09",
+          "DR-P035-05",
+          "DR-P613-15",
+          "DT-P022-07",
+          "DT-P022-13",
+          "DT-P145-06",
+          "DT-P150-07",
+          "DT-P240-16",
+          "ETC-USE-P004-02",
+          "MT-BASIC-P056-02",
+          "MT-BASIC-P060-02",
+          "MT-CHO-P015-05",
+          "PL-FAMOUS-P006-07",
+          "PL-GANJI-P009-03",
+          "PL-GANJI-P013-03",
+          "PL-ILJU-P007-05",
+          "PL-ILJU-P011-05",
+          "PL-ILJU-P012-07",
+          "PL-ILJU-P013-06",
+          "PL-ILJU-P018-07",
+          "PL-ILJU-P031-08",
+          "PL-ILJU-P031-10",
+          "PL-ILJU-P034-11",
+          "PL-ILJU-P043-06",
+          "PL-ILJU-P045-08",
+          "PL-ILJU-P048-08",
+          "PL-ILJU-P055-08",
+          "PL-INTRO-P002-04",
+          "PL-INTRO-P037-05",
+          "PL-JAPYEONG-P019-02",
+          "PL-JAPYEONG-P023-02",
+          "PL-MANSE-P025-06",
+          "PL-READ-P009-04",
+          "PL-READ-P027-04",
+          "PL-SINSAL-P004-02",
+          "PL-SINSAL-P024-02",
+          "SG-BASIC-P038-01",
+          "SG-BASIC-P040-01",
+          "SG-BASIC-P058-04",
+          "SG-BASIC-P059-05",
+          "SG-BASIC-P068-01",
+          "SG-BASIC-P068-02",
+          "SG-BASIC-P069-01",
+          "SG-BASIC-P069-03",
+          "SG-BASIC-P071-02",
+          "SG-BASIC-P073-01",
+          "SG-MID-P021-12",
+          "SG-SINSAL-P003-07",
+          "SG-SINSAL-P003-09",
+          "SG-SINSAL-P015-05",
+          "ST-P0455-13",
+          "ST-P0527-03",
+          "ST-P0673-06",
+          "T-0140af06bc-0008",
+          "T-08b43ba782-0000",
+          "T-12533d6e6e-0001",
+          "T-179cfbb1e4-0014",
+          "T-1d162e17f9-0006",
+          "T-25f2dbe005-0000",
+          "T-292ed37c0a-0005",
+          "T-2fcba94448-0001",
+          "T-44e409e5c9-0006",
+          "T-44e409e5c9-0012",
+          "T-601169561a-0002",
+          "T-697062e649-0000",
+          "T-872df89b48-0012",
+          "T-872df89b48-0014",
+          "T-8a0e9854bc-0000",
+          "T-8af3cadea5-0021",
+          "T-9275eafdfc-0000",
+          "T-96c1417212-0002",
+          "T-97cc4972e0-0008",
+          "T-a764ce2cc5-0002",
+          "T-b0cd577b38-0002",
+          "T-b0cd577b38-0005",
+          "T-b0cd577b38-0006",
+          "T-c69f84e846-0003",
+          "T-e54a982a58-0023",
+          "T-e62590fa8d-0013",
+          "T-f64eeb9136-0001",
+          "T-fd27ca88a1-0004",
+          "XT-MEHWA-P001-06",
+          "XT-MEHWA-P007-05",
+          "XT-MEHWA-P013-05",
+          "XT-MEHWA-P018-13",
+          "XT-MEHWA-P018-17"
+        ],
+        "removed_ids": []
+      }
+    }
+  },
+  "gap31_inventory": [
+    {
+      "number": 1,
+      "historical_label": "합이화·합이불화(합화 조건)",
+      "probes": {
+        "합이화": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "합이불화": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "갈등"
+              ],
+              "concept_map": [
+                "갈등"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "갈등"
+              ],
+              "concept_map": [
+                "갈등"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "갈등": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "합화": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "합화"
+            ],
+            "after": [
+              "합화"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "합화"
+              ],
+              "concept_map": [
+                "합화"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "합화"
+              ],
+              "concept_map": [
+                "합화"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "found",
+            "node_id": "transformation",
+            "layer": "base_graph"
+          },
+          "existing_cards_for_lexical_hits": {
+            "합화": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "화기격": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "화(火)"
+              ],
+              "concept_map": [
+                "화(火)"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "화(火)"
+              ],
+              "concept_map": [
+                "화(火)"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "화(火)": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "합화격": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "합화"
+              ],
+              "concept_map": [
+                "합화"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "합화"
+              ],
+              "concept_map": [
+                "합화"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "합화": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 2,
+      "historical_label": "합이불합(일간은 합 안 함)",
+      "probes": {
+        "합이불합": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "합화": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "합화"
+            ],
+            "after": [
+              "합화"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "합화"
+              ],
+              "concept_map": [
+                "합화"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "합화"
+              ],
+              "concept_map": [
+                "합화"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "found",
+            "node_id": "transformation",
+            "layer": "base_graph"
+          },
+          "existing_cards_for_lexical_hits": {
+            "합화": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 3,
+      "historical_label": "상형(相刑)",
+      "probes": {
+        "상형": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "부분삼형": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "육형": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "반형": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "인사형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "사인형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "사신형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "신사형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "인신형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "신인형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "축술형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "술축형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "술미형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "미술형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "축미형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "미축형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "인사\n형살": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "축술 형살": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "자묘형": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "자묘상형": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 4,
+      "historical_label": "진방합",
+      "probes": {
+        "진방합": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "방합"
+              ],
+              "concept_map": [
+                "방합"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "방합"
+              ],
+              "concept_map": [
+                "방합"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "방합": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "방합": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "방합"
+            ],
+            "after": [
+              "방합"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "방합"
+              ],
+              "concept_map": [
+                "방합"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "방합"
+              ],
+              "concept_map": [
+                "방합"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "방합": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 5,
+      "historical_label": "해공(解空)",
+      "probes": {
+        "해공": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "탈공": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "공망 해소": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "공망"
+              ],
+              "concept_map": [
+                "공망"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "공망"
+              ],
+              "concept_map": [
+                "공망"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "공망": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 6,
+      "historical_label": "편야도화·도화격",
+      "probes": {
+        "편야도화": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "도화"
+              ],
+              "concept_map": [
+                "도화"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "도화"
+              ],
+              "concept_map": [
+                "도화"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "도화": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "도화격": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "도화"
+              ],
+              "concept_map": [
+                "도화"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "도화"
+              ],
+              "concept_map": [
+                "도화"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "도화": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 7,
+      "historical_label": "재관인식(사길신)",
+      "probes": {
+        "재관인식": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "사길신": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "사길신"
+            ],
+            "after": [
+              "사길신"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "사길신"
+              ],
+              "concept_map": [
+                "사길신"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "사길신"
+              ],
+              "concept_map": [
+                "사길신"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "found",
+            "node_id": "review_사길신",
+            "layer": "source_claim_review"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "4길신": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 8,
+      "historical_label": "살상겁인·살상겁효(사흉신)",
+      "probes": {
+        "살상겁인": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "살상겁효": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "사흉신": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "사흉신"
+            ],
+            "after": [
+              "사흉신"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "사흉신"
+              ],
+              "concept_map": [
+                "사흉신"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "사흉신"
+              ],
+              "concept_map": [
+                "사흉신"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "found",
+            "node_id": "review_사흉신",
+            "layer": "source_claim_review"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "4흉신": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "사용신": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "용신(총칭)"
+              ],
+              "concept_map": [
+                "용신(총칭)"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "용신(총칭)"
+              ],
+              "concept_map": [
+                "용신(총칭)"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "용신(총칭)": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "사형신": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 9,
+      "historical_label": "편인도식",
+      "probes": {
+        "편인도식": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "편인도식"
+            ],
+            "after": [
+              "편인도식"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "편인",
+                "편인도식"
+              ],
+              "concept_map": [
+                "편인",
+                "편인도식"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "편인",
+                "편인도식"
+              ],
+              "concept_map": [
+                "편인",
+                "편인도식"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "found",
+            "node_id": "review_편인도식",
+            "layer": "source_claim_review"
+          },
+          "existing_cards_for_lexical_hits": {
+            "편인": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "도식": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "탈식": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "효신": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "편인"
+            ],
+            "after": [
+              "편인"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "편인"
+              ],
+              "concept_map": [
+                "편인"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "편인"
+              ],
+              "concept_map": [
+                "편인"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "편인": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 10,
+      "historical_label": "상관패인",
+      "probes": {
+        "상관패인": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "상관패인"
+            ],
+            "after": [
+              "상관패인"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "상관",
+                "상관패인"
+              ],
+              "concept_map": [
+                "상관",
+                "상관패인"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "상관",
+                "상관패인"
+              ],
+              "concept_map": [
+                "상관",
+                "상관패인"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "found",
+            "node_id": "review_상관패인",
+            "layer": "source_claim_review"
+          },
+          "existing_cards_for_lexical_hits": {
+            "상관": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "상관 패인": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "상관"
+              ],
+              "concept_map": [
+                "상관"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "상관"
+              ],
+              "concept_map": [
+                "상관"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "상관": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "상관폐인": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "상관"
+              ],
+              "concept_map": [
+                "상관"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "상관"
+              ],
+              "concept_map": [
+                "상관"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "상관": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 11,
+      "historical_label": "재생관",
+      "probes": {
+        "재생관": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "재생관"
+            ],
+            "after": [
+              "재생관"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "재생관"
+              ],
+              "concept_map": [
+                "재생관"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "재생관"
+              ],
+              "concept_map": [
+                "재생관"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "found",
+            "node_id": "review_재생관",
+            "layer": "source_claim_review"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "재생生관": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "재생관련": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "재생관리": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 12,
+      "historical_label": "관살혼잡",
+      "probes": {
+        "관살혼잡": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "관살혼잡"
+            ],
+            "after": [
+              "관살혼잡"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "관살혼잡"
+              ],
+              "concept_map": [
+                "관살혼잡"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "관살혼잡"
+              ],
+              "concept_map": [
+                "관살혼잡"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "found",
+            "node_id": "review_관살혼잡",
+            "layer": "source_claim_review"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "관살 혼잡": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "관성혼잡": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "관성 일반"
+              ],
+              "concept_map": [
+                "관성 일반"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "관성 일반"
+              ],
+              "concept_map": [
+                "관성 일반"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "관성 일반": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 13,
+      "historical_label": "자매강강·군겁탈부",
+      "probes": {
+        "자매강강": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "군겁탈부": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 14,
+      "historical_label": "재성입묘",
+      "probes": {
+        "재성입묘": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "묘(입묘)",
+                "재성 일반"
+              ],
+              "concept_map": [
+                "묘(입묘)",
+                "재성 일반"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "묘(입묘)",
+                "재성 일반"
+              ],
+              "concept_map": [
+                "묘(입묘)",
+                "재성 일반"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "묘(입묘)": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            },
+            "재성 일반": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "재고귀인": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": [
+              "재고귀인"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [
+                "재고귀인"
+              ],
+              "concept_map": [
+                "재고귀인"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 15,
+      "historical_label": "부성입묘",
+      "probes": {
+        "부성입묘": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "부성입묘"
+            ],
+            "after": [
+              "부성입묘"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "부성입묘"
+              ],
+              "concept_map": [
+                "묘(입묘)",
+                "부성입묘"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "부성입묘"
+              ],
+              "concept_map": [
+                "묘(입묘)",
+                "부성입묘"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "묘(입묘)": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            },
+            "부성입묘": {
+              "stored_status": "공백",
+              "stored_definitions": 0
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 16,
+      "historical_label": "전록·귀록·호환건록",
+      "probes": {
+        "전록": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "귀록": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "호환건록": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "건록"
+              ],
+              "concept_map": [
+                "건록"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "건록"
+              ],
+              "concept_map": [
+                "건록"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "건록": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "전록격": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "귀록격": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 17,
+      "historical_label": "가도화·진도화",
+      "probes": {
+        "진도화": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": [
+              "진도화"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "도화"
+              ],
+              "concept_map": [
+                "도화"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "도화",
+                "진도화"
+              ],
+              "concept_map": [
+                "도화",
+                "진도화"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "도화": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "가도화": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": [
+              "가도화"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "도화"
+              ],
+              "concept_map": [
+                "도화"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "가도화",
+                "도화"
+              ],
+              "concept_map": [
+                "가도화",
+                "도화"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "도화": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 18,
+      "historical_label": "삼전공망",
+      "probes": {
+        "삼전공망": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "공망"
+              ],
+              "concept_map": [
+                "공망"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "공망"
+              ],
+              "concept_map": [
+                "공망"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "공망": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 19,
+      "historical_label": "록전록후",
+      "probes": {
+        "록전록후": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 20,
+      "historical_label": "일귀격",
+      "probes": {
+        "일귀격": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "특수격"
+              ],
+              "concept_map": [
+                "특수격"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "특수격"
+              ],
+              "concept_map": [
+                "특수격"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "특수격": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 21,
+      "historical_label": "현침살",
+      "probes": {
+        "현침살": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "현침살"
+            ],
+            "after": [
+              "현침살"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": [
+                "현침살"
+              ]
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": [
+                "현침살"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "현침살": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "현침": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "현침살"
+            ],
+            "after": [
+              "현침살"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "현침살"
+              ],
+              "concept_map": [
+                "현침살"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "현침살"
+              ],
+              "concept_map": [
+                "현침살"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "현침살": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 22,
+      "historical_label": "천문성",
+      "probes": {
+        "천문성": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "천문성"
+            ],
+            "after": [
+              "천문성"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "천문살": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "술해천문": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "천라지망"
+            ],
+            "after": [
+              "천라지망"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "천라지망"
+              ],
+              "concept_map": [
+                "천라지망"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "천라지망"
+              ],
+              "concept_map": [
+                "천라지망"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "천라지망": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "수레천문": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "술래천문": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 23,
+      "historical_label": "사주풀이 6단계 절차",
+      "probes": {
+        "사주풀이 6단계 절차": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "통변 순서": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "통변 순서"
+            ],
+            "after": [
+              "통변 순서"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "통변 순서"
+              ],
+              "concept_map": [
+                "통변 순서"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "통변 순서"
+              ],
+              "concept_map": [
+                "통변 순서"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "통변 순서": {
+              "stored_status": "빈약",
+              "stored_definitions": 1
+            }
+          }
+        },
+        "풀이 순서": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "통변 순서"
+            ],
+            "after": [
+              "통변 순서"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "통변 순서"
+              ],
+              "concept_map": [
+                "통변 순서"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "통변 순서"
+              ],
+              "concept_map": [
+                "통변 순서"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "통변 순서": {
+              "stored_status": "빈약",
+              "stored_definitions": 1
+            }
+          }
+        },
+        "사주풀이 순서": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "통변 순서"
+              ],
+              "concept_map": [
+                "통변 순서"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "통변 순서"
+              ],
+              "concept_map": [
+                "통변 순서"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "통변 순서": {
+              "stored_status": "빈약",
+              "stored_definitions": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 24,
+      "historical_label": "수승화강",
+      "probes": {
+        "수승화강": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 25,
+      "historical_label": "활인업",
+      "probes": {
+        "활인업": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": [
+              "활인업"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [
+                "활인업"
+              ],
+              "concept_map": [
+                "활인업"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "활인": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "활인성": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "인성 일반"
+              ],
+              "concept_map": [
+                "인성 일반"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "인성 일반"
+              ],
+              "concept_map": [
+                "인성 일반"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "인성 일반": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "활인지명": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 26,
+      "historical_label": "구류업",
+      "probes": {
+        "구류업": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 27,
+      "historical_label": "공망",
+      "probes": {
+        "공망": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "공망"
+            ],
+            "after": [
+              "공망"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "공망"
+              ],
+              "concept_map": [
+                "공망"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "공망"
+              ],
+              "concept_map": [
+                "공망"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "공망": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "천중살": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": [
+              "공망"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [
+                "공망"
+              ],
+              "concept_map": [
+                "공망"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "공망": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "天中殺": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "공망"
+            ],
+            "after": [
+              "공망"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "공망"
+              ],
+              "concept_map": [
+                "공망"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "공망"
+              ],
+              "concept_map": [
+                "공망"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "공망": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "天中煞": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": [
+              "공망"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [
+                "공망"
+              ],
+              "concept_map": [
+                "공망"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "공망": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 28,
+      "historical_label": "천간합",
+      "probes": {
+        "천간합": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "천간합"
+            ],
+            "after": [
+              "천간합"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "천간합"
+              ],
+              "concept_map": [
+                "천간(총칭)",
+                "천간합"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "천간합"
+              ],
+              "concept_map": [
+                "천간(총칭)",
+                "천간합"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "천간(총칭)": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            },
+            "천간합": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "중정지합": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "인의지합": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "위엄지합": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "음란지합": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "무정지합": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "인수지합": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 29,
+      "historical_label": "전왕격",
+      "probes": {
+        "전왕격": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "전왕격"
+            ],
+            "after": [
+              "전왕격"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "전왕격"
+              ],
+              "concept_map": [
+                "전왕격"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "전왕격"
+              ],
+              "concept_map": [
+                "전왕격"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "전왕격": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "곡직": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "전왕격"
+            ],
+            "after": [
+              "전왕격"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "전왕격"
+              ],
+              "concept_map": [
+                "전왕격"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "전왕격"
+              ],
+              "concept_map": [
+                "전왕격"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "전왕격": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "염상": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "전왕격"
+            ],
+            "after": [
+              "전왕격"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "전왕격"
+              ],
+              "concept_map": [
+                "전왕격"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "전왕격"
+              ],
+              "concept_map": [
+                "전왕격"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "전왕격": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "종혁": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "전왕격"
+            ],
+            "after": [
+              "전왕격"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "전왕격"
+              ],
+              "concept_map": [
+                "전왕격"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "전왕격"
+              ],
+              "concept_map": [
+                "전왕격"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "전왕격": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "윤하": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "윤하격": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "윤하성": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "가색": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "전왕격"
+            ],
+            "after": [
+              "전왕격"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "전왕격"
+              ],
+              "concept_map": [
+                "전왕격"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "전왕격"
+              ],
+              "concept_map": [
+                "전왕격"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "전왕격": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "일행득기": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "일행득기격": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    },
+    {
+      "number": 30,
+      "historical_label": "궁위·자리론",
+      "probes": {
+        "궁위·자리론": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "궁위·자리론"
+            ],
+            "after": [
+              "궁위·자리론"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "궁위·자리론"
+              ],
+              "concept_map": [
+                "궁위·자리론"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "궁위·자리론"
+              ],
+              "concept_map": [
+                "궁위·자리론"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "궁위·자리론": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "궁성론": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "궁위·자리론"
+              ],
+              "concept_map": [
+                "궁위·자리론"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "궁위·자리론"
+              ],
+              "concept_map": [
+                "궁위·자리론"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "궁위·자리론": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "宮星論": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "궁위이론": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "궁위·자리론"
+              ],
+              "concept_map": [
+                "궁위·자리론"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "궁위·자리론"
+              ],
+              "concept_map": [
+                "궁위·자리론"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "궁위·자리론": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        }
+      }
+    },
+    {
+      "number": 31,
+      "historical_label": "삼형",
+      "probes": {
+        "삼형": {
+          "explicit_name_or_alias_owners": {
+            "before": [
+              "삼형"
+            ],
+            "after": [
+              "삼형"
+            ]
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            },
+            "after": {
+              "neuron": [
+                "삼형"
+              ],
+              "concept_map": [
+                "삼형"
+              ]
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {
+            "삼형": {
+              "stored_status": "충분",
+              "stored_definitions": 4
+            }
+          }
+        },
+        "무은지형": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "지세지형": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "무례지형": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "시세지형": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        },
+        "무찰지형": {
+          "explicit_name_or_alias_owners": {
+            "before": [],
+            "after": []
+          },
+          "literal_probe_hits": {
+            "before": {
+              "neuron": [],
+              "concept_map": []
+            },
+            "after": {
+              "neuron": [],
+              "concept_map": []
+            }
+          },
+          "research_query": {
+            "status": "not_found",
+            "node_id": null,
+            "layer": "none"
+          },
+          "existing_cards_for_lexical_hits": {}
+        }
+      }
+    }
+  ],
+  "reviewed_partial_omissions": [
+    {
+      "para_id": "ST-P0332-05",
+      "text_sha256": "6487b9aa9567e63b7733eb7c45a00cb7cb105978837922939f456e1e6fe75ffb",
+      "source_file": "20220613_욱😡 하는 성격이 있는 사주_MSaigPjAcek.md",
+      "scope": "reviewed narrow probes, not exhaustive or independent evidence"
+    },
+    {
+      "para_id": "ST-P1199-12",
+      "text_sha256": "dcdf54d3331133d5d929e4f22dceef8f92ed5a278471cdd7c84b09eaaeb39b04",
+      "source_file": "20260624_천간은 합하고 지지는 충하는 경우_d9ywnP3Dn5M.md",
+      "scope": "reviewed narrow probes, not exhaustive or independent evidence"
+    },
+    {
+      "para_id": "T-c0b963860a-0003",
+      "text_sha256": "14177311d9d090059b7684bca88982c1522dbb0fc9391d95d4f189da60bd3808",
+      "source_file": "2. 산책처럼사주/산책처럼사주/20220613_욱😡 하는 성격이 있는 사주_MSaigPjAcek.md",
+      "scope": "reviewed narrow probes, not exhaustive or independent evidence"
+    },
+    {
+      "para_id": "T-4ac66284bb-0006",
+      "text_sha256": "66fa03c0f369eecbd6bd515029e3c69614177c6de928e5df0273029aae92a139",
+      "source_file": "2. 산책처럼사주/산책처럼사주/20260624_천간은 합하고 지지는 충하는 경우_d9ywnP3Dn5M.md",
+      "scope": "reviewed narrow probes, not exhaustive or independent evidence"
+    },
+    {
+      "para_id": "T-ae84219fb7-0003",
+      "text_sha256": "babd225beac76258055543d350fdac6f50e188496181719a38473491b4d54832",
+      "source_file": "3. 석우당/석우당/20211122_2022년 壬寅年 신년운세 己土일간1 좋은 운 잡는 법!(석우당 논상탐구)_8QTcWPzTM7I.md",
+      "scope": "reviewed narrow probes, not exhaustive or independent evidence"
+    },
+    {
+      "para_id": "T-6a38e111e8-0058",
+      "text_sha256": "2f0d3e550d86f1822ee46bef65b5458cbc7b87e9d99c891a4b16174b06a035e4",
+      "source_file": "3. 석우당/석우당/20231020_乙丑일주 강의모음_CH3Yed0AOLg.md",
+      "scope": "reviewed narrow probes, not exhaustive or independent evidence"
+    },
+    {
+      "para_id": "T-ab547d7406-0023",
+      "text_sha256": "03a664691106ccdb93b70e6ef6a09daa299dbd394f6122d9891bfa49d6613df9",
+      "source_file": "3. 석우당/석우당/20260410_경금일간 계수상관 진중권교수 사주!_m0KVfY_xipA.md",
+      "scope": "reviewed narrow probes, not exhaustive or independent evidence"
+    },
+    {
+      "para_id": "T-3faedda586-0009",
+      "text_sha256": "a5c3a544e5e9d057176e3a1ef163a0bb2e6efce6b08ec55e3be1331b328c8019",
+      "source_file": "4. 사람공부/사람공부/20210913_[중급강의]20 육해살_75_xsa7Z-ZM.md",
+      "scope": "reviewed narrow probes, not exhaustive or independent evidence"
+    },
+    {
+      "para_id": "T-09e2f426c9-0004",
+      "text_sha256": "815fac1b97c6d93c9330447aafa8a6e43a196cebbf0d4c1c115d4dbb26e4544a",
+      "source_file": "4. 사람공부/사람공부/20210928_[중급강의]21 육파살_XiwYj7OkQyM.md",
+      "scope": "reviewed narrow probes, not exhaustive or independent evidence"
+    },
+    {
+      "para_id": "T-09e2f426c9-0007",
+      "text_sha256": "58e3b14b3902f1dcdb6e0e0c4c476453a2004684c2871b146689c7dacddf5b37",
+      "source_file": "4. 사람공부/사람공부/20210928_[중급강의]21 육파살_XiwYj7OkQyM.md",
+      "scope": "reviewed narrow probes, not exhaustive or independent evidence"
+    },
+    {
+      "para_id": "T-09e2f426c9-0008",
+      "text_sha256": "d3b04f31ad538f0454cb8808d6274f53b40aa0d3b9f4d54a56aec971b13d35a0",
+      "source_file": "4. 사람공부/사람공부/20210928_[중급강의]21 육파살_XiwYj7OkQyM.md",
+      "scope": "reviewed narrow probes, not exhaustive or independent evidence"
+    }
+  ],
+  "limits": [
+    "Probe hits are not semantic coverage or approval.",
+    "Stored card status is a historical generated field, not reviewed truth.",
+    "Existing app calculations are audited separately in FOUNDATION_GAP31.md.",
+    "No edge/map/alias-judgment/D5/P2/card/app output is regenerated here."
+  ]
+}
