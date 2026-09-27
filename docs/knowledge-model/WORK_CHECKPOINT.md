@@ -1,6 +1,6 @@
 # 작업 체크포인트
 
-## 2026-09-27 편인도식·상관패인 출처별 관계 조회 — 진행 중
+## 2026-09-27 편인도식·상관패인 출처별 관계 조회 — PR #192
 
 - 기준: PR #191 병합 main `583b0cdc266b929cbb0b1c2ee04cdd8ee77d6cfa`, 브랜치 `feat/f02-source-claim-links-20260927`. 사용자 원문47을 보존했다.
 - 원문: 보존 Figma·사주공부·초코·산책처럼의 F02 기존 인용10구간을 원본에서 재독. 보드 상관패인 내부 차이, 인성/식상 일반 대 정인/상관 특정 관계, 전사 표기와 일상어를 구별했다.
@@ -10,6 +10,8 @@
 - 재개: `git status --short` → `python3 docs/knowledge-model/foundation_claims.py` → 신규 회귀 → `npm run verify`. 검증 스크립트가 만든 lockfile 변경/`_val.mjs`만 원복/제거한 뒤 검증 단위 원격 저장.
 - 독립 검토8명(6+2) 완료. 실제 재현한 ZIP 기본 조회 실패를 `--base-only`와 독립 패키지 회귀로 수정했고, 도표 helper/CLI 일치·주장 출처 고정·연결 개념 누락 방지·편인도식 방향 검사를 보강했다. [검토표](FOUNDATION_CLAIM_LINKS.md#6-독립-평의회--8명동시-한도에-따라62)를 참조한다. 수정 후 조회·최종 반론 담당자도 재확인해 남은 결함 없음으로 회신했다.
 - 변경본 최종 전체 검사: `SMOKE_CHROMIUM=/tmp/saju-browser/runtime/chromium npm run verify` exit0. Python159개(신규11), 원국/시간 Node9개·엔진19개·앱/API13개·증류79파일/223인용·시험은행·빌드·토큰·실제 Chromium 스모크 모두 통과, 생략 없음. CLI 전후: 편인도식 not_found→found(주장6/인용8), 상관패인 not_found→found(주장4/인용4), 고유 인용10구간.
+- 검증 단위 원격 저장: 커밋 훅 필수8게이트·실제Chromium까지 통과한 로컬 `0035caffafc1bd68bb152fdc1d3c68045383b24b`와 원격 `dd914f44756808b099a854949a8e0c75f88ebd43`의 tree `4022ebbacb9c702248979ee89e37b2b48c45dab4`가 일치한다. 일반 git push는 CLI 인증 부재로 실패했고 연결 GitHub API를 사용해 같은 검증 트리를 저장했다.
+- 최종 문서 커밋·원격 검사·병합·main 영수증의 정본은 [PR #192](https://github.com/muteno/Saju/pull/192)다. PR의 최신 head/merged 상태와 main을 대조한 뒤 이어간다. 이 체크포인트 작성 시 아직 병합 전이므로 미리 성공으로 적지 않는다.
 - 다음 작업: 이번 PR 병합 후 인계 §5.1의 재생관·관살혼잡, 그 뒤 분류축/공백 잔여 및 F03/F04.
 
 ## 2026-09-23 F02 우선 여섯 용어 — PR #191

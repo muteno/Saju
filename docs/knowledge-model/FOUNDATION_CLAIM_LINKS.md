@@ -58,7 +58,7 @@ python3 -m unittest discover -s docs/knowledge-model -p 'test_foundation_claims.
 npm run verify
 ```
 
-새 회귀11개는 두 주제 조회·모든 기존 조회/legacy 보존·출처/예외·방향과 부정·보류 별칭·모호한 이름·다른 디렉터리 CLI·오래된 그래프/판정·잘못된 노드/출처/확률 주입·반환값 변조 격리를 확인한다. 최종 필수8게이트는 Python159개·원국/시간Node9개·엔진19개·앱/API13개·증류79파일/223인용·실제Chromium 포함 통과했고 생략은 없다. 원격 저장·최종 병합은 [체크포인트](WORK_CHECKPOINT.md) 및 실제 PR 영수증을 따른다.
+새 회귀11개는 두 주제 조회·모든 기존 조회/legacy 보존·출처/예외·방향과 부정·보류 별칭·모호한 이름·다른 디렉터리 CLI·오래된 그래프/판정·잘못된 노드/출처/확률 주입·반환값 변조 격리를 확인한다. 최종 필수8게이트는 Python159개·원국/시간Node9개·엔진19개·앱/API13개·증류79파일/223인용·실제Chromium 포함 통과했고 생략은 없다. 원격 저장·최종 병합은 [체크포인트](WORK_CHECKPOINT.md) 및 [PR #192](https://github.com/muteno/Saju/pull/192) 영수증을 따른다.
 
 ## 5. 다음 단위
 
