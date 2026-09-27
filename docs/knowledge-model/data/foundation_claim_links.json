@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "scope": "source_claim_retrieval",
   "inference_enabled": false,
   "use_as_training_labels": false,
@@ -44,6 +44,28 @@
         "ten_god_편관",
         "authority",
         "day_master"
+      ]
+    },
+    {
+      "id": "review_사길신",
+      "title": "사길신",
+      "anchor_node_ids": [
+        "ten_god_식신",
+        "ten_god_정관",
+        "ten_god_정인",
+        "ten_god_정재",
+        "ten_god_편인",
+        "ten_god_편재"
+      ]
+    },
+    {
+      "id": "review_사흉신",
+      "title": "사흉신",
+      "anchor_node_ids": [
+        "ten_god_겁재",
+        "ten_god_상관",
+        "ten_god_편관",
+        "ten_god_편인"
       ]
     }
   ],
@@ -515,6 +537,623 @@
         "관성혼잡 별칭은 적용 범위 추가 검수 전까지 보류",
         "편인도식 주장과 근거를 공유하지만 다른 주제 전체를 재귀 조회하지 않음",
         "개인 결과의 관측 사례나 학습 라벨이 아님"
+      ]
+    },
+    {
+      "id": "good_board",
+      "topic_id": "review_사길신",
+      "type": "definition",
+      "statement": "보드는 재관인식을 사길신으로 열거한다. 재는 정재·편재를 함께 포함하고 관·인·식은 정관·정인·식신이다. 네 묶음과 개별 십성 다섯을 구분한다.",
+      "evidence_ids": [
+        "board_good"
+      ],
+      "relations": [],
+      "conditions": [
+        "사길신이 격을 잘 잡고 있으면 평탄하고 조화로운 삶을 말한다."
+      ],
+      "exceptions": [
+        "같은 설명에서 누군가에게는 반복적이고 지루한 삶이 될 수 있다고 덧붙인다."
+      ],
+      "chart_scope": "격을 잘 잡는다는 보드의 일반 서술이며 개인 원국을 평가하지 않음.",
+      "time_scope": "정의·분류 설명이며 특정 원국·대운·세운 적용 시점은 제시하지 않음.",
+      "unresolved": [
+        "격 성립과 잘 잡음의 판정 기준·강약은 수치화하지 않음.",
+        "다른 출처의 인성 범위를 이 보드의 정인에 덧붙이지 않음."
+      ],
+      "classifications": [
+        {
+          "label": "재관인식(財官印食)",
+          "coverage": "complete",
+          "groups": [
+            {
+              "label": "재",
+              "members": [
+                {
+                  "label": "정재",
+                  "node_id": "ten_god_정재"
+                },
+                {
+                  "label": "편재",
+                  "node_id": "ten_god_편재"
+                }
+              ]
+            },
+            {
+              "label": "관",
+              "members": [
+                {
+                  "label": "정관",
+                  "node_id": "ten_god_정관"
+                }
+              ]
+            },
+            {
+              "label": "인",
+              "members": [
+                {
+                  "label": "정인",
+                  "node_id": "ten_god_정인"
+                }
+              ]
+            },
+            {
+              "label": "식",
+              "members": [
+                {
+                  "label": "식신",
+                  "node_id": "ten_god_식신"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "good_sagong",
+      "topic_id": "review_사길신",
+      "type": "definition",
+      "statement": "사주공부는 사길신을 식신·정재·정관·정인으로 열거한다.",
+      "evidence_ids": [
+        "sagong_classes"
+      ],
+      "relations": [],
+      "conditions": [],
+      "exceptions": [],
+      "chart_scope": "십성 분류 목록으로 자리·강약·원국 사례를 명시하지 않음.",
+      "time_scope": "정의·분류 설명이며 특정 원국·대운·세운 적용 시점은 제시하지 않음.",
+      "unresolved": [
+        "편재·편인의 미열거를 모든 관법의 배제 규칙으로 일반화하지 않음.",
+        "목록만으로 개인 길흉을 판정할 수 없음."
+      ],
+      "classifications": [
+        {
+          "label": "사길신",
+          "coverage": "complete",
+          "groups": [
+            {
+              "label": "식신",
+              "members": [
+                {
+                  "label": "식신",
+                  "node_id": "ten_god_식신"
+                }
+              ]
+            },
+            {
+              "label": "정재",
+              "members": [
+                {
+                  "label": "정재",
+                  "node_id": "ten_god_정재"
+                }
+              ]
+            },
+            {
+              "label": "정관",
+              "members": [
+                {
+                  "label": "정관",
+                  "node_id": "ten_god_정관"
+                }
+              ]
+            },
+            {
+              "label": "정인",
+              "members": [
+                {
+                  "label": "정인",
+                  "node_id": "ten_god_정인"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "good_plus_2021",
+      "topic_id": "review_사길신",
+      "type": "disagreement",
+      "statement": "사주플러스 2021 원국색상 글은 정관·재성(정재와 편재)·인성(정인과 편인)·식신을 청색 사길신으로 설명한다. 네 묶음에 개별 십성 여섯이 포함된다.",
+      "evidence_ids": [
+        "plus_color_2021"
+      ],
+      "relations": [],
+      "conditions": [
+        "해당 글의 만세력·운세력 색상 표시 체계에 한정한다."
+      ],
+      "exceptions": [
+        "자신인 아신과 비견은 중립·검정색으로 설명한다.",
+        "같은 사이트의 별도 설명 글과 편재·편인의 분류가 달라 하나의 목록으로 합치지 않는다."
+      ],
+      "chart_scope": "색상 설명용 예시 명조는 실제로 존재하지 않을 수 있다고 원문이 밝힘.",
+      "time_scope": "정의·분류 설명이며 특정 원국·대운·세운 적용 시점은 제시하지 않음.",
+      "unresolved": [
+        "2021-08-28은 글 작성일이며 운의 적용 시점이 아님.",
+        "색상 범주를 개인 길흉이나 앱 디자인·판정 규칙으로 사용하지 않음."
+      ],
+      "classifications": [
+        {
+          "label": "사길신",
+          "coverage": "complete",
+          "groups": [
+            {
+              "label": "정관",
+              "members": [
+                {
+                  "label": "정관",
+                  "node_id": "ten_god_정관"
+                }
+              ]
+            },
+            {
+              "label": "재성",
+              "members": [
+                {
+                  "label": "정재",
+                  "node_id": "ten_god_정재"
+                },
+                {
+                  "label": "편재",
+                  "node_id": "ten_god_편재"
+                }
+              ]
+            },
+            {
+              "label": "인성",
+              "members": [
+                {
+                  "label": "정인",
+                  "node_id": "ten_god_정인"
+                },
+                {
+                  "label": "편인",
+                  "node_id": "ten_god_편인"
+                }
+              ]
+            },
+            {
+              "label": "식신",
+              "members": [
+                {
+                  "label": "식신",
+                  "node_id": "ten_god_식신"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "good_plus_other",
+      "topic_id": "review_사길신",
+      "type": "disagreement",
+      "statement": "사주플러스 별도 색상 설명 글은 재관인식(정재·정관·정인·식신)을 사길신으로 열거한다. 2021 글의 재성·인성 묶음을 이 글에 소급하지 않는다.",
+      "evidence_ids": [
+        "plus_color_other"
+      ],
+      "relations": [],
+      "conditions": [
+        "해당 글의 육친 색상 설명 맥락에 한정한다."
+      ],
+      "exceptions": [
+        "비견·편재는 길흉이 상반되므로 검정색으로 표시한다고 말한다."
+      ],
+      "chart_scope": "원문은 위 명조가 색상 설명용 자료라고 밝힘.",
+      "time_scope": "정의·분류 설명이며 특정 원국·대운·세운 적용 시점은 제시하지 않음.",
+      "unresolved": [
+        "같은 사이트의 글이라는 사실을 동일 개인 저자의 단일 견해로 단정하지 않음.",
+        "색상 목록의 차이를 오류나 전체 관법의 합의로 확정하지 않음."
+      ],
+      "classifications": [
+        {
+          "label": "재관인식",
+          "coverage": "complete",
+          "groups": [
+            {
+              "label": "정재",
+              "members": [
+                {
+                  "label": "정재",
+                  "node_id": "ten_god_정재"
+                }
+              ]
+            },
+            {
+              "label": "정관",
+              "members": [
+                {
+                  "label": "정관",
+                  "node_id": "ten_god_정관"
+                }
+              ]
+            },
+            {
+              "label": "정인",
+              "members": [
+                {
+                  "label": "정인",
+                  "node_id": "ten_god_정인"
+                }
+              ]
+            },
+            {
+              "label": "식신",
+              "members": [
+                {
+                  "label": "식신",
+                  "node_id": "ten_god_식신"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "good_relative",
+      "topic_id": "review_사길신",
+      "type": "exception",
+      "statement": "초코서당은 사길신·사흉신의 전통적 구분을 시대적·사회적 맥락에서 재해석하고 상황에 따라 긍정·부정 양면을 검토해야 한다고 설명한다.",
+      "evidence_ids": [
+        "choco_relative_good_bad"
+      ],
+      "relations": [],
+      "conditions": [
+        "전체 사주 구성·조화와 상황·맥락을 함께 본다."
+      ],
+      "exceptions": [
+        "사길신 기운도 지나치면 균형을 깨뜨릴 수 있다.",
+        "사흉신 기운도 전체 사주의 조화를 위해 필요한 역할을 할 수 있다."
+      ],
+      "chart_scope": "자형 설명 속 길흉 분류 비판이며 구성원 목록이나 특정 명식 판정은 아님.",
+      "time_scope": "정의·분류 설명이며 특정 원국·대운·세운 적용 시점은 제시하지 않음.",
+      "unresolved": [
+        "과다·균형·필요성의 수치 기준을 임의로 만들지 않음.",
+        "이 구간에는 구성원 열거가 없어 분류 목록을 생성하지 않음."
+      ]
+    },
+    {
+      "id": "bad_board",
+      "topic_id": "review_사흉신",
+      "type": "disagreement",
+      "statement": "보드는 술사에 따라 살상겁인(殺傷劫刃) 또는 살상겁효(殺傷劫梟)라며 각각 양인·편인을 포함한다고 구분한다. 두 대안을 하나의 합집합으로 만들지 않는다.",
+      "evidence_ids": [
+        "board_bad"
+      ],
+      "relations": [],
+      "conditions": [
+        "원문이 술사에 따라 다르다고 명시한다."
+      ],
+      "exceptions": [
+        "살상겁인의 인(刃)은 양인을 가리키며 정인의 인(印)으로 바꾸지 않는다."
+      ],
+      "chart_scope": "구성 차이의 일반 서술로 양인 산출이나 특정 원국 판정은 하지 않음.",
+      "time_scope": "정의·분류 설명이며 특정 원국·대운·세운 적용 시점은 제시하지 않음.",
+      "unresolved": [
+        "보드 인용은 첫 세 항 살·상·겁을 풀어 쓰지 않아 이 출처의 구성원 연결은 partial로 남긴다.",
+        "양인은 기본 그래프 노드가 없어 이름을 보존하고 node_id는 null로 둔다.",
+        "양인과 편인을 동일 개념으로 병합하지 않음."
+      ],
+      "classifications": [
+        {
+          "label": "살상겁인(殺傷劫刃)",
+          "coverage": "partial",
+          "groups": [
+            {
+              "label": "살",
+              "members": []
+            },
+            {
+              "label": "상",
+              "members": []
+            },
+            {
+              "label": "겁",
+              "members": []
+            },
+            {
+              "label": "인",
+              "members": [
+                {
+                  "label": "양인",
+                  "node_id": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "살상겁효(殺傷劫梟)",
+          "coverage": "partial",
+          "groups": [
+            {
+              "label": "살",
+              "members": []
+            },
+            {
+              "label": "상",
+              "members": []
+            },
+            {
+              "label": "겁",
+              "members": []
+            },
+            {
+              "label": "효",
+              "members": [
+                {
+                  "label": "편인",
+                  "node_id": "ten_god_편인"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bad_sagong",
+      "topic_id": "review_사흉신",
+      "type": "definition",
+      "statement": "사주공부는 사흉신을 상관·겁재·편관·편인으로 열거한다.",
+      "evidence_ids": [
+        "sagong_classes"
+      ],
+      "relations": [],
+      "conditions": [],
+      "exceptions": [],
+      "chart_scope": "십성 분류 목록으로 자리·강약·원국 사례를 명시하지 않음.",
+      "time_scope": "정의·분류 설명이며 특정 원국·대운·세운 적용 시점은 제시하지 않음.",
+      "unresolved": [
+        "양인의 미열거를 모든 관법의 배제 규칙으로 일반화하지 않음.",
+        "목록만으로 개인 길흉을 판정할 수 없음."
+      ],
+      "classifications": [
+        {
+          "label": "사흉신",
+          "coverage": "complete",
+          "groups": [
+            {
+              "label": "상관",
+              "members": [
+                {
+                  "label": "상관",
+                  "node_id": "ten_god_상관"
+                }
+              ]
+            },
+            {
+              "label": "겁재",
+              "members": [
+                {
+                  "label": "겁재",
+                  "node_id": "ten_god_겁재"
+                }
+              ]
+            },
+            {
+              "label": "편관",
+              "members": [
+                {
+                  "label": "편관",
+                  "node_id": "ten_god_편관"
+                }
+              ]
+            },
+            {
+              "label": "편인",
+              "members": [
+                {
+                  "label": "편인",
+                  "node_id": "ten_god_편인"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bad_plus_2021",
+      "topic_id": "review_사흉신",
+      "type": "disagreement",
+      "statement": "사주플러스 2021 원국색상 글은 편관(칠살)·상관·양인·겁재를 적색 사흉신으로 열거한다. 이 네 표기를 서로 배타적인 네 개념으로 계산하지 않는다.",
+      "evidence_ids": [
+        "plus_color_2021"
+      ],
+      "relations": [],
+      "conditions": [
+        "해당 글의 만세력·운세력 색상 표시 체계에 한정한다."
+      ],
+      "exceptions": [
+        "원문은 양인·겁재가 상황에 따른 경우라며 양인을 겁재에 포함해 보아도 된다고 덧붙인다.",
+        "같은 글은 편인을 인성 묶음의 사길신으로 포함한다."
+      ],
+      "chart_scope": "색상 설명용 예시 명조는 실제로 존재하지 않을 수 있다고 원문이 밝힘.",
+      "time_scope": "정의·분류 설명이며 특정 원국·대운·세운 적용 시점은 제시하지 않음.",
+      "unresolved": [
+        "양인 이름은 보존하되 기본 그래프 node_id는 null이다. 겁재와 전역 동일성·별칭을 만들지 않음.",
+        "2021-08-28은 글 작성일이며 운의 적용 시점이 아님.",
+        "상황에 따른 포함의 구체적 판정 기준은 이 구간에 없음."
+      ],
+      "classifications": [
+        {
+          "label": "사흉신",
+          "coverage": "complete",
+          "groups": [
+            {
+              "label": "편관(칠살)",
+              "members": [
+                {
+                  "label": "편관(칠살)",
+                  "node_id": "ten_god_편관"
+                }
+              ]
+            },
+            {
+              "label": "상관",
+              "members": [
+                {
+                  "label": "상관",
+                  "node_id": "ten_god_상관"
+                }
+              ]
+            },
+            {
+              "label": "양인",
+              "members": [
+                {
+                  "label": "양인",
+                  "node_id": null
+                }
+              ]
+            },
+            {
+              "label": "겁재",
+              "members": [
+                {
+                  "label": "겁재",
+                  "node_id": "ten_god_겁재"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bad_plus_other",
+      "topic_id": "review_사흉신",
+      "type": "disagreement",
+      "statement": "사주플러스 별도 색상 설명 글은 살상겁효(편관·상관·겁재·편인)를 사흉신으로 열거하고 갈색으로 표시한다고 설명한다.",
+      "evidence_ids": [
+        "plus_color_other"
+      ],
+      "relations": [],
+      "conditions": [
+        "해당 글의 육친 색상 설명 맥락에 한정한다."
+      ],
+      "exceptions": [
+        "비견·편재는 길흉이 상반되므로 검정색으로 표시한다고 말한다.",
+        "2021 글의 양인 목록과 편인 분류를 이 글에 합치지 않는다."
+      ],
+      "chart_scope": "원문은 위 명조가 색상 설명용 자료라고 밝힘.",
+      "time_scope": "정의·분류 설명이며 특정 원국·대운·세운 적용 시점은 제시하지 않음.",
+      "unresolved": [
+        "같은 사이트의 글이라는 사실을 동일 개인 저자의 단일 견해로 단정하지 않음.",
+        "원문 색상은 앱 디자인 변경 지시가 아님."
+      ],
+      "classifications": [
+        {
+          "label": "살상겁효",
+          "coverage": "complete",
+          "groups": [
+            {
+              "label": "편관",
+              "members": [
+                {
+                  "label": "편관",
+                  "node_id": "ten_god_편관"
+                }
+              ]
+            },
+            {
+              "label": "상관",
+              "members": [
+                {
+                  "label": "상관",
+                  "node_id": "ten_god_상관"
+                }
+              ]
+            },
+            {
+              "label": "겁재",
+              "members": [
+                {
+                  "label": "겁재",
+                  "node_id": "ten_god_겁재"
+                }
+              ]
+            },
+            {
+              "label": "편인",
+              "members": [
+                {
+                  "label": "편인",
+                  "node_id": "ten_god_편인"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bad_relative",
+      "topic_id": "review_사흉신",
+      "type": "exception",
+      "statement": "초코서당은 사흉신이라는 전통적 구분이 절대적이지 않으며 시대적·사회적 맥락과 전체 조화를 고려해야 한다고 설명한다.",
+      "evidence_ids": [
+        "choco_relative_good_bad"
+      ],
+      "relations": [],
+      "conditions": [
+        "전체 사주 구성·조화와 상황·맥락을 함께 본다."
+      ],
+      "exceptions": [
+        "사흉신 기운도 전체 사주의 조화를 위해 필요한 역할을 할 수 있다.",
+        "사길신 기운이 지나치면 오히려 균형을 깨뜨릴 수 있다."
+      ],
+      "chart_scope": "자형 설명 속 길흉 분류 비판이며 구성원 목록이나 특정 명식 판정은 아님.",
+      "time_scope": "정의·분류 설명이며 특정 원국·대운·세운 적용 시점은 제시하지 않음.",
+      "unresolved": [
+        "과다·균형·필요성의 수치 기준을 임의로 만들지 않음.",
+        "이 구간에는 구성원 열거가 없어 분류 목록을 생성하지 않음."
+      ]
+    },
+    {
+      "id": "bad_transcription",
+      "topic_id": "review_사흉신",
+      "type": "retrieval_limit",
+      "statement": "초코 편인도식 전사는 편인을 흉신, 식신을 길신으로 설명하지만 목록의 겁제·형관·사형신 등 표기는 미검수 전사로 남긴다. 이를 교정된 사흉신 구성 목록으로 승격하지 않는다.",
+      "evidence_ids": [
+        "choco_dosik_definition"
+      ],
+      "relations": [],
+      "conditions": [
+        "인용은 편인도식을 무조건 부정적으로 보는 견해를 비판하고 너무 강하게 식신을 극하는 경우를 구분한다."
+      ],
+      "exceptions": [
+        "흉신이라는 명칭이나 편인도식만으로 무조건 나쁘다고 판정하지 않는다."
+      ],
+      "chart_scope": "편인도식 설명 맥락이며 개인 사례·강약 관찰값은 없음.",
+      "time_scope": "정의·분류 설명이며 특정 원국·대운·세운 적용 시점은 제시하지 않음.",
+      "unresolved": [
+        "전사의 겁제·형관·사형신·정제·현재를 조용히 정규화하거나 새 별칭으로 등록하지 않음.",
+        "음성 대조 전에는 완성된 구성 목록을 생성하지 않음."
       ]
     }
   ],

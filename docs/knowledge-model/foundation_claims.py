@@ -15,7 +15,8 @@ ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parents[1]
 CATALOG = "docs/knowledge-model/data/foundation_claim_links.json"
 TOPICS = {"review_편인도식": "편인도식", "review_상관패인": "상관패인",
-          "review_재생관": "재생관", "review_관살혼잡": "관살혼잡"}
+          "review_재생관": "재생관", "review_관살혼잡": "관살혼잡",
+          "review_사길신": "사길신", "review_사흉신": "사흉신"}
 KINDS = {"definition", "condition", "exception", "disagreement", "retrieval_limit"}
 # Finite source-reviewed batch. A later topic/claim needs an explicit provenance
 # review instead of silently reassigning an existing statement to another source.
@@ -38,6 +39,58 @@ CLAIM_SOURCES = {
     "mixed_board": ("review_관살혼잡", {"board_mixed"}),
     "mixed_hyeonmyo": ("review_관살혼잡", {"hyeonmyo_mixed"}),
     "mixed_determinism": ("review_관살혼잡", {"choco_determinism"}),
+    "good_board": ("review_사길신", {"board_good"}),
+    "good_sagong": ("review_사길신", {"sagong_classes"}),
+    "good_plus_2021": ("review_사길신", {"plus_color_2021"}),
+    "good_plus_other": ("review_사길신", {"plus_color_other"}),
+    "good_relative": ("review_사길신", {"choco_relative_good_bad"}),
+    "bad_board": ("review_사흉신", {"board_bad"}),
+    "bad_sagong": ("review_사흉신", {"sagong_classes"}),
+    "bad_plus_2021": ("review_사흉신", {"plus_color_2021"}),
+    "bad_plus_other": ("review_사흉신", {"plus_color_other"}),
+    "bad_relative": ("review_사흉신", {"choco_relative_good_bad"}),
+    "bad_transcription": ("review_사흉신", {"choco_dosik_definition"}),
+}
+
+
+def _classification(label, groups, coverage="complete"):
+    """Materialize a finite reviewed list, not a rule that infers membership."""
+    return {"label": label, "coverage": coverage,
+            "groups": [{"label": group, "members": [
+                {"label": name, "node_id": node} for name, node in members]}
+                for group, members in groups]}
+
+
+def _single_groups(*names):
+    return [(name, [(name, "ten_god_" + name)]) for name in names]
+
+
+# Exact source-reviewed membership contracts. Group labels/counts, alternatives,
+# empty expansions and unmapped names are meaningful, not interchangeable sets.
+# "complete" means the list is fully spelled out, not that every node is mapped.
+CLASSIFICATIONS = {
+    "good_board": [_classification("재관인식(財官印食)", [
+        ("재", [("정재", "ten_god_정재"), ("편재", "ten_god_편재")]),
+        ("관", [("정관", "ten_god_정관")]), ("인", [("정인", "ten_god_정인")]),
+        ("식", [("식신", "ten_god_식신")])])],
+    "good_sagong": [_classification("사길신", _single_groups("식신", "정재", "정관", "정인"))],
+    "good_plus_2021": [_classification("사길신", [
+        ("정관", [("정관", "ten_god_정관")]),
+        ("재성", [("정재", "ten_god_정재"), ("편재", "ten_god_편재")]),
+        ("인성", [("정인", "ten_god_정인"), ("편인", "ten_god_편인")]),
+        ("식신", [("식신", "ten_god_식신")])])],
+    "good_plus_other": [_classification("재관인식", _single_groups("정재", "정관", "정인", "식신"))],
+    "bad_board": [
+        _classification("살상겁인(殺傷劫刃)", [
+            ("살", []), ("상", []), ("겁", []), ("인", [("양인", None)])], "partial"),
+        _classification("살상겁효(殺傷劫梟)", [
+            ("살", []), ("상", []), ("겁", []), ("효", [("편인", "ten_god_편인")])], "partial")],
+    "bad_sagong": [_classification("사흉신", _single_groups("상관", "겁재", "편관", "편인"))],
+    "bad_plus_2021": [_classification("사흉신", [
+        ("편관(칠살)", [("편관(칠살)", "ten_god_편관")]),
+        ("상관", [("상관", "ten_god_상관")]), ("양인", [("양인", None)]),
+        ("겁재", [("겁재", "ten_god_겁재")])])],
+    "bad_plus_other": [_classification("살상겁효", _single_groups("편관", "상관", "겁재", "편인"))],
 }
 # Additional adjacent passages; the frozen F02 review is never rewritten.
 # Each addition inherits its source identity from the original reviewed passage.
@@ -63,7 +116,7 @@ def validate(catalog, graph, review, repo=REPO):
                 and len(values) == len(set(values)), "Invalid claim-layer string list")
 
     fields(catalog, "schema_version scope inference_enabled use_as_training_labels probability graph_fingerprint review_sha256 supplemental_evidence topics claims")
-    require(type(catalog["schema_version"]) is int and catalog["schema_version"] == 2,
+    require(type(catalog["schema_version"]) is int and catalog["schema_version"] == 3,
             "Unsupported claim-layer schema")
     require(catalog["scope"] == "source_claim_retrieval"
             and catalog["inference_enabled"] is False
@@ -98,7 +151,7 @@ def validate(catalog, graph, review, repo=REPO):
         evidence[item["id"]] = item
     decisions = {r["concept"]: r for r in review["decisions"]}
     topics, claims = catalog["topics"], catalog["claims"]
-    require(isinstance(topics, list) and len(topics) == len(TOPICS), "Expected four reviewed topics")
+    require(isinstance(topics, list) and len(topics) == len(TOPICS), "Expected six reviewed topics")
     require({t["id"] for t in topics} == set(TOPICS), "Missing or duplicate reviewed topic")
     require(isinstance(claims, list) and bool(claims), "Missing source claims")
     require(len({c["id"] for c in claims}) == len(claims), "Duplicate source claim")
@@ -112,7 +165,8 @@ def validate(catalog, graph, review, repo=REPO):
         strings(topic["anchor_node_ids"])
         require(all(n in nodes for n in topic["anchor_node_ids"]), "Unknown topic anchor")
     for claim in claims:
-        fields(claim, "id topic_id type statement evidence_ids relations conditions exceptions chart_scope time_scope unresolved")
+        extra = " classifications" if claim["id"] in CLASSIFICATIONS else ""
+        fields(claim, "id topic_id type statement evidence_ids relations conditions exceptions chart_scope time_scope unresolved" + extra)
         require(isinstance(claim["id"], str) and claim["id"].strip(), "Missing claim ID")
         require(claim["topic_id"] in TOPICS and claim["type"] in KINDS, "Unknown claim topic/type")
         for field in ("statement", "chart_scope", "time_scope"):
@@ -132,6 +186,16 @@ def validate(catalog, graph, review, repo=REPO):
         require(len({evidence[e]["source_profile"] for e in claim["evidence_ids"]}) == 1,
                 "Different source profiles must remain separate claims")
         require(isinstance(claim["relations"], list), "Invalid claim relations")
+        if claim["topic_id"] in {"review_사길신", "review_사흉신"}:
+            require(claim["relations"] == [], "Classifications cannot create causal relations")
+        if claim["id"] in CLASSIFICATIONS:
+            require(claim["classifications"] == CLASSIFICATIONS[claim["id"]],
+                    "Classification differs from reviewed source membership")
+            for item in claim["classifications"]:
+                for group in item["groups"]:
+                    for member in group["members"]:
+                        require(member["node_id"] is None or member["node_id"] in nodes,
+                                "Unknown classification member node")
         seen = set()
         for relation in claim["relations"]:
             fields(relation, "source predicate target")
@@ -147,11 +211,15 @@ def validate(catalog, graph, review, repo=REPO):
         selected = [c for c in claims if c["topic_id"] == topic["id"]]
         require(selected, "Topic has no source claims")
         linked = {r[k] for c in selected for r in c["relations"] for k in ("source", "target")}
-        require(set(topic["anchor_node_ids"]) == linked, "Topic anchors must match explicit relation participants")
+        linked.update(m["node_id"] for c in selected for item in c.get("classifications", [])
+                      for group in item["groups"] for m in group["members"] if m["node_id"] is not None)
+        require(set(topic["anchor_node_ids"]) == linked,
+                "Topic anchors must match explicit relation participants or classification members")
         # Every original review caveat (including lexical ambiguity) is returned
         # together with the structured claims, not silently dropped during linking.
     return {"topics": len(topics), "claims": len(claims),
             "source_relations": sum(len(c["relations"]) for c in claims),
+            "source_classifications": sum(len(c.get("classifications", [])) for c in claims),
             "inference_enabled": False, "probability": None}
 
 
