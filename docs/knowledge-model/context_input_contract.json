@@ -1,5 +1,5 @@
 {
-  "version": "0.3-draft",
+  "version": "0.4-draft",
   "status": "research_observation_and_case_review_pipeline_implemented_labels_uncollected",
   "case_fields": {
     "case_id": "stable identifier",
@@ -20,17 +20,20 @@
     "label_origin": "expert/source annotation/empirical outcome must remain distinguishable",
     "review_status": "unreviewed/reviewed/disputed"
   },
-  "mapping_to_current_engine": "chart_context.mjs exports L1 natal and time observations; context_query.py evaluates 8 reviewed antecedents and supplies features to conditional_model.predict when a compatible model is explicitly supplied. This research CLI is not connected to application inference.",
+  "mapping_to_current_engine": "chart_context_v2.mjs exports L1 natal and time observations; context_query.py evaluates 8 reviewed antecedents and supplies features to conditional_model.predict when a compatible model is explicitly supplied. This research CLI is not connected to application inference. Frozen chart_context.mjs remains only for v1 reproduction and shared symbol observations.",
   "implemented_observation_request": {
     "feature_policy": "chart-observations-v1",
     "birth": "canonical L1 Gregorian fields; explicit hour integer 0..23 or null; known minute is forbidden with unknown hour",
-    "evaluated_at": "required ISO timestamp with UTC offset and whole-minute precision",
+    "evaluated_at": "required ISO timestamp with UTC offset and whole-minute precision; evaluate directly in UTC without local fold roundtrip",
     "daewoon_periods": "optional array of {start,end,pillar,source}; pillar is sexagenary index 0..59; overlapping periods are rejected; no active period means unknown",
-    "unknown_hour": "enumerate valid civil minutes, retain consensus and measurement bounds; never substitute noon or average the scenarios; timezone transition dates remain unresolved",
+    "unknown_hour": "enumerate every UTC inverse of civil hh:mm:00 under Intl integral-second offsets/transitions with absolute offset <26h; preserve seconds, consensus and bounds; no noon, averaging or probability weights",
     "features": "categorical presence 0/1/null; unweighted stem/branch fractions over 4 slots and surface-element fractions over 8 slots; day-master-relative wealth/authority and hidden-stem presence; temporal symbols and stem ten-gods; centered-pair samhap completion",
     "condition_values": "exact reviewed antecedents only, three-valued logic; condition match is not a personal interpretation or probability",
-    "model_compatibility": "require feature_policy plus identical review_sha256, adapter_sha256 and calculator_files; retain request and source provenance",
-    "not_implemented": "strength/root weighting, birth-derived precise daewoon start dates, learned labels/parameters, empirical calibration, time-transition learning"
+    "model_compatibility": "require feature_policy plus identical review_sha256, adapter_sha256 and calculator_files; adapter_sha256 binds v2 and v1 source hashes plus ICU/tz versions",
+    "not_implemented": "strength/root weighting, birth-derived precise daewoon start dates, learned labels/parameters, empirical calibration, time-transition learning",
+    "resolution_policy": "civil-minute-inverse-v2",
+    "known_hour": "reject missing civil minutes and repeated civil minutes; explicit fold selection is not implemented",
+    "calendar_support": "Gregorian fields 1900..2100, additionally restricted to the stored solar-term table and first available ipchun; historical Intl results can differ by runtime dataset"
   },
   "implemented_review_workflow": {
     "entrypoint": "case_review.py --input case_bundle.json [--compare]",

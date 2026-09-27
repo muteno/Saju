@@ -1,5 +1,7 @@
 # Saju 문맥 조건부 지식망 — v0.1
 
+현재 연구 계산 기본값은 [`chart_context_v2.mjs`](chart_context_v2.mjs)다. [자정 중복 수정·지원범위](FOUNDATION_TIMEZONE_RESOLUTION.md)를 확인한다. `chart_context.mjs`는 과거 F03 재현과 공유 기호 함수로 보존한다.
+
 기본 개념을 추출하고, 함께 놓이는 키워드·다중 변수·시점에 따라 달라지는 관계를 학습하기 위한 첫 작업본이다. 특정 앱에서 여는 노트가 목표가 아니며, 사용자 설명에 등장한 예시를 정답이나 규칙으로 채택하지 않는다.
 
 먼저 [READ_FIRST.md](READ_FIRST.md), [USER_INTENT_LOG.md](USER_INTENT_LOG.md), [PROJECT_AGENDA.md](PROJECT_AGENDA.md), [FOUNDATION_HANDOFF.md](FOUNDATION_HANDOFF.md)를 읽는다. 기초 보강이 현재 우선 작업이며 [BASIC_READING_PLAN.md](BASIC_READING_PLAN.md)는 그다음 적용 경로다. 원문 기록은 최신 요약으로 덮어쓰지 않는다.
@@ -28,7 +30,7 @@
 | `knowledge_query.py` | 노드·관계·조건·출처 조회, 동음이의어 구별 |
 | `legacy_import.py`, `data/legacy_review.json` | 기존 조건·분기 후보와 원문·개념 대응을 재현하는 검토 입력 |
 | `LEGACY_MIGRATION.md` | 기존 지도와 현재 모델 비교, 이관 범위와 미확인 항목 |
-| `chart_context.mjs`, `context_query.py` | L1 원국·시간 관찰값 산출과 원문 문맥을 복원한 조건 8개 판정 |
+| `chart_context_v2.mjs`, `context_query.py` | L1 원국·시간 관찰값 산출과 원문 문맥을 복원한 조건 8개 판정 |
 | `data/context_reviews.json`, `CONTEXT_BRIDGE.md` | 조건식·주변 원문·해시와 입력·측정·미상 처리 규약 |
 | `case_review.py`, `compare_models.py`, `CASE_REVIEW.md` | 사례·라벨·의존 자료·시점 검사와 같은 자료에서 조합 유무 모델 비교 |
 | `data/case_review_pilot.json` | 검토용 계산 예제 6개와 제안 목표·빈 라벨. 실제 학습 자료가 아님 |
@@ -62,7 +64,7 @@ python case_review.py
 python source_case_review.py --summary
 python case_review.py --compare
 python -m unittest discover -p 'test_*.py'
-node --test test_chart_context.mjs
+node --test test_chart_context.mjs test_timezone_resolution.mjs
 ```
 
 `신`은 천간과 지지 후보가 함께 반환된다. 의미가 확정되지 않은 입력을 하나로 합치지 않는다.
@@ -73,7 +75,7 @@ node --test test_chart_context.mjs
 
 기본 확률 실행은 매개변수가 미학습 상태이므로 `probability: null`이다. `--demo`에서만 추상 키워드 X·Y와 조건 A·B에 대해 임의의 시연 매개변수를 사용한다. 이 숫자는 문헌에서 측정한 값이나 사주 정확도가 아니다.
 
-특징 입력의 0은 관찰된 부재, 1은 완전한 활성, 중간값은 정의된 측정 기준에 따른 정도이며 `null`은 미상이다. `chart_context.mjs`는 원국의 기호 존재·구성 비율과 세운·월운, 명시된 기간의 대운 기호를 산출한다. 비율은 고정 자리 수에 대한 무가중 개수이며 강약·확률이 아니다. 조건 8개의 앞뒤 문맥 복원·미상 처리·모델 연결 범위는 `CONTEXT_BRIDGE.md`를 따른다. 이 실행에는 저장소의 L1 엔진·절기표·원문 DOCX가 필요하다.
+특징 입력의 0은 관찰된 부재, 1은 완전한 활성, 중간값은 정의된 측정 기준에 따른 정도이며 `null`은 미상이다. `chart_context_v2.mjs`는 원국의 기호 존재·구성 비율과 세운·월운, 명시된 기간의 대운 기호를 산출한다. 비율은 고정 자리 수에 대한 무가중 개수이며 강약·확률이 아니다. 조건 8개의 앞뒤 문맥 복원·미상 처리·모델 연결 범위는 `CONTEXT_BRIDGE.md`를 따른다. 이 실행에는 저장소의 L1 엔진·절기표·원문 DOCX가 필요하다.
 
 해석 후보가 동시에 성립할 수 있으면 각각의 sigmoid 출력을 사용한다. 후보가 서로 배타적이라고 명시한 비교 모드에서는 softmax를 사용한다. 모든 해석의 합을 무조건 1로 맞추지 않는다. 현재의 개별 후보 모델은 후보들 사이의 전체 결합분포를 학습하지 않으며, 이는 향후 요인 그래프/PSL 비교 범위다.
 

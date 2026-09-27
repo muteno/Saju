@@ -1,13 +1,13 @@
 # 기초 보강 인계 — GitHub에서 이어가는 시작점
 
-갱신: 2026-09-27 · 사용자 원문 [55](USER_INTENT_LOG.md)
-직전 PR #199 merged, main `563285970ddafdf0af9d9e0e746644d0cb99a98e`와 검증 tree `cd698c1d556d34cc6c31ea0675c89dc5799b3f1a` 일치를 확인했다.
-현재 작업: [F03 강약·자시 비교](FOUNDATION_CALCULATION_POLICIES.md). 원문17구간·도움128패턴·자시/절입29입력×2정책·미상10묶음을 재현했다. 배점만 교체하면64패턴 점수·14패턴 분류가 바뀌며 실제 사람의 변화율은 아니다. 출처 귀속/원인 단정 오류와 기존 시간대 누락을 기록했다. 앱·기존 조회·학습은 그대로다.
-**다음 첫 작업은 §5.1의 자정 중복 시각 누락 수정이다.** 이번 검사·병합은 실제 PR 영수증을 먼저 확인한다.
+갱신: 2026-09-28 · 사용자 원문 [56](USER_INTENT_LOG.md)
+직전 PR #200 merged, main `f97cb2cd1657d4b2524cef9f0119e4501d364dfe`와 검증 tree `235e4651b93dbf5b7cf18ad9acbb643371e8d3ee` 일치를 확인했다.
+현재 작업: [자정 중복 시각 누락 수정](FOUNDATION_TIMEZONE_RESOLUTION.md). 새 연구어댑터 v2를 기본 소비 경로에 연결하고 상파울루1500후보·일주[19,20,21]을 복원했다. 알려진 fold/gap은 거절하며 역사UTC초·평가 절대시각을 보존한다. 이전 F03 비교자료는 그대로다.
+**다음 첫 작업은 §5.1의 강약 정책·앱 소비 경로 검수다.** 이번 최종 검사·병합은 실제 PR 영수증을 먼저 확인한다.
 
 2026-09-23 후속: [F01 검토표](FOUNDATION_REVIEW.md)·[판정과 원문 위치](data/foundation_taxonomy_review.json)·[전후 측정](data/foundation_match_measurement.json)을 읽는다. PR #183의 채택66행 중65행은 **기존 판본 보존**이며 새 의미 승인이 아니다. 당시 실제 추가는 `부부 사이`1개였고 PR #187의 상극3개를 포함한 현재 누적은4개다. 부부관계·부부간은 천간합/육합 비유와의 구분 문제로 보류했다. 별칭 판정·P2 재생성 전에 D5 인용 자격을 별도 검수해야 한다. 총칭·넓은 구어와 기존 별칭의 다른 뜻은 남아 있으며 F01 전체 통합 완료로 해석하지 않는다. 아래 §3의 수치는 이전 스냅샷으로 보존한다.
 
-현재 작업의 중단 재개는 [F03 계산 판본 검수](FOUNDATION_CALCULATION_POLICIES.md)와 실제 PR 상태를 먼저 확인한다. [통합 체크포인트](WORK_CHECKPOINT.md)는 PR #197까지의 보존 이력이다. 이전 자동 승인 검토에서 공개가 거절된 STATUS/체크포인트는 재전송하지 않는다. 사용자의 원문36에 따른 임시 작업기록은 로컬에 남기며 기존 두 파일의 갱신은 미이행이다. 기능 범위·다음 작업은 이 인계, 실제 검사·병합 완료는 PR 영수증으로 확인한다.
+현재 작업의 중단 재개는 [시간대 후속 검수](FOUNDATION_TIMEZONE_RESOLUTION.md)와 실제 PR 상태를 먼저 확인한다. [통합 체크포인트](WORK_CHECKPOINT.md)는 PR #197까지의 보존 이력이다. 이전 자동 승인 검토에서 공개가 거절된 STATUS/체크포인트는 재전송하지 않는다. 사용자의 원문36에 따른 임시 작업기록은 로컬에 남기며 기존 두 파일의 갱신은 미이행이다. 기능 범위·다음 작업은 이 인계, 실제 검사·병합 완료는 PR 영수증으로 확인한다.
 
 ## 1. 지금 무엇을 하고 있나
 
@@ -66,31 +66,31 @@
 |---|---|---|---|
 | F00 | 인계 자료 보존 완료 / 전체 자산 대조는 미완료 | 의도·청사진·감사·선택 판본 차이 연결 | GitHub만으로 이 표와 실제 차이 자료를 찾을 수 있음 |
 | **F01** | **차이76개·검색 표현4개 적용 / 전체 의미 검수 미완료** | [검토표](FOUNDATION_REVIEW.md)에서 합·충 후속 검토 및 보충 제외는 [후속 문서](FOUNDATION_GENERAL_TERMS.md) 참조. 총칭 실행 등재는 보류하고 [통근 후속](FOUNDATION_ROOTING.md) 원문/가상 측정 완료·추가0. [지장간 겹침/단계 명칭 후속](FOUNDATION_HIDDEN_STAGES.md)에서4행 복구·원문 검수 후 [월률분야·사령](FOUNDATION_MONTH_COMMAND.md) 원문/검색 검수·사령부28행 제외. 사령관·단계 오탐은 보류 조건 유지. 긴 별칭 추가 시 오행·자리 노드 보존 확인 | 현재67채택(65기존 보존)·5분리·4보류. 상극행은3개 부분 채택/1개 보류. 후속 채택마다 원문·반례·적용 범위·회귀 검사 연결. 승인되지 않은 이름을 실행에 섞지 않음 |
-| **F02** | **31행 반영표·후속6검수 / 잔여 의미 검수 진행** | [첫 묶음](FOUNDATION_F02_SIX.md): 실행277개, 원문24구간·별도 검사. 여섯 주제 조회 뒤 [31행 반영표](FOUNDATION_GAP31.md)·후속 정표기4/공망별칭2를 반영해 검색281개. [부분형 후속](FOUNDATION_PARTIAL.md)에서 검색282개. [활인업·재고귀인 조회](FOUNDATION_LIVELIHOOD_LINKS.md) 뒤 [진도화·가도화 비교](FOUNDATION_PEACH_LINKS.md)로10주제 연결. 다음은 §5.1의 F03 판본 비교 | 원문·범위·검색 영향·기존 개념 보존 확인. 용어 등재와 관계/조건/생성본 적재를 구분 |
-| F03 | **강약·자시 비교 완료 / 앱 정책 적용·시간대 누락 수정 남음** | [계산 판본 검수](FOUNDATION_CALCULATION_POLICIES.md), 다음은 자정 중복 시각의 원국 어댑터 누락 | 강약 연지/시지 배점과 자시 처리부터 근거·현 실행값·영향 기록. 미결은 몰래 한쪽으로 고정하지 않음 |
+| **F02** | **31행 반영표·후속6검수 / 잔여 의미 검수 진행** | [첫 묶음](FOUNDATION_F02_SIX.md): 실행277개, 원문24구간·별도 검사. 여섯 주제 조회 뒤 [31행 반영표](FOUNDATION_GAP31.md)·후속 정표기4/공망별칭2를 반영해 검색281개. [부분형 후속](FOUNDATION_PARTIAL.md)에서 검색282개. [활인업·재고귀인 조회](FOUNDATION_LIVELIHOOD_LINKS.md) 뒤 [진도화·가도화 비교](FOUNDATION_PEACH_LINKS.md)로10주제 연결. F03 판본 비교·시간대 수정 뒤 §5.1의 강약 소비 경로 검수 | 원문·범위·검색 영향·기존 개념 보존 확인. 용어 등재와 관계/조건/생성본 적재를 구분 |
+| F03 | **강약·자시 비교·연구 시간대 누락 수정 / 앱 정책 적용 남음** | [계산 판본 검수](FOUNDATION_CALCULATION_POLICIES.md)·[시간대 수정](FOUNDATION_TIMEZONE_RESOLUTION.md), 다음은 강약 정책의 소비 경로 | 강약 연지/시지 배점과 자시 처리부터 근거·현 실행값·영향 기록. 미결은 몰래 한쪽으로 고정하지 않음 |
 | F04 | F01·F03 뒤 필요한 범위 | 기존 P2 12개 차이와 조건 후보의 첫 묶음을 검토 | 판단 단계·근거·조건·예외·미상 구별. 인용 검사를 낮추지 않고 실제 재검증 |
 | F05 | F01~F04 결과 활용 | 기존 기본 풀이·60일주 검수에 연결 | 적용 문장·조건·근거 대응, 생시 미상·이견 보존. 대표 묶음과 전량 완료를 구분 |
 | F06 | 후속 | 시간·환경 확장, 관측·검토 라벨, 동일 자료 모델 비교·보정 | 문헌 재현과 실제 결과 검증 분리. 미학습 수치는 확률로 제시하지 않음 |
 
-### 5.1 다음 세션의 첫 실행 — 자정 중복 시각 누락 수정
+### 5.1 다음 세션의 첫 실행 — 강약 정책·앱 소비 경로 검수
 
-1. 필독 문서→[F03 검수](FOUNDATION_CALCULATION_POLICIES.md)→실제 main/진행PR을 대조한다. 이번 비교 PR이 미병합이면 검사·검토·병합부터 끝낸다. 과거 STATUS/체크포인트의 ‘다음’이나 UI 진행 표시만 보고 끝난 작업을 반복하지 않는다.
-2. `chart_context.mjs`의 `offsets.size>1` 감지는 `manseryeok.js`가 선택한 한쪽 UTC만 본다. **America/Sao_Paulo,2019-02-16,경도-46.633,생시 미상,보정 켬,midnight23**에서 현재1440/[19,20]이나 중복23시의 다른 UTC에서는 일주21이 가능하다. [측정](data/foundation_calculation_measurement.json)의 `overlap_witness`와 `unknown_time`을 먼저 재현한다.
-3. 생시 미상·알려진 중복/없는 시각·평가 시각을 구별한다. 뉴욕2024-03-10/11-03,서울1988-10-09,Apia2011-12-30 및 자시·절입 경계에서 현재 선택 방향/누락을 대조한다. 정책 결정 없이 중복의 한쪽을 확정하거나 평균내지 않는다. 새 비교기의 정시 offset 탐색을 범용 시간대 해결기로 그대로 옮기지 않는다.
-4. 후속 코드 변경 시 이 비교본을 보존하고 새 검증 판본/변경 계약을 명시한다. 기존 원문·기준 해시를 조용히 바꿔 통과시키지 않는다. Node/ICU/시간대DB 버전과 명시적 계산 옵션을 기록한다. `--check`는 코드·입력 해시/계산결과 변경을 탐지한다.
-5. 강약 앱 적용은 별도다. raw와 전사에서 연지10/시지15 확인, 현재 앱15/10. 배점 교체만의 영향은128/64/14·±5. 전체 강약 경계·득세·본기 선택은 이 자료로 정답 확정되지 않는다. `judge→keyset→report→saju/Analysis/jeonggok`·생시미상12시 대체와 일주 확정 문구를 같이 검수한다. vendor 직접 편집 금지.
-6. F01 총칭/통근/조후/단계·사령관/사령원·월령용사, F02 부분형3행/상형·육형·활인업/재고귀인 개인 적용·진도화 보드 자리 헤더/세부표·ASR, F03 기간/현침살, F04 P2 12개/D5, 기본풀이·실제학습은 남는다. 사전·관계·P2/D5를 무검수 재생성하지 않는다.
-7. 단계별 임시기록→필수검사→검증단위 원격저장→독립검토·병합→다음 인계. 공개가 거절된 STATUS/WORK_CHECKPOINT는 재전송하지 않고 실제 절차의 영수증은 해당 PR을 확인한다.
+1. 필독 문서→[시간대 수정](FOUNDATION_TIMEZONE_RESOLUTION.md)→실제 main/진행PR을 대조한다. 미병합이면 최신 head 검사·검토·병합부터 끝낸다. 끝난 PR #200과 자정 중복 수정을 반복하지 않는다.
+2. 현재 기본 연구 계산은 `chart_context_v2.mjs`와 `context_query.py`다. 기존 `chart_context.mjs`·F03 비교기/검토/측정은 과거 오류 재현용으로 동결한다. 새 측정의 `--check`는 소스와12개 전후 결과를 확인한다. 기존 해시를 몰래 갱신하거나 옛 어댑터를 기본값으로 되돌리지 않는다.
+3. [강약 판본 검수](FOUNDATION_CALCULATION_POLICIES.md) §1~2/5의 원문을 재독한다. 보드/전사는 연지10·시지15, 앱은15·10이다. 배점만 교체한 합성128패턴은 점수64·분류14변화/±5이며 사람의 변화율이 아니다. 분류 경계·본기 도움·득세를 같은 출처의 검증된 완성정책으로 간주하지 않는다.
+4. `judge→keyset→report→app/src/data/saju.ts`와 `strengthJudge→jeonggokRaw→Analysis/정곡` 두 소비 경로에서 실제 소비되는 점수·라벨·문구를 목록화하고 보정/생시미상 입력의 차이를 측정한다. 기존 정오 대체와 ‘일주 중심의 풀이는 그대로 정확’ 문구의 적용범위도 대조한다. 이번 연구어댑터 수정이 앱에 반영됐다고 보고하지 않는다.
+5. 확인한 원문으로 교정 가능한 배점과 추가 의미 검수/운영자 결정이 필요한 경계를 분리해 제시한다. 기존 분류 유지+자리배점 최소교정과 출처별 별도정책의 차이를 비교한 뒤 실행범위를 정한다. 다른 저자의 총점/경계를 임의로 섞지 않는다. vendor는 정본 수정 후 동기화 스크립트로만 생성한다. UI변경이면 정본·전후실측을 먼저 준비한다.
+6. F01 총칭/통근/조후/단계·사령관/사령원·월령용사, F02 부분형3행/상형·육형/개인 적용·보드자리/ASR, F03 기간/현침살, F04 P2 12개/D5, 기본풀이·실제학습은 남는다. 무검수 재생성하지 않는다. 알려진 fold의 사용자 선택, 시간대 전세계 정확성/운영 성능도 미완료다.
+7. 임시기록→필수검사→검증단위 원격저장→독립검토·병합→다음 인계를 따른다. 공개가 거절된 STATUS/WORK_CHECKPOINT는 재전송하지 않고 실제 검사·병합 영수증은 PR에 남긴다.
 
 ```bash
+node docs/knowledge-model/measure_timezone_resolution.mjs --check
+node --test docs/knowledge-model/test_timezone_resolution.mjs
 node docs/knowledge-model/measure_calculation_policies.mjs --check
-node --test docs/knowledge-model/test_calculation_policies.mjs
-python3 -m unittest discover -s docs/knowledge-model -p 'test_foundation*.py'
-node --test docs/knowledge-model/test_chart_context.mjs
+python3 -m unittest discover -s docs/knowledge-model -p 'test_timezone_bridge.py'
 npm run verify
 ```
 
-기존 기대값: F01 76/271/4/176·검색282·기본그래프58/132/11·조건8·출처조회10주제/52주장/12관계/9분류/21조건표·42기본노드/고유46인용·학습적격0·확률null. 새 Python2개가 F03 재현기와 Node7개를 필수 게이트에서 호출한다. 최종 검사·병합은 PR 영수증을 확인한다.
+기존 기대값: F01 76/271/4/176·검색282·기본그래프58/132/11·조건8·출처조회10/52/12/9/21·학습적격0·확률null. 새 Python3개가 시간대 회귀·후속 측정·기본 소비 경로를 필수 게이트에 연결한다. 최종 검사·병합은 PR 영수증을 확인한다.
 
 ### 5.2 PR #184 당시 실행 순서 — 합·충 총칭 2개(보존 이력)
 
@@ -217,3 +217,24 @@ python3 -m unittest discover -s docs/knowledge-model -p 'test_foundation*.py'
 ```
 
 코퍼스가 없으면 [통근 문서](FOUNDATION_ROOTING.md#새-체크아웃에서-다시-측정)의 생성 명령을 사용한다. 첫 여섯 명칭의 전후는 `measure_f02_six.py`·`data/foundation_f02_measurement.json`에 보존한다. 이전 측정은 당시 소스/사전 기준이므로 현재 코드에서 그대로 재실행해도 된다는 뜻은 아니다.
+
+### 5.6 PR #200 뒤 첫 실행 — 자정 중복 시각 수정(보존 이력)
+
+
+1. 필독 문서→[F03 검수](FOUNDATION_CALCULATION_POLICIES.md)→실제 main/진행PR을 대조한다. 이번 비교 PR이 미병합이면 검사·검토·병합부터 끝낸다. 과거 STATUS/체크포인트의 ‘다음’이나 UI 진행 표시만 보고 끝난 작업을 반복하지 않는다.
+2. `chart_context.mjs`의 `offsets.size>1` 감지는 `manseryeok.js`가 선택한 한쪽 UTC만 본다. **America/Sao_Paulo,2019-02-16,경도-46.633,생시 미상,보정 켬,midnight23**에서 현재1440/[19,20]이나 중복23시의 다른 UTC에서는 일주21이 가능하다. [측정](data/foundation_calculation_measurement.json)의 `overlap_witness`와 `unknown_time`을 먼저 재현한다.
+3. 생시 미상·알려진 중복/없는 시각·평가 시각을 구별한다. 뉴욕2024-03-10/11-03,서울1988-10-09,Apia2011-12-30 및 자시·절입 경계에서 현재 선택 방향/누락을 대조한다. 정책 결정 없이 중복의 한쪽을 확정하거나 평균내지 않는다. 새 비교기의 정시 offset 탐색을 범용 시간대 해결기로 그대로 옮기지 않는다.
+4. 후속 코드 변경 시 이 비교본을 보존하고 새 검증 판본/변경 계약을 명시한다. 기존 원문·기준 해시를 조용히 바꿔 통과시키지 않는다. Node/ICU/시간대DB 버전과 명시적 계산 옵션을 기록한다. `--check`는 코드·입력 해시/계산결과 변경을 탐지한다.
+5. 강약 앱 적용은 별도다. raw와 전사에서 연지10/시지15 확인, 현재 앱15/10. 배점 교체만의 영향은128/64/14·±5. 전체 강약 경계·득세·본기 선택은 이 자료로 정답 확정되지 않는다. `judge→keyset→report→saju/Analysis/jeonggok`·생시미상12시 대체와 일주 확정 문구를 같이 검수한다. vendor 직접 편집 금지.
+6. F01 총칭/통근/조후/단계·사령관/사령원·월령용사, F02 부분형3행/상형·육형·활인업/재고귀인 개인 적용·진도화 보드 자리 헤더/세부표·ASR, F03 기간/현침살, F04 P2 12개/D5, 기본풀이·실제학습은 남는다. 사전·관계·P2/D5를 무검수 재생성하지 않는다.
+7. 단계별 임시기록→필수검사→검증단위 원격저장→독립검토·병합→다음 인계. 공개가 거절된 STATUS/WORK_CHECKPOINT는 재전송하지 않고 실제 절차의 영수증은 해당 PR을 확인한다.
+
+```bash
+node docs/knowledge-model/measure_calculation_policies.mjs --check
+node --test docs/knowledge-model/test_calculation_policies.mjs
+python3 -m unittest discover -s docs/knowledge-model -p 'test_foundation*.py'
+node --test docs/knowledge-model/test_chart_context.mjs
+npm run verify
+```
+
+기존 기대값: F01 76/271/4/176·검색282·기본그래프58/132/11·조건8·출처조회10주제/52주장/12관계/9분류/21조건표·42기본노드/고유46인용·학습적격0·확률null. 새 Python2개가 F03 재현기와 Node7개를 필수 게이트에서 호출한다. 최종 검사·병합은 PR 영수증을 확인한다.

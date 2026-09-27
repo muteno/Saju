@@ -1,0 +1,1193 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "f97cb2cd1657d4b2524cef9f0119e4501d364dfe",
+  "resolution_policy": "civil-minute-inverse-v2",
+  "method": "Same requests, frozen v1 vs v2; scenario counts are possible instants, not probabilities. v1 snapshots remain immutable.",
+  "runtime": {
+    "node": "v24.19.0",
+    "icu": "78.3",
+    "tz": "2026b"
+  },
+  "source_hashes": [
+    {
+      "path": "docs/knowledge-model/chart_context.mjs",
+      "sha256": "c40b8099fefc3dad83256a86f85d1d0b70bd44662d9fcd7361a09338b1bece66"
+    },
+    {
+      "path": "docs/knowledge-model/measure_calculation_policies.mjs",
+      "sha256": "b5bde30438386b1b0c261bb7eb7f3828e0cee6b8945199d12cdb74ba28a952b3"
+    },
+    {
+      "path": "docs/knowledge-model/data/foundation_calculation_review.json",
+      "sha256": "f3dc94ae6a14b65d98be04b08e9fe2884b6e5d8cf2fc67abcf7be7f3541b79b8"
+    },
+    {
+      "path": "docs/knowledge-model/data/foundation_calculation_measurement.json",
+      "sha256": "9647c836531ef36b027cc04744b3732d8528d67683c5024a6458678871d8647e"
+    },
+    {
+      "path": "docs/knowledge-model/chart_context_v2.mjs",
+      "sha256": "ff326d940f3f738f4731870c3e3fb4df7c80c79fee5a8f9e1ff37cab1b0bdd38"
+    },
+    {
+      "path": "docs/knowledge-model/context_query.py",
+      "sha256": "d5aee09fab9e697a73dcc81f40b9539a55cf3e3f015b30cfc95a87e61b5b978c"
+    },
+    {
+      "path": "docs/knowledge-model/measure_timezone_resolution.mjs",
+      "sha256": "14d619c052c85f9d43a417b6b5e8a52c8d4080bdbcf8d403d8fef0ad2151daaa"
+    }
+  ],
+  "rows": [
+    {
+      "id": "ordinary",
+      "request": {
+        "birth": {
+          "year": 1990,
+          "month": 1,
+          "day": 1,
+          "timeZone": "Asia/Seoul",
+          "longitude": 126.978,
+          "hour": null,
+          "minute": null,
+          "gender": "F",
+          "solarTimeCorrection": true,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-27T12:00:00Z"
+      },
+      "before": {
+        "status": "ok",
+        "natal": {
+          "status": "minute_scenarios",
+          "hour_unknown": true,
+          "scenarios": 1440,
+          "pillar_choices": {
+            "year": [
+              5
+            ],
+            "month": [
+              12
+            ],
+            "day": [
+              2,
+              3
+            ],
+            "hour": [
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36
+            ]
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "9b8eb43c081f904538a228ad9ff547b4c7e777e0a8ddbc546d3d19fc89643356",
+        "bounds_sha256": "e3e9a0b998d94cb66d58ca8ae67f9fb4db572467a878e5d6e13bb9022073f176",
+        "probability": null
+      },
+      "after": {
+        "status": "ok",
+        "natal": {
+          "status": "minute_scenarios",
+          "hour_unknown": true,
+          "scenarios": 1440,
+          "pillar_choices": {
+            "year": [
+              5
+            ],
+            "month": [
+              12
+            ],
+            "day": [
+              2,
+              3
+            ],
+            "hour": [
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36
+            ]
+          },
+          "civil_date_resolution": {
+            "valid_minutes": 1440,
+            "missing_minutes": 0,
+            "repeated_minutes": 0,
+            "possible_instants": 1440
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "9b8eb43c081f904538a228ad9ff547b4c7e777e0a8ddbc546d3d19fc89643356",
+        "bounds_sha256": "e3e9a0b998d94cb66d58ca8ae67f9fb4db572467a878e5d6e13bb9022073f176",
+        "probability": null
+      }
+    },
+    {
+      "id": "ipchun",
+      "request": {
+        "birth": {
+          "year": 2024,
+          "month": 2,
+          "day": 4,
+          "timeZone": "Asia/Seoul",
+          "longitude": 126.978,
+          "hour": null,
+          "minute": null,
+          "gender": "F",
+          "solarTimeCorrection": true,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-27T12:00:00Z"
+      },
+      "before": {
+        "status": "ok",
+        "natal": {
+          "status": "minute_scenarios",
+          "hour_unknown": true,
+          "scenarios": 1440,
+          "pillar_choices": {
+            "year": [
+              39,
+              40
+            ],
+            "month": [
+              1,
+              2
+            ],
+            "day": [
+              34,
+              35
+            ],
+            "hour": [
+              0,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59
+            ]
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "573728df8661bbedf33ebf343b873c363b190ad4ee7a9620e285be5322003413",
+        "bounds_sha256": "29441a322671638d2e7ac6ad2939b59d82803e9fd5ccc584c623a7aeae9da515",
+        "probability": null
+      },
+      "after": {
+        "status": "ok",
+        "natal": {
+          "status": "minute_scenarios",
+          "hour_unknown": true,
+          "scenarios": 1440,
+          "pillar_choices": {
+            "year": [
+              39,
+              40
+            ],
+            "month": [
+              1,
+              2
+            ],
+            "day": [
+              34,
+              35
+            ],
+            "hour": [
+              0,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59
+            ]
+          },
+          "civil_date_resolution": {
+            "valid_minutes": 1440,
+            "missing_minutes": 0,
+            "repeated_minutes": 0,
+            "possible_instants": 1440
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "573728df8661bbedf33ebf343b873c363b190ad4ee7a9620e285be5322003413",
+        "bounds_sha256": "29441a322671638d2e7ac6ad2939b59d82803e9fd5ccc584c623a7aeae9da515",
+        "probability": null
+      }
+    },
+    {
+      "id": "midnight-fold",
+      "request": {
+        "birth": {
+          "year": 2019,
+          "month": 2,
+          "day": 16,
+          "timeZone": "America/Sao_Paulo",
+          "longitude": -46.633,
+          "hour": null,
+          "minute": null,
+          "gender": "F",
+          "solarTimeCorrection": true,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-27T12:00:00Z"
+      },
+      "before": {
+        "status": "ok",
+        "natal": {
+          "status": "minute_scenarios",
+          "hour_unknown": true,
+          "scenarios": 1440,
+          "pillar_choices": {
+            "year": [
+              35
+            ],
+            "month": [
+              2
+            ],
+            "day": [
+              19,
+              20
+            ],
+            "hour": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              59
+            ]
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "34ee821f5317d5165fb8f112f45748f787ed13943bebff95cc5165493841bd63",
+        "bounds_sha256": "65cf0545e1759fbaa31ffac582cb0ce0a53fbe203814bdf1534ee1d7e7723245",
+        "probability": null
+      },
+      "after": {
+        "status": "ok",
+        "natal": {
+          "status": "minute_scenarios",
+          "hour_unknown": true,
+          "scenarios": 1500,
+          "pillar_choices": {
+            "year": [
+              35
+            ],
+            "month": [
+              2
+            ],
+            "day": [
+              19,
+              20,
+              21
+            ],
+            "hour": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              59
+            ]
+          },
+          "civil_date_resolution": {
+            "valid_minutes": 1440,
+            "missing_minutes": 0,
+            "repeated_minutes": 60,
+            "possible_instants": 1500
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "ab073c4627ceaaf79d7a2a73f5d6566f7a448869a77f1dcb49a874c98b4b4b24",
+        "bounds_sha256": "ad9b693a716c68ff89987ecc0ac9434d4e8aa72bd34530f9a872a3b7b4b57149",
+        "probability": null
+      }
+    },
+    {
+      "id": "dst-gap",
+      "request": {
+        "birth": {
+          "year": 2024,
+          "month": 3,
+          "day": 10,
+          "timeZone": "America/New_York",
+          "longitude": -74,
+          "hour": null,
+          "minute": null,
+          "gender": "F",
+          "solarTimeCorrection": true,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-27T12:00:00Z"
+      },
+      "before": {
+        "status": "ok",
+        "natal": {
+          "status": "timezone_transition_unresolved",
+          "hour_unknown": true,
+          "scenarios": 1380,
+          "pillar_choices": {
+            "year": [
+              40
+            ],
+            "month": [
+              3
+            ],
+            "day": [
+              9,
+              10
+            ],
+            "hour": [
+              0,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59
+            ]
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "f4668a690b4a86e4b83d81aa5b3c91fd2b22a9f7153216106c5a1c3743499c8c",
+        "bounds_sha256": "4f7b8b74bc6f58069854fccf8cfff41419238f588a624c6fd0ee709e0b0caf92",
+        "probability": null
+      },
+      "after": {
+        "status": "ok",
+        "natal": {
+          "status": "minute_scenarios",
+          "hour_unknown": true,
+          "scenarios": 1380,
+          "pillar_choices": {
+            "year": [
+              40
+            ],
+            "month": [
+              3
+            ],
+            "day": [
+              9,
+              10
+            ],
+            "hour": [
+              0,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59
+            ]
+          },
+          "civil_date_resolution": {
+            "valid_minutes": 1380,
+            "missing_minutes": 60,
+            "repeated_minutes": 0,
+            "possible_instants": 1380
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "64add21baf95646f07f5d902ea548e5fcda28fa6f64478130271b5f8758d2625",
+        "bounds_sha256": "540f2a1390c99614b9d39f68cda67c0d3710c1ae66a9267cc128b101af6da149",
+        "probability": null
+      }
+    },
+    {
+      "id": "dst-fold",
+      "request": {
+        "birth": {
+          "year": 2024,
+          "month": 11,
+          "day": 3,
+          "timeZone": "America/New_York",
+          "longitude": -74,
+          "hour": null,
+          "minute": null,
+          "gender": "F",
+          "solarTimeCorrection": true,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-27T12:00:00Z"
+      },
+      "before": {
+        "status": "ok",
+        "natal": {
+          "status": "timezone_transition_unresolved",
+          "hour_unknown": true,
+          "scenarios": 1440,
+          "pillar_choices": {
+            "year": [
+              40
+            ],
+            "month": [
+              10
+            ],
+            "day": [
+              7,
+              8
+            ],
+            "hour": [
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36
+            ]
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "f4668a690b4a86e4b83d81aa5b3c91fd2b22a9f7153216106c5a1c3743499c8c",
+        "bounds_sha256": "4f7b8b74bc6f58069854fccf8cfff41419238f588a624c6fd0ee709e0b0caf92",
+        "probability": null
+      },
+      "after": {
+        "status": "ok",
+        "natal": {
+          "status": "minute_scenarios",
+          "hour_unknown": true,
+          "scenarios": 1500,
+          "pillar_choices": {
+            "year": [
+              40
+            ],
+            "month": [
+              10
+            ],
+            "day": [
+              7,
+              8
+            ],
+            "hour": [
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36
+            ]
+          },
+          "civil_date_resolution": {
+            "valid_minutes": 1440,
+            "missing_minutes": 0,
+            "repeated_minutes": 60,
+            "possible_instants": 1500
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "85b415427b33db1e019ebd3f0eae963a7d73704fe357655e7bcfe4771cdc2785",
+        "bounds_sha256": "b9f785f9edd0617253755d039b1096f7f8e64898896c7d25970d4419444db1e0",
+        "probability": null
+      }
+    },
+    {
+      "id": "seoul-fold",
+      "request": {
+        "birth": {
+          "year": 1988,
+          "month": 10,
+          "day": 9,
+          "timeZone": "Asia/Seoul",
+          "longitude": 126.978,
+          "hour": null,
+          "minute": null,
+          "gender": "F",
+          "solarTimeCorrection": true,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-27T12:00:00Z"
+      },
+      "before": {
+        "status": "ok",
+        "natal": {
+          "status": "timezone_transition_unresolved",
+          "hour_unknown": true,
+          "scenarios": 1440,
+          "pillar_choices": {
+            "year": [
+              4
+            ],
+            "month": [
+              58
+            ],
+            "day": [
+              32,
+              33,
+              34
+            ],
+            "hour": [
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48
+            ]
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "f4668a690b4a86e4b83d81aa5b3c91fd2b22a9f7153216106c5a1c3743499c8c",
+        "bounds_sha256": "4f7b8b74bc6f58069854fccf8cfff41419238f588a624c6fd0ee709e0b0caf92",
+        "probability": null
+      },
+      "after": {
+        "status": "ok",
+        "natal": {
+          "status": "minute_scenarios",
+          "hour_unknown": true,
+          "scenarios": 1500,
+          "pillar_choices": {
+            "year": [
+              4
+            ],
+            "month": [
+              58
+            ],
+            "day": [
+              32,
+              33,
+              34
+            ],
+            "hour": [
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48
+            ]
+          },
+          "civil_date_resolution": {
+            "valid_minutes": 1440,
+            "missing_minutes": 0,
+            "repeated_minutes": 60,
+            "possible_instants": 1500
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "f736423f7f7c77f482b611b975cb594533ed423164787a09a3d0a6064229f98e",
+        "bounds_sha256": "b5e32f3ff9ae916de002d5950710b4fee0227e444a55b8bf2244286b23160130",
+        "probability": null
+      }
+    },
+    {
+      "id": "half-hour-fold",
+      "request": {
+        "birth": {
+          "year": 2024,
+          "month": 4,
+          "day": 7,
+          "timeZone": "Australia/Lord_Howe",
+          "longitude": 159.08,
+          "hour": null,
+          "minute": null,
+          "gender": "F",
+          "solarTimeCorrection": true,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-27T12:00:00Z"
+      },
+      "before": {
+        "status": "ok",
+        "natal": {
+          "status": "timezone_transition_unresolved",
+          "hour_unknown": true,
+          "scenarios": 1440,
+          "pillar_choices": {
+            "year": [
+              40
+            ],
+            "month": [
+              4
+            ],
+            "day": [
+              37,
+              38
+            ],
+            "hour": [
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36
+            ]
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "f4668a690b4a86e4b83d81aa5b3c91fd2b22a9f7153216106c5a1c3743499c8c",
+        "bounds_sha256": "4f7b8b74bc6f58069854fccf8cfff41419238f588a624c6fd0ee709e0b0caf92",
+        "probability": null
+      },
+      "after": {
+        "status": "ok",
+        "natal": {
+          "status": "minute_scenarios",
+          "hour_unknown": true,
+          "scenarios": 1470,
+          "pillar_choices": {
+            "year": [
+              40
+            ],
+            "month": [
+              4
+            ],
+            "day": [
+              37,
+              38
+            ],
+            "hour": [
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36
+            ]
+          },
+          "civil_date_resolution": {
+            "valid_minutes": 1440,
+            "missing_minutes": 0,
+            "repeated_minutes": 30,
+            "possible_instants": 1470
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "8c4ddd7ce947b891867bdbcab4bb68ffd3f81960e357f1646a060b2671c4e1eb",
+        "bounds_sha256": "3a67ed47e5c9c8851f8302bd16c1cdc20b5d189150d1ea432fc59d5c51646726",
+        "probability": null
+      }
+    },
+    {
+      "id": "date-gap",
+      "request": {
+        "birth": {
+          "year": 2011,
+          "month": 12,
+          "day": 30,
+          "timeZone": "Pacific/Apia",
+          "longitude": -172,
+          "hour": null,
+          "minute": null,
+          "gender": "F",
+          "solarTimeCorrection": true,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-27T12:00:00Z"
+      },
+      "before": {
+        "status": "error",
+        "message": "No valid birth minute exists on the selected civil date"
+      },
+      "after": {
+        "status": "error",
+        "message": "No valid birth minute exists on the selected civil date"
+      }
+    },
+    {
+      "id": "known-fold",
+      "request": {
+        "birth": {
+          "year": 2019,
+          "month": 2,
+          "day": 16,
+          "timeZone": "America/Sao_Paulo",
+          "longitude": -46.633,
+          "hour": 23,
+          "minute": 30,
+          "gender": "F",
+          "solarTimeCorrection": true,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-27T12:00:00Z"
+      },
+      "before": {
+        "status": "ok",
+        "natal": {
+          "status": "calculated",
+          "hour_unknown": false,
+          "scenarios": 1,
+          "pillar_choices": {
+            "year": [
+              35
+            ],
+            "month": [
+              2
+            ],
+            "day": [
+              20
+            ],
+            "hour": [
+              11
+            ]
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 42,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 33,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "112471bdfba0d3065c29bdfb738bbf2bb3547c60dae8f77b5245964922330698",
+        "bounds_sha256": "f459949b0a1d2494305cd33db75716f248389fd72ebd90942f19c2a9092bd9e3",
+        "probability": null
+      },
+      "after": {
+        "status": "error",
+        "message": "Birth civil time is ambiguous in the selected timezone; an explicit occurrence policy is required"
+      }
+    },
+    {
+      "id": "known-gap",
+      "request": {
+        "birth": {
+          "year": 2024,
+          "month": 3,
+          "day": 10,
+          "timeZone": "America/New_York",
+          "longitude": -74,
+          "hour": 2,
+          "minute": 30,
+          "gender": "F",
+          "solarTimeCorrection": true,
+          "lateZiRule": "midnight23"
+        },
+        "evaluated_at": "2026-09-27T12:00:00Z"
+      },
+      "before": {
+        "status": "error",
+        "message": "Birth civil time does not exist in the selected timezone"
+      },
+      "after": {
+        "status": "error",
+        "message": "Birth civil time does not exist in the selected timezone"
+      }
+    },
+    {
+      "id": "historic-second-ipchun",
+      "request": {
+        "birth": {
+          "year": 1901,
+          "month": 2,
+          "day": 4,
+          "hour": 20,
+          "minute": 7,
+          "gender": "F",
+          "timeZone": "Asia/Seoul",
+          "longitude": 126.978
+        },
+        "evaluated_at": "1902-01-01T00:00:00Z"
+      },
+      "before": {
+        "status": "error",
+        "message": "Evaluation instant is ambiguous or outside calculator minute precision"
+      },
+      "after": {
+        "status": "ok",
+        "natal": {
+          "status": "calculated",
+          "hour_unknown": false,
+          "scenarios": 1,
+          "pillar_choices": {
+            "year": [
+              37
+            ],
+            "month": [
+              26
+            ],
+            "day": [
+              49
+            ],
+            "hour": [
+              58
+            ]
+          },
+          "civil_date_resolution": {
+            "valid_minutes": 1440,
+            "missing_minutes": 0,
+            "repeated_minutes": 0,
+            "possible_instants": 1440
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 37,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 36,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "6861bd178cc1521bff8dc3a7e133d56078fb32a4f52dac3317922ace78612622",
+        "bounds_sha256": "6ca98cee21b1b3fafb7590764b767eac70e21e92e68ac7001a75e7b710f534d9",
+        "probability": null
+      }
+    },
+    {
+      "id": "evaluated-fold-later",
+      "request": {
+        "birth": {
+          "year": 1990,
+          "month": 1,
+          "day": 1,
+          "hour": 12,
+          "minute": 0,
+          "gender": "F",
+          "timeZone": "America/New_York",
+          "longitude": -74
+        },
+        "evaluated_at": "2024-11-03T06:30:00Z"
+      },
+      "before": {
+        "status": "error",
+        "message": "Evaluation instant is ambiguous or outside calculator minute precision"
+      },
+      "after": {
+        "status": "ok",
+        "natal": {
+          "status": "calculated",
+          "hour_unknown": false,
+          "scenarios": 1,
+          "pillar_choices": {
+            "year": [
+              5
+            ],
+            "month": [
+              12
+            ],
+            "day": [
+              2
+            ],
+            "hour": [
+              30
+            ]
+          },
+          "civil_date_resolution": {
+            "valid_minutes": 1440,
+            "missing_minutes": 0,
+            "repeated_minutes": 0,
+            "possible_instants": 1440
+          }
+        },
+        "time_context": {
+          "daewoon": {
+            "status": "unknown_period",
+            "pillar": null
+          },
+          "yearly": {
+            "pillar": 40,
+            "policy": "L1 solar-term boundary"
+          },
+          "monthly": {
+            "pillar": 10,
+            "policy": "L1 solar-term boundary"
+          }
+        },
+        "features_sha256": "76b512cd4bb5b822a1624f7c0eee705b0fe42ba8115b61b303299444f113718e",
+        "bounds_sha256": "c20f380583bb9088131fb3a4ca6817bda6036f686eace766a8b7463a349679d7",
+        "probability": null
+      }
+    }
+  ],
+  "probability": null
+}
