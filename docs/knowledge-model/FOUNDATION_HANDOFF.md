@@ -2,7 +2,7 @@
 
 갱신: 2026-09-27 · 사용자 원문 [48](USER_INTENT_LOG.md)
 착수 기준: [PR #192](https://github.com/muteno/Saju/pull/192) 병합 main `05dc0890d9c5acbe794c0992e88d1fe15da6c91b`.
-현재 구현: [재생관·관살혼잡 후속 조회](FOUNDATION_GENERATION_MIXED.md). 최종 검사·원격·병합 상태는 [체크포인트](WORK_CHECKPOINT.md)와 해당 PR 영수증을 따른다.
+현재 구현: [재생관·관살혼잡 후속 조회](FOUNDATION_GENERATION_MIXED.md). 최종 검사·원격·병합 상태는 [체크포인트](WORK_CHECKPOINT.md)와 [PR #193](https://github.com/muteno/Saju/pull/193) 영수증을 따른다.
 **다음 세션 첫 작업: §5.1. 진행 PR이 미병합이면 검사·검토·병합부터 마무리한다. 병합됐다면 사길신·사흉신의 출처별 구성 차이 조회를 진행한다.**
 
 2026-09-23 후속: [F01 검토표](FOUNDATION_REVIEW.md)·[판정과 원문 위치](data/foundation_taxonomy_review.json)·[전후 측정](data/foundation_match_measurement.json)을 읽는다. PR #183의 채택66행 중65행은 **기존 판본 보존**이며 새 의미 승인이 아니다. 당시 실제 추가는 `부부 사이`1개였고 PR #187의 상극3개를 포함한 현재 누적은4개다. 부부관계·부부간은 천간합/육합 비유와의 구분 문제로 보류했다. 별칭 판정·P2 재생성 전에 D5 인용 자격을 별도 검수해야 한다. 총칭·넓은 구어와 기존 별칭의 다른 뜻은 남아 있으며 F01 전체 통합 완료로 해석하지 않는다. 아래 §3의 수치는 이전 스냅샷으로 보존한다.

@@ -68,5 +68,10 @@
     "docs/knowledge-model/knowledge_query.py": "de2316717670b8f14db3de815316c18001849d0a001e1fffaddba29c66b10371",
     "정제/_현황판/build_concept_map.py": "e06f371db3313231ef5f70fe2946816f528b7c4ac742c0ff2f1cfe76f646788f",
     "정제/_현황판/build_neuron_map.py": "4beb85575a160274ed0fe736f3968f8c036ebc59486dd5493a0c2d9c1dbd997e"
+  },
+  "current_layer_sha256": {
+    "docs/knowledge-model/foundation_claims.py": "705a4db2dd72eba81c7bc00cfa48849ef016372f66b4e878468a5e2151dabdb7",
+    "docs/knowledge-model/test_foundation_claims.py": "cd891ddcb18832e5ec5055b0a6922ccf7e986ca02bfb5788380123e4e3e22907",
+    "docs/knowledge-model/data/foundation_claim_links.json": "f3e3d5f9f107d9134120d82be8a9e2b1ad5cc0677fedb2c48f9ec485490c1a6c"
   }
 }
