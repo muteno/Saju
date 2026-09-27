@@ -269,7 +269,8 @@ def load_index(graph, repo=REPO):
     # A missing/stale catalog is an error, not a silent return to not_found.
     catalog = json.loads((repo / CATALOG).read_text(encoding="utf-8"))
     review = json.loads((repo / REVIEW).read_text(encoding="utf-8"))
-    return ClaimIndex(catalog, graph, review, repo)
+    from foundation_livelihood import extend_index
+    return extend_index(ClaimIndex(catalog, graph, review, repo), graph, repo)
 
 
 if __name__ == "__main__":
