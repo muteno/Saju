@@ -1,0 +1,647 @@
+{
+  "schema_version": 1,
+  "scope": "source_claim_retrieval",
+  "inference_enabled": false,
+  "use_as_training_labels": false,
+  "probability": null,
+  "graph_fingerprint": "ddcc7db784afbd7609443ae1a61508371ec77805f6f91a081417bb7dde4cf871",
+  "review_sha256": "fc3c799e885f5b2e963bfd3a172efd9943d1c37faf9f365e5e7a957c1b286b0c",
+  "topics": [
+    {
+      "id": "review_활인업",
+      "title": "활인업",
+      "anchor_node_ids": [
+        "heavenly_stems",
+        "stem_辛"
+      ]
+    },
+    {
+      "id": "review_재고귀인",
+      "title": "재고귀인",
+      "anchor_node_ids": [
+        "branch_丑",
+        "branch_戌",
+        "branch_未",
+        "branch_辰",
+        "clash",
+        "day_master",
+        "earthly_branches",
+        "element_토",
+        "heavenly_stems",
+        "hidden_stems",
+        "stem_丁",
+        "stem_丙",
+        "stem_乙",
+        "stem_壬",
+        "stem_己",
+        "stem_庚",
+        "stem_戊",
+        "stem_甲",
+        "stem_癸",
+        "stem_辛",
+        "wealth"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "livelihood_board",
+      "topic_id": "review_활인업",
+      "type": "definition",
+      "statement": "보존 보드는 활인업의 예시로 의사·상담사를 적는다. 같은 상자에 있는 종교/역학·특수 기술·예술을 모두 활인업의 하위 직업으로 합치지 않는다.",
+      "evidence_ids": [
+        "live_board"
+      ],
+      "relations": [],
+      "participants": [
+        {
+          "label": "의사",
+          "role": "직업 예시",
+          "node_id": null
+        },
+        {
+          "label": "상담사",
+          "role": "직업 예시",
+          "node_id": null
+        }
+      ],
+      "configurations": [],
+      "conditions": [],
+      "exceptions": [
+        "의사·상담사는 배타적인 전체 목록이 아님"
+      ],
+      "chart_scope": "이 인용만으로 특정 십신이나 개인 직업 적성을 판정하지 않음",
+      "time_scope": "원국/운·기간 미명시",
+      "unresolved": [
+        "직업 개념은 기본58노드에 없어 미연결",
+        "보드의 공간상 이웃이나 문구 배치를 인과관계로 쓰지 않음"
+      ]
+    },
+    {
+      "id": "livelihood_hyeonmyo",
+      "topic_id": "review_활인업",
+      "type": "condition",
+      "statement": "현묘는 다른 사람을 살리는 직업을 활인업이라고 설명하며, 특히 천간에 신금이 나란한 신신병존 문맥에서 해당 직업을 권한다. 이는 저자의 추천 주장이다.",
+      "evidence_ids": [
+        "live_hyeonmyo"
+      ],
+      "relations": [],
+      "participants": [
+        {
+          "label": "신금",
+          "role": "나란함을 논하는 글자",
+          "node_id": "stem_辛"
+        },
+        {
+          "label": "천간",
+          "role": "나란함의 자리 범위",
+          "node_id": "heavenly_stems"
+        },
+        {
+          "label": "신신병존",
+          "role": "구조 조건",
+          "node_id": null
+        },
+        {
+          "label": "의사",
+          "role": "직업 예시",
+          "node_id": null
+        },
+        {
+          "label": "간호사",
+          "role": "직업 예시",
+          "node_id": null
+        },
+        {
+          "label": "약사",
+          "role": "직업 예시",
+          "node_id": null
+        },
+        {
+          "label": "상담사",
+          "role": "직업 예시",
+          "node_id": null
+        },
+        {
+          "label": "역술가",
+          "role": "직업 예시",
+          "node_id": null
+        }
+      ],
+      "configurations": [],
+      "conditions": [
+        "앞 문단은 신금 두 개 이상을 말하고 특히 천간에 신금이 나란한 경우를 구별함",
+        "의사·간호사·약사·상담사·역술가는 해당 문장의 예시"
+      ],
+      "exceptions": [
+        "신금 하나만으로 같은 구조 조건을 충족한다고 하지 않음",
+        "일반 신금 직업 목록의 엔지니어링·패션을 모두 활인업으로 확장하지 않음"
+      ],
+      "chart_scope": "천간의 신금 나란함; 특정 일간이나 특정 두 주로 한정하지 않음",
+      "time_scope": "날마다 기운을 쓴다는 설명; 대운/세운·기간 계산 없음",
+      "unresolved": [
+        "나란함·강도·효과를 계산하지 않음",
+        "직업 선택이 건강·살 해소를 보장한다는 개인 인과규칙 아님",
+        "신신병존과 직업들은 미연결 개념"
+      ]
+    },
+    {
+      "id": "livelihood_plus",
+      "topic_id": "review_활인업",
+      "type": "exception",
+      "statement": "사주플러스는 사람을 살리는 업종에 종사하기만 하면 복을 받는다는 해석을 부정하고 다른 사람을 위하는 마음가짐을 강조한다.",
+      "evidence_ids": [
+        "live_plus_limit"
+      ],
+      "relations": [],
+      "participants": [
+        {
+          "label": "다른 사람을 위하는 마음가짐",
+          "role": "업종만으로 복을 얻는다는 주장에 대한 제한",
+          "node_id": null
+        }
+      ],
+      "configurations": [],
+      "conditions": [
+        "저자는 자신을 희생해 다른 사람을 살리려는 마음가짐을 요구함"
+      ],
+      "exceptions": [
+        "업종만으로 공덕·복을 얻는다는 판단을 부정함"
+      ],
+      "chart_scope": "원국 글자·자리 조건 미명시",
+      "time_scope": "시기·기간 미명시",
+      "unresolved": [
+        "마음가짐과 도덕성을 사주로 측정하지 않음",
+        "공덕이나 복의 실제 효과는 검증하지 않음"
+      ]
+    },
+    {
+      "id": "livelihood_hyomyeong",
+      "topic_id": "review_활인업",
+      "type": "disagreement",
+      "statement": "효명은 활인업을 의료·상담에 국한하지 않고 사회에 유익한 상업·농업·서비스업·3D 직종까지 넓혀 설명한다.",
+      "evidence_ids": [
+        "live_hyomyeong"
+      ],
+      "relations": [],
+      "participants": [
+        {
+          "label": "교육자",
+          "role": "넓은 직업 범위의 예시",
+          "node_id": null
+        },
+        {
+          "label": "의사",
+          "role": "넓은 직업 범위의 예시",
+          "node_id": null
+        },
+        {
+          "label": "사회 지도자",
+          "role": "넓은 직업 범위의 예시",
+          "node_id": null
+        },
+        {
+          "label": "상업",
+          "role": "넓은 직업 범위의 예시",
+          "node_id": null
+        },
+        {
+          "label": "농업",
+          "role": "넓은 직업 범위의 예시",
+          "node_id": null
+        },
+        {
+          "label": "서비스업",
+          "role": "넓은 직업 범위의 예시",
+          "node_id": null
+        },
+        {
+          "label": "3D 직종",
+          "role": "넓은 직업 범위의 예시",
+          "node_id": null
+        }
+      ],
+      "configurations": [],
+      "conditions": [
+        "사회를 돌아가게 하는 유익한 역할이라는 저자의 범위"
+      ],
+      "exceptions": [
+        "사회에 폐약을 끼치는 직업은 제외한다는 단서를 보존함"
+      ],
+      "chart_scope": "기토론의 해당 전사 문맥; 기토 존재만으로 직업 전체를 판정하지 않음",
+      "time_scope": "시기·기간 미명시",
+      "unresolved": [
+        "할인업·청구업자 등의 ASR 표기를 음성 대조 없이 교정하지 않음",
+        "직업 분류·가치 판단을 개인 평가로 실행하지 않음"
+      ]
+    },
+    {
+      "id": "livelihood_ordinary",
+      "topic_id": "review_활인업",
+      "type": "retrieval_limit",
+      "statement": "역활인의 활인 부분문자는 활인업의 직업 정의가 아니다.",
+      "evidence_ids": [
+        "ordinary_live"
+      ],
+      "relations": [],
+      "participants": [],
+      "configurations": [],
+      "conditions": [],
+      "exceptions": [
+        "활인을 전역 별칭으로 추가하지 않음"
+      ],
+      "chart_scope": "흙의 역할에 관한 일반 표현",
+      "time_scope": "해당 없음",
+      "unresolved": [
+        "반례 문단의 무토·지지를 활인업 참여개념으로 연결하지 않음"
+      ]
+    },
+    {
+      "id": "treasury_definition",
+      "topic_id": "review_재고귀인",
+      "type": "definition",
+      "statement": "도화로운은 재고귀인을 땅에 돈이 묻혀 있다는 비유로 설명한다. 돈을 주는 사람 자체라는 의미와 구별한다.",
+      "evidence_ids": [
+        "wealth_dohwa"
+      ],
+      "relations": [],
+      "participants": [
+        {
+          "label": "토",
+          "role": "땅과 무덤의 비유",
+          "node_id": "element_토"
+        }
+      ],
+      "configurations": [],
+      "conditions": [
+        "글은 진술축미가 있으면 해당될 수 있다고 말한 뒤 일간별 조건을 제시함"
+      ],
+      "exceptions": [
+        "진술축미 중 하나만으로 모든 일간에 해당한다고 일반화하지 않음",
+        "부자가 될 수 있는 기질이라는 말은 저자 주장이고 실제 재물 결과의 검증이 아님"
+      ],
+      "chart_scope": "토·땅·무덤의 비유와 뒤의 일간별 대응을 구별",
+      "time_scope": "시기·기간 미명시",
+      "unresolved": [
+        "재고귀인을 사람이나 부의 보장으로 해석하지 않음"
+      ]
+    },
+    {
+      "id": "treasury_configuration",
+      "topic_id": "review_재고귀인",
+      "type": "condition",
+      "statement": "도화로운의 일간별 대응과 추가 천간 발현 조건을 다섯 묶음으로 보존한다. 추가 천간은 기본 해당 조건과 구별하며 표를 원국 판정 함수로 실행하지 않는다.",
+      "evidence_ids": [
+        "wealth_dohwa"
+      ],
+      "relations": [],
+      "participants": [
+        {
+          "label": "일간",
+          "role": "대응표의 기준 자리",
+          "node_id": "day_master"
+        },
+        {
+          "label": "지지",
+          "role": "해당 글자 존재 범위",
+          "node_id": "earthly_branches"
+        },
+        {
+          "label": "천간",
+          "role": "추가 발현 조건의 자리 범위",
+          "node_id": "heavenly_stems"
+        }
+      ],
+      "configurations": [
+        {
+          "day_master_options": [
+            "stem_甲",
+            "stem_乙"
+          ],
+          "branch_node_id": "branch_辰",
+          "branch_scope": "지지; 특정 주 한정 없음",
+          "additional_stem_node_id": "stem_戊",
+          "additional_stem_scope": "천간; 특정 주 한정 없음",
+          "additional_stem_role": "강한 발현의 추가 조건; 기본 해당 조건과 구별",
+          "more_effective_day_master": null,
+          "comparison_scope": "해당 지지와 추가 천간을 설명한 이 경우; 수치 미명시",
+          "application_status": "not_evaluated"
+        },
+        {
+          "day_master_options": [
+            "stem_丙",
+            "stem_丁"
+          ],
+          "branch_node_id": "branch_丑",
+          "branch_scope": "지지; 특정 주 한정 없음",
+          "additional_stem_node_id": "stem_辛",
+          "additional_stem_scope": "천간; 특정 주 한정 없음",
+          "additional_stem_role": "강한 발현의 추가 조건; 기본 해당 조건과 구별",
+          "more_effective_day_master": "stem_丁",
+          "comparison_scope": "해당 지지와 추가 천간을 설명한 이 경우; 수치 미명시",
+          "application_status": "not_evaluated"
+        },
+        {
+          "day_master_options": [
+            "stem_戊",
+            "stem_己"
+          ],
+          "branch_node_id": "branch_丑",
+          "branch_scope": "지지; 특정 주 한정 없음",
+          "additional_stem_node_id": "stem_癸",
+          "additional_stem_scope": "천간; 특정 주 한정 없음",
+          "additional_stem_role": "강한 발현의 추가 조건; 기본 해당 조건과 구별",
+          "more_effective_day_master": "stem_己",
+          "comparison_scope": "해당 지지와 추가 천간을 설명한 이 경우; 수치 미명시",
+          "application_status": "not_evaluated"
+        },
+        {
+          "day_master_options": [
+            "stem_庚",
+            "stem_辛"
+          ],
+          "branch_node_id": "branch_未",
+          "branch_scope": "지지; 특정 주 한정 없음",
+          "additional_stem_node_id": "stem_乙",
+          "additional_stem_scope": "천간; 특정 주 한정 없음",
+          "additional_stem_role": "강한 발현의 추가 조건; 기본 해당 조건과 구별",
+          "more_effective_day_master": "stem_辛",
+          "comparison_scope": "해당 지지와 추가 천간을 설명한 이 경우; 수치 미명시",
+          "application_status": "not_evaluated"
+        },
+        {
+          "day_master_options": [
+            "stem_壬",
+            "stem_癸"
+          ],
+          "branch_node_id": "branch_戌",
+          "branch_scope": "지지; 특정 주 한정 없음",
+          "additional_stem_node_id": "stem_丁",
+          "additional_stem_scope": "천간; 특정 주 한정 없음",
+          "additional_stem_role": "강한 발현의 추가 조건; 기본 해당 조건과 구별",
+          "more_effective_day_master": "stem_癸",
+          "comparison_scope": "해당 지지와 추가 천간을 설명한 이 경우; 수치 미명시",
+          "application_status": "not_evaluated"
+        }
+      ],
+      "conditions": [
+        "甲乙→辰, 丙丁→丑, 戊己→丑, 庚辛→未, 壬癸→戌",
+        "각 묶음의 추가 천간은 戊·辛·癸·乙·丁 순서",
+        "丙丁·戊己·庚辛·壬癸의 추가 천간을 설명한 이 경우에는 각각 丁·己·辛·癸가 더 유효하다는 원문 비교"
+      ],
+      "exceptions": [
+        "일주라는 소제목만으로 지지를 일지로 제한하지 않음: 본문은 지지라고 씀",
+        "甲乙에는 어느 쪽이 더 유효하다는 비교가 명시되지 않음",
+        "추가 천간이 없으면 재고귀인이 없다고 역추론하지 않음"
+      ],
+      "chart_scope": "일간 기준; 지지·추가 천간의 특정 주와 거리 조건은 미명시",
+      "time_scope": "원국 설명; 대운/세운 적용 미명시",
+      "unresolved": [
+        "야쟈시 적용X는 이 출처의 입력 지시로 보존하며 앱 자시 정책을 변경하지 않음",
+        "강하게·더 유효의 수치와 확률은 미명시",
+        "지지와 천간의 나열은 인과간선이나 재물 예측 함수가 아님"
+      ]
+    },
+    {
+      "id": "treasury_effort",
+      "topic_id": "review_재고귀인",
+      "type": "exception",
+      "statement": "같은 글의 마지막은 재고귀인이 있다는 사실에 그치지 말고 자신의 장점을 파악해 걸맞는 노력을 하라고 요구한다.",
+      "evidence_ids": [
+        "wealth_dohwa"
+      ],
+      "relations": [],
+      "participants": [
+        {
+          "label": "노력",
+          "role": "장점 활용의 요구",
+          "node_id": null
+        }
+      ],
+      "configurations": [],
+      "conditions": [
+        "장점 파악과 노력의 활용을 요구함"
+      ],
+      "exceptions": [
+        "재고귀인 존재만으로 부자가 된다고 확정하지 않음"
+      ],
+      "chart_scope": "원국 장점 활용에 대한 저자 권고; 구체 조건 미명시",
+      "time_scope": "노력의 시점·기간 미명시",
+      "unresolved": [
+        "부의 관측 라벨이나 성공 확률을 만들지 않음"
+      ]
+    },
+    {
+      "id": "treasury_transcript",
+      "topic_id": "review_재고귀인",
+      "type": "exception",
+      "statement": "같은 저자의 전사는 재고기인이 있어도 모두 좋은 것은 아니고 없어도 나쁜 것은 아니라고 말한다. 부자에게 모두 있다는 표현과 필수조건은 아니라는 설명을 함께 보존한다.",
+      "evidence_ids": [
+        "wealth_transcript"
+      ],
+      "relations": [],
+      "participants": [
+        {
+          "label": "좋은 운",
+          "role": "시기 주장; 기간·종류 미정",
+          "node_id": null
+        }
+      ],
+      "configurations": [],
+      "conditions": [
+        "자신의 장점을 활용하고 좋은 운에서 드러낼 때라는 시기 설명"
+      ],
+      "exceptions": [
+        "재고기인이 반드시 있어야 부자가 되는 것은 아니라는 반론",
+        "있음=항상 좋음·없음=나쁨을 부정함"
+      ],
+      "chart_scope": "전사에서 재고기인으로 표기; 해당 인용은 새 일간별 대응표가 아님",
+      "time_scope": "좋은 운의 종류·시작·기간은 미명시",
+      "unresolved": [
+        "재고기인 표기를 음성 대조 없이 재고귀인 별칭으로 교정하지 않음",
+        "다들 있다는 표현과 필수조건 부정 사이의 긴장을 하나의 확정 규칙으로 합치지 않음",
+        "같은 저자의 글과 영상은 독립 증거 두 개로 세지 않음"
+      ]
+    },
+    {
+      "id": "treasury_board",
+      "topic_id": "review_재고귀인",
+      "type": "disagreement",
+      "statement": "보드는 지장간에 숨어 있는 재성도 확인하라며 재성입묘라고 표기한다. 이 설명을 도화로운의 재고귀인 일간별 대응과 동일시하지 않는다.",
+      "evidence_ids": [
+        "wealth_board"
+      ],
+      "relations": [],
+      "participants": [
+        {
+          "label": "재성",
+          "role": "확인 대상",
+          "node_id": "wealth"
+        },
+        {
+          "label": "지장간",
+          "role": "확인 범위",
+          "node_id": "hidden_stems"
+        },
+        {
+          "label": "재성입묘",
+          "role": "보드의 표기; 재고귀인 동의어 아님",
+          "node_id": null
+        }
+      ],
+      "configurations": [],
+      "conditions": [
+        "재성 확인 범위를 지장간까지 살핀다는 보드 설명"
+      ],
+      "exceptions": [
+        "재성입묘를 재고귀인의 전역 별칭으로 쓰지 않음"
+      ],
+      "chart_scope": "지장간의 재성 확인; 구체 일간/지지 대응 미명시",
+      "time_scope": "원국/운 구별 미명시",
+      "unresolved": [
+        "재성입묘 노드는 기본58노드에 없어 미연결",
+        "보드 표현과 다른 저자의 입묘 원리를 단일 규칙으로 합치지 않음"
+      ]
+    },
+    {
+      "id": "treasury_tomb",
+      "topic_id": "review_재고귀인",
+      "type": "disagreement",
+      "statement": "사주공부의 예시는 일간 甲과 시지 未의 묘지·재성 상태를 설명한다. 도화로운의 甲乙/辰 재고귀인 조건과 다른 자리·관법의 설명으로 보존한다.",
+      "evidence_ids": [
+        "wealth_tomb"
+      ],
+      "relations": [],
+      "participants": [
+        {
+          "label": "갑목",
+          "role": "일간 글자",
+          "node_id": "stem_甲"
+        },
+        {
+          "label": "일간",
+          "role": "기준 자리",
+          "node_id": "day_master"
+        },
+        {
+          "label": "미토",
+          "role": "시지 글자",
+          "node_id": "branch_未"
+        },
+        {
+          "label": "시지",
+          "role": "해당 예시의 자리",
+          "node_id": null
+        },
+        {
+          "label": "재성",
+          "role": "묘지 설명 대상",
+          "node_id": "wealth"
+        },
+        {
+          "label": "묘지",
+          "role": "자리별 해석; 재고귀인 동의어 아님",
+          "node_id": null
+        }
+      ],
+      "configurations": [],
+      "conditions": [
+        "원문이 일간 갑목과 시지 자리를 직접 명시함"
+      ],
+      "exceptions": [
+        "甲/未를 재고귀인 표의 甲乙/辰 대신 넣지 않음",
+        "문헌의 자녀·재산·건강 설명을 개인 결과나 학습 정답으로 사용하지 않음"
+      ],
+      "chart_scope": "甲 일간과 未 시지; 시지 자체 노드는 미등록",
+      "time_scope": "원문은 말년 재산 상태 등을 언급; 정확한 나이·시점 미명시",
+      "unresolved": [
+        "자리별 묘지 해석과 재고귀인의 동일성 미확정",
+        "원문 표의 기둥 순서를 다른 예시에 자동 확대하지 않음"
+      ]
+    },
+    {
+      "id": "treasury_hidden_limit",
+      "topic_id": "review_재고귀인",
+      "type": "disagreement",
+      "statement": "사주공부는 화개에 입묘된 천간을 지장간에 표시한다는 견해를 반박한다. 지장간 초기·중기와 정기의 설명을 구별하고 충·형 후 천간과 합거해 입묘처럼 보인다는 별도 설명을 둔다.",
+      "evidence_ids": [
+        "wealth_hidden_limit"
+      ],
+      "relations": [],
+      "participants": [
+        {
+          "label": "지장간",
+          "role": "입묘 표시 반론의 대상",
+          "node_id": "hidden_stems"
+        },
+        {
+          "label": "천간",
+          "role": "표시/합거 설명 대상",
+          "node_id": "heavenly_stems"
+        },
+        {
+          "label": "화개",
+          "role": "반론의 범위",
+          "node_id": null
+        },
+        {
+          "label": "입묘",
+          "role": "지장간과 동일시하지 않는 작용",
+          "node_id": null
+        },
+        {
+          "label": "충",
+          "role": "입묘처럼 보이는 현상의 설명",
+          "node_id": "clash"
+        },
+        {
+          "label": "형",
+          "role": "입묘처럼 보이는 현상의 설명",
+          "node_id": null
+        },
+        {
+          "label": "합거",
+          "role": "저자가 구별한 상실 작용",
+          "node_id": null
+        }
+      ],
+      "configurations": [],
+      "conditions": [
+        "화개 지장간은 활동 중인 천간을 표시한다는 저자의 관점",
+        "초기·중기는 아직 사지를 거치지 않았고 정기는 보관처여서 입묘 작용을 하지 않는다고 설명함"
+      ],
+      "exceptions": [
+        "화개 지장간의 입묘 작용을 일괄 채택하는 관점에 대한 반론",
+        "충·형·합거 설명을 모든 지장간이나 재고귀인의 발현 규칙으로 일반화하지 않음"
+      ],
+      "chart_scope": "화개와 지장간의 초기·중기·정기 및 사주 천간 합거 설명",
+      "time_scope": "충·형 이후라는 설명 순서; 구체 운·기간 미명시",
+      "unresolved": [
+        "화개·입묘·형·합거는 이 기본그래프에서 미연결",
+        "합거를 기본 합/합화 노드와 자동 동일시하지 않음",
+        "다른 관법의 재성입묘·재고귀인과 통합 계산하지 않음"
+      ]
+    },
+    {
+      "id": "treasury_ordinary",
+      "topic_id": "review_재고귀인",
+      "type": "retrieval_limit",
+      "statement": "목표를 다시 재고한다는 일반 용례의 재고는 재고귀인의 정의나 조건이 아니다.",
+      "evidence_ids": [
+        "ordinary_wealth"
+      ],
+      "relations": [],
+      "participants": [],
+      "configurations": [],
+      "conditions": [],
+      "exceptions": [
+        "bare 재고를 전역 별칭으로 추가하지 않음"
+      ],
+      "chart_scope": "목표를 재검토하는 일반 용례",
+      "time_scope": "해당 없음",
+      "unresolved": [
+        "반례 문맥의 다른 사주 글자를 재고귀인 참여개념으로 연결하지 않음"
+      ]
+    }
+  ]
+}

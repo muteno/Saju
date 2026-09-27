@@ -20,7 +20,9 @@ class ClaimRetrievalTests(unittest.TestCase):
         cls.graph = json.loads((ROOT / "knowledge_graph.json").read_text())
         cls.review = json.loads((REPO / REVIEW).read_text())
         cls.catalog = json.loads((REPO / CATALOG).read_text())
-        cls.index = load_index(cls.graph)
+        # Keep the original six-topic contract exact. The composed default
+        # loader/CLI and all shared anchors are covered by test_foundation_livelihood.
+        cls.index = ClaimIndex(cls.catalog, cls.graph, cls.review)
         cls.legacy = json.loads((ROOT / "data/legacy_review.json").read_text())
 
     def test_all_topics_return_conditions_exceptions_and_sources(self):

@@ -4,6 +4,8 @@
 
 먼저 [READ_FIRST.md](READ_FIRST.md), [USER_INTENT_LOG.md](USER_INTENT_LOG.md), [PROJECT_AGENDA.md](PROJECT_AGENDA.md), [FOUNDATION_HANDOFF.md](FOUNDATION_HANDOFF.md)를 읽는다. 기초 보강이 현재 우선 작업이며 [BASIC_READING_PLAN.md](BASIC_READING_PLAN.md)는 그다음 적용 경로다. 원문 기록은 최신 요약으로 덮어쓰지 않는다.
 
+현재 구현·검증 결과는 [활인업·재고귀인 검수](FOUNDATION_LIVELIHOOD_LINKS.md), 다음 첫 작업은 [인계 §5.1](FOUNDATION_HANDOFF.md)의 진도화·가도화다.
+
 ## 포함한 것
 
 | 파일 | 역할 |
@@ -22,6 +24,7 @@
 | `review_queue.jsonl` | 관계와 다중 입력 관계 143건의 검토 대기열, 정답 라벨 미부여 |
 | `conditional_model.py` | 연속 입력과 다중 상호작용을 지원하는 조건부 로지스틱 기준 모델 |
 | `context_demo.json` | 미학습 모델과 별도로 표시한 추상적·합성 시연 입력 |
+| `foundation_claims.py`, `foundation_livelihood.py`, `FOUNDATION_LIVELIHOOD_LINKS.md` | 여덟 주제의 출처별 주장42개·조건표5개 조회; 개인 적용/학습 비활성 |
 | `knowledge_query.py` | 노드·관계·조건·출처 조회, 동음이의어 구별 |
 | `legacy_import.py`, `data/legacy_review.json` | 기존 조건·분기 후보와 원문·개념 대응을 재현하는 검토 입력 |
 | `LEGACY_MIGRATION.md` | 기존 지도와 현재 모델 비교, 이관 범위와 미확인 항목 |
@@ -48,6 +51,8 @@ python knowledge_query.py 식신
 python knowledge_query.py 신
 python knowledge_query.py 편인도식
 python knowledge_query.py 상관패인
+python knowledge_query.py 활인업
+python knowledge_query.py 재고귀인
 python conditional_model.py
 python conditional_model.py --demo
 python context_query.py --input data/context_example.json --term 재성
@@ -60,7 +65,7 @@ node --test test_chart_context.mjs
 
 `신`은 천간과 지지 후보가 함께 반환된다. 의미가 확정되지 않은 입력을 하나로 합치지 않는다.
 
-기본 CLI는 [편인도식·상관패인 출처별 조회층](FOUNDATION_CLAIM_LINKS.md)도 검증해 읽으므로 저장소의 사전과 인용 원문이 필요하다. 누락되면 실패하며 조용히 기본 조회로 바꾸지 않는다. `--base-only`는 원본이 없는 별도 배포본에서 이전 기본 그래프/legacy 조회를 사용하는 명시적 선택이다. 이때 새 두 주제는 기본 그래프에 없으므로 `not_found`다.
+기본 CLI는 기존 [여섯 주제 조회층](FOUNDATION_CLASSIFICATION_LINKS.md)과 별도 [활인업·재고귀인 조회층](FOUNDATION_LIVELIHOOD_LINKS.md)을 검증해 읽으므로 저장소의 사전과 인용 원문이 필요하다. 누락되면 실패하며 조용히 기본 조회로 바꾸지 않는다. `--base-only`는 원본이 없는 별도 배포본에서 이전 기본 그래프/legacy 조회를 사용하는 명시적 선택이다. 이때 여덟 검토 주제는 기본 그래프에 없으므로 `not_found`다.
 
 기존 조건·분기 후보는 조회 결과의 `legacy_review`에 포함한다. 직접 대응된 개념의 검토 자료만 가져오며 원문 미확인 항목도 상태를 표시한다. `query(term, graph, legacy=bundle)`로도 사용한다. 그래프가 바뀌면 이관 스냅샷을 다시 생성해야 하며, 원문·기존 자료가 생략된 배포 ZIP에서는 이관 재생성을 실행할 수 없다. 후보 조회는 원국 적용이나 학습된 확률 출력이 아니다.
 
