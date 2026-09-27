@@ -1,5 +1,7 @@
 # Saju 문맥 조건부 지식망 — v0.1
 
+최신: [강약 정책·앱 소비 경로 검수](FOUNDATION_STRENGTH_CONSUMERS.md) — 실제 함수48행, 미상후보·소비차이와 빌드뒤검증. 다음은 [인계 §5.1](FOUNDATION_HANDOFF.md)의 생시미상 공통계약. 앱정책/학습은 이번에 변경하지 않았다.
+
 현재 연구 계산 기본값은 [`chart_context_v2.mjs`](chart_context_v2.mjs)다. [자정 중복 수정·지원범위](FOUNDATION_TIMEZONE_RESOLUTION.md)를 확인한다. `chart_context.mjs`는 과거 F03 재현과 공유 기호 함수로 보존한다.
 
 기본 개념을 추출하고, 함께 놓이는 키워드·다중 변수·시점에 따라 달라지는 관계를 학습하기 위한 첫 작업본이다. 특정 앱에서 여는 노트가 목표가 아니며, 사용자 설명에 등장한 예시를 정답이나 규칙으로 채택하지 않는다.

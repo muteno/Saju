@@ -4,6 +4,7 @@ import assert from 'node:assert/strict'
 import { createRequire, registerHooks } from 'node:module'
 import { readFileSync, existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+import { execFileSync } from 'node:child_process'
 
 const require = createRequire(new URL('../app/package.json', import.meta.url))
 const ts = require('typescript')
@@ -40,6 +41,18 @@ const { chartToKeys } = await import('../app/src/engine/vendor/keyset.js')
 const { buildReport } = await import('../app/src/engine/vendor/report.js')
 const originalFetch = globalThis.fetch
 const originalStorage = Object.getOwnPropertyDescriptor(globalThis, 'localStorage')
+test('강약 소비 경로의 실제 앱 실행과 미상 입력 차이를 재현한다', () => {
+  // Runs after the build in verify gate 7: real Vite, generated KB, isolated clock/fetch.
+  const env = { ...process.env }
+  delete env.NODE_TEST_CONTEXT // otherwise Node silently skips a nested --test run
+  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_strength_consumers.mjs'], {
+    cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 120000,
+    stdio: ['ignore', 'pipe', 'pipe'], env,
+  })
+  assert.match(output, /^# tests 5$/m)
+  assert.match(output, /^# pass 5$/m)
+  assert.match(output, /^# skipped 0$/m)
+})
 after(() => {
   globalThis.fetch = originalFetch
   if (originalStorage) Object.defineProperty(globalThis, 'localStorage', originalStorage)
