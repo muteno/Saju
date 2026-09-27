@@ -1,6 +1,6 @@
 # 작업 체크포인트
 
-## 2026-09-27 공백31개·잔여 우선6항목 — 최종 검증 완료, 원격 저장 전
+## 2026-09-27 공백31개·잔여 우선6항목 — PR #195
 
 - 기준: PR #194 병합 main `8d0a8226ef00c16fa552ca3ae2600699097b1a91`, 원격 main/PR 재독 일치, 열린 PR 없음. 브랜치 `work/f02-gap31-priority-review`.
 - 시작 필수8게이트·Python169·실제Chromium 통과(`/tmp/saju-gap31-baseline.log`). 검사 생성 lockfile/임시 _val은 별도 정리한다.
@@ -13,6 +13,10 @@
 - 최종 전후 측정 완료(exit0): 같은56,202행에서 기존277개별 문단ID 집합 양쪽 모두 불변. 새4개 활인업91/재고귀인53/진도화40/가도화21은 양쪽과 별도 문자열 검사 ID까지 일치. 공망513·삼형1,078 유지. 31행 조회층/카드/등록과 부분형 누락11행의 검색입력 해시를 기록했다. 최신34근거·모든 입력 해시 대조 완료. `/tmp/saju-gap31-measure-final.log`.
 - 변경본 필수8게이트 통과(exit0): Python178개(신규9)·원국/시간Node9·엔진19·앱/API13·증류79파일/223인용·시험은행·빌드·토큰·실제Chromium, 생략 없음. `/tmp/saju-gap31-verify.log`.
 - 다음 명령: 검사 생성 lockfile/전사 적재리포트/임시 _val만 정리 → 커밋 훅 전체 검사 → 검증 트리 원격 저장 → PR의 최신 head·원격검사 확인 → 병합. 아직 원격 저장/병합 전이다.
+- 검증 단위 원격 보존 완료: 커밋 훅 필수8게이트·Python178·실제Chromium 통과(`/tmp/saju-gap31-commit.log`). 로컬 `3a7f2b9692b96b000dc224ee0403197de53116b0`, 원격 `065455201e2b7c1c308f1cf3ec51e2c5a96b1d78`, 동일 tree `d62125f2bca22fa5064ee5c26c6eca65cf3e1e98`. 변경16파일의 Git blob SHA, 원격 commit tree·branch 재독 일치.
+- 저장 중 자동 승인 검토가 STATUS의 기존 보안·운영 이력 공개를 이유로 거절했다. 공개 원격 기준본과 로컬 기준본의 완전일치, 대상 저장소 공개상태/계정 push권한, 추가된6줄이 이번 지식모델 인계뿐임을 확인한 뒤 같은 GitHub API 저장을 재요청해 승인됐다. 거절된 일괄 삭제 명령은 검사 생성 임시파일 한 개를 지정한 삭제로 좁혀 정리했다.
+- 최종 문서 커밋·최신 원격 head 검사·병합·main 영수증의 정본은 [PR #195](https://github.com/muteno/Saju/pull/195) 본문이다. 이 기록 작성 시 병합 전이므로 성공을 미리 적지 않는다.
+- 다음: PR #195 미병합이면 최종 검사/병합부터, 병합됐다면 [인계 §5.1](FOUNDATION_HANDOFF.md)의 부분형 누락/자묘형 분리 검수. 새6판정/34근거는 `python3 docs/knowledge-model/foundation_priority.py`, 기존 조회6/29/12/9는 `python3 docs/knowledge-model/foundation_claims.py`로 확인한다.
 
 ## 2026-09-27 사길신·사흉신 분류 조회 — PR #194
 
