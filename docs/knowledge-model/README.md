@@ -4,7 +4,7 @@
 
 먼저 [READ_FIRST.md](READ_FIRST.md), [USER_INTENT_LOG.md](USER_INTENT_LOG.md), [PROJECT_AGENDA.md](PROJECT_AGENDA.md), [FOUNDATION_HANDOFF.md](FOUNDATION_HANDOFF.md)를 읽는다. 기초 보강이 현재 우선 작업이며 [BASIC_READING_PLAN.md](BASIC_READING_PLAN.md)는 그다음 적용 경로다. 원문 기록은 최신 요약으로 덮어쓰지 않는다.
 
-현재 구현·검증 결과는 [진도화·가도화 검수](FOUNDATION_PEACH_LINKS.md), 다음 첫 작업은 [인계 §5.1](FOUNDATION_HANDOFF.md)의 F03 강약 배점·자시 정책 판본 비교다.
+현재 계산 비교는 [F03 강약·자시 검수](FOUNDATION_CALCULATION_POLICIES.md), 다음 첫 작업은 [인계 §5.1](FOUNDATION_HANDOFF.md)의 자정 중복 시각 누락 수정이다. 기존 [진도화·가도화 조회](FOUNDATION_PEACH_LINKS.md)는 유지한다.
 
 ## 포함한 것
 

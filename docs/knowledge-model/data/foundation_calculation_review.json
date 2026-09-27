@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "563285970ddafdf0af9d9e0e746644d0cb99a98e",
+  "apply_to_runtime": false,
+  "use_as_training_labels": false,
+  "scope": "F03 audit: isolated year/hour weight swap and current late-zi boundary behavior; no runtime adoption",
+  "comparison": {
+    "current_branch_weights": {
+      "year": 15,
+      "month": 30,
+      "day": 15,
+      "hour": 10
+    },
+    "counterfactual_branch_weights": {
+      "year": 10,
+      "month": 30,
+      "day": 15,
+      "hour": 15
+    },
+    "stem_each": 10,
+    "daymaster_included": true,
+    "max": 110,
+    "cutoffs": "Existing app cutoffs retained only for sensitivity measurement; not certified by source markers"
+  },
+  "source_limits": [
+    "DT179/DT186 are live/edited related material, not independent sources",
+    "ASR unreviewed; scores discussed as element distribution do not certify all app strength semantics",
+    "Hyeonmyo 35/30 and 15/10 are alternatives in a warning, not a selected policy",
+    "Board labels survive old extraction; original coding error cause is unverified"
+  ],
+  "evidence": [
+    {
+      "id": "board_coordinates",
+      "path": "dosa-app/methodology/figjam_board_raw.txt",
+      "lines": [
+        2030,
+        2043
+      ],
+      "kind": "preserved_board_coordinates",
+      "excerpt": "          <text id=\"106:664\" name=\"천간\" x=\"1936\" y=\"527\" width=\"32\" height=\"24\" />\n          <text id=\"106:676\" name=\"지지\" x=\"1936\" y=\"671\" width=\"32\" height=\"24\" />\n          <text id=\"106:698\" name=\"시주\" x=\"2083\" y=\"305.1817626953125\" width=\"32\" height=\"24\" />\n          <text id=\"106:705\" name=\"일주\" x=\"2244\" y=\"305.1817626953125\" width=\"32\" height=\"24\" />\n          <text id=\"106:712\" name=\"월주\" x=\"2405\" y=\"305.1817626953125\" width=\"32\" height=\"24\" />\n          <text id=\"106:713\" name=\"년주\" x=\"2566\" y=\"305.1817626953125\" width=\"32\" height=\"24\" />\n          <text id=\"183:494\" name=\"x15\" x=\"2152\" y=\"757\" width=\"26\" height=\"24\" />\n          <text id=\"183:500\" name=\"x15\" x=\"2311\" y=\"757\" width=\"26\" height=\"24\" />\n          <text id=\"183:514\" name=\"x30\" x=\"2470\" y=\"757.1817626953125\" width=\"30\" height=\"24\" />\n          <text id=\"183:521\" name=\"x10\" x=\"2632\" y=\"757\" width=\"27\" height=\"24\" />\n          <text id=\"183:540\" name=\"x10\" x=\"2152\" y=\"442.1817626953125\" width=\"27\" height=\"24\" />\n          <text id=\"183:542\" name=\"x10\" x=\"2474\" y=\"442.1817626953125\" width=\"27\" height=\"24\" />\n          <text id=\"183:543\" name=\"x10\" x=\"2633\" y=\"442.1817626953125\" width=\"27\" height=\"24\" />\n          <text id=\"183:698\" name=\"비견(아신)\" x=\"2244\" y=\"442.1817626953125\" width=\"72\" height=\"24\" />",
+      "sha256": "d6d64ee7522c101e23a665dc102762bc36869467ff8d3b2124b62ec4dc0ed58b"
+    },
+    {
+      "id": "board_markers",
+      "path": "dosa-app/methodology/figjam_board_raw.txt",
+      "lines": [
+        2080,
+        2085
+      ],
+      "kind": "preserved_board_markers_not_cutoffs",
+      "excerpt": "          <text id=\"498:4019\" name=\"#~18세\" x=\"2601\" y=\"353\" width=\"96\" height=\"24\" />\n          <text id=\"498:4020\" name=\"年\" x=\"2566\" y=\"353\" width=\"16\" height=\"24\" />\n          <text id=\"498:4045\" name=\"x10\" x=\"2354\" y=\"442.1817626953125\" width=\"27\" height=\"24\" />\n          <text id=\"498:4110\" name=\"총 110, 30(신약), 45(중화), 60(신강)\" x=\"2792\" y=\"515.1817626953125\" width=\"304\" height=\"48\" />\n          <text id=\"498:4123\" name=\"총 100% 35%(신약), 45%(중화), 55%(~신강)\" x=\"2792\" y=\"641.1817626953125\" width=\"304\" height=\"48\" />\n        </frame>",
+      "sha256": "0a693283627219e3f1e6c58290de3f827aa9b753c8dbb19ddf90a70701a585a5"
+    },
+    {
+      "id": "old_export_order",
+      "path": "dosa-app/methodology/figjam_board_full.md",
+      "lines": [
+        818,
+        824
+      ],
+      "kind": "preserved_export_labels",
+      "excerpt": "- 시주\n\n- 일주\n\n- 월주\n\n- 년주",
+      "sha256": "d02db5b34cd5a493bdaa2c3c1db533b8311e5c565cbb57ba3d847db0c2cee22a"
+    },
+    {
+      "id": "old_export_scores",
+      "path": "dosa-app/methodology/figjam_board_full.md",
+      "lines": [
+        864,
+        894
+      ],
+      "kind": "preserved_export_reading_order",
+      "excerpt": "- 총 110, 30(신약), 45(중화), 60(신강)\n\n- 천간\n\n- 총 100% 35%(신약), 45%(중화), 55%(~신강)\n\n- 지지\n\n- x15\n\n- x15\n\n- x10\n\n- 13%\n\n- 상관궁\n\n- 15%\n\n- 정재궁\n\n- 20%\n\n- 관궁\n\n- x30\n\n- 30%\n\n- 정인궁",
+      "sha256": "131c404aa51305c7e70aceae2806f4bfd2694ccbf0284c8fa214adb111da11ce"
+    },
+    {
+      "id": "extractor_order",
+      "path": "dosa-app/methodology/extract_board.py",
+      "lines": [
+        39,
+        65
+      ],
+      "kind": "implementation_not_source_claim",
+      "excerpt": "        if r == 0:\n            out.append('|' + '---|' * (maxc + 1))\n    out.append('')\n\ndef walk(el, out, depth):\n    kids = sorted(list(el), key=lambda e: (fnum(e, 'y'), fnum(e, 'x')))\n    for k in kids:\n        tag = k.tag\n        name = (k.get('name') or '').strip()\n        if tag == 'section':\n            out.append('')\n            out.append('#' * min(depth + 1, 6) + ' ' + (name or '(무제 섹션)'))\n            out.append('')\n            walk(k, out, depth + 1)\n        elif tag == 'table':\n            emit_table(k, out, depth)\n        elif tag in ('text', 'shape', 'sticky', 'rounded-rectangle', 'widget'):\n            if name and not SKIP_NAME.match(name):\n                # 짧은 라벨(제목성)과 긴 본문 구분 없이 전량 보존\n                out.append(('- ' if len(name) <= 60 else '') + name)\n                out.append('')\n            walk(k, out, depth)\n        elif tag == 'connector':\n            if name:\n                out.append(f'- ↔ {name}')\n                out.append('')\n        else:  # frame, canvas 등 컨테이너",
+      "sha256": "400662660db1d5852b34cb03792215dacea6054f82f261fcee96474b7404d1bf"
+    },
+    {
+      "id": "dt041",
+      "path": "정제/원본/P0_인벤토리/transcript_v1/20210917_내 사주팔자 보는 법은 이 방법이 가장 쉽고 정확합니다ㅣ쉽게 따라해보기_uzZjlpOzAX4.md",
+      "lines": [
+        45,
+        68
+      ],
+      "kind": "unreviewed_asr_same_author",
+      "excerpt": "자 일단은 한번 설명을 드려 볼게요\n사주팔자라는 것은 8가지 글자입니다\n자 그러면은 총 글자가 8가지가 있으니까\n이 8가지는 각각 해당되는 칸이 있을 거예요\n이 칸이라는 게 모두 점수가 똑같으냐가 아니에요\n다릅니다\n자 일단 위의 줄 같은 경우에는요\n다 10점으로 배분합니다\n그 다음에\n밑에 줄 같은 경우에는요\n왼쪽에서 오른쪽으로 말씀을 드리면은\n왼쪽 두 글자들은 15점씩 배분이 되고요\n그 다음에 왼쪽에 있는\n즉 오른쪽에서 두 번째 있는 글자는 30점을 배분하고요\n맨 오른쪽에 있는 글자는 10점을 배분합니다\n이렇게 했을 때 총합이 110점이 나오게 됩니다\n물론 이 점수는요\n사주팔자를 보시는 분들마다 조금씩 다르지만\n비율은 거의 대부분 비슷할 거예요\n저는 110점으로 보는 경향이 있고\n이게 조금 더 편하기 때문에\n이렇게 차용을 한다는 거에 따라서요.\n이렇게 차용을 한다는 거에 따라서요.\n말씀을 드리고요",
+      "sha256": "38382daf290ca6933bf47f4a807d36ce86b14f5b4fd4ecb18249201e66a71124"
+    },
+    {
+      "id": "dt041_asr",
+      "path": "정제/원본/P0_인벤토리/transcript_v1/20210917_내 사주팔자 보는 법은 이 방법이 가장 쉽고 정확합니다ㅣ쉽게 따라해보기_uzZjlpOzAX4.md",
+      "lines": [
+        8,
+        10
+      ],
+      "kind": "transcription_limit",
+      "excerpt": "- **자막:** 한국어 (⚙️ 로컬 Whisper ASR · large-v3 · 자동전사 · 미검수)\n\n> ⚠️ **자동 음성전사(Whisper) 결과입니다.** 이 문서는 오디오를 기계 전사한 것으로, 문장부호·사주 전문용어에 오류가 있을 수 있으며 사람이 검수하지 않았습니다. 오락용 사주 의견이므로 사실·조언으로 받아들이지 마시고, 정확한 내용은 원본 영상을 확인하세요.",
+      "sha256": "8bb035061e5291ab5a6ceafb8ee381e9d4b5a5dfabc8626a484a57d96ac7274a"
+    },
+    {
+      "id": "dt179",
+      "path": "정제/원본/P0_인벤토리/transcript_v1/20250920_[홍염🌺] 25년 을사년 하반기 운세 프리미엄 라이브 다시보기ㅣ일간별 강한 오행 사주별로 보는 25년 하반기 운세 리딩☯️_9vqMm6fYuF0.md",
+      "lines": [
+        121,
+        155
+      ],
+      "kind": "unreviewed_asr_same_author",
+      "excerpt": "그리고 왼쪽에서부터 오른쪽 이 순서대로 한 칸씩 갔을 때 시, 일, 월, 연이 되는 거예요.\n그래서 맨 위에 칸은 천간이라고 했죠.\n밑줄은 천간 그러면은 윗줄의 천간 중에서 맨 왼쪽은 시니까 시간이라 읽고\n그 오른쪽 칸은 일간 그 오른쪽 칸은 월간 그 오른쪽 칸은 연간이겠고\n밑에 지지 같은 경우에는 똑같이 맨 왼쪽은 시라 했으니까 시지\n그 오른쪽은 일지 그 오른쪽은 월지 그 오른쪽은 연지다 볼 수 있고요\n제가 위에 칸을 우선 먼저 말씀을 드리면\n위에 칸은 다 10점이에요 10점\n점수는 지금 말씀을 드리는 건데\n그 사주 8자를 총 110점이라고 볼 수 있거든요\n110점 중에 사주 8자의 5행 분포에 따라서\n각각 몇 점인지를 보는 거예요\n그래서 일단은 한번 여러분들 노트북에\n노트라던가 한번 필기장 같은데 한번 써보세요\n8가지 칸 이렇게 그려놓으시고\n위의 줄은 10, 10, 10, 10 쓰시고\n밑의 줄은 왼쪽에 칸 2개\n시지일지는 뭐다? 15, 15\n바로 오른쪽인 월지는 30\n그리고 맨 오른쪽에 아래 칸은 연지겠죠?\n이 연지는 10\n그래서 지금 제가 말씀드린 10.5개, 15.2개, 30.1개 하면 총 110점이 되는데\n거기에 대해서 각각 색깔이 있을까요?\n색깔이 여러분들이 하나씩 하나씩 비교해서 분류해보세요.\n그러면 나는 목은 40점이고 화는 30점이고\n토가 0점, 금이 0점, 수가 40점이겠죠? 110점이니까?\n이런 식으로 이게 파악이 될 수 있을 겁니다.\n그렇게 해서 내가 타고난 5행과 가장 강한 5행이 뭔지를\n순서대로 보시면 되는 거예요.\n그래서 이렇게 점수론으로 나타냈을 때\n어떤 분들은 진짜 난 일간도 목인데\n목이 제일 많네 하시는 분들은\n목인데 목이 강한 사주라 볼 수 있고\n나는 반대로 목일간인데 금이 좀 사주에 많아 하시는 분들은\n목일간에서 금이 많을 때의 케이스를 오늘 들어봐 주시면 돼요.",
+      "sha256": "c81900c3c53a97248dd8812efbaf276f633d880f1e15141aa9a5b246a775136c"
+    },
+    {
+      "id": "dt179_asr",
+      "path": "정제/원본/P0_인벤토리/transcript_v1/20250920_[홍염🌺] 25년 을사년 하반기 운세 프리미엄 라이브 다시보기ㅣ일간별 강한 오행 사주별로 보는 25년 하반기 운세 리딩☯️_9vqMm6fYuF0.md",
+      "lines": [
+        8,
+        10
+      ],
+      "kind": "transcription_limit",
+      "excerpt": "- **자막:** 한국어 (⚙️ 로컬 Whisper ASR · large-v3 · 자동전사 · 미검수)\n\n> ⚠️ **자동 음성전사(Whisper) 결과입니다.** 이 문서는 오디오를 기계 전사한 것으로, 문장부호·사주 전문용어에 오류가 있을 수 있으며 사람이 검수하지 않았습니다. 오락용 사주 의견이므로 사실·조언으로 받아들이지 마시고, 정확한 내용은 원본 영상을 확인하세요.",
+      "sha256": "8bb035061e5291ab5a6ceafb8ee381e9d4b5a5dfabc8626a484a57d96ac7274a"
+    },
+    {
+      "id": "dt186",
+      "path": "정제/원본/P0_인벤토리/transcript_v1/20251016_[홍염🌺] 26년 1월까지 적용되는 하반기운세ㅣ사주별 을사년 하반기 잡을 수 있는 좋은 운, 조심해야하는 운(일지, 월지, 사주전체 리딩)+🔗(핵심운세 링크 첨부_QEWqBvU7AOE.md",
+      "lines": [
+        79,
+        114
+      ],
+      "kind": "unreviewed_asr_same_author",
+      "excerpt": "그리고 왼쪽에서부터 오른쪽\n이 순서대로 한 칸씩 갔을 때\n시, 일, 월, 연이 되는 거예요.\n그래서 맨 위에 칸은 천간이라고 했죠.\n그러면은 윗줄에 천간 중에서\n맨 왼쪽은 시니까 시간이라 읽고\n그 오른쪽 칸은 일간, 그 오른쪽 칸은 월간,\n그 오른쪽 칸은 연간이 있고\n밑에 지지 같은 경우에는 똑같이 시지, 그 오른쪽은 일지, 그 오른쪽은 월지, 그 오른쪽은 연지다 볼 수 있고요.\n제가 위에 칸을 우선 먼저 말씀을 드리면\n그 사주팔자를 총 110점이라고 볼 수 있거든요.\n110점 중에 사주팔자의 오행 분포에 따라서 각각 몇 점인지를 보는 거예요.\n그래서 일단은 한번 여러분들 필기장 같은데 한번 써보세요.\n8가지 칸 이렇게 그려놓으시고\n위에 줄은 10, 10, 10, 10 쓰시고\n밑에 줄은 왼쪽에 칸 2개\n시지일지는 뭐다?\n15, 15\n바로 오른쪽인 월지는 30\n그리고 맨 오른쪽에 아래 칸은 연지는 10\n총 110점이 되는데\n거기에 대해서 각각 색깔이 있을 겁니다.\n하나씩 비교해서 분류해보세요.\n그러면 나는 목은 40점이고\n환은 30점이고\n토가 0점\n금 0점\n수가 40점이겠죠?\n110점이니까\n이런 식으로 이게 파악이 될 수 있을 겁니다.\n그렇게 해서 내가 타고난 5행과 가장 강한 5행이 뭔지를 순서대로 보시면 되는 거예요.\n그래서 이렇게 점수론으로 나타냈을 때\n어떤 분들은 진짜 난 1간도 목인데 목이 제일 많네 하시는 분들은\n목인데 목이 강한 사주라 볼 수 있고\n나는 반대로 목 1간인데 금이 좀 사주에 많아 하시는 분들은\n목 1간에서 금이 많을 때의 케이스를 오늘 들어봐 주시면 돼요.",
+      "sha256": "79677622815555f19e4689d3215407b1c7f9e16a897963e5eabe19a8850f12cd"
+    },
+    {
+      "id": "dt186_asr",
+      "path": "정제/원본/P0_인벤토리/transcript_v1/20251016_[홍염🌺] 26년 1월까지 적용되는 하반기운세ㅣ사주별 을사년 하반기 잡을 수 있는 좋은 운, 조심해야하는 운(일지, 월지, 사주전체 리딩)+🔗(핵심운세 링크 첨부_QEWqBvU7AOE.md",
+      "lines": [
+        8,
+        10
+      ],
+      "kind": "transcription_limit",
+      "excerpt": "- **자막:** 한국어 (⚙️ 로컬 Whisper ASR · large-v3 · 자동전사 · 미검수)\n\n> ⚠️ **자동 음성전사(Whisper) 결과입니다.** 이 문서는 오디오를 기계 전사한 것으로, 문장부호·사주 전문용어에 오류가 있을 수 있으며 사람이 검수하지 않았습니다. 오락용 사주 의견이므로 사실·조언으로 받아들이지 마시고, 정확한 내용은 원본 영상을 확인하세요.",
+      "sha256": "8bb035061e5291ab5a6ceafb8ee381e9d4b5a5dfabc8626a484a57d96ac7274a"
+    },
+    {
+      "id": "dt_related",
+      "path": "정제/원본/P0_인벤토리/DT3-B_report.md",
+      "lines": [
+        49,
+        53
+      ],
+      "kind": "live_edited_dependency",
+      "excerpt": "- **179**(2062줄, 홍염 라이브): 186과 동일 콘텐츠의 라이브 원본. 라이브라 시청자 즉석 사주 리딩(닉네임·점수)·멤버십 공지가 추가.\n\n## 3. 발견 하이라이트\n\n1. **179↔186 라이브본↔편집본 중복** — 같은 을사년 하반기 25케이스. P1에서 반드시 접어야 이중계상 방지(179가 라이브라 잡담·응대만 더 붙음).",
+      "sha256": "75b98cba7075f5f5de96c1d3e4a7ae8330a35d1c30822e505ae00bef477884f9"
+    },
+    {
+      "id": "mt100",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학탐구(기초) 전체 글모음 001-086.txt",
+      "lines": [
+        2688,
+        2699
+      ],
+      "kind": "source_claim",
+      "excerpt": "[신강, 신약의 구분]\n용신을 찾기 위해서는 제일 먼저 사주에서 일간의 신강신약을 알아봐야 합니다. 사람이 살아가면서 가장 영향력이 큰 분이 모친이듯이, 사주에서도 일간이 태어난 달에 속하는 월지가 가장 힘이 세다고 봅니다. 그 다음으로 일간자신이 앉은 자리인 일지의 영향력이 크다고 봅니다.\n이 부분은 학파마다 이론의 차이가 있습니다. 자신이 아는 이론과 다르다고 여기시는 분들은 [이렇게도 보는구나] 정도로 넘어 가시기 바랍니다. 학설이 다른 부분에 대한 반론이나 질문은 삼가해 주시기 바랍니다.\n일간을 생조하거나 설하는 오행\n1.일간에게 도움이 되는 오행은 일간을 생조하거나 일간과 같은 오행입니다. 십신으로는 인성과 비겁이 일간의 힘을 강하게 합니다. 여기서 생조한다는 말은 일간에게 도움이 되는 역할을 한다는 것을 의미합니다.\n2.일간의 힘을 빼는 오행은, 일간을 극하거나 일간이 극하는 오행, 또는 일간이 생하는오행입니다. 십신으로 식상과 재성, 관성이 일간의 힘을 줄여주는 역할을 합니다. 설한다는 것은 일간의 힘을 소진시키는 것을 말합니다.\n신강신약을 따지기 위한 각 궁위의 힘의 배분\n1.일간도 자신의 마음이 작용하므로 10점을 배분합니다.\n2.월지는 모친궁으로 25점의 힘을 갖는다고 봅니다. 월지가 일간을 도우는 경우는 덕령했다고 합니다.\n3.일지는 배우자궁으로 15점의 힘을 갖습니다. 일지가 일간에 도움이 되면 덕지라고 합니다.\n4.년간, 월간,시간, 연지, 시지도 각기 10점을 배정하며 득세라고 합니다.\n결국 월지 25점 + 일지 15점 + 일간자신, 년간, 년지, 월간, 시간, 시지 각10점 = 총 100점, 여기서 일간을 도우는 세력인 인성과 비겁이 50점 이상의 힘을 가지면 신강사주가 됩니다. 반대로 50점 미만이 되면 신약으로 분류합니다.",
+      "sha256": "9850daba0f85e1d54111fced90a37dc901d126c21e48375d859898916af0518e"
+    },
+    {
+      "id": "pl039",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학입문 게시판 글모음.txt",
+      "lines": [
+        1513,
+        1519
+      ],
+      "kind": "source_claim_incomplete_daymaster",
+      "excerpt": "신강신약의 판단\n위 좌측 그림은 사주팔자의 구조도입니다. 사주의 당사자인 명주가 태어난 생년, 생월, 생일, 생시의 간지를 차례대로 배열한 것을 사주팔자라 합니다. 현대적인 개념으로 본다면 우리가 이력서를 낼 때 생년월일을 적는 것이 바로 사주팔자라고 보셔도 됩니다.\n그 사주팔자가 생일의 천간을 일간이라 하여 명주 자신으로 보고, 사주팔자의 8글자 가운데 가장 중요한 글자로 봅니다. 현대에서도 생일파티를 하지만, 생년파티, 생월파티, 생시파티는 하지 않습니다. 생일이 명주 자신을 의미하는 것이라 그만큼 중요하다고 보셔도 됩니다.\n그렇게 중요하게 보는 일간에게 주변의 환경이 어떻게 도움이 되는지를 판단하는 것이 신강신약의 판단이 됩니다. 위 좌측 그림은 사주팔자의 8자가 일간에게 미치는 영향의 크기를 나타낸 것으로 보시면 됩니다.\n연주는 생년의 간지로 표시하고, 월주는 생월의 간지, 일지는 생일의 간지, 시주는 생시의 간지로 표시합니다. 또한, 연주는 조상궁, 월주는 부모궁, 일주는 자신과 배우자궁, 시주는 자식궁으로 판단합니다. 누구나 그러하듯이 부모가 당사자의 인생에 가장 큰 영향을 미치게 됩니다.\n위 좌측 그림은 각 간지가 명주 자신을 나타내는 일간에게 끼치는 영향 정도를 나타낸 것입니다. 부모궁인 월주, 그 중에서도 모친궁에 해당하는 월지는 30점, 배우자궁인 일지는 20점, 나머지 모든 간지는 각 10점을 부여합니다.\n참고로, 월지가 일간의 세력이면 득령, 일지가 일간의 세력이면 득지, 다른 간지가 일간의 세력이면 득세로 봅니다. 점수가 배정되었으면 일간의 세력이 되는 인성과 비겁이 차지하는 점수가 50점 이상이면 신강사주로 판단을 하고, 50점이 되지 못하면 신약으로 판단합니다.",
+      "sha256": "286180c0e625973969443d9ba6ffa5c90f8f5c393bdc1faa63223f637ec3407d"
+    },
+    {
+      "id": "pl026",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학입문 게시판 글모음.txt",
+      "lines": [
+        1074,
+        1077
+      ],
+      "kind": "same_site_separate_post",
+      "excerpt": "2 궁위별 세력의 강도\n일간의 세력은 궁위에 따라 그 영향력에 차이가 있습니다. 일간을 기준으로 모친궁이자 환경적 요인인 월지는 30점으로 가장 영향력이 큽니다. 월지가 비겁이나 인성이면 득령으로 보며, 다음으로 일지는 일간의 배우자로 일간의 세력이면 득지라고 부르며, 20점의 강도를 가집니다.\n나머지 궁위들은 조상궁으로 보는 연간과 연지, 부친궁인 월간, 자식궁인 시간과 시지 등은 일괄 10점의 강도를 가지는 것으로 봅니다. 일간을 제외한 전체 점수의 합은 100점이 됩니다. 이 경우 50점 이상이 일간의 세력이면 신강, 그렇지 못하면 신약한 사주로 봅니다.\n참고로, 일지와 시지를 각기 15점으로 배분하는 경우도 있으나, 학파에 따른 이론의 차이로 여기서는 논외로 합니다.",
+      "sha256": "533730f3459d3adab6754ef1576f42a586e4490213fb6d228432ba58b8d6121e"
+    },
+    {
+      "id": "pl026_arithmetic",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학입문 게시판 글모음.txt",
+      "lines": [
+        1093,
+        1094
+      ],
+      "kind": "source_internal_arithmetic_discrepancy",
+      "excerpt": "이번에는 묘월에 태어난 정화일간의 여성명조입니다. 일간의 세력은 같은 화오행인 비겁과 인성인 목오행이 됩니다. 월지부터 살펴보면 일간인 병화를 생조하는 월지 편인은 목오행이라 득령을 한 경우로 30점, 연간의 비견인 정화와 시지의 겁재 사화는 일간의 세력으로 각 10점, 시간의 을목도 인성으로 역시 세력으로 10점이 됩니다.\n총 점수의 합은 연간 10점, 월지 30점, 시간 10점으로 50점이라 신강한 명조로 보시면 됩니다. 신강, 신약을 구분하는 것은 용신을 정하기 위해서 반드시 필요한 부분이니 잘 익혀 두시면 좋습니다.",
+      "sha256": "2efb85fc0733294610bdc33490b63c2e4700a0caa8485ab8c0d0162f38543db7"
+    },
+    {
+      "id": "hyeonmyo_warning",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/원국 분석 및 용신 글모음.txt",
+      "lines": [
+        1168,
+        1191
+      ],
+      "kind": "comparison_warning_not_selected_weights",
+      "excerpt": "하지만 사주라고 하는 것에 정답이 없듯이,\n수치적인 계산법에도 정답은 없습니다.\n월지가 35점인지, 30점인지,\n연지가 15점인지, 10점인지,\n누가 어떻게 판단하고 장담할 수 있겠습니까?\n따라서 세간에는 다양한 계산법들이 존재합니다.\n사주명리 연구가들이 저마다의 임상을 통해 근거를 확보하고 본인만의 계산법을 정립해 둔 덕분입니다.\n계산법을 몇 개를 함께 살펴보시면서,\n어떤 기준으로 어떻게 각 자리의 점수를 부여했는지,\n계산법들의 공통점은 있는지,\n확인해 보겠습니다.\n강헌 선생님의 점수 부여 방법입니다.\n월지와 일지의 점수차가 크지 않은 것이 특징입니다. 인간의 주체성을 강조하는 학풍 때문이며, 또한 현대인들이 계절의 영향을 적게 받는다고 판단하여 월지의 중요도를 줄인 결과입니다.\n또한 일간 주변에 있는 자리에 더욱 많은 점수가 배정된 것을 확인할 수 있습니다. 연주의 비중이 상당히 적습니다.\n낭월 선생님의 점수 부여 방법입니다.\n천간의 경우 인성과 비겁의 점수에 차이를 둔 것이 특징입니다. 인성은 40점, 비겁은 30점입니다.\n천간보다 지지에 가중치를 크게 두었고, 지지는 전체적으로 가중치가 같다는 점도 특징입니다.\n(낭월선생님은 실제로 월지에 35% 일지에 30%정도의 가중치를 줄 정도로 일, 월지와 지지의 영향력을 크게 생각하고 있습니다.)\n낭월 선생님의 경우, 점수 부여는 신강신약을 판단하기 위한 참고자료로만 사용하기 때문에 이런 단순한 점수 배분이 가능한 것으로 보입니다.\n또한 지장간 별로 점수를 매긴 점도 특징인데, 지장간 비율에 따라 인성과 비겁이 숨어있으면 20점, 30점, 50점을 차등 부여한 점수 배분법입니다. 같은 비겁이라도 卯(묘목)과 寅(인목)의 점수가 다르게 나오는 방법입니다.\n김동완 선생님의 점수 부여 방법입니다.\n위의 계산법들에 비하면 비교적 단순한 계산방법입니다. 전체 합계가 100점이 되도록 한 것이 특징이며, 월지의 비중이 상당히 크다는 것을 알 수 있습니다.\n추일호 선생님의 점수 부여 방법입니다.\n지지의 비중이 상당히 크다는 것을 확인할 수 있습니다. 재밌는 것은 연지의 비중이 시간보다 높다는 점입니다. 일간에 가깝냐의 여부보다 지지이냐 천간이냐를 더욱 중요하게 생각한 계산 방법입니다.",
+      "sha256": "9492523acc3d89490066ada340e9cd2fe6d4813fd11fb164d909b6bdc840e0a0"
+    }
+  ],
+  "preserved_files": [
+    {
+      "path": "dosa-app/engine/src/judge.js",
+      "sha256": "4efa3ba08822d8b87788771087b0e7040f2c8023d8b7f97bf4f09e251075f1b3"
+    },
+    {
+      "path": "dosa-app/engine/src/manseryeok.js",
+      "sha256": "b401b6dc14f6f7828b6d23d6d4ee92c90c2d0261faea19873eda284da35239c1"
+    },
+    {
+      "path": "dosa-app/engine/src/tables.js",
+      "sha256": "94988a5b27d831a4e30b6d503040fb9235d5b103943a86f8f66a247f9b71f2e3"
+    },
+    {
+      "path": "dosa-app/engine/src/report.js",
+      "sha256": "c730059b6aca4d0e213ebbdc76af784d3e4b346858684b104cbab90c66cd0ce6"
+    },
+    {
+      "path": "dosa-app/engine/data/solar_terms.json",
+      "sha256": "dc83c1aeb9b19eea28e15bcb2c539ac650b70272f3f6a0fef8e76575da6cde1f"
+    },
+    {
+      "path": "app/src/data/saju.ts",
+      "sha256": "6dc203fdf6cbfdd2a0ff1b0a19dd195e44960a026ed65713b0e3c65cf9ec4496"
+    },
+    {
+      "path": "app/src/data/profiles.ts",
+      "sha256": "ab916e894af46a3028279e7b1f34778970751df706462f749ff7d621b944d450"
+    },
+    {
+      "path": "app/src/data/dosaTopics.ts",
+      "sha256": "b42208dfb047db538b52f3a3abde16f088f786348dff0719794c36c11bb74643"
+    },
+    {
+      "path": "docs/knowledge-model/chart_context.mjs",
+      "sha256": "c40b8099fefc3dad83256a86f85d1d0b70bd44662d9fcd7361a09338b1bece66"
+    },
+    {
+      "path": "docs/knowledge-model/knowledge_graph.json",
+      "sha256": "40196a3017e9111d3ffb9ad79a529f26ec7dccb9836c2c39cd96eb205c52df90"
+    },
+    {
+      "path": "docs/knowledge-model/foundation_claims.py",
+      "sha256": "d73443e71825399a8c3f1c18b2a5faedad0678162ffee35f73e2e8daf0f68389"
+    },
+    {
+      "path": "정제/_현황판/엔진갈림_선언.jsonl",
+      "sha256": "fed6a66ea998453a4aaa34a4a9413cd33d3d27505f76fbeeb6523277df70ab51"
+    },
+    {
+      "path": "dosa-app/methodology/extract_board.py",
+      "sha256": "ebf06d2ad58054c40fb4e0e5ae7b1856e08ef6363302e280e00298030ff86f6d"
+    },
+    {
+      "path": "dosa-app/methodology/figjam_board_full.md",
+      "sha256": "442c1892203cb5edde66db53dec733ea0d352d5682447f1ed4515835b16a20d6"
+    },
+    {
+      "path": "dosa-app/methodology/figjam_board_raw.txt",
+      "sha256": "de4883a873e3e332f3e77c3fbd2c2fac10dd8759de1704df69704b250292fe4b"
+    },
+    {
+      "path": "정제/원본/P0_인벤토리/DT3-B_report.md",
+      "sha256": "8f8d94dfa6eb47c5732fad7bf3d507ae46c9c71095cd776f440d054e9277fcc4"
+    },
+    {
+      "path": "정제/원본/P0_인벤토리/transcript_v1/20210917_내 사주팔자 보는 법은 이 방법이 가장 쉽고 정확합니다ㅣ쉽게 따라해보기_uzZjlpOzAX4.md",
+      "sha256": "956cf5ec0c559b097c4180090923a862638fedbb10a4f183a09e2d499342c9fc"
+    },
+    {
+      "path": "정제/원본/P0_인벤토리/transcript_v1/20250920_[홍염🌺] 25년 을사년 하반기 운세 프리미엄 라이브 다시보기ㅣ일간별 강한 오행 사주별로 보는 25년 하반기 운세 리딩☯️_9vqMm6fYuF0.md",
+      "sha256": "fa75db9273b0e5fe0dcecf10f5befdd8545bfe37d501e721226af6900abc2239"
+    },
+    {
+      "path": "정제/원본/P0_인벤토리/transcript_v1/20251016_[홍염🌺] 26년 1월까지 적용되는 하반기운세ㅣ사주별 을사년 하반기 잡을 수 있는 좋은 운, 조심해야하는 운(일지, 월지, 사주전체 리딩)+🔗(핵심운세 링크 첨부_QEWqBvU7AOE.md",
+      "sha256": "26383d45c6f77f2d83eeda3d985c302a36d80dacaeb374da947d8c693758a049"
+    },
+    {
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학입문 게시판 글모음.txt",
+      "sha256": "ca3b48d23d57570caa7204d2cf3c2c51b7539e031aa8855d93a4728527f38aa6"
+    },
+    {
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학탐구(기초) 전체 글모음 001-086.txt",
+      "sha256": "c04505583b3f30183b3553989fee7c0e0af0adc9cd50576c00840496c3ad119c"
+    },
+    {
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/원국 분석 및 용신 글모음.txt",
+      "sha256": "8310e5086adfa724ae3ac2e82ebf98689f73a77a590891c4e368686e189cbc52"
+    },
+    {
+      "path": "dosa-app/engine/src/keyset.js",
+      "sha256": "3e460f1355221138df5d25a7c7b6759272e16c717062ed4f9a483eac021e48a7"
+    }
+  ],
+  "hash_policy": "sha256_lf_git_text"
+}
