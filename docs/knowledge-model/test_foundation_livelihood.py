@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from foundation_claims import ClaimIndex, CATALOG as BASE_CATALOG, REVIEW as BASE_REVIEW, load_index
-from foundation_livelihood import CATALOG, REVIEW, REPO, LivelihoodIndex, validate
+from foundation_livelihood import CATALOG, REVIEW, REPO, LivelihoodIndex, validate, extend_index
 from foundation_additions import text_sha
 from knowledge_query import query
 
@@ -21,10 +21,12 @@ class LivelihoodTests(unittest.TestCase):
         cls.graph = json.loads((ROOT / "knowledge_graph.json").read_text())
         cls.review = json.loads((REPO / REVIEW).read_text())
         cls.catalog = json.loads((REPO / CATALOG).read_text())
-        cls.index = load_index(cls.graph)
         cls.legacy = json.loads((ROOT / "data/legacy_review.json").read_text())
         cls.base = ClaimIndex(json.loads((REPO / BASE_CATALOG).read_text()), cls.graph,
                               json.loads((REPO / BASE_REVIEW).read_text()))
+        # Freeze the original eight-topic contract; the new peach tests exercise
+        # the default loader and verify preservation within the full composition.
+        cls.index = extend_index(cls.base, cls.graph)
 
     def direct(self, title):
         return query(title, self.graph, claim_index=self.index)["source_claim_review"]
