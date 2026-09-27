@@ -23,8 +23,8 @@ class ClaimRetrievalTests(unittest.TestCase):
         cls.index = load_index(cls.graph)
         cls.legacy = json.loads((ROOT / "data/legacy_review.json").read_text())
 
-    def test_both_topics_return_conditions_exceptions_and_sources(self):
-        for term in ("편인도식", "상관패인"):
+    def test_all_topics_return_conditions_exceptions_and_sources(self):
+        for term in ("편인도식", "상관패인", "재생관", "관살혼잡"):
             with self.subTest(term=term):
                 result = query(term, self.graph, claim_index=self.index)
                 self.assertEqual(result["status"], "found")
@@ -58,12 +58,14 @@ class ClaimRetrievalTests(unittest.TestCase):
                 actual.pop("source_claim_review")
             self.assertEqual(actual, original)
         self.assertEqual(changed, {"ten_god_편인", "ten_god_식신", "resource", "output",
-                                  "ten_god_상관", "ten_god_정인", "ten_god_정관"})
+                                  "ten_god_상관", "ten_god_정인", "ten_god_정관",
+                                  "wealth", "authority", "ten_god_정재", "ten_god_편관", "day_master"})
         self.assertEqual(self.graph, before)
 
     def test_navigation_keeps_full_topic_context_without_cross_topic_leakage(self):
         for anchor, topic in (("편인", "편인도식"), ("식신", "편인도식"),
-                              ("상관", "상관패인"), ("정인", "상관패인"), ("정관", "상관패인")):
+                              ("상관", "상관패인"), ("정인", "상관패인"),
+                              ("재성", "재생관"), ("정재", "재생관"), ("일간", "관살혼잡")):
             from_anchor = query(anchor, self.graph, claim_index=self.index)["source_claim_review"]
             direct = query(topic, self.graph, claim_index=self.index)["source_claim_review"]
             self.assertEqual(from_anchor, direct)
@@ -91,7 +93,7 @@ class ClaimRetrievalTests(unittest.TestCase):
         })
 
     def test_original_caveats_and_held_aliases_remain_complete(self):
-        for decision in self.review["decisions"][:2]:
+        for decision in self.review["decisions"][:4]:
             result = query(decision["concept"], self.graph, claim_index=self.index)["source_claim_review"]
             self.assertEqual(result["lexical_reviews"], [decision])
             refs = {e["id"] for e in result["evidence"]}
@@ -100,8 +102,91 @@ class ClaimRetrievalTests(unittest.TestCase):
                 self.assertEqual(query(alias["alias"], self.graph, claim_index=self.index)["status"], "not_found")
 
     def test_unknown_and_ambiguous_terms_keep_contract(self):
-        for term in ("없는개념", "신", "인", "재생관", "관살혼잡", "사길신", "사흉신"):
+        for term in ("없는개념", "신", "인", "사길신", "사흉신"):
             self.assertEqual(query(term, self.graph, claim_index=self.index), query(term, self.graph))
+
+    def test_shared_anchors_return_complete_topics_without_transitive_expansion(self):
+        expected = {"정관": {"상관패인", "관살혼잡"},
+                    "관성": {"재생관", "관살혼잡"}, "편관": {"재생관", "관살혼잡"}}
+        for anchor, titles in expected.items():
+            result = query(anchor, self.graph, claim_index=self.index)["source_claim_review"]
+            self.assertEqual({t["title"] for t in result["topics"]}, titles)
+            direct_claims, direct_evidence = {}, {}
+            for title in titles:
+                direct = query(title, self.graph, claim_index=self.index)["source_claim_review"]
+                direct_claims.update({c["id"]: c for c in direct["claims"]})
+                direct_evidence.update({e["id"]: e for e in direct["evidence"]})
+            self.assertEqual({c["id"]: c for c in result["claims"]}, direct_claims)
+            self.assertEqual({e["id"]: e for e in result["evidence"]}, direct_evidence)
+            self.assertFalse(any(c["id"].startswith("dosik_") for c in result["claims"]))
+
+    def test_generation_preserves_generic_specific_place_time_and_exceptions(self):
+        result = query("재생관", self.graph, claim_index=self.index)["source_claim_review"]
+        claims = {c["id"]: c for c in result["claims"]}
+        generic = claims["generation_definition"]["relations"][0]
+        specific = claims["generation_year"]["relations"][0]
+        self.assertEqual((generic["source"], generic["target"]), ("wealth", "authority"))
+        self.assertEqual((specific["source"], specific["target"]), ("ten_god_정재", "ten_god_편관"))
+        year = claims["generation_year"]
+        self.assertIn("정묘일주", year["chart_scope"])
+        self.assertIn("2020년 경자년 세운", year["time_scope"])
+        self.assertIn("천간 庚(정재)→지지 子(편관)", year["chart_scope"])
+        self.assertTrue(any("인성" in c for c in year["conditions"]))
+        self.assertTrue(any("부정" in e and "긍정" in e for e in year["exceptions"]))
+        self.assertEqual(claims["generation_hidden"]["relations"], [])
+        self.assertIn("기해일주 지장간", claims["generation_hidden"]["chart_scope"])
+        self.assertTrue(any("지지 전체 금지가 아님" in e for e in claims["generation_planes"]["exceptions"]))
+        self.assertEqual(claims["generation_transcription"]["relations"], [])
+        self.assertEqual({e["id"] for e in result["evidence"]}, {
+            "sagong_generation", "sagong_planes", "sagong_generation_examples",
+            "hyeonmyo_branch_generation", "hyeonmyo_generation_variant",
+            "hyeonmyo_generation_exception", "generation_suffix"})
+
+    def test_mixed_keeps_coexistence_distinct_from_causation_and_reconciled_rules(self):
+        result = query("관살혼잡", self.graph, claim_index=self.index)["source_claim_review"]
+        claims = {c["id"]: c for c in result["claims"]}
+        board = claims["mixed_board"]
+        mixed = claims["mixed_hyeonmyo"]
+        for edge in (board["relations"][0], mixed["relations"][0]):
+            self.assertIn("방향 없는 공존", edge["predicate"])
+            self.assertEqual((edge["source"], edge["target"]), ("ten_god_정관", "ten_god_편관"))
+        strength = board["relations"][1]
+        self.assertEqual((strength["source"], strength["target"]), ("authority", "day_master"))
+        self.assertIn("과강", strength["predicate"])
+        self.assertIn("기묘일주·지장간", mixed["chart_scope"])
+        self.assertTrue(any("길하게" in e for e in mixed["exceptions"]))
+        self.assertTrue(any("적용이 어렵" in e for e in mixed["exceptions"]))
+        self.assertTrue(any("합화 성립 계산은 미수행" in e for e in mixed["unresolved"]))
+        self.assertEqual(claims["mixed_determinism"]["relations"], [])
+        self.assertEqual({e["id"] for e in result["evidence"]}, {"board_mixed", "hyeonmyo_mixed", "choco_determinism"})
+
+    def test_supplemental_context_rejects_omission_misattribution_and_fabrication(self):
+        mutations = [
+            lambda c: c["supplemental_evidence"].pop(),
+            lambda c: c["supplemental_evidence"][0].update(quote="fabricated"),
+            lambda c: c["supplemental_evidence"][0].update(lines=[1021, 1030]),
+            lambda c: c["supplemental_evidence"][0].update(path="../outside"),
+            lambda c: c["supplemental_evidence"][0].update(source_profile="other"),
+            lambda c: c["supplemental_evidence"][0].update(sha256="0" * 64),
+            lambda c: next(x for x in c["claims"] if x["id"] == "generation_year")["evidence_ids"].pop(),
+            lambda c: next(x for x in c["claims"] if x["id"] == "generation_planes")["evidence_ids"].append("hyeonmyo_generation_exception"),
+        ]
+        for mutate in mutations:
+            catalog = deepcopy(self.catalog)
+            mutate(catalog)
+            with self.subTest(mutation=mutations.index(mutate)), self.assertRaises(ValueError):
+                validate(catalog, self.graph, self.review)
+
+    def test_new_topics_cli_and_base_only_are_explicit(self):
+        for term in ("재생관", "관살혼잡"):
+            cmd = [sys.executable, str(ROOT / "knowledge_query.py"), term]
+            result = json.loads(subprocess.check_output(cmd + ["--diagram-context"], cwd=ROOT.parent, text=True))
+            self.assertEqual(result["status"], "found")
+            self.assertEqual(result["diagram_context"]["status"], "no_live_board_binding")
+            self.assertFalse(result["diagram_context"]["use_in_inference"])
+            base = json.loads(subprocess.check_output(cmd + ["--base-only"], text=True))
+            self.assertEqual(base["status"], "not_found")
+            self.assertEqual(base["claim_review_status"], "disabled_by_base_only_option")
 
     def test_catalog_and_returned_records_cannot_mutate_index(self):
         catalog = deepcopy(self.catalog)

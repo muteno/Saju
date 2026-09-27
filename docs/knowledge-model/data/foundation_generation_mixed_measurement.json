@@ -1,0 +1,72 @@
+{
+  "base_commit": "05dc0890d9c5acbe794c0992e88d1fe15da6c91b",
+  "scope": "actual_query_comparison_not_prediction_accuracy",
+  "base_terms_checked": 186,
+  "base_payload_changes_excluding_claim_layer": 0,
+  "old_topics_exactly_preserved": [
+    "편인도식",
+    "상관패인"
+  ],
+  "old_claim_records_preserved": 10,
+  "changed_base_term_claim_contexts": [
+    "authority",
+    "day_master",
+    "ten_god_정관",
+    "ten_god_정재",
+    "ten_god_편관",
+    "wealth",
+    "官星",
+    "日干",
+    "財星",
+    "관성",
+    "명주",
+    "본원",
+    "일간",
+    "재성",
+    "정관",
+    "정재",
+    "편관"
+  ],
+  "before_counts": {
+    "topics": 2,
+    "claims": 10,
+    "source_relations": 7,
+    "inference_enabled": false,
+    "probability": null
+  },
+  "after_counts": {
+    "topics": 4,
+    "claims": 18,
+    "source_relations": 12,
+    "inference_enabled": false,
+    "probability": null
+  },
+  "coexistence_records_without_causal_direction": 2,
+  "directional_source_records": 10,
+  "new_topics": {
+    "재생관": {
+      "before": "not_found",
+      "after": "found",
+      "claims": 5,
+      "evidence_ranges": 7,
+      "probability": null
+    },
+    "관살혼잡": {
+      "before": "not_found",
+      "after": "found",
+      "claims": 3,
+      "evidence_ranges": 3,
+      "probability": null
+    }
+  },
+  "unchanged_sha256": {
+    "docs/knowledge-model/knowledge_graph.json": "40196a3017e9111d3ffb9ad79a529f26ec7dccb9836c2c39cd96eb205c52df90",
+    "docs/knowledge-model/data/foundation_f02_review.json": "eb23183ed79acae0c719c33cdcde03098c123e051e7cc222a13f04b0dfeb7ec3",
+    "docs/knowledge-model/data/foundation_taxonomy_review.json": "4083f3236be1285a8b7229b72fbc83a3887175c9a910b6ee8cc703c6c4c581be",
+    "docs/knowledge-model/data/context_reviews.json": "a5bcdfc123cd3f6e3df8616f7bc3038526c00407c234d7660650c97ec4c58899",
+    "docs/knowledge-model/data/legacy_review.json": "47b20376dd831b7a32b77a83c0ee128740af7b911322903ad5468cd7a7585885",
+    "docs/knowledge-model/knowledge_query.py": "de2316717670b8f14db3de815316c18001849d0a001e1fffaddba29c66b10371",
+    "정제/_현황판/build_concept_map.py": "e06f371db3313231ef5f70fe2946816f528b7c4ac742c0ff2f1cfe76f646788f",
+    "정제/_현황판/build_neuron_map.py": "4beb85575a160274ed0fe736f3968f8c036ebc59486dd5493a0c2d9c1dbd997e"
+  }
+}

@@ -1,5 +1,16 @@
 # 작업 체크포인트
 
+## 2026-09-27 재생관·관살혼잡 조회 — 진행 중
+
+- 기준: PR #192 병합 main `05dc0890d9c5acbe794c0992e88d1fe15da6c91b`, tree `2e715732906aaa4c59a88df513ece04ed65a9e92`. 원격 main 재독·열린 PR/이슈 없음. 브랜치 `feat/f02-generation-mixed-claims-20260927`, 원문48 보존.
+- 원문: F02 기존 재생관/관살혼잡 근거8구간과 인접 문맥 재독. 사주공부의 우선 천간/지지 다른 방법, 현묘 정묘+경자년의 천간→지지·정재→편관, 기묘일주 공존/길한 작용/합으로 적용 어려움을 구별한다.
+- 판단: 공존은 인과 방향으로 쓰지 않음. 기존 인용 밖 재생관의 부정적 생조/해결·길한 예외는 별도 인접 인용으로 보충하고 F02 원본은 변경하지 않음.
+- 기준 검사: 실제 Chromium 포함 `npm run verify` exit0(Python159). `/tmp/saju-next-baseline.log`.
+- 구현: schema2, 네 주제·주장18·관계기록12(방향10/공존2), 고유인용19(기존F02 중17+보충2). 기존 두 주제/10주장과 186개 기본 조회 본문을 대조해 동일 확인. 관계회귀16개(새5) 통과. [측정](data/foundation_generation_mixed_measurement.json)과 [검수](FOUNDATION_GENERATION_MIXED.md)에 범위/해시 보존.
+- 독립 검토: 첫6명은 실제 원문·계약·조회·추론·회귀를 대조해 차단결함 미발견. 최종 반론/문서2명 진행 중(동시한도6명, 총8명). 변경본 필수게이트·커밋·원격·병합은 아직 성공으로 기록하지 않음.
+- 다음 명령: `python3 docs/knowledge-model/foundation_claims.py` → `python3 -m unittest discover -s docs/knowledge-model -p 'test_foundation_claims.py'` → 필수8게이트/커밋/원격 저장.
+
+
 ## 2026-09-27 편인도식·상관패인 출처별 관계 조회 — PR #192
 
 - 기준: PR #191 병합 main `583b0cdc266b929cbb0b1c2ee04cdd8ee77d6cfa`, 브랜치 `feat/f02-source-claim-links-20260927`. 사용자 원문47을 보존했다.
