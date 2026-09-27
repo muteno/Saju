@@ -111,15 +111,14 @@ export function removeProfile(id: string) {
   write({ active: s.active === id ? (list[0]?.id ?? null) : s.active, list })
 }
 
-/** 프로필 → 앱 입력. 저장 형식의 시간 자리값과 실제 관측한 생시를 구별한다. */
+/** 프로필 → 엔진 입력 (경도 포함). 시간 모름이면 정오 대입 — 일주 판정 안전 실증(260718 엔진 실측). */
 export function profileToInput(p: Omit<StoredProfile, 'id' | 'createdAt'>): ChartInput {
   return {
     year: p.year,
     month: p.month,
     day: p.day,
-    hour: p.hourUnknown ? null : p.hour,
-    minute: p.hourUnknown ? null : p.minute,
-    ...(p.hourUnknown ? { hourUnknown: true } : {}),
+    hour: p.hourUnknown ? 12 : p.hour,
+    minute: p.hourUnknown ? 0 : p.minute,
     gender: p.gender === '남자' ? 'M' : 'F',
     longitude: cityByName(p.city).longitude,
     ...(p.solarCorrection === false ? { solarTimeCorrection: false } : {}),
@@ -186,9 +185,8 @@ export function parseShare(search: string): ParsedShare | null {
         year: y,
         month: mo,
         day: d,
-        hour: hourUnknown ? null : hh,
-        minute: hourUnknown ? null : mi,
-        ...(hourUnknown ? { hourUnknown: true } : {}),
+        hour: hourUnknown ? 12 : hh,
+        minute: hourUnknown ? 0 : mi,
         gender: g,
         longitude: cityByName(city).longitude,
         ...(q.get('sc') === '0' ? { solarTimeCorrection: false } : {}),

@@ -3,7 +3,6 @@
 // 이 모듈은 ReportBundle(엔진 L3 산출)에서 주제별 대사 시퀀스를 "그대로 인용"으로 뽑는 순수 함수만 담는다.
 // 문장 창작 금지 — 허용 범위는 도사 화법 커넥터(TOPIC_INTROS)와 관점차이 병기 틀뿐.
 import type { ReportBundle } from '../engine'
-import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE as HOUR_UNKNOWN_NOTICE } from '../engine/birthTime'
 
 export interface DosaLine {
   text: string
@@ -59,7 +58,7 @@ export const TOPIC_FOCUS: Record<string, string[]> = {
 }
 
 /** 시간 모름 안내(시주 의존 근거를 뺐을 때 1줄) */
-export { UNKNOWN_BIRTH_TIME_NOTICE as HOUR_UNKNOWN_NOTICE } from '../engine/birthTime'
+export const HOUR_UNKNOWN_NOTICE = '태어난 시간을 알면 더 정확해진다.'
 
 /** 근거 전무 폴백 — 엔진 정본 문구('소장 문헌에 상세 없음') 계승 */
 const EMPTY_NOTICE = '소장 문헌에 상세 없음 — 자료가 더 정리되면 말해 주마.'
@@ -168,7 +167,6 @@ export const josa = (word: string, withBatchim: string, without: string): string
  * 주의: ilju.주의[] + 관점차이 병기(견해 src 포함)
  */
 export function topicLines(report: ReportBundle, topicKey: string, hourUnknown = false): DosaLine[] {
-  if (hasUnknownBirthTime(report, hourUnknown)) return [{ text: HOUR_UNKNOWN_NOTICE }]
   const ilju = findSection(report, 'ilju')
   const d = ilju?.block?.distilled
   const dd = d?.distilled
@@ -238,7 +236,6 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
 
 /** LLM 프롬프트용 압축 요약 — 원국표 4주 간지 + 일간 + 구조 판정 lines(엔진 산출 그대로) */
 export function chartSummaryOf(report: ReportBundle, hourUnknown = false): string {
-  if (hasUnknownBirthTime(report, hourUnknown)) return HOUR_UNKNOWN_NOTICE
   const parts: string[] = []
   const w = findSection(report, 'wonguk')
   const rows = (w?.table ?? []).filter((r) => !hourUnknown || r.pos !== '시주')

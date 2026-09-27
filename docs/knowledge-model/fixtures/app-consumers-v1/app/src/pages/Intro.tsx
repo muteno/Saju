@@ -9,8 +9,7 @@ import GapjaSticker from '../components/GapjaSticker'
 import { OhaengSegBar, OhaengVerdicts, SectionTitle, GlassButton } from '../components/ReportParts'
 import { DigitRoll, WordReveal, wordOffsets } from '../components/Motion'
 import { tokens } from '../theme'
-import { todayInfo, myTodayFortune, sampleProfileLabel } from '../data/saju'
-import { UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
+import { ohaengWithoutHour, todayInfo, myTodayFortune, sampleProfileLabel } from '../data/saju'
 import { HOST_NAME, hasChef } from '../data/chefs'
 import { useReport, stepPath } from '../data/useReport'
 import { currentAccount, markVisit } from '../data/account'
@@ -90,8 +89,8 @@ export default function Intro() {
   }
 
   const pillars = chart.pillars
-  const ohaeng = chart.ohaeng
-  const ohaengTotal = 8
+  const ohaeng = resolved.hourUnknown ? ohaengWithoutHour(pillars) : chart.ohaeng
+  const ohaengTotal = resolved.hourUnknown ? 6 : 8
   const showCorrected = chart.corrected && resolved.input.solarTimeCorrection !== false && !resolved.hourUnknown
   const fortune = (() => {
     try {
@@ -110,7 +109,7 @@ export default function Intro() {
   // ②시주 한자 병기 ③구분자 `|` 뒤에 태어난 곳. 전엔 이름 뒤 괄호 안에 전부 밀어넣어
   // "황세웅 (1993. 11. 30. 08:00 진시 · 보정 -30분 · 순천)" 한 덩어리로 읽혔다.
   // 유파 보정·야자시는 값이 있을 때만 뒤에 붙는 꼬리표라 장소 뒤로 보냈다.
-  const pad = (n: number | null) => n === null ? '' : String(n).padStart(2, '0')
+  const pad = (n: number) => String(n).padStart(2, '0')
   const hourPillar = pillars.find((p) => p.title === '시')
   const iljuGanji = (() => {
     const d = pillars.find((p) => p.title === '일')
@@ -318,7 +317,7 @@ export default function Intro() {
                 </Box>
               </>
             ) : (
-              <Typography sx={{ fontSize: 13.5, color: tokens.color.inkSub }}>{resolved.hourUnknown ? '출생 시간을 몰라 오늘의 운세를 보류해요.' : '오늘 일진 계산에 필요한 값이 부족해요.'}</Typography>
+              <Typography sx={{ fontSize: 13.5, color: tokens.color.inkSub }}>오늘 일진 계산에 필요한 값이 부족해요.</Typography>
             )}
           </Box>
         </Box>
@@ -353,12 +352,12 @@ export default function Intro() {
                 </Typography>
               </Box>
             </Box>
-            {!resolved.hourUnknown && <SajuTable pillars={pillars} fluid />}
+            <SajuTable pillars={pillars} unknownHour={resolved.hourUnknown} fluid />
             {/* 오행 판정(과다·없음) — 12신살 행 바로 아래(운영자 260726-b).
                 점수 카드의 세그먼트 바에서 여기로 이관: 표를 다 읽고 나서 "그래서 뭐가 넘치나"가 온다 */}
-            {!resolved.hourUnknown && <Box sx={{ mt: 1.4 }}>
+            <Box sx={{ mt: 1.4 }}>
               <OhaengVerdicts ohaeng={ohaeng} total={ohaengTotal} />
-            </Box>}
+            </Box>
             {/* 산출값 캡션 — 표 아래 우측에 글자만(운영자 260726). 입력값(보정량·출생지)은 위 헤더.
                 오행은 점수 카드로 올라갔다(F2 세그먼트 바) — 여기 두면 같은 값이 두 번 나온다 */}
             {showCorrected && (
@@ -368,7 +367,7 @@ export default function Intro() {
             )}
             {resolved.hourUnknown && (
               <Typography sx={{ mt: 1, textAlign: 'right', fontSize: 11.5, fontWeight: 600, color: tokens.color.inkFaint }}>
-                {UNKNOWN_BIRTH_TIME_NOTICE}
+                시간 모름 — 시주 없이 세 기둥으로 풀이
               </Typography>
             )}
           </Box>

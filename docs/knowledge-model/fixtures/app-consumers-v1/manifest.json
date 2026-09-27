@@ -1,0 +1,33 @@
+{
+  "commit": "d23400c3c8cc8587336fd5a00fcda2ce23184680",
+  "files": [
+    {
+      "path": "app/src/engine/index.js",
+      "sha256_lf": "adabc2f2b217e7c38a80673244b74b12fe63453c347b6a3fa41b31fa882141a5"
+    },
+    {
+      "path": "app/src/data/profiles.ts",
+      "sha256_lf": "ab916e894af46a3028279e7b1f34778970751df706462f749ff7d621b944d450"
+    },
+    {
+      "path": "app/src/data/saju.ts",
+      "sha256_lf": "6dc203fdf6cbfdd2a0ff1b0a19dd195e44960a026ed65713b0e3c65cf9ec4496"
+    },
+    {
+      "path": "app/src/data/useReport.ts",
+      "sha256_lf": "cd316ce2ba2da566cb6b4dfadbbfe854bb57c690baa82b2c114504a47a6c8e4d"
+    },
+    {
+      "path": "app/src/pages/Analysis.tsx",
+      "sha256_lf": "24f276caafe4e93411cdd147d7a4aed0f6c61e954e46b33cf892cd96afd5eccc"
+    },
+    {
+      "path": "app/src/data/dosaTopics.ts",
+      "sha256_lf": "b42208dfb047db538b52f3a3abde16f088f786348dff0719794c36c11bb74643"
+    },
+    {
+      "path": "app/src/pages/Intro.tsx",
+      "sha256_lf": "05a214ce1d478406a0e3258db3260e1fad3dd09c3582067a47d6cbfd9cd4a25a"
+    }
+  ]
+}

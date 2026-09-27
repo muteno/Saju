@@ -12,7 +12,6 @@ import {
   type OhaengStat as OhaengStatT,
 } from '../engine'
 import { enneaLensCard } from './enneaLens'
-import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
 
 /**
  * 화면 데이터층 — 전부 dosa-app L1 엔진 실계산 + L3 근거 리포트에서 생성.
@@ -107,11 +106,6 @@ const pickExcerpt = (excerpts: any[] | undefined, n: number): { paras: string[];
 
 /** 엔진 근거 리포트 → 화면 리딩. 근거 있는 섹션만(없으면 비움 = 소장 문헌 없음). */
 export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; profileName?: string } = {}): Reading {
-  if (hasUnknownBirthTime(input, opts.hourUnknown)) return {
-    headline: '출생 시간 확인 필요', unseYear: currentUnseYearName(),
-    dialogue: [{ icon: '🕰️', label: '시간 모름', lines: [UNKNOWN_BIRTH_TIME_NOTICE] }],
-    cards: [{ id: 'hour-unknown', title: '출생 시간 확인 필요', blocks: [{ lines: [UNKNOWN_BIRTH_TIME_NOTICE] }] }],
-  }
   const hourUnknown = !!opts.hourUnknown
   const rep: any = buildReading(input)
   const byId = (id: string) => rep.sections.find((s: any) => s.id === id)
@@ -135,7 +129,7 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; prof
     dialogue.push({
       icon: '🕰️',
       label: '시간 모름',
-      lines: [UNKNOWN_BIRTH_TIME_NOTICE],
+      lines: ['태어난 시간을 몰라 시주(時柱)를 뺀 세 기둥으로 본다. 일주 중심의 풀이는 그대로 정확하니 안심하게.'],
     })
 
   const unseSec = rep.sections.find((s: any) => s.id === 'unse' && s.block?.excerpts?.length)

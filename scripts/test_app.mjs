@@ -45,12 +45,23 @@ test('강약 소비 경로의 실제 앱 실행과 미상 입력 차이를 재�
   // Runs after the build in verify gate 7: real Vite, generated KB, isolated clock/fetch.
   const env = { ...process.env }
   delete env.NODE_TEST_CONTEXT // otherwise Node silently skips a nested --test run
-  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_strength_consumers.mjs'], {
+  const output = execFileSync(process.execPath, ['docs/knowledge-model/frozen_app_audit.mjs', '--test', '--test-reporter=tap', 'docs/knowledge-model/test_strength_consumers.mjs'], {
     cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 120000,
     stdio: ['ignore', 'pipe', 'pipe'], env,
   })
   assert.match(output, /^# tests 5$/m)
   assert.match(output, /^# pass 5$/m)
+  assert.match(output, /^# skipped 0$/m)
+})
+test('현재 앱의 생시 미상 계약과 알려진 입력 40행을 검증한다', () => {
+  const env = { ...process.env }
+  delete env.NODE_TEST_CONTEXT
+  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_unknown_birth_time.mjs'], {
+    cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 120000,
+    stdio: ['ignore', 'pipe', 'pipe'], env,
+  })
+  assert.match(output, /^# tests 7$/m)
+  assert.match(output, /^# pass 7$/m)
   assert.match(output, /^# skipped 0$/m)
 })
 after(() => {
@@ -115,7 +126,7 @@ test('시간 모름 상담 요약에 임시 시주와 강약 수치를 보내지
   assert.match(summary, /출생 시간 모름/)
   assert.match(chartSummaryOf(report), /갑오/)
 })
-test('실제 엔진 리포트도 시간 모름이면 시주를 빼고 나머지 세 기둥을 유지한다', () => {
+test('실제 엔진 리포트도 시간 모름이면 임시 네 기둥을 상담에 보내지 않는다', () => {
   const { terms } = JSON.parse(readFileSync(new URL('../app/src/engine/vendor/data/solar_terms.json', import.meta.url), 'utf8'))
   const chart = computeChart({ year: 1990, month: 1, day: 1, hour: 12, minute: 0, gender: 'F' }, terms)
   const engineReport = buildReport(chart, chartToKeys(chart), { aliases: {}, index: {}, bodies: {} })
@@ -126,7 +137,8 @@ test('실제 엔진 리포트도 시간 모름이면 시주를 빼고 나머지 
   const known = chartSummaryOf(engineReport)
   assert.equal(unknown.includes(hour.ganji), false)
   assert.equal(known.includes(`${hour.pos} ${hour.ganji}`), true)
-  for (const row of rows.filter((row) => row !== hour)) assert.equal(unknown.includes(`${row.pos} ${row.ganji}`), true)
+  for (const row of rows) assert.equal(unknown.includes(`${row.pos} ${row.ganji}`), false)
+  assert.doesNotMatch(unknown, /일간:/)
   assert.doesNotMatch(unknown, /구조 판정:|\/110/)
   assert.match(known, /구조 판정:/)
 })
@@ -136,13 +148,11 @@ test('한글 IME 확정과 Shift+Enter는 전송을 막는다', () => {
   assert.equal(shouldSendOnEnter({ key: 'Enter', shiftKey: true }), false)
   assert.equal(shouldSendOnEnter({ key: 'Enter', shiftKey: false }), true)
 })
-test('상담 클라이언트는 시간 모름 정보를 지키며 응답을 받는다', async () => {
-  globalThis.fetch = async (_, init) => {
-    const body = JSON.parse(init.body)
-    assert.doesNotMatch(body.chartSummary, /갑오|70\/110/)
-    return Response.json({ text: ' 응답입니다. ' })
-  }
-  assert.equal(await requestDosaText({ topic: '성격', report, lines: [], chefId: 'noona', model: 'sonnet', hourUnknown: true }), '응답입니다.')
+test('상담 클라이언트는 시간 모름이면 공급자를 부르지 않고 보류 안내를 반환한다', async () => {
+  let calls = 0
+  globalThis.fetch = async () => { calls++; throw Error('unknown chart must not be sent') }
+  assert.match(await requestDosaText({ topic: '성격', report, lines: [{ text: '정오 가정' }], chefId: 'noona', model: 'sonnet', hourUnknown: true }), /출생 시간 모름/)
+  assert.equal(calls, 0)
 })
 test('상담 전송 취소·타임아웃 시 fetch를 중단한다', async () => {
   const ctrl = new AbortController()
