@@ -26,7 +26,7 @@ class FoundationAdditionsTests(unittest.TestCase):
     def test_extension_preserves_f01_contract(self):
         result = validate_f01(self.f01)
         self.assertEqual((result["differences"], result["concepts"], result["applied_aliases"],
-                          result["evidence_ranges"], result["executable_concepts"]), (76, 271, 4, 176, 281))
+                          result["evidence_ranges"], result["executable_concepts"]), (76, 271, 4, 176, 282))
         self.assertEqual(result["f02"]["added_concepts"], 6)
         self.assertFalse(result["f02"]["training_labels"])
         self.assertIsNone(result["f02"]["probability"])
@@ -125,6 +125,8 @@ class FoundationAdditionsTests(unittest.TestCase):
             stripped, _ = validate_and_strip(review, taxonomy)
         self.assertEqual(review, self.review)
         self.assertEqual(taxonomy, self.taxonomy)
+        from foundation_partial import load_and_strip as strip_partial
+        stripped, _ = strip_partial(stripped)
         from foundation_priority import load_and_strip
         stripped, _ = load_and_strip(stripped)
         self.assertEqual(sum(len(cs) for gs in stripped.values() for cs in gs.values()), 271)

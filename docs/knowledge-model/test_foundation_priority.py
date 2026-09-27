@@ -9,6 +9,7 @@ import unicodedata
 import unittest
 from unittest.mock import patch
 
+from foundation_partial import load_and_strip as strip_partial
 from foundation_priority import REPO, REVIEW, TOPICS, validate_and_strip
 from foundation_review import TAXONOMY, REVIEW as F01, load_taxonomy, validate
 
@@ -19,6 +20,7 @@ class PriorityTests(unittest.TestCase):
         cls.review = json.loads((REPO / REVIEW).read_text())
         cls.f01 = json.loads((REPO / F01).read_text())
         cls.taxonomy = load_taxonomy(REPO / TAXONOMY)
+        cls.prior_taxonomy, _ = strip_partial(cls.taxonomy)
         spec = importlib.util.spec_from_file_location("priority_matcher", REPO / "정제/_현황판/build_neuron_map.py")
         cls.matcher = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(cls.matcher)
@@ -26,7 +28,7 @@ class PriorityTests(unittest.TestCase):
     def test_explicit_extension_reaches_frozen_gate(self):
         result = validate(self.f01, taxonomy=self.taxonomy)
         self.assertEqual((result["differences"], result["concepts"], result["applied_aliases"],
-                          result["evidence_ranges"], result["executable_concepts"]), (76, 271, 4, 176, 281))
+                          result["evidence_ranges"], result["executable_concepts"]), (76, 271, 4, 176, 282))
         self.assertEqual(result["f02"]["added_concepts"], 6)
         self.assertEqual(result["f02"]["evidence_ranges"], 24)
         self.assertEqual(result["f02_priority"]["added_concepts"], 4)
@@ -67,7 +69,7 @@ class PriorityTests(unittest.TestCase):
             review = deepcopy(self.review)
             mutate(review)
             with self.subTest(i=i), self.assertRaises(ValueError):
-                validate_and_strip(review, self.taxonomy)
+                validate_and_strip(review, self.prior_taxonomy)
 
     def test_broken_source_links_quotes_and_ranges_fail(self):
         mutations = [lambda d: d["evidence"][0].update(sha256="0" * 64),
@@ -82,7 +84,7 @@ class PriorityTests(unittest.TestCase):
             review = deepcopy(self.review)
             mutate(review)
             with self.subTest(i=i), self.assertRaises(ValueError):
-                validate_and_strip(review, self.taxonomy)
+                validate_and_strip(review, self.prior_taxonomy)
 
     def test_new_review_failure_is_not_bypassed_by_f01_gate(self):
         broken = deepcopy(self.review)
@@ -94,11 +96,11 @@ class PriorityTests(unittest.TestCase):
             validate(self.f01)
 
     def test_detached_copy_and_crlf_source_hashes(self):
-        taxonomy, review = deepcopy(self.taxonomy), deepcopy(self.review)
+        taxonomy, review = deepcopy(self.prior_taxonomy), deepcopy(self.review)
         original = Path.read_bytes
         with patch.object(Path, "read_bytes", lambda p: original(p).replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")):
             stripped, _ = validate_and_strip(review, taxonomy)
-        self.assertEqual(taxonomy, self.taxonomy)
+        self.assertEqual(taxonomy, self.prior_taxonomy)
         self.assertEqual(review, self.review)
         self.assertEqual(sum(len(cs) for gs in stripped.values() for cs in gs.values()), 277)
         self.assertEqual(stripped["S06 신살"]["흉신"]["공망"], ["공망", "空亡", "天中殺"])

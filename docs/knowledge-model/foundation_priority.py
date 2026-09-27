@@ -140,7 +140,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
     from foundation_review import load_taxonomy, TAXONOMY
     review = json.loads((REPO / REVIEW).read_text(encoding="utf-8"))
-    _, result = validate_and_strip(review, load_taxonomy(REPO / TAXONOMY))
+    from foundation_partial import load_and_strip as strip_partial
+    prior_taxonomy, _ = strip_partial(load_taxonomy(REPO / TAXONOMY))
+    _, result = validate_and_strip(review, prior_taxonomy)
     if args.concept:
         row = next(r for r in review["decisions"] if r["concept"] == args.concept)
         result = {"scope": review["scope"], "decision": row,
