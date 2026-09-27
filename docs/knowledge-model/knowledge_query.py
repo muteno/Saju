@@ -6,6 +6,9 @@ from pathlib import Path
 
 def diagram_context(result, structure):
     """Return source-navigation links; no board line becomes a semantic edge."""
+    if result.get("node", {}).get("kind") == "source_review_topic":
+        return {"status": "no_live_board_binding", "connections": [],
+                "use_in_inference": False, "probability": None}
     expected = result.get("diagram_structure", {}).get("snapshot_sha256")
     if not expected or expected != structure["source"]["raw_sha256"]:
         raise ValueError("Graph references and diagram structure use different snapshots")
@@ -27,12 +30,21 @@ def diagram_context(result, structure):
             "connections": connections}
 
 
-def query(term, graph, legacy=None):
-    matches = [n for n in graph["nodes"] if term in [n["id"], n["title"], *n["aliases"]]]
+def query(term, graph, legacy=None, claim_index=None):
+    review_nodes = []
+    if claim_index is not None:
+        claim_index.check_graph(graph)
+        review_nodes = claim_index.topics()
+    matches = [n for n in graph["nodes"] + review_nodes
+               if term in [n["id"], n["title"], *n["aliases"]]]
     if len(matches) != 1:
         return {"status": "ambiguous" if matches else "not_found", "term": term,
                 "candidates": [{"id": n["id"], "title": n["title"], "kind": n["kind"]} for n in matches]}
     node = matches[0]
+    if node["id"] in {n["id"] for n in review_nodes}:
+        return {"status": "found", "node": node, "relations": [], "context_factors": [],
+                "source_claim_review": claim_index.retrieve(node["id"]),
+                "probability": None, "probability_status": "requires_trained_context_model"}
     links = [r for r in graph["relations"] if node["id"] in (r["source"], r["target"])]
     factors = [h for h in graph["hyperedges"] if node["id"] in [*h["input_nodes"], h["output_node"]]]
     refs = set(node["evidence_ids"])
@@ -70,12 +82,18 @@ def query(term, graph, legacy=None):
         if legacy["graph_fingerprint"] != graph_fingerprint(graph):
             raise ValueError("Legacy concept bindings use a different graph; rebuild legacy_import.py")
         result["legacy_review"] = review_context(node["id"], legacy)
+    if claim_index is not None:
+        review = claim_index.retrieve(node["id"])
+        if review is not None:
+            result["source_claim_review"] = review
     return result
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("term")
+    parser.add_argument("--base-only", action="store_true",
+                        help="Query the bundled base graph only (for standalone packages without source archives)")
     parser.add_argument("--diagram-context", action="store_true",
                         help="Include board attachments in cited source nodes/sections, not inferred relations")
     args = parser.parse_args()
@@ -88,8 +106,17 @@ if __name__ == "__main__":
         from legacy_import import digest
         if legacy["graph_sha256"] != digest(graph_path.read_bytes()):
             raise ValueError("Legacy concept bindings are stale; rebuild legacy_import.py")
-    result = query(args.term, graph, legacy=legacy)
+    claim_index = None
+    if not args.base_only:
+        from foundation_claims import load_index
+        claim_index = load_index(graph)
+    result = query(args.term, graph, legacy=legacy, claim_index=claim_index)
+    if args.base_only:
+        result["claim_review_status"] = "disabled_by_base_only_option"
     if args.diagram_context and result["status"] == "found":
-        path = Path(__file__).parent / graph["diagram_structure"]["path"]
-        result["diagram_context"] = diagram_context(result, json.loads(path.read_text(encoding="utf-8")))
+        structure = None
+        if result.get("diagram_structure"):
+            path = root / result["diagram_structure"]["path"]
+            structure = json.loads(path.read_text(encoding="utf-8"))
+        result["diagram_context"] = diagram_context(result, structure)
     print(json.dumps(result, ensure_ascii=False, indent=2))

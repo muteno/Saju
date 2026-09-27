@@ -38,7 +38,7 @@
 
 ## 실행
 
-Python 3.10 이상, 표준 라이브러리만 사용한다. 원국 연결에는 기존 엔진을 실행할 Node.js도 필요하다. 저장소 루트에서 `cd docs/knowledge-model`로 이동해 실행한다. 별도 배포 ZIP에서는 압축을 푼 뒤 이 파일이 있는 폴더에서 실행한다.
+Python 3.10 이상, 표준 라이브러리만 사용한다. 원국 연결에는 기존 엔진을 실행할 Node.js도 필요하다. 저장소 루트에서 `cd docs/knowledge-model`로 이동해 실행한다. 별도 배포 ZIP에서는 압축을 푼 뒤 이 파일이 있는 폴더에서 실행한다. 원문/사전이 없는 ZIP의 기본 그래프 조회는 `python knowledge_query.py 식신 --base-only`를 사용한다. 이 옵션은 새 출처별 조회층을 끈 상태를 출력에 명시한다.
 
 ```bash
 python build_graph.py
@@ -46,6 +46,8 @@ python legacy_import.py
 python legacy_import.py --check
 python knowledge_query.py 식신
 python knowledge_query.py 신
+python knowledge_query.py 편인도식
+python knowledge_query.py 상관패인
 python conditional_model.py
 python conditional_model.py --demo
 python context_query.py --input data/context_example.json --term 재성
@@ -57,6 +59,8 @@ node --test test_chart_context.mjs
 ```
 
 `신`은 천간과 지지 후보가 함께 반환된다. 의미가 확정되지 않은 입력을 하나로 합치지 않는다.
+
+기본 CLI는 [편인도식·상관패인 출처별 조회층](FOUNDATION_CLAIM_LINKS.md)도 검증해 읽으므로 저장소의 사전과 인용 원문이 필요하다. 누락되면 실패하며 조용히 기본 조회로 바꾸지 않는다. `--base-only`는 원본이 없는 별도 배포본에서 이전 기본 그래프/legacy 조회를 사용하는 명시적 선택이다. 이때 새 두 주제는 기본 그래프에 없으므로 `not_found`다.
 
 기존 조건·분기 후보는 조회 결과의 `legacy_review`에 포함한다. 직접 대응된 개념의 검토 자료만 가져오며 원문 미확인 항목도 상태를 표시한다. `query(term, graph, legacy=bundle)`로도 사용한다. 그래프가 바뀌면 이관 스냅샷을 다시 생성해야 하며, 원문·기존 자료가 생략된 배포 ZIP에서는 이관 재생성을 실행할 수 없다. 후보 조회는 원국 적용이나 학습된 확률 출력이 아니다.
 
