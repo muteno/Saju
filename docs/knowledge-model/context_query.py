@@ -20,7 +20,7 @@ POLICY = "chart-observations-v1"
 
 def calculate_context(request):
     """Recompute observations from the request; never trust caller-supplied features."""
-    run = subprocess.run(["node", str(ROOT / "chart_context.mjs"), "-"],
+    run = subprocess.run(["node", str(ROOT / "chart_context_v2.mjs"), "-"],
                          input=json.dumps(request, ensure_ascii=False, allow_nan=False, sort_keys=True),
                          capture_output=True, text=True, check=False)
     if run.returncode:
@@ -118,7 +118,8 @@ def assess(context, reviews, model=None):
                 or any(model.get(k) != context["provenance"][k] for k in ("calculator_files", "adapter_sha256"))):
             raise ValueError("Model requires matching feature policy, review, adapter and calculator source hashes")
         prediction = predict(model, {"features": features})
-    return {"feature_policy": POLICY, "evaluated_at": context["evaluated_at"], "natal": context["natal"],
+    return {"feature_policy": POLICY, **({"resolution_policy": context["resolution_policy"]} if "resolution_policy" in context else {}),
+            "evaluated_at": context["evaluated_at"], "natal": context["natal"],
             "time_context": context["time_context"], "observations": context["features"],
             "measurement_bounds": context["bounds"], "measurement_policy": context["measurement"],
             "conditions": results, "model_input": {"features": features}, "prediction": prediction,
