@@ -1,0 +1,6911 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "7c861977a39f55e5331d630818a88b7d2ed1ab00",
+  "evaluated_at": "2026-09-28T00:00:00Z",
+  "scope": "Application function execution, not component visibility or policy adoption",
+  "runtime": {
+    "node": "v24.19.0",
+    "icu": "78.3",
+    "tz": "2026b"
+  },
+  "assets": {
+    "kb": {
+      "generated_at": "2026-09-28T00:00:00Z",
+      "file": "kb-b5b98b98.json",
+      "pointer_sha256": "95a2485722c02af8de0677e4dc625504feeda0405844c765cc8b18f95d28066c",
+      "payload_sha256": "b5b98b98c6e49f1716e05d7fdd7431b5073084e4c4b00fa3dc1be61292a34f05",
+      "unse_years": [
+        "병오",
+        "정미"
+      ]
+    },
+    "brain_sha256": "51ab4aa0711196dbfed744d6bf1587c009fedbca5ecf104449ecca8f8f433f66"
+  },
+  "source_hashes": [
+    {
+      "path": "app/src/engine/index.js",
+      "sha256_lf": "adabc2f2b217e7c38a80673244b74b12fe63453c347b6a3fa41b31fa882141a5"
+    },
+    {
+      "path": "app/src/engine/brain.js",
+      "sha256_lf": "6c99ebbeae23eb4c5cedc621f2cda31d0b4cc9a84e25bd35de124976c4b57c18"
+    },
+    {
+      "path": "app/src/data/profiles.ts",
+      "sha256_lf": "ab916e894af46a3028279e7b1f34778970751df706462f749ff7d621b944d450"
+    },
+    {
+      "path": "app/src/data/cities.ts",
+      "sha256_lf": "ccb32013d3eb1ee7b8ee672eb081f0b8f61c20901c5234d5c238a9d678ac9cf1"
+    },
+    {
+      "path": "app/src/data/saju.ts",
+      "sha256_lf": "6dc203fdf6cbfdd2a0ff1b0a19dd195e44960a026ed65713b0e3c65cf9ec4496"
+    },
+    {
+      "path": "app/src/data/jeonggok.ts",
+      "sha256_lf": "3379915d25873361b6f7bd5697e0c58b095316fd3c6d27a8362d08cc99bee556"
+    },
+    {
+      "path": "app/src/data/useReport.ts",
+      "sha256_lf": "cd316ce2ba2da566cb6b4dfadbbfe854bb57c690baa82b2c114504a47a6c8e4d"
+    },
+    {
+      "path": "app/src/pages/Analysis.tsx",
+      "sha256_lf": "24f276caafe4e93411cdd147d7a4aed0f6c61e954e46b33cf892cd96afd5eccc"
+    },
+    {
+      "path": "app/src/data/dosaTopics.ts",
+      "sha256_lf": "b42208dfb047db538b52f3a3abde16f088f786348dff0719794c36c11bb74643"
+    },
+    {
+      "path": "app/src/pages/Intro.tsx",
+      "sha256_lf": "05a214ce1d478406a0e3258db3260e1fad3dd09c3582067a47d6cbfd9cd4a25a"
+    },
+    {
+      "path": "app/src/data/enneaLens.ts",
+      "sha256_lf": "00dd519cedccd51465c828c0104821cd8ae17d65f642063d35b66625c7dd3628"
+    },
+    {
+      "path": "app/src/components/BrainPanel.tsx",
+      "sha256_lf": "848cc7898984c7cf1c30843dbb67b1c041f020c02e0a17b8f62f945e27afe7c0"
+    },
+    {
+      "path": "dosa-app/engine/src/manseryeok.js",
+      "sha256_lf": "b401b6dc14f6f7828b6d23d6d4ee92c90c2d0261faea19873eda284da35239c1"
+    },
+    {
+      "path": "app/src/engine/vendor/manseryeok.js",
+      "sha256_lf": "b401b6dc14f6f7828b6d23d6d4ee92c90c2d0261faea19873eda284da35239c1"
+    },
+    {
+      "path": "dosa-app/engine/src/tables.js",
+      "sha256_lf": "94988a5b27d831a4e30b6d503040fb9235d5b103943a86f8f66a247f9b71f2e3"
+    },
+    {
+      "path": "app/src/engine/vendor/tables.js",
+      "sha256_lf": "94988a5b27d831a4e30b6d503040fb9235d5b103943a86f8f66a247f9b71f2e3"
+    },
+    {
+      "path": "dosa-app/engine/src/judge.js",
+      "sha256_lf": "4efa3ba08822d8b87788771087b0e7040f2c8023d8b7f97bf4f09e251075f1b3"
+    },
+    {
+      "path": "app/src/engine/vendor/judge.js",
+      "sha256_lf": "4efa3ba08822d8b87788771087b0e7040f2c8023d8b7f97bf4f09e251075f1b3"
+    },
+    {
+      "path": "dosa-app/engine/src/keyset.js",
+      "sha256_lf": "3e460f1355221138df5d25a7c7b6759272e16c717062ed4f9a483eac021e48a7"
+    },
+    {
+      "path": "app/src/engine/vendor/keyset.js",
+      "sha256_lf": "3e460f1355221138df5d25a7c7b6759272e16c717062ed4f9a483eac021e48a7"
+    },
+    {
+      "path": "dosa-app/engine/src/report.js",
+      "sha256_lf": "c730059b6aca4d0e213ebbdc76af784d3e4b346858684b104cbab90c66cd0ce6"
+    },
+    {
+      "path": "app/src/engine/vendor/report.js",
+      "sha256_lf": "c730059b6aca4d0e213ebbdc76af784d3e4b346858684b104cbab90c66cd0ce6"
+    },
+    {
+      "path": "dosa-app/engine/src/sinsal.js",
+      "sha256_lf": "83160a812f3e3c78f27881002332e335f944656efce0a0c2058ae5505cebc32d"
+    },
+    {
+      "path": "app/src/engine/vendor/sinsal.js",
+      "sha256_lf": "83160a812f3e3c78f27881002332e335f944656efce0a0c2058ae5505cebc32d"
+    },
+    {
+      "path": "dosa-app/engine/src/relations.js",
+      "sha256_lf": "fdc6f4b3674b3821940e10b89c0beab6916ddb92bcf12ad87358e3d6d0297acb"
+    },
+    {
+      "path": "app/src/engine/vendor/relations.js",
+      "sha256_lf": "fdc6f4b3674b3821940e10b89c0beab6916ddb92bcf12ad87358e3d6d0297acb"
+    },
+    {
+      "path": "dosa-app/engine/src/unse.js",
+      "sha256_lf": "0f195d42addad6a1fe3688c994a199c84714a305f4fab63dc4e74bd7500f0408"
+    },
+    {
+      "path": "app/src/engine/vendor/unse.js",
+      "sha256_lf": "0f195d42addad6a1fe3688c994a199c84714a305f4fab63dc4e74bd7500f0408"
+    },
+    {
+      "path": "dosa-app/engine/data/solar_terms.json",
+      "sha256_lf": "dc83c1aeb9b19eea28e15bcb2c539ac650b70272f3f6a0fef8e76575da6cde1f"
+    },
+    {
+      "path": "app/src/engine/vendor/data/solar_terms.json",
+      "sha256_lf": "dc83c1aeb9b19eea28e15bcb2c539ac650b70272f3f6a0fef8e76575da6cde1f"
+    },
+    {
+      "path": "app/public/brain.json",
+      "sha256_lf": "51ab4aa0711196dbfed744d6bf1587c009fedbca5ecf104449ecca8f8f433f66"
+    },
+    {
+      "path": "docs/knowledge-model/chart_context_v2.mjs",
+      "sha256_lf": "ff326d940f3f738f4731870c3e3fb4df7c80c79fee5a8f9e1ff37cab1b0bdd38"
+    },
+    {
+      "path": "docs/knowledge-model/chart_context.mjs",
+      "sha256_lf": "c40b8099fefc3dad83256a86f85d1d0b70bd44662d9fcd7361a09338b1bece66"
+    },
+    {
+      "path": "scripts/build_kb.mjs",
+      "sha256_lf": "bd34efc4f0238939677c89974df4e6bc31e90bc515bc690accbd1adb96fd4eb5"
+    },
+    {
+      "path": "app/package.json",
+      "sha256_lf": "db93aeb3434a27327927f710d28159a68f61a22da9ab8679067b920622d31578"
+    },
+    {
+      "path": "docs/knowledge-model/measure_calculation_policies.mjs",
+      "sha256_lf": "b5bde30438386b1b0c261bb7eb7f3828e0cee6b8945199d12cdb74ba28a952b3"
+    },
+    {
+      "path": "docs/knowledge-model/data/foundation_calculation_review.json",
+      "sha256_lf": "f3dc94ae6a14b65d98be04b08e9fe2884b6e5d8cf2fc67abcf7be7f3541b79b8"
+    },
+    {
+      "path": "docs/knowledge-model/data/foundation_calculation_measurement.json",
+      "sha256_lf": "9647c836531ef36b027cc04744b3732d8528d67683c5024a6458678871d8647e"
+    },
+    {
+      "path": "docs/knowledge-model/data/foundation_timezone_measurement.json",
+      "sha256_lf": "d37e55b00b8afe57fa9d5267de6ae95ee3130e1916e3df61c3479c692eb9094e"
+    },
+    {
+      "path": "docs/knowledge-model/measure_strength_consumers.mjs",
+      "sha256_lf": "a244473ed41225ff695842ca46357eb1e7bd66d0b6ffe906ca50556b05ccf30f"
+    }
+  ],
+  "rows": [
+    {
+      "id": "known-extreme-down-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 39,
+        "month": 0,
+        "day": 1,
+        "hour": 18
+      },
+      "current": {
+        "score": 85,
+        "max": 110,
+        "label": "극신강",
+        "flags": [
+          true,
+          false,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/극신강",
+        "frame/득령",
+        "frame/조후",
+        "frame/무관성",
+        "chain/식상생재"
+      ],
+      "report_line": "신강신약: **극신강** (85/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 극신강 · 득령·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2026년",
+        "layer": "EVENT",
+        "evid": "시지 × 2026년~ 대운(을축) 원진",
+        "line": "2026년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2026년",
+          "layer": "EVENT",
+          "evid": "시지 × 2026년~ 대운(을축) 원진",
+          "line": "2026년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 임오(壬午) · 일주 을축(乙丑) · 월주 갑자(甲子) · 년주 계묘(癸卯)\n일간: 을\n구조 판정: 신강신약: 극신강 (85/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목3 화1 토1 금0 수3 · 부재 [금] / 십신 부재: 관성 / 구조 후보: 식상생재 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/극신강",
+          "frame/득령",
+          "frame/조후",
+          "frame/무관성",
+          "chain/식상생재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/갑",
+          "jiji/자",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/임",
+          "jiji/오",
+          "sipsin/편인",
+          "sipsin/비견",
+          "sipsin/겁재",
+          "sipsin/편재",
+          "sipsin/정인",
+          "sipsin/식신",
+          "sibiunseong/건록",
+          "sibiunseong/병",
+          "sibiunseong/쇠",
+          "sibiunseong/장생",
+          "sinsal/재살",
+          "sinsal/년살",
+          "sinsal/육해살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "hapchung/육합",
+          "hapchung/충",
+          "hapchung/형",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/을축",
+          "sinsal/정록",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/월덕귀인",
+          "sinsal/홍염살",
+          "sinsal/문창귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/을축",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2158
+      }
+    },
+    {
+      "id": "known-extreme-down-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 0,
+        "day": 1,
+        "hour": 18
+      },
+      "current": {
+        "score": 85,
+        "max": 110,
+        "label": "극신강",
+        "flags": [
+          true,
+          false,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/극신강",
+        "frame/득령",
+        "frame/조후",
+        "frame/무관성",
+        "chain/식상생재"
+      ],
+      "report_line": "신강신약: **극신강** (85/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 극신강 · 득령·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2026년",
+        "layer": "EVENT",
+        "evid": "시지 × 2026년~ 대운(을축) 원진",
+        "line": "2026년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2026년",
+          "layer": "EVENT",
+          "evid": "시지 × 2026년~ 대운(을축) 원진",
+          "line": "2026년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 임오(壬午) · 일주 을축(乙丑) · 월주 갑자(甲子) · 년주 계묘(癸卯)\n일간: 을\n구조 판정: 신강신약: 극신강 (85/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목3 화1 토1 금0 수3 · 부재 [금] / 십신 부재: 관성 / 구조 후보: 식상생재 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/극신강",
+          "frame/득령",
+          "frame/조후",
+          "frame/무관성",
+          "chain/식상생재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/갑",
+          "jiji/자",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/임",
+          "jiji/오",
+          "sipsin/편인",
+          "sipsin/비견",
+          "sipsin/겁재",
+          "sipsin/편재",
+          "sipsin/정인",
+          "sipsin/식신",
+          "sibiunseong/건록",
+          "sibiunseong/병",
+          "sibiunseong/쇠",
+          "sibiunseong/장생",
+          "sinsal/재살",
+          "sinsal/년살",
+          "sinsal/육해살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "hapchung/육합",
+          "hapchung/충",
+          "hapchung/형",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/을축",
+          "sinsal/정록",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/월덕귀인",
+          "sinsal/홍염살",
+          "sinsal/문창귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/을축",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2158
+      }
+    },
+    {
+      "id": "known-extreme-down-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 39,
+        "month": 0,
+        "day": 1,
+        "hour": 18
+      },
+      "current": {
+        "score": 85,
+        "max": 110,
+        "label": "극신강",
+        "flags": [
+          true,
+          false,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/극신강",
+        "frame/득령",
+        "frame/조후",
+        "frame/무관성",
+        "chain/식상생재"
+      ],
+      "report_line": "신강신약: **극신강** (85/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 극신강 · 득령·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2026년",
+        "layer": "EVENT",
+        "evid": "시지 × 2026년~ 대운(을축) 원진",
+        "line": "2026년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2026년",
+          "layer": "EVENT",
+          "evid": "시지 × 2026년~ 대운(을축) 원진",
+          "line": "2026년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 임오(壬午) · 일주 을축(乙丑) · 월주 갑자(甲子) · 년주 계묘(癸卯)\n일간: 을\n구조 판정: 신강신약: 극신강 (85/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목3 화1 토1 금0 수3 · 부재 [금] / 십신 부재: 관성 / 구조 후보: 식상생재 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/극신강",
+          "frame/득령",
+          "frame/조후",
+          "frame/무관성",
+          "chain/식상생재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/갑",
+          "jiji/자",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/임",
+          "jiji/오",
+          "sipsin/편인",
+          "sipsin/비견",
+          "sipsin/겁재",
+          "sipsin/편재",
+          "sipsin/정인",
+          "sipsin/식신",
+          "sibiunseong/건록",
+          "sibiunseong/병",
+          "sibiunseong/쇠",
+          "sibiunseong/장생",
+          "sinsal/재살",
+          "sinsal/년살",
+          "sinsal/육해살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "hapchung/육합",
+          "hapchung/충",
+          "hapchung/형",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/을축",
+          "sinsal/정록",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/월덕귀인",
+          "sinsal/홍염살",
+          "sinsal/문창귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/을축",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2158
+      }
+    },
+    {
+      "id": "known-extreme-down-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 0,
+        "day": 1,
+        "hour": 18
+      },
+      "current": {
+        "score": 85,
+        "max": 110,
+        "label": "극신강",
+        "flags": [
+          true,
+          false,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/극신강",
+        "frame/득령",
+        "frame/조후",
+        "frame/무관성",
+        "chain/식상생재"
+      ],
+      "report_line": "신강신약: **극신강** (85/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 극신강 · 득령·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2026년",
+        "layer": "EVENT",
+        "evid": "시지 × 2026년~ 대운(을축) 원진",
+        "line": "2026년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          false,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2026년",
+          "layer": "EVENT",
+          "evid": "시지 × 2026년~ 대운(을축) 원진",
+          "line": "2026년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 임오(壬午) · 일주 을축(乙丑) · 월주 갑자(甲子) · 년주 계묘(癸卯)\n일간: 을\n구조 판정: 신강신약: 극신강 (85/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목3 화1 토1 금0 수3 · 부재 [금] / 십신 부재: 관성 / 구조 후보: 식상생재 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/극신강",
+          "frame/득령",
+          "frame/조후",
+          "frame/무관성",
+          "chain/식상생재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/갑",
+          "jiji/자",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/임",
+          "jiji/오",
+          "sipsin/편인",
+          "sipsin/비견",
+          "sipsin/겁재",
+          "sipsin/편재",
+          "sipsin/정인",
+          "sipsin/식신",
+          "sibiunseong/건록",
+          "sibiunseong/병",
+          "sibiunseong/쇠",
+          "sibiunseong/장생",
+          "sinsal/재살",
+          "sinsal/년살",
+          "sinsal/육해살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "hapchung/육합",
+          "hapchung/충",
+          "hapchung/형",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/을축",
+          "sinsal/정록",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/월덕귀인",
+          "sinsal/홍염살",
+          "sinsal/문창귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/을축",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2158
+      }
+    },
+    {
+      "id": "known-strong-down-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 39,
+        "month": 0,
+        "day": 2,
+        "hour": 31
+      },
+      "current": {
+        "score": 60,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/조후",
+        "frame/무비겁",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **신강** (60/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신강 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2025년",
+        "layer": "EVENT",
+        "evid": "시지 × 2025년~ 대운(을축) 충",
+        "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2025년",
+          "layer": "EVENT",
+          "evid": "시지 × 2025년~ 대운(을축) 충",
+          "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 을미(乙未) · 일주 병인(丙寅) · 월주 갑자(甲子) · 년주 계묘(癸卯)\n일간: 병\n구조 판정: 신강신약: 신강 (60/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목4 화1 토1 금0 수2 · 부재 [금] · 과다 [목] / 십신 부재: 비겁, 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/조후",
+          "frame/무비겁",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/갑",
+          "jiji/자",
+          "cheongan/병",
+          "jiji/인",
+          "cheongan/을",
+          "jiji/미",
+          "sipsin/정관",
+          "sipsin/정인",
+          "sipsin/편인",
+          "sipsin/상관",
+          "sibiunseong/목욕",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sibiunseong/쇠",
+          "sinsal/년살",
+          "sinsal/망신살",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/병인",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 29,
+        "relation_count": 1871
+      }
+    },
+    {
+      "id": "known-strong-down-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 0,
+        "day": 2,
+        "hour": 31
+      },
+      "current": {
+        "score": 60,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/조후",
+        "frame/무비겁",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **신강** (60/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신강 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2025년",
+        "layer": "EVENT",
+        "evid": "시지 × 2025년~ 대운(을축) 충",
+        "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2025년",
+          "layer": "EVENT",
+          "evid": "시지 × 2025년~ 대운(을축) 충",
+          "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 을미(乙未) · 일주 병인(丙寅) · 월주 갑자(甲子) · 년주 계묘(癸卯)\n일간: 병\n구조 판정: 신강신약: 신강 (60/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목4 화1 토1 금0 수2 · 부재 [금] · 과다 [목] / 십신 부재: 비겁, 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/조후",
+          "frame/무비겁",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/갑",
+          "jiji/자",
+          "cheongan/병",
+          "jiji/인",
+          "cheongan/을",
+          "jiji/미",
+          "sipsin/정관",
+          "sipsin/정인",
+          "sipsin/편인",
+          "sipsin/상관",
+          "sibiunseong/목욕",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sibiunseong/쇠",
+          "sinsal/년살",
+          "sinsal/망신살",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/병인",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 29,
+        "relation_count": 1871
+      }
+    },
+    {
+      "id": "known-strong-down-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 39,
+        "month": 0,
+        "day": 2,
+        "hour": 31
+      },
+      "current": {
+        "score": 60,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/조후",
+        "frame/무비겁",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **신강** (60/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신강 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2025년",
+        "layer": "EVENT",
+        "evid": "시지 × 2025년~ 대운(을축) 충",
+        "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2025년",
+          "layer": "EVENT",
+          "evid": "시지 × 2025년~ 대운(을축) 충",
+          "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 을미(乙未) · 일주 병인(丙寅) · 월주 갑자(甲子) · 년주 계묘(癸卯)\n일간: 병\n구조 판정: 신강신약: 신강 (60/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목4 화1 토1 금0 수2 · 부재 [금] · 과다 [목] / 십신 부재: 비겁, 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/조후",
+          "frame/무비겁",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/갑",
+          "jiji/자",
+          "cheongan/병",
+          "jiji/인",
+          "cheongan/을",
+          "jiji/미",
+          "sipsin/정관",
+          "sipsin/정인",
+          "sipsin/편인",
+          "sipsin/상관",
+          "sibiunseong/목욕",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sibiunseong/쇠",
+          "sinsal/년살",
+          "sinsal/망신살",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/병인",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 29,
+        "relation_count": 1871
+      }
+    },
+    {
+      "id": "known-strong-down-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 0,
+        "day": 2,
+        "hour": 31
+      },
+      "current": {
+        "score": 60,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/조후",
+        "frame/무비겁",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **신강** (60/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신강 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2025년",
+        "layer": "EVENT",
+        "evid": "시지 × 2025년~ 대운(을축) 충",
+        "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2025년",
+          "layer": "EVENT",
+          "evid": "시지 × 2025년~ 대운(을축) 충",
+          "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 을미(乙未) · 일주 병인(丙寅) · 월주 갑자(甲子) · 년주 계묘(癸卯)\n일간: 병\n구조 판정: 신강신약: 신강 (60/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목4 화1 토1 금0 수2 · 부재 [금] · 과다 [목] / 십신 부재: 비겁, 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/조후",
+          "frame/무비겁",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/갑",
+          "jiji/자",
+          "cheongan/병",
+          "jiji/인",
+          "cheongan/을",
+          "jiji/미",
+          "sipsin/정관",
+          "sipsin/정인",
+          "sipsin/편인",
+          "sipsin/상관",
+          "sibiunseong/목욕",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sibiunseong/쇠",
+          "sinsal/년살",
+          "sinsal/망신살",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/병인",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 29,
+        "relation_count": 1871
+      }
+    },
+    {
+      "id": "known-strong-up-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 8,
+        "hour": 36
+      },
+      "current": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **중화** (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득시·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2033년",
+        "layer": "EVENT",
+        "evid": "일지 × 2033년~ 대운(병인) 충",
+        "line": "2033년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 60,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "delta": 5,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2033년",
+          "layer": "EVENT",
+          "evid": "일지 × 2033년~ 대운(병인) 충",
+          "line": "2033년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 경자(庚子) · 일주 임신(壬申) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 임\n구조 판정: 신강신약: 중화 (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세 / 조후: 겨울생 — 화 기운 필요, 원국 부재 / 오행: 목2 화0 토1 금2 수3 · 부재 [화] / 십신 부재: 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/임",
+          "jiji/신",
+          "cheongan/경",
+          "jiji/자",
+          "sipsin/겁재",
+          "sipsin/상관",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sibiunseong/사",
+          "sibiunseong/쇠",
+          "sibiunseong/장생",
+          "sibiunseong/제왕",
+          "sinsal/육해살",
+          "sinsal/월살",
+          "sinsal/겁살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/임신",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/천덕귀인",
+          "sinsal/월덕귀인",
+          "sinsal/양인살",
+          "sinsal/홍염살",
+          "unse/병오/ilju/임신",
+          "unse/병오/general"
+        ],
+        "node_count": 32,
+        "relation_count": 1986
+      }
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 7,
+        "hour": 24
+      },
+      "current": {
+        "score": 65,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/득령",
+        "frame/조후",
+        "frame/무비겁",
+        "frame/무관성",
+        "chain/식상생재"
+      ],
+      "report_line": "신강신약: **신강** (65/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신강 · 득령·득지",
+      "direct_jeonggok": {
+        "token": "시기 특정·2073년",
+        "layer": "EVENT",
+        "evid": "시지 × 2073년~ 대운(경오) 충",
+        "line": "2073년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 65,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "delta": 0,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2073년",
+          "layer": "EVENT",
+          "evid": "시지 × 2073년~ 대운(경오) 충",
+          "line": "2073년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 무자(戊子) · 일주 신미(辛未) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 신\n구조 판정: 신강신약: 신강 (65/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지 / 조후: 겨울생 — 화 기운 필요, 원국 부재 / 오행: 목2 화0 토3 금1 수2 · 부재 [화] / 십신 부재: 비겁, 관성 / 구조 후보: 식상생재 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/득령",
+          "frame/조후",
+          "frame/무비겁",
+          "chain/식상생재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/신",
+          "jiji/미",
+          "cheongan/무",
+          "jiji/자",
+          "sipsin/식신",
+          "sipsin/편재",
+          "sipsin/편인",
+          "sipsin/정인",
+          "sibiunseong/절",
+          "sibiunseong/쇠",
+          "sibiunseong/장생",
+          "sinsal/장성살",
+          "sinsal/월살",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/충",
+          "hapchung/육합",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/신미",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문창귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/신미",
+          "unse/병오/general"
+        ],
+        "node_count": 30,
+        "relation_count": 1951
+      }
+    },
+    {
+      "id": "known-strong-up-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 8,
+        "hour": 36
+      },
+      "current": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **중화** (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득시·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2033년",
+        "layer": "EVENT",
+        "evid": "일지 × 2033년~ 대운(병인) 충",
+        "line": "2033년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 60,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "delta": 5,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2033년",
+          "layer": "EVENT",
+          "evid": "일지 × 2033년~ 대운(병인) 충",
+          "line": "2033년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 경자(庚子) · 일주 임신(壬申) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 임\n구조 판정: 신강신약: 중화 (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세 / 조후: 겨울생 — 화 기운 필요, 원국 부재 / 오행: 목2 화0 토1 금2 수3 · 부재 [화] / 십신 부재: 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/임",
+          "jiji/신",
+          "cheongan/경",
+          "jiji/자",
+          "sipsin/겁재",
+          "sipsin/상관",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sibiunseong/사",
+          "sibiunseong/쇠",
+          "sibiunseong/장생",
+          "sibiunseong/제왕",
+          "sinsal/육해살",
+          "sinsal/월살",
+          "sinsal/겁살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/임신",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/천덕귀인",
+          "sinsal/월덕귀인",
+          "sinsal/양인살",
+          "sinsal/홍염살",
+          "unse/병오/ilju/임신",
+          "unse/병오/general"
+        ],
+        "node_count": 32,
+        "relation_count": 1986
+      }
+    },
+    {
+      "id": "known-strong-up-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 8,
+        "hour": 36
+      },
+      "current": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **중화** (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득시·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2033년",
+        "layer": "EVENT",
+        "evid": "일지 × 2033년~ 대운(병인) 충",
+        "line": "2033년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 60,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "delta": 5,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2033년",
+          "layer": "EVENT",
+          "evid": "일지 × 2033년~ 대운(병인) 충",
+          "line": "2033년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 경자(庚子) · 일주 임신(壬申) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 임\n구조 판정: 신강신약: 중화 (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세 / 조후: 겨울생 — 화 기운 필요, 원국 부재 / 오행: 목2 화0 토1 금2 수3 · 부재 [화] / 십신 부재: 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/임",
+          "jiji/신",
+          "cheongan/경",
+          "jiji/자",
+          "sipsin/겁재",
+          "sipsin/상관",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sibiunseong/사",
+          "sibiunseong/쇠",
+          "sibiunseong/장생",
+          "sibiunseong/제왕",
+          "sinsal/육해살",
+          "sinsal/월살",
+          "sinsal/겁살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "ilju/임신",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/천덕귀인",
+          "sinsal/월덕귀인",
+          "sinsal/양인살",
+          "sinsal/홍염살",
+          "unse/병오/ilju/임신",
+          "unse/병오/general"
+        ],
+        "node_count": 32,
+        "relation_count": 1986
+      }
+    },
+    {
+      "id": "known-weak-down-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 12,
+        "hour": 24
+      },
+      "current": {
+        "score": 35,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "frame/무비겁",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **중화** (35/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2072년",
+        "layer": "EVENT",
+        "evid": "일지 × 2072년~ 대운(경오) 충",
+        "line": "2072년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 30,
+        "max": 110,
+        "label": "신약",
+        "flags": [
+          false,
+          false,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/신약",
+        "direct_jeonggok": {
+          "token": "시기 특정·2072년",
+          "layer": "EVENT",
+          "evid": "일지 × 2072년~ 대운(경오) 충",
+          "line": "2072년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 무자(戊子) · 일주 병자(丙子) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 병\n구조 판정: 신강신약: 중화 (35/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목2 화1 토2 금0 수3 · 부재 [금] / 십신 부재: 비겁, 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "frame/무비겁",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/병",
+          "jiji/자",
+          "cheongan/무",
+          "sipsin/정관",
+          "sipsin/정인",
+          "sipsin/상관",
+          "sipsin/식신",
+          "sibiunseong/목욕",
+          "sibiunseong/양",
+          "sinsal/육해살",
+          "sinsal/월살",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/형"
+        ],
+        "unmatched_keys": [
+          "ilju/병자",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "unse/병오/ilju/병자",
+          "unse/병오/general"
+        ],
+        "node_count": 24,
+        "relation_count": 1463
+      }
+    },
+    {
+      "id": "known-weak-down-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 11,
+        "hour": 12
+      },
+      "current": {
+        "score": 70,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/조후",
+        "frame/무관성",
+        "chain/식상생재"
+      ],
+      "report_line": "신강신약: **신강** (70/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신강 · 실령·득지·득시·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2062년",
+        "layer": "EVENT",
+        "evid": "일지 × 2062년~ 대운(기사) 충",
+        "line": "2062년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 70,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "delta": 0,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2062년",
+          "layer": "EVENT",
+          "evid": "일지 × 2062년~ 대운(기사) 충",
+          "line": "2062년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 병자(丙子) · 일주 을해(乙亥) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 을\n구조 판정: 신강신약: 신강 (70/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목3 화1 토1 금0 수3 · 부재 [금] / 십신 부재: 관성 / 구조 후보: 식상생재 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/조후",
+          "frame/무관성",
+          "chain/식상생재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "jiji/해",
+          "cheongan/병",
+          "jiji/자",
+          "sipsin/편인",
+          "sipsin/비견",
+          "sipsin/편재",
+          "sipsin/정인",
+          "sipsin/상관",
+          "sibiunseong/건록",
+          "sibiunseong/쇠",
+          "sibiunseong/사",
+          "sinsal/장성살",
+          "sinsal/월살",
+          "sinsal/지살",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "sinsal/천을귀인",
+          "hapchung/육합",
+          "hapchung/삼합",
+          "hapchung/방합",
+          "hapchung/형"
+        ],
+        "unmatched_keys": [
+          "ilju/을해",
+          "sinsal/정록",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "unse/병오/ilju/을해",
+          "unse/병오/general"
+        ],
+        "node_count": 29,
+        "relation_count": 1870
+      }
+    },
+    {
+      "id": "known-weak-down-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 12,
+        "hour": 24
+      },
+      "current": {
+        "score": 35,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "frame/무비겁",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **중화** (35/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2072년",
+        "layer": "EVENT",
+        "evid": "일지 × 2072년~ 대운(경오) 충",
+        "line": "2072년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 30,
+        "max": 110,
+        "label": "신약",
+        "flags": [
+          false,
+          false,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/신약",
+        "direct_jeonggok": {
+          "token": "시기 특정·2072년",
+          "layer": "EVENT",
+          "evid": "일지 × 2072년~ 대운(경오) 충",
+          "line": "2072년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 무자(戊子) · 일주 병자(丙子) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 병\n구조 판정: 신강신약: 중화 (35/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목2 화1 토2 금0 수3 · 부재 [금] / 십신 부재: 비겁, 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "frame/무비겁",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/병",
+          "jiji/자",
+          "cheongan/무",
+          "sipsin/정관",
+          "sipsin/정인",
+          "sipsin/상관",
+          "sipsin/식신",
+          "sibiunseong/목욕",
+          "sibiunseong/양",
+          "sinsal/육해살",
+          "sinsal/월살",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/형"
+        ],
+        "unmatched_keys": [
+          "ilju/병자",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "unse/병오/ilju/병자",
+          "unse/병오/general"
+        ],
+        "node_count": 24,
+        "relation_count": 1463
+      }
+    },
+    {
+      "id": "known-weak-down-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 12,
+        "hour": 24
+      },
+      "current": {
+        "score": 35,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "frame/무비겁",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **중화** (35/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2072년",
+        "layer": "EVENT",
+        "evid": "일지 × 2072년~ 대운(경오) 충",
+        "line": "2072년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 30,
+        "max": 110,
+        "label": "신약",
+        "flags": [
+          false,
+          false,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/신약",
+        "direct_jeonggok": {
+          "token": "시기 특정·2072년",
+          "layer": "EVENT",
+          "evid": "일지 × 2072년~ 대운(경오) 충",
+          "line": "2072년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 무자(戊子) · 일주 병자(丙子) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 병\n구조 판정: 신강신약: 중화 (35/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목2 화1 토2 금0 수3 · 부재 [금] / 십신 부재: 비겁, 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "frame/무비겁",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/병",
+          "jiji/자",
+          "cheongan/무",
+          "sipsin/정관",
+          "sipsin/정인",
+          "sipsin/상관",
+          "sipsin/식신",
+          "sibiunseong/목욕",
+          "sibiunseong/양",
+          "sinsal/육해살",
+          "sinsal/월살",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/형"
+        ],
+        "unmatched_keys": [
+          "ilju/병자",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "unse/병오/ilju/병자",
+          "unse/병오/general"
+        ],
+        "node_count": 24,
+        "relation_count": 1463
+      }
+    },
+    {
+      "id": "known-weak-up-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 18,
+        "hour": 44
+      },
+      "current": {
+        "score": 30,
+        "max": 110,
+        "label": "신약",
+        "flags": [
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/신약",
+        "frame/조후",
+        "chain/식상생재",
+        "chain/재생관",
+        "chain/관인상생",
+        "chain/상관견관",
+        "chain/관살혼잡"
+      ],
+      "report_line": "신강신약: **신약** (30/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득시",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신약 · 실령·득시",
+      "direct_jeonggok": {
+        "token": "시기 특정·2030년",
+        "layer": "EVENT",
+        "evid": "시지 × 2030년~ 대운(병인) 충",
+        "line": "2030년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 35,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "delta": 5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2030년",
+          "layer": "EVENT",
+          "evid": "시지 × 2030년~ 대운(병인) 충",
+          "line": "2030년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 무신(戊申) · 일주 임오(壬午) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 임\n구조 판정: 신강신약: 신약 (30/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득시 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목2 화1 토2 금1 수2 / 구조 후보: 식상생재 · 재생관 · 관인상생 · 상관견관 · 관살혼잡 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신약",
+          "frame/조후",
+          "chain/식상생재",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/임",
+          "jiji/오",
+          "cheongan/무",
+          "jiji/신",
+          "sipsin/겁재",
+          "sipsin/상관",
+          "sipsin/정관",
+          "sipsin/정재",
+          "sipsin/편관",
+          "sipsin/편인",
+          "sibiunseong/사",
+          "sibiunseong/쇠",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sinsal/년살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "chain/관살혼잡",
+          "ilju/임오",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/임오",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2130
+      }
+    },
+    {
+      "id": "known-weak-up-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 18,
+        "hour": 44
+      },
+      "current": {
+        "score": 30,
+        "max": 110,
+        "label": "신약",
+        "flags": [
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/신약",
+        "frame/조후",
+        "chain/식상생재",
+        "chain/재생관",
+        "chain/관인상생",
+        "chain/상관견관",
+        "chain/관살혼잡"
+      ],
+      "report_line": "신강신약: **신약** (30/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득시",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신약 · 실령·득시",
+      "direct_jeonggok": {
+        "token": "시기 특정·2030년",
+        "layer": "EVENT",
+        "evid": "시지 × 2030년~ 대운(병인) 충",
+        "line": "2030년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 35,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "delta": 5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2030년",
+          "layer": "EVENT",
+          "evid": "시지 × 2030년~ 대운(병인) 충",
+          "line": "2030년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 무신(戊申) · 일주 임오(壬午) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 임\n구조 판정: 신강신약: 신약 (30/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득시 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목2 화1 토2 금1 수2 / 구조 후보: 식상생재 · 재생관 · 관인상생 · 상관견관 · 관살혼잡 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신약",
+          "frame/조후",
+          "chain/식상생재",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/임",
+          "jiji/오",
+          "cheongan/무",
+          "jiji/신",
+          "sipsin/겁재",
+          "sipsin/상관",
+          "sipsin/정관",
+          "sipsin/정재",
+          "sipsin/편관",
+          "sipsin/편인",
+          "sibiunseong/사",
+          "sibiunseong/쇠",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sinsal/년살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "chain/관살혼잡",
+          "ilju/임오",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/임오",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2130
+      }
+    },
+    {
+      "id": "known-weak-up-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 18,
+        "hour": 44
+      },
+      "current": {
+        "score": 30,
+        "max": 110,
+        "label": "신약",
+        "flags": [
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/신약",
+        "frame/조후",
+        "chain/식상생재",
+        "chain/재생관",
+        "chain/관인상생",
+        "chain/상관견관",
+        "chain/관살혼잡"
+      ],
+      "report_line": "신강신약: **신약** (30/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득시",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신약 · 실령·득시",
+      "direct_jeonggok": {
+        "token": "시기 특정·2030년",
+        "layer": "EVENT",
+        "evid": "시지 × 2030년~ 대운(병인) 충",
+        "line": "2030년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 35,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "delta": 5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2030년",
+          "layer": "EVENT",
+          "evid": "시지 × 2030년~ 대운(병인) 충",
+          "line": "2030년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 무신(戊申) · 일주 임오(壬午) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 임\n구조 판정: 신강신약: 신약 (30/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득시 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목2 화1 토2 금1 수2 / 구조 후보: 식상생재 · 재생관 · 관인상생 · 상관견관 · 관살혼잡 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신약",
+          "frame/조후",
+          "chain/식상생재",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/임",
+          "jiji/오",
+          "cheongan/무",
+          "jiji/신",
+          "sipsin/겁재",
+          "sipsin/상관",
+          "sipsin/정관",
+          "sipsin/정재",
+          "sipsin/편관",
+          "sipsin/편인",
+          "sibiunseong/사",
+          "sibiunseong/쇠",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sinsal/년살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "chain/관살혼잡",
+          "ilju/임오",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/임오",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2130
+      }
+    },
+    {
+      "id": "known-weak-up-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 18,
+        "hour": 44
+      },
+      "current": {
+        "score": 30,
+        "max": 110,
+        "label": "신약",
+        "flags": [
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/신약",
+        "frame/조후",
+        "chain/식상생재",
+        "chain/재생관",
+        "chain/관인상생",
+        "chain/상관견관",
+        "chain/관살혼잡"
+      ],
+      "report_line": "신강신약: **신약** (30/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득시",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신약 · 실령·득시",
+      "direct_jeonggok": {
+        "token": "시기 특정·2030년",
+        "layer": "EVENT",
+        "evid": "시지 × 2030년~ 대운(병인) 충",
+        "line": "2030년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 35,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          false,
+          true,
+          false
+        ],
+        "delta": 5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2030년",
+          "layer": "EVENT",
+          "evid": "시지 × 2030년~ 대운(병인) 충",
+          "line": "2030년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 무신(戊申) · 일주 임오(壬午) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 임\n구조 판정: 신강신약: 신약 (30/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득시 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목2 화1 토2 금1 수2 / 구조 후보: 식상생재 · 재생관 · 관인상생 · 상관견관 · 관살혼잡 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신약",
+          "frame/조후",
+          "chain/식상생재",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/임",
+          "jiji/오",
+          "cheongan/무",
+          "jiji/신",
+          "sipsin/겁재",
+          "sipsin/상관",
+          "sipsin/정관",
+          "sipsin/정재",
+          "sipsin/편관",
+          "sipsin/편인",
+          "sibiunseong/사",
+          "sibiunseong/쇠",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sinsal/년살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "chain/관살혼잡",
+          "ilju/임오",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/임오",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2130
+      }
+    },
+    {
+      "id": "known-extreme-up-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 5,
+        "month": 4,
+        "day": 36,
+        "hour": 16
+      },
+      "current": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          false,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/득령",
+        "frame/무재성",
+        "chain/관인상생"
+      ],
+      "report_line": "신강신약: **신강** (80/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득시·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신강 · 득령·득시·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2018년",
+        "layer": "EVENT",
+        "evid": "일지 × 2018년~ 대운(신미) 원진",
+        "line": "2018년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 85,
+        "max": 110,
+        "label": "극신강",
+        "flags": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "delta": 5,
+        "frame_key": "frame/극신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2018년",
+          "layer": "EVENT",
+          "evid": "일지 × 2018년~ 대운(신미) 원진",
+          "line": "2018년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 경진(庚辰) · 일주 경자(庚子) · 월주 무진(戊辰) · 년주 기사(己巳)\n일간: 경\n구조 판정: 신강신약: 신강 (80/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득시·득세 / 조후: 봄생 (조후 무난) / 오행: 목0 화1 토4 금2 수1 · 부재 [목] · 과다 [토] / 십신 부재: 재성 / 구조 후보: 관인상생 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/득령",
+          "frame/무재성",
+          "chain/관인상생",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/무",
+          "jiji/진",
+          "cheongan/경",
+          "jiji/자",
+          "sipsin/정인",
+          "sipsin/편관",
+          "sipsin/편인",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sibiunseong/장생",
+          "sibiunseong/양",
+          "sibiunseong/사",
+          "sinsal/겁살",
+          "sinsal/천살",
+          "sinsal/육해살",
+          "sinsal/역마살",
+          "sinsal/화개살",
+          "hapchung/삼합",
+          "hapchung/형",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "ilju/경자",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/도화살",
+          "unse/병오/ilju/경자",
+          "unse/병오/general"
+        ],
+        "node_count": 26,
+        "relation_count": 1637
+      }
+    },
+    {
+      "id": "known-extreme-up-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 5,
+        "month": 4,
+        "day": 36,
+        "hour": 16
+      },
+      "current": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          false,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/득령",
+        "frame/무재성",
+        "chain/관인상생"
+      ],
+      "report_line": "신강신약: **신강** (80/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득시·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신강 · 득령·득시·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2018년",
+        "layer": "EVENT",
+        "evid": "일지 × 2018년~ 대운(신미) 원진",
+        "line": "2018년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 85,
+        "max": 110,
+        "label": "극신강",
+        "flags": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "delta": 5,
+        "frame_key": "frame/극신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2018년",
+          "layer": "EVENT",
+          "evid": "일지 × 2018년~ 대운(신미) 원진",
+          "line": "2018년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 경진(庚辰) · 일주 경자(庚子) · 월주 무진(戊辰) · 년주 기사(己巳)\n일간: 경\n구조 판정: 신강신약: 신강 (80/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득시·득세 / 조후: 봄생 (조후 무난) / 오행: 목0 화1 토4 금2 수1 · 부재 [목] · 과다 [토] / 십신 부재: 재성 / 구조 후보: 관인상생 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/득령",
+          "frame/무재성",
+          "chain/관인상생",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/무",
+          "jiji/진",
+          "cheongan/경",
+          "jiji/자",
+          "sipsin/정인",
+          "sipsin/편관",
+          "sipsin/편인",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sibiunseong/장생",
+          "sibiunseong/양",
+          "sibiunseong/사",
+          "sinsal/겁살",
+          "sinsal/천살",
+          "sinsal/육해살",
+          "sinsal/역마살",
+          "sinsal/화개살",
+          "hapchung/삼합",
+          "hapchung/형",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "ilju/경자",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/도화살",
+          "unse/병오/ilju/경자",
+          "unse/병오/general"
+        ],
+        "node_count": 26,
+        "relation_count": 1637
+      }
+    },
+    {
+      "id": "known-extreme-up-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 5,
+        "month": 4,
+        "day": 36,
+        "hour": 16
+      },
+      "current": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          false,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/득령",
+        "frame/무재성",
+        "chain/관인상생"
+      ],
+      "report_line": "신강신약: **신강** (80/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득시·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신강 · 득령·득시·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2018년",
+        "layer": "EVENT",
+        "evid": "일지 × 2018년~ 대운(신미) 원진",
+        "line": "2018년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 85,
+        "max": 110,
+        "label": "극신강",
+        "flags": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "delta": 5,
+        "frame_key": "frame/극신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2018년",
+          "layer": "EVENT",
+          "evid": "일지 × 2018년~ 대운(신미) 원진",
+          "line": "2018년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 경진(庚辰) · 일주 경자(庚子) · 월주 무진(戊辰) · 년주 기사(己巳)\n일간: 경\n구조 판정: 신강신약: 신강 (80/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득시·득세 / 조후: 봄생 (조후 무난) / 오행: 목0 화1 토4 금2 수1 · 부재 [목] · 과다 [토] / 십신 부재: 재성 / 구조 후보: 관인상생 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/득령",
+          "frame/무재성",
+          "chain/관인상생",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/무",
+          "jiji/진",
+          "cheongan/경",
+          "jiji/자",
+          "sipsin/정인",
+          "sipsin/편관",
+          "sipsin/편인",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sibiunseong/장생",
+          "sibiunseong/양",
+          "sibiunseong/사",
+          "sinsal/겁살",
+          "sinsal/천살",
+          "sinsal/육해살",
+          "sinsal/역마살",
+          "sinsal/화개살",
+          "hapchung/삼합",
+          "hapchung/형",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "ilju/경자",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/도화살",
+          "unse/병오/ilju/경자",
+          "unse/병오/general"
+        ],
+        "node_count": 26,
+        "relation_count": 1637
+      }
+    },
+    {
+      "id": "known-extreme-up-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 5,
+        "month": 4,
+        "day": 36,
+        "hour": 16
+      },
+      "current": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          false,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/득령",
+        "frame/무재성",
+        "chain/관인상생"
+      ],
+      "report_line": "신강신약: **신강** (80/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득시·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 신강 · 득령·득시·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2018년",
+        "layer": "EVENT",
+        "evid": "일지 × 2018년~ 대운(신미) 원진",
+        "line": "2018년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 85,
+        "max": 110,
+        "label": "극신강",
+        "flags": [
+          true,
+          false,
+          true,
+          true
+        ],
+        "delta": 5,
+        "frame_key": "frame/극신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2018년",
+          "layer": "EVENT",
+          "evid": "일지 × 2018년~ 대운(신미) 원진",
+          "line": "2018년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 경진(庚辰) · 일주 경자(庚子) · 월주 무진(戊辰) · 년주 기사(己巳)\n일간: 경\n구조 판정: 신강신약: 신강 (80/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득시·득세 / 조후: 봄생 (조후 무난) / 오행: 목0 화1 토4 금2 수1 · 부재 [목] · 과다 [토] / 십신 부재: 재성 / 구조 후보: 관인상생 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/득령",
+          "frame/무재성",
+          "chain/관인상생",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/무",
+          "jiji/진",
+          "cheongan/경",
+          "jiji/자",
+          "sipsin/정인",
+          "sipsin/편관",
+          "sipsin/편인",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sibiunseong/장생",
+          "sibiunseong/양",
+          "sibiunseong/사",
+          "sinsal/겁살",
+          "sinsal/천살",
+          "sinsal/육해살",
+          "sinsal/역마살",
+          "sinsal/화개살",
+          "hapchung/삼합",
+          "hapchung/형",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "ilju/경자",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/도화살",
+          "unse/병오/ilju/경자",
+          "unse/병오/general"
+        ],
+        "node_count": 26,
+        "relation_count": 1637
+      }
+    },
+    {
+      "id": "known-zi-before-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 2,
+        "hour": 35
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관",
+        "chain/관살혼잡"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2032년",
+        "layer": "EVENT",
+        "evid": "시지 × 2032년~ 대운(신사) 충",
+        "line": "2032년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2032년",
+          "layer": "EVENT",
+          "evid": "시지 × 2032년~ 대운(신사) 충",
+          "line": "2032년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 기해(己亥) · 일주 병인(丙寅) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 병\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목1 화3 토2 금0 수2 · 부재 [금] / 십신 부재: 재성 / 구조 후보: 관인상생 · 상관견관 · 관살혼잡 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "jiji/인",
+          "jiji/해",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sipsin/편관",
+          "sibiunseong/건록",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sinsal/망신살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/역마살",
+          "sinsal/천을귀인",
+          "hapchung/육합",
+          "hapchung/충",
+          "hapchung/형",
+          "hapchung/파",
+          "hapchung/해",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "chain/관살혼잡",
+          "ilju/병인",
+          "sinsal/정록",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 30,
+        "relation_count": 1912
+      }
+    },
+    {
+      "id": "known-zi-before-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 2,
+        "hour": 35
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관",
+        "chain/관살혼잡"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2032년",
+        "layer": "EVENT",
+        "evid": "시지 × 2032년~ 대운(신사) 충",
+        "line": "2032년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2032년",
+          "layer": "EVENT",
+          "evid": "시지 × 2032년~ 대운(신사) 충",
+          "line": "2032년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 기해(己亥) · 일주 병인(丙寅) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 병\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목1 화3 토2 금0 수2 · 부재 [금] / 십신 부재: 재성 / 구조 후보: 관인상생 · 상관견관 · 관살혼잡 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "jiji/인",
+          "jiji/해",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sipsin/편관",
+          "sibiunseong/건록",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sinsal/망신살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/역마살",
+          "sinsal/천을귀인",
+          "hapchung/육합",
+          "hapchung/충",
+          "hapchung/형",
+          "hapchung/파",
+          "hapchung/해",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "chain/관살혼잡",
+          "ilju/병인",
+          "sinsal/정록",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 30,
+        "relation_count": 1912
+      }
+    },
+    {
+      "id": "known-zi-before-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 3,
+        "hour": 36
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "chain/식상생재",
+        "chain/재생관",
+        "chain/관인상생"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2042년",
+        "layer": "EVENT",
+        "evid": "월지 × 2042년~ 대운(임오) 충",
+        "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2042년",
+          "layer": "EVENT",
+          "evid": "월지 × 2042년~ 대운(임오) 충",
+          "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 경자(庚子) · 일주 정묘(丁卯) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 정\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목1 화3 토1 금1 수2 / 구조 후보: 식상생재 · 재생관 · 관인상생 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "chain/식상생재",
+          "chain/관인상생",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "cheongan/정",
+          "jiji/묘",
+          "cheongan/경",
+          "sipsin/식신",
+          "sipsin/겁재",
+          "sipsin/편관",
+          "sipsin/편인",
+          "sipsin/정재",
+          "sibiunseong/제왕",
+          "sibiunseong/절",
+          "sibiunseong/병",
+          "sinsal/역마살",
+          "sinsal/육해살",
+          "sinsal/재살",
+          "hapchung/형"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "ilju/정묘",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/현침살",
+          "unse/병오/ilju/정묘",
+          "unse/병오/general"
+        ],
+        "node_count": 23,
+        "relation_count": 1428
+      }
+    },
+    {
+      "id": "known-zi-before-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 2,
+        "hour": 24
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2042년",
+        "layer": "EVENT",
+        "evid": "월지 × 2042년~ 대운(임오) 충",
+        "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2042년",
+          "layer": "EVENT",
+          "evid": "월지 × 2042년~ 대운(임오) 충",
+          "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 무자(戊子) · 일주 병인(丙寅) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 병\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목1 화3 토2 금0 수2 · 부재 [금] / 십신 부재: 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "jiji/인",
+          "cheongan/무",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sipsin/식신",
+          "sibiunseong/건록",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sinsal/망신살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/역마살",
+          "hapchung/형",
+          "hapchung/해"
+        ],
+        "unmatched_keys": [
+          "ilju/병인",
+          "sinsal/정록",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 25,
+        "relation_count": 1534
+      }
+    },
+    {
+      "id": "known-zi-after-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 3,
+        "hour": 36
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "chain/식상생재",
+        "chain/재생관",
+        "chain/관인상생"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2042년",
+        "layer": "EVENT",
+        "evid": "월지 × 2042년~ 대운(임오) 충",
+        "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2042년",
+          "layer": "EVENT",
+          "evid": "월지 × 2042년~ 대운(임오) 충",
+          "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 경자(庚子) · 일주 정묘(丁卯) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 정\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목1 화3 토1 금1 수2 / 구조 후보: 식상생재 · 재생관 · 관인상생 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "chain/식상생재",
+          "chain/관인상생",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "cheongan/정",
+          "jiji/묘",
+          "cheongan/경",
+          "sipsin/식신",
+          "sipsin/겁재",
+          "sipsin/편관",
+          "sipsin/편인",
+          "sipsin/정재",
+          "sibiunseong/제왕",
+          "sibiunseong/절",
+          "sibiunseong/병",
+          "sinsal/역마살",
+          "sinsal/육해살",
+          "sinsal/재살",
+          "hapchung/형"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "ilju/정묘",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/현침살",
+          "unse/병오/ilju/정묘",
+          "unse/병오/general"
+        ],
+        "node_count": 23,
+        "relation_count": 1428
+      }
+    },
+    {
+      "id": "known-zi-after-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 2,
+        "hour": 24
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2042년",
+        "layer": "EVENT",
+        "evid": "월지 × 2042년~ 대운(임오) 충",
+        "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2042년",
+          "layer": "EVENT",
+          "evid": "월지 × 2042년~ 대운(임오) 충",
+          "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 무자(戊子) · 일주 병인(丙寅) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 병\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목1 화3 토2 금0 수2 · 부재 [금] / 십신 부재: 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "jiji/인",
+          "cheongan/무",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sipsin/식신",
+          "sibiunseong/건록",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sinsal/망신살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/역마살",
+          "hapchung/형",
+          "hapchung/해"
+        ],
+        "unmatched_keys": [
+          "ilju/병인",
+          "sinsal/정록",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 25,
+        "relation_count": 1534
+      }
+    },
+    {
+      "id": "known-zi-after-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 3,
+        "hour": 36
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "chain/식상생재",
+        "chain/재생관",
+        "chain/관인상생"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2042년",
+        "layer": "EVENT",
+        "evid": "월지 × 2042년~ 대운(임오) 충",
+        "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2042년",
+          "layer": "EVENT",
+          "evid": "월지 × 2042년~ 대운(임오) 충",
+          "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 경자(庚子) · 일주 정묘(丁卯) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 정\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목1 화3 토1 금1 수2 / 구조 후보: 식상생재 · 재생관 · 관인상생 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "chain/식상생재",
+          "chain/관인상생",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "cheongan/정",
+          "jiji/묘",
+          "cheongan/경",
+          "sipsin/식신",
+          "sipsin/겁재",
+          "sipsin/편관",
+          "sipsin/편인",
+          "sipsin/정재",
+          "sibiunseong/제왕",
+          "sibiunseong/절",
+          "sibiunseong/병",
+          "sinsal/역마살",
+          "sinsal/육해살",
+          "sinsal/재살",
+          "hapchung/형"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "ilju/정묘",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/문곡귀인",
+          "sinsal/현침살",
+          "unse/병오/ilju/정묘",
+          "unse/병오/general"
+        ],
+        "node_count": 23,
+        "relation_count": 1428
+      }
+    },
+    {
+      "id": "known-zi-after-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 2,
+        "hour": 24
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2042년",
+        "layer": "EVENT",
+        "evid": "월지 × 2042년~ 대운(임오) 충",
+        "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2042년",
+          "layer": "EVENT",
+          "evid": "월지 × 2042년~ 대운(임오) 충",
+          "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 무자(戊子) · 일주 병인(丙寅) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 병\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 겨울생 — 화 기운 필요, 원국 보유 / 오행: 목1 화3 토2 금0 수2 · 부재 [금] / 십신 부재: 재성 / 구조 후보: 관인상생 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "jiji/인",
+          "cheongan/무",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sipsin/식신",
+          "sibiunseong/건록",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sinsal/망신살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/역마살",
+          "hapchung/형",
+          "hapchung/해"
+        ],
+        "unmatched_keys": [
+          "ilju/병인",
+          "sinsal/정록",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 25,
+        "relation_count": 1534
+      }
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 34,
+        "hour": 56
+      },
+      "current": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/득령",
+        "frame/조후",
+        "frame/무인성",
+        "chain/식상생재",
+        "chain/재생관"
+      ],
+      "report_line": "신강신약: **중화** (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 득령·득지",
+      "direct_jeonggok": {
+        "token": "시기 특정·2025년",
+        "layer": "EVENT",
+        "evid": "시지 × 2025년~ 대운(병인) 충",
+        "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "delta": 0,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2025년",
+          "layer": "EVENT",
+          "evid": "시지 × 2025년~ 대운(병인) 충",
+          "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 경신(庚申) · 일주 무술(戊戌) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 무\n구조 판정: 신강신약: 중화 (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지 / 조후: 겨울생 — 화 기운 필요, 원국 부재 / 오행: 목2 화0 토3 금2 수1 · 부재 [화] / 십신 부재: 인성 / 구조 후보: 식상생재 · 재생관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/득령",
+          "frame/조후",
+          "frame/무인성",
+          "chain/식상생재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/무",
+          "jiji/술",
+          "cheongan/경",
+          "jiji/신",
+          "sipsin/정재",
+          "sipsin/정관",
+          "sipsin/겁재",
+          "sipsin/비견",
+          "sipsin/식신",
+          "sibiunseong/목욕",
+          "sibiunseong/양",
+          "sibiunseong/묘",
+          "sibiunseong/병",
+          "sinsal/년살",
+          "sinsal/천살",
+          "sinsal/겁살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/형",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/천덕귀인",
+          "sinsal/월덕귀인",
+          "sinsal/문창귀인",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 32,
+        "relation_count": 2045
+      }
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 34,
+        "hour": 56
+      },
+      "current": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/득령",
+        "frame/조후",
+        "frame/무인성",
+        "chain/식상생재",
+        "chain/재생관"
+      ],
+      "report_line": "신강신약: **중화** (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 득령·득지",
+      "direct_jeonggok": {
+        "token": "시기 특정·2025년",
+        "layer": "EVENT",
+        "evid": "시지 × 2025년~ 대운(병인) 충",
+        "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "delta": 0,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2025년",
+          "layer": "EVENT",
+          "evid": "시지 × 2025년~ 대운(병인) 충",
+          "line": "2025년 무렵부터 큰 흐름이 원국과 충으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 경신(庚申) · 일주 무술(戊戌) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 무\n구조 판정: 신강신약: 중화 (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지 / 조후: 겨울생 — 화 기운 필요, 원국 부재 / 오행: 목2 화0 토3 금2 수1 · 부재 [화] / 십신 부재: 인성 / 구조 후보: 식상생재 · 재생관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/득령",
+          "frame/조후",
+          "frame/무인성",
+          "chain/식상생재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/무",
+          "jiji/술",
+          "cheongan/경",
+          "jiji/신",
+          "sipsin/정재",
+          "sipsin/정관",
+          "sipsin/겁재",
+          "sipsin/비견",
+          "sipsin/식신",
+          "sibiunseong/목욕",
+          "sibiunseong/양",
+          "sibiunseong/묘",
+          "sibiunseong/병",
+          "sinsal/년살",
+          "sinsal/천살",
+          "sinsal/겁살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/형",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/천덕귀인",
+          "sinsal/월덕귀인",
+          "sinsal/문창귀인",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 32,
+        "relation_count": 2045
+      }
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 34,
+        "hour": 57
+      },
+      "current": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/득령",
+        "frame/조후",
+        "frame/무인성",
+        "chain/식상생재",
+        "chain/재생관",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **중화** (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 득령·득지",
+      "direct_jeonggok": {
+        "token": "시기 특정·2025년",
+        "layer": "EVENT",
+        "evid": "시지 × 2025년~ 대운(병인) 원진",
+        "line": "2025년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "delta": 0,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2025년",
+          "layer": "EVENT",
+          "evid": "시지 × 2025년~ 대운(병인) 원진",
+          "line": "2025년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 신유(辛酉) · 일주 무술(戊戌) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 무\n구조 판정: 신강신약: 중화 (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지 / 조후: 겨울생 — 화 기운 필요, 원국 부재 / 오행: 목2 화0 토3 금2 수1 · 부재 [화] / 십신 부재: 인성 / 구조 후보: 식상생재 · 재생관 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/득령",
+          "frame/조후",
+          "frame/무인성",
+          "chain/식상생재",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/무",
+          "jiji/술",
+          "cheongan/신",
+          "jiji/유",
+          "sipsin/정재",
+          "sipsin/정관",
+          "sipsin/겁재",
+          "sipsin/비견",
+          "sipsin/상관",
+          "sibiunseong/목욕",
+          "sibiunseong/양",
+          "sibiunseong/묘",
+          "sibiunseong/사",
+          "sinsal/년살",
+          "sinsal/천살",
+          "sinsal/재살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/충",
+          "hapchung/육합",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/해"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2187
+      }
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 34,
+        "hour": 57
+      },
+      "current": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          true,
+          true,
+          false,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/득령",
+        "frame/조후",
+        "frame/무인성",
+        "chain/식상생재",
+        "chain/재생관",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **중화** (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 득령·득지",
+      "direct_jeonggok": {
+        "token": "시기 특정·2025년",
+        "layer": "EVENT",
+        "evid": "시지 × 2025년~ 대운(병인) 원진",
+        "line": "2025년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+      },
+      "weight_swap_only": {
+        "score": 55,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          true,
+          true,
+          false,
+          false
+        ],
+        "delta": 0,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2025년",
+          "layer": "EVENT",
+          "evid": "시지 × 2025년~ 대운(병인) 원진",
+          "line": "2025년 무렵부터 큰 흐름이 원국과 원진으로 걸려 있어. 그맘때 삶이 한번 크게 출렁였을 텐데."
+        }
+      },
+      "summary": "원국: 시주 신유(辛酉) · 일주 무술(戊戌) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 무\n구조 판정: 신강신약: 중화 (55/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지 / 조후: 겨울생 — 화 기운 필요, 원국 부재 / 오행: 목2 화0 토3 금2 수1 · 부재 [화] / 십신 부재: 인성 / 구조 후보: 식상생재 · 재생관 · 상관견관 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/득령",
+          "frame/조후",
+          "frame/무인성",
+          "chain/식상생재",
+          "chain/상관견관",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/무",
+          "jiji/술",
+          "cheongan/신",
+          "jiji/유",
+          "sipsin/정재",
+          "sipsin/정관",
+          "sipsin/겁재",
+          "sipsin/비견",
+          "sipsin/상관",
+          "sibiunseong/목욕",
+          "sibiunseong/양",
+          "sibiunseong/묘",
+          "sibiunseong/사",
+          "sinsal/년살",
+          "sinsal/천살",
+          "sinsal/재살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/충",
+          "hapchung/육합",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/해"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2187
+      }
+    },
+    {
+      "id": "known-ipchun-after-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 40,
+        "month": 2,
+        "day": 34,
+        "hour": 56
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/무재성",
+        "chain/관인상생"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2055년",
+        "layer": "EVENT",
+        "evid": "년지 × 2055년~ 대운(임술) 충",
+        "line": "2055년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2055년",
+          "layer": "EVENT",
+          "evid": "년지 × 2055년~ 대운(임술) 충",
+          "line": "2055년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 경신(庚申) · 일주 무술(戊戌) · 월주 병인(丙寅) · 년주 갑진(甲辰)\n일간: 무\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 봄생 (조후 무난) / 오행: 목2 화1 토3 금2 수0 · 부재 [수] / 십신 부재: 재성 / 구조 후보: 관인상생 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/무재성",
+          "chain/관인상생",
+          "cheongan/갑",
+          "jiji/진",
+          "cheongan/병",
+          "jiji/인",
+          "cheongan/무",
+          "jiji/술",
+          "cheongan/경",
+          "jiji/신",
+          "sipsin/편관",
+          "sipsin/비견",
+          "sipsin/편인",
+          "sipsin/식신",
+          "sibiunseong/관대",
+          "sibiunseong/장생",
+          "sibiunseong/묘",
+          "sibiunseong/병",
+          "sinsal/월살",
+          "sinsal/역마살",
+          "sinsal/지살",
+          "sinsal/화개살",
+          "hapchung/충",
+          "hapchung/형",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/홍염살",
+          "sinsal/월덕귀인",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/문창귀인",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 26,
+        "relation_count": 1773
+      }
+    },
+    {
+      "id": "known-ipchun-after-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "hourUnknown": false,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 40,
+        "month": 2,
+        "day": 34,
+        "hour": 56
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/무재성",
+        "chain/관인상생"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2055년",
+        "layer": "EVENT",
+        "evid": "년지 × 2055년~ 대운(임술) 충",
+        "line": "2055년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2055년",
+          "layer": "EVENT",
+          "evid": "년지 × 2055년~ 대운(임술) 충",
+          "line": "2055년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 경신(庚申) · 일주 무술(戊戌) · 월주 병인(丙寅) · 년주 갑진(甲辰)\n일간: 무\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 봄생 (조후 무난) / 오행: 목2 화1 토3 금2 수0 · 부재 [수] / 십신 부재: 재성 / 구조 후보: 관인상생 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/무재성",
+          "chain/관인상생",
+          "cheongan/갑",
+          "jiji/진",
+          "cheongan/병",
+          "jiji/인",
+          "cheongan/무",
+          "jiji/술",
+          "cheongan/경",
+          "jiji/신",
+          "sipsin/편관",
+          "sipsin/비견",
+          "sipsin/편인",
+          "sipsin/식신",
+          "sibiunseong/관대",
+          "sibiunseong/장생",
+          "sibiunseong/묘",
+          "sibiunseong/병",
+          "sinsal/월살",
+          "sinsal/역마살",
+          "sinsal/지살",
+          "sinsal/화개살",
+          "hapchung/충",
+          "hapchung/형",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/홍염살",
+          "sinsal/월덕귀인",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/문창귀인",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 26,
+        "relation_count": 1773
+      }
+    },
+    {
+      "id": "known-ipchun-after-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 40,
+        "month": 2,
+        "day": 34,
+        "hour": 57
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/무재성",
+        "chain/관인상생"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2055년",
+        "layer": "EVENT",
+        "evid": "년지 × 2055년~ 대운(임술) 충",
+        "line": "2055년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2055년",
+          "layer": "EVENT",
+          "evid": "년지 × 2055년~ 대운(임술) 충",
+          "line": "2055년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 신유(辛酉) · 일주 무술(戊戌) · 월주 병인(丙寅) · 년주 갑진(甲辰)\n일간: 무\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 봄생 (조후 무난) / 오행: 목2 화1 토3 금2 수0 · 부재 [수] / 십신 부재: 재성 / 구조 후보: 관인상생 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/무재성",
+          "chain/관인상생",
+          "cheongan/갑",
+          "jiji/진",
+          "cheongan/병",
+          "jiji/인",
+          "cheongan/무",
+          "jiji/술",
+          "cheongan/신",
+          "jiji/유",
+          "sipsin/편관",
+          "sipsin/비견",
+          "sipsin/편인",
+          "sipsin/상관",
+          "sibiunseong/관대",
+          "sibiunseong/장생",
+          "sibiunseong/묘",
+          "sibiunseong/사",
+          "sinsal/월살",
+          "sinsal/역마살",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/충",
+          "hapchung/해",
+          "hapchung/원진",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/홍염살",
+          "sinsal/월덕귀인",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/도화살",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 28,
+        "relation_count": 1944
+      }
+    },
+    {
+      "id": "known-ipchun-after-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "hourUnknown": false,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 40,
+        "month": 2,
+        "day": 34,
+        "hour": 57
+      },
+      "current": {
+        "score": 50,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/중화",
+        "frame/무재성",
+        "chain/관인상생"
+      ],
+      "report_line": "신강신약: **중화** (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세",
+      "reading_judge_card_present": true,
+      "reading_judge_line": "신강신약: 중화 · 실령·득지·득세",
+      "direct_jeonggok": {
+        "token": "시기 특정·2055년",
+        "layer": "EVENT",
+        "evid": "년지 × 2055년~ 대운(임술) 충",
+        "line": "2055년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 45,
+        "max": 110,
+        "label": "중화",
+        "flags": [
+          false,
+          true,
+          false,
+          true
+        ],
+        "delta": -5,
+        "frame_key": "frame/중화",
+        "direct_jeonggok": {
+          "token": "시기 특정·2055년",
+          "layer": "EVENT",
+          "evid": "년지 × 2055년~ 대운(임술) 충",
+          "line": "2055년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 시주 신유(辛酉) · 일주 무술(戊戌) · 월주 병인(丙寅) · 년주 갑진(甲辰)\n일간: 무\n구조 판정: 신강신약: 중화 (50/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득세 / 조후: 봄생 (조후 무난) / 오행: 목2 화1 토3 금2 수0 · 부재 [수] / 십신 부재: 재성 / 구조 후보: 관인상생 (성립 세부는 문헌 근거로 판단)",
+      "brain": {
+        "matched_keys": [
+          "frame/중화",
+          "frame/무재성",
+          "chain/관인상생",
+          "cheongan/갑",
+          "jiji/진",
+          "cheongan/병",
+          "jiji/인",
+          "cheongan/무",
+          "jiji/술",
+          "cheongan/신",
+          "jiji/유",
+          "sipsin/편관",
+          "sipsin/비견",
+          "sipsin/편인",
+          "sipsin/상관",
+          "sibiunseong/관대",
+          "sibiunseong/장생",
+          "sibiunseong/묘",
+          "sibiunseong/사",
+          "sinsal/월살",
+          "sinsal/역마살",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/충",
+          "hapchung/해",
+          "hapchung/원진",
+          "sinsal/공망"
+        ],
+        "unmatched_keys": [
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/홍염살",
+          "sinsal/월덕귀인",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/도화살",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 28,
+        "relation_count": 1944
+      }
+    },
+    {
+      "id": "unknown-ordinary-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 8,
+        "minute": 24,
+        "hourUnknown": true,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 2,
+        "hour": 30
+      },
+      "current": {
+        "score": 70,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **신강** (70/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세",
+      "reading_judge_card_present": false,
+      "reading_judge_line": null,
+      "direct_jeonggok": {
+        "token": "시기 특정·2042년",
+        "layer": "EVENT",
+        "evid": "월지 × 2042년~ 대운(임오) 충",
+        "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 70,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "delta": 0,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2042년",
+          "layer": "EVENT",
+          "evid": "월지 × 2042년~ 대운(임오) 충",
+          "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 일주 병인(丙寅) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 병\n출생 시간 모름: 시주·강약·십신 분포·합충·신살·대운은 판단하지 않는다. 절입일의 연·월주는 확정할 수 없다.",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "jiji/인",
+          "cheongan/갑",
+          "jiji/오",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sipsin/겁재",
+          "sibiunseong/건록",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sibiunseong/제왕",
+          "sinsal/망신살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/년살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/삼합",
+          "hapchung/충",
+          "hapchung/형",
+          "hapchung/해"
+        ],
+        "unmatched_keys": [
+          "ilju/병인",
+          "sinsal/정록",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/현침살",
+          "sinsal/양인살",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 31,
+        "relation_count": 2011
+      },
+      "notice": [
+        "태어난 시간을 몰라 시주(時柱)를 뺀 세 기둥으로 본다. 일주 중심의 풀이는 그대로 정확하니 안심하게."
+      ],
+      "card_ids": [
+        "ilju",
+        "hour-unknown",
+        "unse"
+      ],
+      "noon_fortune": {
+        "score": 72,
+        "basis": [
+          "내 일주와 인사해"
+        ]
+      },
+      "possible": {
+        "scenarios": 1440,
+        "pillar_choices": {
+          "year": [
+            5
+          ],
+          "month": [
+            12
+          ],
+          "day": [
+            2,
+            3
+          ],
+          "hour": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+          ]
+        },
+        "current_range": [
+          50,
+          70
+        ],
+        "current_labels": [
+          "신강",
+          "중화"
+        ],
+        "swap_range": [
+          45,
+          70
+        ],
+        "swap_labels": [
+          "신강",
+          "중화"
+        ],
+        "probability": null
+      }
+    },
+    {
+      "id": "unknown-ordinary-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 8,
+        "minute": 24,
+        "hourUnknown": true,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 2,
+        "hour": 30
+      },
+      "current": {
+        "score": 70,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **신강** (70/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세",
+      "reading_judge_card_present": false,
+      "reading_judge_line": null,
+      "direct_jeonggok": {
+        "token": "시기 특정·2042년",
+        "layer": "EVENT",
+        "evid": "월지 × 2042년~ 대운(임오) 충",
+        "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 70,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "delta": 0,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2042년",
+          "layer": "EVENT",
+          "evid": "월지 × 2042년~ 대운(임오) 충",
+          "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 일주 병인(丙寅) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 병\n출생 시간 모름: 시주·강약·십신 분포·합충·신살·대운은 판단하지 않는다. 절입일의 연·월주는 확정할 수 없다.",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "jiji/인",
+          "cheongan/갑",
+          "jiji/오",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sipsin/겁재",
+          "sibiunseong/건록",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sibiunseong/제왕",
+          "sinsal/망신살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/년살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/삼합",
+          "hapchung/충",
+          "hapchung/형",
+          "hapchung/해"
+        ],
+        "unmatched_keys": [
+          "ilju/병인",
+          "sinsal/정록",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/현침살",
+          "sinsal/양인살",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 31,
+        "relation_count": 2011
+      },
+      "notice": [
+        "태어난 시간을 몰라 시주(時柱)를 뺀 세 기둥으로 본다. 일주 중심의 풀이는 그대로 정확하니 안심하게."
+      ],
+      "card_ids": [
+        "ilju",
+        "hour-unknown",
+        "unse"
+      ],
+      "noon_fortune": {
+        "score": 72,
+        "basis": [
+          "내 일주와 인사해"
+        ]
+      },
+      "possible": {
+        "scenarios": 1440,
+        "pillar_choices": {
+          "year": [
+            5
+          ],
+          "month": [
+            12
+          ],
+          "day": [
+            1,
+            2
+          ],
+          "hour": [
+            12,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35
+          ]
+        },
+        "current_range": [
+          50,
+          70
+        ],
+        "current_labels": [
+          "신강",
+          "중화"
+        ],
+        "swap_range": [
+          45,
+          70
+        ],
+        "swap_labels": [
+          "신강",
+          "중화"
+        ],
+        "probability": null
+      }
+    },
+    {
+      "id": "unknown-ordinary-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 8,
+        "minute": 24,
+        "hourUnknown": true,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 2,
+        "hour": 30
+      },
+      "current": {
+        "score": 70,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **신강** (70/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세",
+      "reading_judge_card_present": false,
+      "reading_judge_line": null,
+      "direct_jeonggok": {
+        "token": "시기 특정·2042년",
+        "layer": "EVENT",
+        "evid": "월지 × 2042년~ 대운(임오) 충",
+        "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 70,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "delta": 0,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2042년",
+          "layer": "EVENT",
+          "evid": "월지 × 2042년~ 대운(임오) 충",
+          "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 일주 병인(丙寅) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 병\n출생 시간 모름: 시주·강약·십신 분포·합충·신살·대운은 판단하지 않는다. 절입일의 연·월주는 확정할 수 없다.",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "jiji/인",
+          "cheongan/갑",
+          "jiji/오",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sipsin/겁재",
+          "sibiunseong/건록",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sibiunseong/제왕",
+          "sinsal/망신살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/년살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/삼합",
+          "hapchung/충",
+          "hapchung/형",
+          "hapchung/해"
+        ],
+        "unmatched_keys": [
+          "ilju/병인",
+          "sinsal/정록",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/현침살",
+          "sinsal/양인살",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 31,
+        "relation_count": 2011
+      },
+      "notice": [
+        "태어난 시간을 몰라 시주(時柱)를 뺀 세 기둥으로 본다. 일주 중심의 풀이는 그대로 정확하니 안심하게."
+      ],
+      "card_ids": [
+        "ilju",
+        "hour-unknown",
+        "unse"
+      ],
+      "noon_fortune": {
+        "score": 72,
+        "basis": [
+          "내 일주와 인사해"
+        ]
+      },
+      "possible": {
+        "scenarios": 1440,
+        "pillar_choices": {
+          "year": [
+            5
+          ],
+          "month": [
+            12
+          ],
+          "day": [
+            2,
+            3
+          ],
+          "hour": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+          ]
+        },
+        "current_range": [
+          50,
+          70
+        ],
+        "current_labels": [
+          "신강",
+          "중화"
+        ],
+        "swap_range": [
+          45,
+          70
+        ],
+        "swap_labels": [
+          "신강",
+          "중화"
+        ],
+        "probability": null
+      }
+    },
+    {
+      "id": "unknown-ordinary-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 8,
+        "minute": 24,
+        "hourUnknown": true,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 5,
+        "month": 12,
+        "day": 2,
+        "hour": 30
+      },
+      "current": {
+        "score": 70,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/조후",
+        "frame/무재성",
+        "chain/관인상생",
+        "chain/상관견관"
+      ],
+      "report_line": "신강신약: **신강** (70/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 실령·득지·득시·득세",
+      "reading_judge_card_present": false,
+      "reading_judge_line": null,
+      "direct_jeonggok": {
+        "token": "시기 특정·2042년",
+        "layer": "EVENT",
+        "evid": "월지 × 2042년~ 대운(임오) 충",
+        "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 70,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "delta": 0,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2042년",
+          "layer": "EVENT",
+          "evid": "월지 × 2042년~ 대운(임오) 충",
+          "line": "2042년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 일주 병인(丙寅) · 월주 병자(丙子) · 년주 기사(己巳)\n일간: 병\n출생 시간 모름: 시주·강약·십신 분포·합충·신살·대운은 판단하지 않는다. 절입일의 연·월주는 확정할 수 없다.",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/조후",
+          "frame/무재성",
+          "chain/관인상생",
+          "chain/상관견관",
+          "cheongan/기",
+          "jiji/사",
+          "cheongan/병",
+          "jiji/자",
+          "jiji/인",
+          "cheongan/갑",
+          "jiji/오",
+          "sipsin/상관",
+          "sipsin/비견",
+          "sipsin/정관",
+          "sipsin/편인",
+          "sipsin/겁재",
+          "sibiunseong/건록",
+          "sibiunseong/태",
+          "sibiunseong/장생",
+          "sibiunseong/제왕",
+          "sinsal/망신살",
+          "sinsal/육해살",
+          "sinsal/겁살",
+          "sinsal/년살",
+          "sinsal/역마살",
+          "hapchung/합",
+          "hapchung/삼합",
+          "hapchung/충",
+          "hapchung/형",
+          "hapchung/해"
+        ],
+        "unmatched_keys": [
+          "ilju/병인",
+          "sinsal/정록",
+          "sinsal/천덕귀인",
+          "sinsal/도화살",
+          "sinsal/홍염살",
+          "sinsal/문곡귀인",
+          "sinsal/학당귀인",
+          "sinsal/현침살",
+          "sinsal/양인살",
+          "unse/병오/ilju/병인",
+          "unse/병오/general"
+        ],
+        "node_count": 31,
+        "relation_count": 2011
+      },
+      "notice": [
+        "태어난 시간을 몰라 시주(時柱)를 뺀 세 기둥으로 본다. 일주 중심의 풀이는 그대로 정확하니 안심하게."
+      ],
+      "card_ids": [
+        "ilju",
+        "hour-unknown",
+        "unse"
+      ],
+      "noon_fortune": {
+        "score": 72,
+        "basis": [
+          "내 일주와 인사해"
+        ]
+      },
+      "possible": {
+        "scenarios": 1440,
+        "pillar_choices": {
+          "year": [
+            5
+          ],
+          "month": [
+            12
+          ],
+          "day": [
+            2
+          ],
+          "hour": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35
+          ]
+        },
+        "current_range": [
+          50,
+          70
+        ],
+        "current_labels": [
+          "신강",
+          "중화"
+        ],
+        "swap_range": [
+          45,
+          70
+        ],
+        "swap_labels": [
+          "신강",
+          "중화"
+        ],
+        "probability": null
+      }
+    },
+    {
+      "id": "unknown-ipchun-solar-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 8,
+        "minute": 24,
+        "hourUnknown": true,
+        "solarCorrection": true,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 34,
+        "hour": 54
+      },
+      "current": {
+        "score": 75,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          true,
+          true,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/득령",
+        "frame/조후",
+        "frame/무식상",
+        "chain/재생관",
+        "chain/관인상생",
+        "chain/군겁쟁재"
+      ],
+      "report_line": "신강신약: **신강** (75/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지·득시",
+      "reading_judge_card_present": false,
+      "reading_judge_line": null,
+      "direct_jeonggok": {
+        "token": "시기 특정·2045년",
+        "layer": "EVENT",
+        "evid": "일지 × 2045년~ 대운(무진) 충",
+        "line": "2045년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "delta": 5,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2045년",
+          "layer": "EVENT",
+          "evid": "일지 × 2045년~ 대운(무진) 충",
+          "line": "2045년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 일주 무술(戊戌) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 무\n출생 시간 모름: 시주·강약·십신 분포·합충·신살·대운은 판단하지 않는다. 절입일의 연·월주는 확정할 수 없다.",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/득령",
+          "frame/조후",
+          "frame/무식상",
+          "chain/관인상생",
+          "chain/군겁쟁재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/무",
+          "jiji/술",
+          "jiji/오",
+          "sipsin/정재",
+          "sipsin/정관",
+          "sipsin/겁재",
+          "sipsin/비견",
+          "sipsin/정인",
+          "sibiunseong/목욕",
+          "sibiunseong/양",
+          "sibiunseong/묘",
+          "sibiunseong/제왕",
+          "sinsal/년살",
+          "sinsal/천살",
+          "sinsal/육해살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/양인살",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2120
+      },
+      "notice": [
+        "태어난 시간을 몰라 시주(時柱)를 뺀 세 기둥으로 본다. 일주 중심의 풀이는 그대로 정확하니 안심하게."
+      ],
+      "card_ids": [
+        "ilju",
+        "hour-unknown",
+        "unse"
+      ],
+      "noon_fortune": {
+        "score": 70,
+        "basis": [
+          "내 월주와 축사 삼합 기운",
+          "내 일주와 술사원진",
+          "공망 발동"
+        ]
+      },
+      "possible": {
+        "scenarios": 1440,
+        "pillar_choices": {
+          "year": [
+            39,
+            40
+          ],
+          "month": [
+            1,
+            2
+          ],
+          "day": [
+            34,
+            35
+          ],
+          "hour": [
+            0,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ]
+        },
+        "current_range": [
+          35,
+          75
+        ],
+        "current_labels": [
+          "신강",
+          "중화"
+        ],
+        "swap_range": [
+          30,
+          80
+        ],
+        "swap_labels": [
+          "신강",
+          "신약",
+          "중화"
+        ],
+        "probability": null
+      }
+    },
+    {
+      "id": "unknown-ipchun-solar-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 8,
+        "minute": 24,
+        "hourUnknown": true,
+        "solarCorrection": true,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 34,
+        "hour": 54
+      },
+      "current": {
+        "score": 75,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          true,
+          true,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/득령",
+        "frame/조후",
+        "frame/무식상",
+        "chain/재생관",
+        "chain/관인상생",
+        "chain/군겁쟁재"
+      ],
+      "report_line": "신강신약: **신강** (75/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지·득시",
+      "reading_judge_card_present": false,
+      "reading_judge_line": null,
+      "direct_jeonggok": {
+        "token": "시기 특정·2045년",
+        "layer": "EVENT",
+        "evid": "일지 × 2045년~ 대운(무진) 충",
+        "line": "2045년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "delta": 5,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2045년",
+          "layer": "EVENT",
+          "evid": "일지 × 2045년~ 대운(무진) 충",
+          "line": "2045년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 일주 무술(戊戌) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 무\n출생 시간 모름: 시주·강약·십신 분포·합충·신살·대운은 판단하지 않는다. 절입일의 연·월주는 확정할 수 없다.",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/득령",
+          "frame/조후",
+          "frame/무식상",
+          "chain/관인상생",
+          "chain/군겁쟁재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/무",
+          "jiji/술",
+          "jiji/오",
+          "sipsin/정재",
+          "sipsin/정관",
+          "sipsin/겁재",
+          "sipsin/비견",
+          "sipsin/정인",
+          "sibiunseong/목욕",
+          "sibiunseong/양",
+          "sibiunseong/묘",
+          "sibiunseong/제왕",
+          "sinsal/년살",
+          "sinsal/천살",
+          "sinsal/육해살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/양인살",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2120
+      },
+      "notice": [
+        "태어난 시간을 몰라 시주(時柱)를 뺀 세 기둥으로 본다. 일주 중심의 풀이는 그대로 정확하니 안심하게."
+      ],
+      "card_ids": [
+        "ilju",
+        "hour-unknown",
+        "unse"
+      ],
+      "noon_fortune": {
+        "score": 70,
+        "basis": [
+          "내 월주와 축사 삼합 기운",
+          "내 일주와 술사원진",
+          "공망 발동"
+        ]
+      },
+      "possible": {
+        "scenarios": 1440,
+        "pillar_choices": {
+          "year": [
+            39,
+            40
+          ],
+          "month": [
+            1,
+            2
+          ],
+          "day": [
+            33,
+            34
+          ],
+          "hour": [
+            36,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ]
+        },
+        "current_range": [
+          35,
+          75
+        ],
+        "current_labels": [
+          "신강",
+          "중화"
+        ],
+        "swap_range": [
+          30,
+          80
+        ],
+        "swap_labels": [
+          "신강",
+          "신약",
+          "중화"
+        ],
+        "probability": null
+      }
+    },
+    {
+      "id": "unknown-ipchun-civil-midnight23",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 8,
+        "minute": 24,
+        "hourUnknown": true,
+        "solarCorrection": false,
+        "lateZi": false
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 34,
+        "hour": 54
+      },
+      "current": {
+        "score": 75,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          true,
+          true,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/득령",
+        "frame/조후",
+        "frame/무식상",
+        "chain/재생관",
+        "chain/관인상생",
+        "chain/군겁쟁재"
+      ],
+      "report_line": "신강신약: **신강** (75/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지·득시",
+      "reading_judge_card_present": false,
+      "reading_judge_line": null,
+      "direct_jeonggok": {
+        "token": "시기 특정·2045년",
+        "layer": "EVENT",
+        "evid": "일지 × 2045년~ 대운(무진) 충",
+        "line": "2045년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "delta": 5,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2045년",
+          "layer": "EVENT",
+          "evid": "일지 × 2045년~ 대운(무진) 충",
+          "line": "2045년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 일주 무술(戊戌) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 무\n출생 시간 모름: 시주·강약·십신 분포·합충·신살·대운은 판단하지 않는다. 절입일의 연·월주는 확정할 수 없다.",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/득령",
+          "frame/조후",
+          "frame/무식상",
+          "chain/관인상생",
+          "chain/군겁쟁재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/무",
+          "jiji/술",
+          "jiji/오",
+          "sipsin/정재",
+          "sipsin/정관",
+          "sipsin/겁재",
+          "sipsin/비견",
+          "sipsin/정인",
+          "sibiunseong/목욕",
+          "sibiunseong/양",
+          "sibiunseong/묘",
+          "sibiunseong/제왕",
+          "sinsal/년살",
+          "sinsal/천살",
+          "sinsal/육해살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/양인살",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2120
+      },
+      "notice": [
+        "태어난 시간을 몰라 시주(時柱)를 뺀 세 기둥으로 본다. 일주 중심의 풀이는 그대로 정확하니 안심하게."
+      ],
+      "card_ids": [
+        "ilju",
+        "hour-unknown",
+        "unse"
+      ],
+      "noon_fortune": {
+        "score": 70,
+        "basis": [
+          "내 월주와 축사 삼합 기운",
+          "내 일주와 술사원진",
+          "공망 발동"
+        ]
+      },
+      "possible": {
+        "scenarios": 1440,
+        "pillar_choices": {
+          "year": [
+            39,
+            40
+          ],
+          "month": [
+            1,
+            2
+          ],
+          "day": [
+            34,
+            35
+          ],
+          "hour": [
+            0,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ]
+        },
+        "current_range": [
+          35,
+          75
+        ],
+        "current_labels": [
+          "신강",
+          "중화"
+        ],
+        "swap_range": [
+          30,
+          80
+        ],
+        "swap_labels": [
+          "신강",
+          "신약",
+          "중화"
+        ],
+        "probability": null
+      }
+    },
+    {
+      "id": "unknown-ipchun-civil-keepDay",
+      "profile": {
+        "id": "audit",
+        "createdAt": 1,
+        "name": "",
+        "calendar": "양력",
+        "gender": "여자",
+        "marital": "미혼",
+        "city": "서울",
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 8,
+        "minute": 24,
+        "hourUnknown": true,
+        "solarCorrection": false,
+        "lateZi": true
+      },
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 34,
+        "hour": 54
+      },
+      "current": {
+        "score": 75,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          true,
+          true,
+          false
+        ]
+      },
+      "frame_keys": [
+        "frame/신강",
+        "frame/득령",
+        "frame/조후",
+        "frame/무식상",
+        "chain/재생관",
+        "chain/관인상생",
+        "chain/군겁쟁재"
+      ],
+      "report_line": "신강신약: **신강** (75/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · 득령·득지·득시",
+      "reading_judge_card_present": false,
+      "reading_judge_line": null,
+      "direct_jeonggok": {
+        "token": "시기 특정·2045년",
+        "layer": "EVENT",
+        "evid": "일지 × 2045년~ 대운(무진) 충",
+        "line": "2045년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+      },
+      "weight_swap_only": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "flags": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "delta": 5,
+        "frame_key": "frame/신강",
+        "direct_jeonggok": {
+          "token": "시기 특정·2045년",
+          "layer": "EVENT",
+          "evid": "일지 × 2045년~ 대운(무진) 충",
+          "line": "2045년부터 큰 흐름이 원국과 충으로 걸려. 미리 알고 맞는 파도는 무섭지 않지."
+        }
+      },
+      "summary": "원국: 일주 무술(戊戌) · 월주 을축(乙丑) · 년주 계묘(癸卯)\n일간: 무\n출생 시간 모름: 시주·강약·십신 분포·합충·신살·대운은 판단하지 않는다. 절입일의 연·월주는 확정할 수 없다.",
+      "brain": {
+        "matched_keys": [
+          "frame/신강",
+          "frame/득령",
+          "frame/조후",
+          "frame/무식상",
+          "chain/관인상생",
+          "chain/군겁쟁재",
+          "cheongan/계",
+          "jiji/묘",
+          "cheongan/을",
+          "jiji/축",
+          "cheongan/무",
+          "jiji/술",
+          "jiji/오",
+          "sipsin/정재",
+          "sipsin/정관",
+          "sipsin/겁재",
+          "sipsin/비견",
+          "sipsin/정인",
+          "sibiunseong/목욕",
+          "sibiunseong/양",
+          "sibiunseong/묘",
+          "sibiunseong/제왕",
+          "sinsal/년살",
+          "sinsal/천살",
+          "sinsal/육해살",
+          "sinsal/천을귀인",
+          "sinsal/화개살",
+          "hapchung/합",
+          "hapchung/육합",
+          "hapchung/삼합",
+          "hapchung/형",
+          "hapchung/파",
+          "hapchung/해",
+          "hapchung/원진"
+        ],
+        "unmatched_keys": [
+          "chain/재생관",
+          "ilju/무술",
+          "sinsal/현침살",
+          "sinsal/도화살",
+          "sinsal/양인살",
+          "unse/병오/ilju/무술",
+          "unse/병오/general"
+        ],
+        "node_count": 34,
+        "relation_count": 2120
+      },
+      "notice": [
+        "태어난 시간을 몰라 시주(時柱)를 뺀 세 기둥으로 본다. 일주 중심의 풀이는 그대로 정확하니 안심하게."
+      ],
+      "card_ids": [
+        "ilju",
+        "hour-unknown",
+        "unse"
+      ],
+      "noon_fortune": {
+        "score": 70,
+        "basis": [
+          "내 월주와 축사 삼합 기운",
+          "내 일주와 술사원진",
+          "공망 발동"
+        ]
+      },
+      "possible": {
+        "scenarios": 1440,
+        "pillar_choices": {
+          "year": [
+            39,
+            40
+          ],
+          "month": [
+            1,
+            2
+          ],
+          "day": [
+            34
+          ],
+          "hour": [
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ]
+        },
+        "current_range": [
+          50,
+          75
+        ],
+        "current_labels": [
+          "신강",
+          "중화"
+        ],
+        "swap_range": [
+          45,
+          80
+        ],
+        "swap_labels": [
+          "신강",
+          "중화"
+        ],
+        "probability": null
+      }
+    }
+  ],
+  "apply_to_runtime": false,
+  "training_labels": false,
+  "probability": null
+}
