@@ -1,0 +1,98 @@
+{
+  "base_commit": "9897b462458f4f35079969ceda6a54317cb3c10e",
+  "scope": "actual_query_comparison_not_prediction_accuracy",
+  "base_terms_checked": 186,
+  "base_payload_changes_excluding_claim_layer": 0,
+  "old_topics_exactly_preserved": [
+    "편인도식",
+    "상관패인",
+    "재생관",
+    "관살혼잡"
+  ],
+  "old_claim_records_preserved": 18,
+  "changed_base_term_claim_contexts": [
+    "ten_god_겁재",
+    "ten_god_상관",
+    "ten_god_식신",
+    "ten_god_정관",
+    "ten_god_정인",
+    "ten_god_정재",
+    "ten_god_편관",
+    "ten_god_편인",
+    "ten_god_편재",
+    "겁재",
+    "상관",
+    "식신",
+    "정관",
+    "정인",
+    "정재",
+    "편관",
+    "편인",
+    "편재"
+  ],
+  "before_counts": {
+    "topics": 4,
+    "claims": 18,
+    "source_relations": 12,
+    "inference_enabled": false,
+    "probability": null
+  },
+  "after_counts": {
+    "topics": 6,
+    "claims": 29,
+    "source_relations": 12,
+    "source_classifications": 9,
+    "inference_enabled": false,
+    "probability": null
+  },
+  "new_topics": {
+    "사길신": {
+      "before": "not_found",
+      "after": "found",
+      "claims": 5,
+      "evidence_ranges": 5,
+      "probability": null
+    },
+    "사흉신": {
+      "before": "not_found",
+      "after": "found",
+      "claims": 6,
+      "evidence_ranges": 6,
+      "probability": null
+    }
+  },
+  "classification_anchors": {
+    "사길신": [
+      "ten_god_식신",
+      "ten_god_정관",
+      "ten_god_정인",
+      "ten_god_정재",
+      "ten_god_편인",
+      "ten_god_편재"
+    ],
+    "사흉신": [
+      "ten_god_겁재",
+      "ten_god_상관",
+      "ten_god_편관",
+      "ten_god_편인"
+    ]
+  },
+  "all_topic_anchor_count": 14,
+  "cited_ranges_all_topics": 25,
+  "unchanged_sha256": {
+    "docs/knowledge-model/knowledge_graph.json": "40196a3017e9111d3ffb9ad79a529f26ec7dccb9836c2c39cd96eb205c52df90",
+    "docs/knowledge-model/data/foundation_f02_review.json": "eb23183ed79acae0c719c33cdcde03098c123e051e7cc222a13f04b0dfeb7ec3",
+    "docs/knowledge-model/data/foundation_taxonomy_review.json": "4083f3236be1285a8b7229b72fbc83a3887175c9a910b6ee8cc703c6c4c581be",
+    "docs/knowledge-model/data/context_reviews.json": "a5bcdfc123cd3f6e3df8616f7bc3038526c00407c234d7660650c97ec4c58899",
+    "docs/knowledge-model/data/legacy_review.json": "47b20376dd831b7a32b77a83c0ee128740af7b911322903ad5468cd7a7585885",
+    "docs/knowledge-model/knowledge_query.py": "de2316717670b8f14db3de815316c18001849d0a001e1fffaddba29c66b10371",
+    "정제/_현황판/build_concept_map.py": "e06f371db3313231ef5f70fe2946816f528b7c4ac742c0ff2f1cfe76f646788f",
+    "정제/_현황판/build_neuron_map.py": "4beb85575a160274ed0fe736f3968f8c036ebc59486dd5493a0c2d9c1dbd997e"
+  },
+  "current_layer_sha256": {
+    "docs/knowledge-model/foundation_claims.py": "7f21f2b90c764181a505eca0cb1262f4916a9dd0c6cbc462b4fbe6931ebaa379",
+    "docs/knowledge-model/test_foundation_claims.py": "240f16399f6505819694c1db4f922a539a2233f9f9a69ca70ca03724a7dae7e1",
+    "docs/knowledge-model/measure_classification_links.py": "81cde3db88eac91a1425f2cea7135474fd8a26fa81a864ecb6615f508d617be4",
+    "docs/knowledge-model/data/foundation_claim_links.json": "f395ecf98d556b38612e1c99f437021ed509f911885354c6445ba286b13640ff"
+  }
+}
