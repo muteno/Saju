@@ -1,0 +1,1435 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "b2432b0",
+  "synthetic_clock_at": "2026-09-28T00:00:00Z",
+  "scope": "Synthetic local app function execution; no provider invocation or observed-person outcome labels",
+  "input_sha256": "ffbe63ef1185090c8ae828e1177b16c04a1ea04db8a1b1fb008c511be6108f34",
+  "source_sha256_lf": {
+    "app/src/data/profiles.ts": "68cb47ed593546cfcae272cc74ae787b0ad52bd4f45e4d74e6d23fbcb13cc428",
+    "app/src/data/cities.ts": "ccb32013d3eb1ee7b8ee672eb081f0b8f61c20901c5234d5c238a9d678ac9cf1",
+    "app/src/pages/InfoInput.tsx": "03745a67ce6c87d29d3539b2055f8fd232f3b98269abeed1d4380dd4bd7cbddb",
+    "app/src/engine/index.js": "359e1d4bdbf3bada8359207a2025690c7349736eae6a10acbf1e8c06ab398bff",
+    "app/src/data/saju.ts": "e22c7c87508c71c69e762ffcc7d360de0fd26473d3a8bee045b0ac94f526482e",
+    "app/src/data/dosaTopics.ts": "a5ff82357f978353b98145a06f671abad348577bf8bc298191c253402b5ba837",
+    "functions/api/dosa.ts": "4b1a6f9238080e0caa88ce277ee6b6f1292568fd7295f4714f1c27e2a709bf5d",
+    "dosa-app/engine/src/manseryeok.js": "b401b6dc14f6f7828b6d23d6d4ee92c90c2d0261faea19873eda284da35239c1",
+    "dosa-app/engine/src/judge.js": "6f0f53d223bb7e159650145e201f0db2c94d2d6067ace86a79b1dc45daa8045d",
+    "dosa-app/engine/src/keyset.js": "3e460f1355221138df5d25a7c7b6759272e16c717062ed4f9a483eac021e48a7",
+    "dosa-app/engine/src/report.js": "8f9c7ccd55da00215a69fcc8ce7234678ceda518cfcf5bc2cd9d1cb9e52c3a6d",
+    "dosa-app/engine/test/test_manseryeok.mjs": "0c082506b62d0d99f67770ac7fddc059dc29ebdb479db789caa641ebebe15c3d",
+    "docs/knowledge-model/measure_product_readiness.mjs": "533821a5e6bcf1e1617f35a198f3cc12cba509d0cbea3dcb194a0afbcf3beb31"
+  },
+  "distilled_ilju_files": 60,
+  "character_drafts": 402,
+  "existing_capture": {
+    "rows": 110,
+    "known": 102,
+    "unknown": 8,
+    "mocked_requests": 510,
+    "assets": {
+      "pointer_sha256": "95a2485722c02af8de0677e4dc625504feeda0405844c765cc8b18f95d28066c",
+      "kb_sha256": "b5b98b98c6e49f1716e05d7fdd7431b5073084e4c4b00fa3dc1be61292a34f05",
+      "brain_sha256": "51ab4aa0711196dbfed744d6bf1587c009fedbca5ecf104449ecca8f8f433f66"
+    }
+  },
+  "rows": [
+    {
+      "id": "normal-1990",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "city": "서울",
+      "chart": {
+        "pillars": [
+          {
+            "title": "시",
+            "topStar": "편인",
+            "gan": "甲",
+            "ganK": "갑",
+            "ganE": "목",
+            "ganPolarity": "+",
+            "ji": "午",
+            "jiK": "오",
+            "jiE": "화",
+            "jiPolarity": "+",
+            "botStar": "겁재",
+            "stage": "제왕",
+            "hidden": [
+              "병",
+              "기",
+              "정"
+            ],
+            "sinsal": "년살"
+          },
+          {
+            "title": "일",
+            "topStar": "일원",
+            "gan": "丙",
+            "ganK": "병",
+            "ganE": "화",
+            "ganPolarity": "+",
+            "ji": "寅",
+            "jiK": "인",
+            "jiE": "목",
+            "jiPolarity": "+",
+            "botStar": "편인",
+            "stage": "장생",
+            "hidden": [
+              "무",
+              "병",
+              "갑"
+            ],
+            "sinsal": "겁살",
+            "isDayMaster": true
+          },
+          {
+            "title": "월",
+            "topStar": "비견",
+            "gan": "丙",
+            "ganK": "병",
+            "ganE": "화",
+            "ganPolarity": "+",
+            "ji": "子",
+            "jiK": "자",
+            "jiE": "수",
+            "jiPolarity": "+",
+            "botStar": "정관",
+            "stage": "태",
+            "hidden": [
+              "임",
+              "계"
+            ],
+            "sinsal": "육해살"
+          },
+          {
+            "title": "년",
+            "topStar": "상관",
+            "gan": "己",
+            "ganK": "기",
+            "ganE": "토",
+            "ganPolarity": "-",
+            "ji": "巳",
+            "jiK": "사",
+            "jiE": "화",
+            "jiPolarity": "-",
+            "botStar": "비견",
+            "stage": "건록",
+            "hidden": [
+              "무",
+              "경",
+              "병"
+            ],
+            "sinsal": "망신살"
+          }
+        ],
+        "ohaeng": [
+          {
+            "key": "목",
+            "pct": 25,
+            "verdict": "발달"
+          },
+          {
+            "key": "화",
+            "pct": 50,
+            "verdict": "과다"
+          },
+          {
+            "key": "토",
+            "pct": 12.5,
+            "verdict": "적정"
+          },
+          {
+            "key": "금",
+            "pct": 0,
+            "verdict": "부족"
+          },
+          {
+            "key": "수",
+            "pct": 12.5,
+            "verdict": "적정"
+          }
+        ],
+        "daeun": {
+          "su": 2,
+          "forward": true,
+          "list": [
+            {
+              "age": 2,
+              "name": "정축",
+              "stemTenGod": "겁재",
+              "twelveStage": "양",
+              "jiE": "토",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 12,
+              "name": "무인",
+              "stemTenGod": "식신",
+              "twelveStage": "장생",
+              "jiE": "목",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 22,
+              "name": "기묘",
+              "stemTenGod": "상관",
+              "twelveStage": "목욕",
+              "jiE": "목",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 32,
+              "name": "경진",
+              "stemTenGod": "편재",
+              "twelveStage": "관대",
+              "jiE": "토",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 42,
+              "name": "신사",
+              "stemTenGod": "정재",
+              "twelveStage": "건록",
+              "jiE": "화",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 52,
+              "name": "임오",
+              "stemTenGod": "편관",
+              "twelveStage": "제왕",
+              "jiE": "화",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 62,
+              "name": "계미",
+              "stemTenGod": "정관",
+              "twelveStage": "쇠",
+              "jiE": "토",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 72,
+              "name": "갑신",
+              "stemTenGod": "편인",
+              "twelveStage": "병",
+              "jiE": "금",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 82,
+              "name": "을유",
+              "stemTenGod": "정인",
+              "twelveStage": "사",
+              "jiE": "금",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 92,
+              "name": "병술",
+              "stemTenGod": "비견",
+              "twelveStage": "묘",
+              "jiE": "토",
+              "jiPolarity": "+"
+            }
+          ]
+        },
+        "dayMaster": {
+          "ganK": "병",
+          "gan": "丙",
+          "element": "화"
+        },
+        "corrected": {
+          "hh": 11,
+          "mm": 28,
+          "minutes": -32
+        }
+      },
+      "report_sections": [
+        {
+          "id": "wonguk",
+          "title": "원국(原局)"
+        },
+        {
+          "id": "judge",
+          "title": "원국 구조 판정"
+        },
+        {
+          "id": "ilju",
+          "title": "일주 — 병인일주"
+        },
+        {
+          "id": "daymaster",
+          "title": "일간 — 병"
+        },
+        {
+          "id": "daybranch",
+          "title": "일지 — 인"
+        },
+        {
+          "id": "sipsin",
+          "title": "십신 구성"
+        },
+        {
+          "id": "hapchung",
+          "title": "합충 관계"
+        },
+        {
+          "id": "sinsal",
+          "title": "신살"
+        },
+        {
+          "id": "daeun",
+          "title": "대운 — 순행, 대운수 2"
+        },
+        {
+          "id": "unse",
+          "title": "올해의 운 — 병오년 병인일주"
+        }
+      ],
+      "reading": {
+        "headline": "병인일주(丙寅日柱)",
+        "card_count": 7,
+        "cards": [
+          {
+            "id": "judge",
+            "title": "원국 구조 판정",
+            "block_labels": [
+              null
+            ],
+            "line_count": 5,
+            "note": null
+          },
+          {
+            "id": "ilju",
+            "title": "일주 이야기 — 병인일주(丙寅日柱)",
+            "block_labels": [
+              "핵심",
+              "성격",
+              "일과 재능",
+              "관계",
+              "주의",
+              "물상",
+              "관점 차이 — 일지 편인의 서술 각도"
+            ],
+            "line_count": 24,
+            "note": "남은 일주 설명은 문장별 출처와 적용 조건을 아직 검수하지 않은 문헌 초안이에요. 개인의 성향이나 결과로 확정하지 않아요."
+          },
+          {
+            "id": "sipsin",
+            "title": "십신 구성",
+            "block_labels": [
+              "편인 ×2",
+              "겁재 ×1"
+            ],
+            "line_count": 4,
+            "note": null
+          },
+          {
+            "id": "hapchung",
+            "title": "합충 관계",
+            "block_labels": [
+              "내 원국의 합충",
+              "합",
+              "삼합"
+            ],
+            "line_count": 8,
+            "note": null
+          },
+          {
+            "id": "sinsal",
+            "title": "신살",
+            "block_labels": [
+              "현침살 글자 후보",
+              "망신살",
+              "육해살",
+              "겁살",
+              "년살",
+              "정록"
+            ],
+            "line_count": 6,
+            "note": "이야기의 앞머리만 — 나머지는 도사에게 물어보게."
+          },
+          {
+            "id": "unse",
+            "title": "올해의 운 — 병오년",
+            "block_labels": [
+              null
+            ],
+            "line_count": 6,
+            "note": "이야기의 앞머리만 — 나머지는 도사에게 물어보게."
+          },
+          {
+            "id": "ennea",
+            "title": "성향 렌즈 — 에니어그램 교차",
+            "block_labels": [
+              "읽는 법",
+              "후보 유형"
+            ],
+            "line_count": 5,
+            "note": "십신 세력으로 세운 가설일 뿐 확정은 아닐세 — 아래 버튼으로 열고 위쪽 「테스트」 탭에서 직접 맞춰 보게. 테스트 결과를 저장해 두면 다음 리포트부터 보조지표로 함께 보여 주지."
+          }
+        ],
+        "ilju_first_line": "태양(병화)이 초봄의 기운(인목) 편인의 생조로 더욱 발달하는 목화통명의 일주 — 기본적으로 낙천적이고 밝고 화려하다. 60간지 중 가장 배짱이 좋은 일주로 꼽히며, 일지 편인은 지장간에 일간(병화)이 뿌리내린 강한 힘이라 이상을 발휘할 때는 병오일주보다 큰 힘을 내지만, 급속한 발전·쇠퇴로 성공과 실패를 넘나드는 인생 굴곡도 크다."
+      },
+      "brain_counts": {
+        "노드": 31,
+        "관계": 2000,
+        "조견표": 317,
+        "못맞춘키": 11,
+        "보류": null
+      },
+      "strength": {
+        "score": 70,
+        "max": 110,
+        "label": "신강",
+        "deukryeong": false,
+        "deukji": true,
+        "deuksi": true,
+        "deukse": true,
+        "detail": {
+          "year": {
+            "stemHelp": false,
+            "branchHelp": true
+          },
+          "month": {
+            "stemHelp": true,
+            "branchHelp": false
+          },
+          "day": {
+            "stemHelp": true,
+            "branchHelp": true
+          },
+          "hour": {
+            "stemHelp": true,
+            "branchHelp": true
+          }
+        }
+      },
+      "daeun_cross_relations": 32,
+      "fortune": {
+        "date": "2026-09-28",
+        "iljin": "을사",
+        "stemTenGod": "정인",
+        "theme": "안정·문서의 날",
+        "relations": [
+          {
+            "type": "해",
+            "name": "인사해",
+            "with": "일"
+          }
+        ],
+        "gongmangHit": false,
+        "score": 72,
+        "oneLine": "오해가 생기기 쉬운 날 — 확인하고 움직여요",
+        "basis": [
+          "내 일주와 인사해"
+        ]
+      },
+      "mocked_consultation_requests": 5
+    },
+    {
+      "id": "normal-1995",
+      "input": {
+        "year": 1995,
+        "month": 5,
+        "day": 15,
+        "hour": 9,
+        "minute": 30,
+        "gender": "M",
+        "longitude": 129.075
+      },
+      "city": "부산",
+      "chart": {
+        "pillars": [
+          {
+            "title": "시",
+            "topStar": "정관",
+            "gan": "癸",
+            "ganK": "계",
+            "ganE": "수",
+            "ganPolarity": "-",
+            "ji": "巳",
+            "jiK": "사",
+            "jiE": "화",
+            "jiPolarity": "-",
+            "botStar": "비견",
+            "stage": "건록",
+            "hidden": [
+              "무",
+              "경",
+              "병"
+            ],
+            "sinsal": "역마살"
+          },
+          {
+            "title": "일",
+            "topStar": "일원",
+            "gan": "丙",
+            "ganK": "병",
+            "ganE": "화",
+            "ganPolarity": "+",
+            "ji": "午",
+            "jiK": "오",
+            "jiE": "화",
+            "jiPolarity": "+",
+            "botStar": "겁재",
+            "stage": "제왕",
+            "hidden": [
+              "병",
+              "기",
+              "정"
+            ],
+            "sinsal": "육해살",
+            "isDayMaster": true
+          },
+          {
+            "title": "월",
+            "topStar": "정재",
+            "gan": "辛",
+            "ganK": "신",
+            "ganE": "금",
+            "ganPolarity": "-",
+            "ji": "巳",
+            "jiK": "사",
+            "jiE": "화",
+            "jiPolarity": "-",
+            "botStar": "비견",
+            "stage": "건록",
+            "hidden": [
+              "무",
+              "경",
+              "병"
+            ],
+            "sinsal": "역마살"
+          },
+          {
+            "title": "년",
+            "topStar": "정인",
+            "gan": "乙",
+            "ganK": "을",
+            "ganE": "목",
+            "ganPolarity": "-",
+            "ji": "亥",
+            "jiK": "해",
+            "jiE": "수",
+            "jiPolarity": "-",
+            "botStar": "편관",
+            "stage": "절",
+            "hidden": [
+              "무",
+              "갑",
+              "임"
+            ],
+            "sinsal": "겁살"
+          }
+        ],
+        "ohaeng": [
+          {
+            "key": "목",
+            "pct": 12.5,
+            "verdict": "적정"
+          },
+          {
+            "key": "화",
+            "pct": 50,
+            "verdict": "과다"
+          },
+          {
+            "key": "토",
+            "pct": 0,
+            "verdict": "부족"
+          },
+          {
+            "key": "금",
+            "pct": 12.5,
+            "verdict": "적정"
+          },
+          {
+            "key": "수",
+            "pct": 25,
+            "verdict": "발달"
+          }
+        ],
+        "daeun": {
+          "su": 4,
+          "forward": false,
+          "list": [
+            {
+              "age": 4,
+              "name": "경진",
+              "stemTenGod": "편재",
+              "twelveStage": "관대",
+              "jiE": "토",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 14,
+              "name": "기묘",
+              "stemTenGod": "상관",
+              "twelveStage": "목욕",
+              "jiE": "목",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 24,
+              "name": "무인",
+              "stemTenGod": "식신",
+              "twelveStage": "장생",
+              "jiE": "목",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 34,
+              "name": "정축",
+              "stemTenGod": "겁재",
+              "twelveStage": "양",
+              "jiE": "토",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 44,
+              "name": "병자",
+              "stemTenGod": "비견",
+              "twelveStage": "태",
+              "jiE": "수",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 54,
+              "name": "을해",
+              "stemTenGod": "정인",
+              "twelveStage": "절",
+              "jiE": "수",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 64,
+              "name": "갑술",
+              "stemTenGod": "편인",
+              "twelveStage": "묘",
+              "jiE": "토",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 74,
+              "name": "계유",
+              "stemTenGod": "정관",
+              "twelveStage": "사",
+              "jiE": "금",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 84,
+              "name": "임신",
+              "stemTenGod": "편관",
+              "twelveStage": "병",
+              "jiE": "금",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 94,
+              "name": "신미",
+              "stemTenGod": "정재",
+              "twelveStage": "쇠",
+              "jiE": "토",
+              "jiPolarity": "-"
+            }
+          ]
+        },
+        "dayMaster": {
+          "ganK": "병",
+          "gan": "丙",
+          "element": "화"
+        },
+        "corrected": {
+          "hh": 9,
+          "mm": 6,
+          "minutes": -24
+        }
+      },
+      "report_sections": [
+        {
+          "id": "wonguk",
+          "title": "원국(原局)"
+        },
+        {
+          "id": "judge",
+          "title": "원국 구조 판정"
+        },
+        {
+          "id": "ilju",
+          "title": "일주 — 병오일주"
+        },
+        {
+          "id": "daymaster",
+          "title": "일간 — 병"
+        },
+        {
+          "id": "daybranch",
+          "title": "일지 — 오"
+        },
+        {
+          "id": "sipsin",
+          "title": "십신 구성"
+        },
+        {
+          "id": "hapchung",
+          "title": "합충 관계"
+        },
+        {
+          "id": "sinsal",
+          "title": "신살"
+        },
+        {
+          "id": "daeun",
+          "title": "대운 — 역행, 대운수 4"
+        },
+        {
+          "id": "unse",
+          "title": "올해의 운 — 병오년 병오일주"
+        }
+      ],
+      "reading": {
+        "headline": "병오일주(丙午日柱)",
+        "card_count": 7,
+        "cards": [
+          {
+            "id": "judge",
+            "title": "원국 구조 판정",
+            "block_labels": [
+              null
+            ],
+            "line_count": 5,
+            "note": null
+          },
+          {
+            "id": "ilju",
+            "title": "일주 이야기 — 병오일주(丙午日柱)",
+            "block_labels": [
+              "핵심",
+              "성격",
+              "일과 재능",
+              "관계",
+              "주의",
+              "물상",
+              "관점 차이 — 판단력의 평가 (같은 원문 내 양면 병기)",
+              "관점 차이 — 강한 기운의 발현"
+            ],
+            "line_count": 28,
+            "note": "남은 일주 설명은 문장별 출처와 적용 조건을 아직 검수하지 않은 문헌 초안이에요. 개인의 성향이나 결과로 확정하지 않아요."
+          },
+          {
+            "id": "sipsin",
+            "title": "십신 구성",
+            "block_labels": [
+              "겁재 ×1",
+              "정재 ×1"
+            ],
+            "line_count": 4,
+            "note": null
+          },
+          {
+            "id": "hapchung",
+            "title": "합충 관계",
+            "block_labels": [
+              "내 원국의 합충",
+              "합",
+              "충"
+            ],
+            "line_count": 7,
+            "note": null
+          },
+          {
+            "id": "sinsal",
+            "title": "신살",
+            "block_labels": [
+              "현침살 글자 후보",
+              "겁살",
+              "역마살",
+              "육해살",
+              "천을귀인",
+              "천덕귀인"
+            ],
+            "line_count": 6,
+            "note": "이야기의 앞머리만 — 나머지는 도사에게 물어보게."
+          },
+          {
+            "id": "unse",
+            "title": "올해의 운 — 병오년",
+            "block_labels": [
+              null
+            ],
+            "line_count": 6,
+            "note": "이야기의 앞머리만 — 나머지는 도사에게 물어보게."
+          },
+          {
+            "id": "ennea",
+            "title": "성향 렌즈 — 에니어그램 교차",
+            "block_labels": [
+              "읽는 법",
+              "후보 유형"
+            ],
+            "line_count": 5,
+            "note": "십신 세력으로 세운 가설일 뿐 확정은 아닐세 — 아래 버튼으로 열고 위쪽 「테스트」 탭에서 직접 맞춰 보게. 테스트 결과를 저장해 두면 다음 리포트부터 보조지표로 함께 보여 주지."
+          }
+        ],
+        "ilju_first_line": "천간과 지지가 모두 불로 이루어져 60간지 중 기가 가장 강한 일주 — 한낮(오시)에 중천에 뜬 태양. 양의 기운의 끝(짝은 음의 끝 계해일주)으로 호탕함·기개·파괴력이 있고, 십이운성 제왕의 천상천하유아독존 기운이라 대운을 만나면 크게 성취하나 운이 나쁘면 남다른 고통을 겪는다. 성취와 비관을 오가는 롤러코스터 인생으로 굴곡이 60간지 중 제일 심한 편."
+      },
+      "brain_counts": {
+        "노드": 28,
+        "관계": 1798,
+        "조견표": 250,
+        "못맞춘키": 10,
+        "보류": null
+      },
+      "strength": {
+        "score": 80,
+        "max": 110,
+        "label": "신강",
+        "deukryeong": true,
+        "deukji": true,
+        "deuksi": true,
+        "deukse": false,
+        "detail": {
+          "year": {
+            "stemHelp": true,
+            "branchHelp": false
+          },
+          "month": {
+            "stemHelp": false,
+            "branchHelp": true
+          },
+          "day": {
+            "stemHelp": true,
+            "branchHelp": true
+          },
+          "hour": {
+            "stemHelp": false,
+            "branchHelp": true
+          }
+        }
+      },
+      "daeun_cross_relations": 36,
+      "fortune": {
+        "date": "2026-09-28",
+        "iljin": "을사",
+        "stemTenGod": "정인",
+        "theme": "안정·문서의 날",
+        "relations": [
+          {
+            "type": "충",
+            "name": "사해충",
+            "with": "년"
+          },
+          {
+            "type": "천간충",
+            "name": "을신충",
+            "with": "월"
+          }
+        ],
+        "gongmangHit": false,
+        "score": 62,
+        "oneLine": "부딪히는 기운이 있는 날 — 무리한 강행보다 한 템포 쉬어가요",
+        "basis": [
+          "내 년주와 사해충",
+          "내 월주와 을신충"
+        ]
+      },
+      "mocked_consultation_requests": 5
+    },
+    {
+      "id": "normal-2000",
+      "input": {
+        "year": 2000,
+        "month": 8,
+        "day": 20,
+        "hour": 18,
+        "minute": 20,
+        "gender": "F",
+        "longitude": 126.851
+      },
+      "city": "광주",
+      "chart": {
+        "pillars": [
+          {
+            "title": "시",
+            "topStar": "정재",
+            "gan": "乙",
+            "ganK": "을",
+            "ganE": "목",
+            "ganPolarity": "-",
+            "ji": "酉",
+            "jiK": "유",
+            "jiE": "금",
+            "jiPolarity": "-",
+            "botStar": "겁재",
+            "stage": "제왕",
+            "hidden": [
+              "경",
+              "신"
+            ],
+            "sinsal": "년살"
+          },
+          {
+            "title": "일",
+            "topStar": "일원",
+            "gan": "庚",
+            "ganK": "경",
+            "ganE": "금",
+            "ganPolarity": "+",
+            "ji": "戌",
+            "jiK": "술",
+            "jiE": "토",
+            "jiPolarity": "+",
+            "botStar": "편인",
+            "stage": "쇠",
+            "hidden": [
+              "신",
+              "정",
+              "무"
+            ],
+            "sinsal": "월살",
+            "isDayMaster": true
+          },
+          {
+            "title": "월",
+            "topStar": "편재",
+            "gan": "甲",
+            "ganK": "갑",
+            "ganE": "목",
+            "ganPolarity": "+",
+            "ji": "申",
+            "jiK": "신",
+            "jiE": "금",
+            "jiPolarity": "+",
+            "botStar": "비견",
+            "stage": "건록",
+            "hidden": [
+              "무",
+              "임",
+              "경"
+            ],
+            "sinsal": "지살"
+          },
+          {
+            "title": "년",
+            "topStar": "비견",
+            "gan": "庚",
+            "ganK": "경",
+            "ganE": "금",
+            "ganPolarity": "+",
+            "ji": "辰",
+            "jiK": "진",
+            "jiE": "토",
+            "jiPolarity": "+",
+            "botStar": "편인",
+            "stage": "양",
+            "hidden": [
+              "을",
+              "계",
+              "무"
+            ],
+            "sinsal": "월살"
+          }
+        ],
+        "ohaeng": [
+          {
+            "key": "목",
+            "pct": 25,
+            "verdict": "발달"
+          },
+          {
+            "key": "화",
+            "pct": 0,
+            "verdict": "부족"
+          },
+          {
+            "key": "토",
+            "pct": 25,
+            "verdict": "발달"
+          },
+          {
+            "key": "금",
+            "pct": 50,
+            "verdict": "과다"
+          },
+          {
+            "key": "수",
+            "pct": 0,
+            "verdict": "부족"
+          }
+        ],
+        "daeun": {
+          "su": 5,
+          "forward": false,
+          "list": [
+            {
+              "age": 5,
+              "name": "계미",
+              "stemTenGod": "상관",
+              "twelveStage": "관대",
+              "jiE": "토",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 15,
+              "name": "임오",
+              "stemTenGod": "식신",
+              "twelveStage": "목욕",
+              "jiE": "화",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 25,
+              "name": "신사",
+              "stemTenGod": "겁재",
+              "twelveStage": "장생",
+              "jiE": "화",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 35,
+              "name": "경진",
+              "stemTenGod": "비견",
+              "twelveStage": "양",
+              "jiE": "토",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 45,
+              "name": "기묘",
+              "stemTenGod": "정인",
+              "twelveStage": "태",
+              "jiE": "목",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 55,
+              "name": "무인",
+              "stemTenGod": "편인",
+              "twelveStage": "절",
+              "jiE": "목",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 65,
+              "name": "정축",
+              "stemTenGod": "정관",
+              "twelveStage": "묘",
+              "jiE": "토",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 75,
+              "name": "병자",
+              "stemTenGod": "편관",
+              "twelveStage": "사",
+              "jiE": "수",
+              "jiPolarity": "+"
+            },
+            {
+              "age": 85,
+              "name": "을해",
+              "stemTenGod": "정재",
+              "twelveStage": "병",
+              "jiE": "수",
+              "jiPolarity": "-"
+            },
+            {
+              "age": 95,
+              "name": "갑술",
+              "stemTenGod": "편재",
+              "twelveStage": "쇠",
+              "jiE": "토",
+              "jiPolarity": "+"
+            }
+          ]
+        },
+        "dayMaster": {
+          "ganK": "경",
+          "gan": "庚",
+          "element": "금"
+        },
+        "corrected": {
+          "hh": 17,
+          "mm": 47,
+          "minutes": -33
+        }
+      },
+      "report_sections": [
+        {
+          "id": "wonguk",
+          "title": "원국(原局)"
+        },
+        {
+          "id": "judge",
+          "title": "원국 구조 판정"
+        },
+        {
+          "id": "ilju",
+          "title": "일주 — 경술일주"
+        },
+        {
+          "id": "daymaster",
+          "title": "일간 — 경"
+        },
+        {
+          "id": "daybranch",
+          "title": "일지 — 술"
+        },
+        {
+          "id": "sipsin",
+          "title": "십신 구성"
+        },
+        {
+          "id": "hapchung",
+          "title": "합충 관계"
+        },
+        {
+          "id": "sinsal",
+          "title": "신살"
+        },
+        {
+          "id": "daeun",
+          "title": "대운 — 역행, 대운수 5"
+        },
+        {
+          "id": "unse",
+          "title": "올해의 운 — 병오년 경술일주"
+        }
+      ],
+      "reading": {
+        "headline": "경술일주(庚戌日柱)",
+        "card_count": 7,
+        "cards": [
+          {
+            "id": "judge",
+            "title": "원국 구조 판정",
+            "block_labels": [
+              null
+            ],
+            "line_count": 4,
+            "note": null
+          },
+          {
+            "id": "ilju",
+            "title": "일주 이야기 — 경술일주(庚戌日柱)",
+            "block_labels": [
+              "핵심",
+              "성격",
+              "일과 재능",
+              "관계",
+              "주의",
+              "물상",
+              "관점 차이 — 여명의 부부운"
+            ],
+            "line_count": 25,
+            "note": "남은 일주 설명은 문장별 출처와 적용 조건을 아직 검수하지 않은 문헌 초안이에요. 개인의 성향이나 결과로 확정하지 않아요."
+          },
+          {
+            "id": "sipsin",
+            "title": "십신 구성",
+            "block_labels": [
+              "편인 ×2",
+              "겁재 ×1"
+            ],
+            "line_count": 4,
+            "note": null
+          },
+          {
+            "id": "hapchung",
+            "title": "합충 관계",
+            "block_labels": [
+              "내 원국의 합충",
+              "합",
+              "충"
+            ],
+            "line_count": 11,
+            "note": null
+          },
+          {
+            "id": "sinsal",
+            "title": "신살",
+            "block_labels": [
+              "현침살 글자 후보",
+              "월살",
+              "지살",
+              "년살",
+              "화개살",
+              "정록"
+            ],
+            "line_count": 6,
+            "note": "이야기의 앞머리만 — 나머지는 도사에게 물어보게."
+          },
+          {
+            "id": "unse",
+            "title": "올해의 운 — 병오년",
+            "block_labels": [
+              null
+            ],
+            "line_count": 6,
+            "note": "이야기의 앞머리만 — 나머지는 도사에게 물어보게."
+          },
+          {
+            "id": "ennea",
+            "title": "성향 렌즈 — 에니어그램 교차",
+            "block_labels": [
+              "읽는 법",
+              "후보 유형"
+            ],
+            "line_count": 5,
+            "note": "십신 세력으로 세운 가설일 뿐 확정은 아닐세 — 아래 버튼으로 열고 위쪽 「테스트」 탭에서 직접 맞춰 보게. 테스트 결과를 저장해 두면 다음 리포트부터 보조지표로 함께 보여 주지."
+          }
+        ],
+        "ilju_first_line": "괴강(魁罡)에 해당하는 강한 힘의 일주로, 경진의 산뜻한 괴강과 달리 지장간 신금 겁재의 영향으로 어디로 튈지 모르는 어두운 기운의 괴강이다. 눈치·영감·천부적 감각의 왕이라 할 직관력과, 겉으로 드러나지 않는 섬세·치밀한 장인정신이 특징. 병화(관성)가 술토에 입묘해 간섭을 싫어하고 매사 자기중심으로 처리하는 고집이 강하다."
+      },
+      "brain_counts": {
+        "노드": 28,
+        "관계": 1929,
+        "조견표": 303,
+        "못맞춘키": 8,
+        "보류": null
+      },
+      "strength": {
+        "score": 90,
+        "max": 110,
+        "label": "극신강",
+        "deukryeong": true,
+        "deukji": true,
+        "deuksi": true,
+        "deukse": true,
+        "detail": {
+          "year": {
+            "stemHelp": true,
+            "branchHelp": true
+          },
+          "month": {
+            "stemHelp": false,
+            "branchHelp": true
+          },
+          "day": {
+            "stemHelp": true,
+            "branchHelp": true
+          },
+          "hour": {
+            "stemHelp": false,
+            "branchHelp": true
+          }
+        }
+      },
+      "daeun_cross_relations": 34,
+      "fortune": {
+        "date": "2026-09-28",
+        "iljin": "을사",
+        "stemTenGod": "정재",
+        "theme": "실속·관리의 날",
+        "relations": [
+          {
+            "type": "천간합",
+            "name": "을경합",
+            "with": "년"
+          },
+          {
+            "type": "육합",
+            "name": "사신합",
+            "with": "월"
+          },
+          {
+            "type": "파",
+            "name": "신사파",
+            "with": "월"
+          },
+          {
+            "type": "천간합",
+            "name": "을경합",
+            "with": "일"
+          },
+          {
+            "type": "원진",
+            "name": "술사원진",
+            "with": "일"
+          },
+          {
+            "type": "삼합(반합)",
+            "name": "유사 삼합 기운",
+            "with": "시"
+          }
+        ],
+        "gongmangHit": false,
+        "score": 85,
+        "oneLine": "괜히 신경이 곤두설 수 있는 날 — 말은 부드럽게",
+        "basis": [
+          "내 년주와 을경합",
+          "내 월주와 사신합",
+          "내 월주와 신사파",
+          "내 일주와 을경합",
+          "내 일주와 술사원진",
+          "내 시주와 유사 삼합 기운"
+        ]
+      },
+      "mocked_consultation_requests": 5
+    },
+    {
+      "id": "unknown-1990",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "city": "서울",
+      "chart": {
+        "birthTime": {
+          "status": "unknown",
+          "policy": "withhold-unverified-v1"
+        },
+        "pillars": [],
+        "ohaeng": [],
+        "daeun": null,
+        "dayMaster": null,
+        "corrected": null
+      },
+      "report_sections": [],
+      "reading": {
+        "headline": "출생 시간 확인 필요",
+        "card_count": 1,
+        "cards": [
+          {
+            "id": "hour-unknown",
+            "title": "출생 시간 확인 필요",
+            "block_labels": [
+              null
+            ],
+            "line_count": 1,
+            "note": null
+          }
+        ],
+        "ilju_first_line": null
+      },
+      "brain_counts": {
+        "노드": 0,
+        "관계": 0,
+        "조견표": 0,
+        "못맞춘키": 0
+      },
+      "strength": null,
+      "daeun_cross_relations": null,
+      "fortune": null,
+      "mocked_consultation_requests": 0
+    }
+  ],
+  "same_ilju_context_comparison": {
+    "base": {
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "pillars_year_to_hour": [
+        "기사",
+        "병자",
+        "병인",
+        "갑오"
+      ],
+      "first_daeun": {
+        "age": 2,
+        "name": "정축",
+        "stemTenGod": "겁재",
+        "twelveStage": "양",
+        "jiE": "토",
+        "jiPolarity": "-"
+      },
+      "ilju_key": "ilju/병인",
+      "ilju_block_sha256": "55f646fff08acc5d92883a5fc03d76702a3e858c9b18bdb8987baa331af75637"
+    },
+    "alternate": {
+      "input": {
+        "year": 1990,
+        "month": 3,
+        "day": 2,
+        "hour": 18,
+        "minute": 0,
+        "gender": "M",
+        "longitude": 126.978
+      },
+      "pillars_year_to_hour": [
+        "경오",
+        "무인",
+        "병인",
+        "정유"
+      ],
+      "first_daeun": {
+        "age": 2,
+        "name": "기묘",
+        "stemTenGod": "상관",
+        "twelveStage": "목욕",
+        "jiE": "목",
+        "jiPolarity": "-"
+      },
+      "ilju_key": "ilju/병인",
+      "ilju_block_sha256": "55f646fff08acc5d92883a5fc03d76702a3e858c9b18bdb8987baa331af75637"
+    },
+    "ilju_blocks_identical": true,
+    "report_sections_identical": false,
+    "scope": "Same ilju literature block despite different natal context; not identical whole reports"
+  },
+  "calculation_checks": {
+    "command": "node dosa-app/engine/test/test_manseryeok.mjs",
+    "passed_checks": 19,
+    "external_reference_chart_cases": 1,
+    "held_out_evaluation": false,
+    "fixture": "1990-01-01 12:00 F Seoul; repository Forceteller snapshot",
+    "meaning": "Regression and fixture agreement, not measured personal predictive accuracy"
+  },
+  "training_audit": {
+    "command": "python3 docs/knowledge-model/case_review.py --compare",
+    "status": "blocked",
+    "models": null,
+    "probability": null,
+    "case_count": 6,
+    "eligible_count": 0,
+    "excluded_count": 6,
+    "blockers": [
+      "unreviewed_target:eul_fire_metal_applicability"
+    ],
+    "exclusion_counts": {
+      "calculator_fixture_not_training_data": 6,
+      "label_pending:eul_fire_metal_applicability": 6,
+      "missing_input_evidence": 6,
+      "unreviewed_provenance": 6,
+      "unknown_required_observations": 1
+    }
+  },
+  "source_case_audit": {
+    "command": "python3 docs/knowledge-model/source_case_review.py --summary",
+    "status": "source_review_only",
+    "case_count": 10,
+    "source_file_count": 8,
+    "training_eligible_count": 0,
+    "training_labels_created": false,
+    "probability": null,
+    "provenance": {
+      "bundle_sha256": "48316df3395657d22040eedb8f8e5811949379a4dee5873a157fa57e777cd6d2",
+      "review_sha256": "902df1cdb16cdc64918c148e0d061e28f3c43d98ae3cc1b4921ec730bae41b8b",
+      "condition_evaluator_sha256": "d5aee09fab9e697a73dcc81f40b9539a55cf3e3f015b30cfc95a87e61b5b978c",
+      "source_reader_sha256": "23b9acbbac31eabfc1facc9b874351aaa7411b66d6f74e849de2e8fe275d3dfd",
+      "reviewer_code_sha256": "67211c5b267210e9cea748e1886092c3d740f6a4c9983c0fe1779a682fb91592"
+    }
+  }
+}
