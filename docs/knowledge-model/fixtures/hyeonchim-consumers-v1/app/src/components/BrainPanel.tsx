@@ -23,7 +23,6 @@ type NodeCard = { 키: string; 노드: string; 대주제?: string; 중주제?: s
 export type Brain = {
   노드: NodeCard[]; 관계: Rel[]; 조견표: unknown[]; 못맞춘키: string[]
   이유있는관계?: Rel[]; 낭설수?: number; meta?: Record<string, unknown> | null
-  보류?: { 노드: number; 관계: number; 조견표: number; note: string }
 }
 
 import { tokens } from '../theme'
@@ -84,8 +83,6 @@ export default function BrainPanel({ brain }: { brain?: Brain | null }) {
           {' '}이유 있는 것 {이유.length.toLocaleString()}
         </span>
       </header>
-
-      {brain.보류 && <p>{brain.보류.note} (관계 {brain.보류.관계}개 · 조견표 {brain.보류.조견표}개)</p>}
 
       {/* ⚠«이유 못 대는 것»을 숨기지 않는다 — 이게 이 패널의 핵심 규칙이다 */}
       {낭설 > 0 && (

@@ -125,7 +125,8 @@ test('forty known inputs preserve profile/share and enforce the explicit correct
     const brain = engine.brainReading(input, '병오');
     assert.deepEqual(brain.노드.map(n => n.키), expected.brain.matched_keys);
     assert.deepEqual(brain.못맞춘키, expected.brain.unmatched_keys);
-    assert.equal(brain.관계.length, expected.brain.relation_count);
+    assert.equal(brain.관계.length + (brain.보류?.관계 ?? 0), expected.brain.relation_count);
+    assert.ok(brain.관계.every(r => !/현침|懸針|悬针/.test(JSON.stringify(r))));
     assert.equal(engine.computeChartUI(input).pillars.length, 4);
     assert.ok(engine.todayFortune(input));
   }

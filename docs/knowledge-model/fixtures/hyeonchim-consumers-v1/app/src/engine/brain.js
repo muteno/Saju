@@ -11,8 +11,6 @@
 // 생성기 = `2. 정제작업/_현황판/build_brain.py` → `data/앱두뇌.json`
 //   ⛔이 파일을 손으로 고치지 마라. 지도를 고치고 다시 내보내라.
 
-import { mentionsHyeonchim, HYEONCHIM_NOTICE } from './vendor/report.js'
-
 let brain = null
 let brainPromise = null
 
@@ -117,14 +115,6 @@ export function readChart(keys, opts = {}) {
   const m = new Map()
   for (const r of out.관계) m.set(key(r), r)
   out.관계 = [...m.values()]
-  // Keep the research pack intact; named unreviewed claims are not personal grounds.
-  const held = {}
-  for (const field of ['노드', '관계', '조견표']) {
-    const all = out[field]
-    out[field] = all.filter(row => !mentionsHyeonchim(row))
-    held[field] = all.length - out[field].length
-  }
-  if (Object.values(held).some(Boolean)) out.보류 = { ...held, note: HYEONCHIM_NOTICE }
   return out
 }
 

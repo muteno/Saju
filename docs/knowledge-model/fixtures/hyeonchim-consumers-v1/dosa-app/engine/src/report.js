@@ -2,59 +2,8 @@
 // 입력: L1 차트 + keyset + KB(색인·별칭·본문). 출력: 섹션 구조체 (+ 마크다운 직렬화).
 // 모든 서술 블록에는 출처(문서·글 제목)가 붙는다. 근거 유닛이 없으면 "소장 문헌에 상세 없음".
 
-import { STEMS, BRANCHES, STEMS_HANJA, BRANCHES_HANJA, ELEMENTS, STEM_ELEMENT, HIDDEN_STEMS, TEN_GODS, tenGod, sexStem, sexBranch } from './tables.js';
+import { STEMS, BRANCHES, ELEMENTS, STEM_ELEMENT, HIDDEN_STEMS, TEN_GODS, tenGod, sexStem, sexBranch } from './tables.js';
 import { STRENGTH_BRANCH_WEIGHTS as strengthWeights, STRENGTH_STEM_WEIGHT } from './judge.js';
-import { auspicious } from './sinsal.js';
-
-// Named, unreviewed topic only. This is a delivery eligibility rule, not a truth judgment.
-export const HYEONCHIM_NOTICE = '현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다.';
-export function mentionsHyeonchim(value) {
-  if (typeof value === 'string') return /현침|懸針|悬针/.test(value);
-  if (Array.isArray(value)) return value.some(mentionsHyeonchim);
-  return value && typeof value === 'object' ? Object.values(value).some(mentionsHyeonchim) : false;
-}
-
-// Preserve entire unrelated statements and source bytes; never rewrite a quotation.
-// Comparison groups are atomic so removing one side cannot manufacture author agreement.
-function eligibleBlock(block) {
-  let count = 0;
-  const keep = value => { if (!mentionsHyeonchim(value)) return true; count++; return false; };
-  const out = { ...block };
-  if (block.distilled) {
-    const d = block.distilled;
-    out.distilled = { ...d, distilled: Object.fromEntries(Object.entries(d.distilled || {}).flatMap(([k, v]) =>
-      Array.isArray(v) ? [[k, v.filter(keep)]] : keep(v) ? [[k, v]] : [])) };
-    for (const key of ['인용', '관점차이', '기타'])
-      if (Array.isArray(d[key])) out.distilled[key] = d[key].filter(keep);
-  }
-  if (block.excerpts) out.excerpts = block.excerpts.map(ex => ({ ...ex, paras: ex.paras.filter(keep) }));
-  if (count) out.withheld = { topic: '현침살', count, note: HYEONCHIM_NOTICE };
-  return out;
-}
-
-/** Existing surface-character markers only; no source's manifestation rule is adopted. */
-export function hyeonchimObservation(chart) {
-  if (chart.birthTime?.status === 'unknown' || chart.input?.hourUnknown === true || chart.input?.hour === null || chart.input?.minute === null)
-    throw new Error('출생 시간 미상: 현침살 글자 관찰을 보류합니다');
-  const positions = ['year', 'month', 'day', 'hour'];
-  const p = chart.pillarsIdx;
-  if (!positions.every(q => Number.isInteger(p?.[q]) && p[q] >= 0 && p[q] < 60))
-    throw new Error('현침살 글자 관찰에는 네 기둥이 필요합니다');
-  const marked = auspicious(p);
-  const markers = positions.flatMap(position => ['stem', 'branch'].flatMap(part =>
-    marked[position][part].includes('현침살') ? [{ position, part,
-      character: part === 'stem' ? STEMS_HANJA[sexStem(p[position])] : BRANCHES_HANJA[sexBranch(p[position])] }] : []));
-  return { status: 'candidate_only', basis: 'legacy-surface-character-list-v1', markers,
-    markerCount: markers.length, manifestation: 'withheld', probability: null };
-}
-
-function hyeonchimBlock(chart) {
-  const observation = hyeonchimObservation(chart);
-  const positions = { year: '년주', month: '월주', day: '일주', hour: '시주' };
-  const details = observation.markers.map(m => `${positions[m.position]} ${m.part === 'stem' ? '천간' : '지지'} ${m.character}`).join(' · ');
-  return { key: 'sinsal/현침살', label: '현침살 글자 후보', empty: true, observation,
-    note: `관련 글자 ${observation.markerCount}개: ${details}. 글자만으로 성향·직업·사건을 판단하지 않아요. 발현 조건은 확인 중이라 해석을 보류해요.` };
-}
 
 /** aliases 체인을 따라 색인에서 유닛 목록을 찾는다 (결정론 조회 — 검색 없음) */
 export function lookupUnits(key, kb) {
@@ -79,10 +28,10 @@ function excerpt(entry, kb, nParas = 4) {
 
 function topicBlock(key, kb, { maxUnits = 2, nParas = 4 } = {}) {
   // 증류본이 있으면 우선 사용 (요소별 정제 유닛 — 원문 발췌보다 조밀)
-  if (kb.distilled && kb.distilled[key]) return eligibleBlock({ key, distilled: kb.distilled[key] });
+  if (kb.distilled && kb.distilled[key]) return { key, distilled: kb.distilled[key] };
   const units = lookupUnits(key, kb);
   if (!units.length) return { key, empty: true, note: '소장 문헌에 상세 없음' };
-  return eligibleBlock({ key, excerpts: units.slice(0, maxUnits).map((u) => excerpt(u, kb, nParas)).filter(Boolean), totalUnits: units.length });
+  return { key, excerpts: units.slice(0, maxUnits).map((u) => excerpt(u, kb, nParas)).filter(Boolean), totalUnits: units.length };
 }
 
 /** 십신 분포 (천간 3 + 지지 본기 4 = 7자, 일간 제외) */
@@ -186,8 +135,7 @@ export function buildReport(chart, keyset, kb) {
   const sinsalKeys = [...new Set(keyset.byTopic.sinsal)];
   S.push({
     id: 'sinsal', title: '신살',
-    blocks: sinsalKeys.map((k) => k === 'sinsal/현침살' ? hyeonchimBlock(chart) :
-      ({ label: k.split('/')[1], ...topicBlock(k, kb, { maxUnits: 1, nParas: 3 }) })),
+    blocks: sinsalKeys.map((k) => ({ label: k.split('/')[1], ...topicBlock(k, kb, { maxUnits: 1, nParas: 3 }) })),
   });
 
   // 7) 대운
@@ -233,7 +181,6 @@ export function toMarkdown(report) {
       if (!b) return;
       if (b.empty) { L.push(`\n**${label || b.key}** — ${b.note}`); return; }
       if (label) L.push(`\n### ${label}`);
-      if (b.withheld) L.push(`\n${b.withheld.note}\n`);
       if (b.distilled) {
         const d = b.distilled;
         const dd = d.distilled || {};

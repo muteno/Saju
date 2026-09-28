@@ -96,7 +96,6 @@ interface TopicBlock {
   totalUnits?: number
   empty?: boolean
   note?: string
-  withheld?: { topic: string; count: number; note: string }
 }
 interface SectionLike {
   id: string
@@ -234,9 +233,6 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
   }
 
   if (!out.length) out.push({ text: EMPTY_NOTICE })
-  // App eligibility notice, separate from author quotations and their source labels.
-  if (topicKey !== '올해' && ilju?.block?.withheld)
-    out.push({ text: ilju.block.withheld.note })
   return out
 }
 

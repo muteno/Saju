@@ -67,7 +67,7 @@ test('현재 앱의 생시 미상 계약과 알려진 입력 40행을 검증한�
 test('자리배점 교정의 독립 산술·전체 소비자 전후·미상 보존을 검증한다', () => {
   const env = { ...process.env }
   delete env.NODE_TEST_CONTEXT
-  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_strength_correction.mjs'], {
+  const output = execFileSync(process.execPath, ['docs/knowledge-model/frozen_hyeonchim_audit.mjs', '--test', '--test-reporter=tap', 'docs/knowledge-model/test_strength_correction.mjs'], {
     cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 120000,
     stdio: ['ignore', 'pipe', 'pipe'], env,
   })
@@ -79,6 +79,15 @@ after(() => {
   globalThis.fetch = originalFetch
   if (originalStorage) Object.defineProperty(globalThis, 'localStorage', originalStorage)
   else delete globalThis.localStorage
+})
+
+test('현침살 글자 후보·발현 보류와 실제 KB 소비자 110행을 검증한다', () => {
+  const env = { ...process.env }; delete env.NODE_TEST_CONTEXT
+  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_hyeonchim_consumers.mjs'], {
+    cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 120000,
+    stdio: ['ignore', 'pipe', 'pipe'], env,
+  })
+  assert.match(output, /^# tests 11$/m); assert.match(output, /^# pass 11$/m); assert.match(output, /^# skipped 0$/m)
 })
 
 let moduleId = 0
