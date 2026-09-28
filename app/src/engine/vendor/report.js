@@ -3,6 +3,7 @@
 // 모든 서술 블록에는 출처(문서·글 제목)가 붙는다. 근거 유닛이 없으면 "소장 문헌에 상세 없음".
 
 import { STEMS, BRANCHES, ELEMENTS, STEM_ELEMENT, HIDDEN_STEMS, TEN_GODS, tenGod, sexStem, sexBranch } from './tables.js';
+import { STRENGTH_BRANCH_WEIGHTS as strengthWeights, STRENGTH_STEM_WEIGHT } from './judge.js';
 
 /** aliases 체인을 따라 색인에서 유닛 목록을 찾는다 (결정론 조회 — 검색 없음) */
 export function lookupUnits(key, kb) {
@@ -95,7 +96,7 @@ export function buildReport(chart, keyset, kb) {
       j.strength.deukse ? '득세' : null,
     ].filter(Boolean);
     const lines = [
-      `신강신약: **${j.strength.label}** (${j.strength.score}/110점 — 방법론 보드 배점: 천간 각10, 지지 년15·월30·일15·시10) · ${flags.join('·')}`,
+      `신강신약: **${j.strength.label}** (${j.strength.score}/${j.strength.max}점 — 보드 자리 배점: 천간 각${STRENGTH_STEM_WEIGHT}, 지지 년${strengthWeights.year}·월${strengthWeights.month}·일${strengthWeights.day}·시${strengthWeights.hour}) · ${flags.join('·')} · 도움·득세·분류는 앱 잠정 기준`,
       `조후: ${j.johu.season}생${j.johu.need ? ` — ${j.johu.need} 기운 필요, 원국 ${j.johu.satisfied ? '보유' : '**부재**'}` : ' (조후 무난)'}`,
       `오행: ${Object.entries(j.profile.elements).map(([e, c]) => `${e}${c}`).join(' ')}${j.profile.missing.length ? ` · 부재 [${j.profile.missing.join(',')}]` : ''}${j.profile.excess.length ? ` · 과다 [${j.profile.excess.join(',')}]` : ''}`,
       j.profile.missingGroups.length ? `십신 부재: ${j.profile.missingGroups.join(', ')}` : null,

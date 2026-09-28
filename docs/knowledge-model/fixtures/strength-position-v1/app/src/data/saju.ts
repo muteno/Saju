@@ -146,7 +146,7 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; prof
   const cards: ReadingCard[] = []
 
   if (!hourUnknown && judgeLines.length)
-    cards.push({ id: 'judge', title: '원국 구조 판정', blocks: [{ lines: judgeLines, source: '엔진 판정(강약은 앱 잠정 기준·조후)' }] })
+    cards.push({ id: 'judge', title: '원국 구조 판정', blocks: [{ lines: judgeLines, source: '엔진 판정(신강신약 보드·조후)' }] })
 
   if (d) {
     const blocks: CardBlock[] = []

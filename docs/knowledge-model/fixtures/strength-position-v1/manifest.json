@@ -1,0 +1,30 @@
+{
+  "commit": "006d06c7bb0ee5281ebe94a170688709c48094db",
+  "purpose": "Pre-correction engine and consumers; inherited app policy, not a correctness claim.",
+  "files": [
+    {
+      "path": "dosa-app/engine/src/judge.js",
+      "sha256_lf": "4efa3ba08822d8b87788771087b0e7040f2c8023d8b7f97bf4f09e251075f1b3"
+    },
+    {
+      "path": "dosa-app/engine/src/report.js",
+      "sha256_lf": "c730059b6aca4d0e213ebbdc76af784d3e4b346858684b104cbab90c66cd0ce6"
+    },
+    {
+      "path": "app/src/engine/vendor/judge.js",
+      "sha256_lf": "4efa3ba08822d8b87788771087b0e7040f2c8023d8b7f97bf4f09e251075f1b3"
+    },
+    {
+      "path": "app/src/engine/vendor/report.js",
+      "sha256_lf": "c730059b6aca4d0e213ebbdc76af784d3e4b346858684b104cbab90c66cd0ce6"
+    },
+    {
+      "path": "app/src/data/jeonggok.ts",
+      "sha256_lf": "3379915d25873361b6f7bd5697e0c58b095316fd3c6d27a8362d08cc99bee556"
+    },
+    {
+      "path": "app/src/data/saju.ts",
+      "sha256_lf": "c44afcb5c62af7ea28d37b5607aab3b268e78f5ed0cb0485f2295d0e9f6a3894"
+    }
+  ]
+}

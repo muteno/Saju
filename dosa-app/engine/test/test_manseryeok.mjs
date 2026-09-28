@@ -163,7 +163,7 @@ ok('JDN: 2000-01-01 = 2451545');
 {
   const c = computeChart({ year: 1990, month: 1, day: 1, hour: 12, minute: 0, gender: 'F' }, terms);
   const j = judgeStructure(c);
-  // 병인일주: 아신10+월간 병10+시간 갑10+년지 사15+일지 인15+시지 오10 = 70점
+  // 병인일주: 아신10+월간 병10+시간 갑10+년지 사10+일지 인15+시지 오15 = 70점
   assert.equal(j.strength.score, 70);
   assert.equal(j.strength.label, '신강'); // 포스텔러: "샘플님은 신강 한 사주입니다"
   assert.equal(j.strength.deukryeong, false); // 자월 정관 → 실령 (보드: 월령이 식/재/관)
