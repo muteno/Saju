@@ -1,0 +1,2900 @@
+{
+  "baseline_commit": "70b1a9c0a118b6681fe0372499197fc2e424a468",
+  "scope": "110 synthetic inputs, 102 known/8 unknown, no observed-person accuracy or semantic-paraphrase classifier",
+  "source_review_items": 35,
+  "personal_approved": 0,
+  "training_eligible": 0,
+  "probability": null,
+  "assets": {
+    "pointer_sha256": "95a2485722c02af8de0677e4dc625504feeda0405844c765cc8b18f95d28066c",
+    "kb_sha256": "b5b98b98c6e49f1716e05d7fdd7431b5073084e4c4b00fa3dc1be61292a34f05",
+    "brain_sha256": "51ab4aa0711196dbfed744d6bf1587c009fedbca5ecf104449ecca8f8f433f66"
+  },
+  "sources": [
+    {
+      "path": "dosa-app/engine/src/basicSentences.js",
+      "sha256_lf": "13521a1b39ab25ff80e83dc4d4f55fa03bcc3d03d69250496b5a3efa8027e2cb"
+    },
+    {
+      "path": "dosa-app/engine/src/gapinConditions.js",
+      "sha256_lf": "baa0030caed79e57eb79e0e1f7df7ae8bd928dece0abb622e68c9b0cc6fd632b"
+    },
+    {
+      "path": "dosa-app/engine/src/gapinSentenceData.js",
+      "sha256_lf": "b442675b772f014b67bc9e0946049f2a9db7e07d9f7009b2cf881fc0fd49dcee"
+    },
+    {
+      "path": "dosa-app/engine/src/report.js",
+      "sha256_lf": "f017c9822a9050ac552a53282bc6a2ec074615c6416b2352add77053abd961b5"
+    },
+    {
+      "path": "app/src/data/saju.ts",
+      "sha256_lf": "50688ca5ea5eb5aeefbd3c05ef2f11c5a6943ce6daf0a68c7fabdb3be1a537bd"
+    },
+    {
+      "path": "app/src/data/dosaTopics.ts",
+      "sha256_lf": "dc2a1670a34670b997e9e11c7d18cad0fb9332dfd3af322ec9346dbf7220daa2"
+    },
+    {
+      "path": "app/src/data/dosaClient.ts",
+      "sha256_lf": "341403f1955bd6ef6b8a4cb102efb06c59c3cf798770f7f7cf54690067f6055f"
+    },
+    {
+      "path": "app/src/data/analysisGroups.ts",
+      "sha256_lf": "a6355c6467f9bbc1838f136eb3bfcc5b592df5eaacbe374d26fad877ee3dc85f"
+    },
+    {
+      "path": "app/src/components/DosaChat.tsx",
+      "sha256_lf": "208b2981f6c7e878c69a00c41133f1f3c1426eb0d5f76c8bf6f35d23cfe61c0d"
+    },
+    {
+      "path": "app/src/engine/brain.js",
+      "sha256_lf": "0eacddb88b16f5fe04d1e72683487fff44513fb3499ea8cbc114da5446c83b53"
+    },
+    {
+      "path": "functions/api/dosa.ts",
+      "sha256_lf": "4b1a6f9238080e0caa88ce277ee6b6f1292568fd7295f4714f1c27e2a709bf5d"
+    },
+    {
+      "path": "scripts/build_gapin_sentence_policy.py",
+      "sha256_lf": "421211bec49d2734c46cd4fab3c2582cd0113cb05f788aab8a648d34f1bd541b"
+    }
+  ],
+  "rows": [
+    {
+      "id": "known-extreme-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "ilju": "ilju/을축",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "91932516295b9a3e9c812179de8c584bda8961516c697bcf6bc00a577c1f725c",
+      "after_sha256": "68406cad1745087f8e0eb4ba50a4f38f53db6407774d09b1854b450314742834"
+    },
+    {
+      "id": "known-extreme-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/을축",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "791f569abbe4c2a8f2b2240e3b2a491307741709786ddfb7ab047f2d54b6fbac",
+      "after_sha256": "46a5c32cfd9087e908da29ff354a7c3f933ef8eafba3f54bf0a1b6465104e3e2"
+    },
+    {
+      "id": "known-extreme-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/을축",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "4afadebbe6897ab60cd3e3d780d34623ab7c21073a973db86c483375bb808e17",
+      "after_sha256": "cd8f39657c31f0819d66a86e7632f267b276b1786f8dca915449c1b3f8cf8a98"
+    },
+    {
+      "id": "known-extreme-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/을축",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "b0b5e1e237d017d36131172cde2f3f263cc1bb272641bfc9cb2911e0b76e2c2c",
+      "after_sha256": "38c44df6bcf92c35603a59c3d2029fcc4684d55f696545245baf1c7b305beab8"
+    },
+    {
+      "id": "known-strong-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "ilju": "ilju/병인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "c0edc588a0ae7433d4dfed3e35a0c0775cd7969fe0df280c36ebc12dd1e2018a",
+      "after_sha256": "7c137f67236451b301b50f6887ed31164ef78d24d0e605a08c0dc1ea50c3d99a"
+    },
+    {
+      "id": "known-strong-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/병인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "9f0ece2c3dea7981949b3dfbef2f6b73f87d692be72115b4eca46b2bf3a6566a",
+      "after_sha256": "20bab470cf7f8437f534351dd179554c8fa6afe3b5999e3687e7b58e1d4c1d20"
+    },
+    {
+      "id": "known-strong-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/병인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "feed03a0062bd5e161dc825a27597d9ea78c45e24912501db7d23b38765c3326",
+      "after_sha256": "18e045f27d12fee22911c7b78f785dd8de4c0e7f2a35d95947921d9ea6694b38"
+    },
+    {
+      "id": "known-strong-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/병인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "cc45c376bc6435e619e6fb612399b47280421cbf2dae1a23ca796c479e721bdc",
+      "after_sha256": "fa19869dd85463cb0aaa826457d9cd729d4769b191173da3b21d6602650b0a0e"
+    },
+    {
+      "id": "known-strong-up-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "ilju": "ilju/임신",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "59212cd3636d22cd179b752501ff91fead4e33132aba6a91b908e87f53c9f747",
+      "after_sha256": "c504a779067e4c49d7fd19b52b5f0d9e14da1db7a4a4bf3fd97d9436005b6fbb"
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/신미",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "a1b46b5000b34f1917622ea03f93842ba825a41724a271cc72a6372176314692",
+      "after_sha256": "f5faa0500804e4460e637612321c7ab2fb640b620e562050daadd9c995f279a8"
+    },
+    {
+      "id": "known-strong-up-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/임신",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "ab12a0dbc0d700c4e64d2caaf5d2e4915c2f0d9ce87be040e27c0783f6f4e676",
+      "after_sha256": "c00af676c096a8dca8f39b9d93694d244dfd12f47e80a5315cf23877b7f95e0f"
+    },
+    {
+      "id": "known-strong-up-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/임신",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "c7550a0ce663f167b8e67102ba1d08ea3fe33500a7a39d78303b8459477d496c",
+      "after_sha256": "8019acf4eef3e41436a3dbbf72df7a31fb427edb1e4f8674b4f04e46b7284342"
+    },
+    {
+      "id": "known-weak-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "ilju": "ilju/병자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "5ff10c4d825dc603737ce7a525e705ba4b961d45391f58df192ac01552042ee3",
+      "after_sha256": "dd26bab8d1d72b273348621ad9c5daa3201b83578371c1b5777aae3bb396449f"
+    },
+    {
+      "id": "known-weak-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/을해",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "0a568bb9ae1b1188f6faabc777780e894911eee0698b184ae1d19625ae417aa4",
+      "after_sha256": "57169668e7fc42b18b1e3055927bdfdcfae8050b598f9ba1e919e28561d418e7"
+    },
+    {
+      "id": "known-weak-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/병자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "b5c146019d37b138b37782ca69d955443303f4aa0d9c82acee35f564c129b219",
+      "after_sha256": "a3ee35cc8ebe8518235abd41b15c64812ab704ac099e041e0899e20196edf018"
+    },
+    {
+      "id": "known-weak-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/병자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "c024edc9157adb155283a52a16d6516b2a21197cda4a8db33e37dc1f1f087f61",
+      "after_sha256": "41929175c9941f632e83b3d3aee7312510b22018a1063f10a1b9a92ef09ff0a6"
+    },
+    {
+      "id": "known-weak-up-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "ilju": "ilju/임오",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "5bb889129b96f8533d9ed33df4f867ae0f2e8b5e1b5c859e78757924f4d63833",
+      "after_sha256": "b5201b80f339e8b8db073eb594c6f8511bb8de0eb00e5535d93f16bb8fdbe675"
+    },
+    {
+      "id": "known-weak-up-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/임오",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "7da88a52db03b396fa7f568b53c16cae7bb6a021c4c7034bb66cdbbd4f43fe76",
+      "after_sha256": "1e3fcec983e43c28b3d53e3302a0dc426ed2391825facbe591c64b9e02ad739b"
+    },
+    {
+      "id": "known-weak-up-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/임오",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "62e2b0519b73889b19d8686015e0e519b10d90a164db4ee7f2a09b96a36c1cb1",
+      "after_sha256": "ff6ace0879877a733660a9df52d7acd1a0ef9f9f553e10a1352b2b0a314e4183"
+    },
+    {
+      "id": "known-weak-up-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/임오",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "2df4cb7137b7de988df28c13b69acc792389ab7eb7dd12bc2b43c335c1216cfe",
+      "after_sha256": "a79131388f60bbbc79023c9566de14af408546b632a1cacaa2ca9869ea123c56"
+    },
+    {
+      "id": "known-extreme-up-solar-midnight23",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "ilju": "ilju/경자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "3c118c79683dababb0599d665745a148d25180eb88de2ac729717a3b9c91eab5",
+      "after_sha256": "f248ba9f9484229a1d6970234dc53b249823cccadfcfe0c065049c1c2b92c7c0"
+    },
+    {
+      "id": "known-extreme-up-solar-keepDay",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/경자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "4500333826b665e2f0b50d3e34318a64401f38bd15ef5e835ddbbb703b72a756",
+      "after_sha256": "7a472285d32a7e5f87b3c03ed37bd236813550428dc2831c110d22181bfa36e5"
+    },
+    {
+      "id": "known-extreme-up-civil-midnight23",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/경자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "d26c1936f94672a3a75f07ff9ced44fd5395ff50f1134a61d17be878445ff16f",
+      "after_sha256": "496dd62a37ee01fa04750fd5cc06ccf25420041a1036b90d5f9f7f76e129b556"
+    },
+    {
+      "id": "known-extreme-up-civil-keepDay",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/경자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "a1d7a8dd71fc7c4f6b45ee77ab5c07ac7450176054016d30bbb1efb0c1d1a61c",
+      "after_sha256": "1886f424868fdb72318bc84c3b2e03c96d0708549fbc351b04e6963c857fd902"
+    },
+    {
+      "id": "known-zi-before-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "ilju": "ilju/병인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "55ce384aa11aed1e3c6c052e83f8716d68fc02c13d3e4a6ebb22bb76b761067c",
+      "after_sha256": "8ad1429e200bd5a6f7614a0de0148f0e483c172585b499b2653ab7bf2d72f8ac"
+    },
+    {
+      "id": "known-zi-before-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/병인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "15c4678bf08872e37b353c1abc5006a4e9b91478182592dea87ac50e918091a7",
+      "after_sha256": "094fdefb22266158f002214b79ac2323c9135804d657203c8d0141ad6932f291"
+    },
+    {
+      "id": "known-zi-before-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/정묘",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "da11be59a118b9f99a356eccd32214fd1f2c0da9507b4ea39d1664696243e46d",
+      "after_sha256": "d268656fddaddbeac2428285c1b8e4a09407863e3a32d7e36f29b6e8368b055b"
+    },
+    {
+      "id": "known-zi-before-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/병인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "0510935a21be4afbc244ff5a21292d055befbb1c35831ee04a3135bd8c00482b",
+      "after_sha256": "340b19bc4321f6d18e83cd8e9424ef7339b124980e55a0bcb30b83c01a2d1589"
+    },
+    {
+      "id": "known-zi-after-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "ilju": "ilju/정묘",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "7940fd07cba248f6c7827e4efab2a52a90dda82c7d88b559e0f08c3f12ed29b9",
+      "after_sha256": "e5fb6cf1723eb150e9d9e54da86834b766950d88292522903e03f5af508ba17b"
+    },
+    {
+      "id": "known-zi-after-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/병인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "e80369fd1d3e9e987a66e500c6f1542a25ed4ecac6711753d7ed9983657a97d6",
+      "after_sha256": "2eb19f8c8663e5420f45e3996a708b5d8011e020990c5f92f5c31ceb056ea272"
+    },
+    {
+      "id": "known-zi-after-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/정묘",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "ff6c1b56c26951f472ad819483f3ec619f2d5ddb1024c6e417bdc3e82d4295d8",
+      "after_sha256": "5f1c06d6ca69d6dd16e066c14517dfa2b82df202ab612daf2ff4fa79a3949583"
+    },
+    {
+      "id": "known-zi-after-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/병인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "78206fec9925a17a42534923ad32f4133c2351b159ad217f29cbabcb7a783494",
+      "after_sha256": "c6ca017a6fe618c5c6421a3efe1203845209c7b333f9d2e6afaf65c66fd50ed4"
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "ilju": "ilju/무술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "bacb0911deee4e73ead490a38abca4249d8abc2c14b46579536fb26c02413bb0",
+      "after_sha256": "387482b9003e84c1b43b4e66b1e6df3639c09c25293a3a82c4ac9228393edb6a"
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/무술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "875fa201550a1820e41ff4db9a4fed1c6c4592d6ca9899cd10d42cd1a9782f31",
+      "after_sha256": "732e9141f71c81d42cdfa10b888438a3f2ed94f290905b8031df4d539cac9569"
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/무술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "9e45b92d30b878bb0d526d66ff8497e90fb32304af90515f1cd11ddd9b067085",
+      "after_sha256": "6debdc5a180d9118b9c8cf33abe320453ca9fe708511fd25758c70879e1ec6ae"
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/무술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "aba8f36c48f709effc2571b94a06e78f652e10d5f0b53c243650bedefe91d552",
+      "after_sha256": "2c8b2f249d7ad227f99f7209fceff02790ee387ae168e8f34cdb2774b3476a11"
+    },
+    {
+      "id": "known-ipchun-after-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "ilju": "ilju/무술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "8e2c6ce1385171a9538b615514d055dc2bcdf1a5e53a66ed31e936b2ae4b704f",
+      "after_sha256": "966fc5989be7ccbf34f8595c776c818b7b0247df13ee523b7b3ce2b241c7fd37"
+    },
+    {
+      "id": "known-ipchun-after-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/무술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "30de5ce254c5e221911bc9974327ee674610d8e5bbbb188c22ba6db67b0d070a",
+      "after_sha256": "f1d74b80c5a006a992a61112b3aec03b68b0d420e9bf58ff21a28e76b50b6c13"
+    },
+    {
+      "id": "known-ipchun-after-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/무술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "36e708044a40f1fd6b218c2198274bb62d3c6db99ce682448f18a93bbfc03ddb",
+      "after_sha256": "4e0f2103bbc6fd8a949170e8f7687e60c4de77fb3c7cbb7b830fe33f45dbaeda"
+    },
+    {
+      "id": "known-ipchun-after-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "ilju": "ilju/무술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "80a7a3f3dcc60a07890bd12b42c538013540a05ffa8f045d237e71512581de2f",
+      "after_sha256": "a1cac952337cd69977c07661ad721b962512533e2f558764714f4827311373ba"
+    },
+    {
+      "id": "unknown-ordinary-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": true,
+      "ilju": null,
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 0,
+      "before_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5",
+      "after_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5"
+    },
+    {
+      "id": "unknown-ordinary-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "ilju": null,
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 0,
+      "before_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7",
+      "after_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7"
+    },
+    {
+      "id": "unknown-ordinary-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": true,
+      "ilju": null,
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 0,
+      "before_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb",
+      "after_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb"
+    },
+    {
+      "id": "unknown-ordinary-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "ilju": null,
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 0,
+      "before_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d",
+      "after_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d"
+    },
+    {
+      "id": "unknown-ipchun-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": true,
+      "ilju": null,
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 0,
+      "before_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e",
+      "after_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e"
+    },
+    {
+      "id": "unknown-ipchun-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "ilju": null,
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 0,
+      "before_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b",
+      "after_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b"
+    },
+    {
+      "id": "unknown-ipchun-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": true,
+      "ilju": null,
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 0,
+      "before_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541",
+      "after_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541"
+    },
+    {
+      "id": "unknown-ipchun-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "ilju": null,
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 0,
+      "before_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db",
+      "after_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db"
+    },
+    {
+      "id": "hyeonchim-0",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/갑자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [
+        "JA01",
+        "JA02",
+        "JA03",
+        "JA04"
+      ],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "9818c5e2d43a04b3b3734b8154573d5585dde3de674fb0fff6fbf924f3058df8",
+      "after_sha256": "81cfa30272829524acf5482a604c767713e5e0b47cba20c8e67815536014fa33"
+    },
+    {
+      "id": "hyeonchim-1",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/을축",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "2391e413d4d0a0facdb4a4b61386ec7149b22ea4ea94dc3f336a63f8be1184fa",
+      "after_sha256": "b1b6b2f6cda854a8a63ba64adc331f9dac724ff32b865728cde125db4d0e9a99"
+    },
+    {
+      "id": "hyeonchim-2",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/병인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "005402e573c9fa76f6140ace8c44dc88542dca495ae4ba8a4735162cc1095a43",
+      "after_sha256": "68b64251fc1236f6b221cc072baaa6b360ac65fb778b54b6fd7fa27e02cad9fb"
+    },
+    {
+      "id": "hyeonchim-3",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/정묘",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "9bbc5e1a3c04a8e8069778e7e2a46020f72ba58401f9fd3166da8469683b7c5e",
+      "after_sha256": "736598217138d528f46d0cab865856615f964f79629767e25600a26508016be8"
+    },
+    {
+      "id": "hyeonchim-4",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 5,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/무진",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "e32f19d55c9be0f55fc710be50c26e2f20d634d5e6cefdb17e84d8222dc401bc",
+      "after_sha256": "2b8c715a0b2b38bd72414dd7cd2b938dd0255ddccd8c5a682c24ea323fb4ba85"
+    },
+    {
+      "id": "hyeonchim-5",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 6,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/기사",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "16f26020341dc9a24094804748cf81cc640ca60e7bfcf91eac20d5ec3ada264f",
+      "after_sha256": "1c2ed46924afe8c050e0dbac978d43b1f6aa2343c0ec421feb643f7295fda652"
+    },
+    {
+      "id": "hyeonchim-6",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 7,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/경오",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "9a4deb64991e13d7dc3838c2a10381367bf1daf5fcda37fd8dcb2ad337846a98",
+      "after_sha256": "5f22787a68f69d45a8f04ae57b5df3b8eed75bbd356ab19c65f95b263c65e0a1"
+    },
+    {
+      "id": "hyeonchim-7",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 8,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/신미",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "ed46063f3ff19ceac20177170763f85c4ee8c0105f769cd226643f34a44ee2f6",
+      "after_sha256": "c6147593e120f058ba1762594c40e73b55024b1d815323ec84b1ba05c8b7b197"
+    },
+    {
+      "id": "hyeonchim-8",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/임신",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "26b2c9185ffa66d84b9249272f919bab5330efc455da54731ca79289c01ef79f",
+      "after_sha256": "bfcb0690023d4035bb6fbf9494ba14b82248e782ccc7e4ca7bfd0d01c31d7aea"
+    },
+    {
+      "id": "hyeonchim-9",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 10,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/계유",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "69d4759523a5c40e47e41aa4e88ab3283959748365c9921e1d04ab395d5e52fe",
+      "after_sha256": "eefc3c64a8a356beda63168cfcf3ba0daf23207487fe5242e5ed2f2a93e262c4"
+    },
+    {
+      "id": "hyeonchim-10",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 11,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/갑술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "c4a889d7e8a92f99a3dab9ff581e3be03bc3778b8b7fa5628013d40b2d6b33ae",
+      "after_sha256": "0ef148434a2b1369835bda86df5116a607e4134a6996e57831cf98d3c523a48a"
+    },
+    {
+      "id": "hyeonchim-11",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 12,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/을해",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "a3119aa426ca325f8c5b0c3b6449aea3326796707e89d85d8b156c4477260645",
+      "after_sha256": "ea863cfb19cf975fd35bea5d9c6a21c33a804163153da3c4de1ce8901d35b11d"
+    },
+    {
+      "id": "hyeonchim-12",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/병자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "978df990f234be21cc89cef3e455f8abf8567bb4c4928788ba17c37dde3b9f2b",
+      "after_sha256": "740b56e64736255381962b80e5edf9be1348a572fa6286cf2d1e56cc01c4478e"
+    },
+    {
+      "id": "hyeonchim-13",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 14,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/정축",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "d9ebca60a29bbe4659927e35e4ba1ca7b63a62b7ba4f0bf5bed97b9f77754336",
+      "after_sha256": "f746174de1b8f99d45d3b27e85872979e143800183aa0975e0397a57c2b85a08"
+    },
+    {
+      "id": "hyeonchim-14",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 15,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/무인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "08118111597ea50e0a9b28dbfb52357d73316c3723d99547286ea9a34ad73051",
+      "after_sha256": "a2cd3fe689de2073aa184a4cdaae74fbe03ba9cf5b60cbb1fbec2f715ba6ac5a"
+    },
+    {
+      "id": "hyeonchim-15",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 16,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/기묘",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "b36a0c2451d7331674b1c831b236e9a0dca5c772c9b01fce947bc7d211e2d019",
+      "after_sha256": "69f771749a6435f81cd4f2dc4ddc83b9fb18474b9404511f143ba4cfc3867059"
+    },
+    {
+      "id": "hyeonchim-16",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 17,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/경진",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "64cd2f9842f1ec4ce4e68f854919dbc98053f3e019e02923c214016f3b8de823",
+      "after_sha256": "39d5e9d8c5f79b13d85ccd99d3ce3252114af55ce17e8ab3758c5206a6149fd7"
+    },
+    {
+      "id": "hyeonchim-17",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 18,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/신사",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "b68478ac9bba51cf97abe9e6ec130b47eb7e495efb51af31bf5f8fdaa3ae3cef",
+      "after_sha256": "03311ec65420f6e78e370ff090daf2fdaad7f71687d56bb1e0885982f79947ca"
+    },
+    {
+      "id": "hyeonchim-18",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/임오",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "6bd2710d32acfd7d9f70b749672e73bb0395f462ee278b93bb129c8ce06b4d62",
+      "after_sha256": "73875ddc8fd6e86195429ed7ffcc520d6a35daf13aee8bd203e2b5aba713badb"
+    },
+    {
+      "id": "hyeonchim-19",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 20,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/계미",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "909cd389bed3e14492e8f50b498fdef9c6e0a6415e203f2decbdb10a08cd4b11",
+      "after_sha256": "d1c1969d332f66cf28a1b93b2f6766ad80ea6ec5ad7f93f84867e8bd2d044525"
+    },
+    {
+      "id": "hyeonchim-20",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 21,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/갑신",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "621bae771b7f7c0c048c6f89d9c6ca82d2e276bb13773f17d4ef8e893396ffe8",
+      "after_sha256": "c67960724b4dfa87ca4be8933c4f1ae4bedc984324491ba82318eb124d17b222"
+    },
+    {
+      "id": "hyeonchim-21",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 22,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/을유",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "249e578b118c070ab6caa3e9767925237c5ea08ad009b1f1ca8fcc297a863506",
+      "after_sha256": "5e4e69122d0438d8d0b56716105416eda6e53557ef51476c9e5c3bb01fa48838"
+    },
+    {
+      "id": "hyeonchim-22",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 23,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/병술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "467bc314a4d7760766e64f20672e8755cbaf3818ff064b9a7aa08f5ed085dc91",
+      "after_sha256": "bbaed78f4d8eb8a810f3d5d2f9a3ed50f6880a964e51a0e2ccbc5da8a210517a"
+    },
+    {
+      "id": "hyeonchim-23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 24,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/정해",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "3461cd5228fb3c38444b8ed66f41ea7a24fd851e01b0aaf998b17181773bdc17",
+      "after_sha256": "97ca8594bfa914e80ed6cb316ec0a71079b732a406808763118bb74834163713"
+    },
+    {
+      "id": "hyeonchim-24",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 25,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/무자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "54e0316fc4ae099954c7c27293a545ad133989f52b0a6819b55611a7d2ee5c88",
+      "after_sha256": "8cba5daf9f2e4153380395387e86468d1ed7895aee2914a544ab6c66e3182e2e"
+    },
+    {
+      "id": "hyeonchim-25",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 26,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/기축",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "51ad8a1517e8b812bb8dfced2d17b497f5d927282c77499fffed14fde97d7dc1",
+      "after_sha256": "7f227d75c1265688a3528748ea40534d4619835af5de588fbfd046e6b341c779"
+    },
+    {
+      "id": "hyeonchim-26",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 27,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/경인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "0d739f30ea15f8fce0382a613eb2df2f69919d6854b9428d292b6fd3083e88af",
+      "after_sha256": "0675543cca173246eb54f9e66cf1805b04f043f1e7199e51ffdb380fb2a0a6db"
+    },
+    {
+      "id": "hyeonchim-27",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 28,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/신묘",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "5a39e6d1e41a935c34a0ae7ac1dd016430f9e30a1068d62fc124f756cd304d65",
+      "after_sha256": "3b692075712fb0764bf8b3e04614cd699bbe445f008bfbfd9ce012520b45d486"
+    },
+    {
+      "id": "hyeonchim-28",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 29,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/임진",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "90d53648913c00886b10d373ba98d379e7696bc31f7ba42fa823f5ea1b915f60",
+      "after_sha256": "9b4aad25fb0f7b25de0b3c9b6436d61e77a854abdaf93acd8cf31ecd0dab6293"
+    },
+    {
+      "id": "hyeonchim-29",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 30,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/계사",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "658ffdd84f68345bb0e8f7a0152efa8d980617cbdce4f41274409d6c72237f91",
+      "after_sha256": "e1a20861e299475f6e09f64aa236d7ad2a968e2dac59fd119d59d52e9eb23fe5"
+    },
+    {
+      "id": "hyeonchim-30",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 31,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/갑오",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [
+        "OH01",
+        "OH02",
+        "OH03",
+        "OH04"
+      ],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "5c11228993dd145e326f778f6b048d86384c65c46c0200113f0d5256f3dee3f1",
+      "after_sha256": "b5241524499d22bc922f9b2512a9072fa9bd8289dcd3963302905ee3537ead80"
+    },
+    {
+      "id": "hyeonchim-31",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/을미",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "82683eecdd3608fe690b6aafb679357e43596371d664e60cb3a7b59717bca74b",
+      "after_sha256": "527ec0eb1c6286ea235fdb71b764181c83d5e2f92ef99ce8f62161ffb247d882"
+    },
+    {
+      "id": "hyeonchim-32",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/병신",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "30b9efc6f1015252706ab968dfd5aa51220b0c783b8c6bbf9818060b7d7da72c",
+      "after_sha256": "5634a4c8ff95b58c0c36d4ad5b2a76d9d0661cc68b6645c59f5a6b4c97cbe79c"
+    },
+    {
+      "id": "hyeonchim-33",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 3,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/정유",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "47ed32db57c95e012994a08d2e0f4a12d3d329bbfce890a9f3c875e8dcb96ee5",
+      "after_sha256": "26218e2412558bafae97584bf365300f4261c09d49b42b6f8ec437ddee902ffb"
+    },
+    {
+      "id": "hyeonchim-34",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/무술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "18c85bc3f7e29f04383718c6a73d9532237931eccd066d9c44e250c14a9cc3c2",
+      "after_sha256": "4b591ce899dd449f57c4c562272e2dfbed1ac98ed62aff74580d519fa077feec"
+    },
+    {
+      "id": "hyeonchim-35",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 5,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/기해",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "07fb84ab9ed18b21b039815e390024fb97fc64b202e4c2a1ceaa22964f3fdb0f",
+      "after_sha256": "1c3318188021c68aa3dcff1fb10a7f8d589df4bf1670e42c9ca68b1ecb707e8e"
+    },
+    {
+      "id": "hyeonchim-36",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 6,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/경자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "a9248caf6f802018ea1795d071c4baddaa7953326b82f60ebdc06ea8ed34f793",
+      "after_sha256": "803afbc83e520912e279c97d78a7ef73124d9f3f868b2ef3c6d921988d04bb47"
+    },
+    {
+      "id": "hyeonchim-37",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 7,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/신축",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "0536e38828cc611c7c7d954277b396372f8f5ae7722701e051b096cf8b7044a7",
+      "after_sha256": "d970b3421cc5bfbcd952b69f1e8178bda7ff614c41aff6d721f90916c0703746"
+    },
+    {
+      "id": "hyeonchim-38",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 8,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/임인",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "87b7f4e60f85e9d0a5e4286759d0c86232785d8c52210d8dbcb9a8fb7ff4ea86",
+      "after_sha256": "a495eb291a95237a717fc33051af8594e9e82fb680cdeb0b7eedff13ded0ea7b"
+    },
+    {
+      "id": "hyeonchim-39",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 9,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/계묘",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "1862a7f19367f46e3e177a779158ad2eb56618d1b16df01d79b87f30afbb6f3f",
+      "after_sha256": "53c14c29568e298052850966433f3ed40024c2601905f2d907df5e58bbd426bc"
+    },
+    {
+      "id": "hyeonchim-40",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 10,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/갑진",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "fc9b7fdf3ab028d815410d681c6bec0e304bd434c41cbffcfa6f776dd6d13896",
+      "after_sha256": "b8288d1a236decc8a5f0bf8ec9569cdef608a8dd8e386ee2c762b8618df23dd1"
+    },
+    {
+      "id": "hyeonchim-41",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 11,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/을사",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "500fb4e37d2c3825154d7b54876239fb5d45b100afd53d3209f6c7bca3970678",
+      "after_sha256": "375a0b090448876d74afd20fe0296625c6463c2be2a31d331479a42ecb6e96ba"
+    },
+    {
+      "id": "hyeonchim-42",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 12,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/병오",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "7ccfde480e88e44e6c2bbfad79e27370c25b77df411adf54cf150b37a6dc452d",
+      "after_sha256": "0b15bbecb2fd1a521daff5891b0f08800d185bf80ef7e28582c71e7c6921c53b"
+    },
+    {
+      "id": "hyeonchim-43",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 13,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/정미",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "cc7d1f82d8dd7639ab05344427a3a538241063ef6a8efd6337f1e42f11af8797",
+      "after_sha256": "c9260a1db8f1680ea276957110954adc0137421046050e8ea2b47a477f4d27f2"
+    },
+    {
+      "id": "hyeonchim-44",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 14,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/무신",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "7979a2e8885c30f6cf7c1837a18a317fe5eeca6a209d4902ac9cba4757d0e5d6",
+      "after_sha256": "06c197dc1011bc7352d5afc344845c87994197f5a9a8d68089410400db752a1f"
+    },
+    {
+      "id": "hyeonchim-45",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 15,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/기유",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "ddbf9885ebc7e345445841901f51dec7a2994b90587db17614e645a39cc3ab70",
+      "after_sha256": "a56e7294c378c58f7b7844f7c3f27fa8512d43e6c531afd94062f36d4ddee2a6"
+    },
+    {
+      "id": "hyeonchim-46",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 16,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/경술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "a6548607b2ec4c79951907253b5452da1e12f416d9f75e519851687aa17a1e1d",
+      "after_sha256": "77289382f57257b250f25d518ce3cb6f1f2905acbbf2c64dd50915fc14ce8095"
+    },
+    {
+      "id": "hyeonchim-47",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 17,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/신해",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "a4f7b087ca38dc4b189e57c7a79a644a8d31dd44d35d32d5ab902ff0103bcf7d",
+      "after_sha256": "7f2dddeb02567415bca9fae296965eab1be50ba3116f85a54a06af976f95e7c4"
+    },
+    {
+      "id": "hyeonchim-48",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 18,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/임자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "bce491d7fc615e8efbd3cfcdec4a273f529d2874f7f26b27193f1377ecaadfba",
+      "after_sha256": "b58ae55c5b0471acac211c9f9786331720d2c462b3dc9566293471a81087390e"
+    },
+    {
+      "id": "hyeonchim-49",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 19,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/계축",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "3d620664c0155ab143a90f990c0d5a85188c4b1ed70ac10cc932da0535d72d8c",
+      "after_sha256": "6629c70ce36b9ff2ba9167a8506332963848108330403af5dfc45e1d6e31416d"
+    },
+    {
+      "id": "hyeonchim-50",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 20,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/갑인",
+      "before_present": [
+        "GI01",
+        "GI03",
+        "GI04",
+        "GI06",
+        "GI07",
+        "GI08",
+        "GI10",
+        "GI11",
+        "GI12",
+        "GI13",
+        "GI14",
+        "GI15",
+        "GI16",
+        "GI17",
+        "GI19",
+        "GI21",
+        "GI22",
+        "GI28",
+        "GI29"
+      ],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [
+        "GI01",
+        "IN01",
+        "GI02",
+        "GI03",
+        "GI04",
+        "IN02",
+        "GI05",
+        "GI06",
+        "GI07",
+        "GI08",
+        "IN03",
+        "GI09",
+        "GI10",
+        "GI11",
+        "GI12",
+        "GI13",
+        "GI14",
+        "GI15",
+        "GI16",
+        "GI17",
+        "IN05",
+        "GI18",
+        "GI19",
+        "IN04",
+        "GI20",
+        "GI21",
+        "GI22",
+        "GI23",
+        "GI24",
+        "GI25",
+        "IN06",
+        "GI26",
+        "GI27",
+        "GI28",
+        "GI29",
+        "GI30",
+        "GI31",
+        "GI32",
+        "GI33",
+        "GI34",
+        "GI35"
+      ],
+      "assessment": {
+        "policy": "gapin-source-conditions-v1",
+        "observations": {
+          "policy": "existing-tables-stems-and-hidden-v1",
+          "stemsAndPrincipal": [
+            {
+              "position": "month",
+              "part": "stem",
+              "stem": 2
+            },
+            {
+              "position": "hour",
+              "part": "hidden_stem",
+              "stem": 3,
+              "principal": true
+            }
+          ],
+          "stemsAndAllHidden": [
+            {
+              "position": "month",
+              "part": "stem",
+              "stem": 2
+            },
+            {
+              "position": "month",
+              "part": "hidden_stem",
+              "stem": 2,
+              "principal": false
+            },
+            {
+              "position": "day",
+              "part": "hidden_stem",
+              "stem": 2,
+              "principal": false
+            },
+            {
+              "position": "hour",
+              "part": "hidden_stem",
+              "stem": 2,
+              "principal": false
+            },
+            {
+              "position": "hour",
+              "part": "hidden_stem",
+              "stem": 3,
+              "principal": true
+            }
+          ],
+          "sourcePresenceCondition": "unknown"
+        },
+        "items": [
+          {
+            "id": "GI09",
+            "scopes": [
+              {
+                "id": "gapin_day_pillar",
+                "status": "met",
+                "observed": 50,
+                "expected": 50
+              },
+              {
+                "id": "source_gender_scope",
+                "status": "unmet",
+                "observed": "F",
+                "expected": "M"
+              }
+            ],
+            "branches": [
+              {
+                "id": "siksang_present",
+                "conditions": [
+                  {
+                    "id": "siksang_presence",
+                    "status": "unknown",
+                    "reason": "원문은 식상의 표면·본기·전체 지장간 범위를 확정하지 않는다. 관찰값을 조건 충족으로 대체하지 않는다."
+                  }
+                ],
+                "status": "unknown"
+              },
+              {
+                "id": "siksang_absent",
+                "conditions": [
+                  {
+                    "id": "siksang_absence",
+                    "status": "unknown",
+                    "reason": "원문은 식상의 표면·본기·전체 지장간 범위를 확정하지 않는다. 관찰값을 조건 충족으로 대체하지 않는다."
+                  }
+                ],
+                "status": "unknown"
+              },
+              {
+                "id": "metal_official_strong_alternative",
+                "conditions": [
+                  {
+                    "id": "metal_official_strength",
+                    "status": "unknown",
+                    "reason": "튼튼함의 판정 기준이 없으며 사업 분기의 공통 필수조건이 아닌 직장 대안이다."
+                  }
+                ],
+                "status": "unknown"
+              }
+            ],
+            "status": "unmet",
+            "review": {
+              "status": "conditions_preserved_uncomputed",
+              "conditions": "남자, 식상 있음/없음, 관성 금이 튼튼함을 각각 구별한다.",
+              "exceptions_or_counterpoints": "관성 금이 튼튼하면 직장 성공이라는 같은 문단의 대안을 보존. 사업만 적성이라고 단정하지 않음.",
+              "scope": "저자의 성별·직업 관련 주장. 원국 조건 검사는 하지 않음.",
+              "unknown": "식상의 존재/강도·관성 튼튼함의 정량 기준 및 직업 성과 자료 없음.",
+              "time_scope": "기존 검토의 원국/일주 유형·문맥 범위 보존. 실제 시점 조건은 평가하지 않음.",
+              "gender_scope": "남자·식상·관성의 원문 갈래를 보존.",
+              "position_scope": "기존 검토의 일간/일지·다른 기둥/월주·운 조건을 그대로 보존하고 실제 명식 조건은 평가하지 않음.",
+              "lineage_note": "yavares.tistory.com. 일주론 /59와 현묘 /388은 같은 계보이며 서로 독립 저자 지지 아님."
+            },
+            "sources": [
+              {
+                "unit": "일주론 글모음#0002",
+                "doc": "일주론 글모음",
+                "title": "갑인일주(甲寅日柱) <일주론>",
+                "archive": "정제본/일주론 글모음.docx",
+                "lineage": "yavares.tistory.com",
+                "bodyParagraphs": [
+                  9,
+                  12
+                ],
+                "xmlParagraphs": [
+                  257,
+                  258,
+                  259,
+                  260
+                ]
+              }
+            ],
+            "sourceParagraph": {
+              "unit": "일주론 글모음#0002",
+              "body": 9,
+              "xml": 257
+            },
+            "personalApplication": "withheld",
+            "trainingEligible": false,
+            "probability": null
+          },
+          {
+            "id": "GI10",
+            "scopes": [
+              {
+                "id": "gapin_day_pillar",
+                "status": "met",
+                "observed": 50,
+                "expected": 50
+              },
+              {
+                "id": "source_gender_scope",
+                "status": "met",
+                "observed": "F",
+                "expected": "F"
+              }
+            ],
+            "branches": [
+              {
+                "id": "siksang_present",
+                "conditions": [
+                  {
+                    "id": "siksang_presence",
+                    "status": "unknown",
+                    "reason": "원문은 식상의 표면·본기·전체 지장간 범위를 확정하지 않는다. 관찰값을 조건 충족으로 대체하지 않는다."
+                  }
+                ],
+                "status": "unknown"
+              },
+              {
+                "id": "siksang_absent",
+                "conditions": [
+                  {
+                    "id": "siksang_absence",
+                    "status": "unknown",
+                    "reason": "원문은 식상의 표면·본기·전체 지장간 범위를 확정하지 않는다. 관찰값을 조건 충족으로 대체하지 않는다."
+                  }
+                ],
+                "status": "unknown"
+              }
+            ],
+            "status": "unknown",
+            "review": {
+              "status": "conditions_preserved_uncomputed",
+              "conditions": "여자와 식상 있음/없음의 분기를 보존. 식상 있음은 교육/학원/요식업, 없으면 자영업/부동산이라는 저자 주장이다.",
+              "exceptions_or_counterpoints": "앞 남자 절의 금 관성 직장 성공을 여성 규칙으로 무단 전이하지 않는다.",
+              "scope": "성별과 직업을 연결한 문헌의 조건부 주장으로만 기록한다.",
+              "unknown": "식상 표면/지장간 범위·강도·적성/직업 성과 자료 없음.",
+              "time_scope": "원국/일주 유형 일반 서술. 적용 시점·운의 실제 입력은 평가하지 않음.",
+              "gender_scope": "여자 조건이 원문에 명시됨. 성별만으로 직업 적성을 정하지 않음.",
+              "position_scope": "일간 갑목·일지 인목의 문헌 설명. 다른 기둥의 조건 충족은 미계산.",
+              "lineage_note": "yavares.tistory.com. 일주론 /59와 현묘 /388은 같은 계보이며 서로 독립 저자 지지 아님."
+            },
+            "sources": [
+              {
+                "unit": "일주론 글모음#0002",
+                "doc": "일주론 글모음",
+                "title": "갑인일주(甲寅日柱) <일주론>",
+                "archive": "정제본/일주론 글모음.docx",
+                "lineage": "yavares.tistory.com",
+                "bodyParagraphs": [
+                  9,
+                  12
+                ],
+                "xmlParagraphs": [
+                  257,
+                  258,
+                  259,
+                  260
+                ]
+              }
+            ],
+            "sourceParagraph": {
+              "unit": "일주론 글모음#0002",
+              "body": 10,
+              "xml": 258
+            },
+            "personalApplication": "withheld",
+            "trainingEligible": false,
+            "probability": null
+          }
+        ],
+        "personalApplication": "withheld",
+        "probability": null
+      },
+      "request_count": 5,
+      "before_sha256": "cde8c602153e23485691e524781da512d07e66f9df29ad0afb0933119ffda778",
+      "after_sha256": "bd3386cf513201c3d4ba527f4fa9ce81cf215bb34ef695d061eb5efebd604da5"
+    },
+    {
+      "id": "hyeonchim-51",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 21,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/을묘",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "4473017042dbaffcd4fed044de1b02f278f6e293c227e09489a1555e5f709fd5",
+      "after_sha256": "00220cb6a582d14fa2d8cfe451927569ff19b7dbe380ce3694512735424c3f0f"
+    },
+    {
+      "id": "hyeonchim-52",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 22,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/병진",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "fb095e67544530e574a9fc0d3cfd8ab95baf68e73cf63da49ace3aac4c104436",
+      "after_sha256": "f6d3a5cb69d3e0d1fc256d45bfab68196e0f6146c65811d1cdf4be44d1a8e1bc"
+    },
+    {
+      "id": "hyeonchim-53",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 23,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/정사",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "26224e9a9d2d93ea48ccdb3cc3cd2a1e2ccfe8385f82983132f86e28ff330610",
+      "after_sha256": "736bf1e89cbbec99a6ab4f980a4003b448f44a0ce39a58aaa13313335d570ff5"
+    },
+    {
+      "id": "hyeonchim-54",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 24,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/무오",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "0a3a7e3492125f5f3bbf896128a9de12de46b00fc936d6ac2ad70d913b156fb1",
+      "after_sha256": "9eeed68d246c597359c4d30de1546cb12279c1380cd7b895c8131cc2bdb3fb3c"
+    },
+    {
+      "id": "hyeonchim-55",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 25,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/기미",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "d85fa6e82b3028dbbe47811146caa46475a9a713dd3c3eb0634b82f949cb113b",
+      "after_sha256": "95a9eb79b7994225a0c79ce47f7887c05133736d2efb736aa9f8ff82426a8880"
+    },
+    {
+      "id": "hyeonchim-56",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 26,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/경신",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "1eb3c6abe252828213285e8d7a1c65833b097b5972f77dfac08cc472867dcb79",
+      "after_sha256": "6723a1f3bdb717bc61a09e4cb7fba5eeef56818bdefdb90ab951b326ac3e00aa"
+    },
+    {
+      "id": "hyeonchim-57",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 27,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/신유",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "df692063da3a585fd34b60856dd23a0c139672ee6f46e7590a5f2ee5e9919967",
+      "after_sha256": "0d496ad6709d4fbbe6d0e4d8c6bc177d1a664483138a81c154a3e632ad4685f9"
+    },
+    {
+      "id": "hyeonchim-58",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 28,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/임술",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "4c525d793ddfd6742e147f12dbbfea30b1e7653911e6b8b8f4d947c7f3b2a740",
+      "after_sha256": "02125af8bef1df679859cf41bc1748e975d5e26e929c018bbf102ef59e105580"
+    },
+    {
+      "id": "hyeonchim-59",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 29,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/계해",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "cc41cb2d3c8fec8f8ef31821c69974f5e82ccc39c6af6b8105033df0d7f25f92",
+      "after_sha256": "40b747a3a56ba8918507d3cb0a1d467730944effc04c6679c569bed713b79910"
+    },
+    {
+      "id": "hyeonchim-60",
+      "input": {
+        "year": 2022,
+        "month": 2,
+        "day": 4,
+        "hour": 10,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/무자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "5f7bdd604ca51a6561f71ca80479372fe724a410467c355629f0d1db0d28c6a9",
+      "after_sha256": "c8405ffd95dad274637ac6c926e605757f4e5c63b7b5f38fe5d00434a1051ad3"
+    },
+    {
+      "id": "hyeonchim-61",
+      "input": {
+        "year": 2022,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "ilju": "ilju/무자",
+      "before_present": [],
+      "after_present": [],
+      "markdown_remaining": [],
+      "withheld_ids": [],
+      "assessment": null,
+      "request_count": 5,
+      "before_sha256": "20f1955dd8282a5acb8dc0e7fe9faa6fe6ab5f7f75d485ff959456f8ec1ef717",
+      "after_sha256": "dd1e284df3d0548d69c797138e383bf9519fe472b707e3448ea3ef7a2d3ab2f2"
+    }
+  ]
+}

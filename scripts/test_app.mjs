@@ -90,9 +90,9 @@ test('현침살 PR207의 고정 소비 계약 110행을 재현한다', () => {
   assert.match(output, /^# tests 11$/m); assert.match(output, /^# pass 11$/m); assert.match(output, /^# skipped 0$/m)
 })
 
-test('현재 문장14항목 보류·출처·실제 상담 경계를 검증한다', () => {
+test('PR211의 문장14항목 고정 전달 계약을 재현한다', () => {
   const env = { ...process.env }; delete env.NODE_TEST_CONTEXT
-  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_basic_sentence_delivery.mjs'], {
+  const output = execFileSync(process.execPath, ['docs/knowledge-model/frozen_gapin_delivery.mjs', '--test', '--test-reporter=tap', 'docs/knowledge-model/test_basic_sentence_delivery.mjs'], {
     cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 150000,
     stdio: ['ignore', 'pipe', 'pipe'], env,
   })
@@ -100,6 +100,14 @@ test('현재 문장14항목 보류·출처·실제 상담 경계를 검증한다
 })
 
 let moduleId = 0
+test('갑인 입력조건·35서술 보류와 실제 소비 경계를 검증한다', () => {
+  const env = { ...process.env }; delete env.NODE_TEST_CONTEXT
+  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_gapin_delivery.mjs'], {
+    cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 150000,
+    stdio: ['ignore', 'pipe', 'pipe'], env,
+  })
+  assert.match(output, /^# tests 9$/m); assert.match(output, /^# pass 9$/m); assert.match(output, /^# skipped 0$/m)
+})
 async function store(raw, rejectWrites = false) {
   let value = raw ?? null
   Object.defineProperty(globalThis, 'localStorage', { configurable: true, value: {
