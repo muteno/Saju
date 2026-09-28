@@ -1,0 +1,642 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-09-28",
+  "base_commit": "ec88e351ea9c28873c2260e2ad20adda666d8d87",
+  "scope": "four_legacy_rooting_candidates_source_review_only",
+  "inference_enabled": false,
+  "training_labels": false,
+  "probability": null,
+  "inputs": {
+    "docs/knowledge-model/data/figma_live_bindings.json": "de620357fe8f87ecbb4554439db643873a9cb5295df07dfc4f3e36b461c07555",
+    "docs/knowledge-model/data/foundation_taxonomy_review.json": "4083f3236be1285a8b7229b72fbc83a3887175c9a910b6ee8cc703c6c4c581be",
+    "docs/knowledge-model/data/legacy_review.json": "47b20376dd831b7a32b77a83c0ee128740af7b911322903ad5468cd7a7585885",
+    "docs/knowledge-model/knowledge_graph.json": "40196a3017e9111d3ffb9ad79a529f26ec7dccb9836c2c39cd96eb205c52df90",
+    "정제/_현황판/data/분기간선.jsonl": "84aac2e6ebaf96cf4f474a77abb639772f6254afe640943b27e50f0303e94893",
+    "정제/_현황판/data/조건부간선.jsonl": "cbf80d880615ca9c4e087efb14e1834cbeb27e834d7028aff57815f122e9675a",
+    "정제/_현황판/data/조건부간선_수기.jsonl": "fa30adca35e2cb76eb8d7a16e283a71d0ed505cfc9466672c672fa49eee4248a",
+    "정제/원본/P0_인벤토리/SG-G_paras.jsonl": "27818365ba422d89fddfb2a1ad4eb9967f2f9ed0c2c7aeaa7ee68b33efc97f81",
+    "정제/원본/P0_인벤토리/SG-G_posts.jsonl": "4cb9c1104607a7da393146d0d76297a7b877a212923330e0ce11166c09b3241e",
+    "정제/원본/P0_인벤토리/transcript_choco_v1/20240719_사주를 해석하는 순서와 방법_yPla-nmSoow.md": "c86a7f5f3bf8aaac75deb39588875fb289a866974d0098cd5ae8c82b18460ca3",
+    "정제/원본/P0_인벤토리/webtxt_v1/명리학탐구(기초) 전체 글모음 001-086.txt": "c04505583b3f30183b3553989fee7c0e0af0adc9cd50576c00840496c3ad119c",
+    "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 중급 글모음.txt": "18f4578fe0599baba0df5a76bfebf5aee88f99921fdd6d01196ff0ac0353ac9b",
+    "정제/원본/P0_인벤토리/webtxt_v1/원국 분석 및 용신 글모음.txt": "8310e5086adfa724ae3ac2e82ebf98689f73a77a590891c4e368686e189cbc52",
+    "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5"
+  },
+  "archive": {
+    "path": "정제본/사주공부-명리 중급 글모음.docx",
+    "sha256": "c6e81caad60bcda4fd076f848758ba8b60c3041c645c05ad02cc3a648281d728",
+    "locator_kind": "ooxml_paragraph_1based_including_table_paragraphs",
+    "bindings": [
+      {
+        "text_line": 1904,
+        "archive_locator": "XML-P1904"
+      },
+      {
+        "text_line": 1966,
+        "archive_locator": "XML-P1966"
+      }
+    ]
+  },
+  "source": {
+    "post_index": "정제/원본/P0_인벤토리/SG-G_posts.jsonl",
+    "paragraph_index": "정제/원본/P0_인벤토리/SG-G_paras.jsonl",
+    "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 중급 글모음.txt",
+    "post_record": {
+      "post_id": "SG-MID-P012",
+      "file": "사주공부-명리 중급 글모음.txt",
+      "title": "사주 기초 심화 - 통근론(通根論) 상편 (통근, 투출, 투간이란?)",
+      "date": "2021-12-06",
+      "url": "www.sajustudy.com/110",
+      "author": "사공",
+      "sub_author": null,
+      "lines": [
+        1896,
+        2052
+      ],
+      "n_paras": 7,
+      "license": "none"
+    }
+  },
+  "spans": [
+    {
+      "id": "SG-MID-P012-01",
+      "source_path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 중급 글모음.txt",
+      "lines": [
+        1896,
+        1901
+      ],
+      "text": "사주 기초 심화 - 통근론(通根論) 상편 (통근, 투출, 투간이란?)\n작성일 2021-12-06 · 분류 명리 중급 > 기초 심화 · 원문 www.sajustudy.com/110\n오늘은 통근(通根)과 투출(透出)에 대해서 공부해 보도록 하겠습니다. 통근과 투출은 사주 공부 중에 자주 언급되는 이론 중에 하나입니다. “천간 어느 글자가 지지에 뿌리를 두고 있다”, “뿌리가 있어 튼튼하다\"라는 내용을 많이 보셨을 겁니다.\n통근/투출은 십이운성 외에 천간과 지지의 관계를 보는 방법 중에 하나입니다. 적천수 계열의 이론을 채택하는 역술가 중에는 십이운성 이론을 잘 채택하지 않는 술사가 많습니다. 하지만 통근/투출은 거의 대부분 술사가 채택하는 이론 중에 하나입니다. 그만큼 사주 통변에서 중요도가 높은 이론이라 할 수 있습니다.\n저는 십이운성을 중요하게 활용하기 때문에 통근/투출과 십이운성을 함께 다뤄 설명해 보도록 하겠습니다.\n통근과 투출(투간) 기본 의미는 큰 차이가 없지만 통근이 더 큰 개념이라고 보시면 됩니다. 다만 천간을 기준으로 삼을 것인가, 지지를 기준으로 삼을 것인가의 차이 그리고 오행 관점에서 볼 것인지, 천간 관점에서 볼 것인지에 따라 차이가 있습니다. 같은 개념으로 이해해도 크게 무리가 없습니다.",
+      "post_id": "SG-MID-P012",
+      "index_record": {
+        "para_id": "SG-MID-P012-01",
+        "post_id": "SG-MID-P012",
+        "lines": [
+          1896,
+          1901
+        ],
+        "kind": "이론",
+        "subj": [
+          "S07",
+          "S08"
+        ],
+        "gist": "통근/투출 도입과 십이운성 활용 입장 선언",
+        "quote": "저는 십이운성을 중요하게 활용하기 때문에 통근/투출과 십이운성을 함께 다뤄 설명해 보도록 하겠습니다.",
+        "flags": [
+          "stance:십이운성"
+        ]
+      }
+    },
+    {
+      "id": "SG-MID-P012-02",
+      "source_path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 중급 글모음.txt",
+      "lines": [
+        1902,
+        1930
+      ],
+      "text": "통근(通根)이란?\n통근(通根) 통하다, 내왕하다 통(通), 뿌리 근(根)자를 써서 천간이 지지에 뿌리를 내렸다는 의미입니다. 천간이 하늘, 지지가 땅이라면 나무가 땅에 뿌리를 내리고 있는 형상입니다.\n통근은 천간 기준으로 본 것으로 천간 오행과 지지 지장간에 같은 오행이 있으면 통근한 것입니다. 예를 들어 갑진(甲辰)의 경우 천간 갑목이 지지 진중 을목에 통근한 것입니다.\n아래 예시 모두 통근에 해당합니다.\n(1)\n◎ 甲 ◎ ◎\n◎ 辰 ◎ ◎\n(2)\n◎ ◎ 乙 ◎\n◎ 未 ◎ ◎\n(3)\n◎ ◎ ◎ 甲\n◎ 寅 ◎ ◎\n(4)\n乙 ◎ ◎ ◎\n◎ 亥 ◎ ◎\n(5)\n◎ ◎ 乙 ◎\n◎ 辰 ◎ ◎\n(6)\n◎ ◎ 甲 ◎\n未 ◎ ◎ ◎\n(7)\n◎ ◎ ◎ 乙\n寅 ◎ ◎ ◎\n(8)\n甲 ◎ ◎ ◎\n◎ ◎ ◎ 亥\n모든 사주 천간(년간, 월간, 일간, 시간)이 지지에 뿌리를 내리고 있는 것을을 통근이라고 합니다.",
+      "post_id": "SG-MID-P012",
+      "index_record": {
+        "para_id": "SG-MID-P012-02",
+        "post_id": "SG-MID-P012",
+        "lines": [
+          1902,
+          1930
+        ],
+        "kind": "이론",
+        "subj": [
+          "S03",
+          "S08"
+        ],
+        "gist": "통근 정의: 천간 오행이 지지 지장간에 뿌리, 예시 8",
+        "quote": "통근은 천간 기준으로 본 것으로 천간 오행과 지지 지장간에 같은 오행이 있으면 통근한 것입니다",
+        "flags": [
+          "결정론"
+        ]
+      }
+    },
+    {
+      "id": "SG-MID-P012-03",
+      "source_path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 중급 글모음.txt",
+      "lines": [
+        1931,
+        1958
+      ],
+      "text": "투출(透出), 투간(透干)이란?\n투출(透出)은 꿰뚫다, 통과하다, 뛰어오르다 투(透)와 나가다, 태어나다 출(出) 글자를 꿰뚫어 나왔다는 의미를 가지고 있습니다. 투간(透干)은 천간의 의미인 간(干)자를 써서 꿰뚫어 나온 천간이라는 의미를 가집니다.\n통근은 천간 입장의 단어였다면 투출/투간은 지지 입장에서 바라본 것입니다. 통근은 오행을 기준으로 했다면 투출/투간은 좀 더 까다롭게 지장간의 글자와 천간의 글자가 같아야 합니다.\n통근의 예시에서 투출을 구분하면 다음과 같습니다.\n(1) 통근\n◎ 甲 ◎ ◎\n◎ 辰 ◎ ◎\n(2) 투출\n◎ ◎ 乙 ◎\n◎ 未 ◎ ◎\n(3) 투출\n◎ ◎ ◎ 甲\n◎ 寅 ◎ ◎\n(4) 통근\n乙 ◎ ◎ ◎\n◎ 亥 ◎ ◎\n(5) 투출\n◎ ◎ 乙 ◎\n◎ 辰 ◎ ◎\n(6) 통근\n◎ ◎ 甲 ◎\n未 ◎ ◎ ◎\n(7) 통근\n◎ ◎ ◎ 乙\n寅 ◎ ◎ ◎\n(8) 투출\n甲 ◎ ◎ ◎\n◎ ◎ ◎ 亥",
+      "post_id": "SG-MID-P012",
+      "index_record": {
+        "para_id": "SG-MID-P012-03",
+        "post_id": "SG-MID-P012",
+        "lines": [
+          1931,
+          1958
+        ],
+        "kind": "이론",
+        "subj": [
+          "S03",
+          "S08"
+        ],
+        "gist": "투출·투간 정의: 지장간 글자가 천간에 그대로, 통근과 구분",
+        "flags": [
+          "결정론"
+        ]
+      }
+    },
+    {
+      "id": "SG-MID-P012-04",
+      "source_path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 중급 글모음.txt",
+      "lines": [
+        1959,
+        1987
+      ],
+      "text": "고전에서 통근\n심효첨 선생님의 자평진전(子平眞詮)에서 천간 통근에 대한 내용을 한번 살펴보도록 하겠습니다. 고전 공부 없이 신강 신약을 공부하신 분들에게는 생각할 것이 많은 내용이니 꼭 한번 읽어보시기 바랍니다.\n是故十干不論月令休囚\n시고십간불론월령휴수\n십간은 월령의 휴수로만 논해서는 안 된다.\n只要四柱有根 便能受財官食神而當傷官七煞\n지요사주유근 편능수재관식신이당상관칠살\n사주에 뿌리가 있다면(통근하였다면) 능히 재성과 관성, 식신을 받아들일 수 있고, 상관과 칠살(편관)을 감당할 수가 있다.\n長生祿旺 根之重者也\n장생록왕 근지중자야\n장생과 건록, 제왕에 뿌리를 내린 것은 무겁고,\n墓庫餘氣 根之輕者也\n묘고여기 근지경자야\n묘고지 지장간 여기의 뿌리는 가벼운 것이다.\n得一比肩 不如得支中一墓庫\n득일비견 불여득지중일묘고\n하나의 천간 비견을 얻는 것은 하나의 묘고를 얻는 것보다 못하다.\n의역) 천간 비견을 얻는 것보다 지지 묘고에 뿌리를 내리는 것이 더 세력을 얻는 것이다.\n※ 일간을 예를 들어 설명하고 있습니다. 고전에서는 종종 천간은 십성으로 지지는 십이운성으로 분류하여 표현합니다. 천간과 지지를 구분하기 위함입니다.\n如甲逢未 丙逢戌之類\n여갑봉미 병봉술지류\n갑목이 미토를 만나고 병화가 술토를 만나는 것과 같다.\n乙逢戌 丁逢丑 不作此論\n을봉술 정봉축 부작차론\n을목이 술토를 만나고 정화가 축토를 만나는 것을 말하는 것이 아니다.\n以戌中無藏木 丑中無藏火也\n이술중무장목 축중무장화야\n술 중에는 목이 없고, 축 중에는 화가 없기 때문이다.\n의역) 같은 묘고지여도 지장간에 같은 오행이 없으면 통근한 것이 아닙니다. 음간의 묘고지는 통근/투출에 해당하지 않습니다.",
+      "post_id": "SG-MID-P012",
+      "index_record": {
+        "para_id": "SG-MID-P012-04",
+        "post_id": "SG-MID-P012",
+        "lines": [
+          1959,
+          1987
+        ],
+        "kind": "고전",
+        "subj": [
+          "S08"
+        ],
+        "gist": "자평진전 통근론1: 통근>월령휴수, 장생록왕>묘고여기, 음간 묘고 제외",
+        "quote": "사주에 뿌리가 있다면(통근하였다면) 능히 재성과 관성, 식신을 받아들일 수 있고, 상관과 칠살(편관)을 감당할 수가 있다.",
+        "flags": [
+          "결정론"
+        ]
+      }
+    },
+    {
+      "id": "SG-MID-P012-05",
+      "source_path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 중급 글모음.txt",
+      "lines": [
+        1988,
+        2035
+      ],
+      "text": "得二比肩 不如得一餘氣\n득이비겁 불여득일여기\n(천간)비겁을 두 개 얻는 것이 지장간 여기를 하나를 얻는 것보다 못하다.\n如乙逢辰 丁逢未之類\n여을봉진 정봉미지류\n을목이 진토를 만나고 정화가 미토를 만나는 것과 같다.\n得三比肩 不如得一長生祿刃\n득삼비겁 불여득일장생록인\n(천간)비겁을 세 개 얻는 것이 장생, 건록, 양인(제왕) 한 개를 얻는 것보다 못하다.\n如甲逢亥寅卯之類\n여갑봉해인묘지류\n갑목이 해수, 인목, 묘목을 만나는 것과 같다.\n陰長生不作此論 如乙逢午 丁逢酉之類\n음장생불작차론 여을봉오 정봉유지류\n음간의 장생은 이와 같이 말하지 않는다. 을목이 오화를 만나고 정화가 유금을 만나는 것과 같다.\n然亦爲明根 比得一餘氣\n연역위명근 비득일여기\n다만 뿌리가 명확하다면 하나의 여기를 얻는 것과 같다.\n蓋比劫如朋友之相扶 通根如室家之可住\n개비겁여명우지상부 통근여실가지가주\n대개 천간의 비겁은 친구가 서로 돕는 것과 같고 통근은 집안에 있는 것과 같다.\n干多不如根重 理固然也\n간다불여근중 리고연야\n천간이 많아도 뿌리가 있는 것보다 못하다는 것은 이치가 확고하다.\n今人不知命理\n금인부지명리\n요즘 사람들은 명리를 알지 못한다.\n見夏水冬火\n견하수다화\n여름의 물과 겨울의 불을 보면\n不問有無通根 便爲之弱\n불문유무통근 편위지약\n통근 유무를 묻지도 않고 쉽게 약하다 생각한다.\n更有陽干逢庫\n갱유약간봉고\n다시 양간이 고지를 만나는 경우\n如壬逢辰 丙坐戌之類\n여임봉진 병좌술지류\n예를 들어 임수가 진토를 만나거나 병화가 술토에 앉으면\n不以爲水火通根身庫\n불이위수화통근신고\n水火가 고지에 통근했다고 여기지 않고\n甚至求刑沖開之\n심지구형충개지\n심지어 형충으로 그것(고지)을 열어야 한다고 하니\n此種謬書謬論 必宜一切掃除也\n차종류서류론 필의일절소제야\n이러한 잘못된 글과 이론은 반드시 모두(일절) 제거하여야 한다.",
+      "post_id": "SG-MID-P012",
+      "index_record": {
+        "para_id": "SG-MID-P012-05",
+        "post_id": "SG-MID-P012",
+        "lines": [
+          1988,
+          2035
+        ],
+        "kind": "고전",
+        "subj": [
+          "S08"
+        ],
+        "gist": "자평진전 통근론2: 비겁<통근, 양간 고지 통근·개고론 비판",
+        "quote": "이러한 잘못된 글과 이론은 반드시 모두(일절) 제거하여야 한다.",
+        "flags": [
+          "stance:기타"
+        ]
+      }
+    },
+    {
+      "id": "SG-MID-P012-06",
+      "source_path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 중급 글모음.txt",
+      "lines": [
+        2036,
+        2040
+      ],
+      "text": "최근 많은 학파에서 천간, 지지를 구분하지 않는 경향이 있습니다. 갑목/을목, 인목/묘목을 구분하지 않고 같은 오행 목으로 보아 글자의 개수를 셉니다. 그리고 일간과 월지를 너무 강조하여 계절론 위주로 통변을 합니다.\n자평진전 내용을 보면 간지의 음양 구분 없이 같은 오행 글자 수를 세는 것과 지나치게 월지 계절을 따져 단순하게 통변하는 것이 잘못된 통변을 할 수 있는 계기가 될 수 있다는 점입니다.\n중요한 것은 이것이 맞다 틀리다를 이야기하는 것이 아니라 엄연히 천간, 지지가 구분되어 있는데 단순하게 해석하지 말고 좀 더 세심하게 통변해야 한다는 의미입니다. 이러한 내용이 있는 것조차 모르고 통변하는 것과 알고 통변하는 것은 많은 차이가 있음을 이해하시기 바랍니다.\n(※ 최근 많은 술사들이 사주 강의를 수익 모델과 마케팅으로 접근하여 빠르고 쉽게 학습하도록 단순화를 하는데 사주는 그렇게 단순한 학문이 아닙니다. 입문 과정이라면 그래도 되지만 입문만 가지고 사주를 풀 수 있다고 하는 것은 사기에 가깝습니다. 사주 명리는 당연히 어려운 학문입니다.)\n통근은 천간과 지지의 근거와 세력을 형성할 수 있는지를 보는 중요한 이론입니다. 통근에 대한 이해가 없이 뿌리가 있어 좋고 나쁨을 따진다면 어느 한순간 통변에 한계가 올 것이 분명합니다.",
+      "post_id": "SG-MID-P012",
+      "index_record": {
+        "para_id": "SG-MID-P012-06",
+        "post_id": "SG-MID-P012",
+        "lines": [
+          2036,
+          2040
+        ],
+        "kind": "이론",
+        "subj": [
+          "S08",
+          "S12"
+        ],
+        "gist": "천간지지 미구분·계절론 과신·업계 마케팅 비판",
+        "quote": "입문만 가지고 사주를 풀 수 있다고 하는 것은 사기에 가깝습니다",
+        "flags": [
+          "stance:기타"
+        ]
+      }
+    },
+    {
+      "id": "SG-MID-P012-07",
+      "source_path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 중급 글모음.txt",
+      "lines": [
+        2041,
+        2052
+      ],
+      "text": "자평진전의 내용을 정리하면 다음과 같습니다.\n(1) 천간의 힘(세력)을 볼 때는 월지 판단이 주(主)가 되지만 반드시 그렇지만은 않다.\n(2) 천간의 통근 여부를 판단하여 천간의 근거와 세력이 있음을 판단한다.\n(3) 천간 힘의 세기는 다음과 같이 판단한다.\n뿌리가 없는 천간 < 천간 1개 비겁 < 천간 2개 비겁 < 여기(초기) 1개에 통근한 천간 < 천간 3개 비겁 < 중기, 정기(생지, 왕지) 1개에 통근한 천간\n(4) 천간 뿌리는 십이운성으로 판단하지 않고 지장간에 같은 오행이 있는지로 판단한다.\n→ 양간은 장생, 건록, 제왕, 쇠지, 묘지에 음간은 사지, 건록, 제왕, 관대, 양지에 통근합니다. 통근한 십이운성을 외우기보다는 지장간을 외우는 것이 통변에 효과적입니다.\n(5) 천간의 비겁은 친구와 같고 통근은 집안이 돕는 것과 같다.\n→ 천간의 비겁은 양적 증가를 의미합니다. 통근은 질적 증가와 양적 증가의 바탕(지지의 지원)이 됩니다.\n(6) 고지의 지장간은 형충으로 개고하여 쓰는 것이 아니다.\n→ 고지의 지장간은 항상 뿌리가 되어 사용할 수 있는 것입니다. 입묘/입고 한다고 하여 기운을 못쓰게 되는 것이 아닙니다. 형충으로 개고해서 사용한다는 이론은 잘 못되었다고 합니다. 개고에 대한 부분은 향후에 포스팅하겠습니다.\n관련 링크",
+      "post_id": "SG-MID-P012",
+      "index_record": {
+        "para_id": "SG-MID-P012-07",
+        "post_id": "SG-MID-P012",
+        "lines": [
+          2041,
+          2052
+        ],
+        "kind": "이론",
+        "subj": [
+          "S08"
+        ],
+        "gist": "자평진전 통근 정리: 천간 세력 위계·개고론 부정",
+        "quote": "뿌리가 없는 천간 < 천간 1개 비겁 < 천간 2개 비겁 < 여기(초기) 1개에 통근한 천간",
+        "flags": [
+          "결정론",
+          "stance:기타"
+        ]
+      }
+    },
+    {
+      "id": "root_figma_same_character",
+      "source_path": "docs/knowledge-model/data/figma_live_bindings.json",
+      "lines": [
+        915,
+        920
+      ],
+      "text": "          \"scope_root_node_id\": \"498:4143\",\n          \"field\": \"name\",\n          \"quote\": \"통근: 천간의 글자가 지지의 지장간에 같은 글자가 있는 것\",\n          \"role\": \"concept_reference\",\n          \"content_sha256\": \"ff412d82cb74a692bdc7a6cec66e4c6d09d8266bd9674ff8c932d051321b9d22\",\n          \"field_sha256\": \"c1f848930c4dd9d529709046464f89e6b0a60479503b34157ddcf69dc6dc2e7b\",",
+      "f01_record": {
+        "id": "root_figma_same_character",
+        "path": "docs/knowledge-model/data/figma_live_bindings.json",
+        "sha256": "de620357fe8f87ecbb4554439db643873a9cb5295df07dfc4f3e36b461c07555",
+        "lines": [
+          915,
+          920
+        ],
+        "legacy_para_id": null,
+        "quote": "통근: 천간의 글자가 지지의 지장간에 같은 글자가 있는 것",
+        "role": "source_scope_or_boundary_review_not_training_label"
+      }
+    },
+    {
+      "id": "root_choco_same_element",
+      "source_path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "lines": [
+        33,
+        53
+      ],
+      "text": "이번 시간에는 위 1번과 2번처럼 각각 기준을 천간, 또는 지지로 나누어서 사주를 살펴보려 합니다. 그래야 통근, 투간, 투출의 개념을 제대로 이해할 수 있으니까요.\n 천간의 관점 : 통근(通根)\n통근은 천간이 지지에 동일한 간지나, 같은 오행을 뿌리로 두고 있다는 뜻입니다.\n일간이 을목인데 일지를 묘목으로 두고 있는 위 사주를 살펴보겠습니다.\n이때\n“일간 을목은 일지 묘목에 통근했다＂거나,\n“일간 을목이 묘중 을목에 뿌리를 두고 있다＂고 말할 수 있습니다.\n통근이나 뿌리를 두었다는 표현은, 말 그대로 천간과 지지가 서로 소통이 되었다는 것을 의미합니다. 이렇게 통근이 되면, 간지와 오행은 더욱 선명하게 자신의 기운을 드러낼 수 있게 됩니다.\n나아가 위 예시의 경우,\n“월간 갑목이 일지 묘중에 통근했다”\n“월간 갑목이 일지 묘중 갑목에 통근했다”\n“월간 갑목이 일지 묘중 을목에 통근했다”고 말할 수 있습니다.\n통근했다는 용어는 천간과 지지의 거리가 멀리 떨어져 있어도 상관없이 쓸 수 있습니다.\n예를 들어, 이 사주의 경우\n“연간 경금이 시지 신금에 통근했다”\n“연간 경금이 시지 신중 경금에 통근했다”\n“연간 경금이 축중 신금에 통근했다” 고 말할 수 있습니다.\n당연히, 통근했다는 말 대신, 뿌리를 내렸다거나 뿌리를 두고 있다, 고 표현해도 무방합니다.\n연간 뿐만 아니라, 월간, 일간, 시간을 기준으로 둘 경우에도,\n거리가 얼만큼 떨어져 있는지와 상관없이\n지지나 지장간에 같은 오행만 있다면 그곳에 통근했다고 말할 수 있습니다.",
+      "f01_record": {
+        "id": "root_choco_same_element",
+        "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+        "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+        "lines": [
+          33,
+          53
+        ],
+        "legacy_para_id": null,
+        "quote": "통근은 천간이 지지에 동일한 간지나, 같은 오행을 뿌리로 두고 있다는 뜻입니다.",
+        "role": "source_scope_or_boundary_review_not_training_label"
+      }
+    },
+    {
+      "id": "root_choco_time_scope",
+      "source_path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+      "lines": [
+        132,
+        145
+      ],
+      "text": "물론, 위 예시의 경우\n“대운의 천간 신금이 일지 축중 신금에 통근했다”\n“대운의 천간 신금이 일지 축중 신금에 뿌리를 내렸다”\n“세운의 천간 기토가 일지 축중 기토에 통근했다”\n“세운의 천간 기토가 시지 신중 무토에 뿌리를 내렸다”\n라는 표현 모두 쓸 수 있습니다.\n간단히 정리해보면,\n대세운과 원국을 포함하여 천간을 기준으로 지지나 지장간에 같은 오행을 두고 있을 때는 통근했다거나 뿌리를 내렸다고 말할 수 있습니다.\n원국의 지지나 지장간을 기준으로,\n대세운을 포함하여 천간에 같은 간지가 있다면 투간했다거나 투출했다고 표현하고,\n천간에 같은 오행이 있다면 투출했다고 말할 수 있습니다.\n다만, 대운의 지지 축중 계수가 월간 임수로 투간했다거나 투출했다고 표현하지는 않습니다.\n투간이나 투출이라는 용어는 대세운이 아니라,\n원국의 지지나 지장간을 기준으로 했을 때만 쓸 수 있는 용어이기 때문입니다.",
+      "f01_record": {
+        "id": "root_choco_time_scope",
+        "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-사주용어사전 글모음.txt",
+        "sha256": "b6c4279e707472078e81bb33412d6c7b0ccee06abdcf5f2d23346bb502e197d5",
+        "lines": [
+          132,
+          145
+        ],
+        "legacy_para_id": null,
+        "quote": "대세운과 원국을 포함하여 천간을 기준으로 지지나 지장간에 같은 오행을 두고 있을 때는 통근했다거나 뿌리를 내렸다고 말할 수 있습니다.",
+        "role": "source_scope_or_boundary_review_not_training_label"
+      }
+    },
+    {
+      "id": "root_hyeonmyo_supporting_element",
+      "source_path": "정제/원본/P0_인벤토리/webtxt_v1/원국 분석 및 용신 글모음.txt",
+      "lines": [
+        698,
+        712
+      ],
+      "text": "통근, 투간, 투출이란? (8)\n작성일 2021-01-22 · 원문 yavares.tistory.com/523\n오늘은 지지의 투간 두번째 시간입니다. 오늘은 지지의 투간에 대한 구체적인 방법을 알아보고, 월지를 중심으로 실제 투간의 사례를 살펴보겠습니다.\n1. 투간의 방법\n천간의 통근은 지지에 같은 오행이 있거나 생해주는 오행이 있을 경우에 통근이라고 볼 수 있습니다.\n십신으로 환산하면, 비겁과 인성이 있을 때 비로소 뿌리가 있다고 말할 수 있습니다.\n지지의 투간의 경우는 똑같은 간지가 천간에 떠 있을 경우만 투간으로 인정됩니다.\n천간의 통근이 비겁과 인성을 포괄하는 것에 비해\n지지의 투간은 그 범위가 아주 좁다는 것을 확인할 수 있습니다.\n천간에 乙(을목)이 있을 때,\n지지의 지장간에 甲(갑목), 乙(을목), 壬(임수), 癸(계수)가 있으면 모두 통근으로 인정됩니다.\n하지만 투간의 경우,\n지지에 乙(을목)이 있을 때,\n천간에 乙(을목)이 떠 있어야만 투간으로 인정됩니다.\n얼핏 보면 같은 개념이지만, 투간이 훨씬 그 범위가 좁기 때문에 통근과 투간을 같은 선상에 놓고 두루뭉술 이해해 버리면 곤란합니다.",
+      "f01_record": {
+        "id": "root_hyeonmyo_supporting_element",
+        "path": "정제/원본/P0_인벤토리/webtxt_v1/원국 분석 및 용신 글모음.txt",
+        "sha256": "8310e5086adfa724ae3ac2e82ebf98689f73a77a590891c4e368686e189cbc52",
+        "lines": [
+          698,
+          712
+        ],
+        "legacy_para_id": null,
+        "quote": "천간의 통근은 지지에 같은 오행이 있거나 생해주는 오행이 있을 경우에 통근이라고 볼 수 있습니다.",
+        "role": "source_scope_or_boundary_review_not_training_label"
+      }
+    },
+    {
+      "id": "root_myeongri_same_element",
+      "source_path": "정제/원본/P0_인벤토리/webtxt_v1/명리학탐구(기초) 전체 글모음 001-086.txt",
+      "lines": [
+        1732,
+        1736
+      ],
+      "text": "-금오행 : 경,신 - 사(무경병), 유(경신), 축(계신기), 신(무임경), 술(신정무)\n-수오행 : 임,계 - 신(무임경), 자(임계), 진(을계무), 해(무갑임), 진(을계무)\n천간의 오행이 지지의 지장간에 같은 오행이 있으면 통근으로 봅니다.\n[투출]\n지장간의 오행이 천간에 자신과 같은 글자가 오는 경우를 말합니다. 투출은 같은 오행으로만으로는 부족하고, 반드시 같은 글자여야 합니다. 투출은 통근과 마찬가지로, 같은 기둥이 아니라도 천간으로 나타나기만 하면 됩니다. 다만 동주가 아니면 그 힘은 떨어질수 밖에 없고, 멀어질수록 힘의 크기도 줄어듭니다. 투출은 격국을 살피는 유용한 도구가 됩니다. 투출은 땅의 기운이 하늘에 통하는 것으로 봅니다.",
+      "f01_record": {
+        "id": "root_myeongri_same_element",
+        "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학탐구(기초) 전체 글모음 001-086.txt",
+        "sha256": "c04505583b3f30183b3553989fee7c0e0af0adc9cd50576c00840496c3ad119c",
+        "lines": [
+          1732,
+          1736
+        ],
+        "legacy_para_id": null,
+        "quote": "천간의 오행이 지지의 지장간에 같은 오행이 있으면 통근으로 봅니다.",
+        "role": "source_scope_or_boundary_review_not_training_label"
+      }
+    },
+    {
+      "id": "root_strength_qualified",
+      "source_path": "정제/원본/P0_인벤토리/transcript_choco_v1/20240719_사주를 해석하는 순서와 방법_yPla-nmSoow.md",
+      "lines": [
+        750,
+        760
+      ],
+      "text": "편인도식 아닌가? 라고 하시겠지만\n월간에 있는 임수는\n다행히 일지 신중임수의 뿌리가 있어요\n실은 이 임수가\n진중계수의 뿌리가 있다고 보기는 조금 어렵습니다\n강하게 내리고 있진 않거든요 뿌리를\n그런데 일지의 뿌리가 있잖아요\n이게 엄청난 거예요\n왜?\n일지가 무슨 자리죠 여러분?\n건강, 직업, 배우자죠",
+      "f01_record": {
+        "id": "root_strength_qualified",
+        "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20240719_사주를 해석하는 순서와 방법_yPla-nmSoow.md",
+        "sha256": "c86a7f5f3bf8aaac75deb39588875fb289a866974d0098cd5ae8c82b18460ca3",
+        "lines": [
+          750,
+          760
+        ],
+        "legacy_para_id": "CT-P146-38",
+        "quote": "진중계수의 뿌리가 있다고 보기는 조금 어렵습니다",
+        "role": "source_scope_or_boundary_review_not_training_label"
+      }
+    }
+  ],
+  "candidates": [
+    {
+      "id": "legacy_candidate_e6ae40a2c5f49866760a",
+      "legacy_record_sha256": "4d2563fbd57906db8fe110d69124378d34cbd9d6cfeeb7e3b599bfcbe05356f2",
+      "legacy_para_id": "SG-MID-P012-02",
+      "legacy_group": "legacy_group_0e9eba96e6677d272bb8",
+      "legacy_anchor_count": 226,
+      "reviewed_source_group": "sagong-110-definition",
+      "source_span": "SG-MID-P012-02",
+      "source_line": 1904,
+      "condition_claim": "same_element_definition",
+      "decision": "source_definition_with_scope_limits",
+      "issues": [
+        "manual_anchor_is_not_condition_evidence",
+        "distance_is_example_supported_not_verbatim_or_equal_strength",
+        "definition_not_personal_capacity"
+      ],
+      "inference_enabled": false,
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "id": "legacy_candidate_37d94c50ce3a4be489a0",
+      "legacy_record_sha256": "9e88a3596b08efc2d0281f4fc418b3d4fb305bd1bfa79597c884e298f4883c04",
+      "legacy_para_id": "SG-MID-P012-04",
+      "legacy_group": "legacy_group_41343d1f451b3fcab023",
+      "legacy_anchor_count": 1,
+      "reviewed_source_group": "sagong-110-classic-translation",
+      "source_span": "SG-MID-P012-04",
+      "source_line": 1966,
+      "condition_claim": "rooted_capacity",
+      "decision": "source_claim_only_personal_application_withheld",
+      "issues": [
+        "one_shared_condition_not_exclusive_branches",
+        "missing_output_food_god_in_legacy_extraction",
+        "not_wealth_or_authority_presence_or_success",
+        "negative_converse_not_stated"
+      ],
+      "inference_enabled": false,
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "id": "legacy_candidate_51b7d3ebc8fd2f9e9272",
+      "legacy_record_sha256": "2a15396d4f67114c42828c9c72b0b98c619dbc9d6717989d04be96af57bc2d07",
+      "legacy_para_id": "SG-MID-P012-04",
+      "legacy_group": "legacy_group_41343d1f451b3fcab023",
+      "legacy_anchor_count": 1,
+      "reviewed_source_group": "sagong-110-classic-translation",
+      "source_span": "SG-MID-P012-04",
+      "source_line": 1966,
+      "condition_claim": "rooted_capacity",
+      "decision": "source_claim_only_personal_application_withheld",
+      "issues": [
+        "one_shared_condition_not_exclusive_branches",
+        "missing_output_food_god_in_legacy_extraction",
+        "not_wealth_or_authority_presence_or_success",
+        "negative_converse_not_stated"
+      ],
+      "inference_enabled": false,
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "id": "legacy_candidate_f6a14a608168bad599d0",
+      "legacy_record_sha256": "a8950bc90b33aed44a595abc85c3f3511679ed4885b5dcecbdb331ee91cca9e4",
+      "legacy_para_id": "SG-MID-P012-04",
+      "legacy_group": "legacy_group_41343d1f451b3fcab023",
+      "legacy_anchor_count": 1,
+      "reviewed_source_group": "sagong-110-classic-translation",
+      "source_span": "SG-MID-P012-04",
+      "source_line": 1966,
+      "condition_claim": "rooted_capacity",
+      "decision": "source_claim_only_personal_application_withheld",
+      "issues": [
+        "one_shared_condition_not_exclusive_branches",
+        "missing_output_food_god_in_legacy_extraction",
+        "not_wealth_or_authority_presence_or_success",
+        "negative_converse_not_stated"
+      ],
+      "inference_enabled": false,
+      "training_labels": false,
+      "probability": null
+    }
+  ],
+  "claims": [
+    {
+      "id": "same_element_definition",
+      "kind": "source_definition",
+      "evidence": [
+        "SG-MID-P012-02",
+        "SG-MID-P012-03",
+        "SG-MID-P012-07"
+      ],
+      "subject": "천간 각각(년·월·일·시), 일간에 한정하지 않음",
+      "relation": "지지의 지장간에 같은 오행이 있음",
+      "identity": "same_element; same_character is sufficient but not required in this publication",
+      "position": "원문8예시에 동주·다른 열·양끝 열이 포함된다. 열에 년월일시 라벨은 없으므로 순서를 새로 붙이지 않는다. 거리와 무관하게 명칭을 쓴다는 요약은 가능하나 같은 강도라는 규칙은 아니다.",
+      "time": "SG-MID-P012는 사주 네 천간/지지 문맥. 대운·세운은 여기서 검증되지 않음.",
+      "unknown": "대상 천간·지지·지장간 판본 또는 필요한 시주가 미상인 개인 입력은 이 자료만으로 계산하지 않는다.",
+      "limits": [
+        "통근과 지지 기준 투출/투간을 같은 술어로 합치지 않음",
+        "생조 오행 포함은 이 정의와 다름",
+        "동주/인접만 허용하는 조건을 덧붙이지 않음",
+        "힘/득령/강약 분류·거리 가중치는 산출하지 않음"
+      ]
+    },
+    {
+      "id": "rooted_capacity",
+      "kind": "attributed_classic_translation",
+      "evidence": [
+        "SG-MID-P012-04",
+        "SG-MID-P012-05",
+        "SG-MID-P012-06",
+        "SG-MID-P012-07"
+      ],
+      "lineage": "사공 2021-12-06 게시글의 자평진전 인용·번역·의역. 고전 원판/번역 정확도는 독립 확인하지 않음.",
+      "shared_condition": "사주에 뿌리가 있다면(통근하였다면)",
+      "outcomes": [
+        {
+          "concept": "wealth",
+          "label": "재성",
+          "predicate": "받아들일 수 있다"
+        },
+        {
+          "concept": "authority",
+          "label": "관성",
+          "predicate": "받아들일 수 있다"
+        },
+        {
+          "concept": "ten_god_식신",
+          "label": "식신",
+          "predicate": "받아들일 수 있다"
+        },
+        {
+          "concept": "ten_god_상관",
+          "label": "상관",
+          "predicate": "감당할 수 있다"
+        },
+        {
+          "concept": "ten_god_편관",
+          "label": "칠살(편관)",
+          "predicate": "감당할 수 있다"
+        }
+      ],
+      "logic": "같은 조건 아래 두 동사와 다섯 대상의 병렬 나열. 양자택일/별개 조건/확률 분기로 해석하지 않는다.",
+      "subject": "첫 원문은 십간. 같은 문단의 뒤 비교에는 일간 예시라는 주석이 있다. 개인 대상·측정 가능한 효과 정의는 미확정.",
+      "position": "발현의 동주·인접·거리 임계값은 이 문장에 없음. 정의 예시를 발현 조건으로 전이하지 않음.",
+      "time": "원국 사주 문맥; 대운·세운이나 실제 발생 시점은 미정.",
+      "unknown": "미상=무근/실패가 아님. 역명제(무근이면 수용 불가)·개인 재물/직업 결과를 만들지 않는다.",
+      "limits": [
+        "단어 존재가 재성/관성 존재 또는 성공을 뜻하지 않음",
+        "옛 중립/정(+) 부호·가중치·등급을 효과크기나 학습확률로 전용하지 않음",
+        "고전·번역·의역·요약을 독립 지지로 중복 합산하지 않음"
+      ]
+    },
+    {
+      "id": "exceptions_and_strength",
+      "kind": "source_qualifications",
+      "evidence": [
+        "SG-MID-P012-04",
+        "SG-MID-P012-05",
+        "SG-MID-P012-07"
+      ],
+      "notes": [
+        "장생/록왕과 묘고/여기의 정성적 강도 차이를 보존하며 숫자 가중치로 바꾸지 않는다.",
+        "乙-戌, 丁-丑은 해당 지장간에 같은 오행이 없다는 본문 예외다. 모든 음간의 통근을 부정하지 않는다.",
+        "음간 장생에 대한 예외와 뿌리가 명확할 경우의 후속 단서를 함께 보존한다.",
+        "여름 물/겨울 불을 통근 확인 없이 약하다고 단정하는 것을 저자가 비판한다.",
+        "형충 개고가 있어야 묘고 뿌리를 쓴다는 이론을 이 글은 부정한다. 이를 모든 저자의 합의로 쓰지 않는다."
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "source": "Figma preserved snapshot",
+      "evidence": [
+        "root_figma_same_character"
+      ],
+      "identity": "same_character",
+      "position": "not_specified_in_cited_text",
+      "time": "not_specified_in_cited_text"
+    },
+    {
+      "source": "사공 /110",
+      "evidence": [
+        "SG-MID-P012-02",
+        "SG-MID-P012-03"
+      ],
+      "identity": "same_element",
+      "position": "different_columns_in_8_examples; not equal strength",
+      "time": "natal_context"
+    },
+    {
+      "source": "초코서당 용어사전",
+      "evidence": [
+        "root_choco_same_element",
+        "root_choco_time_scope"
+      ],
+      "identity": "same_element",
+      "position": "distant_positions_explicitly_allowed_for_terminology",
+      "time": "luck_stem_to_natal_branch_explicit; do_not_transfer_to_sagong"
+    },
+    {
+      "source": "명리학탐구 기초",
+      "evidence": [
+        "root_myeongri_same_element"
+      ],
+      "identity": "same_element",
+      "position": "distance_strength_sentence_describes_tuchul_not_automatically_rooting",
+      "time": "not_specified_in_cited_text"
+    },
+    {
+      "source": "현묘 /523",
+      "evidence": [
+        "root_hyeonmyo_supporting_element"
+      ],
+      "identity": "same_or_supporting_element",
+      "position": "not_specified_in_cited_text",
+      "time": "not_specified_in_cited_text"
+    },
+    {
+      "source": "초코 전사 사례",
+      "evidence": [
+        "root_strength_qualified"
+      ],
+      "identity": "case_qualified_strength_not_universal_same_element_negation",
+      "position": "월간 임수/일지 신중임수와 진중계수 구별",
+      "time": "원국 사례; 음원·그림 미검수"
+    }
+  ],
+  "source_groups": [
+    {
+      "id": "sagong-110-definition",
+      "candidate_ids": [
+        "legacy_candidate_e6ae40a2c5f49866760a"
+      ],
+      "post_id": "SG-MID-P012",
+      "primary_span": "SG-MID-P012-02"
+    },
+    {
+      "id": "sagong-110-classic-translation",
+      "candidate_ids": [
+        "legacy_candidate_37d94c50ce3a4be489a0",
+        "legacy_candidate_51b7d3ebc8fd2f9e9272",
+        "legacy_candidate_f6a14a608168bad599d0"
+      ],
+      "post_id": "SG-MID-P012",
+      "primary_span": "SG-MID-P012-04"
+    }
+  ],
+  "summary": {
+    "reviewed_candidates": 4,
+    "primary_paragraph_groups": 2,
+    "primary_publications": 1,
+    "independent_support_count": null,
+    "condition_rules_added": 0,
+    "personal_inference_eligible": 0,
+    "training_eligible": 0,
+    "probability": null
+  }
+}
