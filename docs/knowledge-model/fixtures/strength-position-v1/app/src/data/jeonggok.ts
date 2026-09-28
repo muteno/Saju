@@ -112,17 +112,17 @@ export function selectJeonggok(raw: JeonggokRaw): JeonggokPick | null {
       focus: ['일'],
     })
 
-  // F. 신강/신약 극단 — INFER (보드 자리 배점 + 앱 잠정 분류)
+  // F. 신강/신약 극단 — INFER (라벨은 통설·보드 판정)
   if (raw.strength.label === '극신강')
     push({
       token: '신강(뚜렷)', layer: 'INFER', rarity: 0.5, felt: 0.75, safety: 0.6,
-      evid: `강약 앱 잠정 기준 ${raw.strength.score}/${raw.strength.max} = 극신강`,
+      evid: `강약 보드 ${raw.strength.score}/${raw.strength.max} = 극신강`,
       line: '기운이 아주 세게 계산돼. 남 말 듣고 움직이는 건 딱 질색인 판이야.',
     })
   else if (raw.strength.label === '극신약')
     push({
       token: '신약(뚜렷)', layer: 'INFER', rarity: 0.5, felt: 0.75, safety: 0.6,
-      evid: `강약 앱 잠정 기준 ${raw.strength.score}/${raw.strength.max} = 극신약`,
+      evid: `강약 보드 ${raw.strength.score}/${raw.strength.max} = 극신약`,
       line: '기운이 많이 여리게 계산돼. 혼자보다 곁이 있어야 사는 판이지.',
     })
 

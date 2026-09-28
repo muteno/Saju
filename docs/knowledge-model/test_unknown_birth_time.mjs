@@ -12,6 +12,7 @@ import { runFrozenAudit } from './frozen_app_audit.mjs';
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const require = createRequire(new URL('../../app/package.json', import.meta.url));
 const baseline = JSON.parse(readFileSync(new URL('data/foundation_strength_consumers.json', import.meta.url)));
+const corrected = new Map(JSON.parse(readFileSync(new URL('data/foundation_strength_correction.json', import.meta.url))).rows.map(r => [r.id, r.after]));
 const OriginalDate = globalThis.Date, originalFetch = globalThis.fetch;
 let engine, profiles, readings, topics, client, jeonggok, server, directory;
 
@@ -107,23 +108,24 @@ test('explicit uncertainty cannot be overridden by false flags or stale known re
   assert.equal(await client.requestDosaText({ report: rep, hourUnknown: true, signal }), null);
 });
 
-test('forty known inputs preserve pre-fix profile, summary, strength, judge card and brain keys', () => {
+test('forty known inputs preserve profile/share and enforce the explicit corrected strength policy', () => {
   const pick = p => p ? { token: p.token, layer: p.layer, evid: p.evid, line: p.line } : null;
   for (const row of baseline.rows.filter(r => !r.profile.hourUnknown)) {
     const input = profiles.profileToInput(row.profile), rep = engine.buildReading(input, '병오');
+    const expected = corrected.get(row.id);
     assert.deepEqual(input, row.input);
     assert.deepEqual(profiles.parseShare(profiles.profileToSearch(row.profile)).input, input);
-    assert.equal(topics.chartSummaryOf(rep), row.summary);
-    assert.equal(rep.sections.find(s => s.id === 'judge').lines[0], row.report_line);
+    assert.equal(topics.chartSummaryOf(rep), expected.summary);
+    assert.equal(rep.sections.find(s => s.id === 'judge').lines[0], expected.report_line);
     const raw = engine.jeonggokRaw(input);
-    assert.equal(raw.strength.score, row.current.score); assert.equal(raw.strength.label, row.current.label);
+    assert.equal(raw.strength.score, row.weight_swap_only.score); assert.equal(raw.strength.label, row.weight_swap_only.label);
     assert.deepEqual(pick(jeonggok.selectJeonggok(raw)), row.direct_jeonggok);
     const reading = readings.toReading(input);
-    assert.equal(reading.cards.find(c => c.id === 'judge').blocks[0].lines[0], row.reading_judge_line);
+    assert.equal(reading.cards.find(c => c.id === 'judge').blocks[0].lines[0], expected.card.blocks[0].lines[0]);
     const brain = engine.brainReading(input, '병오');
-    assert.deepEqual(brain.노드.map(n => n.키), row.brain.matched_keys);
-    assert.deepEqual(brain.못맞춘키, row.brain.unmatched_keys);
-    assert.equal(brain.관계.length, row.brain.relation_count);
+    assert.deepEqual(brain.노드.map(n => n.키), expected.brain.matched_keys);
+    assert.deepEqual(brain.못맞춘키, expected.brain.unmatched_keys);
+    assert.equal(brain.관계.length, expected.brain.relation_count);
     assert.equal(engine.computeChartUI(input).pillars.length, 4);
     assert.ok(engine.todayFortune(input));
   }

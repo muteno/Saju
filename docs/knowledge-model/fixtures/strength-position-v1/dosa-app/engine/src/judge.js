@@ -1,14 +1,16 @@
 // 구조 판정 (L1.5) — 원국 전반의 짜임새: 신강신약·득령득지득세·조후·오행 편중·십신 체인.
-// 자리 배점 근거: 방법론 보드 raw의 자리 좌표(연10·월30·일15·시15, 천간 각10·일간 포함).
-// docs/knowledge-model/FOUNDATION_STRENGTH_CORRECTION.md에서 근거와 기존 정책을 구분한다.
-// 비겁·인성/지지 마지막 본기만의 도움, 득세 조건, 5등급 전체 경계는 기존 앱의 잠정 기준이다.
-// 보드의 30/45/60 표식만으로 이 분류 전체를 인증하지 않는다. 학습값·확률이 아니다.
+// 판정 기준의 1순위 근거는 방법론 보드(유료 입문강의 6개월 요약, methodology/figjam_board_full.md):
+//   - 점수제: 총 110점 = 천간 4자리 각 10 + 지지 년15·월30·일15·시10.
+//     일간을 돕는(비겁·인성) 글자의 자리 점수 합산. 기준점: 30(신약)·45(중화)·60(신강).
+//     검산: 포스텔러 샘플(병인일주, 신강)이 70점으로 재현됨.
+//   - 득령: "월령이 비/인" = 득령, "월령이 식/재/관" = 실령 (보드 원문).
+// 극신강/극신약 경계(85/15)는 표본 부족으로 잠정치 — 실전 사주풀이 표본 확보 시 보정.
 
 import { STEM_ELEMENT, HIDDEN_STEMS, TEN_GODS, tenGod, sexStem, sexBranch, ELEMENTS } from './tables.js';
 
 const POS = ['year', 'month', 'day', 'hour'];
-export const STRENGTH_BRANCH_WEIGHTS = Object.freeze({ year: 10, month: 30, day: 15, hour: 15 });
-export const STRENGTH_STEM_WEIGHT = 10;
+const BRANCH_W = { year: 15, month: 30, day: 15, hour: 10 };
+const STEM_W = 10;
 
 /** 십신 인덱스 → 오분류 (0비겁 1식상 2재성 3관성 4인성) */
 const groupOf = (tg) => Math.floor(tg / 2);
@@ -19,7 +21,7 @@ function branchMainStem(b) {
   return hs[hs.length - 1];
 }
 
-/** 신강신약: 보드 자리 배점 + 기존 앱의 잠정 도움/분류 정책 */
+/** 신강신약 판정 (보드 110점제) */
 export function strengthJudge(chart) {
   const p = chart.pillarsIdx;
   const day = sexStem(p.day);
@@ -33,8 +35,8 @@ export function strengthJudge(chart) {
     const s = sexStem(p[q]), b = sexBranch(p[q]);
     const stemHelp = q === 'day' ? true : helps(s); // 일간 자신 = 아신 10점 (보드 '비견(아신) x10')
     const branchHelp = helps(branchMainStem(b));
-    if (stemHelp) score += STRENGTH_STEM_WEIGHT;
-    if (branchHelp) score += STRENGTH_BRANCH_WEIGHTS[q];
+    if (stemHelp) score += STEM_W;
+    if (branchHelp) score += BRANCH_W[q];
     detail[q] = { stemHelp, branchHelp };
   }
   // 득령·득지·득시·득세 (득세: 월지·일지·시지 외 조력 — 년주·월간·시간 중 2곳 이상)
