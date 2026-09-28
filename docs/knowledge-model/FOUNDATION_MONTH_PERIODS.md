@@ -1,5 +1,19 @@
 # F03 월률분야·사령 기간 판본 검수
 
+## 2026-09-28 병합 후 근거 연결 검수 보강
+
+PR #205의 [자동 검토 지적](https://github.com/muteno/Saju/pull/205#discussion_r4117973804)을 실제 재현했다. 옛 검사기는 `board_scope`와 `solstice_asr`의 근거를 바꿔도 전체 근거 집합만 같으면 통과했다. 현재 검수·조회 진입점은 **`month_period_claim_guard.py`**다. 11주장의 ID별 정확 근거와 출처를 검사하고 과거312행 측정을 JSON타입까지 보존해 대조한다. 서로 다른 출처 교환뿐 아니라 같은 저자의 무관 주장 교환도 거절한다. 기준판 `5afcb70`에서 독립 고정한 정규화 JSON SHA-256으로23근거의 경로/구간/인용/해시를 포함한 검토판 전체를 검사한다. ID·출처를 유지한 원문 payload 교환도 검증·조회 API와 CLI 모두에서 차단한다. 새 원문 판본이 필요하면 별도 검수 계약으로 다룬다.
+
+```bash
+python3 docs/knowledge-model/month_period_claim_guard.py --check
+python3 docs/knowledge-model/month_period_claim_guard.py --branch 午 --synthetic-offset 19.5
+python3 -m unittest discover -s docs/knowledge-model -p 'test_month_period_claim_guard.py'
+```
+
+새7회귀가 필수 Python 게이트에서 실행된다. 아래의 `month_period_review.py`와 원문/측정 JSON은 **PR #205 역사 재현용으로 동결**했고, 해당 옛 API 자체를 수정했다고 주장하지 않는다. 새 진입점에는 과거 측정을 덮어쓰는 옵션이 없다. 과거 산술·원문·23구간·312행 해시는 유지하며 현재 조회/검수에는 새 진입점을 사용한다. 최종검사·독립검토·병합은 이번 현침살 검수 PR 영수증을 따른다.
+
+---
+
 2026-09-28 · 기준 main `b83f8de4cd74c34a549644607f3789e58e7b90af` (PR #204).
 
 원문23구간을 대조해 **기간3판본·작용력3표기·월지 밖 구성표**를 분리했다. 개인의 사령을 계산하는 정책은 보류한다. 사령/당령/득령, 기간/구성/작용력/학습 확률은 서로 다른 값이다. 기존 앱·연구 원국 계산·검색·문헌 판정은 수정하지 않았다.

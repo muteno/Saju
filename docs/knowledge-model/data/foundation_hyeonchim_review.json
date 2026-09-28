@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "base_commit": "5afcb70816ceb17c6bec84b0853f7c03e8e0d56c",
+  "scope": "hyeonchim_source_audit_only",
+  "hash_policy": "sha256_lf_git_text",
+  "line_policy": "python_str_splitlines_1based",
+  "inference_enabled": false,
+  "probability": null,
+  "use_as_training_labels": false,
+  "board": {
+    "path": "dosa-app/methodology/figjam_board_raw.txt",
+    "sha256": "de4883a873e3e332f3e77c3fbd2c2fac10dd8759de1704df69704b250292fe4b",
+    "table_id": "384:5593",
+    "rows": 28,
+    "columns": 11,
+    "interpretation": "cell_observation_not_personal_rule",
+    "blank_means": "not_listed_not_negative",
+    "count_scope": null,
+    "adjacency_rule": null,
+    "fortune_layer_rule": null
+  },
+  "evidence": [
+    {
+      "id": "choco_members",
+      "source_profile": "choco",
+      "path": "정제/원본/전사/1. 초코명리/초코서당(초명)/20240419_현침살이 있으면 능력자가 됩니다__Kvzaz2OhXA.md",
+      "lines": [
+        21,
+        34
+      ],
+      "sha256": "70554166f972c0fc3b7b9d8a966434bf415d842010e49533a455d7b23dff1714",
+      "quote": "현침에 해당되는 글자가\n이게 청간, 지지가 나눠져 있는데\n청간은 간모가고요\n신금입니다\n지지는 오아, 미토, 신금이에요\n지지신금입니다\n원숭이\n제가 지금 한자를 찾고 있는데\n아 이게 초기화가 되가지고요\n아 지금 나 뭐하는거야 금이 아니고 신으로 쳐야지\n그렇지 네 이렇게\n이의신금이에요 청간신금은\n어 이의신자고\n이렇게 다섯가지가 있습니다",
+      "status": "unverified_asr",
+      "use_as_training_labels": false
+    },
+    {
+      "id": "choco_count",
+      "source_profile": "choco",
+      "path": "정제/원본/전사/1. 초코명리/초코서당(초명)/20240419_현침살이 있으면 능력자가 됩니다__Kvzaz2OhXA.md",
+      "lines": [
+        35,
+        44
+      ],
+      "sha256": "70554166f972c0fc3b7b9d8a966434bf415d842010e49533a455d7b23dff1714",
+      "quote": "근데 천침은요 좀 복잡한게\n이거 하나 있다고 해서 좋은게 아니\n아 드러나는게 아니구요 대체적으로\n3개 이상 지지에 있을때 강하게\n드러난다라고 보셔야 돼요 현침은\n현침에 해당되는 글자가 사주에 많을수록\n좋습니다 동일한 간지가 여러개\n있어도 하나의 개별적인 기원으로\n해석을 해요 청간에\n예를 들어 간목이 3개 있다. 그럼 현침이 3개 있는 겁니다.",
+      "status": "unverified_asr",
+      "use_as_training_labels": false
+    },
+    {
+      "id": "choco_combine",
+      "source_profile": "choco",
+      "path": "정제/원본/전사/1. 초코명리/초코서당(초명)/20240419_현침살이 있으면 능력자가 됩니다__Kvzaz2OhXA.md",
+      "lines": [
+        61,
+        70
+      ],
+      "sha256": "70554166f972c0fc3b7b9d8a966434bf415d842010e49533a455d7b23dff1714",
+      "quote": "청간에 간목이 있고\n기토랑 합을 하면 현침을 쓸 수 있나요?\n내 원국에 간목이 있는데\n기토랑 합을 해서 묶여있나요?\n원국에서?\n그러면 조금\n현침의 기운이 저는 약하다고 봅니다.\n약간 약해진다고 봅니다.\n왜냐하면 합이 되니까\n그 기운이 흐려지는 거거든요.",
+      "status": "unverified_asr",
+      "use_as_training_labels": false
+    },
+    {
+      "id": "choco_hidden",
+      "source_profile": "choco",
+      "path": "정제/원본/전사/1. 초코명리/초코서당(초명)/20240419_현침살이 있으면 능력자가 됩니다__Kvzaz2OhXA.md",
+      "lines": [
+        92,
+        97
+      ],
+      "sha256": "70554166f972c0fc3b7b9d8a966434bf415d842010e49533a455d7b23dff1714",
+      "quote": "지장가 오춘아님\n지장가는 해당한다고 보기 좀 어렵습니다\n현침도 한두 개 있어서는 잘 안 드러나요\n이것도 한 3개 이상 있어야 되거든요 지지에\n그래서 많은 명리학 책들이 현침에 대해서 다루고 있지는 않아요\n저도 그렇게 중요하게 보진 않습니다",
+      "status": "unverified_asr",
+      "use_as_training_labels": false
+    },
+    {
+      "id": "saram_example",
+      "source_profile": "saram",
+      "path": "정제/원본/전사/4. 사람공부/사람공부/20201204_[명리한담] 현침살_Uj_ugiIBH_E.md",
+      "lines": [
+        65,
+        72
+      ],
+      "sha256": "59ee384d7e8525b1f7f49d287fb4342ea78486fd705ccf5de648d5ce9963a87e",
+      "quote": "현침살의 논리가 되게 웃겨요\n갑\n신\n지지로는 신\n예를 들면 이런 거예요\n글자 모양이\n바늘을 닮았다\n이런 게 있으면 그냥 현침살인 거야",
+      "status": "unverified_asr",
+      "use_as_training_labels": false
+    },
+    {
+      "id": "saram_reject",
+      "source_profile": "saram",
+      "path": "정제/원본/전사/4. 사람공부/사람공부/20201204_[명리한담] 현침살_Uj_ugiIBH_E.md",
+      "lines": [
+        96,
+        101
+      ],
+      "sha256": "59ee384d7e8525b1f7f49d287fb4342ea78486fd705ccf5de648d5ce9963a87e",
+      "quote": "이런 건 무시해도 돼요\n이 얘기는 우리는 지금 글자들의 특성을 배웠고\n이제부터 하는 거는 그 각 글자들이 일관이 뭐이냐에 따라서\n어떤 의미를 지닌다 상징성들을 배우는 건데\n굉장한 논리들이 있거든요\n아무 논리도 없어요",
+      "status": "unverified_asr",
+      "use_as_training_labels": false
+    },
+    {
+      "id": "study_myo",
+      "source_profile": "study",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 중급 글모음.txt",
+      "lines": [
+        6253,
+        6253
+      ],
+      "sha256": "18f4578fe0599baba0df5a76bfebf5aee88f99921fdd6d01196ff0ac0353ac9b",
+      "quote": "- 묘목, 미토 현침으로 IT, 칼, 무기를 의미함",
+      "status": "preserved_source",
+      "use_as_training_labels": false
+    },
+    {
+      "id": "study_members",
+      "source_profile": "study",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-명리 중급 글모음.txt",
+      "lines": [
+        6216,
+        6216
+      ],
+      "sha256": "18f4578fe0599baba0df5a76bfebf5aee88f99921fdd6d01196ff0ac0353ac9b",
+      "quote": "- 갑목, 천간 신금, 지지 신금, 미토 현침살로 전기, 전자, IT, 우주산업 사업 물상",
+      "status": "preserved_source",
+      "use_as_training_labels": false
+    },
+    {
+      "id": "intro_interpretation",
+      "source_profile": "intro",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/명리학입문 게시판 글모음.txt",
+      "lines": [
+        856,
+        858
+      ],
+      "sha256": "ca3b48d23d57570caa7204d2cf3c2c51b7539e031aa8855d93a4728527f38aa6",
+      "quote": "7 현침살\n성격이 까다롭고, 바늘과 같이 꼭꼭 찌르는 듯한 독설을 하기 쉽습니다. 다른 사람들과 화합하지 못하는 성격이라 주변에 적이 많고, 관재구설에 노출되기 쉬운 살입니다. 직업적으로는 찌르는 의미를 가지는 의사나 약사, 간호사 또는 도살업에 종사하면 도움이 됩니다.\n8 양인살",
+      "status": "preserved_source",
+      "use_as_training_labels": false
+    }
+  ],
+  "claims": [
+    {
+      "id": "count_ambiguity",
+      "evidence_ids": [
+        "choco_count",
+        "choco_hidden"
+      ],
+      "statement": "3개 이상 지지라는 서술과 천간 갑목3개 예시를 함께 보존한다. 전사만으로 총8자/지지4자리의 단일 발현 기준을 확정하지 않는다.",
+      "application_status": "withheld",
+      "probability": null
+    },
+    {
+      "id": "five_members_asr",
+      "evidence_ids": [
+        "choco_members"
+      ],
+      "statement": "천간 갑·辛과 지지 午未申으로 읽힐 수 있는 미검수 전사다. 청간/간모/오아 등의 오류를 교정된 원문으로 바꾸거나 卯 제외의 정답으로 채택하지 않는다.",
+      "application_status": "withheld",
+      "probability": null
+    },
+    {
+      "id": "combine_weakening",
+      "evidence_ids": [
+        "choco_combine"
+      ],
+      "statement": "원국 갑과 기의 합에 약해진다는 저자 견해. 인접/쟁합/합화/정량감소/운 적용 기준은 이 구간만으로 확정 불가.",
+      "application_status": "withheld",
+      "probability": null
+    },
+    {
+      "id": "hidden_scope",
+      "evidence_ids": [
+        "choco_hidden"
+      ],
+      "statement": "지장간은 해당한다고 보기 어렵다는 견해를 보존하며 표면글자와 분리한다. 음원 미검수.",
+      "application_status": "withheld",
+      "probability": null
+    },
+    {
+      "id": "counterview",
+      "evidence_ids": [
+        "saram_example",
+        "saram_reject"
+      ],
+      "statement": "사람공부는 글자 모양에 의존하는 설명을 소개한 뒤 사용에 반대한다. 예시 갑/신/지지신을 완전 구성표 또는 동의 근거로 세지 않는다.",
+      "application_status": "withheld",
+      "probability": null
+    },
+    {
+      "id": "partial_web",
+      "evidence_ids": [
+        "study_myo",
+        "study_members"
+      ],
+      "statement": "명리학탐구의 서로 다른 사례 설명에 묘·미와 갑·辛·申·미가 등장한다. 사례의 부분 나열을 완전 목록/공통 조건/현실 결과 정답으로 승격하지 않는다.",
+      "application_status": "withheld",
+      "probability": null
+    },
+    {
+      "id": "interpretation_not_rule",
+      "evidence_ids": [
+        "intro_interpretation"
+      ],
+      "statement": "입문 글의 성격/직업 설명에는 구성·개수·자리 판정법이 없다. 개인 성향/직업/사건의 확정이나 학습 라벨로 사용하지 않는다.",
+      "application_status": "withheld",
+      "probability": null
+    }
+  ],
+  "frozen_inputs": {
+    "dosa-app/engine/src/sinsal.js": "83160a812f3e3c78f27881002332e335f944656efce0a0c2058ae5505cebc32d",
+    "dosa-app/engine/src/tables.js": "94988a5b27d831a4e30b6d503040fb9235d5b103943a86f8f66a247f9b71f2e3",
+    "dosa-app/engine/src/keyset.js": "3e460f1355221138df5d25a7c7b6759272e16c717062ed4f9a483eac021e48a7",
+    "dosa-app/engine/src/report.js": "bc598498402c426afc1336b12f75051c72f8088a53a19fd03d59d6a6b20e02bc",
+    "dosa-app/engine/src/judge.js": "6f0f53d223bb7e159650145e201f0db2c94d2d6067ace86a79b1dc45daa8045d",
+    "dosa-app/engine/src/manseryeok.js": "b401b6dc14f6f7828b6d23d6d4ee92c90c2d0261faea19873eda284da35239c1",
+    "dosa-app/engine/src/relations.js": "fdc6f4b3674b3821940e10b89c0beab6916ddb92bcf12ad87358e3d6d0297acb",
+    "dosa-app/engine/src/unse.js": "0f195d42addad6a1fe3688c994a199c84714a305f4fab63dc4e74bd7500f0408",
+    "app/src/engine/index.js": "359e1d4bdbf3bada8359207a2025690c7349736eae6a10acbf1e8c06ab398bff",
+    "app/src/data/saju.ts": "978e285afbb67677af55a4562288c871a16d9be2697b1faf2193f317ca7f6f51",
+    "app/src/data/dosaTopics.ts": "198924572a41febae32cf81ae7e39c9bd5687867df8196080cdc6b0d32eb8172",
+    "app/src/data/useReport.ts": "f352b9207b7535fa17b4aaf009a358ff5deac0efca6d2f3bcfb8980b80947a96",
+    "docs/knowledge-model/data/foundation_taxonomy_review.json": "4083f3236be1285a8b7229b72fbc83a3887175c9a910b6ee8cc703c6c4c581be",
+    "docs/knowledge-model/data/foundation_calculation_review.json": "f3dc94ae6a14b65d98be04b08e9fe2884b6e5d8cf2fc67abcf7be7f3541b79b8",
+    "docs/knowledge-model/data/foundation_calculation_measurement.json": "9647c836531ef36b027cc04744b3732d8528d67683c5024a6458678871d8647e",
+    "docs/knowledge-model/data/foundation_timezone_measurement.json": "d37e55b00b8afe57fa9d5267de6ae95ee3130e1916e3df61c3479c692eb9094e",
+    "docs/knowledge-model/data/foundation_strength_consumers.json": "0e1a114e2b3d67eadbcec4f2563b4ae028e8449adb9ebe201c0019756eb4fcad",
+    "docs/knowledge-model/data/foundation_strength_correction.json": "bb4ee97719dcdf7742e27883f1bdf80baf7e145c00dcfc2409c61a8a7a17cd92",
+    "docs/knowledge-model/data/foundation_month_period_review.json": "2020f24b03e75ee7a4a188f7908f46a31593b3817cabe2a91352e9274dfe7c15",
+    "docs/knowledge-model/data/foundation_month_period_measurement.json": "caa2dbabbd9dbbea35003f90794f97790bc2b73137a33f0225b725da1c4877a8"
+  }
+}
