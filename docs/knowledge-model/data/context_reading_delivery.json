@@ -1,0 +1,3479 @@
+{
+  "baseline_commit": "875756c9113144148fcbb88fb7adce3477612af4",
+  "scope": "110 synthetic calendar inputs, 102 known/8 unknown. Not people or accuracy.",
+  "policy": "natal-work-context-v1",
+  "training_eligible": 0,
+  "probability": null,
+  "sources": [
+    {
+      "path": "dosa-app/engine/src/contextReading.js",
+      "sha256_lf": "bfb6dfedad71967c58d20d7e66fdf7b800bda138cee65bdcfa723af63aa2250f"
+    },
+    {
+      "path": "dosa-app/engine/src/report.js",
+      "sha256_lf": "e22cb80707a0cab0b70c6c4146f80b1b16d8d92441cf355a873c8dcdf8414ac1"
+    },
+    {
+      "path": "app/src/data/saju.ts",
+      "sha256_lf": "8a342ce9e934f1702db50f37ff2fecca44732a35a1b439fd101f569b10742467"
+    },
+    {
+      "path": "app/src/data/dosaTopics.ts",
+      "sha256_lf": "b8d0f8855dae4b24b5807c9502ed1e80c6df1e6449e431f0da61736048238fe8"
+    },
+    {
+      "path": "app/src/data/analysisGroups.ts",
+      "sha256_lf": "3e0fbed23927491d8bcf4a10435164f100997fd82f7a707d3d63e1c3883a7874"
+    },
+    {
+      "path": "app/src/data/dosaClient.ts",
+      "sha256_lf": "b122128d9f8de6a82a2c18ab6339b0316887560aaedb985e209775e1d36bfe66"
+    },
+    {
+      "path": "app/src/components/DosaChat.tsx",
+      "sha256_lf": "a756f1f68c67e4cc6962c059c37d7fb669b13e9924bb87c3ec069a6978977000"
+    }
+  ],
+  "rows": [
+    {
+      "id": "known-extreme-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "59fc81fb97031dfe634ba63a818fedfd361302940c29b556f1e3a807404da001",
+      "after_sha256": "140d929e2de5543715736f2352b509c41c9810a16ad6115e0e336a691e4dc7a8"
+    },
+    {
+      "id": "known-extreme-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "2ea68abc27218a629b2395605654609325c66129e3fd1f9391af9daae4e73284",
+      "after_sha256": "07afe0d0be2b10d3f2aa4142b0e57fc29db4ee341d069daa8cb7c510c2f13f09"
+    },
+    {
+      "id": "known-extreme-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "3e208b5d018d15f53effece2d42b05db35b246bb58544ae4b7481ffd27c95db8",
+      "after_sha256": "81ca5ee58dd0271301dcdd3df3faca8cb5f239a6951450ca7483698af1597e5d"
+    },
+    {
+      "id": "known-extreme-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "25677bda34a72024dc7d5a3f9c7950644c2152bdc7b14b8efb3571d1b7bb09fc",
+      "after_sha256": "fd4e204206542b174010e1fc6aedaaeec5012b99b547fc2d24875eff8e9ec1c7"
+    },
+    {
+      "id": "known-strong-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "absent",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "2a3f3af5223c6b9d6409ab0d83548d5c38f991033652b3cb7610ff667bcc1a06",
+      "after_sha256": "6c8c308d26994a45840f2fd6ad38caafaf47b00c46cd6ee54e8acb10ee01f57f"
+    },
+    {
+      "id": "known-strong-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "absent",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "6f05582bed48b1a3e2df009e2ce1f19edeb18ae8b4ce03b01ebbd5de36c22c5b",
+      "after_sha256": "86128b2839d54ef91f43df3e932069039670a81e2fa5c5903d02316b1be97ea8"
+    },
+    {
+      "id": "known-strong-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "absent",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "fca88a3c2ed43f0a258b42feb471ff60e8841e238163e94382437312d7d6e23a",
+      "after_sha256": "159e8294ef4dcb30d9eb63098505c4fde29a4e7c87e7d0fbc40a9ea7f46070b6"
+    },
+    {
+      "id": "known-strong-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "absent",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "81bf28c086aa43bd8a3f84e0967848470bce95df904a80dc82aa2bb43eac6922",
+      "after_sha256": "51f9a7a5af5023bc7b3296b5848f66592f35998f0b6c9e0f1f2fa1a3dd9eeb76"
+    },
+    {
+      "id": "known-strong-up-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "absent",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "4d6c53920e4a3cd74e189993606bd5d08c4389f4a7140d4ebae0f6b3a96e87d4",
+      "after_sha256": "37af3441ca10ff87512337f12bbf9c35163e756b66faa167e4358f2f81b5f3b4"
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "20ebe421016e40e763c376b2b15e495f10aa098db1c5f7cd85c13257b5d2405d",
+      "after_sha256": "1c84758a3046c34f9365fb8bb872998b7a31e90ca5c6e426206e14a21650c120"
+    },
+    {
+      "id": "known-strong-up-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "absent",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "9e26333ece6a2de026594ae656f20aaf8e92451b50cbcbf0c97e77f1b3e844de",
+      "after_sha256": "f70c1a9e055e62247bf5d9218ee571700a9055079549a3fc3b8627b0602facda"
+    },
+    {
+      "id": "known-strong-up-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "absent",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "113bc8faa1c768f9c10ab01703f7f2e3f19c874c46e399633fe3d18408d9e340",
+      "after_sha256": "37053e602a6449bc3ccef44f252715f2beeab4a9e0fff983adb9e41151d2fa62"
+    },
+    {
+      "id": "known-weak-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "absent",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "7ca00eff97771e6b391a230bb28466e996d82c2ba58514cd280b368ea6c3ecdb",
+      "after_sha256": "b57a2c0e5a924f5b6a42cbce1d4447d0bb6b2af57e3d08d89bb3655f1dae9b0d"
+    },
+    {
+      "id": "known-weak-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "1b8ad9f4e48f3a1f4b2fb10b786c280b168db9ad8c4e7669adcbb451382c10cc",
+      "after_sha256": "0e39f26fd6e4b2ddf543b0a66a9a3426308ce6ba36e36492100d99f3ce5ac12f"
+    },
+    {
+      "id": "known-weak-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "absent",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "affe02b5e1e4b753d076bdecd33c2402224ffa14fbd32b0d48fc30ed36a6db14",
+      "after_sha256": "914d3689a3e75cbf159d96934f13ec19a561ec6399e11399a600b6349da1a5fc"
+    },
+    {
+      "id": "known-weak-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "absent",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "4a4c08c523d3ef7132b7e57cfe19eae978d1e261c2cc2104bcad7ffd3bb1cf90",
+      "after_sha256": "e202a7ae6771254d4dfbaf17d3e00240fac79dc841ad05a1d09d09feb77dbdff"
+    },
+    {
+      "id": "known-weak-up-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "397dc56b1f9134ab2b071d70d9a8cb9f13467a494305256251b0a7f990cb74bb",
+      "after_sha256": "c742a8ce12c7fba3b0666303bae97c1cd67503cb99b29e33ff40bc50db1f8dcc"
+    },
+    {
+      "id": "known-weak-up-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "60bd64a41ddd3b19376dffad5538f76d67bd2f8a96a89f2f8f5c9c7789b8001c",
+      "after_sha256": "95edeac83fc874ba24117099b900328f18f18bd5e1c27022d320015b5ae2721e"
+    },
+    {
+      "id": "known-weak-up-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "43fda89d3ba9b00e97bb892f82647bcb0a0eef228bbe9374a8c81c21c797d00a",
+      "after_sha256": "87b5aa3518e5ecd8b828fb912d7f94a67817718d4e8de6b262f9880b57c4e32e"
+    },
+    {
+      "id": "known-weak-up-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "50e0b96c870295dce80f994e27c6ec84681f26bfda08fb0eb546ca31fad14944",
+      "after_sha256": "5aad406070e8a3854e7691013b1572a881b61cca7a3a1b8e16422e32be2895cd"
+    },
+    {
+      "id": "known-extreme-up-solar-midnight23",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "753353a9847a5052a9f28e2fc8f4cb40f01609a5a5f58eca3f6bdeb4b6f3c689",
+      "after_sha256": "080529abf6f8dfc081219167e505d93bed5704ec24fd13dbb5ee44544115f19c"
+    },
+    {
+      "id": "known-extreme-up-solar-keepDay",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "bbd0076c909366d8aa976cd839e66ceaea4d54a8337ce8abe5595731dad8a49f",
+      "after_sha256": "0bfbc65fae945e44681fa690c5058db27a7976a8e9999a17f90f16d18bd6395b"
+    },
+    {
+      "id": "known-extreme-up-civil-midnight23",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "11450f7667eca90b97bda4bccca6f33cb35f05d50ba5a494aa9299907cfbfba3",
+      "after_sha256": "ad524e7b2ce2acb5fea0eb9e745ad49c3ad3797725d1e593a0eb35f8f68fb32b"
+    },
+    {
+      "id": "known-extreme-up-civil-keepDay",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "d6ff7cf14dd2b65603aa1b2154964f13768206d4f489fc05e201be4087d2d02d",
+      "after_sha256": "1accbf3b2bebae01deaaa5fc33405c06bc4d104cd5b132f97d07271c9ef74419"
+    },
+    {
+      "id": "known-zi-before-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "06b36d0df73dda378333bf9c4e463286f2a3d0ba2582e6e30bfc0b5b9bba2f7e",
+      "after_sha256": "0a34558c31517d3e65d2856f60b7011199e10a8ce3d0dc4e0e27573b489e26ce"
+    },
+    {
+      "id": "known-zi-before-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "bb8c97d8a2ed3a01197d1b31d5611fbeddff23a7ee657d9fea5aef27bac4552f",
+      "after_sha256": "47615b65c3e23b223f51a5e46b2d46dd07a5f7526f123477c1b1329472c8ab75"
+    },
+    {
+      "id": "known-zi-before-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "422f09f7d9c1c50dae11845efb1661a8bdb3b2e30f1a7fa1e13a4ab5bc15d4b8",
+      "after_sha256": "6bbd428ccc3805dade83d9ada9c2e2a21e3fefa70857c069aaabd0a60c9ca66c"
+    },
+    {
+      "id": "known-zi-before-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "ab1d9084ac8fd60706250abcfcb4f789f901b56f8007174a483a24a022276281",
+      "after_sha256": "8a79e6a50267fcdb927bfa171fa324e5005c5e43ede01fe51421f3ff1e80df87"
+    },
+    {
+      "id": "known-zi-after-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "bbc9c9f8da057bd6f84c48f92310a145f65e3e4a6846a21d371fb3464c984207",
+      "after_sha256": "8ca8e355561c7e91ae7fc390fe32b506b9ffb41389431ed698efd7181d5c124b"
+    },
+    {
+      "id": "known-zi-after-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "c6da527965cecb152b81857990bab7a7383541737ecbf8435ee243aec56233f4",
+      "after_sha256": "39fa265abdf65b8b607428afd3771801dfa8ed3ede756133c21f4ca3035813ad"
+    },
+    {
+      "id": "known-zi-after-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "8c8e3345a1bac83ce6a9eb3e539564012c6a1020c2342bcd1a2965692344e6e7",
+      "after_sha256": "3dcbb0a32c6eb3f829919b64620d17444a7d90deced44ac083c1baa10ba82bf8"
+    },
+    {
+      "id": "known-zi-after-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "36d24b7e570a35d762203230ca1dac9d32708b2637c2fe08343b248eda8dddef",
+      "after_sha256": "5bdbd3741dce2fcc61a7bc484652d696a763e58a85830a5e43a6e1fb5a00c27b"
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "788511db0a87a4f51833479f46c171885502a083de6ed75baaa524c99e743b46",
+      "after_sha256": "070a2aa6a9083e84d2a96feed41a1907443e2113424c80f186daaa6279cf6db7"
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "989ddedde231d270b75357fe34c3138992e75fd84729779c95d7e2ed14a39185",
+      "after_sha256": "bef75d7c9835c8d0ed1b98c5b2b4312ceeb2bb58c4bbbba3876fcfa2a27b545b"
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "4bb66b37b0bf186cc87535029a6ae8d8633f11731520f2cc3293ab96f1354b7b",
+      "after_sha256": "dafb8c987715b9ae5bc1ebd6579bb97136453c71244f71934a97516dbb69559e"
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "10069c3212da218d8ea4450020e1b44f21f44fc9d99eb37a414fa6ea5db8d51d",
+      "after_sha256": "a6103ffde085810a77d15cb8f147461d12fb1877ac2dd3cb007787a5ad9b3701"
+    },
+    {
+      "id": "known-ipchun-after-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "c9821a4d227be61df13b8d5c5946534440cc79fc23130cc25078bfc65a77cf89",
+      "after_sha256": "1daab3495cf21f3472beefc0c4074d14b1dde9c5b67daeed2d821ccf8780012b"
+    },
+    {
+      "id": "known-ipchun-after-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "de56d4dd679f0fd95ed5c46cd6d11384b9edd4d0c281c1ba8fa51b51a25956cd",
+      "after_sha256": "288ed88ef102ff5436fbe04a488f43eadf7efcd1b6d3a812e56abd705b04fb2d"
+    },
+    {
+      "id": "known-ipchun-after-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "f0a60cc682347fc90429bb6f4f7b415f1fd1de68a852adfe6628d2a2d547fc60",
+      "after_sha256": "d7d38e758591969ab06168bc39fa8342d088703870b31d884e2fcb61a1a700ed"
+    },
+    {
+      "id": "known-ipchun-after-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "acbdc27d0b9238f3b567879667d2ea8cd3c6304aa0e961c0493e84e947309dd8",
+      "after_sha256": "358eba2133c248c9fb2ee3822654101d5708b62d46fea598658442c904769c57"
+    },
+    {
+      "id": "unknown-ordinary-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": true,
+      "conditions": null,
+      "groups": null,
+      "card": false,
+      "calculations_unchanged": true,
+      "requests": 0,
+      "before_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5",
+      "after_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5"
+    },
+    {
+      "id": "unknown-ordinary-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "conditions": null,
+      "groups": null,
+      "card": false,
+      "calculations_unchanged": true,
+      "requests": 0,
+      "before_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7",
+      "after_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7"
+    },
+    {
+      "id": "unknown-ordinary-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": true,
+      "conditions": null,
+      "groups": null,
+      "card": false,
+      "calculations_unchanged": true,
+      "requests": 0,
+      "before_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb",
+      "after_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb"
+    },
+    {
+      "id": "unknown-ordinary-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "conditions": null,
+      "groups": null,
+      "card": false,
+      "calculations_unchanged": true,
+      "requests": 0,
+      "before_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d",
+      "after_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d"
+    },
+    {
+      "id": "unknown-ipchun-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": true,
+      "conditions": null,
+      "groups": null,
+      "card": false,
+      "calculations_unchanged": true,
+      "requests": 0,
+      "before_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e",
+      "after_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e"
+    },
+    {
+      "id": "unknown-ipchun-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "conditions": null,
+      "groups": null,
+      "card": false,
+      "calculations_unchanged": true,
+      "requests": 0,
+      "before_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b",
+      "after_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b"
+    },
+    {
+      "id": "unknown-ipchun-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": true,
+      "conditions": null,
+      "groups": null,
+      "card": false,
+      "calculations_unchanged": true,
+      "requests": 0,
+      "before_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541",
+      "after_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541"
+    },
+    {
+      "id": "unknown-ipchun-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "conditions": null,
+      "groups": null,
+      "card": false,
+      "calculations_unchanged": true,
+      "requests": 0,
+      "before_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db",
+      "after_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db"
+    },
+    {
+      "id": "hyeonchim-0",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "2a014e3cf70f32a6803029025f706e1a07a7f90189115e57da724da0a92be137",
+      "after_sha256": "1c9e0f93e38d0d25b99a24ca77a29c7cc51b4d92ec09ff976ee76ad2b60f1a65"
+    },
+    {
+      "id": "hyeonchim-1",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "f3da5ea804e27ae2a57bab8d7634dbde94022f3610d53ab2f56b07b1f258b93f",
+      "after_sha256": "2b597dd4e90d0e367a5a731f733b0b6ff2451fe9ade99bb76e974627fef44676"
+    },
+    {
+      "id": "hyeonchim-2",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "hidden_only",
+        "재성": "absent",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "d21a61bbe7baa5942174abbd7aa127b2d687b8032949d3fbb75bf7b700f867e4",
+      "after_sha256": "b1f2a9be9f2fd370af59e863a3638d7ef48ce7bc33b95b5e2882ef9c8645bcc5"
+    },
+    {
+      "id": "hyeonchim-3",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "hidden_only",
+        "재성": "absent",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "012ce64455e4d09a165f617155a2cbf073b1f367294252d948d5c2bdebff1faa",
+      "after_sha256": "ef5d5ad659e1770f8448ddb6d66962c297ab0af775579de5f8e225236aa169f5"
+    },
+    {
+      "id": "hyeonchim-4",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 5,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "absent",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "0ed2140901993f73c8697c97f20385c45a53904fce2c4697fa89d2d1302335d5",
+      "after_sha256": "9470af152d0b150f7cbd622ac0fd2cfff0c89800452846a970aa49fbfee744de"
+    },
+    {
+      "id": "hyeonchim-5",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 6,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "dde3eae45ea03fa70171fe0ff2b4cb87a1f1b39ad0035ccb5567c15a97596129",
+      "after_sha256": "e5edc83a6f8361712f3a90b93a361d55ad285dc0a62c345507c525b915eb90c1"
+    },
+    {
+      "id": "hyeonchim-6",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 7,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "1c468608766f8c53f080da3d6c1328ddd601efa4b3aa979340d01b2b1e1f319a",
+      "after_sha256": "55e53c07dbf70deb03d30df67a33fe4c1059bd079e35da7769613e1be1d698e8"
+    },
+    {
+      "id": "hyeonchim-7",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 8,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "56cb25af5b5e2547bb7607ef1714efc5b630aa8603938bd620c5b0b6c900a518",
+      "after_sha256": "551b127e73f3f82461246bfc370a78bb71c0e4312962fb44ab18d95417287c00"
+    },
+    {
+      "id": "hyeonchim-8",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "5a910ef2f2718e8dc78978cb7da53131aa369ec3446189752f0e82e0637d17c9",
+      "after_sha256": "6844823a2cc11f4b79fae3a3708d49548c9d289ccfb99ce6cb5e68ed367e96f3"
+    },
+    {
+      "id": "hyeonchim-9",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 10,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "7c445aa1c60d5d27012a24b487b5aa15d40a95af1d80f8294959f8a280e17659",
+      "after_sha256": "bfa4e8a528ee6da2f669ab874af8e1ea89fd4ebe2b1b7fb8392ba6c6c1cd34f5"
+    },
+    {
+      "id": "hyeonchim-10",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 11,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "5dd9a223056cea21cedfc2b05dab8736c56c00d6f7e675baecbeb1ffff2e4006",
+      "after_sha256": "349a365063a18857c15d5bfd71f3e804fae4cd2831b5478a7edec8933d646c7e"
+    },
+    {
+      "id": "hyeonchim-11",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 12,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "930546bf709bf69cb4346c203eed23be9fa80d398a38d6664c3622994452a894",
+      "after_sha256": "6a34a90f71878de2d0ce24127beb13a6e25bfbbfe11838476e9547531cc4e6ba"
+    },
+    {
+      "id": "hyeonchim-12",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "cae7508cd60034f7c97824452bf70a9febf22592440ed35346c9a342940ab556",
+      "after_sha256": "fd850acbf5f0fa19a90e4afdb69b7f7ec0e27213243243efe9489e1cd2fa4fa5"
+    },
+    {
+      "id": "hyeonchim-13",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 14,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "06b7bfec277fa42e146d065d5ddda2e85422608dbc99796426a7d0ac9cd2f3c6",
+      "after_sha256": "69f3cf7a2502ccb19a76bfb7390415265c1db640cc53e46d29bf5d429dda296e"
+    },
+    {
+      "id": "hyeonchim-14",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 15,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "hidden_only",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "8ead0c3b917872094e3d3d462b851f35c8ff9a5e416177a74c7b486bc2714605",
+      "after_sha256": "ba93c6435772f817a22f530d7a2fcba77b70e05a06af6a312ee0701981b89cde"
+    },
+    {
+      "id": "hyeonchim-15",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 16,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "1e48dff0397e80d6b1bc66fcaca022f955951c5d1cd389240870137c36376dca",
+      "after_sha256": "249548d3760e17837cd0785197c0098677f8259f1c386b4f290a4c7ccf7ead32"
+    },
+    {
+      "id": "hyeonchim-16",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 17,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "6643b16d11b7314ad603db6c2d0bbf94435db1928bc3187a4ab76a965475e3f3",
+      "after_sha256": "a251b7a4889c9f8db46143d4f575f8248bf78d690445fe3a4775db242c8d0b3b"
+    },
+    {
+      "id": "hyeonchim-17",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 18,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "97536f812bd6ee1af531129de876e256615ab98f0b8a87e67744ba66e2a35546",
+      "after_sha256": "f5a66bdb7294fb8b5f859415cc51eba9298821f0ef19a038f5eea46ac822d2be"
+    },
+    {
+      "id": "hyeonchim-18",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "e623152213c59ecec3cb3c0e1583972fa87588c39e2b519078122633d20f751f",
+      "after_sha256": "0c6383a276c594657c63e9cd8c8e2875fd7c7f1ece28762423efe749d31d7581"
+    },
+    {
+      "id": "hyeonchim-19",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 20,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "5e8b1b68d9bd87d2bd758ee6f5b04274791b5fc6edbbbd22a2a649ad50abd97c",
+      "after_sha256": "a4c71004045f7fd9db6be37a0a28ca00cfeae47d469461aa0e15c454eee48a42"
+    },
+    {
+      "id": "hyeonchim-20",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 21,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "c80de71d34eade11617ac63be370b8953e0a5f257feb83fe68e638ea76cec368",
+      "after_sha256": "f779fc824c32ccc20e6634b09cb6c4b7da8659f10d12a42f40820fd365636279"
+    },
+    {
+      "id": "hyeonchim-21",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 22,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "7969e84027cfef415669704cb84d34de02e10bb2b9c5f0d1c006d1eacd19679b",
+      "after_sha256": "683f88ac3fb86c02d9293c75ad6e9d537b3c1abb29dd2e29745319b2992441b2"
+    },
+    {
+      "id": "hyeonchim-22",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 23,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "2253a45aa818e88740583cb9c9a526414e102d34c36508b8f3fd6e5ba37e3be6",
+      "after_sha256": "b18f0d8647ece0d6fbb076da1cb528ddb6bcd2e518e26aa618880f5c227424e3"
+    },
+    {
+      "id": "hyeonchim-23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 24,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "3651a10f5d49c2943c013698f99bcbb4c9010fa8ef5fcf4115ff81f3fbd58a99",
+      "after_sha256": "03d4a61bf48f0364907ca406eaa5c34d3e3cfa099eba01a78bbe800132747c7f"
+    },
+    {
+      "id": "hyeonchim-24",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 25,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "hidden_only",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "d183703711332f78a902117adf9f5f6da99f10b7ade00e8788ff03387f5191ad",
+      "after_sha256": "5bf458f85cd4d11e3578f744c2190451f75d25779521f70859d4cb3e0b037279"
+    },
+    {
+      "id": "hyeonchim-25",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 26,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "b9e32d4d901a488d695028ea7507159ac95f0735ded916d4509b239a77f9e99c",
+      "after_sha256": "d66c4778bad613d0f3536f068be5f73ac3741b0fc3388146828f21bb4042073c"
+    },
+    {
+      "id": "hyeonchim-26",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 27,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "2a7ffa76b6bf9d9dac421b2922c16960b25341880ef5bc296e9393f7a6711b10",
+      "after_sha256": "567906a5c702109c0318bf42ef2a9508b60e1a71421ae9d1e90f6c6a22ef0973"
+    },
+    {
+      "id": "hyeonchim-27",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 28,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "b774f4d574155b37909f172fd428943a81d0f1a1f8b35f3ba8a92a52a251b20d",
+      "after_sha256": "fe9be678fc263dc6261e414635781b851527a42e6d8150e70fa910f7d1f9625b"
+    },
+    {
+      "id": "hyeonchim-28",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 29,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "45257b3ee5d877a85b721b591339055c5de9556d3d51fd175775f6befaa3c95c",
+      "after_sha256": "700a4662fdb2ba81b464dff8c6da0a5ad2d997934248ea2381d37aaf7bf2c494"
+    },
+    {
+      "id": "hyeonchim-29",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 30,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "eb9adc2ce4941e060cff979df96bd055d42b7ca135fa71439a41abb2b77aab28",
+      "after_sha256": "376c021949d69005ce846dbc3272b4818e748b76c89cc9f530ea4e22c11b8c7a"
+    },
+    {
+      "id": "hyeonchim-30",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 31,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "35f2d0ea24e8b28cf47b8b5c92d8bf1dc3e8f34b44144b41e632cedb6a813673",
+      "after_sha256": "e13889f0c79f35b2946f533be230ffd10cbca49575ef3e59ceeb5a0d12360c3c"
+    },
+    {
+      "id": "hyeonchim-31",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "645cd6f4fd4357b96d9f875d1dde377ac3fadb2248731c2af7e504425e46134e",
+      "after_sha256": "f25a81c3a80d578a8b1097ad1cefc39f8ee3b86d469fbdf94899bc91d18372d7"
+    },
+    {
+      "id": "hyeonchim-32",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "9ba58337d3d9cb7f840a90f275027c05f0297190c25d5160e29d30f7afe05a44",
+      "after_sha256": "9bbbcad63478f408c681318c87af0d40837791eec13aad9d22789de84c6934f9"
+    },
+    {
+      "id": "hyeonchim-33",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 3,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "94f05a8cfd6c2b24851f381c2ac58f62ef62852ec1a094c48d597cd8873f67e9",
+      "after_sha256": "3f8626bb35e97e38a2de8e7d58e18fe5dc13f8e95f164d4ba045f3ed7a9c2819"
+    },
+    {
+      "id": "hyeonchim-34",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "hidden_only",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "e6df4efff9b8adaf111279f53f2d885e7c02d157f7c8febb74247e07ef73409e",
+      "after_sha256": "ea2b954fa4c22dfc5a1f7c220e3f614c13a75bd1382cfd4e4d0393746e51aa77"
+    },
+    {
+      "id": "hyeonchim-35",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 5,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "d18e2883f8ba465b3ad4c9efa9157dd46f8af07dfa13a6c860099e9a441708e6",
+      "after_sha256": "c4f0ed5d82b6b411853a19fe531682932dfbfc9a806ed2fffdb2ef981216cf88"
+    },
+    {
+      "id": "hyeonchim-36",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 6,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "absent",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "bde763c2092253f6a8b79b6f7c5c99146613722797f2be10e37ba226a78356e3",
+      "after_sha256": "930b00a2b805d2a692be40f89bec3899a0bd0811ac3d3fc5fd52d4182cd7a87d"
+    },
+    {
+      "id": "hyeonchim-37",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 7,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "hidden_only",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "6ade708da16ba1ba56f6432f2eddf74a3fc4ffad525cec1894c45fd77964e3d8",
+      "after_sha256": "41d11ac3ccbce47d8d888ba300538be48733e031ffa6871cd3677f92f40740e2"
+    },
+    {
+      "id": "hyeonchim-38",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 8,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "absent"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "4bb363b0e1f61d45e503051558e20653fbbb60e42cf287326e4f5bd4796c8e78",
+      "after_sha256": "e9af91cb0a33e8be2bcc25635f26f8c93fe08872268adbae391928365033f6bd"
+    },
+    {
+      "id": "hyeonchim-39",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 9,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "absent"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "2d6df2938d72a3ef18535240cf77240c550029009e02c4ce72c0b969c244a594",
+      "after_sha256": "71fecc07278724e1ceb982b5961863afaf52cd6e3f3d0ac0f1ac679cb4d8a995"
+    },
+    {
+      "id": "hyeonchim-40",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 10,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "6880afaa51c4960d54ea23a2a2717673d90f7aaf8fb1674e584ca7f3675fcf9b",
+      "after_sha256": "c7243888e9a207fcca504310ef169a83d8a62f5638aa467d56a1dc90ffee9daf"
+    },
+    {
+      "id": "hyeonchim-41",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 11,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "ea0b4b95b7d759af3e1b608215350050fce8fae02f4351a31404fc31539bee66",
+      "after_sha256": "30f474b48f1f024c4109e7f87f41dc18ad324265ee3172e87b5ab8d03fe0072d"
+    },
+    {
+      "id": "hyeonchim-42",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 12,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "absent",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "53bc43483f753aa7cdef8037c44b90e6b9fd4112335c6234598f947884fbefbd",
+      "after_sha256": "b061edf303dedd7486c614db63be22e1078cbe1e542a363b042bfe4b63eb4501"
+    },
+    {
+      "id": "hyeonchim-43",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 13,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "absent",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "d65ab7eec36e18d15dc50c6d55821c6264cefbeae9ed6566e3098f685068c97f",
+      "after_sha256": "d08978f6819b9eba124ad01a252e7afaa7b5ef6db581dd7019ccae60379dfda1"
+    },
+    {
+      "id": "hyeonchim-44",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 14,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "e440c4b73ae8edbc2b9a3e9a562538f6196ccef6eb26a47f4b790e5121a06aaa",
+      "after_sha256": "87e8f4e93f7fe64959f2ea3e082c76f6fd50929a6bc6a1b8471a07e492bcbc34"
+    },
+    {
+      "id": "hyeonchim-45",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 15,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "57ceff937aaa66e42296b8bc627b43e2891fa6276bce6f0face6e103453a4990",
+      "after_sha256": "fe91167e1dd123c56b3dfaf9a1f705e123c5c59a59652c72f6ab56193e633962"
+    },
+    {
+      "id": "hyeonchim-46",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 16,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "317b552262dac9a5efe0c9460ad55013bd8c38039e4e829f166d6f71e8f88895",
+      "after_sha256": "52b2398af201792c8f5f0586259ee8e01631bd790924379dbe18c4ffa11a5c00"
+    },
+    {
+      "id": "hyeonchim-47",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 17,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "absent",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "09a33701a1283dafc71a1821a4c3a6d152fbb259d6a861ca9f9fdae66499e2cd",
+      "after_sha256": "a3e6b508306df9a84b99d241c00dcf733d505e08cb66e08197bd6efd32ee8b29"
+    },
+    {
+      "id": "hyeonchim-48",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 18,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "absent"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "6f744ab9f632dcaccca7bb47fc08b0880045f65e4f5abe44aed1d9034bb3744e",
+      "after_sha256": "f3a81515afd21b2f91acf2c51eacdc1e0cee673214143a5a8d703aee6a7dafa3"
+    },
+    {
+      "id": "hyeonchim-49",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 19,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "69662fd31b08dc46a24d5a86400902f731259f1a426dcf1e625f6da79caf3f0b",
+      "after_sha256": "eb055e3c61316fa527bcc3c37fec15f46b483198892df49e4f1098713899957c"
+    },
+    {
+      "id": "hyeonchim-50",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 20,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "87c364e2ef55c5dd7b440adcfc6ccd1f8961781a128f9cc9316445ea555d3c6c",
+      "after_sha256": "bb95667c7d0b726d62440dddbe36fbd4d10a858b1b79788234006a14992c775b"
+    },
+    {
+      "id": "hyeonchim-51",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 21,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "met"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "absent",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "b671ea6954ef1adb631d185302bf3e9e41a4225599aca3a96866b93846a4a938",
+      "after_sha256": "12c5d0939661661e8d504f6035739615de96ffc961a9b4d63d9545c0b3db35fb"
+    },
+    {
+      "id": "hyeonchim-52",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 22,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "met",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "absent",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "c2af9dbb31d16c42c3457ce515a4e530e23618570f5308ac02846ec284aa126c",
+      "after_sha256": "0527d0d028a867057c076e0529bf652fd1366e6bdb520e6cbcfaf7850bb28508"
+    },
+    {
+      "id": "hyeonchim-53",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 23,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "met",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "hidden_only",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "9e27c88832c3b0f2e057bb75726021d90ea534b6c35d66af23d2c19de5e6ec96",
+      "after_sha256": "323904d4aed6477d773d05acab6e1d03f249934d7a22df3006a0d2d130ff1840"
+    },
+    {
+      "id": "hyeonchim-54",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 24,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "absent",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "8a09fe030bab856c9630da0dfb8797ecd86c705dfb5ddb2ee23cf3e2bea6c8c3",
+      "after_sha256": "fe4bd62bc4e5ee8144608376b743c27555ed18881c72c5291c7701e83bd5337d"
+    },
+    {
+      "id": "hyeonchim-55",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 25,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "met",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "hidden_only",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "f0a1935b05608baf35ca1301e08043d796d56e85883e7d6a08540058c412104f",
+      "after_sha256": "5f934471c641227b976b5b81e6c8c3cf382468068866feb206c83aa3539eca3e"
+    },
+    {
+      "id": "hyeonchim-56",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 26,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "7bee4bd1dfa18603a9fd3eb3e99ec4b8107bffcddc16537a35d7ffc341b72e1b",
+      "after_sha256": "61b94a8105275d67c8641ed716dbdaed24f3d0591960d6f9aa33babd887633d0"
+    },
+    {
+      "id": "hyeonchim-57",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 27,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "hidden_only",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "f49c5ebf39080c6e3f798f14bc2ce70014328b527187716621cb36083b59487e",
+      "after_sha256": "543ea021e18dcfbb98a9ee9e9784578695d5549e7e4cd13ff4a4ec4d68be28f3"
+    },
+    {
+      "id": "hyeonchim-58",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 28,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "hidden_only"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "fe88b8b67187b7f25ac0e5575647ffe78efb6811d9f74f78505e00bbd9de1156",
+      "after_sha256": "d523b217d9fad7b962b8b899fbec591a99342d7af0cd65f3e4b0b36f514a13d0"
+    },
+    {
+      "id": "hyeonchim-59",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 29,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "surface_present",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "absent"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "bbeb1543a92beb72322f435ed79b374a0340496dddcbc3f20fcbe1172263d999",
+      "after_sha256": "62210e4a89a26cdf2d6b9b9cf74304c757af49482219e7cc096af53cb8d6ed4d"
+    },
+    {
+      "id": "hyeonchim-60",
+      "input": {
+        "year": 2022,
+        "month": 2,
+        "day": 4,
+        "hour": 10,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "hidden_only",
+        "식상": "hidden_only",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "37a615c54b977de2ef9dfee3ba88c9ebbd8cbfdadb7ebb0c496766e38b1e5ba6",
+      "after_sha256": "b2751d321e64113122d3ede8f691dfef8e27cd84476b7826246a6672a3a418eb"
+    },
+    {
+      "id": "hyeonchim-61",
+      "input": {
+        "year": 2022,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "conditions": {
+        "wealth_surface_absence": "unmet",
+        "wealth_surface_and_hidden_absence": "unmet",
+        "authority_surface_absence": "unmet",
+        "authority_surface_and_hidden_absence": "unmet"
+      },
+      "groups": {
+        "비겁": "surface_present",
+        "식상": "absent",
+        "재성": "surface_present",
+        "관성": "surface_present",
+        "인성": "surface_present"
+      },
+      "card": true,
+      "calculations_unchanged": true,
+      "requests": 5,
+      "before_sha256": "02ec0a01d0155d37e7a75ba77cc347a0e8df02fd337503aa6a765ae219811bcb",
+      "after_sha256": "49d102438bd745849b641a6fa4efd2741cdc4113362509aa706dc88792bc1a47"
+    }
+  ]
+}

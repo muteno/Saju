@@ -100,9 +100,17 @@ test('PR211의 문장14항목 고정 전달 계약을 재현한다', () => {
 })
 
 let moduleId = 0
+test('원국 조건 종합풀이의 미상·계산·현재 카드/상담 전달을 검증한다', () => {
+  const env = { ...process.env }; delete env.NODE_TEST_CONTEXT
+  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_context_reading.mjs'], {
+    cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 150000,
+    stdio: ['ignore', 'pipe', 'pipe'], env,
+  })
+  assert.match(output, /^# tests 8$/m); assert.match(output, /^# pass 8$/m); assert.match(output, /^# skipped 0$/m)
+})
 test('갑인 구조5문헌참고와 개인풀이 분리·110입력 보존을 검증한다', () => {
   const env = { ...process.env }; delete env.NODE_TEST_CONTEXT
-  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_gapin_structure_delivery.mjs'], {
+  const output = execFileSync(process.execPath, ['docs/knowledge-model/frozen_context_reading.mjs', '--test', '--test-reporter=tap', 'docs/knowledge-model/test_gapin_structure_delivery.mjs'], {
     cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 150000,
     stdio: ['ignore', 'pipe', 'pipe'], env,
   })

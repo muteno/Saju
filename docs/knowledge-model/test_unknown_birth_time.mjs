@@ -115,7 +115,10 @@ test('forty known inputs preserve profile/share and enforce the explicit correct
     const expected = corrected.get(row.id);
     assert.deepEqual(input, row.input);
     assert.deepEqual(profiles.parseShare(profiles.profileToSearch(row.profile)).input, input);
-    assert.equal(topics.chartSummaryOf(rep), expected.summary);
+    const context = rep.sections.find(s => s.id === 'context-reading');
+    assert.ok(context?.lines?.length);
+    const scopedPrior = expected.summary.replace('십신 부재:', '천간·지지 본기에서 안 보이는 십신:');
+    assert.equal(topics.chartSummaryOf(rep), `${scopedPrior}\n원국 조건에 따른 풀이: ${context.lines.join(' / ')}`);
     assert.equal(rep.sections.find(s => s.id === 'judge').lines[0], expected.report_line);
     const raw = engine.jeonggokRaw(input);
     assert.equal(raw.strength.score, row.weight_swap_only.score); assert.equal(raw.strength.label, row.weight_swap_only.label);
