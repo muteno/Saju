@@ -1,0 +1,2716 @@
+{
+  "baseline_commit": "6a4d75775f3e71f5e0c651cd3ea208e06c450247",
+  "scope": "110 synthetic calendar inputs, 102 known/8 unknown. Not observed people or accuracy.",
+  "policy": "gapin-structure-reference-v1",
+  "reference_definitions": 5,
+  "personal_approved": 0,
+  "training_eligible": 0,
+  "probability": null,
+  "assets": {
+    "pointer_sha256": "95a2485722c02af8de0677e4dc625504feeda0405844c765cc8b18f95d28066c",
+    "kb_sha256": "b5b98b98c6e49f1716e05d7fdd7431b5073084e4c4b00fa3dc1be61292a34f05",
+    "brain_sha256": "51ab4aa0711196dbfed744d6bf1587c009fedbca5ecf104449ecca8f8f433f66"
+  },
+  "sources": [
+    {
+      "path": "dosa-app/engine/src/report.js",
+      "sha256_lf": "a03d6f771d9f995d6447faf411e62c58deb2ec08f4db073ce7c992f1ce838e60"
+    },
+    {
+      "path": "dosa-app/engine/src/gapinStructure.js",
+      "sha256_lf": "d128883501c137b459f11395413cc21b659a8ad8769a76eac814e2c89995943f"
+    },
+    {
+      "path": "dosa-app/engine/src/gapinStructureData.js",
+      "sha256_lf": "1e0de0e624df641c97e9e48f285c5f0d0bbef49ccc2ecb51467152c8e3d5adb1"
+    },
+    {
+      "path": "app/src/data/saju.ts",
+      "sha256_lf": "9dec9ddfe1c7a346d4cce0eb3181c72ba51a23f4116dd0ae759c4eefabae77c2"
+    },
+    {
+      "path": "scripts/build_gapin_structure_data.py",
+      "sha256_lf": "2d7a7e3e7c688db50379fb2b00ba4db876cd5e850ed771802c1e11bf502bb26f"
+    },
+    {
+      "path": "app/src/components/ReportParts.tsx",
+      "sha256_lf": "ce364810c07592e616a78db958733800e41977c8e1e73a68f1b62e4d58b20f08"
+    },
+    {
+      "path": "app/src/data/readingPresentation.ts",
+      "sha256_lf": "4d14fccb6308a63bb654e43d473a50fc8f1be363ba4a85ba77e8d09118afe382"
+    },
+    {
+      "path": "app/src/data/dosaTopics.ts",
+      "sha256_lf": "8acc9f975a37b6f0a8054810eef58246c9cd5bc0b756c002bce048b93bee8522"
+    },
+    {
+      "path": "app/src/data/dosaClient.ts",
+      "sha256_lf": "508e7b36fffd62946483798bbeb8ebe249f161f6589cdaa5e73f243488b4d26f"
+    },
+    {
+      "path": "functions/api/dosa.ts",
+      "sha256_lf": "1711b22332ed4631a21f3bafd3e85acf89bdacbd54e5e50d8ebf776215922dbf"
+    }
+  ],
+  "rows": [
+    {
+      "id": "known-extreme-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "68406cad1745087f8e0eb4ba50a4f38f53db6407774d09b1854b450314742834",
+      "after_sha256": "59fc81fb97031dfe634ba63a818fedfd361302940c29b556f1e3a807404da001"
+    },
+    {
+      "id": "known-extreme-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "46a5c32cfd9087e908da29ff354a7c3f933ef8eafba3f54bf0a1b6465104e3e2",
+      "after_sha256": "2ea68abc27218a629b2395605654609325c66129e3fd1f9391af9daae4e73284"
+    },
+    {
+      "id": "known-extreme-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "cd8f39657c31f0819d66a86e7632f267b276b1786f8dca915449c1b3f8cf8a98",
+      "after_sha256": "3e208b5d018d15f53effece2d42b05db35b246bb58544ae4b7481ffd27c95db8"
+    },
+    {
+      "id": "known-extreme-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "38c44df6bcf92c35603a59c3d2029fcc4684d55f696545245baf1c7b305beab8",
+      "after_sha256": "25677bda34a72024dc7d5a3f9c7950644c2152bdc7b14b8efb3571d1b7bb09fc"
+    },
+    {
+      "id": "known-strong-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "7c137f67236451b301b50f6887ed31164ef78d24d0e605a08c0dc1ea50c3d99a",
+      "after_sha256": "2a3f3af5223c6b9d6409ab0d83548d5c38f991033652b3cb7610ff667bcc1a06"
+    },
+    {
+      "id": "known-strong-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "20bab470cf7f8437f534351dd179554c8fa6afe3b5999e3687e7b58e1d4c1d20",
+      "after_sha256": "6f05582bed48b1a3e2df009e2ce1f19edeb18ae8b4ce03b01ebbd5de36c22c5b"
+    },
+    {
+      "id": "known-strong-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "18e045f27d12fee22911c7b78f785dd8de4c0e7f2a35d95947921d9ea6694b38",
+      "after_sha256": "fca88a3c2ed43f0a258b42feb471ff60e8841e238163e94382437312d7d6e23a"
+    },
+    {
+      "id": "known-strong-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "fa19869dd85463cb0aaa826457d9cd729d4769b191173da3b21d6602650b0a0e",
+      "after_sha256": "81bf28c086aa43bd8a3f84e0967848470bce95df904a80dc82aa2bb43eac6922"
+    },
+    {
+      "id": "known-strong-up-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "c504a779067e4c49d7fd19b52b5f0d9e14da1db7a4a4bf3fd97d9436005b6fbb",
+      "after_sha256": "4d6c53920e4a3cd74e189993606bd5d08c4389f4a7140d4ebae0f6b3a96e87d4"
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "f5faa0500804e4460e637612321c7ab2fb640b620e562050daadd9c995f279a8",
+      "after_sha256": "20ebe421016e40e763c376b2b15e495f10aa098db1c5f7cd85c13257b5d2405d"
+    },
+    {
+      "id": "known-strong-up-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "c00af676c096a8dca8f39b9d93694d244dfd12f47e80a5315cf23877b7f95e0f",
+      "after_sha256": "9e26333ece6a2de026594ae656f20aaf8e92451b50cbcbf0c97e77f1b3e844de"
+    },
+    {
+      "id": "known-strong-up-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "8019acf4eef3e41436a3dbbf72df7a31fb427edb1e4f8674b4f04e46b7284342",
+      "after_sha256": "113bc8faa1c768f9c10ab01703f7f2e3f19c874c46e399633fe3d18408d9e340"
+    },
+    {
+      "id": "known-weak-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "dd26bab8d1d72b273348621ad9c5daa3201b83578371c1b5777aae3bb396449f",
+      "after_sha256": "7ca00eff97771e6b391a230bb28466e996d82c2ba58514cd280b368ea6c3ecdb"
+    },
+    {
+      "id": "known-weak-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "57169668e7fc42b18b1e3055927bdfdcfae8050b598f9ba1e919e28561d418e7",
+      "after_sha256": "1b8ad9f4e48f3a1f4b2fb10b786c280b168db9ad8c4e7669adcbb451382c10cc"
+    },
+    {
+      "id": "known-weak-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "a3ee35cc8ebe8518235abd41b15c64812ab704ac099e041e0899e20196edf018",
+      "after_sha256": "affe02b5e1e4b753d076bdecd33c2402224ffa14fbd32b0d48fc30ed36a6db14"
+    },
+    {
+      "id": "known-weak-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "41929175c9941f632e83b3d3aee7312510b22018a1063f10a1b9a92ef09ff0a6",
+      "after_sha256": "4a4c08c523d3ef7132b7e57cfe19eae978d1e261c2cc2104bcad7ffd3bb1cf90"
+    },
+    {
+      "id": "known-weak-up-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "b5201b80f339e8b8db073eb594c6f8511bb8de0eb00e5535d93f16bb8fdbe675",
+      "after_sha256": "397dc56b1f9134ab2b071d70d9a8cb9f13467a494305256251b0a7f990cb74bb"
+    },
+    {
+      "id": "known-weak-up-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "1e3fcec983e43c28b3d53e3302a0dc426ed2391825facbe591c64b9e02ad739b",
+      "after_sha256": "60bd64a41ddd3b19376dffad5538f76d67bd2f8a96a89f2f8f5c9c7789b8001c"
+    },
+    {
+      "id": "known-weak-up-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "ff6ace0879877a733660a9df52d7acd1a0ef9f9f553e10a1352b2b0a314e4183",
+      "after_sha256": "43fda89d3ba9b00e97bb892f82647bcb0a0eef228bbe9374a8c81c21c797d00a"
+    },
+    {
+      "id": "known-weak-up-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "a79131388f60bbbc79023c9566de14af408546b632a1cacaa2ca9869ea123c56",
+      "after_sha256": "50e0b96c870295dce80f994e27c6ec84681f26bfda08fb0eb546ca31fad14944"
+    },
+    {
+      "id": "known-extreme-up-solar-midnight23",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "f248ba9f9484229a1d6970234dc53b249823cccadfcfe0c065049c1c2b92c7c0",
+      "after_sha256": "753353a9847a5052a9f28e2fc8f4cb40f01609a5a5f58eca3f6bdeb4b6f3c689"
+    },
+    {
+      "id": "known-extreme-up-solar-keepDay",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "7a472285d32a7e5f87b3c03ed37bd236813550428dc2831c110d22181bfa36e5",
+      "after_sha256": "bbd0076c909366d8aa976cd839e66ceaea4d54a8337ce8abe5595731dad8a49f"
+    },
+    {
+      "id": "known-extreme-up-civil-midnight23",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "496dd62a37ee01fa04750fd5cc06ccf25420041a1036b90d5f9f7f76e129b556",
+      "after_sha256": "11450f7667eca90b97bda4bccca6f33cb35f05d50ba5a494aa9299907cfbfba3"
+    },
+    {
+      "id": "known-extreme-up-civil-keepDay",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "1886f424868fdb72318bc84c3b2e03c96d0708549fbc351b04e6963c857fd902",
+      "after_sha256": "d6ff7cf14dd2b65603aa1b2154964f13768206d4f489fc05e201be4087d2d02d"
+    },
+    {
+      "id": "known-zi-before-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "8ad1429e200bd5a6f7614a0de0148f0e483c172585b499b2653ab7bf2d72f8ac",
+      "after_sha256": "06b36d0df73dda378333bf9c4e463286f2a3d0ba2582e6e30bfc0b5b9bba2f7e"
+    },
+    {
+      "id": "known-zi-before-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "094fdefb22266158f002214b79ac2323c9135804d657203c8d0141ad6932f291",
+      "after_sha256": "bb8c97d8a2ed3a01197d1b31d5611fbeddff23a7ee657d9fea5aef27bac4552f"
+    },
+    {
+      "id": "known-zi-before-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "d268656fddaddbeac2428285c1b8e4a09407863e3a32d7e36f29b6e8368b055b",
+      "after_sha256": "422f09f7d9c1c50dae11845efb1661a8bdb3b2e30f1a7fa1e13a4ab5bc15d4b8"
+    },
+    {
+      "id": "known-zi-before-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "340b19bc4321f6d18e83cd8e9424ef7339b124980e55a0bcb30b83c01a2d1589",
+      "after_sha256": "ab1d9084ac8fd60706250abcfcb4f789f901b56f8007174a483a24a022276281"
+    },
+    {
+      "id": "known-zi-after-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "e5fb6cf1723eb150e9d9e54da86834b766950d88292522903e03f5af508ba17b",
+      "after_sha256": "bbc9c9f8da057bd6f84c48f92310a145f65e3e4a6846a21d371fb3464c984207"
+    },
+    {
+      "id": "known-zi-after-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "2eb19f8c8663e5420f45e3996a708b5d8011e020990c5f92f5c31ceb056ea272",
+      "after_sha256": "c6da527965cecb152b81857990bab7a7383541737ecbf8435ee243aec56233f4"
+    },
+    {
+      "id": "known-zi-after-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "5f1c06d6ca69d6dd16e066c14517dfa2b82df202ab612daf2ff4fa79a3949583",
+      "after_sha256": "8c8e3345a1bac83ce6a9eb3e539564012c6a1020c2342bcd1a2965692344e6e7"
+    },
+    {
+      "id": "known-zi-after-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "c6ca017a6fe618c5c6421a3efe1203845209c7b333f9d2e6afaf65c66fd50ed4",
+      "after_sha256": "36d24b7e570a35d762203230ca1dac9d32708b2637c2fe08343b248eda8dddef"
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "387482b9003e84c1b43b4e66b1e6df3639c09c25293a3a82c4ac9228393edb6a",
+      "after_sha256": "788511db0a87a4f51833479f46c171885502a083de6ed75baaa524c99e743b46"
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "732e9141f71c81d42cdfa10b888438a3f2ed94f290905b8031df4d539cac9569",
+      "after_sha256": "989ddedde231d270b75357fe34c3138992e75fd84729779c95d7e2ed14a39185"
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "6debdc5a180d9118b9c8cf33abe320453ca9fe708511fd25758c70879e1ec6ae",
+      "after_sha256": "4bb66b37b0bf186cc87535029a6ae8d8633f11731520f2cc3293ab96f1354b7b"
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "2c8b2f249d7ad227f99f7209fceff02790ee387ae168e8f34cdb2774b3476a11",
+      "after_sha256": "10069c3212da218d8ea4450020e1b44f21f44fc9d99eb37a414fa6ea5db8d51d"
+    },
+    {
+      "id": "known-ipchun-after-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "966fc5989be7ccbf34f8595c776c818b7b0247df13ee523b7b3ce2b241c7fd37",
+      "after_sha256": "c9821a4d227be61df13b8d5c5946534440cc79fc23130cc25078bfc65a77cf89"
+    },
+    {
+      "id": "known-ipchun-after-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "f1d74b80c5a006a992a61112b3aec03b68b0d420e9bf58ff21a28e76b50b6c13",
+      "after_sha256": "de56d4dd679f0fd95ed5c46cd6d11384b9edd4d0c281c1ba8fa51b51a25956cd"
+    },
+    {
+      "id": "known-ipchun-after-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "4e0f2103bbc6fd8a949170e8f7687e60c4de77fb3c7cbb7b830fe33f45dbaeda",
+      "after_sha256": "f0a60cc682347fc90429bb6f4f7b415f1fd1de68a852adfe6628d2a2d547fc60"
+    },
+    {
+      "id": "known-ipchun-after-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "a1cac952337cd69977c07661ad721b962512533e2f558764714f4827311373ba",
+      "after_sha256": "acbdc27d0b9238f3b567879667d2ea8cd3c6304aa0e961c0493e84e947309dd8"
+    },
+    {
+      "id": "unknown-ordinary-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": true,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [],
+      "requests": 0,
+      "before_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5",
+      "after_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5"
+    },
+    {
+      "id": "unknown-ordinary-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [],
+      "requests": 0,
+      "before_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7",
+      "after_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7"
+    },
+    {
+      "id": "unknown-ordinary-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": true,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [],
+      "requests": 0,
+      "before_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb",
+      "after_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb"
+    },
+    {
+      "id": "unknown-ordinary-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [],
+      "requests": 0,
+      "before_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d",
+      "after_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d"
+    },
+    {
+      "id": "unknown-ipchun-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": true,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [],
+      "requests": 0,
+      "before_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e",
+      "after_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e"
+    },
+    {
+      "id": "unknown-ipchun-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [],
+      "requests": 0,
+      "before_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b",
+      "after_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b"
+    },
+    {
+      "id": "unknown-ipchun-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": true,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [],
+      "requests": 0,
+      "before_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541",
+      "after_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541"
+    },
+    {
+      "id": "unknown-ipchun-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [],
+      "requests": 0,
+      "before_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db",
+      "after_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db"
+    },
+    {
+      "id": "hyeonchim-0",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "81cfa30272829524acf5482a604c767713e5e0b47cba20c8e67815536014fa33",
+      "after_sha256": "2a014e3cf70f32a6803029025f706e1a07a7f90189115e57da724da0a92be137"
+    },
+    {
+      "id": "hyeonchim-1",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "b1b6b2f6cda854a8a63ba64adc331f9dac724ff32b865728cde125db4d0e9a99",
+      "after_sha256": "f3da5ea804e27ae2a57bab8d7634dbde94022f3610d53ab2f56b07b1f258b93f"
+    },
+    {
+      "id": "hyeonchim-2",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "68b64251fc1236f6b221cc072baaa6b360ac65fb778b54b6fd7fa27e02cad9fb",
+      "after_sha256": "d21a61bbe7baa5942174abbd7aa127b2d687b8032949d3fbb75bf7b700f867e4"
+    },
+    {
+      "id": "hyeonchim-3",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "736598217138d528f46d0cab865856615f964f79629767e25600a26508016be8",
+      "after_sha256": "012ce64455e4d09a165f617155a2cbf073b1f367294252d948d5c2bdebff1faa"
+    },
+    {
+      "id": "hyeonchim-4",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 5,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "2b8c715a0b2b38bd72414dd7cd2b938dd0255ddccd8c5a682c24ea323fb4ba85",
+      "after_sha256": "0ed2140901993f73c8697c97f20385c45a53904fce2c4697fa89d2d1302335d5"
+    },
+    {
+      "id": "hyeonchim-5",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 6,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "1c2ed46924afe8c050e0dbac978d43b1f6aa2343c0ec421feb643f7295fda652",
+      "after_sha256": "dde3eae45ea03fa70171fe0ff2b4cb87a1f1b39ad0035ccb5567c15a97596129"
+    },
+    {
+      "id": "hyeonchim-6",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 7,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "5f22787a68f69d45a8f04ae57b5df3b8eed75bbd356ab19c65f95b263c65e0a1",
+      "after_sha256": "1c468608766f8c53f080da3d6c1328ddd601efa4b3aa979340d01b2b1e1f319a"
+    },
+    {
+      "id": "hyeonchim-7",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 8,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "c6147593e120f058ba1762594c40e73b55024b1d815323ec84b1ba05c8b7b197",
+      "after_sha256": "56cb25af5b5e2547bb7607ef1714efc5b630aa8603938bd620c5b0b6c900a518"
+    },
+    {
+      "id": "hyeonchim-8",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "bfcb0690023d4035bb6fbf9494ba14b82248e782ccc7e4ca7bfd0d01c31d7aea",
+      "after_sha256": "5a910ef2f2718e8dc78978cb7da53131aa369ec3446189752f0e82e0637d17c9"
+    },
+    {
+      "id": "hyeonchim-9",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 10,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "eefc3c64a8a356beda63168cfcf3ba0daf23207487fe5242e5ed2f2a93e262c4",
+      "after_sha256": "7c445aa1c60d5d27012a24b487b5aa15d40a95af1d80f8294959f8a280e17659"
+    },
+    {
+      "id": "hyeonchim-10",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 11,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "0ef148434a2b1369835bda86df5116a607e4134a6996e57831cf98d3c523a48a",
+      "after_sha256": "5dd9a223056cea21cedfc2b05dab8736c56c00d6f7e675baecbeb1ffff2e4006"
+    },
+    {
+      "id": "hyeonchim-11",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 12,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "ea863cfb19cf975fd35bea5d9c6a21c33a804163153da3c4de1ce8901d35b11d",
+      "after_sha256": "930546bf709bf69cb4346c203eed23be9fa80d398a38d6664c3622994452a894"
+    },
+    {
+      "id": "hyeonchim-12",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "740b56e64736255381962b80e5edf9be1348a572fa6286cf2d1e56cc01c4478e",
+      "after_sha256": "cae7508cd60034f7c97824452bf70a9febf22592440ed35346c9a342940ab556"
+    },
+    {
+      "id": "hyeonchim-13",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 14,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "f746174de1b8f99d45d3b27e85872979e143800183aa0975e0397a57c2b85a08",
+      "after_sha256": "06b7bfec277fa42e146d065d5ddda2e85422608dbc99796426a7d0ac9cd2f3c6"
+    },
+    {
+      "id": "hyeonchim-14",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 15,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "a2cd3fe689de2073aa184a4cdaae74fbe03ba9cf5b60cbb1fbec2f715ba6ac5a",
+      "after_sha256": "8ead0c3b917872094e3d3d462b851f35c8ff9a5e416177a74c7b486bc2714605"
+    },
+    {
+      "id": "hyeonchim-15",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 16,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "69f771749a6435f81cd4f2dc4ddc83b9fb18474b9404511f143ba4cfc3867059",
+      "after_sha256": "1e48dff0397e80d6b1bc66fcaca022f955951c5d1cd389240870137c36376dca"
+    },
+    {
+      "id": "hyeonchim-16",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 17,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "39d5e9d8c5f79b13d85ccd99d3ce3252114af55ce17e8ab3758c5206a6149fd7",
+      "after_sha256": "6643b16d11b7314ad603db6c2d0bbf94435db1928bc3187a4ab76a965475e3f3"
+    },
+    {
+      "id": "hyeonchim-17",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 18,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "03311ec65420f6e78e370ff090daf2fdaad7f71687d56bb1e0885982f79947ca",
+      "after_sha256": "97536f812bd6ee1af531129de876e256615ab98f0b8a87e67744ba66e2a35546"
+    },
+    {
+      "id": "hyeonchim-18",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "73875ddc8fd6e86195429ed7ffcc520d6a35daf13aee8bd203e2b5aba713badb",
+      "after_sha256": "e623152213c59ecec3cb3c0e1583972fa87588c39e2b519078122633d20f751f"
+    },
+    {
+      "id": "hyeonchim-19",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 20,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "d1c1969d332f66cf28a1b93b2f6766ad80ea6ec5ad7f93f84867e8bd2d044525",
+      "after_sha256": "5e8b1b68d9bd87d2bd758ee6f5b04274791b5fc6edbbbd22a2a649ad50abd97c"
+    },
+    {
+      "id": "hyeonchim-20",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 21,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "c67960724b4dfa87ca4be8933c4f1ae4bedc984324491ba82318eb124d17b222",
+      "after_sha256": "c80de71d34eade11617ac63be370b8953e0a5f257feb83fe68e638ea76cec368"
+    },
+    {
+      "id": "hyeonchim-21",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 22,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "5e4e69122d0438d8d0b56716105416eda6e53557ef51476c9e5c3bb01fa48838",
+      "after_sha256": "7969e84027cfef415669704cb84d34de02e10bb2b9c5f0d1c006d1eacd19679b"
+    },
+    {
+      "id": "hyeonchim-22",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 23,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "bbaed78f4d8eb8a810f3d5d2f9a3ed50f6880a964e51a0e2ccbc5da8a210517a",
+      "after_sha256": "2253a45aa818e88740583cb9c9a526414e102d34c36508b8f3fd6e5ba37e3be6"
+    },
+    {
+      "id": "hyeonchim-23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 24,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "97ca8594bfa914e80ed6cb316ec0a71079b732a406808763118bb74834163713",
+      "after_sha256": "3651a10f5d49c2943c013698f99bcbb4c9010fa8ef5fcf4115ff81f3fbd58a99"
+    },
+    {
+      "id": "hyeonchim-24",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 25,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "8cba5daf9f2e4153380395387e86468d1ed7895aee2914a544ab6c66e3182e2e",
+      "after_sha256": "d183703711332f78a902117adf9f5f6da99f10b7ade00e8788ff03387f5191ad"
+    },
+    {
+      "id": "hyeonchim-25",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 26,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "7f227d75c1265688a3528748ea40534d4619835af5de588fbfd046e6b341c779",
+      "after_sha256": "b9e32d4d901a488d695028ea7507159ac95f0735ded916d4509b239a77f9e99c"
+    },
+    {
+      "id": "hyeonchim-26",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 27,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "0675543cca173246eb54f9e66cf1805b04f043f1e7199e51ffdb380fb2a0a6db",
+      "after_sha256": "2a7ffa76b6bf9d9dac421b2922c16960b25341880ef5bc296e9393f7a6711b10"
+    },
+    {
+      "id": "hyeonchim-27",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 28,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "3b692075712fb0764bf8b3e04614cd699bbe445f008bfbfd9ce012520b45d486",
+      "after_sha256": "b774f4d574155b37909f172fd428943a81d0f1a1f8b35f3ba8a92a52a251b20d"
+    },
+    {
+      "id": "hyeonchim-28",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 29,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "9b4aad25fb0f7b25de0b3c9b6436d61e77a854abdaf93acd8cf31ecd0dab6293",
+      "after_sha256": "45257b3ee5d877a85b721b591339055c5de9556d3d51fd175775f6befaa3c95c"
+    },
+    {
+      "id": "hyeonchim-29",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 30,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "e1a20861e299475f6e09f64aa236d7ad2a968e2dac59fd119d59d52e9eb23fe5",
+      "after_sha256": "eb9adc2ce4941e060cff979df96bd055d42b7ca135fa71439a41abb2b77aab28"
+    },
+    {
+      "id": "hyeonchim-30",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 31,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "b5241524499d22bc922f9b2512a9072fa9bd8289dcd3963302905ee3537ead80",
+      "after_sha256": "35f2d0ea24e8b28cf47b8b5c92d8bf1dc3e8f34b44144b41e632cedb6a813673"
+    },
+    {
+      "id": "hyeonchim-31",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "527ec0eb1c6286ea235fdb71b764181c83d5e2f92ef99ce8f62161ffb247d882",
+      "after_sha256": "645cd6f4fd4357b96d9f875d1dde377ac3fadb2248731c2af7e504425e46134e"
+    },
+    {
+      "id": "hyeonchim-32",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "5634a4c8ff95b58c0c36d4ad5b2a76d9d0661cc68b6645c59f5a6b4c97cbe79c",
+      "after_sha256": "9ba58337d3d9cb7f840a90f275027c05f0297190c25d5160e29d30f7afe05a44"
+    },
+    {
+      "id": "hyeonchim-33",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 3,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "26218e2412558bafae97584bf365300f4261c09d49b42b6f8ec437ddee902ffb",
+      "after_sha256": "94f05a8cfd6c2b24851f381c2ac58f62ef62852ec1a094c48d597cd8873f67e9"
+    },
+    {
+      "id": "hyeonchim-34",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "4b591ce899dd449f57c4c562272e2dfbed1ac98ed62aff74580d519fa077feec",
+      "after_sha256": "e6df4efff9b8adaf111279f53f2d885e7c02d157f7c8febb74247e07ef73409e"
+    },
+    {
+      "id": "hyeonchim-35",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 5,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "1c3318188021c68aa3dcff1fb10a7f8d589df4bf1670e42c9ca68b1ecb707e8e",
+      "after_sha256": "d18e2883f8ba465b3ad4c9efa9157dd46f8af07dfa13a6c860099e9a441708e6"
+    },
+    {
+      "id": "hyeonchim-36",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 6,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "803afbc83e520912e279c97d78a7ef73124d9f3f868b2ef3c6d921988d04bb47",
+      "after_sha256": "bde763c2092253f6a8b79b6f7c5c99146613722797f2be10e37ba226a78356e3"
+    },
+    {
+      "id": "hyeonchim-37",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 7,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "d970b3421cc5bfbcd952b69f1e8178bda7ff614c41aff6d721f90916c0703746",
+      "after_sha256": "6ade708da16ba1ba56f6432f2eddf74a3fc4ffad525cec1894c45fd77964e3d8"
+    },
+    {
+      "id": "hyeonchim-38",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 8,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "a495eb291a95237a717fc33051af8594e9e82fb680cdeb0b7eedff13ded0ea7b",
+      "after_sha256": "4bb363b0e1f61d45e503051558e20653fbbb60e42cf287326e4f5bd4796c8e78"
+    },
+    {
+      "id": "hyeonchim-39",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 9,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "53c14c29568e298052850966433f3ed40024c2601905f2d907df5e58bbd426bc",
+      "after_sha256": "2d6df2938d72a3ef18535240cf77240c550029009e02c4ce72c0b969c244a594"
+    },
+    {
+      "id": "hyeonchim-40",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 10,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "b8288d1a236decc8a5f0bf8ec9569cdef608a8dd8e386ee2c762b8618df23dd1",
+      "after_sha256": "6880afaa51c4960d54ea23a2a2717673d90f7aaf8fb1674e584ca7f3675fcf9b"
+    },
+    {
+      "id": "hyeonchim-41",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 11,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "375a0b090448876d74afd20fe0296625c6463c2be2a31d331479a42ecb6e96ba",
+      "after_sha256": "ea0b4b95b7d759af3e1b608215350050fce8fae02f4351a31404fc31539bee66"
+    },
+    {
+      "id": "hyeonchim-42",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 12,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "0b15bbecb2fd1a521daff5891b0f08800d185bf80ef7e28582c71e7c6921c53b",
+      "after_sha256": "53bc43483f753aa7cdef8037c44b90e6b9fd4112335c6234598f947884fbefbd"
+    },
+    {
+      "id": "hyeonchim-43",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 13,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "c9260a1db8f1680ea276957110954adc0137421046050e8ea2b47a477f4d27f2",
+      "after_sha256": "d65ab7eec36e18d15dc50c6d55821c6264cefbeae9ed6566e3098f685068c97f"
+    },
+    {
+      "id": "hyeonchim-44",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 14,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "06c197dc1011bc7352d5afc344845c87994197f5a9a8d68089410400db752a1f",
+      "after_sha256": "e440c4b73ae8edbc2b9a3e9a562538f6196ccef6eb26a47f4b790e5121a06aaa"
+    },
+    {
+      "id": "hyeonchim-45",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 15,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "a56e7294c378c58f7b7844f7c3f27fa8512d43e6c531afd94062f36d4ddee2a6",
+      "after_sha256": "57ceff937aaa66e42296b8bc627b43e2891fa6276bce6f0face6e103453a4990"
+    },
+    {
+      "id": "hyeonchim-46",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 16,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "77289382f57257b250f25d518ce3cb6f1f2905acbbf2c64dd50915fc14ce8095",
+      "after_sha256": "317b552262dac9a5efe0c9460ad55013bd8c38039e4e829f166d6f71e8f88895"
+    },
+    {
+      "id": "hyeonchim-47",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 17,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "7f2dddeb02567415bca9fae296965eab1be50ba3116f85a54a06af976f95e7c4",
+      "after_sha256": "09a33701a1283dafc71a1821a4c3a6d152fbb259d6a861ca9f9fdae66499e2cd"
+    },
+    {
+      "id": "hyeonchim-48",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 18,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "b58ae55c5b0471acac211c9f9786331720d2c462b3dc9566293471a81087390e",
+      "after_sha256": "6f744ab9f632dcaccca7bb47fc08b0880045f65e4f5abe44aed1d9034bb3744e"
+    },
+    {
+      "id": "hyeonchim-49",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 19,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "6629c70ce36b9ff2ba9167a8506332963848108330403af5dfc45e1d6e31416d",
+      "after_sha256": "69662fd31b08dc46a24d5a86400902f731259f1a426dcf1e625f6da79caf3f0b"
+    },
+    {
+      "id": "hyeonchim-50",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 20,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [
+        "GS01",
+        "GS02",
+        "GS03",
+        "GS04",
+        "GS05"
+      ],
+      "observation": {
+        "dayIndex": 50,
+        "dayStem": 0,
+        "dayBranch": 2,
+        "principalTenGod": "비견",
+        "hidden": [
+          {
+            "stem": 4,
+            "tenGod": "편재"
+          },
+          {
+            "stem": 2,
+            "tenGod": "식신"
+          },
+          {
+            "stem": 0,
+            "tenGod": "비견"
+          }
+        ],
+        "stage": "건록"
+      },
+      "reference_card": true,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "직업"
+      ],
+      "requests": 5,
+      "before_sha256": "bd3386cf513201c3d4ba527f4fa9ce81cf215bb34ef695d061eb5efebd604da5",
+      "after_sha256": "87c364e2ef55c5dd7b440adcfc6ccd1f8961781a128f9cc9316445ea555d3c6c"
+    },
+    {
+      "id": "hyeonchim-51",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 21,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "00220cb6a582d14fa2d8cfe451927569ff19b7dbe380ce3694512735424c3f0f",
+      "after_sha256": "b671ea6954ef1adb631d185302bf3e9e41a4225599aca3a96866b93846a4a938"
+    },
+    {
+      "id": "hyeonchim-52",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 22,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "f6d3a5cb69d3e0d1fc256d45bfab68196e0f6146c65811d1cdf4be44d1a8e1bc",
+      "after_sha256": "c2af9dbb31d16c42c3457ce515a4e530e23618570f5308ac02846ec284aa126c"
+    },
+    {
+      "id": "hyeonchim-53",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 23,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "736bf1e89cbbec99a6ab4f980a4003b448f44a0ce39a58aaa13313335d570ff5",
+      "after_sha256": "9e27c88832c3b0f2e057bb75726021d90ea534b6c35d66af23d2c19de5e6ec96"
+    },
+    {
+      "id": "hyeonchim-54",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 24,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "9eeed68d246c597359c4d30de1546cb12279c1380cd7b895c8131cc2bdb3fb3c",
+      "after_sha256": "8a09fe030bab856c9630da0dfb8797ecd86c705dfb5ddb2ee23cf3e2bea6c8c3"
+    },
+    {
+      "id": "hyeonchim-55",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 25,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "95a9eb79b7994225a0c79ce47f7887c05133736d2efb736aa9f8ff82426a8880",
+      "after_sha256": "f0a1935b05608baf35ca1301e08043d796d56e85883e7d6a08540058c412104f"
+    },
+    {
+      "id": "hyeonchim-56",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 26,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "6723a1f3bdb717bc61a09e4cb7fba5eeef56818bdefdb90ab951b326ac3e00aa",
+      "after_sha256": "7bee4bd1dfa18603a9fd3eb3e99ec4b8107bffcddc16537a35d7ffc341b72e1b"
+    },
+    {
+      "id": "hyeonchim-57",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 27,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "0d496ad6709d4fbbe6d0e4d8c6bc177d1a664483138a81c154a3e632ad4685f9",
+      "after_sha256": "f49c5ebf39080c6e3f798f14bc2ce70014328b527187716621cb36083b59487e"
+    },
+    {
+      "id": "hyeonchim-58",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 28,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "02125af8bef1df679859cf41bc1748e975d5e26e929c018bbf102ef59e105580",
+      "after_sha256": "fe88b8b67187b7f25ac0e5575647ffe78efb6811d9f74f78505e00bbd9de1156"
+    },
+    {
+      "id": "hyeonchim-59",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 29,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "40b747a3a56ba8918507d3cb0a1d467730944effc04c6679c569bed713b79910",
+      "after_sha256": "bbeb1543a92beb72322f435ed79b374a0340496dddcbc3f20fcbe1172263d999"
+    },
+    {
+      "id": "hyeonchim-60",
+      "input": {
+        "year": 2022,
+        "month": 2,
+        "day": 4,
+        "hour": 10,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "c8405ffd95dad274637ac6c926e605757f4e5c63b7b5f38fe5d00434a1051ad3",
+      "after_sha256": "37a615c54b977de2ef9dfee3ba88c9ebbd8cbfdadb7ebb0c496766e38b1e5ba6"
+    },
+    {
+      "id": "hyeonchim-61",
+      "input": {
+        "year": 2022,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "reference_ids": [],
+      "observation": null,
+      "reference_card": false,
+      "calculations_unchanged": true,
+      "topics_changed": [
+        "주의"
+      ],
+      "requests": 5,
+      "before_sha256": "dd1e284df3d0548d69c797138e383bf9519fe472b707e3448ea3ef7a2d3ab2f2",
+      "after_sha256": "02ec0a01d0155d37e7a75ba77cc347a0e8df02fd337503aa6a765ae219811bcb"
+    }
+  ]
+}

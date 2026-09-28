@@ -6,7 +6,6 @@ import { STEMS, BRANCHES, STEMS_HANJA, BRANCHES_HANJA, ELEMENTS, STEM_ELEMENT, H
 import { STRENGTH_BRANCH_WEIGHTS as strengthWeights, STRENGTH_STEM_WEIGHT } from './judge.js';
 import { applyBasicSentencePolicy } from './basicSentences.js';
 import { evaluateGapinConditions, gapinConditionLines } from './gapinConditions.js';
-import { gapinStructureReference } from './gapinStructure.js';
 import { auspicious } from './sinsal.js';
 
 // Named, unreviewed topic only. This is a delivery eligibility rule, not a truth judgment.
@@ -164,8 +163,6 @@ export function buildReport(chart, keyset, kb) {
   if (ilju.key === 'ilju/갑인') {
     ilju.gapinConditions = evaluateGapinConditions(chart);
     ilju.conditionLines = gapinConditionLines(ilju.gapinConditions);
-    const reference = gapinStructureReference(chart);
-    if (reference) ilju.structureReference = reference;
   }
   S.push({ id: 'ilju', title: `일주 — ${saju.day.name}일주`, block: ilju });
 
@@ -241,12 +238,6 @@ export function toMarkdown(report) {
     if (sec.lines) for (const ln of sec.lines) L.push(`- ${ln}`);
     const renderBlock = (b, label) => {
       if (!b) return;
-      if (b.structureReference) {
-        L.push('\n### 갑인 기본 구조', b.structureReference.note);
-        for (const item of b.structureReference.items) {
-          L.push(`- ${item.text}`, `  ${item.displayLimit}`);
-        }
-      }
       if (b.empty) { L.push(`\n**${label || b.key}** — ${b.note}`); return; }
       if (label) L.push(`\n### ${label}`);
       if (b.basicReview?.note) L.push(`\n${b.basicReview.note}\n`);

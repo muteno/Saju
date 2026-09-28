@@ -150,14 +150,6 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; prof
   if (!hourUnknown && judgeLines.length)
     cards.push({ id: 'judge', title: '원국 구조 판정', blocks: [{ lines: judgeLines, source: '엔진 판정(강약은 앱 잠정 기준·조후)' }] })
 
-  // Structural definitions stay separate from personal traits. No bibliography UI.
-  const structure = iljuBlock?.structureReference
-  if (structure) cards.push({ id: 'ilju-structure', title: '갑인 기본 구조',
-    blocks: structure.items.map((item: any) => ({ label: item.label,
-      lines: [item.text, item.displayLimit] })),
-    note: structure.note,
-  })
-
   if (d) {
     const blocks: CardBlock[] = []
     if (iljuBlock?.conditionLines?.length) blocks.push(

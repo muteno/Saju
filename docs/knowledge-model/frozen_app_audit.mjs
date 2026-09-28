@@ -14,9 +14,11 @@ const strengthFixture = new URL('fixtures/strength-position-v1/', import.meta.ur
 const basicFixture = new URL('fixtures/basic-sentences-v1/', import.meta.url);
 const hyeonchimFixture = new URL('fixtures/hyeonchim-consumers-v1/', import.meta.url);
 const gapinFixture = new URL('fixtures/gapin-delivery-v1/', import.meta.url);
+const structureFixture = new URL('fixtures/gapin-structure-v1/', import.meta.url);
 
 export function frozenApp({ consumers = 'legacy' } = {}) {
-  assert.ok(['legacy', 'unknown-time-v1', 'pre-hyeonchim-v1', 'basic-sentences-v1', 'gapin-delivery-v1'].includes(consumers));
+  assert.ok(['legacy', 'unknown-time-v1', 'pre-hyeonchim-v1', 'basic-sentences-v1', 'gapin-delivery-v1', 'gapin-structure-v1'].includes(consumers));
+  const gapinVersion = ['gapin-delivery-v1', 'gapin-structure-v1'].includes(consumers);
   const directory = mkdtempSync(resolve(tmpdir(), 'saju-frozen-app-'));
   const cleanup = () => rmSync(directory, { recursive: true, force: true });
   const linkChildren = (path, excluded) => {
@@ -27,12 +29,12 @@ export function frozenApp({ consumers = 'legacy' } = {}) {
     }
   };
   try {
-    linkChildren('.', ['.git', 'app', 'docs', 'dosa-app', ...(consumers === 'gapin-delivery-v1' ? ['scripts', 'functions', '정제본'] : []), ...(consumers === 'basic-sentences-v1' ? ['정제본', 'refine-tools'] : []), ...(consumers === 'pre-hyeonchim-v1' ? ['정제'] : [])]);
-    if (consumers === 'gapin-delivery-v1') {
+    linkChildren('.', ['.git', 'app', 'docs', 'dosa-app', ...(gapinVersion ? ['scripts', 'functions', '정제본'] : []), ...(['basic-sentences-v1','gapin-structure-v1'].includes(consumers) ? ['정제본', 'refine-tools'] : []), ...(consumers === 'pre-hyeonchim-v1' ? ['정제'] : [])]);
+    if (gapinVersion) {
       // Readiness's source validator requires real in-tree DOCX paths.
       for (const path of ['scripts', 'functions', '정제본']) cpSync(resolve(root, path), resolve(directory, path), { recursive: true });
     }
-    linkChildren('dosa-app', ['engine', ...(consumers === 'basic-sentences-v1' ? ['kb'] : []), ...(consumers === 'pre-hyeonchim-v1' ? ['methodology'] : [])]);
+    linkChildren('dosa-app', ['engine', ...(['basic-sentences-v1','gapin-structure-v1'].includes(consumers) ? ['kb'] : []), ...(consumers === 'pre-hyeonchim-v1' ? ['methodology'] : [])]);
     if (consumers === 'pre-hyeonchim-v1')
       cpSync(resolve(root, 'dosa-app/methodology'), resolve(directory, 'dosa-app/methodology'), { recursive: true });
     linkChildren('dosa-app/engine', ['src']);
@@ -56,14 +58,14 @@ export function frozenApp({ consumers = 'legacy' } = {}) {
         cpSync(resolve(root, path), resolve(directory, path));
       }
     }
-    if (consumers === 'basic-sentences-v1') {
+    if (['basic-sentences-v1','gapin-structure-v1'].includes(consumers)) {
       for (const path of ['dosa-app/kb', '정제본'])
         cpSync(resolve(root, path), resolve(directory, path), { recursive: true });
       mkdirSync(resolve(directory, 'refine-tools'));
       cpSync(resolve(root, 'refine-tools/units.json'), resolve(directory, 'refine-tools/units.json'));
     }
-    const versions = consumers === 'gapin-delivery-v1' ? [[gapinFixture, '70b1a9c0a118b6681fe0372499197fc2e424a468']] : consumers === 'basic-sentences-v1' ? [[basicFixture, '931f81c6acc852316c48272a3cd691d8c8d481ec']] : [[hyeonchimFixture, '41fbb1f8f3ad0bc07daffac8b8a4fc4ee960063b']];
-    if (!['pre-hyeonchim-v1', 'basic-sentences-v1', 'gapin-delivery-v1'].includes(consumers)) versions.push([strengthFixture, '006d06c7bb0ee5281ebe94a170688709c48094db']);
+    const versions = consumers === 'gapin-structure-v1' ? [[structureFixture, '6a4d75775f3e71f5e0c651cd3ea208e06c450247']] : consumers === 'gapin-delivery-v1' ? [[gapinFixture, '70b1a9c0a118b6681fe0372499197fc2e424a468']] : consumers === 'basic-sentences-v1' ? [[basicFixture, '931f81c6acc852316c48272a3cd691d8c8d481ec']] : [[hyeonchimFixture, '41fbb1f8f3ad0bc07daffac8b8a4fc4ee960063b']];
+    if (!['pre-hyeonchim-v1', 'basic-sentences-v1', 'gapin-delivery-v1', 'gapin-structure-v1'].includes(consumers)) versions.push([strengthFixture, '006d06c7bb0ee5281ebe94a170688709c48094db']);
     if (consumers === 'legacy') versions.push([fixture, 'd23400c3c8cc8587336fd5a00fcda2ce23184680']);
     for (const [source, commit] of versions) {
       const manifest = JSON.parse(readFileSync(new URL('manifest.json', source)));
@@ -71,7 +73,7 @@ export function frozenApp({ consumers = 'legacy' } = {}) {
       for (const { path, sha256_lf } of manifest.files) {
         assert.ok((path.startsWith('app/src/') || path.startsWith('dosa-app/engine/src/') ||
           ['docs/knowledge-model/test_hyeonchim_review.py', 'docs/knowledge-model/test_basic_sentence_review.py'].includes(path) ||
-          (consumers === 'gapin-delivery-v1' && ['scripts/build_basic_sentence_policy.py', 'scripts/sync_engine.mjs', 'functions/api/dosa.ts'].includes(path))) && !path.includes('..'));
+          (gapinVersion && ['scripts/build_basic_sentence_policy.py', 'scripts/sync_engine.mjs', 'functions/api/dosa.ts'].includes(path))) && !path.includes('..'));
         const src = new URL(path, source);
         const hash = createHash('sha256').update(readFileSync(src, 'utf8').replace(/\r\n/g, '\n')).digest('hex');
         assert.equal(hash, sha256_lf, `Frozen consumer drift: ${path}`);

@@ -4,7 +4,6 @@
 // 문장 창작 금지 — 허용 범위는 도사 화법 커넥터(TOPIC_INTROS)와 관점차이 병기 틀뿐.
 import { BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, applyBasicSentencePolicy } from '../engine/vendor/basicSentences.js'
 import type { ReportBundle } from '../engine'
-import { displayReadingText } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE as HOUR_UNKNOWN_NOTICE } from '../engine/birthTime'
 
 export interface DosaLine {
@@ -224,9 +223,12 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
       for (const pd of d?.관점차이 ?? []) {
         const views = pd.견해 ?? []
         if (!views.length) continue
-        const stated = views.map((v, index) => `견해 ${index + 1}: "${v.내용}"`).join(', ')
+        const stated = views.map((v) => {
+          const doc = v.src.split('#')[0]
+          return `${doc}${josa(doc, '은', '는')} "${v.내용}"`
+        }).join(', ')
         out.push({
-          text: `${pd.주제}에는 다른 해석도 있어요. ${stated}`,
+          text: `문헌마다 보는 눈이 다르구나 — ${pd.주제}${josa(pd.주제, '을', '를')} 두고 ${stated}라 본다.`,
           tone: 'hedge',
           // These are unreviewed source labels in the draft, not verified grounds.
         })
@@ -246,7 +248,7 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
     if (ilju?.block?.basicReview?.note) selected.push({ text: BASIC_SENTENCE_NOTICE })
     selected.push({ text: ilju.block.basicReview?.unreviewedNotice ?? UNREVIEWED_ILJU_NOTICE })
   }
-  return selected.map(line => ({ ...line, text: displayReadingText(line.text) }))
+  return selected
 }
 
 /** LLM 프롬프트용 압축 요약 — 원국표 4주 간지 + 일간 + 구조 판정 lines(엔진 산출 그대로) */

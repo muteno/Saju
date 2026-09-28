@@ -1,7 +1,6 @@
 import { basicSentenceMatches, safeBasicSentenceParagraphs, BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, GAPIN_SENTENCE_NOTICE } from '../engine/vendor/basicSentences.js'
 import { chartSummaryOf, topicLines, type DosaLine } from './dosaTopics'
 import type { ReportBundle } from '../engine'
-import { withoutCitationLines } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
 
 /** 상담 화면과 통신을 분리한다. 엔진 재구축 시 ReportBundle 경계만 교체한다. */
@@ -61,9 +60,7 @@ export async function requestDosaText(options: {
     const text = (data as { text?: unknown } | null)?.text
     if (ctrl.signal.aborted || typeof text !== 'string' || !text.trim() || basicSentenceMatches(text).length) return null
     // App-owned review status remains visible on success, cache hits and free questions.
-    const presented = withoutCitationLines(text)
-    if (!presented || basicSentenceMatches(presented).length) return null
-    return [...notices.filter(note => !presented.includes(note)), presented].join('\n\n')
+    return [...notices.filter(note => !text.includes(note)), text.trim()].join('\n\n')
   } catch {
     return null
   } finally {

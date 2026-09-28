@@ -9,7 +9,6 @@ import { tokens } from '../theme'
 import { todayKST, type UiChart } from '../engine'
 import type { OhaengStat, ReadingCard } from '../data/saju'
 import { gapjaByGanji } from '../data/gapja'
-import { displayReadingText } from '../data/readingPresentation'
 import OhaengTile from './OhaengTile'
 
 const verdictColor = { 부족: tokens.color.inkSub, 적정: 'var(--oh-label-mok)', 발달: tokens.color.primary, 과다: tokens.color.solar }
@@ -226,11 +225,12 @@ export function DaeunRail({ daeun, birthYear }: { daeun: NonNullable<UiChart['da
   )
 }
 
-/** 리포트 카드 — 출처 표시는 생략, 견해 내용은 보존. 긴 카드는 접기. */
+/** 리포트 카드 — 출처는 카드 푸터 1줄 집약, 긴 카드(일주)는 접기, 산문/불릿 자동 판별 */
 export function ReportCard({ card, onFillHour }: { card: ReadingCard; onFillHour?: () => void }) {
   const [open, setOpen] = useState(false)
   const collapsible = card.blocks.length > 4
   const blocks = collapsible && !open ? card.blocks.slice(0, 2) : card.blocks
+  const docs = [...new Set(card.blocks.map((b) => b.source?.split(' · ')[0]).filter(Boolean))] as string[]
   return (
     <Box>
       <SectionTitle>{card.title}</SectionTitle>
@@ -263,7 +263,7 @@ export function ReportCard({ card, onFillHour }: { card: ReadingCard; onFillHour
               {b.label && <Typography sx={{ fontSize: 13, fontWeight: 800, color: tokens.color.primary, mb: 0.6 }}>{b.label}</Typography>}
               {b.lines.map((l, j) => (
                 <Typography key={j} sx={{ fontSize: 13.5, color: tokens.color.inkSub, lineHeight: prose ? 1.7 : 1.55, mb: prose ? 0.8 : 0.3 }}>
-                  {prose ? displayCardLine(b.label, l, j) : `· ${displayCardLine(b.label, l, j)}`}
+                  {prose ? l : `· ${l}`}
                 </Typography>
               ))}
             </Box>
@@ -303,14 +303,10 @@ export function ReportCard({ card, onFillHour }: { card: ReadingCard; onFillHour
             에니어그램 테스트로 검증하러 가기
           </Button>
         )}
+        {docs.length > 0 && (
+          <Typography sx={{ fontSize: 11, color: tokens.color.inkFaint, mt: 1.4 }}>— 출처: {docs.join(' · ')}</Typography>
+        )}
       </Box>
     </Box>
   )
-}
-
-/** The stored comparison format is "source: content"; hide only that attribution. */
-export function displayCardLine(label: string | undefined, line: string, index: number): string {
-  if (!label?.startsWith('관점 차이')) return displayReadingText(line)
-  const split = line.indexOf(': ')
-  return split < 0 ? line : `견해 ${index + 1}: ${line.slice(split + 2)}`
 }
