@@ -16,7 +16,6 @@ import type { Pillar } from '../data/saju'
 import type { ReportBundle } from '../engine'
 import { hasUnknownBirthTime } from '../engine/birthTime'
 import { useReducedMotion } from './Motion'
-import { recentConversation, type ConversationContext } from '../data/conversationContext'
 
 /**
  * 상담 = **메신저**(운영자 260726 · YETA 캐릭터챗 문법 계승).
@@ -119,8 +118,6 @@ const DOCK = [
 interface Msg {
   who: 'ai' | 'me'
   text: string
-  /** Delivery errors are visible feedback, not dialogue evidence. */
-  contextIgnore?: boolean
   /**
    * 지문 — **말이 아니라 하는 짓**(운영자 260727 "글자 위에 상황·생각·작업을 알려주는 걸
    * 대화창에서 실물로"). 미터줄이 한 줄로 요약해 주던 것을 대화 안에서 직접 보여준다.
@@ -508,9 +505,6 @@ export default function DosaChat({
   const [failedQuestion, setFailedQuestion] = useState<string | null>(null)
   const activeRequest = useRef<AbortController | null>(null)
   const conversation = useRef(0)
-  const contextStart = useRef(0)
-  const contextTopic = useRef<string | undefined>(undefined)
-  const retryContext = useRef<{ question: string; context?: ConversationContext } | null>(null)
   const composing = useRef(false)
   const [inputFocused, setInputFocused] = useState(false)
   const inputRef = useRef<HTMLTextAreaElement | null>(null)
@@ -533,10 +527,6 @@ export default function DosaChat({
     cancelTopics()
     setAsking(false)
     setFailedQuestion(null)
-    setDraft('')
-    retryContext.current = null
-    contextStart.current = log.length
-    contextTopic.current = undefined
   }
   useEffect(() => () => {
     conversation.current += 1
@@ -604,9 +594,6 @@ export default function DosaChat({
     setSeen(new Set())
     setTopicKey(null)
     topicRef.current = null
-    contextStart.current = 0
-    contextTopic.current = undefined
-    setDraft('')
     llmCache.current = new Map()
     setStage(jeonggok ? 'jeonggok' : 'menu')
     onChef?.(c)
@@ -618,7 +605,7 @@ export default function DosaChat({
     setQueue(first.slice(1))
     rumble('jolt')
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [report, jeonggok, gender, profileName, hourUnknown])
+  }, [report, jeonggok, gender])
 
   const last = log[log.length - 1]
   const typing = last?.who === 'ai' ? last.text : ''
@@ -730,7 +717,6 @@ export default function DosaChat({
     } else {
       // 빗맞힘 = 사과가 아니라 **교체**(운영자 260726) — 맞은편 도사가 밀고 들어와 판을 받아 간다
       cancelQuestion()
-      contextStart.current = log.length + 1 // the just-enqueued answer belongs to the previous chef
       const next = counterpartChef(chef.id)
       setChef(next)
       onChef?.(next)
@@ -741,13 +727,6 @@ export default function DosaChat({
 
   const selectTopic = (t: Topic) => {
     const revision = ++conversation.current
-    activeRequest.current?.abort()
-    activeRequest.current = null
-    setAsking(false)
-    setFailedQuestion(null)
-    retryContext.current = null
-    contextStart.current = log.length + 1 // exclude the topic-menu label
-    contextTopic.current = t.key
     const fallback = topicLines(report, t.key, hourUnknown)
     const intro = TOPIC_INTROS[t.key]
     const entry = ensureLlm(t.key)
@@ -806,14 +785,6 @@ export default function DosaChat({
   const askFree = async (retry?: string) => {
     const q = (retry ?? draft).trim()
     if (!q || activeRequest.current) return
-    // The last bubble's full text is already in React state while it is typing.
-    // Exclude it until it is fully visible; queued text has never entered log.
-    const visible = log.slice(contextStart.current, !tw.done && last?.who === 'ai' ? -1 : undefined)
-      .filter(m => !m.narration && !m.contextIgnore)
-      .map(m => ({ role: m.who === 'ai' ? 'assistant' as const : 'user' as const, text: m.text }))
-    const context = retry && retryContext.current?.question === q
-      ? retryContext.current.context : recentConversation(visible, contextTopic.current)
-    retryContext.current = { question: q, context }
     const revision = ++conversation.current
     cancelTopics()
     const ctrl = new AbortController()
@@ -832,16 +803,12 @@ export default function DosaChat({
         topic: '성격', report, lines: topicLines(report, '성격', hourUnknown),
         chefId: chef.id, model: dosaModel(), profileName, hourUnknown,
         timeoutMs: 25000, question: q, signal: ctrl.signal,
-        conversation: context,
       })
       if (ctrl.signal.aborted || conversation.current !== revision) return
-      if (text) {
-        retryContext.current = null
-        say(toMsgs(text))
-      }
+      if (text) say(toMsgs(text))
       else {
         setFailedQuestion(q)
-        setLog(l => [...l, { who: 'ai', text: '답변을 받지 못했어요. 질문은 남겨 두었으니 다시 보내 주세요.', contextIgnore: true }])
+        say(['답변을 받지 못했어요. 질문은 남겨 두었으니 다시 보내 주세요.'])
       }
     } finally {
       if (activeRequest.current === ctrl) {
