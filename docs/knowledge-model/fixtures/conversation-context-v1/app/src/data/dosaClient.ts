@@ -4,7 +4,6 @@ import type { ReportBundle } from '../engine'
 import { withoutCitationLines } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
 import { CONTEXT_READING_NOTICE } from '../engine/vendor/contextReading.js'
-import { parseConversationContext, type ConversationContext } from './conversationContext'
 
 /** Calculation limits belong to the app and survive a generated/late answer. */
 export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[] {
@@ -34,7 +33,6 @@ export async function requestDosaText(options: {
   profileName?: string
   hourUnknown?: boolean
   question?: string
-  conversation?: ConversationContext
   timeoutMs?: number
   signal?: AbortSignal
 }): Promise<string | null> {
@@ -55,9 +53,6 @@ export async function requestDosaText(options: {
   }
   if (held && !safeLines.some(line => line.text === BASIC_SENTENCE_NOTICE)) safeLines.push({ text: BASIC_SENTENCE_NOTICE })
   const notices = readingNotices(options.report, safeLines)
-  const parsed = options.question ? parseConversationContext(options.conversation) : undefined
-  // Prior model words are conversation, not a new route around withheld readings.
-  const conversation = parsed && !basicSentenceMatches(parsed.messages.filter(m => m.role === 'assistant').map(m => m.text).join('\n\n')).length ? parsed : undefined
   const ctrl = new AbortController()
   const abort = () => ctrl.abort()
   options.signal?.addEventListener('abort', abort, { once: true })
@@ -76,7 +71,6 @@ export async function requestDosaText(options: {
         grounds: safeLines.map((line) => ({ text: line.text, grounds: line.grounds ?? [] })),
         ...(options.profileName ? { profileName: options.profileName } : {}),
         ...(options.question ? { question: options.question } : {}),
-        ...(conversation ? { conversation } : {}),
       }),
       signal: ctrl.signal,
     })

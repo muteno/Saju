@@ -16,6 +16,7 @@ const hyeonchimFixture = new URL('fixtures/hyeonchim-consumers-v1/', import.meta
 const gapinFixture = new URL('fixtures/gapin-delivery-v1/', import.meta.url);
 const contextFixture = new URL('fixtures/context-reading-v1/', import.meta.url);
 const synthesisFixture = new URL('fixtures/context-synthesis-v1/', import.meta.url);
+const conversationFixture = new URL('fixtures/conversation-context-v1/', import.meta.url);
 const structureFixture = new URL('fixtures/gapin-structure-v1/', import.meta.url);
 
 export function frozenApp({ consumers = 'legacy' } = {}) {
@@ -78,12 +79,19 @@ export function frozenApp({ consumers = 'legacy' } = {}) {
     // PR214's smaller overlay inherited the then-unchanged group/chat sources.
     // Pin those through PR215 first, then apply PR214's exact older consumers.
     if (consumers === 'gapin-structure-v1') versions.unshift([contextFixture, '875756c9113144148fcbb88fb7adce3477612af4']);
+    // PR215/216 inherited this API unchanged through PR217. Pin only that file
+    // before their original overlays; retain every historical manifest and hash.
+    if (['context-reading-v1', 'context-synthesis-v1'].includes(consumers))
+      versions.unshift([conversationFixture, 'd0d4c8e6d228541b6c3db11f9c53daf1c9ad4892', ['functions/api/dosa.ts']]);
     if (!['pre-hyeonchim-v1', 'basic-sentences-v1', 'gapin-delivery-v1', 'gapin-structure-v1', 'context-reading-v1', 'context-synthesis-v1'].includes(consumers)) versions.push([strengthFixture, '006d06c7bb0ee5281ebe94a170688709c48094db']);
     if (consumers === 'legacy') versions.push([fixture, 'd23400c3c8cc8587336fd5a00fcda2ce23184680']);
-    for (const [source, commit] of versions) {
+    for (const [source, commit, selectedPaths] of versions) {
       const manifest = JSON.parse(readFileSync(new URL('manifest.json', source)));
       assert.equal(manifest.commit, commit);
+      if (selectedPaths) for (const path of selectedPaths)
+        assert.equal(manifest.files.filter(file => file.path === path).length, 1);
       for (const { path, sha256_lf } of manifest.files) {
+        if (selectedPaths && !selectedPaths.includes(path)) continue;
         assert.ok((path.startsWith('app/src/') || path.startsWith('dosa-app/engine/src/') ||
           ['docs/knowledge-model/test_hyeonchim_review.py', 'docs/knowledge-model/test_basic_sentence_review.py'].includes(path) ||
           (gapinVersion && ['scripts/build_basic_sentence_policy.py', 'scripts/sync_engine.mjs', 'functions/api/dosa.ts'].includes(path))) && !path.includes('..'));
