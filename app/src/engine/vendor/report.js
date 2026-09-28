@@ -4,6 +4,7 @@
 
 import { STEMS, BRANCHES, STEMS_HANJA, BRANCHES_HANJA, ELEMENTS, STEM_ELEMENT, HIDDEN_STEMS, TEN_GODS, tenGod, sexStem, sexBranch } from './tables.js';
 import { STRENGTH_BRANCH_WEIGHTS as strengthWeights, STRENGTH_STEM_WEIGHT } from './judge.js';
+import { applyBasicSentencePolicy } from './basicSentences.js';
 import { auspicious } from './sinsal.js';
 
 // Named, unreviewed topic only. This is a delivery eligibility rule, not a truth judgment.
@@ -79,10 +80,10 @@ function excerpt(entry, kb, nParas = 4) {
 
 function topicBlock(key, kb, { maxUnits = 2, nParas = 4 } = {}) {
   // 증류본이 있으면 우선 사용 (요소별 정제 유닛 — 원문 발췌보다 조밀)
-  if (kb.distilled && kb.distilled[key]) return eligibleBlock({ key, distilled: kb.distilled[key] });
+  if (kb.distilled && kb.distilled[key]) return applyBasicSentencePolicy(eligibleBlock({ key, distilled: kb.distilled[key] }));
   const units = lookupUnits(key, kb);
   if (!units.length) return { key, empty: true, note: '소장 문헌에 상세 없음' };
-  return eligibleBlock({ key, excerpts: units.slice(0, maxUnits).map((u) => excerpt(u, kb, nParas)).filter(Boolean), totalUnits: units.length });
+  return applyBasicSentencePolicy(eligibleBlock({ key, excerpts: units.slice(0, maxUnits).map((u) => excerpt(u, kb, nParas)).filter(Boolean), totalUnits: units.length }));
 }
 
 /** 십신 분포 (천간 3 + 지지 본기 4 = 7자, 일간 제외) */
@@ -233,6 +234,8 @@ export function toMarkdown(report) {
       if (!b) return;
       if (b.empty) { L.push(`\n**${label || b.key}** — ${b.note}`); return; }
       if (label) L.push(`\n### ${label}`);
+      if (b.basicReview?.note) L.push(`\n${b.basicReview.note}\n`);
+      if (b.basicReview?.unreviewedNotice) L.push(`\n${b.basicReview.unreviewedNotice}\n`);
       if (b.withheld) L.push(`\n${b.withheld.note}\n`);
       if (b.distilled) {
         const d = b.distilled;
