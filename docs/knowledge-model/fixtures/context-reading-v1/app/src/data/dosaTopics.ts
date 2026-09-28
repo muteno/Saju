@@ -202,8 +202,6 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
       break
     }
     case '직업': {
-      const context = findSection(report, 'context-reading')
-      if (context?.lines?.length) out.push(...context.lines.map(text => ({ text, tone: 'hedge' as const })))
       if (ilju?.block?.conditionLines) out.push(...ilju.block.conditionLines.map(text => ({ text, tone: 'calc' as const })))
       out.push(...listLines(dd?.직업, dSrc))
       if (hourUnknown) {
@@ -261,8 +259,6 @@ export function chartSummaryOf(report: ReportBundle, hourUnknown = false): strin
   if (w?.meta?.dayMaster) parts.push(`일간: ${w.meta.dayMaster}`)
   const judge = findSection(report, 'judge')
   if (!hourUnknown && judge?.lines?.length) parts.push(`구조 판정: ${judge.lines.map((l) => l.replace(/\*\*/g, '')).join(' / ')}`)
-  const context = findSection(report, 'context-reading')
-  if (context?.lines?.length) parts.push(`원국 조건에 따른 풀이: ${context.lines.join(' / ')}`)
   if (hourUnknown) parts.push('출생 시간 모름: 시주·강약·십신 분포·합충·신살·대운은 판단하지 않는다. 절입일의 연·월주는 확정할 수 없다.')
   return parts.join('\n')
 }

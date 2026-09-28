@@ -7,6 +7,7 @@ import { STRENGTH_BRANCH_WEIGHTS as strengthWeights, STRENGTH_STEM_WEIGHT } from
 import { applyBasicSentencePolicy } from './basicSentences.js';
 import { evaluateGapinConditions, gapinConditionLines } from './gapinConditions.js';
 import { gapinStructureReference } from './gapinStructure.js';
+import { buildContextReading } from './contextReading.js';
 import { auspicious } from './sinsal.js';
 
 // Named, unreviewed topic only. This is a delivery eligibility rule, not a truth judgment.
@@ -153,11 +154,15 @@ export function buildReport(chart, keyset, kb) {
       `신강신약: **${j.strength.label}** (${j.strength.score}/${j.strength.max}점 — 보드 자리 배점: 천간 각${STRENGTH_STEM_WEIGHT}, 지지 년${strengthWeights.year}·월${strengthWeights.month}·일${strengthWeights.day}·시${strengthWeights.hour}) · ${flags.join('·')} · 도움·득세·분류는 앱 잠정 기준`,
       `조후: ${j.johu.season}생${j.johu.need ? ` — ${j.johu.need} 기운 필요, 원국 ${j.johu.satisfied ? '보유' : '**부재**'}` : ' (조후 무난)'}`,
       `오행: ${Object.entries(j.profile.elements).map(([e, c]) => `${e}${c}`).join(' ')}${j.profile.missing.length ? ` · 부재 [${j.profile.missing.join(',')}]` : ''}${j.profile.excess.length ? ` · 과다 [${j.profile.excess.join(',')}]` : ''}`,
-      j.profile.missingGroups.length ? `십신 부재: ${j.profile.missingGroups.join(', ')}` : null,
+      j.profile.missingGroups.length ? `천간·지지 본기에서 안 보이는 십신: ${j.profile.missingGroups.join(', ')}` : null,
       j.chains.length ? `구조 후보: ${j.chains.join(' · ')} (성립 세부는 문헌 근거로 판단)` : null,
     ].filter(Boolean);
     S.push({ id: 'judge', title: '원국 구조 판정', lines });
   }
+
+  const context = buildContextReading(chart);
+  if (context) S.push({ id: 'context-reading', title: '내 원국으로 읽는 일과 재능', context,
+    lines: [...context.blocks.flatMap(block => block.lines), context.note] });
 
   // 2) 일주론 (해석의 중심)
   const ilju = topicBlock(keyset.byTopic.ilju[0], kb, { maxUnits: 2, nParas: 6 });

@@ -34,7 +34,6 @@ const GROUP_ORDER: { id: string; title: string }[] = [
  * - sinsal(주제가 별마다 제각각)·hour-unknown(안내) → 그 밖의 근거
  */
 const CARD_HOME: Record<string, string> = {
-  'context-reading': 'work',
   judge: 'temper',
   sipsin: 'temper',
   ennea: 'temper',

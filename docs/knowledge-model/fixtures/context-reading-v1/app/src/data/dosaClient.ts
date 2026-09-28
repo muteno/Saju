@@ -3,17 +3,6 @@ import { chartSummaryOf, topicLines, type DosaLine } from './dosaTopics'
 import type { ReportBundle } from '../engine'
 import { withoutCitationLines } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
-import { CONTEXT_READING_NOTICE } from '../engine/vendor/contextReading.js'
-
-/** Calculation limits belong to the app and survive a generated/late answer. */
-export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[] {
-  if (hasUnknownBirthTime(report)) return []
-  const notices = [BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, GAPIN_SENTENCE_NOTICE]
-    .filter(note => lines.some(line => line.text === note))
-  if (report.sections.some(s => s.id === 'context-reading' && s.lines?.includes(CONTEXT_READING_NOTICE)))
-    notices.push(CONTEXT_READING_NOTICE)
-  return notices
-}
 
 /** 상담 화면과 통신을 분리한다. 엔진 재구축 시 ReportBundle 경계만 교체한다. */
 export async function requestDosaText(options: {
@@ -44,7 +33,8 @@ export async function requestDosaText(options: {
     held = true
   }
   if (held && !safeLines.some(line => line.text === BASIC_SENTENCE_NOTICE)) safeLines.push({ text: BASIC_SENTENCE_NOTICE })
-  const notices = readingNotices(options.report, safeLines)
+  const notices = [BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, GAPIN_SENTENCE_NOTICE]
+    .filter(note => safeLines.some(line => line.text === note))
   const ctrl = new AbortController()
   const abort = () => ctrl.abort()
   options.signal?.addEventListener('abort', abort, { once: true })

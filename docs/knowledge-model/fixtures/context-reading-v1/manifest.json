@@ -1,0 +1,37 @@
+{
+  "commit": "875756c9113144148fcbb88fb7adce3477612af4",
+  "files": [
+    {
+      "path": "dosa-app/engine/src/report.js",
+      "sha256_lf": "a03d6f771d9f995d6447faf411e62c58deb2ec08f4db073ce7c992f1ce838e60"
+    },
+    {
+      "path": "app/src/engine/vendor/report.js",
+      "sha256_lf": "a03d6f771d9f995d6447faf411e62c58deb2ec08f4db073ce7c992f1ce838e60"
+    },
+    {
+      "path": "app/src/data/saju.ts",
+      "sha256_lf": "9dec9ddfe1c7a346d4cce0eb3181c72ba51a23f4116dd0ae759c4eefabae77c2"
+    },
+    {
+      "path": "app/src/data/dosaTopics.ts",
+      "sha256_lf": "8acc9f975a37b6f0a8054810eef58246c9cd5bc0b756c002bce048b93bee8522"
+    },
+    {
+      "path": "app/src/data/analysisGroups.ts",
+      "sha256_lf": "a6355c6467f9bbc1838f136eb3bfcc5b592df5eaacbe374d26fad877ee3dc85f"
+    },
+    {
+      "path": "scripts/sync_engine.mjs",
+      "sha256_lf": "938a8786c5cf9d14c936f82fb59d37b4caf30d1045960dc5b5027d31ca1924a7"
+    },
+    {
+      "path": "app/src/data/dosaClient.ts",
+      "sha256_lf": "508e7b36fffd62946483798bbeb8ebe249f161f6589cdaa5e73f243488b4d26f"
+    },
+    {
+      "path": "app/src/components/DosaChat.tsx",
+      "sha256_lf": "208b2981f6c7e878c69a00c41133f1f3c1426eb0d5f76c8bf6f35d23cfe61c0d"
+    }
+  ]
+}

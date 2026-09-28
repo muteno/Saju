@@ -14,11 +14,12 @@ const strengthFixture = new URL('fixtures/strength-position-v1/', import.meta.ur
 const basicFixture = new URL('fixtures/basic-sentences-v1/', import.meta.url);
 const hyeonchimFixture = new URL('fixtures/hyeonchim-consumers-v1/', import.meta.url);
 const gapinFixture = new URL('fixtures/gapin-delivery-v1/', import.meta.url);
+const contextFixture = new URL('fixtures/context-reading-v1/', import.meta.url);
 const structureFixture = new URL('fixtures/gapin-structure-v1/', import.meta.url);
 
 export function frozenApp({ consumers = 'legacy' } = {}) {
-  assert.ok(['legacy', 'unknown-time-v1', 'pre-hyeonchim-v1', 'basic-sentences-v1', 'gapin-delivery-v1', 'gapin-structure-v1'].includes(consumers));
-  const gapinVersion = ['gapin-delivery-v1', 'gapin-structure-v1'].includes(consumers);
+  assert.ok(['legacy', 'unknown-time-v1', 'pre-hyeonchim-v1', 'basic-sentences-v1', 'gapin-delivery-v1', 'gapin-structure-v1', 'context-reading-v1'].includes(consumers));
+  const gapinVersion = ['gapin-delivery-v1', 'gapin-structure-v1', 'context-reading-v1'].includes(consumers);
   const directory = mkdtempSync(resolve(tmpdir(), 'saju-frozen-app-'));
   const cleanup = () => rmSync(directory, { recursive: true, force: true });
   const linkChildren = (path, excluded) => {
@@ -29,13 +30,13 @@ export function frozenApp({ consumers = 'legacy' } = {}) {
     }
   };
   try {
-    linkChildren('.', ['.git', 'app', 'docs', 'dosa-app', ...(gapinVersion ? ['scripts', 'functions', '정제본'] : []), ...(['basic-sentences-v1','gapin-structure-v1'].includes(consumers) ? ['정제본', 'refine-tools'] : []), ...(consumers === 'pre-hyeonchim-v1' ? ['정제'] : [])]);
+    linkChildren('.', ['.git', 'app', 'docs', 'dosa-app', ...(gapinVersion ? ['scripts', 'functions', '정제본'] : []), ...(['basic-sentences-v1','gapin-structure-v1','context-reading-v1'].includes(consumers) ? ['정제본', 'refine-tools'] : []), ...(['pre-hyeonchim-v1','context-reading-v1'].includes(consumers) ? ['정제'] : [])]);
     if (gapinVersion) {
       // Readiness's source validator requires real in-tree DOCX paths.
       for (const path of ['scripts', 'functions', '정제본']) cpSync(resolve(root, path), resolve(directory, path), { recursive: true });
     }
-    linkChildren('dosa-app', ['engine', ...(['basic-sentences-v1','gapin-structure-v1'].includes(consumers) ? ['kb'] : []), ...(consumers === 'pre-hyeonchim-v1' ? ['methodology'] : [])]);
-    if (consumers === 'pre-hyeonchim-v1')
+    linkChildren('dosa-app', ['engine', ...(['basic-sentences-v1','gapin-structure-v1','context-reading-v1'].includes(consumers) ? ['kb'] : []), ...(['pre-hyeonchim-v1','context-reading-v1'].includes(consumers) ? ['methodology'] : [])]);
+    if (['pre-hyeonchim-v1','context-reading-v1'].includes(consumers))
       cpSync(resolve(root, 'dosa-app/methodology'), resolve(directory, 'dosa-app/methodology'), { recursive: true });
     linkChildren('dosa-app/engine', ['src']);
     cpSync(resolve(root, 'dosa-app/engine/src'), resolve(directory, 'dosa-app/engine/src'), { recursive: true });
@@ -58,14 +59,25 @@ export function frozenApp({ consumers = 'legacy' } = {}) {
         cpSync(resolve(root, path), resolve(directory, path));
       }
     }
-    if (['basic-sentences-v1','gapin-structure-v1'].includes(consumers)) {
+    if (consumers === 'context-reading-v1') {
+      const review = JSON.parse(readFileSync(resolve(root, 'docs/knowledge-model/data/gapin_structure_review.json')));
+      for (const path of new Set(Object.values(review.sources).map(e => e.path).filter(p => p.startsWith('정제/')))) {
+        assert.ok(!path.includes('..'));
+        mkdirSync(dirname(resolve(directory, path)), { recursive: true });
+        cpSync(resolve(root, path), resolve(directory, path));
+      }
+    }
+    if (['basic-sentences-v1','gapin-structure-v1','context-reading-v1'].includes(consumers)) {
       for (const path of ['dosa-app/kb', '정제본'])
         cpSync(resolve(root, path), resolve(directory, path), { recursive: true });
       mkdirSync(resolve(directory, 'refine-tools'));
       cpSync(resolve(root, 'refine-tools/units.json'), resolve(directory, 'refine-tools/units.json'));
     }
-    const versions = consumers === 'gapin-structure-v1' ? [[structureFixture, '6a4d75775f3e71f5e0c651cd3ea208e06c450247']] : consumers === 'gapin-delivery-v1' ? [[gapinFixture, '70b1a9c0a118b6681fe0372499197fc2e424a468']] : consumers === 'basic-sentences-v1' ? [[basicFixture, '931f81c6acc852316c48272a3cd691d8c8d481ec']] : [[hyeonchimFixture, '41fbb1f8f3ad0bc07daffac8b8a4fc4ee960063b']];
-    if (!['pre-hyeonchim-v1', 'basic-sentences-v1', 'gapin-delivery-v1', 'gapin-structure-v1'].includes(consumers)) versions.push([strengthFixture, '006d06c7bb0ee5281ebe94a170688709c48094db']);
+    const versions = consumers === 'context-reading-v1' ? [[contextFixture, '875756c9113144148fcbb88fb7adce3477612af4']] : consumers === 'gapin-structure-v1' ? [[structureFixture, '6a4d75775f3e71f5e0c651cd3ea208e06c450247']] : consumers === 'gapin-delivery-v1' ? [[gapinFixture, '70b1a9c0a118b6681fe0372499197fc2e424a468']] : consumers === 'basic-sentences-v1' ? [[basicFixture, '931f81c6acc852316c48272a3cd691d8c8d481ec']] : [[hyeonchimFixture, '41fbb1f8f3ad0bc07daffac8b8a4fc4ee960063b']];
+    // PR214's smaller overlay inherited the then-unchanged group/chat sources.
+    // Pin those through PR215 first, then apply PR214's exact older consumers.
+    if (consumers === 'gapin-structure-v1') versions.unshift([contextFixture, '875756c9113144148fcbb88fb7adce3477612af4']);
+    if (!['pre-hyeonchim-v1', 'basic-sentences-v1', 'gapin-delivery-v1', 'gapin-structure-v1', 'context-reading-v1'].includes(consumers)) versions.push([strengthFixture, '006d06c7bb0ee5281ebe94a170688709c48094db']);
     if (consumers === 'legacy') versions.push([fixture, 'd23400c3c8cc8587336fd5a00fcda2ce23184680']);
     for (const [source, commit] of versions) {
       const manifest = JSON.parse(readFileSync(new URL('manifest.json', source)));

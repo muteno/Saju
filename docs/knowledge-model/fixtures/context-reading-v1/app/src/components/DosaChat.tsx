@@ -1,3 +1,4 @@
+import { BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, GAPIN_SENTENCE_NOTICE } from '../engine/vendor/basicSentences.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Box, Typography } from '@mui/material'
@@ -8,7 +9,7 @@ import type { OhaengKey } from '../theme'
 import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, HOUR_UNKNOWN_NOTICE } from '../data/dosaTopics'
 import type { Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
-import { requestDosaText, shouldSendOnEnter, readingNotices } from '../data/dosaClient'
+import { requestDosaText, shouldSendOnEnter } from '../data/dosaClient'
 import { chefForGender, counterpartChef, nextChef, bargeLineOf, voiceOf } from '../data/chefs'
 import type { Chef } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
@@ -758,7 +759,7 @@ export default function DosaChat({
         if (readRef.current >= msgs.length) return
         // Review status is not a generated paragraph and cannot be skipped by
         // the count of already-read narration/intro/fallback bubbles.
-        const notices = readingNotices(report, fallback)
+        const notices = fallback.filter(line => [BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, GAPIN_SENTENCE_NOTICE].includes(line.text)).map(line => line.text)
         setQueue([...notices, ...msgs.slice(readRef.current).filter(message => !notices.includes(message))])
       })
   }
