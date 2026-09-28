@@ -125,13 +125,11 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; prof
     l.replace(/\*\*/g, '').replace(/\s*\([^)]*배점[^)]*\)/g, '').replace(/\s*—\s*방법론 보드[^·\n]*/g, ''),
   )
 
-  const iljuBlock = byId('ilju')?.block
-  const d = iljuBlock?.distilled
-  const iljuNote = [iljuBlock?.basicReview?.note, iljuBlock?.basicReview?.unreviewedNotice, iljuBlock?.withheld?.note].filter(Boolean).join(' ')
+  const d = byId('ilju')?.block?.distilled
   if (d) {
     headline = d.title ?? headline
     const lines = [d.distilled?.핵심, d.distilled?.성격?.[0]].filter(Boolean) as string[]
-    if (lines.length) dialogue.push({ icon: '🎴', label: `${d.title} 특성`, lines: [...lines, ...(iljuNote ? [iljuNote] : [])] })
+    if (lines.length) dialogue.push({ icon: '🎴', label: `${d.title} 특성`, lines, source: srcOf(d.sources?.[0]) })
   }
   if (hourUnknown)
     dialogue.push({
@@ -163,8 +161,9 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; prof
       if (lines.length) blocks.push({ label: `관점 차이 — ${v.주제}`, lines })
     }
     if (blocks.length) {
+      blocks[blocks.length - 1].source = srcOf(d.sources?.[0])
       cards.push({ id: 'ilju', title: `일주 이야기 — ${d.title ?? ''}`, blocks,
-        ...(iljuNote ? { note: iljuNote } : {}) })
+        ...(byId('ilju')?.block?.withheld ? { note: byId('ilju').block.withheld.note } : {}) })
     }
   }
 

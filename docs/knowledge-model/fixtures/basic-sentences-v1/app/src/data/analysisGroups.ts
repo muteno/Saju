@@ -59,6 +59,7 @@ const routeIljuBlock = (label?: string): string => {
 
 /** 일주 카드를 블록 단위로 주제별 조각 카드로 쪼갠다(원본 불변 — 캐시 공유 객체라 복제로만). */
 const splitIlju = (card: ReadingCard): { home: string; card: ReadingCard }[] => {
+  const src = card.blocks.map((b) => b.source).find(Boolean)
   const buckets = new Map<string, CardBlock[]>()
   for (const b of card.blocks) {
     const home = routeIljuBlock(b.label)
@@ -67,7 +68,9 @@ const splitIlju = (card: ReadingCard): { home: string; card: ReadingCard }[] => 
     buckets.set(home, arr)
   }
   return [...buckets.entries()].map(([home, blocks]) => {
-    // Each source belongs only to its own block; never copy it to another topic.
+    // 출처 계승 — 원 카드는 마지막 블록에만 출처가 달려 있어, 쪼개면 출처 잃는 조각이 생긴다.
+    // 같은 출처 문자열을 조각 끝에 그대로 복사한다(새 문구 아님 · 출처 소실 방지).
+    if (src && !blocks.some((b) => b.source)) blocks[blocks.length - 1] = { ...blocks[blocks.length - 1], source: src }
     return { home, card: { ...card, id: home === 'temper' ? card.id : `${card.id}-${home}`, blocks } }
   })
 }

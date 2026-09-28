@@ -1,13 +1,13 @@
 # 기초 보강 인계 — GitHub에서 이어가는 시작점
 
-갱신: 2026-09-28 · 사용자 원문 [65](USER_INTENT_LOG.md)
-직전 PR #209 merged/main `1b3b0a278d2f74bdf2741b0290e6b0968d28d2a3`와 검증tree `f24491208e644e1a936a82f796af02b4a7b33e91`를 직접 대조했다.
-현재 작업: [기본풀이 대표14항목 검수](FOUNDATION_BASIC_SENTENCES.md). 60파일/402초안을 재계수하고 원문7글·20구간과 조건·예외·시기·계보를 연결했다. 실제6입력·미상1·발췌대체 경로의 전달을 측정했다. 앱 수정·3일주/60일주 전량검수·개인적용/학습은 미완료다.
-**다음 첫 작업은 §5.1의 검토항목 개인 전달 보류·문장별 출처 소비 계약이다.** 관리진행률9/20=45% 유지. 현재 단위의 최종검사·병합은 PR영수증을 확인한다.
+갱신: 2026-09-28 · 사용자 원문 [66](USER_INTENT_LOG.md)
+직전 PR #210 merged/main `931f81c6acc852316c48272a3cd691d8c8d481ec`와 검증tree `92bf06d19cba09caef8df4a4f65295862f69f47d`를 직접 대조했다.
+현재 작업: [검토14항목 개인 전달 보류·출처 소비 계약](FOUNDATION_BASIC_SENTENCE_DELIVERY.md). 110입력·510요청에서 선택 문구를 보류하고 조건·예외·위치를 보존하며 일주 대표출처의 자동 귀속을 제거한다. 남은 초안은 미검수이며 원문·기존 감사는 동결한다.
+**다음 첫 작업은 §5.1의 갑인 잔여 문장·부분 재사용 원문 검수다.** 완전검수 일주0·학습적격0·확률null·관리진행률9/20=45% 유지. 현재 단위의 최종검사·병합은 PR영수증을 확인한다.
 
 2026-09-23 후속: [F01 검토표](FOUNDATION_REVIEW.md)·[판정과 원문 위치](data/foundation_taxonomy_review.json)·[전후 측정](data/foundation_match_measurement.json)을 읽는다. PR #183의 채택66행 중65행은 **기존 판본 보존**이며 새 의미 승인이 아니다. 당시 실제 추가는 `부부 사이`1개였고 PR #187의 상극3개를 포함한 현재 누적은4개다. 부부관계·부부간은 천간합/육합 비유와의 구분 문제로 보류했다. 별칭 판정·P2 재생성 전에 D5 인용 자격을 별도 검수해야 한다. 총칭·넓은 구어와 기존 별칭의 다른 뜻은 남아 있으며 F01 전체 통합 완료로 해석하지 않는다. 아래 §3의 수치는 이전 스냅샷으로 보존한다.
 
-현재 작업의 중단 재개는 [대표 문장 검수](FOUNDATION_BASIC_SENTENCES.md)와 실제 PR 상태를 먼저 확인한다. [통합 체크포인트](WORK_CHECKPOINT.md)는 PR #197까지의 보존 이력이다. 이전 자동 승인 검토에서 공개가 거절된 STATUS/체크포인트는 재전송하지 않는다. 사용자의 원문36에 따른 임시 작업기록은 로컬에 남기며 기존 두 파일의 갱신은 미이행이다. 기능 범위·다음 작업은 이 인계, 실제 검사·병합 완료는 PR 영수증으로 확인한다.
+현재 작업의 중단 재개는 [문장 전달 계약](FOUNDATION_BASIC_SENTENCE_DELIVERY.md)와 실제 PR 상태를 먼저 확인한다. [통합 체크포인트](WORK_CHECKPOINT.md)는 PR #197까지의 보존 이력이다. 이전 자동 승인 검토에서 공개가 거절된 STATUS/체크포인트는 재전송하지 않는다. 사용자의 원문36에 따른 임시 작업기록은 로컬에 남기며 기존 두 파일의 갱신은 미이행이다. 기능 범위·다음 작업은 이 인계, 실제 검사·병합 완료는 PR 영수증으로 확인한다.
 
 ## 1. 지금 무엇을 하고 있나
 
@@ -72,7 +72,25 @@
 | F05 | F01~F04 결과 활용 | 기존 기본 풀이·60일주 검수에 연결 | 적용 문장·조건·근거 대응, 생시 미상·이견 보존. 대표 묶음과 전량 완료를 구분 |
 | F06 | 후속 | 시간·환경 확장, 관측·검토 라벨, 동일 자료 모델 비교·보정 | 문헌 재현과 실제 결과 검증 분리. 미학습 수치는 확률로 제시하지 않음 |
 
-### 5.1 다음 세션의 첫 실행 — 검토항목 개인 전달 보류·문장별 출처 소비 계약
+### 5.1 다음 세션의 첫 실행 — 갑인 잔여 문장·부분 재사용 원문 검수
+
+1. 필독문서→[문장 전달 계약](FOUNDATION_BASIC_SENTENCE_DELIVERY.md)→최신PR의 merged·head/merge/main tree를 대조한다. 미병합이면 최종검사·병합부터 마친다. 이미 보류한14항목을 다시 구현하지 않는다.
+2. 기존 `data/basic_sentence_review.json`과 원문7글·20구간은 동결한다. 갑인 증류의 핵심·성격/직업/관계/주의·관점/인용/물상/기타의 실제 항목수를 먼저 계수하고, 기존 IN01~06과 남은 항목의 위치를 별도 검토판으로 나눈다. 갑인 주의3의 IN06 부분 재사용 등 문구가 다른 의미 재사용을 정확한 전체문구 보류와 구별한다.
+3. 각 남은 문장의 원문 위치·조건·예외·연도/운·성별·자리·저자 계보를 재대조한다. 원문이 불명확하면 미검수/보류를 유지하고 첫 자료명으로 귀속하지 않는다. 기존14와 중복된 근거를 새 독립 지지로 세지 않는다.
+4. 의미 검토 단위를 완료한 뒤 새 검토판을 현 전달정책에 추가할지 판정한다. 원문 일치가 개인 적용 승인은 아니다. 갑오/갑자 잔여·60일주 전량, 실제 입력조건 평가·반대조건·개인정확도는 남는다.
+5. 구판 `basic_sentence_review.py` 및 `measure_basic_sentence_consumers.mjs`는 아래 frozen 진입점으로 재현한다. 원래 해시를 현재코드로 덮지 않는다. 검수확장이 앱을 바꾸면 정본→vendor sync·새측정·화면전후·생시미상8/현침/강약/원문 보존을 확인한다.
+6. 임시기록→필수검사→같은모델 최고노력8관점 검토→원격저장·병합·다음인계를 남긴다. 기준13/14/15는미완료·9/20=45%다. 공개거절 STATUS/WORK_CHECKPOINT는 재전송하지 않고 최종영수증은 PR에 한 번 기록한다.
+
+```bash
+python3 -m unittest discover -s docs/knowledge-model -p 'test_basic_sentence_review.py'
+node docs/knowledge-model/frozen_basic_sentence_audit.mjs --python docs/knowledge-model/basic_sentence_review.py --check
+# 빌드KB와 앱 의존성 준비 후
+node docs/knowledge-model/frozen_basic_sentence_audit.mjs docs/knowledge-model/measure_basic_sentence_consumers.mjs --check
+node docs/knowledge-model/measure_basic_sentence_delivery.mjs --check
+npm run verify
+```
+
+### 5.1a PR #210 뒤 실행 순서 — 검토항목 개인 전달 보류·문장별 출처 소비 계약(보존 이력)
 
 1. 필독문서→[대표 문장 검수](FOUNDATION_BASIC_SENTENCES.md)→최신PR의 merged·head/merge/main tree를 대조한다. 미병합이면 검사·독립검토·병합부터 마친다. 통근/대표14항목 원문검수를 반복하지 않는다.
 2. `data/basic_sentence_review.json`의14항목·20구간과 `data/basic_sentence_consumers.json`의6입력/미상1·발췌 순서를 읽는다. 12문자열+견해그룹2이며 성격은4/402·완전검수 일주0이다. 검토층은 앱에 아직 연결되지 않았다.

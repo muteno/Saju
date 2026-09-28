@@ -1,3 +1,4 @@
+import { BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE } from '../engine/vendor/basicSentences.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Box, Typography } from '@mui/material'
@@ -756,7 +757,10 @@ export default function DosaChat({
         // 이미 LLM 분량보다 많이 읽었으면 갈아치우지 않는다(중간에 말이 되감기지 않게).
         const msgs = toMsgs(text)
         if (readRef.current >= msgs.length) return
-        setQueue(msgs.slice(readRef.current))
+        // Review status is not a generated paragraph and cannot be skipped by
+        // the count of already-read narration/intro/fallback bubbles.
+        const notices = fallback.filter(line => [BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE].includes(line.text)).map(line => line.text)
+        setQueue([...notices, ...msgs.slice(readRef.current).filter(message => !notices.includes(message))])
       })
   }
 

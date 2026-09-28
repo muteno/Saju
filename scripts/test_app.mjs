@@ -81,13 +81,22 @@ after(() => {
   else delete globalThis.localStorage
 })
 
-test('현침살 글자 후보·발현 보류와 실제 KB 소비자 110행을 검증한다', () => {
+test('현침살 PR207의 고정 소비 계약 110행을 재현한다', () => {
   const env = { ...process.env }; delete env.NODE_TEST_CONTEXT
-  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_hyeonchim_consumers.mjs'], {
+  const output = execFileSync(process.execPath, ['docs/knowledge-model/frozen_basic_sentence_audit.mjs', '--test', '--test-reporter=tap', 'docs/knowledge-model/test_hyeonchim_consumers.mjs'], {
     cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 120000,
     stdio: ['ignore', 'pipe', 'pipe'], env,
   })
   assert.match(output, /^# tests 11$/m); assert.match(output, /^# pass 11$/m); assert.match(output, /^# skipped 0$/m)
+})
+
+test('현재 문장14항목 보류·출처·실제 상담 경계를 검증한다', () => {
+  const env = { ...process.env }; delete env.NODE_TEST_CONTEXT
+  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_basic_sentence_delivery.mjs'], {
+    cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 150000,
+    stdio: ['ignore', 'pipe', 'pipe'], env,
+  })
+  assert.match(output, /^# tests 12$/m); assert.match(output, /^# pass 12$/m); assert.match(output, /^# skipped 0$/m)
 })
 
 let moduleId = 0

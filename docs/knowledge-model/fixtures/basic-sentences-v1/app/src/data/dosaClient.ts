@@ -1,5 +1,4 @@
-import { basicSentenceMatches, safeBasicSentenceParagraphs, BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE } from '../engine/vendor/basicSentences.js'
-import { chartSummaryOf, topicLines, type DosaLine } from './dosaTopics'
+import { chartSummaryOf, type DosaLine } from './dosaTopics'
 import type { ReportBundle } from '../engine'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
 
@@ -19,21 +18,6 @@ export async function requestDosaText(options: {
   if (options.signal?.aborted) return null
   // No personal grounding is verified yet: do not send stale caller-supplied lines to the provider.
   if (hasUnknownBirthTime(options.report, options.hourUnknown)) return UNKNOWN_BIRTH_TIME_NOTICE
-  // Rebuild ilju grounding from the report before pairing statements: old cached
-  // lines may carry a withheld neighbour or a unit bibliography as sentence evidence.
-  const hasIlju = options.report.sections.some(section => section.id === 'ilju')
-  const candidates = hasIlju ? topicLines(options.report, options.topic, options.hourUnknown) : options.lines
-  const safeLines = candidates.flatMap(line => safeBasicSentenceParagraphs(line.text)
-    .map(text => ({ ...line, text })))
-  let held = candidates.some(line => basicSentenceMatches(line.text).length > 0)
-  // A stale caller can divide one sentence between separate ground entries.
-  if (basicSentenceMatches(safeLines.map(line => line.text).join('\n\n')).length) {
-    safeLines.length = 0
-    held = true
-  }
-  if (held && !safeLines.some(line => line.text === BASIC_SENTENCE_NOTICE)) safeLines.push({ text: BASIC_SENTENCE_NOTICE })
-  const notices = [BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE]
-    .filter(note => safeLines.some(line => line.text === note))
   const ctrl = new AbortController()
   const abort = () => ctrl.abort()
   options.signal?.addEventListener('abort', abort, { once: true })
@@ -49,7 +33,7 @@ export async function requestDosaText(options: {
         model: options.model,
         chefId: options.chefId,
         chartSummary: chartSummaryOf(options.report, options.hourUnknown),
-        grounds: safeLines.map((line) => ({ text: line.text, grounds: line.grounds ?? [] })),
+        grounds: options.lines.map((line) => ({ text: line.text, grounds: line.grounds ?? [] })),
         ...(options.profileName ? { profileName: options.profileName } : {}),
         ...(options.question ? { question: options.question } : {}),
       }),
@@ -58,9 +42,7 @@ export async function requestDosaText(options: {
     if (!res.ok || ctrl.signal.aborted) return null
     const data: unknown = await res.json()
     const text = (data as { text?: unknown } | null)?.text
-    if (ctrl.signal.aborted || typeof text !== 'string' || !text.trim() || basicSentenceMatches(text).length) return null
-    // App-owned review status remains visible on success, cache hits and free questions.
-    return [...notices.filter(note => !text.includes(note)), text.trim()].join('\n\n')
+    return !ctrl.signal.aborted && typeof text === 'string' && text.trim() ? text.trim() : null
   } catch {
     return null
   } finally {

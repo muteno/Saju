@@ -11,7 +11,6 @@
 // 생성기 = `2. 정제작업/_현황판/build_brain.py` → `data/앱두뇌.json`
 //   ⛔이 파일을 손으로 고치지 마라. 지도를 고치고 다시 내보내라.
 
-import { basicSentenceMatches, BASIC_SENTENCE_NOTICE } from './vendor/basicSentences.js'
 import { mentionsHyeonchim, HYEONCHIM_NOTICE } from './vendor/report.js'
 
 let brain = null
@@ -126,17 +125,6 @@ export function readChart(keys, opts = {}) {
     held[field] = all.length - out[field].length
   }
   if (Object.values(held).some(Boolean)) out.보류 = { ...held, note: HYEONCHIM_NOTICE }
-  const reviewed = {}
-  for (const field of ['노드', '관계', '조견표']) {
-    const all = out[field]
-    out[field] = all.filter(row => !basicSentenceMatches(row).length)
-    reviewed[field] = all.length - out[field].length
-  }
-  if (Object.values(reviewed).some(Boolean)) {
-    const prior = out.보류
-    out.보류 = { ...Object.fromEntries(Object.keys(reviewed).map(k => [k, reviewed[k] + (prior?.[k] ?? 0)])),
-      note: [prior?.note, BASIC_SENTENCE_NOTICE].filter(Boolean).join(' ') }
-  }
   return out
 }
 

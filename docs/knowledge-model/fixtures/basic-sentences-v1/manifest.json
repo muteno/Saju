@@ -1,0 +1,45 @@
+{
+  "commit": "931f81c6acc852316c48272a3cd691d8c8d481ec",
+  "files": [
+    {
+      "path": "dosa-app/engine/src/report.js",
+      "sha256_lf": "7767596cd54da5fabf6987f32b3044db2baf29c0c7909c5139a525d5d032fc90",
+      "git_blob": "6164d724267f9719d79c204d6d99ed1c31db2283"
+    },
+    {
+      "path": "app/src/engine/vendor/report.js",
+      "sha256_lf": "7767596cd54da5fabf6987f32b3044db2baf29c0c7909c5139a525d5d032fc90",
+      "git_blob": "6164d724267f9719d79c204d6d99ed1c31db2283"
+    },
+    {
+      "path": "app/src/data/saju.ts",
+      "sha256_lf": "3a1369f8c9df583e7193020d0b3bc1951231fd615311e24cd7e007a98910dde8",
+      "git_blob": "616c286cd3f2215e4ba3cc2116f56cabe4ab6feb"
+    },
+    {
+      "path": "app/src/data/dosaTopics.ts",
+      "sha256_lf": "efb8381e6871bf5bfd184405644250e64cff35ac82dc4e5afb4317b07ed7bdc3",
+      "git_blob": "3c078a7eb76344a70116a714d5bd875101f8997d"
+    },
+    {
+      "path": "app/src/data/dosaClient.ts",
+      "sha256_lf": "0bf7ea8d3126913680671471a1bfbf323c11aedc6f58f0f7e3395e4bb15c02f5",
+      "git_blob": "d2b3ddade3e7a3d70c000af4d7f5a82932512a97"
+    },
+    {
+      "path": "app/src/data/analysisGroups.ts",
+      "sha256_lf": "0a9aa0a61f52515c008882a2508b622fb4e9be4568ecf1ef2ed2f3a460025282",
+      "git_blob": "d3a0ba18977f5adb6e38f14737ecbc97970c180e"
+    },
+    {
+      "path": "app/src/engine/brain.js",
+      "sha256_lf": "683f4e37dd99a7619629ecc97069ae3af6c6f9ea117a6543d05aa3e4bafe767a",
+      "git_blob": "a0b04f28d1eb8b93001d4744c8bb2e5688d41a2f"
+    },
+    {
+      "path": "docs/knowledge-model/test_basic_sentence_review.py",
+      "sha256_lf": "d20db71aa8499b0950d27364e3c61e51f41597a0abe3399a79cc8a32c22d6981",
+      "git_blob": "3ad68a027aaafb55dce2057f8dbb1708dd50e5eb"
+    }
+  ]
+}
