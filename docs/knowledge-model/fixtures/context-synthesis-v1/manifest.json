@@ -1,0 +1,33 @@
+{
+  "commit": "bba9975a33e0a343109d51d7657b062d72f39b73",
+  "files": [
+    {
+      "path": "dosa-app/engine/src/contextReading.js",
+      "sha256_lf": "bfb6dfedad71967c58d20d7e66fdf7b800bda138cee65bdcfa723af63aa2250f"
+    },
+    {
+      "path": "dosa-app/engine/src/contextReading.d.ts",
+      "sha256_lf": "635b84485950fed508617001e519e57d04a8f649692f214e469af8ffea2659c0"
+    },
+    {
+      "path": "app/src/engine/vendor/contextReading.js",
+      "sha256_lf": "bfb6dfedad71967c58d20d7e66fdf7b800bda138cee65bdcfa723af63aa2250f"
+    },
+    {
+      "path": "app/src/engine/vendor/contextReading.d.ts",
+      "sha256_lf": "635b84485950fed508617001e519e57d04a8f649692f214e469af8ffea2659c0"
+    },
+    {
+      "path": "app/src/data/dosaClient.ts",
+      "sha256_lf": "b122128d9f8de6a82a2c18ab6339b0316887560aaedb985e209775e1d36bfe66"
+    },
+    {
+      "path": "app/src/components/DosaChat.tsx",
+      "sha256_lf": "a756f1f68c67e4cc6962c059c37d7fb669b13e9924bb87c3ec069a6978977000"
+    },
+    {
+      "path": "app/src/engine/index.d.ts",
+      "sha256_lf": "aa62d8c3814dedaf5adcb023d54e0641bb2653d8e159fd3cb899cd7a6c9a4b4f"
+    }
+  ]
+}

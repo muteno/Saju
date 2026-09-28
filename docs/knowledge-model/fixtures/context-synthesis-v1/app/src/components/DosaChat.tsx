@@ -8,7 +8,7 @@ import type { OhaengKey } from '../theme'
 import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, HOUR_UNKNOWN_NOTICE } from '../data/dosaTopics'
 import type { Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
-import { requestDosaText, shouldSendOnEnter, readingNotices, readingFollowups } from '../data/dosaClient'
+import { requestDosaText, shouldSendOnEnter, readingNotices } from '../data/dosaClient'
 import { chefForGender, counterpartChef, nextChef, bargeLineOf, voiceOf } from '../data/chefs'
 import type { Chef } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
@@ -740,11 +740,7 @@ export default function DosaChat({
     // ⚠ **정제 안 된 발췌(raw)는 뺀다** — 그대로 읽으면 문서 제목이나 유튜브 채널 인사가
     // 도사 대사가 된다(260726 버그체킹 실측: "乙(을목)이란?", "…도화도르입니다").
     // 정제된 줄이 하나도 없으면 아는 척하지 않고 그렇게 말한다.
-    const followups = readingFollowups(report, fallback)
-    const spoken = [
-      ...fallback.filter((l) => !l.raw && !followups.includes(l.text)).map((l) => l.text),
-      ...followups,
-    ]
+    const spoken = fallback.filter((l) => !l.raw).map((l) => l.text)
     say([
       ...(!hourUnknown ? [nar('붓을 들어 판 위에 한 획을 긋는다.')] : []),
       ...(!hourUnknown && intro ? [intro] : []),
@@ -759,16 +755,6 @@ export default function DosaChat({
         // LLM 결론 1통을 읽게 된다). 그래서 **읽은 개수만큼만** 건너뛰고 이어 붙인다.
         // 이미 LLM 분량보다 많이 읽었으면 갈아치우지 않는다(중간에 말이 되감기지 않게).
         const msgs = toMsgs(text)
-        if (followups.length) {
-          // Once a work reading has begun, finish its complete local explanation
-          // and questions. Different generated paragraph counts cannot tell us
-          // which part of that explanation the user has already read.
-          const leadCount = !hourUnknown && intro ? 1 : 0
-          if (readRef.current > leadCount) return
-          // requestDosaText already normalized ordering and exact duplicates.
-          setQueue([...(readRef.current === 0 && intro ? [intro] : []), ...msgs])
-          return
-        }
         if (readRef.current >= msgs.length) return
         // Review status is not a generated paragraph and cannot be skipped by
         // the count of already-read narration/intro/fallback bubbles.
