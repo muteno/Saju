@@ -5,7 +5,6 @@
 import { STEMS, BRANCHES, STEMS_HANJA, BRANCHES_HANJA, ELEMENTS, STEM_ELEMENT, HIDDEN_STEMS, TEN_GODS, tenGod, sexStem, sexBranch } from './tables.js';
 import { STRENGTH_BRANCH_WEIGHTS as strengthWeights, STRENGTH_STEM_WEIGHT } from './judge.js';
 import { applyBasicSentencePolicy } from './basicSentences.js';
-import { evaluateGapinConditions, gapinConditionLines } from './gapinConditions.js';
 import { auspicious } from './sinsal.js';
 
 // Named, unreviewed topic only. This is a delivery eligibility rule, not a truth judgment.
@@ -159,12 +158,7 @@ export function buildReport(chart, keyset, kb) {
   }
 
   // 2) 일주론 (해석의 중심)
-  const ilju = topicBlock(keyset.byTopic.ilju[0], kb, { maxUnits: 2, nParas: 6 });
-  if (ilju.key === 'ilju/갑인') {
-    ilju.gapinConditions = evaluateGapinConditions(chart);
-    ilju.conditionLines = gapinConditionLines(ilju.gapinConditions);
-  }
-  S.push({ id: 'ilju', title: `일주 — ${saju.day.name}일주`, block: ilju });
+  S.push({ id: 'ilju', title: `일주 — ${saju.day.name}일주`, block: topicBlock(keyset.byTopic.ilju[0], kb, { maxUnits: 2, nParas: 6 }) });
 
   // 3) 일간 천간론 + 일지
   S.push({ id: 'daymaster', title: `일간 — ${chart.dayMaster}`, block: topicBlock(`cheongan/${chart.dayMaster}`, kb) });
@@ -242,7 +236,6 @@ export function toMarkdown(report) {
       if (label) L.push(`\n### ${label}`);
       if (b.basicReview?.note) L.push(`\n${b.basicReview.note}\n`);
       if (b.basicReview?.unreviewedNotice) L.push(`\n${b.basicReview.unreviewedNotice}\n`);
-      if (b.conditionLines) for (const line of b.conditionLines) L.push(`- ${line}`);
       if (b.withheld) L.push(`\n${b.withheld.note}\n`);
       if (b.distilled) {
         const d = b.distilled;

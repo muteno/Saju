@@ -1,9 +1,9 @@
 # 기초 보강 인계 — GitHub에서 이어가는 시작점
 
-갱신: 2026-09-28 · 사용자 원문 [67](USER_INTENT_LOG.md)
-직전 PR #211 merged/main `b2432b0db0d822a5ec09eb8a973c54419b39cf36`와 tree `f0cb44f51422ba14681789c8b3e3c96c99566b1a`를 직접 대조했다.
-현재 작업: [갑인 잔여 원문 검수](FOUNDATION_GAPIN_SENTENCES.md)와 [현재 제품 깊이·정확도 점검](PRODUCT_READINESS_20260928.md). 새 검토판은 기존14항목 감사·개인전달 정책과 별도이며 앱·KB 원문은 유지한다.
-**다음 첫 작업은 §5.1의 갑인 검토판을 입력조건·개인 전달에 연결하는 최소 계약이다.** 이번 단위의 병합·최종검사는 해당 PR 영수증을 확인한다. 관리진행률9/20=45%·개인학습적격0·확률null은 유지한다.
+갱신: 2026-09-28 · 사용자 원문 [68](USER_INTENT_LOG.md)
+직전 PR #212 merged/main `70b1a9c0a118b6681fe0372499197fc2e424a468`, tree `e4be54e899178a9fef2557a378787eaf1c15b726`를 직접 대조했다.
+현재 작업: [갑인 입력조건·전달 계약](FOUNDATION_GAPIN_DELIVERY.md). 원문35서술의 보류와 GI09/10의 입력범위/미상 조건을 연결한다. 검토원문·기존14정책 데이터·과거 감사는 보존한다.
+**다음 첫 작업은 §5.1의 갑인 구조 설명·식상 조건 범위 대조다.** 실제 최종검사·병합은 최신 PR 영수증을 확인한다. 관리9/20=45%·개인승인0·학습적격0·확률null 유지.
 공개가 거절됐던 STATUS/WORK_CHECKPOINT는 수정·재전송하지 않는다. 오래된 인계의 ‘다음’보다 이 절과 실제 main/PR 상태를 우선한다.
 
 ## 1. 지금 무엇을 하고 있나
@@ -69,7 +69,26 @@
 | F05 | F01~F04 결과 활용 | 기존 기본 풀이·60일주 검수에 연결 | 적용 문장·조건·근거 대응, 생시 미상·이견 보존. 대표 묶음과 전량 완료를 구분 |
 | F06 | 후속 | 시간·환경 확장, 관측·검토 라벨, 동일 자료 모델 비교·보정 | 문헌 재현과 실제 결과 검증 분리. 미학습 수치는 확률로 제시하지 않음 |
 
-### 5.1 다음 세션의 첫 실행 — 갑인 검토판의 입력조건·개인 전달 계약
+### 5.1 다음 세션의 첫 실행 — 갑인 구조 설명·식상 조건 범위 대조
+
+1. 필독문서→[새 전달 계약](FOUNDATION_GAPIN_DELIVERY.md)→최신 PR merged/head/main/tree를 대조한다. 미병합이면 해당 검사·병합을 먼저 마무리한다. 보류정책을 다시 구현하지 않는다.
+2. `gapinConditions.js`와 `data/gapin_sentence_review.json`의 GI01/03/04/09/10을 읽는다. 일간·일지·지장간·건록의 **구조 설명**과 성격/직업 **효과 주장**을 나눈다. 보드·정본 계산표·출처 원문을 대조해 구조 설명 한 묶음을 정확한 근거와 연결한다. 지장간 구성/강도 판본을 조용히 확정하지 않는다.
+3. 일주론 본문9–10의 식상 유무와49·55의 寅 지장간 丙 식신을 함께 읽는다. 같은 원문·기초 정의의 대상/자리/표면·지장간 범위를 추가 대조한다. 갑인이면 전체지장간 식상은 항상 관찰될 수 있으므로 ‘식상 없음’ 분기를 없애는 계산을 승인하지 않는다. 정의가 불명확하면 unknown 유지·재개에 필요한 자료를 적는다.
+4. 명확한 구조·원문 조건을 **문헌 참고 설명**으로 전달할 수 있는 최소 단위를 정한다. 관찰사실→원문 범위→예외/미상→근거를 연결하며 조건 충족을 개인 결과 적중으로 바꾸지 않는다. 금 관성은 GI09의 별도 직장 대안이며 GI10으로 전이하지 않는다.
+5. 일반 방법분류·참고문헌4개는 갑인 블록 안에서만 보류한다. 기존14정책 v1→v2 이행 기록, 알려진31문구 경계, 원문35/제외메모1/구판14의 분모를 보존한다. 갑오/갑자·나머지59일주 전량 원문 검수와 실제 관측/라벨·학습은 별도 잔여다.
+6. 앱 변경 시 정본→vendor sync·새 측정·전후DOM/PNG·실제KB110/미상8·현침/강약을 확인한다. 과거14정책/제품진단은 `frozen_gapin_delivery.mjs`로 원래 판본을 재현하며 해시만 덮지 않는다.
+7. 임시기록→필수검사→같은모델 최고노력8관점(실제 동시한도 공개)→원격·병합·PR단일영수증. 관리9/20=45%, 개인승인0·학습적격0·확률null. 공개거절 STATUS/WORK_CHECKPOINT는 수정·재전송하지 않는다.
+
+```bash
+python3 docs/knowledge-model/gapin_sentence_review.py --check
+python3 scripts/build_gapin_sentence_policy.py --check
+node docs/knowledge-model/frozen_gapin_delivery.mjs docs/knowledge-model/measure_basic_sentence_delivery.mjs --check
+node docs/knowledge-model/measure_gapin_delivery.mjs --check
+node --test docs/knowledge-model/test_gapin_delivery.mjs
+npm run verify
+```
+
+### 5.1c PR #212 뒤 실행 — 갑인 검토판의 입력조건·개인 전달 계약(보존 이력)
 
 1. 필독문서→[갑인 원문 검수](FOUNDATION_GAPIN_SENTENCES.md)→[제품 현황](PRODUCT_READINESS_20260928.md)과 최신 PR의 merged·head/main/tree를 대조한다. 원문대조 완료를 개인 해석 승인이나 앱 반영 완료로 읽지 않는다.
 2. `data/gapin_sentence_review.json`의 각 항목과 기존 `data/basic_sentence_review.json`을 함께 읽는다. 원문·구판 감사·현재14항목 보류정책은 별도 판본으로 보존한다. 갑인 핵심의2020문맥·주의3의 부분 재사용·성별/원국 조건·일간/일지 일반설명의 범위를 우선 다룬다.

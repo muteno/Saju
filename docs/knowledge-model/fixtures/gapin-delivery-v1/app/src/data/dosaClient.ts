@@ -1,4 +1,4 @@
-import { basicSentenceMatches, safeBasicSentenceParagraphs, BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, GAPIN_SENTENCE_NOTICE } from '../engine/vendor/basicSentences.js'
+import { basicSentenceMatches, safeBasicSentenceParagraphs, BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE } from '../engine/vendor/basicSentences.js'
 import { chartSummaryOf, topicLines, type DosaLine } from './dosaTopics'
 import type { ReportBundle } from '../engine'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
@@ -32,7 +32,7 @@ export async function requestDosaText(options: {
     held = true
   }
   if (held && !safeLines.some(line => line.text === BASIC_SENTENCE_NOTICE)) safeLines.push({ text: BASIC_SENTENCE_NOTICE })
-  const notices = [BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, GAPIN_SENTENCE_NOTICE]
+  const notices = [BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE]
     .filter(note => safeLines.some(line => line.text === note))
   const ctrl = new AbortController()
   const abort = () => ctrl.abort()

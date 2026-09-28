@@ -47,7 +47,7 @@ const CARD_HOME: Record<string, string> = {
 const routeIljuBlock = (label?: string): string => {
   if (!label) return 'temper'
   if (label === '관계') return 'rel'
-  if (label === '일과 재능' || label === '입력 조건 확인') return 'work'
+  if (label === '일과 재능') return 'work'
   if (label === '주의') return 'caution'
   if (label.startsWith('관점 차이')) {
     if (/관계|배우자|연애|궁합|부부|이성/.test(label)) return 'rel'

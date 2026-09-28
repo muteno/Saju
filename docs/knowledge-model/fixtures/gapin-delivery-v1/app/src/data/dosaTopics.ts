@@ -97,7 +97,6 @@ interface TopicBlock {
   totalUnits?: number
   empty?: boolean
   note?: string
-  conditionLines?: string[]
   withheld?: { topic: string; count: number; note: string }
   basicReview?: { note?: string; unreviewedNotice?: string }
 }
@@ -201,7 +200,6 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
       break
     }
     case '직업': {
-      if (ilju?.block?.conditionLines) out.push(...ilju.block.conditionLines.map(text => ({ text, tone: 'calc' as const })))
       out.push(...listLines(dd?.직업, dSrc))
       if (hourUnknown) {
         // 십신 분포는 시주(시간 천간·지지)를 포함해 집계 — 시간 모름이면 근거에서 제외
@@ -246,7 +244,7 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
   const selected = out
   if (topicKey !== '올해' && ilju?.block) {
     if (ilju?.block?.basicReview?.note) selected.push({ text: BASIC_SENTENCE_NOTICE })
-    selected.push({ text: ilju.block.basicReview?.unreviewedNotice ?? UNREVIEWED_ILJU_NOTICE })
+    selected.push({ text: UNREVIEWED_ILJU_NOTICE })
   }
   return selected
 }

@@ -1,7 +1,8 @@
 export const BASIC_SENTENCE_POLICY: string;
 export const BASIC_SENTENCE_NOTICE: string;
 export const UNREVIEWED_ILJU_NOTICE: string;
-export function basicSentenceMatches(value: unknown): string[];
+export const GAPIN_SENTENCE_NOTICE: string;
+export function basicSentenceMatches(value: unknown, key?: string | null): string[];
 export function basicSentenceReviews(key: string, ids?: string[]): Array<{
   id: string; key: string; pointer: (string | number)[];
   review: Record<string, string>; sources: Array<{ unit: string; doc: string; title: string;

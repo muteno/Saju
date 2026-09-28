@@ -152,10 +152,6 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; prof
 
   if (d) {
     const blocks: CardBlock[] = []
-    if (iljuBlock?.conditionLines?.length) blocks.push(
-      { label: '일과 재능', lines: iljuBlock.conditionLines.slice(0, 1) },
-      { label: '입력 조건 확인', lines: iljuBlock.conditionLines.slice(1) },
-    )
     if (d.distilled?.핵심) blocks.push({ label: '핵심', lines: [d.distilled.핵심] })
     if (d.distilled?.성격?.length) blocks.push({ label: '성격', lines: d.distilled.성격 })
     if (d.distilled?.직업?.length) blocks.push({ label: '일과 재능', lines: d.distilled.직업 })
