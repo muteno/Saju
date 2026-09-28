@@ -1,0 +1,810 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "f247fa48336ac053ef648c8d05a58cdbb5336618",
+  "scope": "Source-bound Gapin structural reference and symbolic scope comparison; no app integration or personal effect approval.",
+  "inference_enabled": false,
+  "training_eligible": 0,
+  "probability": null,
+  "sources": {
+    "일주론 글모음#0002": {
+      "kind": "docx",
+      "path": "정제본/일주론 글모음.docx",
+      "sha256": "4200872a10b2715b394b6524c951656c7a554f97b61199473081f9ce95ed139f",
+      "unit_index": 2,
+      "title": "갑인일주(甲寅日柱) <일주론>",
+      "meta": "작성일 2019-04-07 · 원문 yavares.tistory.com/59",
+      "heading_xml_paragraph": 247,
+      "lineage": "yavares.tistory.com"
+    },
+    "명리학탐구(고급1) 게시판 글모음#0018": {
+      "kind": "docx",
+      "path": "정제본/명리학탐구(고급1) 게시판 글모음.docx",
+      "sha256": "b22d3b4f0f1ced1a379ccab357732b01734b2c1d356795322949405143c1aa46",
+      "unit_index": 18,
+      "title": "320.일주분석(3) - 식상과 재성에 가치를 두는 갑인일주",
+      "meta": "작성일 2020-06-16 · 댓글 22 · 조회 1,192",
+      "heading_xml_paragraph": 458,
+      "lineage": "unresolved:명리학탐구(고급1)"
+    },
+    "천간과 지지 글모음#0014": {
+      "kind": "docx",
+      "path": "정제본/천간과 지지 글모음.docx",
+      "sha256": "c00d9873e0481e054b5695589b83806f3ec3c1b001102617a7c4f9d2836a6003",
+      "unit_index": 14,
+      "title": "십이지지, 인(寅)-인목",
+      "meta": "작성일 2019-03-09 · 원문 yavares.tistory.com/24",
+      "heading_xml_paragraph": 648,
+      "lineage": "yavares.tistory.com"
+    },
+    "십신과 합충 글모음#0012": {
+      "kind": "docx",
+      "path": "정제본/십신과 합충 글모음.docx",
+      "sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+      "unit_index": 12,
+      "title": "식신(食神)이란?",
+      "meta": "작성일 2019-09-17 · 원문 yavares.tistory.com/226",
+      "heading_xml_paragraph": 818,
+      "lineage": "yavares.tistory.com"
+    },
+    "십신과 합충 글모음#0013": {
+      "kind": "docx",
+      "path": "정제본/십신과 합충 글모음.docx",
+      "sha256": "d35c62480e10fb195ba2bafec4e063d6affae9985f2176a9c3d367bcf7106249",
+      "unit_index": 13,
+      "title": "상관(傷官)이란?",
+      "meta": "작성일 2019-09-19 · 원문 yavares.tistory.com/228",
+      "heading_xml_paragraph": 883,
+      "lineage": "yavares.tistory.com"
+    },
+    "board_snapshot": {
+      "kind": "text",
+      "path": "dosa-app/methodology/figjam_board_full.md",
+      "sha256": "442c1892203cb5edde66db53dec733ea0d352d5682447f1ed4515835b16a20d6",
+      "line_policy": "Python str.splitlines, 1-based",
+      "lineage": "unresolved:figma_board_upstream",
+      "freshness": "Repository snapshot only; not fetched from current Figma."
+    },
+    "sagong": {
+      "kind": "text",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/사주공부-사공 저서 글모음.txt",
+      "sha256": "84eb9a7240a299aa34715381b5302b43159a12d227296a3ef547a7df8698d968",
+      "line_policy": "Python str.splitlines, 1-based",
+      "lineage": "sagong"
+    },
+    "choco": {
+      "kind": "text",
+      "path": "정제/원본/P0_인벤토리/webtxt_v1/초코서당-천간, 지지 글모음.txt",
+      "sha256": "ee1b8acf2289a59c5df1b415fdace76817c167ac5889d1bbbe589abf2fa4c442",
+      "line_policy": "Python str.splitlines, 1-based",
+      "lineage": "choco"
+    }
+  },
+  "evidence": [
+    {
+      "id": "ilju_basic",
+      "source": "일주론 글모음#0002",
+      "body_paragraphs": [
+        5,
+        8
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 253,
+          "text": "하늘에도 갑목이요, 땅에도 갑목이라 밝고 명랑한 기운이 넘치는 일주입니다. 갑목이 하늘과 땅에 박혔으니 자존심과 자아의 끝판왕이며, 매사에 적극적이고 능동적입니다."
+        },
+        {
+          "xml_paragraph": 254,
+          "text": "갑인일주는 뻣뻣하고 강인한 나무이기 때문에 자기 밖에 모르는 성격이 강한 사람이 많습니다. 십이운성 또한 건록으로 막강한 힘을 가지고 있습니다. 장점으로는 남의 도움 없이 자기 혼자 힘으로 일구어내는 힘이 강합니다."
+        },
+        {
+          "xml_paragraph": 255,
+          "text": "하지만 단점으로는 자기 자신의 힘이 워낙 강하다 보니 갑인일주 주변에는 적이 많을 수 밖에 없습니다. 타인과 마찰이 잦을 수 밖에 없으며, 특히 배우자와의 사이가 좋지 않은 일주입니다."
+        },
+        {
+          "xml_paragraph": 256,
+          "text": "갑인일주는 물상적으로 바쁘고 활기찬 寅(인목) 위에 甲나무가 올려져 있으니 삶의 변동이 크며, 분주하고 기복과 풍파가 많은 삶을 사는 사람이 많습니다. 하지만 운을 잘 타면, 큰 성취를 해내는 일주가 갑인일주입니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 252,
+          "text": "갑인일주 기본성향"
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 257,
+          "text": "특히 갑인일주 남자의 경우 경쟁하여 쟁취하는 사업길에 어울립니다. 직장생활을 하다가도 자기 사업을 일으키는 성향을 가지고 있으며, 사주에 식상이 있을 경우 프로페셔널한 전문분야의 사업에 인연이 있습니다. 사주에 식상이 없으면 특별한 재주가 없이도 돈을 벌 수 있는 자영업에 종사하면 좋습니다. 관성인 金의 기운이 튼튼하면 직장에서도 크게 성공할 수 있습니다."
+        }
+      ]
+    },
+    {
+      "id": "male_condition",
+      "source": "일주론 글모음#0002",
+      "body_paragraphs": [
+        9,
+        9
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 257,
+          "text": "특히 갑인일주 남자의 경우 경쟁하여 쟁취하는 사업길에 어울립니다. 직장생활을 하다가도 자기 사업을 일으키는 성향을 가지고 있으며, 사주에 식상이 있을 경우 프로페셔널한 전문분야의 사업에 인연이 있습니다. 사주에 식상이 없으면 특별한 재주가 없이도 돈을 벌 수 있는 자영업에 종사하면 좋습니다. 관성인 金의 기운이 튼튼하면 직장에서도 크게 성공할 수 있습니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 256,
+          "text": "갑인일주는 물상적으로 바쁘고 활기찬 寅(인목) 위에 甲나무가 올려져 있으니 삶의 변동이 크며, 분주하고 기복과 풍파가 많은 삶을 사는 사람이 많습니다. 하지만 운을 잘 타면, 큰 성취를 해내는 일주가 갑인일주입니다."
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 258,
+          "text": "갑인일주 여자의 경우 남자 여럿을 호령할 수 있는 능력과 활동성을 갖추었으며, 사주에 식상이 있으면 교육, 학원, 요식업에 종사하면 좋습니다. 사주에 식상이 없다면 자영업, 부동산에 어울리는 능력을 갖추었다고 봅니다."
+        }
+      ]
+    },
+    {
+      "id": "female_condition",
+      "source": "일주론 글모음#0002",
+      "body_paragraphs": [
+        10,
+        10
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 258,
+          "text": "갑인일주 여자의 경우 남자 여럿을 호령할 수 있는 능력과 활동성을 갖추었으며, 사주에 식상이 있으면 교육, 학원, 요식업에 종사하면 좋습니다. 사주에 식상이 없다면 자영업, 부동산에 어울리는 능력을 갖추었다고 봅니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 257,
+          "text": "특히 갑인일주 남자의 경우 경쟁하여 쟁취하는 사업길에 어울립니다. 직장생활을 하다가도 자기 사업을 일으키는 성향을 가지고 있으며, 사주에 식상이 있을 경우 프로페셔널한 전문분야의 사업에 인연이 있습니다. 사주에 식상이 없으면 특별한 재주가 없이도 돈을 벌 수 있는 자영업에 종사하면 좋습니다. 관성인 金의 기운이 튼튼하면 직장에서도 크게 성공할 수 있습니다."
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 259,
+          "text": "갑인일주의 힘은 비견-식신-편재로 자연스럽게 흐르는 힘입니다. 자연스럽게 재성으로 연결되는 힘이기 때문에 사업에도 괜찮지만 학문이나 기술, 예술 분야에서 강한 힘을 발휘하는 일주입니다."
+        }
+      ]
+    },
+    {
+      "id": "flow_claim",
+      "source": "일주론 글모음#0002",
+      "body_paragraphs": [
+        11,
+        12
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 259,
+          "text": "갑인일주의 힘은 비견-식신-편재로 자연스럽게 흐르는 힘입니다. 자연스럽게 재성으로 연결되는 힘이기 때문에 사업에도 괜찮지만 학문이나 기술, 예술 분야에서 강한 힘을 발휘하는 일주입니다."
+        },
+        {
+          "xml_paragraph": 260,
+          "text": "나무의 힘이 위아래로 가득차 있어서 나무 특유의 탐구심, 호기심, 인문적 기운이 강하기 때문입니다. 위대한 인문학자들 중에 갑인일주가 많습니다. 또한 갑인일주는 머리회전이 빠르기 때문에 이벤트와 기획들에 능한 경우가 많습니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 258,
+          "text": "갑인일주 여자의 경우 남자 여럿을 호령할 수 있는 능력과 활동성을 갖추었으며, 사주에 식상이 있으면 교육, 학원, 요식업에 종사하면 좋습니다. 사주에 식상이 없다면 자영업, 부동산에 어울리는 능력을 갖추었다고 봅니다."
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 261,
+          "text": "갑인일주는 甲(갑목)의 기운이 하늘을 뚫고 땅으로 박혔기 때문에 그 기운을 쓰면서 살아야 합니다."
+        }
+      ]
+    },
+    {
+      "id": "pillar_definition",
+      "source": "일주론 글모음#0002",
+      "body_paragraphs": [
+        42,
+        42
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 290,
+          "text": "갑인(甲寅)일주는 일간(日干)이 갑목(甲木)이고 일지(日支)가 인목(寅木)으로 이루어진 일주입니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 289,
+          "text": "갑인일주 더 알아보기(기본)"
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 291,
+          "text": "갑인 자체의 의미도 중요하지만 甲(갑목)과 寅(인목)의 특성을 정리한 글을 읽으시면 일주에 대한 이해가 더욱 깊어질 것입니다."
+        }
+      ]
+    },
+    {
+      "id": "hidden_composition",
+      "source": "일주론 글모음#0002",
+      "body_paragraphs": [
+        48,
+        49
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 296,
+          "text": "기준이 갑목입니다. 갑목을 기준으로 인목과의 관계를 판단합니다."
+        },
+        {
+          "xml_paragraph": 297,
+          "text": "인목의 지장간은 戊(무토), 丙(병화), 甲(갑목)으로 이루어져 있습니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 295,
+          "text": "(1) 육친"
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 298,
+          "text": "寅(인목)"
+        }
+      ]
+    },
+    {
+      "id": "periods",
+      "source": "일주론 글모음#0002",
+      "body_paragraphs": [
+        50,
+        53
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 298,
+          "text": "寅(인목)"
+        },
+        {
+          "xml_paragraph": 299,
+          "text": "초기 : 7일 - 戊(무토)"
+        },
+        {
+          "xml_paragraph": 300,
+          "text": "중기 : 7일 - 丙(병화)"
+        },
+        {
+          "xml_paragraph": 301,
+          "text": "정기 : 16일 - 甲(갑목)"
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 297,
+          "text": "인목의 지장간은 戊(무토), 丙(병화), 甲(갑목)으로 이루어져 있습니다."
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 302,
+          "text": "戊(무토)는 갑목과 음양이 같고 갑목이 무토를 극하므로 편재(偏財) 입니다."
+        }
+      ]
+    },
+    {
+      "id": "hidden_relations",
+      "source": "일주론 글모음#0002",
+      "body_paragraphs": [
+        54,
+        57
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 302,
+          "text": "戊(무토)는 갑목과 음양이 같고 갑목이 무토를 극하므로 편재(偏財) 입니다."
+        },
+        {
+          "xml_paragraph": 303,
+          "text": "丙(병화)는 갑목과 음양이 같고 갑목이 병화를 生 하므로 식신(食神) 입니다."
+        },
+        {
+          "xml_paragraph": 304,
+          "text": "甲(갑목)은 갑목 자신이므로 비견(比肩) 입니다."
+        },
+        {
+          "xml_paragraph": 305,
+          "text": "인목의 지장간 중에서 정기(正氣) -순서상 가장 마지막, 가장 큰 비중을 차지하는 기운- 는 甲(갑목)입니다. 따라서 갑인일주를 대표하는 육친은 비견(比肩)이 됩니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 301,
+          "text": "정기 : 16일 - 甲(갑목)"
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 306,
+          "text": "(2) 십이운성"
+        }
+      ]
+    },
+    {
+      "id": "stage",
+      "source": "일주론 글모음#0002",
+      "body_paragraphs": [
+        58,
+        59
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 306,
+          "text": "(2) 십이운성"
+        },
+        {
+          "xml_paragraph": 307,
+          "text": "갑인일주는 십이운성 중 건록(健祿)에 해당합니다. 십이운성에 대한 자세한 사항은 십이운성 카테고리를 참고하시기 바랍니다. \"건록(健祿)\"에 대한 자세한 내용은 아래의 링크를 참고바랍니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 305,
+          "text": "인목의 지장간 중에서 정기(正氣) -순서상 가장 마지막, 가장 큰 비중을 차지하는 기운- 는 甲(갑목)입니다. 따라서 갑인일주를 대표하는 육친은 비견(比肩)이 됩니다."
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 308,
+          "text": "<<참고자료>>"
+        }
+      ]
+    },
+    {
+      "id": "general_stem_vs_principal",
+      "source": "명리학탐구(고급1) 게시판 글모음#0018",
+      "body_paragraphs": [
+        7,
+        14
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 466,
+          "text": "2.갑목일간의 특성"
+        },
+        {
+          "xml_paragraph": 467,
+          "text": "갑목은 소나무나 잣나무처럼 곁가지가 별로 없이 쭉쭉뻗은 큰 나무의 형상으로, 우두머리 기질이 강해 다른 사람의 간섭이나 통제는 꺼리는 경향이 강합니다. 언제나 당당하고 자신감이 넘치는 긍정적 사고방식과 생활태도로 지도자적 기질이 강합니다."
+        },
+        {
+          "xml_paragraph": 468,
+          "text": "그러나, 다소 완고하고 고집이 너무 강해 주변과 화합하기 힘들어 다른 사람들의 공격대상이 되기 쉽고, 유연성과 융통성은 부족합니다. 어떤 일이나 시작은 잘하지만 마무리가 약해 결과가 부실하기 쉽고, 게으른 면모도 보입니다."
+        },
+        {
+          "xml_paragraph": 469,
+          "text": "갑목의 특성상 추진하던 일이 실패로 끝나면 돌이키기 힘든 어려운 상황을 맞기 쉽고, 다시금 재기하기 힘든 경우도 생기기 쉽습니다. 새로운 일을 추진하거나 돌발 상황에 신중히 대처해야만 어려운 상황을 피할 수 있습니다."
+        },
+        {
+          "xml_paragraph": 470,
+          "text": "3.일지가 비견이면"
+        },
+        {
+          "xml_paragraph": 471,
+          "text": "일지는 일간의 행동과 생활태도를 나타내는 궁위로, 배우자궁이기도 합니다. 일지에 비견이 오게되면, 일상생활이나 사회활동 또는 가정에서 자신이 모든 것을 주도하고, 자신의 영역을 침범하는 것을 극히 꺼리는 경향이 강합니다. 당연히 융통성이나 유연성은 부족하기 마련입니다."
+        },
+        {
+          "xml_paragraph": 472,
+          "text": "따라서, 주변사람들의 간섭이나 통제는 꺼리게 되고, 심한 통제에는 반발하거나 자존심이 상하게 됩니다. 일지에 비견이 위치하면 고집과 자존심이 강하게 나타나고, 자기중심적 생활태도를 갖게 됩니다. 직업이나 사회활동에서도 자신이 모든 것을 주도하려는 성향이 강합니다."
+        },
+        {
+          "xml_paragraph": 473,
+          "text": "일지는 배우자궁위이기도 합니다. 배우자 역시 비견의 성향을 보이게 되어, 부부간에 한마음으로 일을 추진하기도 하지만, 때로는 심한 경쟁자가 되기도 합니다. 이러한 이유로 일주가 간여지동인 경우 배우자궁이 다소 불리하다고 보는 것입니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 465,
+          "text": "4).일지의 합과 충에 따른 변화와 과정을 파악합니다."
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 474,
+          "text": "4.지장간 분석"
+        }
+      ]
+    },
+    {
+      "id": "hidden_effect_claim",
+      "source": "명리학탐구(고급1) 게시판 글모음#0018",
+      "body_paragraphs": [
+        15,
+        17
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 474,
+          "text": "4.지장간 분석"
+        },
+        {
+          "xml_paragraph": 475,
+          "text": "일지 인목의 지장간에는 편재인 무토와 식신인 병화, 비견인 갑목이 위치합니다. 갑목일간은 일지 지장간 중의 편재 무토에 가치를 둠으로써, 편재를 강하게 추구하는 타입이라, 재물이나 이성에 대한 탐심이 대단하다고 봅니다."
+        },
+        {
+          "xml_paragraph": 476,
+          "text": "비록 고집과 자존심이 강해 융통성은 다소 부족하지만, 재성에 대한 강한 승부욕이 드러나게 됩니다. 또한 일주만으로도 일지 지장간에 식상과 재성이 위치하는 경우라, 기본적인 재물복은 있는 명조입니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 473,
+          "text": "일지는 배우자궁위이기도 합니다. 배우자 역시 비견의 성향을 보이게 되어, 부부간에 한마음으로 일을 추진하기도 하지만, 때로는 심한 경쟁자가 되기도 합니다. 이러한 이유로 일주가 간여지동인 경우 배우자궁이 다소 불리하다고 보는 것입니다."
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 477,
+          "text": "5.일지의 합과 충"
+        }
+      ]
+    },
+    {
+      "id": "branch_definition",
+      "source": "천간과 지지 글모음#0014",
+      "body_paragraphs": [
+        11,
+        21
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 660,
+          "text": "지지는 천간의 기운이 땅으로 내려와 서로 섞이며 이루어집니다. 천간의 기운이 순수무구하다면 지지는 그 구성 자체가 복잡하고 어지럽게 섞여 있습니다.천간의 기운이 모이고 섞였기 때문입니다."
+        },
+        {
+          "xml_paragraph": 661,
+          "text": "지지 안에 내재된 천간의 기운을 의미하는 용어는 지장간(地藏干)입니다. 그 뜻을 풀이하면 글자 그대로 지지(地)에 숨어있는(藏) 천간(干)이 됩니다."
+        },
+        {
+          "xml_paragraph": 662,
+          "text": "寅(인목)의 지장간을 살펴보면 인목은 천간의 무(戊)와 병(丙), 갑(甲)으로 이루어져 있습니다."
+        },
+        {
+          "xml_paragraph": 663,
+          "text": "날짜로 보자면 30일 중에,"
+        },
+        {
+          "xml_paragraph": 664,
+          "text": "7일(1일~7일)은 戊(무토),"
+        },
+        {
+          "xml_paragraph": 665,
+          "text": "7일(8일~14일)은 丙(병화),"
+        },
+        {
+          "xml_paragraph": 666,
+          "text": "16일(15일~30일)은 甲(갑목)"
+        },
+        {
+          "xml_paragraph": 667,
+          "text": "에 해당합니다."
+        },
+        {
+          "xml_paragraph": 668,
+          "text": "甲(갑목)을 중심으로 戊(무토)와 丙(병화)가 어우러져 寅(인목)을 구성하고 있는 것입니다."
+        },
+        {
+          "xml_paragraph": 669,
+          "text": "위의 그림을 보면, 寅(인목)의 주된 성분은 甲(갑목)입니다. 따라서 인목은 甲(갑목)을 따라 오행으로는 목(木), 음양으로는 양(陽)의 특성을 보입니다."
+        },
+        {
+          "xml_paragraph": 670,
+          "text": "寅(인목)은 甲(갑목)이 주성분이기 때문에 甲(갑목)이 가지고 있는 성질을 일부 공유하고 있습니다. 甲(갑목)과 관련한 자세한 내용은 천간 카테고리의 갑목편을 참고 하시면 됩니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 659,
+          "text": "동물 : 호랑이"
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 671,
+          "text": "인목은 그 글자를 '조심할 인,인연할 인(夤)'에서 따왔습니다. 사람은 모두 인연을 바탕으로 살아간다는 (人生於寅)는 의미를 지니고 있으며, 인목이 시간으로는 첫닭이 우는 새벽 4시 무렵을 의미하기 때문에 사람을 공경하는 마음으로 하루를 시작한다는 의미 또한 가지고 있습니다."
+        }
+      ]
+    },
+    {
+      "id": "food_definition",
+      "source": "십신과 합충 글모음#0012",
+      "body_paragraphs": [
+        3,
+        5
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 822,
+          "text": "1. 개요"
+        },
+        {
+          "xml_paragraph": 823,
+          "text": "단어의 뜻 : 먹을 식(食), 귀신 신(神), \"의식주와 관련된 복\""
+        },
+        {
+          "xml_paragraph": 824,
+          "text": "오행의 관계 : 일간을 기준으로 일간이 생生 하고, 음양이 같은 천간이나 지지"
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 821,
+          "text": "오늘은 십신(十神) 중 식신(食神)에 대해 알아보겠습니다."
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 825,
+          "text": "파생된 의미 : 공동체 속에서 여유있게 즐기는 낙천적이고, 편안한 기운"
+        }
+      ]
+    },
+    {
+      "id": "output_definition",
+      "source": "십신과 합충 글모음#0012",
+      "body_paragraphs": [
+        8,
+        12
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 827,
+          "text": "식신을 탐구하기에 앞서 비겁, 식상, 재성을 도식화 해 보겠습니다."
+        },
+        {
+          "xml_paragraph": 828,
+          "text": "비겁(비견+겁재)은 나와 오행이 같은 경우를 말하며, 에너지를 생산하는 주체에 해당합니다. 비유하면, 물건을 생산하는 공장에 빗댈 수 있습니다."
+        },
+        {
+          "xml_paragraph": 829,
+          "text": "식상은 내가 생하는 오행을 말하며, 에너지를 받아서 나온 바깥으로 나온 활동성을 의미합니다. 비유하면, 공장에서 막 탄생한 상품, 재능, 기회에 빗댈 수 있습니다."
+        },
+        {
+          "xml_paragraph": 830,
+          "text": "재성은 내가 극하는 오행을 말하며, 내가 에너지를 마음껏 뽐낼 사회적 공간을 의미합니다. 비유하면, 상품이 유통되고 판매되는 시장, 재능을 뽐낼 활동무대에 빗댈 수 있습니다."
+        },
+        {
+          "xml_paragraph": 831,
+          "text": "모든 상황에 다 적용되는 것은 아니지만, 십신을 이해할 때 이렇게 에너지(상품)의 흐름으로 이해하면 편하게 십신을 활용할 수 있습니다. 비겁에서 식상을 거쳐 재성으로 넘어가는 과정은 다음과 같습니다."
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 826,
+          "text": "2. 식신의 의미에 앞서"
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 832,
+          "text": "3. 식신의 의미 (1) 의식주의 평안함"
+        }
+      ]
+    },
+    {
+      "id": "hurting_definition",
+      "source": "십신과 합충 글모음#0013",
+      "body_paragraphs": [
+        3,
+        5
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 887,
+          "text": "1. 개요"
+        },
+        {
+          "xml_paragraph": 888,
+          "text": "단어의 뜻 : 상처 상(傷), 벼슬 관(官), \"벼슬을 상하게 하는 기운\""
+        },
+        {
+          "xml_paragraph": 889,
+          "text": "오행의 관계 : 일간을 기준으로 일간이 생生 하고, 음양이 다른 천간이나 지지"
+        }
+      ],
+      "context_before": [
+        {
+          "xml_paragraph": 886,
+          "text": "오늘은 십신(十神) 중 상관(傷官)에 대해 알아보겠습니다."
+        }
+      ],
+      "context_after": [
+        {
+          "xml_paragraph": 890,
+          "text": "파생된 의미 : 특출함을 바탕으로 자신의 개성을 표출함."
+        }
+      ]
+    },
+    {
+      "id": "board_stage",
+      "source": "board_snapshot",
+      "lines": [
+        3335,
+        3341
+      ],
+      "text": "\n|  | 갑(甲)목 🌳(+) | 을(乙)목 🌱(-) | 병(丙)화 ☀️(+) | 정(午)화 🌕(-) | 무(戊)토 ⛰️(+) | 기(己)토 🟫(-) | 경(庚)금 🪓(+) | 신(辛)금 🐵(-) | 임(壬)수 🌊(+) | 계(癸)수 💧(-) |\n|---|---|---|---|---|---|---|---|---|---|---|\n| 장생(長生) | 해(亥)🐷 | 오(午)🐴 | 인(寅)🐯 | 유(酉)🐔 | 인(寅)🐯 | 유(酉)🐔 | 사(巳)🐍 | 자(子)🐭 | 신(申)🐵 | 묘(卯)🐰 |\n| 목욕(沐浴) | 자(子)🐭 | 사(巳)🐍 | 묘(卯)🐰 | 신(申)🐵 | 묘(卯)🐰 | 신(申)🐵 | 오(午)🐴 | 해(亥)🐷 | 유(酉)🐔 | 인(寅)🐯 |\n| 관대(冠帶) | 축(丑)🐮 | 진(辰)🐲 | 진(辰)🐲 | 미(未)🐑 | 진(辰)🐲 | 미(未)🐑 | 미(未)🐑 | 술(戌)🐶 | 술(戌)🐶 | 축(丑)🐮 |\n| 건록(乾祿) | 인(寅)🐯 | 묘(卯)🐰 | 사(巳)🐍 | 오(午)🐴 | 사(巳)🐍 | 오(午)🐴 | 신(申)🐵 | 유(酉)🐔 | 해(亥)🐷 | 자(子)🐭 |"
+    },
+    {
+      "id": "board_food",
+      "source": "board_snapshot",
+      "lines": [
+        982,
+        982
+      ],
+      "text": "- 식신은 일간이 생(生)하는 오행 중 음양이 같아 소비 에너지가 적고, 쉽게 식신(食神) 할 수 있음"
+    },
+    {
+      "id": "period_sagong_table",
+      "source": "sagong",
+      "lines": [
+        99,
+        103
+      ],
+      "text": "지지 | 子 | 丑 | 寅 | 卯 | 辰 | 巳 | 午 | 未 | 申 | 酉 | 戌 | 亥\n초기 | 壬 10 | 癸 9 | 戊 7 | 甲 10 | 乙 9 | 戊 7 | 丙 10 | 丁 9 | 戊 7 | 庚 10 | 辛 9 | 戊 7\n중기 | | 辛 3 | 丙 7 | | 癸 3 | 庚 7 | 己 9 | 乙 3 | 壬 7 | | 丁 3 | 甲 7\n정기 | 癸 20 | 己 18 | 甲 16 | 乙 20 | 戊 18 | 丙 16 | 丁 11 | 己 18 | 庚 16 | 辛 20 | 戊 18 | 壬 16\n※ 숫자는 지장간이 작용하는 날수",
+      "prior_evidence": "period_sagong_table"
+    },
+    {
+      "id": "period_sagong_other_table",
+      "source": "sagong",
+      "lines": [
+        104,
+        107
+      ],
+      "text": "(3) 인원용사(人元用事)\n년지, 일지, 시지에 해당하는 지장간을 인원용사라 한다. 월령분야는 계절과 한 달(30일)의 개념이 있지만, 인원용사는 이러한 개념 없이 년일시지로 지지를 구성한 천간을 의미한다. 계절 흐름이 없으므로 초기, 중기, 정기의 개념과 날짜 비율도 없다. 인원용사는 월률분야와 거의 유사하지만 차이점은 왕지에 지장간 양간이 없고 해수의 경우 무토가 없다.\n지지 | 子 | 丑 | 寅 | 卯 | 辰 | 巳 | 午 | 未 | 申 | 酉 | 戌 | 亥\n장간 | 癸 | 癸 辛 己 | 戊 丙 甲 | 乙 | 乙 癸 戊 | 戊 庚 丙 | 己 丁 | 丁 乙 己 | 戊 壬 庚 | 辛 | 辛 丁 戊 | 甲 壬",
+      "prior_evidence": "period_sagong_other_table"
+    },
+    {
+      "id": "month_choco_not_mechanical",
+      "source": "choco",
+      "lines": [
+        1603,
+        1622
+      ],
+      "text": "그런데 저는 개인적으로 월지의 지장간을 기계적으로 나누는 것에는 조금 의문을 갖고 있습니다.\n예를 들어, 생지에 해당하는 지지 인목의 경우 초기인 무토와 병화는 각각 7일씩, 갑목은 16일 정도 에 해당합니다.\n이를 기준으로 무토와 병화, 갑목이 각각 1 : 1 : 2 정도의 힘을 갖고 있다고 해석하는데요.\n잘 보시면 정기인 갑목은 중기 병화를 생하고, 병화는 다시 초기인 무토를 생합니다. 지장간 내에서도 상생상극의 흐름이 존재한다는 뜻입니다.\n고지에 해당하는 축토의 경우 월률분야 이론에 따라,\n초기인 계수가 9일, 중기 신금은 3일, 정기 기토는 18일의 날짜를 배분받습니다.\n다른 관점에서,\n계수와 신금, 기토는 각각 3 : 1 : 6 정도의 힘을 갖고 있다고 해석됩니다.\n하지만 정기인 기토는 중기 신금을 생하고, 중기 신금은 다시 초기 계수를 생합니다. 역시 지장간 내에서 상생의 흐름이 이어집니다.\n사실 많은 분들이 월률분야 이론에 따라,\n지장간이 갖는 힘의 정도를 기계적으로 나누어 해석하고 있는데요.\n저는 지장간 내에서도 상생상극의 흐름이 이어지기 때문에,\n지장간의 날짜를 기계적으로 배분하면 안 된다는 입장을 갖고 있습니다.\n오히려\n1) 월지 지장간이 천간의 어느 위치에 투출했는지\n2) 천간의 간지가 지장간의 어떤 간지에 통근했는지\n즉, 천간과 월지의 관계는 물론, 원국의 전체적인 구조를 살피는 게 우선이라고 보는 것이죠.\n예를 들어, 월지가 신금인 이 사주는 신금의 초기인 무토와 중기 임수, 정기 경금이 각각 1 : 1 : 2의 힘을 갖고 있다고 보아야 할까요?\n잘 보시면 월지 신금의 중기인 임수가 멀긴 하지만 시간에 투간해있습니다.\n즉 천간에 있는 임수와 월지 신중 임수가 서로 호응하고 있기 때문에, 단순히 중기 임수가 경금에 비해 절반의 힘만을 갖고 있다고 보면 곤란하다는 뜻입니다.",
+      "prior_evidence": "month_choco_not_mechanical"
+    }
+  ],
+  "claims": [
+    {
+      "id": "GS01",
+      "text": "갑인(甲寅)은 일간 甲과 일지 寅으로 이루어진다.",
+      "evidence_ids": [
+        "pillar_definition"
+      ],
+      "scope": "갑인이라는 일주의 기호 구성.",
+      "limits": "생년월일을 받아 일주를 계산하는 정확도나 개인 성격을 검증한 것이 아니다.",
+      "delivery": "literature_reference_only",
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "GS02",
+      "text": "인목의 정기를 甲으로 대표시키는 이 문헌에서는, 갑목 기준의 일지 대표 십신을 비견으로 설명한다.",
+      "evidence_ids": [
+        "hidden_relations",
+        "branch_definition"
+      ],
+      "scope": "일지의 정기/본기를 대표로 삼는 분류.",
+      "limits": "寅 전체가 甲 한 글자이거나 지장간 전체가 비견이라는 뜻이 아니다. GI03의 주도성·배우자 해석을 승인하지 않는다.",
+      "delivery": "literature_reference_only",
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "GS03",
+      "text": "이 문헌의 寅 지장간 구성은 戊·丙·甲이며, 甲 기준으로 각각 편재·식신·비견이다.",
+      "evidence_ids": [
+        "hidden_composition",
+        "hidden_relations",
+        "period_sagong_table",
+        "period_sagong_other_table"
+      ],
+      "scope": "선택 문헌·기존 계산표의 寅 구성과 십신 이름.",
+      "limits": "목록과 분류만 대조한다. 7/7/16은 원문 일수이며 강도·작용 확률·일지 사령으로 환산하지 않는다.",
+      "delivery": "literature_reference_only",
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "GS04",
+      "text": "甲을 기준으로 寅을 대조하면 십이운성 표의 이름은 건록이다.",
+      "evidence_ids": [
+        "stage",
+        "board_stage"
+      ],
+      "scope": "일간 甲 × 지지 寅의 표상 분류.",
+      "limits": "건록의 이름을 성취·독립성·신강 또는 성공 확률로 바꾸지 않는다. 보드의 다른 셀 전체를 승인하지 않는다.",
+      "delivery": "literature_reference_only",
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "GS05",
+      "text": "식신과 상관은 일간이 생하는 오행을 음양의 같고 다름으로 나눈다. 甲 기준 丙은 식신, 丁은 상관이다.",
+      "evidence_ids": [
+        "food_definition",
+        "hurting_definition",
+        "output_definition",
+        "board_food",
+        "hidden_relations"
+      ],
+      "scope": "십신 분류의 정의.",
+      "limits": "천간이나 지지를 말하는 일반 정의만으로 GI09/10의 식상 존재 조건이 전체 지장간까지 포함한다고 확정하지 않는다.",
+      "delivery": "literature_reference_only",
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    }
+  ],
+  "condition_review": {
+    "prior_ids": [
+      "GI01",
+      "GI03",
+      "GI04",
+      "GI09",
+      "GI10"
+    ],
+    "source_presence": "unknown",
+    "source_absence": "unknown",
+    "evidence_ids": [
+      "male_condition",
+      "female_condition",
+      "hidden_composition",
+      "hidden_relations",
+      "output_definition",
+      "food_definition",
+      "hurting_definition",
+      "hidden_effect_claim",
+      "period_sagong_other_table",
+      "month_choco_not_mechanical"
+    ],
+    "finding": "같은 갑인 글은 식상 있음/없음을 나누면서 寅의 丙을 식신이라고 명시한다. 다른 기초 정의는 분류를 설명하지만 그 직업 문단이 셀 범위를 명시하지 않는다. 전체 지장간의 단순 존재를 쓰면 갑인의 식상 없음 분기가 항상 사라진다.",
+    "not_resolved": [
+      "천간만인지, 천간+지지 본기인지, 전체 지장간인지",
+      "합·투출·월령·발현/강도를 존재 조건에 요구하는지",
+      "원문의 생략인지 내적 불일치인지"
+    ],
+    "resume_requirement": "GI09/10의 있음/없음에 적용한 자리·본기/전체 지장간 범위와 필요 시 작용 요건을 명시한 같은 저자의 원문 또는 설명된 반례 명식. 구조 정의만으로 대신하지 않는다.",
+    "male_only_alternative": "금 관성 튼튼함은 GI09의 별도 직장 대안이다. GI10에 전이하지 않고 강도 기준은 미상.",
+    "personal_application": "withheld",
+    "training_eligible": false,
+    "probability": null
+  },
+  "delivery_contract": {
+    "target": "developer/reference CLI; app/report/card/chat/Brain unchanged",
+    "minimum_unit": [
+      "symbol_observation",
+      "source_scoped_definition",
+      "limits_and_unknowns",
+      "exact_evidence"
+    ],
+    "do_not_emit": [
+      "GI01/03/04의 성격·재물·성취 결론",
+      "GI09/10의 개인 직업 추천",
+      "관찰 개수나 원문 일수에 확률이라는 이름 붙이기"
+    ],
+    "next": "검증된 GS01~05를 개인효과와 분리한 문헌참고로 앱에 연결하는 별도 소비 계약; 기존35서술·14정책·감사 보존."
+  },
+  "inputs": {
+    "docs/knowledge-model/data/gapin_sentence_review.json": "a394e755ae5bd25b470a11c1ca2128469632d737e8a634a787b4a9e73cac2a5b",
+    "docs/knowledge-model/data/basic_sentence_review.json": "38467371db7fef9b9b63eaedff3dd76f7dca95ab18d7dfe98a84c2679ee0d63f",
+    "docs/knowledge-model/data/foundation_month_period_review.json": "2020f24b03e75ee7a4a188f7908f46a31593b3817cabe2a91352e9274dfe7c15",
+    "dosa-app/engine/src/tables.js": "94988a5b27d831a4e30b6d503040fb9235d5b103943a86f8f66a247f9b71f2e3",
+    "dosa-app/engine/src/gapinConditions.js": "baa0030caed79e57eb79e0e1f7df7ae8bd928dece0abb622e68c9b0cc6fd632b"
+  }
+}

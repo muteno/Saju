@@ -1,0 +1,3074 @@
+{
+  "schemaVersion": 1,
+  "cases": 180,
+  "uniqueVectors": 178,
+  "presentCounts": {
+    "stemsOnly": 36,
+    "stemsAndPrincipal": 60,
+    "stemsAndAllHidden": 180
+  },
+  "rows": [
+    {
+      "axis": "year",
+      "index": 0,
+      "pillars": [
+        0,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 1,
+      "pillars": [
+        1,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 2,
+      "pillars": [
+        2,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 3,
+      "pillars": [
+        3,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 4,
+      "pillars": [
+        4,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 5,
+      "pillars": [
+        5,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 6,
+      "pillars": [
+        6,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 7,
+      "pillars": [
+        7,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 8,
+      "pillars": [
+        8,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 9,
+      "pillars": [
+        9,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 10,
+      "pillars": [
+        10,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 11,
+      "pillars": [
+        11,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 12,
+      "pillars": [
+        12,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 13,
+      "pillars": [
+        13,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 14,
+      "pillars": [
+        14,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 15,
+      "pillars": [
+        15,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 16,
+      "pillars": [
+        16,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 17,
+      "pillars": [
+        17,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 18,
+      "pillars": [
+        18,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 19,
+      "pillars": [
+        19,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 20,
+      "pillars": [
+        20,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 21,
+      "pillars": [
+        21,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 22,
+      "pillars": [
+        22,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 23,
+      "pillars": [
+        23,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 24,
+      "pillars": [
+        24,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 25,
+      "pillars": [
+        25,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 26,
+      "pillars": [
+        26,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 27,
+      "pillars": [
+        27,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 28,
+      "pillars": [
+        28,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 29,
+      "pillars": [
+        29,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 30,
+      "pillars": [
+        30,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 31,
+      "pillars": [
+        31,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 32,
+      "pillars": [
+        32,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 33,
+      "pillars": [
+        33,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 34,
+      "pillars": [
+        34,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 35,
+      "pillars": [
+        35,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 36,
+      "pillars": [
+        36,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 37,
+      "pillars": [
+        37,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 38,
+      "pillars": [
+        38,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 39,
+      "pillars": [
+        39,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 40,
+      "pillars": [
+        40,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 41,
+      "pillars": [
+        41,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 42,
+      "pillars": [
+        42,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 43,
+      "pillars": [
+        43,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 44,
+      "pillars": [
+        44,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 45,
+      "pillars": [
+        45,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 46,
+      "pillars": [
+        46,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 47,
+      "pillars": [
+        47,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 48,
+      "pillars": [
+        48,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 49,
+      "pillars": [
+        49,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 50,
+      "pillars": [
+        50,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 51,
+      "pillars": [
+        51,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 52,
+      "pillars": [
+        52,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 53,
+      "pillars": [
+        53,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 54,
+      "pillars": [
+        54,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 55,
+      "pillars": [
+        55,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 56,
+      "pillars": [
+        56,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 57,
+      "pillars": [
+        57,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 58,
+      "pillars": [
+        58,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "year",
+      "index": 59,
+      "pillars": [
+        59,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 0,
+      "pillars": [
+        0,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 1,
+      "pillars": [
+        0,
+        1,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 2,
+      "pillars": [
+        0,
+        2,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 3,
+      "pillars": [
+        0,
+        3,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 4,
+      "pillars": [
+        0,
+        4,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 5,
+      "pillars": [
+        0,
+        5,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 6,
+      "pillars": [
+        0,
+        6,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 7,
+      "pillars": [
+        0,
+        7,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 8,
+      "pillars": [
+        0,
+        8,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 9,
+      "pillars": [
+        0,
+        9,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 10,
+      "pillars": [
+        0,
+        10,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 11,
+      "pillars": [
+        0,
+        11,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 12,
+      "pillars": [
+        0,
+        12,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 13,
+      "pillars": [
+        0,
+        13,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 14,
+      "pillars": [
+        0,
+        14,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 15,
+      "pillars": [
+        0,
+        15,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 16,
+      "pillars": [
+        0,
+        16,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 17,
+      "pillars": [
+        0,
+        17,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 18,
+      "pillars": [
+        0,
+        18,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 19,
+      "pillars": [
+        0,
+        19,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 20,
+      "pillars": [
+        0,
+        20,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 21,
+      "pillars": [
+        0,
+        21,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 22,
+      "pillars": [
+        0,
+        22,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 23,
+      "pillars": [
+        0,
+        23,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 24,
+      "pillars": [
+        0,
+        24,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 25,
+      "pillars": [
+        0,
+        25,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 26,
+      "pillars": [
+        0,
+        26,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 27,
+      "pillars": [
+        0,
+        27,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 28,
+      "pillars": [
+        0,
+        28,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 29,
+      "pillars": [
+        0,
+        29,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 30,
+      "pillars": [
+        0,
+        30,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 31,
+      "pillars": [
+        0,
+        31,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 32,
+      "pillars": [
+        0,
+        32,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 33,
+      "pillars": [
+        0,
+        33,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 34,
+      "pillars": [
+        0,
+        34,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 35,
+      "pillars": [
+        0,
+        35,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 36,
+      "pillars": [
+        0,
+        36,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 37,
+      "pillars": [
+        0,
+        37,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 38,
+      "pillars": [
+        0,
+        38,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 39,
+      "pillars": [
+        0,
+        39,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 40,
+      "pillars": [
+        0,
+        40,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 41,
+      "pillars": [
+        0,
+        41,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 42,
+      "pillars": [
+        0,
+        42,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 43,
+      "pillars": [
+        0,
+        43,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 44,
+      "pillars": [
+        0,
+        44,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 45,
+      "pillars": [
+        0,
+        45,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 46,
+      "pillars": [
+        0,
+        46,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 47,
+      "pillars": [
+        0,
+        47,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 48,
+      "pillars": [
+        0,
+        48,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 49,
+      "pillars": [
+        0,
+        49,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 50,
+      "pillars": [
+        0,
+        50,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 51,
+      "pillars": [
+        0,
+        51,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 52,
+      "pillars": [
+        0,
+        52,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 53,
+      "pillars": [
+        0,
+        53,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 54,
+      "pillars": [
+        0,
+        54,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 55,
+      "pillars": [
+        0,
+        55,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 56,
+      "pillars": [
+        0,
+        56,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 57,
+      "pillars": [
+        0,
+        57,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 58,
+      "pillars": [
+        0,
+        58,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "month",
+      "index": 59,
+      "pillars": [
+        0,
+        59,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 0,
+      "pillars": [
+        0,
+        0,
+        50,
+        0
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 1,
+      "pillars": [
+        0,
+        0,
+        50,
+        1
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 2,
+      "pillars": [
+        0,
+        0,
+        50,
+        2
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 3,
+      "pillars": [
+        0,
+        0,
+        50,
+        3
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 4,
+      "pillars": [
+        0,
+        0,
+        50,
+        4
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 5,
+      "pillars": [
+        0,
+        0,
+        50,
+        5
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 6,
+      "pillars": [
+        0,
+        0,
+        50,
+        6
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 7,
+      "pillars": [
+        0,
+        0,
+        50,
+        7
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 8,
+      "pillars": [
+        0,
+        0,
+        50,
+        8
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 9,
+      "pillars": [
+        0,
+        0,
+        50,
+        9
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 10,
+      "pillars": [
+        0,
+        0,
+        50,
+        10
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 11,
+      "pillars": [
+        0,
+        0,
+        50,
+        11
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 12,
+      "pillars": [
+        0,
+        0,
+        50,
+        12
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 13,
+      "pillars": [
+        0,
+        0,
+        50,
+        13
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 14,
+      "pillars": [
+        0,
+        0,
+        50,
+        14
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 15,
+      "pillars": [
+        0,
+        0,
+        50,
+        15
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 16,
+      "pillars": [
+        0,
+        0,
+        50,
+        16
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 17,
+      "pillars": [
+        0,
+        0,
+        50,
+        17
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 18,
+      "pillars": [
+        0,
+        0,
+        50,
+        18
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 19,
+      "pillars": [
+        0,
+        0,
+        50,
+        19
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 20,
+      "pillars": [
+        0,
+        0,
+        50,
+        20
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 21,
+      "pillars": [
+        0,
+        0,
+        50,
+        21
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 22,
+      "pillars": [
+        0,
+        0,
+        50,
+        22
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 23,
+      "pillars": [
+        0,
+        0,
+        50,
+        23
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 24,
+      "pillars": [
+        0,
+        0,
+        50,
+        24
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 25,
+      "pillars": [
+        0,
+        0,
+        50,
+        25
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 26,
+      "pillars": [
+        0,
+        0,
+        50,
+        26
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 27,
+      "pillars": [
+        0,
+        0,
+        50,
+        27
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 28,
+      "pillars": [
+        0,
+        0,
+        50,
+        28
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 29,
+      "pillars": [
+        0,
+        0,
+        50,
+        29
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 30,
+      "pillars": [
+        0,
+        0,
+        50,
+        30
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 31,
+      "pillars": [
+        0,
+        0,
+        50,
+        31
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 32,
+      "pillars": [
+        0,
+        0,
+        50,
+        32
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 33,
+      "pillars": [
+        0,
+        0,
+        50,
+        33
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 34,
+      "pillars": [
+        0,
+        0,
+        50,
+        34
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 35,
+      "pillars": [
+        0,
+        0,
+        50,
+        35
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 36,
+      "pillars": [
+        0,
+        0,
+        50,
+        36
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 37,
+      "pillars": [
+        0,
+        0,
+        50,
+        37
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 38,
+      "pillars": [
+        0,
+        0,
+        50,
+        38
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 39,
+      "pillars": [
+        0,
+        0,
+        50,
+        39
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 40,
+      "pillars": [
+        0,
+        0,
+        50,
+        40
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 41,
+      "pillars": [
+        0,
+        0,
+        50,
+        41
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 42,
+      "pillars": [
+        0,
+        0,
+        50,
+        42
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 43,
+      "pillars": [
+        0,
+        0,
+        50,
+        43
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 44,
+      "pillars": [
+        0,
+        0,
+        50,
+        44
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 45,
+      "pillars": [
+        0,
+        0,
+        50,
+        45
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 46,
+      "pillars": [
+        0,
+        0,
+        50,
+        46
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 47,
+      "pillars": [
+        0,
+        0,
+        50,
+        47
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 48,
+      "pillars": [
+        0,
+        0,
+        50,
+        48
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 49,
+      "pillars": [
+        0,
+        0,
+        50,
+        49
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 50,
+      "pillars": [
+        0,
+        0,
+        50,
+        50
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 51,
+      "pillars": [
+        0,
+        0,
+        50,
+        51
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 52,
+      "pillars": [
+        0,
+        0,
+        50,
+        52
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 53,
+      "pillars": [
+        0,
+        0,
+        50,
+        53
+      ],
+      "present": {
+        "stemsOnly": true,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 54,
+      "pillars": [
+        0,
+        0,
+        50,
+        54
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": true,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 55,
+      "pillars": [
+        0,
+        0,
+        50,
+        55
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 56,
+      "pillars": [
+        0,
+        0,
+        50,
+        56
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 57,
+      "pillars": [
+        0,
+        0,
+        50,
+        57
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 58,
+      "pillars": [
+        0,
+        0,
+        50,
+        58
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    },
+    {
+      "axis": "hour",
+      "index": 59,
+      "pillars": [
+        0,
+        0,
+        50,
+        59
+      ],
+      "present": {
+        "stemsOnly": false,
+        "stemsAndPrincipal": false,
+        "stemsAndAllHidden": true
+      },
+      "sourcePresence": "unknown",
+      "sourceAbsence": "unknown"
+    }
+  ],
+  "trainingEligible": 0,
+  "probability": null
+}
