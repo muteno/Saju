@@ -1,0 +1,371 @@
+{
+  "schema": "p2-d5-review-v1",
+  "base_commit": "8ca597a495f9c8c2f102a61454060e246f3fd547",
+  "scope": "12 matching IDs; local_overlay reconstructs only the complete top-level field differences recorded in the bundle. It is not a raw local file or current local-folder snapshot.",
+  "inference_enabled": false,
+  "training_labels": false,
+  "probability": null,
+  "inputs": {
+    "docs/knowledge-model/data/foundation_review_bundle.json": "1b0191efe1f19daed6d100523bd539cecf4193ab60253fd042ab4665e47e6dad",
+    "정제/P2_유닛/pilot_UJ.jsonl": "a0c3fc6e0a06a1d5d8f44c53cd15f956bf3c2a63e6805211e42e2be32356ecda",
+    "정제/P2_유닛/pilot_UI.jsonl": "fa459066f57569a452ac8e7d7acc2fe102d2216b32079b9b5d367def6b3ef9b8",
+    "정제/_현황판/data/별칭_판정.json": "1c476243003d1438190894241df12b2c97d2233a3c19069ff74cde7a180ba42e",
+    "정제/문서/역추론_작업큐/queue_guard.py": "f3677db6a5d694f3e1cf39814fecdcac2d71daf799b1eab2e029a80450b7dbb4",
+    "정제/문서/역추론_작업큐/queue_역추론.json": "e27d6f14ec606de176b491c365058f0ab6a6bfe483c16f158c10a16faeacd4e3",
+    "정제/P2_유닛/build_pilot_UJ.py": "e994a9c3f8d50af2360bdb09ee3dc9b091608e1b440983d0278e35ee0889f82b",
+    "정제/P2_유닛/build_pilot_UI.py": "a4d28e5fc6c483e378dbace2efb770f66771f79b9b14f48b3c62d2ea878bf0e0",
+    "정제/원본/P0_인벤토리/transcript_choco_v1/20240921_대세운의 합과 충 해석법 초명 명리 중급 심화 맛보기 강의_WiY1ku_AqNg.md": "75644a9f321085540e27e8af58a2b1ad37d843ebd853c48dd2b9197638272ae4",
+    "정제/원본/P0_인벤토리/CH-G_posts.jsonl": "8f46697a41f917dd81b2dce72b9a5fdef1e5ff68c782fcfdb892eb919f456ae9",
+    "정제/원본/P0_인벤토리/CH-G_paras.jsonl": "18424c4fbfdfd83e8e5e671de619ef80eb1505c6e1af1e93313aa7ca19b14ec4",
+    "정제/원본/P0_인벤토리/transcript_sanchaek_v1/20230505_생활속 사주_1Wf7fliNvEM.md": "2c0bb183cfcc7ac818ef87f41c2abd004318ee4d7730bd59c2e787a251128679",
+    "정제/원본/P0_인벤토리/SN-L_posts.jsonl": "426b77b177f705835a5a022bf495bead7ba3f8187abf14ac2b3f1cc0d32c1911",
+    "정제/원본/P0_인벤토리/SN-L_paras.jsonl": "247e89d4f2b24e772eb6d650057f694011973ee91d760fb7e09b9048d5bfdae0",
+    "정제/원본/P0_인벤토리/transcript_sanchaek_v1/20260721_갑목의 사계절_Ga1ZRRBd6Mw.md": "688d2952fae74b6802099871ed51846c4330d4c5d75abd22079b22d9d9312217",
+    "정제/원본/P0_인벤토리/SN-Z_posts.jsonl": "d89af7a489bd1588584016c493838b2e16eb30b3d6d962a5a2507acca2dec572",
+    "정제/원본/P0_인벤토리/SN-Z_paras.jsonl": "913d4fa5ff77168d22d31917f4aee223b7bc0d6ef578033384b49c9e3c6976f7",
+    "정제/문서/설계정본/20260725_1300_P2_유닛스키마_v3_경로중심.md": "7ee9571c321f5e4f49dbc061ae190bd7df5d9c6ba293aa23202522cba8c44382"
+  },
+  "sources": {
+    "CT-P155": {
+      "path": "정제/원본/P0_인벤토리/transcript_choco_v1/20240921_대세운의 합과 충 해석법 초명 명리 중급 심화 맛보기 강의_WiY1ku_AqNg.md",
+      "post_index": "정제/원본/P0_인벤토리/CH-G_posts.jsonl",
+      "para_index": "정제/원본/P0_인벤토리/CH-G_paras.jsonl",
+      "author": "초코서당",
+      "url": "https://www.youtube.com/watch?v=WiY1ku_AqNg",
+      "transcription_review": "unverified_asr"
+    },
+    "ST-P0657": {
+      "path": "정제/원본/P0_인벤토리/transcript_sanchaek_v1/20230505_생활속 사주_1Wf7fliNvEM.md",
+      "post_index": "정제/원본/P0_인벤토리/SN-L_posts.jsonl",
+      "para_index": "정제/원본/P0_인벤토리/SN-L_paras.jsonl",
+      "author": "산책처럼",
+      "url": "https://www.youtube.com/watch?v=1Wf7fliNvEM",
+      "transcription_review": "unverified_asr"
+    },
+    "ST-P1230": {
+      "path": "정제/원본/P0_인벤토리/transcript_sanchaek_v1/20260721_갑목의 사계절_Ga1ZRRBd6Mw.md",
+      "post_index": "정제/원본/P0_인벤토리/SN-Z_posts.jsonl",
+      "para_index": "정제/원본/P0_인벤토리/SN-Z_paras.jsonl",
+      "author": "산책처럼",
+      "url": "https://www.youtube.com/watch?v=Ga1ZRRBd6Mw",
+      "transcription_review": "unverified_asr"
+    }
+  },
+  "paragraphs": {
+    "CT-P155-12": {
+      "post_id": "CT-P155",
+      "lines": [
+        332,
+        363
+      ],
+      "text_sha256": "ca793ef4128357b031020f0d2f28666fdaecb6826d99ec2f6b3b3ce91260f56d"
+    },
+    "CT-P155-33": {
+      "post_id": "CT-P155",
+      "lines": [
+        1260,
+        1330
+      ],
+      "text_sha256": "ba114107577977a163393f9d21721f994fd88eb18eae195b9fe9a1f2b787bd74"
+    },
+    "CT-P155-36": {
+      "post_id": "CT-P155",
+      "lines": [
+        1453,
+        1502
+      ],
+      "text_sha256": "e06f632dd8be8d52999889588340aa3613fb8d446883f05d5b325d014c28421e"
+    },
+    "CT-P155-38": {
+      "post_id": "CT-P155",
+      "lines": [
+        1542,
+        1580
+      ],
+      "text_sha256": "bd675cbed4e2c83f7edf6b6e044e091dcc055989573090da3e219f9b529ba15a"
+    },
+    "CT-P155-39": {
+      "post_id": "CT-P155",
+      "lines": [
+        1581,
+        1626
+      ],
+      "text_sha256": "9cc084fcfeefe5222be395593bafd5716cb4b99732610e21b43f1ac30f938bfd"
+    },
+    "ST-P0657-02": {
+      "post_id": "ST-P0657",
+      "lines": [
+        14,
+        27
+      ],
+      "text_sha256": "42e07b484e4de2f3af6764b95d00d45610caa0f1547056cb828d1c555fba0a23"
+    },
+    "ST-P0657-03": {
+      "post_id": "ST-P0657",
+      "lines": [
+        28,
+        41
+      ],
+      "text_sha256": "3f96a7af109f69a45931fb309e6026db1172c09988c48bbb6957663ac13c1809"
+    },
+    "ST-P0657-04": {
+      "post_id": "ST-P0657",
+      "lines": [
+        42,
+        58
+      ],
+      "text_sha256": "88178188cb1c52f7dcc73cd5ba2a1b5e100f48428677f23c1816287f5ed8c415"
+    },
+    "ST-P0657-09": {
+      "post_id": "ST-P0657",
+      "lines": [
+        116,
+        137
+      ],
+      "text_sha256": "689ba6f4cee092ea42aed0c964d7bef6f647f0edf029c705d5cc8daed29edba1"
+    },
+    "ST-P0657-10": {
+      "post_id": "ST-P0657",
+      "lines": [
+        138,
+        152
+      ],
+      "text_sha256": "dd7fbd7b969ccaf1d348d73cc20af3ee5f6d48f78712bd031b81c8e95ced0bc7"
+    },
+    "ST-P0657-11": {
+      "post_id": "ST-P0657",
+      "lines": [
+        153,
+        182
+      ],
+      "text_sha256": "7fad9d5c5a529adaf2ec09ecdef06ef2e1215945a200eb1633154184ba37c97e"
+    },
+    "ST-P1230-04": {
+      "post_id": "ST-P1230",
+      "lines": [
+        43,
+        58
+      ],
+      "text_sha256": "0cf27a1dcfc8e366294f06c20975d173ead943af1d82a09fba5a97059a8e5b8e"
+    },
+    "ST-P1230-05": {
+      "post_id": "ST-P1230",
+      "lines": [
+        59,
+        70
+      ],
+      "text_sha256": "1f26031dbd90ffeb6500f7a114c233ae135245960069bb95a400ca0bd9478951"
+    },
+    "ST-P1230-06": {
+      "post_id": "ST-P1230",
+      "lines": [
+        71,
+        88
+      ],
+      "text_sha256": "143ac03617ce75ae843034693a36b0350923e0de578432aee575b20f9fabff61"
+    },
+    "ST-P1230-07": {
+      "post_id": "ST-P1230",
+      "lines": [
+        89,
+        103
+      ],
+      "text_sha256": "d06ed14063a3d61b375944237e46d6780b3e899be4b0a3bfcbdaa5359a015915"
+    },
+    "ST-P1230-08": {
+      "post_id": "ST-P1230",
+      "lines": [
+        104,
+        120
+      ],
+      "text_sha256": "a2ad8bfd12d322526444a9de41e4822f255768c34468c4a4a6c63d9d7b210aa6"
+    },
+    "CT-P155-11": {
+      "post_id": "CT-P155",
+      "lines": [
+        286,
+        331
+      ],
+      "text_sha256": "1fda0d8b8f0d0b6d75e45e473b79e61e32f5bbc89c04e4f2765bee842afa8109"
+    },
+    "CT-P155-37": {
+      "post_id": "CT-P155",
+      "lines": [
+        1503,
+        1541
+      ],
+      "text_sha256": "57057dd24ec71441d8cb055204b10f9a96d4651974cad194d0559536633da75e"
+    }
+  },
+  "units": [
+    {
+      "unit_id": "UI-0001",
+      "evidence_context": [
+        "ST-P0657-02",
+        "ST-P0657-10",
+        "ST-P0657-11"
+      ],
+      "source_claim_scope": "희소·고립과 과다/운의 두 예시를 저자 가설로 보존한다.",
+      "changed_fields_review": "음양/상극 링크가 단어 검사로 통과하는지와 개별 관계 의미는 별개다.",
+      "conditions_exceptions_unknown": "174행 여러 가지 이유가 있지만 단편적으로 쉬운 것만을 보존한다. 항상2분기·시작시점 질문1개로 확정·임의 비례확률식은 승인하지 않는다.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "unit_id": "UI-0002",
+      "evidence_context": [
+        "ST-P0657-02",
+        "ST-P0657-03"
+      ],
+      "source_claim_scope": "금 사용/간혹 경금·목화 공존과 원국/대운 가능성을 구별한다.",
+      "changed_fields_review": "local_overlay의 추가68자는 원국/대운 지속성 근거이나 그만두실 수도라는 다음26행까지 문맥을 봐야 한다.",
+      "conditions_exceptions_unknown": "직업에서 원국·체력·질병을 확정하지 않는다. 지속성과 폐업은 가능성 서술이며 개인 관측 라벨이 아니다. 시점/원국 없는 경우 미상. 갑상선은 원문21행에는 있으나 기존 인용은20행에서 끊겨 근거 범위 누락이다.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "unit_id": "UI-0003",
+      "evidence_context": [
+        "ST-P0657-02",
+        "ST-P0657-11"
+      ],
+      "source_claim_scope": "플로리스트 목 희소/고립 또는 목 과다+금대운의 예시와 다른 이유 가능성을 보존한다.",
+      "changed_fields_review": "금 추가는 원문 금의 성정 문장과 연결되지만 귀결 부호-의 의미·확률은 입증되지 않았다.",
+      "conditions_exceptions_unknown": "seq5의 ST-P0657-02는 양쪽 근거 목록에 없다. 미용업 원국/대운 예시를 시점 질문으로 바꾸고 플로리스트 분기 확정으로 옮기는 것은 구현자 추론이다.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "unit_id": "UI-0004",
+      "evidence_context": [
+        "ST-P0657-03",
+        "ST-P0657-04"
+      ],
+      "source_claim_scope": "편관·편인/지장간 포함과 고뇌의 출처를 묻는 저자 설명을 보존한다.",
+      "changed_fields_review": "편관·편인 공존을 살인상생이라는 인접 개념으로 넓혔으나 해당 명시 관계 근거가 부족하다.",
+      "conditions_exceptions_unknown": "고뇌 출처 가정/남편/무리/직장 후보를 궁위 확정·높은 확률로 바꾸지 않는다. 월주=부모가정은 별도 미검증.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "unit_id": "UI-0005",
+      "evidence_context": [
+        "ST-P0657-04"
+      ],
+      "source_claim_scope": "교사 관 강/인성 강 분기와 과도한 관의 회피·짜증 가능성을 보존한다.",
+      "changed_fields_review": "관인상생·상극은 표면 발견과 조건 관계를 구별한다. 해당 유닛의 D5 롤업 면제는0이며 문자 통과도 원문 의미 통과가 아니다.",
+      "conditions_exceptions_unknown": "seq5의 증상有→편관/無→인성은 가능성 서술을 양방향 확정식으로 바꾼다. 증상 부재와 입력 미상은 별개이며 판별·학습 보류.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "unit_id": "UI-0006",
+      "evidence_context": [
+        "ST-P0657-09"
+      ],
+      "source_claim_scope": "접객 태도에서 편관과 일간 관계를 유추하는 저자의 가설이다.",
+      "changed_fields_review": "상극·건강질병 연결의 어휘 자격과 부호·관계·개인 타당성은 별개다.",
+      "conditions_exceptions_unknown": "130~132행 생각해 볼 수/상상의 나래/상상은 자유라는 제한을 보존한다. 몸이 약할 수도를 건강 확정·직업 일반 규칙으로 승격하지 않는다. 일간 약은 해당 원문에 직접 없고 금지문형과 결론의 단정도 충돌한다.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "unit_id": "UJ-0001",
+      "evidence_context": [
+        "CT-P155-33"
+      ],
+      "source_claim_scope": "비겁·인성과 식상·재성·관성 비교 및 비등 시 중화는 저자 주장이다. 수치 점수·경계는 제시하지 않는다.",
+      "changed_fields_review": "추가 억부용신은 인용에 없고 강약 설명에서 용신을 자동 귀결하지 않는다.",
+      "conditions_exceptions_unknown": "원국8자와 저자 관점이 필요하다. 입력부족/균형 경계의 수치 정책은 미상. 성향 단정·개인 적용 보류. 원문 1284행 많이 신약하면이라는 정도 조건을 일반 신약으로 넓히지 않는다.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "unit_id": "UJ-0002",
+      "evidence_context": [
+        "CT-P155-36"
+      ],
+      "source_claim_scope": "신왕이어도 신약 또는 신강일 수 있다는 구분과 병오/수 예시는 보존한다.",
+      "changed_fields_review": "통근의 다저자합의0.9는 이 유닛의 단일 저자 자료로 입증하지 못한다. 병화 예시는 병오에서의 구현자 해석과 구별한다.",
+      "conditions_exceptions_unknown": "seq3 flip 대상 신왕 관찰을 뒤집으면 신왕≠신강 구분과 충돌한다. 나머지7자 수량 표현·ASR 신약/신왕 용어는 미검수.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "unit_id": "UJ-0003",
+      "evidence_context": [
+        "CT-P155-36",
+        "CT-P155-38",
+        "CT-P155-37"
+      ],
+      "source_claim_scope": "경진 반복 예시·지장간 금 부재와 인성 과다/무근을 저자 견해로 보존한다.",
+      "changed_fields_review": "경금·진토는 경진 예시를 분해한 번역이며 득령·득지·득세 추가는 인용의 명시 주장으로 승인하지 않는다. 통근 다저자합의 미입증.",
+      "conditions_exceptions_unknown": "진토의 을계무 구성은 인용에 직접 없음. 무근이면 반드시 신약이라는 범용 규칙으로 승격하지 않는다. 다른 관법·입력부족 정책은 미상. 1503~1511행은 학자별 이견과 시대 맥락을 명시한다.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "unit_id": "UJ-0004",
+      "evidence_context": [
+        "CT-P155-39"
+      ],
+      "source_claim_scope": "일반 여덟 자리의 월지 우세와 비겁 뿌리의 일지 우세라는 저자 구분을 보존한다.",
+      "changed_fields_review": "용신 총칭과 용신 확정법은 같은 자격이 아니다. 통근0.9 다저자합의·용신0.8은 편집 가중값이며 학습 확률이 아니다.",
+      "conditions_exceptions_unknown": "seq5 권위 판단·seq6 대화로 확정은 구현자 정책이다. 다른 저자의 실제 합의·자리 수치·근묘화실 대응은 미검증.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "unit_id": "UJ-0005",
+      "evidence_context": [
+        "CT-P155-12",
+        "CT-P155-11"
+      ],
+      "source_claim_scope": "합·충이 계속 작용하고 다대일이면 흐려진다는 저자 설명과 3:1 예시를 보존한다.",
+      "changed_fields_review": "저장소판은 local_overlay의 연월 경금2·시간 기토 조건 인용129자를 누락했다. 천간합/충/합화 추가는 문자와 관계 의미를 별도 검수한다.",
+      "conditions_exceptions_unknown": "3배 흐려짐을 clarity=base/(1+Σ관계부하)로 만드는 수학식은 원문에 없다. flip은 합충 성립을 뒤집을 근거가 아니다. ASR 간목·감목 유지. 앞286~331행의 1:1 충 활성화·무근 예외·뿌리가 명확한3:1충 예외와 합화 불성립/무효·잔존 흐림을 함께 보존한다.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    },
+    {
+      "unit_id": "UJ-0006",
+      "evidence_context": [
+        "ST-P1230-04",
+        "ST-P1230-05",
+        "ST-P1230-06",
+        "ST-P1230-07",
+        "ST-P1230-08"
+      ],
+      "source_claim_scope": "인월 추위·인접 경금·따뜻한 기운 부재 조건과 따뜻한 기운이 있으면 분산되는 예외를 함께 본다.",
+      "changed_fields_review": "조후균형·배우자·물상은 편집 개념 연결이다. 배우자0.5는 사례 점수이지 개인 결과 확률이 아니다.",
+      "conditions_exceptions_unknown": "103~113행은 통근은 맞고 강한 것은 강하다/뿌리는 튼튼하다고 설명한다. flip(seq3 통근)·곱셈 조후계수는 보류. 35~45세는 저자의 대략적 서술이며 결혼·자리·식상 조건을 생략하지 않는다. author_cluster는 산책처럼이나 관법fallback.to는 초코서당이라 소비 라벨은 별도 검수 대상이다.",
+      "disposition": "withheld_for_personal_inference",
+      "training_labels": false,
+      "probability": null
+    }
+  ],
+  "schema_review": {
+    "path": "정제/문서/설계정본/20260725_1300_P2_유닛스키마_v3_경로중심.md",
+    "permitted_ops": [
+      "조회",
+      "계산",
+      "관측",
+      "판정",
+      "반전",
+      "검증",
+      "프로브"
+    ],
+    "historical_gate_limit": "기존 빌더의 chain채움/P3 true는 op enum·실제 반전·연속 전사 span·단계별 의미를 검증하지 않는다."
+  }
+}
