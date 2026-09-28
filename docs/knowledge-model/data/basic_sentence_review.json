@@ -1,0 +1,1122 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "1b3b0a278d2f74bdf2741b0290e6b0968d28d2a3",
+  "scope": "Representative archival source review; not a personal inference API or all-60 approval",
+  "inputs": {
+    "dosa-app/kb/distilled/ilju/갑술.json": "1fd3c9e713f383854abeb5d025290cb305bf6a1d70b2fc1cca816d05d1bc254a",
+    "dosa-app/kb/distilled/ilju/갑신.json": "5b314cbcb6fa0cf9373d11ff6355da72e1d509ddf500bd5b2007b1594fb1bf15",
+    "dosa-app/kb/distilled/ilju/갑오.json": "1d642f02aa3641191a7c89fb7e40c9ce8e727a23fb1c26768c853d693f16fe6c",
+    "dosa-app/kb/distilled/ilju/갑인.json": "b2b8d452b07e0b472a93b96f4f7407b08fafe693726d975fb6336e1995a521f8",
+    "dosa-app/kb/distilled/ilju/갑자.json": "abc80d554da59eb6b745514441904ffa2c3d78ec2dd32eb3cb243074ebfe0315",
+    "dosa-app/kb/distilled/ilju/갑진.json": "8a14cefd3bd3d2e2aa975079908fd5e65e4f799e89b92fdc671770d6750fc232",
+    "dosa-app/kb/distilled/ilju/경술.json": "0f48dff0cefb88134f6832c257ae45ced23c645fa6ee41455f71eb154ab1fd73",
+    "dosa-app/kb/distilled/ilju/경신.json": "3fa5e413adc1170d0dde3feca53273d07f3211327da1ebbf37fc38f688af3875",
+    "dosa-app/kb/distilled/ilju/경오.json": "b71dda3047d5f49ff326dfab926adb40b99f130014a86881498b5863302113e6",
+    "dosa-app/kb/distilled/ilju/경인.json": "54cf7e1dddcfaee74762de376092c79b09fbd01bd3e4ffb2bc3aa2c77e26d2dd",
+    "dosa-app/kb/distilled/ilju/경자.json": "094bb4cf70699bc54fa7f3608ec494094c013bfc7391bc4dbd9d07eeecdff6ff",
+    "dosa-app/kb/distilled/ilju/경진.json": "57da82d2a238fbe812f6e191dc126f1106eebc2b7e1e457a47d61528f741bd4a",
+    "dosa-app/kb/distilled/ilju/계묘.json": "e5f7444ed4db5b008cbfc08869ec8554748f0d53246c06012b03c9d0b6facfb2",
+    "dosa-app/kb/distilled/ilju/계미.json": "2b2040e99d99445c6450ca4c98070c1a6e6f3571c1e0335691576750c86cb477",
+    "dosa-app/kb/distilled/ilju/계사.json": "d2f5bdf538f4b64c091a2df2e9909c25d8a347ec062880f7e5a0c570fa517a2d",
+    "dosa-app/kb/distilled/ilju/계유.json": "b7059dcec5153bbafc6eec889e2c417b64c31710f7c2ce1286775a5a65e26b0a",
+    "dosa-app/kb/distilled/ilju/계축.json": "3f3a8d909e60939f38f53d7fe830085a0fd23e75a8a0121d44ae8849e218216b",
+    "dosa-app/kb/distilled/ilju/계해.json": "38ffd841e231f60e810b4676cf453028a1bb4cbb528abe0aedecdf285b228e3e",
+    "dosa-app/kb/distilled/ilju/기묘.json": "98a6d3112064667d8b0c6061a95cd32465323a2ba69d021fcb84f8a71939eee2",
+    "dosa-app/kb/distilled/ilju/기미.json": "f3bc68b4d60892526854ba2c0c49ea249f03c888c3a147147a5f8ad402f09463",
+    "dosa-app/kb/distilled/ilju/기사.json": "f073e583225019601177f4a7fd0dbe9da0b05cfb9fa781a9770d70050b763495",
+    "dosa-app/kb/distilled/ilju/기유.json": "370e9bf6ed812b10ee3d8e9fd2a45bbe341f48fd1a5bd2a4b2f73cfc1357c664",
+    "dosa-app/kb/distilled/ilju/기축.json": "96f94cdb43952ce9c1d8f969e13d39e2e15094217a5e078ded6fc9fbabd8592f",
+    "dosa-app/kb/distilled/ilju/기해.json": "8aac1c322b0355b6d41881414d43498a1e0a1648664be2f37a0034989ffcc26b",
+    "dosa-app/kb/distilled/ilju/무술.json": "aad560fcfd0bc8b4f3cc0771c4b72b84568ed5ee79aac2e6ea2b8b6e17c3b409",
+    "dosa-app/kb/distilled/ilju/무신.json": "ed46bac25c1679a492bc547835edcf24130fd4ead093871d98b14313e5a5903b",
+    "dosa-app/kb/distilled/ilju/무오.json": "0bb5f1ccd305978f026852d7e62f9f15cc7e1fce1580832952f961b13e5f384d",
+    "dosa-app/kb/distilled/ilju/무인.json": "fad69a4059c2315a0a1d9bd483085a730ffe7407236d5b380deef3ce768a1094",
+    "dosa-app/kb/distilled/ilju/무자.json": "608a407084239ec9b0038b58795b70b0c61a78fcfaa7afd0e8c88d81bb57c908",
+    "dosa-app/kb/distilled/ilju/무진.json": "51754bdd349e3fcb0da6f15322d19338361d301dccfc2c5f4a9de2e3a7097d72",
+    "dosa-app/kb/distilled/ilju/병술.json": "d81e9ffedfb8a5809a9d1693b564d985247141a805c499048e35d99358fe8f88",
+    "dosa-app/kb/distilled/ilju/병신.json": "d2fd83fe73b3b3ca48c717036c5bd2d2569c7dd1dbb70748b3e4214086d7d238",
+    "dosa-app/kb/distilled/ilju/병오.json": "518123112acf2c0df807a354ca25c7069e49fbfcc0b4993413fa67abe4134959",
+    "dosa-app/kb/distilled/ilju/병인.json": "082a687c6eb8e32f2541d31fb6b14cfa94be50ce2188bc20a6dec19dfdba89fd",
+    "dosa-app/kb/distilled/ilju/병자.json": "07a07a60463763dd3a274fd8781a82436835b4b40eb728415e7624047f30b36d",
+    "dosa-app/kb/distilled/ilju/병진.json": "1631754dd847475602154464bc31f0821a7cc7c7c9b6d446f9c5e2ea3a37ef28",
+    "dosa-app/kb/distilled/ilju/신묘.json": "16b569b39c498c39d9a894442a65c82290ab6e92c445779661ace32d3dbdd679",
+    "dosa-app/kb/distilled/ilju/신미.json": "281d3ae9e08fc8d9a2ea4221de3e1e0fea5ef5f72b717bdd67fa7b64276f6d15",
+    "dosa-app/kb/distilled/ilju/신사.json": "72b967c3cceb433fef557b18085c5fcbaf98792fcc1328d0106367d83496cc11",
+    "dosa-app/kb/distilled/ilju/신유.json": "1e6bc5687d6c3469b93a62a2ae4064bb8053b64bf555b20f471776a91cc3b527",
+    "dosa-app/kb/distilled/ilju/신축.json": "05c75e7cab926808c1774e40dbae11c068c9ca81cba8eb387925b46bb0b03da0",
+    "dosa-app/kb/distilled/ilju/신해.json": "3a5a4e27a582a95ff379dd07f663c11cba6d85aaed2c1234c1e3ab94a70efb74",
+    "dosa-app/kb/distilled/ilju/을묘.json": "31a88b6339f96d29f442dedb9688af749c1f479f3ee1ac289b8c7b00d3920468",
+    "dosa-app/kb/distilled/ilju/을미.json": "c234467946398c4ef676032f681e6d52e327e5f6355c2030b274ee53f2fd9a37",
+    "dosa-app/kb/distilled/ilju/을사.json": "88ac1d5df80141374d60e1b77ad181e32c8c713931bfbd796ee10580feab9b1c",
+    "dosa-app/kb/distilled/ilju/을유.json": "fb569f49b061a53546e368789c28836d98ecd582a8c752179f011bd075bda126",
+    "dosa-app/kb/distilled/ilju/을축.json": "10e5ef310559a828d49b3f84d96c832642a9e9ed8cc8b04ebc90af6decc6e421",
+    "dosa-app/kb/distilled/ilju/을해.json": "6d178feab51303aac84b01f5d8ec0090c60e34e0569605bdb1b4df781f1d7467",
+    "dosa-app/kb/distilled/ilju/임술.json": "2f88c9223446f7c646c0114b8f511f53e458dee976d17ec6d59f48ffe90c5e62",
+    "dosa-app/kb/distilled/ilju/임신.json": "3d0c91b73dd00c40161f184175bb22696493875510364f45eb3a6cea16b419a6",
+    "dosa-app/kb/distilled/ilju/임오.json": "24defaf1839d989cafe368673cbe26ab5a5c7911bcb36b88e6c0de60d39db911",
+    "dosa-app/kb/distilled/ilju/임인.json": "1ceecb893a0ada77a9b9f9e457773eb925293e9b248c79b078828561546125d6",
+    "dosa-app/kb/distilled/ilju/임자.json": "76120a6c0ff31a5d0f62a796a36fd98cb7259d166547affe2b21fd9626442d2e",
+    "dosa-app/kb/distilled/ilju/임진.json": "e05368f652af24fbcd31b5790b7cf84ba61e0bdbc9ec8bb80dd4fff4769a6637",
+    "dosa-app/kb/distilled/ilju/정묘.json": "24c6fee9a1141d52a5dbe53d33ef850b1f05821b4df00d9d12c1ba531b57cadd",
+    "dosa-app/kb/distilled/ilju/정미.json": "c54a41e7e4ad69e6ed3d60b16cbeced1f85e61b0a481a0b8df924dda678ccafe",
+    "dosa-app/kb/distilled/ilju/정사.json": "49759abe27459c2ef587d42f4a7d89cc6266cb8977587db26d053e177f360b4d",
+    "dosa-app/kb/distilled/ilju/정유.json": "12f0a15aa1f31fdd88a3104918e4a484456d7d38bac8ad871756f4b8eff1b095",
+    "dosa-app/kb/distilled/ilju/정축.json": "567d4ca9fdcb3c8c2128e707aa395e156155c5ddf64d066fad112933a3de5af7",
+    "dosa-app/kb/distilled/ilju/정해.json": "5ea33dd55cfd35cda8fc309d606cc9435d3b93ad85aa1be6274aa2550d6c9a35",
+    "dosa-app/kb/unit_index.json": "8ba8a22974e2f8d15288dc3e8a5fc33aea9815bc90b035e4457ee5980643450c",
+    "refine-tools/units.json": "0cf57f5616b1dba0aa7100ff8a33d18d0e1a216e660b56ec32d1d32da41c25ec",
+    "dosa-app/engine/src/report.js": "7767596cd54da5fabf6987f32b3044db2baf29c0c7909c5139a525d5d032fc90",
+    "app/src/data/saju.ts": "3a1369f8c9df583e7193020d0b3bc1951231fd615311e24cd7e007a98910dde8"
+  },
+  "archives": {
+    "정제본/명리학탐구(고급1) 게시판 글모음.docx": "b22d3b4f0f1ced1a379ccab357732b01734b2c1d356795322949405143c1aa46",
+    "정제본/일주론 글모음.docx": "4200872a10b2715b394b6524c951656c7a554f97b61199473081f9ce95ed139f",
+    "정제본/현묘의 사주 이야기 글모음.docx": "40cae55d2a6c2bb3cdf2b778f27293d040e250f1243553a3515f653cbd84fab0"
+  },
+  "source_units": {
+    "명리학탐구(고급1) 게시판 글모음#0018": {
+      "archive_path": "정제본/명리학탐구(고급1) 게시판 글모음.docx",
+      "title": "320.일주분석(3) - 식상과 재성에 가치를 두는 갑인일주",
+      "heading_xml_paragraph": 458,
+      "meta": "작성일 2020-06-16 · 댓글 22 · 조회 1,192",
+      "lineage": "unresolved:명리학탐구(고급1)"
+    },
+    "일주론 글모음#0002": {
+      "archive_path": "정제본/일주론 글모음.docx",
+      "title": "갑인일주(甲寅日柱) <일주론>",
+      "heading_xml_paragraph": 247,
+      "meta": "작성일 2019-04-07 · 원문 yavares.tistory.com/59",
+      "lineage": "yavares.tistory.com"
+    },
+    "현묘의 사주 이야기 글모음#0032": {
+      "archive_path": "정제본/현묘의 사주 이야기 글모음.docx",
+      "title": "간뎅이가 부은 사주 (feat. 갑인일주)",
+      "heading_xml_paragraph": 2403,
+      "meta": "작성일 2020-08-18 · 원문 yavares.tistory.com/388",
+      "lineage": "yavares.tistory.com"
+    },
+    "명리학탐구(고급1) 게시판 글모음#0021": {
+      "archive_path": "정제본/명리학탐구(고급1) 게시판 글모음.docx",
+      "title": "322.일주분석(6) - 활동성과 기본적인 재물운을 갖춘 갑오일주",
+      "heading_xml_paragraph": 535,
+      "meta": "작성일 2020-06-22 · 댓글 19 · 조회 671",
+      "lineage": "unresolved:명리학탐구(고급1)"
+    },
+    "일주론 글모음#0004": {
+      "archive_path": "정제본/일주론 글모음.docx",
+      "title": "갑오일주(甲午日柱) <일주론>",
+      "heading_xml_paragraph": 374,
+      "meta": "작성일 2019-04-09 · 원문 yavares.tistory.com/61",
+      "lineage": "yavares.tistory.com"
+    },
+    "일주론 글모음#0001": {
+      "archive_path": "정제본/일주론 글모음.docx",
+      "title": "갑자일주(甲子日柱) <일주론>",
+      "heading_xml_paragraph": 166,
+      "meta": "작성일 2019-04-06 · 원문 yavares.tistory.com/57",
+      "lineage": "yavares.tistory.com"
+    },
+    "명리학탐구(고급1) 게시판 글모음#0017": {
+      "archive_path": "정제본/명리학탐구(고급1) 게시판 글모음.docx",
+      "title": "319.일주분석(2) - 인성의 특성이 강한 갑자일주",
+      "heading_xml_paragraph": 438,
+      "meta": "작성일 2020-06-16 · 댓글 22 · 조회 1,103",
+      "lineage": "unresolved:명리학탐구(고급1)"
+    }
+  },
+  "spans": [
+    {
+      "id": "일주론 글모음#0002@4-7",
+      "unit": "일주론 글모음#0002",
+      "body_paragraphs": [
+        4,
+        7
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 252,
+          "text": "갑인일주 기본성향"
+        },
+        {
+          "xml_paragraph": 253,
+          "text": "하늘에도 갑목이요, 땅에도 갑목이라 밝고 명랑한 기운이 넘치는 일주입니다. 갑목이 하늘과 땅에 박혔으니 자존심과 자아의 끝판왕이며, 매사에 적극적이고 능동적입니다."
+        },
+        {
+          "xml_paragraph": 254,
+          "text": "갑인일주는 뻣뻣하고 강인한 나무이기 때문에 자기 밖에 모르는 성격이 강한 사람이 많습니다. 십이운성 또한 건록으로 막강한 힘을 가지고 있습니다. 장점으로는 남의 도움 없이 자기 혼자 힘으로 일구어내는 힘이 강합니다."
+        },
+        {
+          "xml_paragraph": 255,
+          "text": "하지만 단점으로는 자기 자신의 힘이 워낙 강하다 보니 갑인일주 주변에는 적이 많을 수 밖에 없습니다. 타인과 마찰이 잦을 수 밖에 없으며, 특히 배우자와의 사이가 좋지 않은 일주입니다."
+        }
+      ]
+    },
+    {
+      "id": "현묘의 사주 이야기 글모음#0032@65-72",
+      "unit": "현묘의 사주 이야기 글모음#0032",
+      "body_paragraphs": [
+        65,
+        72
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 2469,
+          "text": "4. 갑인일주"
+        },
+        {
+          "xml_paragraph": 2470,
+          "text": "갑인일주는 말도 많고 탈도 많습니다."
+        },
+        {
+          "xml_paragraph": 2471,
+          "text": "일주 자체적으로 천간과 지지에 강한 양목인 갑목과 인목을 가지고 있기 때문입니다. (연주나 월주 시주 등 다른 요인에 의해 얼마든지 달라질 수 있지만) 갑인 일주는 그래서 일반적인 목木이 강한 사주와는 조금은 다른 양상을 드러냅니다."
+        },
+        {
+          "xml_paragraph": 2472,
+          "text": "일반적으로 사주에 목木이 있으면 유연성, 부드러움을 갖추었다고 평가합니다. 하지만 갑인을 비롯하여 목이 너무 과도하게 되면 부드러운 목이 너무 딱딱하게 변합니다."
+        },
+        {
+          "xml_paragraph": 2473,
+          "text": "나무가 뭉쳐서 콘크리트가 되는 형국입니다."
+        },
+        {
+          "xml_paragraph": 2474,
+          "text": "그래서 갑인일주 분들은 어딜가나 주목을 받습니다. 꼭 바른 말을 합니다. 손해볼 것을 알지만 아닌 건 아니라고 말해야 직성이 풀립니다. 부러지더라도 일단은 부딫칩니다. 그래서 늘 이슈와 인기를 몰고 다니고, 실속은 부족하고, 항상 팔다리가 부러지고 다칩니다."
+        },
+        {
+          "xml_paragraph": 2475,
+          "text": "용기에 용기를 더해 살아가고 있느니"
+        },
+        {
+          "xml_paragraph": 2476,
+          "text": "간이 약간 부은채로 살아가는 것입니다."
+        }
+      ]
+    },
+    {
+      "id": "일주론 글모음#0002@9-12",
+      "unit": "일주론 글모음#0002",
+      "body_paragraphs": [
+        9,
+        12
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 257,
+          "text": "특히 갑인일주 남자의 경우 경쟁하여 쟁취하는 사업길에 어울립니다. 직장생활을 하다가도 자기 사업을 일으키는 성향을 가지고 있으며, 사주에 식상이 있을 경우 프로페셔널한 전문분야의 사업에 인연이 있습니다. 사주에 식상이 없으면 특별한 재주가 없이도 돈을 벌 수 있는 자영업에 종사하면 좋습니다. 관성인 金의 기운이 튼튼하면 직장에서도 크게 성공할 수 있습니다."
+        },
+        {
+          "xml_paragraph": 258,
+          "text": "갑인일주 여자의 경우 남자 여럿을 호령할 수 있는 능력과 활동성을 갖추었으며, 사주에 식상이 있으면 교육, 학원, 요식업에 종사하면 좋습니다. 사주에 식상이 없다면 자영업, 부동산에 어울리는 능력을 갖추었다고 봅니다."
+        },
+        {
+          "xml_paragraph": 259,
+          "text": "갑인일주의 힘은 비견-식신-편재로 자연스럽게 흐르는 힘입니다. 자연스럽게 재성으로 연결되는 힘이기 때문에 사업에도 괜찮지만 학문이나 기술, 예술 분야에서 강한 힘을 발휘하는 일주입니다."
+        },
+        {
+          "xml_paragraph": 260,
+          "text": "나무의 힘이 위아래로 가득차 있어서 나무 특유의 탐구심, 호기심, 인문적 기운이 강하기 때문입니다. 위대한 인문학자들 중에 갑인일주가 많습니다. 또한 갑인일주는 머리회전이 빠르기 때문에 이벤트와 기획들에 능한 경우가 많습니다."
+        }
+      ]
+    },
+    {
+      "id": "명리학탐구(고급1) 게시판 글모음#0018@22-27",
+      "unit": "명리학탐구(고급1) 게시판 글모음#0018",
+      "body_paragraphs": [
+        22,
+        27
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 481,
+          "text": "2).인신충"
+        },
+        {
+          "xml_paragraph": 482,
+          "text": "비견인 일지 민목은 편관인 신금과 충을 이룹니다. 일지가 인신충을 이룰 때 신강한 명조와 신약한 명조에서 어떤 차이점이 있는지 살펴봅니다. 참고로, 우측의 월주는 병술월과 임자월을 표시해 두었으나 신강인 경우와 신약인 경우의 예시로 월주는 해석하지 않습니다."
+        },
+        {
+          "xml_paragraph": 483,
+          "text": "신강한 명조의 경우"
+        },
+        {
+          "xml_paragraph": 484,
+          "text": "월주에 인성이나 비겁이 오는 경우가 신강한 명조가 됩니다. 신강한 갑목일간은 자신의 힘을 발산할 식상을 향하게 됩니다. 식상이 위치해야 할 일지에 비겁인 인목이 위치한 경우가 되어, 중년까지는 직업관계나 부부관계 등이 불리하게 됩니다."
+        },
+        {
+          "xml_paragraph": 485,
+          "text": "신약한 명조의 경우"
+        },
+        {
+          "xml_paragraph": 486,
+          "text": "월주에 식상이나 재성등이 위치한 경우입니다. 신약한 갑목일간이 오직 일지 인목에 의지하고 있는 가운데, 운에서 무신이 오게 된 경우입니다. 운의 천간 무토는 편재로 돈이나 여자에 해당합니다. 결국, 돈이나 여자 문제로 인해 이동, 변동이 따르게 되고, 가정문제 부부관계 등이 불안하게 됩니다."
+        }
+      ]
+    },
+    {
+      "id": "일주론 글모음#0002@33-40",
+      "unit": "일주론 글모음#0002",
+      "body_paragraphs": [
+        33,
+        40
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 281,
+          "text": "경자년(2020년) 갑인일주 운세"
+        },
+        {
+          "xml_paragraph": 282,
+          "text": "갑인일주는 힘이 선명하기 때문에 결국은 강한 힘을 어떻게 쓰느냐에 따라 삶의 향방이 많이 달라집니다."
+        },
+        {
+          "xml_paragraph": 283,
+          "text": "너무 강한 힘이기 때문에 꺽이면 다시 복구하기가 매우 어렵습니다. 때문에 활동적으로 자신의 강한 힘을 쓰면서도 꺾이지 않게 조절하는 제어력이 반드시 필요합니다."
+        },
+        {
+          "xml_paragraph": 284,
+          "text": "경자년의 강하고 생생한 물의 기운은 그 제어력과 조절력을 길러 줄 수 있습니다. 경자년의 기운으로 학습을 한다면 경자년에 학습한 그 기억을 바탕으로 원만하게 자신의 힘을 조절하는 지혜를 발휘할 수 있을 것입니다."
+        },
+        {
+          "xml_paragraph": 285,
+          "text": "강한 음기가 서린 경자년의 기운이 불편하고 어색하겠지만, 참고 버텨내는 인내를 발휘한다면 더욱 의미있는 경자년 한해를 보낼 수 있을 것입니다."
+        },
+        {
+          "xml_paragraph": 286,
+          "text": "십이운성의 기운은 갑인일주에게 굉장히 유리하게 작용합니다. 목욕과 장생의 기운은 갑인일주가 가장 잘 쓰고 자신의 몸에 딱 맞는 옷입니다."
+        },
+        {
+          "xml_paragraph": 287,
+          "text": "때문에 십이운성의 밝게 솟아나는 기운을 대인관계, 혹은 문화예술의 측면에서 활용한다면 더욱 보람차게 경자년을 보낼 수 을 것입니다."
+        },
+        {
+          "xml_paragraph": 288,
+          "text": "갑인일주의 경자년(2020년) 운세에 관한 더욱 자세한 사항은 아래의 링크를 참고하시기 바랍니다."
+        }
+      ]
+    },
+    {
+      "id": "명리학탐구(고급1) 게시판 글모음#0018@7-10",
+      "unit": "명리학탐구(고급1) 게시판 글모음#0018",
+      "body_paragraphs": [
+        7,
+        10
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 466,
+          "text": "2.갑목일간의 특성"
+        },
+        {
+          "xml_paragraph": 467,
+          "text": "갑목은 소나무나 잣나무처럼 곁가지가 별로 없이 쭉쭉뻗은 큰 나무의 형상으로, 우두머리 기질이 강해 다른 사람의 간섭이나 통제는 꺼리는 경향이 강합니다. 언제나 당당하고 자신감이 넘치는 긍정적 사고방식과 생활태도로 지도자적 기질이 강합니다."
+        },
+        {
+          "xml_paragraph": 468,
+          "text": "그러나, 다소 완고하고 고집이 너무 강해 주변과 화합하기 힘들어 다른 사람들의 공격대상이 되기 쉽고, 유연성과 융통성은 부족합니다. 어떤 일이나 시작은 잘하지만 마무리가 약해 결과가 부실하기 쉽고, 게으른 면모도 보입니다."
+        },
+        {
+          "xml_paragraph": 469,
+          "text": "갑목의 특성상 추진하던 일이 실패로 끝나면 돌이키기 힘든 어려운 상황을 맞기 쉽고, 다시금 재기하기 힘든 경우도 생기기 쉽습니다. 새로운 일을 추진하거나 돌발 상황에 신중히 대처해야만 어려운 상황을 피할 수 있습니다."
+        }
+      ]
+    },
+    {
+      "id": "명리학탐구(고급1) 게시판 글모음#0018@18-21",
+      "unit": "명리학탐구(고급1) 게시판 글모음#0018",
+      "body_paragraphs": [
+        18,
+        21
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 477,
+          "text": "5.일지의 합과 충"
+        },
+        {
+          "xml_paragraph": 478,
+          "text": "1).인해합목"
+        },
+        {
+          "xml_paragraph": 479,
+          "text": "일지 인목은 인성인 해수와 합을 하여 비겁인 목기운을 생성합니다. 일상생할이나 사회활동에서 비겁의 마음으로 자신이 주도해 재성을 추구하게 되지만, 인성과 합을 하게 되어 주변을 의식하는 마음이 크고, 강한 추진력이나 승부욕을 보이기 힘든다고 봅니다."
+        },
+        {
+          "xml_paragraph": 480,
+          "text": "따라서, 갑목일간은 민첩한 행동이나 과감한 결단성이 요구되는, 유행에 민감한 사업은 추진하는 것이 다소 불리하다고 봅니다."
+        }
+      ]
+    },
+    {
+      "id": "일주론 글모음#0002@9-9",
+      "unit": "일주론 글모음#0002",
+      "body_paragraphs": [
+        9,
+        9
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 257,
+          "text": "특히 갑인일주 남자의 경우 경쟁하여 쟁취하는 사업길에 어울립니다. 직장생활을 하다가도 자기 사업을 일으키는 성향을 가지고 있으며, 사주에 식상이 있을 경우 프로페셔널한 전문분야의 사업에 인연이 있습니다. 사주에 식상이 없으면 특별한 재주가 없이도 돈을 벌 수 있는 자영업에 종사하면 좋습니다. 관성인 金의 기운이 튼튼하면 직장에서도 크게 성공할 수 있습니다."
+        }
+      ]
+    },
+    {
+      "id": "일주론 글모음#0004@6-7",
+      "unit": "일주론 글모음#0004",
+      "body_paragraphs": [
+        6,
+        7
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 381,
+          "text": "또한 갑오일주는 센스 있는 감수성과 스타일이 있습니다. 이는 일지 상관의 영향입니다. 겉모습이 화려하고 매력적이고 옷도 잘 입습니다. 또한 독특하고 샤프하고 개성적인 이미지를 가진 사람이 많습니다."
+        },
+        {
+          "xml_paragraph": 382,
+          "text": "그래서 갑오일주를 한번 보면 어떤 의미로서든지 잘 잊혀지지 않는 경우가 많습니다. 다른 사람들에게 인상을 강하게 남기는 것입니다. 갑오일주를 일컬어 일지에 홍염살에 해당한다고 하는데, 이는 사람을 강하게 끌어당기는 홍염살로도 설명할 수 있겠습니다."
+        }
+      ]
+    },
+    {
+      "id": "명리학탐구(고급1) 게시판 글모음#0021@17-19",
+      "unit": "명리학탐구(고급1) 게시판 글모음#0021",
+      "body_paragraphs": [
+        17,
+        19
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 553,
+          "text": "5.일지의 합과 충"
+        },
+        {
+          "xml_paragraph": 554,
+          "text": "상관인 일지 오화는 정재인 미토를 불러오고, 식상을 생성합니다. 따라서, 갑오일주는 자신의 노력이나 일한 댓가가 바로 따르므로 일복도 많지만, 재복도 큰 명조라고 봅니다. 갑오일주의 경우 열심히 일하면 그 자체로 정재가 되니 재물로 축척이 됩니다."
+        },
+        {
+          "xml_paragraph": 555,
+          "text": "그리고, 그 재물은 다시 식상인 화를 생성함으로 갑오일주의 경우는 항시 일감이 끊이지 않고, 재물도 축척되는 재복이 큰 명조로 봅니다. 물론 원국에 충극이 없이 안정되어야 하겠지요."
+        }
+      ]
+    },
+    {
+      "id": "명리학탐구(고급1) 게시판 글모음#0021@20-21",
+      "unit": "명리학탐구(고급1) 게시판 글모음#0021",
+      "body_paragraphs": [
+        20,
+        21
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 556,
+          "text": "일지 오화는 자수와 자오충을 이룹니다. 이 시기에는 당연히 하는 일이 부진하거나 중단이 올 수도 있게됩니다. 사업이나 추진하는 일에서도 어려움이 따르기 쉽습니다. 그러나, 도화충은 끼를 발산하는 기운이 되어 연예계에 종사하거나 유흥업에 종사하는 분들에게는 오히려 좋은 기운으로 작동하기도 합니다."
+        },
+        {
+          "xml_paragraph": 557,
+          "text": "그러나, 도화충이 흉하게 작용하면 풍류나 유흥, 또는 도박에 심취하기 쉽고, 문란한 이성문제로 가정이 불안하거나 건강상의 문제가 따르기도 합니다."
+        }
+      ]
+    },
+    {
+      "id": "명리학탐구(고급1) 게시판 글모음#0021@14-21",
+      "unit": "명리학탐구(고급1) 게시판 글모음#0021",
+      "body_paragraphs": [
+        14,
+        21
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 550,
+          "text": "4.지장간 분석"
+        },
+        {
+          "xml_paragraph": 551,
+          "text": "일지 오화는 지장간에 식신인 병화, 정재인 기토, 상관인 정화가 있으나, 그 중에서도 상관과 정재의 성향이 강합니다. 상관과 정재가 지장간에서 강하게 작동하는 일주라, 기본적으로 의식주에는 문제가 따르지 않는 명조일 수 있습니다."
+        },
+        {
+          "xml_paragraph": 552,
+          "text": "보편적으로 자신이 노력한 댓가가 바로 나타나는 타입으로, 대인관계도 원만하다고 봅니다. 갑오일주의 경우는 일복도 많지만 재복도 많은 일주로 봅니다."
+        },
+        {
+          "xml_paragraph": 553,
+          "text": "5.일지의 합과 충"
+        },
+        {
+          "xml_paragraph": 554,
+          "text": "상관인 일지 오화는 정재인 미토를 불러오고, 식상을 생성합니다. 따라서, 갑오일주는 자신의 노력이나 일한 댓가가 바로 따르므로 일복도 많지만, 재복도 큰 명조라고 봅니다. 갑오일주의 경우 열심히 일하면 그 자체로 정재가 되니 재물로 축척이 됩니다."
+        },
+        {
+          "xml_paragraph": 555,
+          "text": "그리고, 그 재물은 다시 식상인 화를 생성함으로 갑오일주의 경우는 항시 일감이 끊이지 않고, 재물도 축척되는 재복이 큰 명조로 봅니다. 물론 원국에 충극이 없이 안정되어야 하겠지요."
+        },
+        {
+          "xml_paragraph": 556,
+          "text": "일지 오화는 자수와 자오충을 이룹니다. 이 시기에는 당연히 하는 일이 부진하거나 중단이 올 수도 있게됩니다. 사업이나 추진하는 일에서도 어려움이 따르기 쉽습니다. 그러나, 도화충은 끼를 발산하는 기운이 되어 연예계에 종사하거나 유흥업에 종사하는 분들에게는 오히려 좋은 기운으로 작동하기도 합니다."
+        },
+        {
+          "xml_paragraph": 557,
+          "text": "그러나, 도화충이 흉하게 작용하면 풍류나 유흥, 또는 도박에 심취하기 쉽고, 문란한 이성문제로 가정이 불안하거나 건강상의 문제가 따르기도 합니다."
+        }
+      ]
+    },
+    {
+      "id": "일주론 글모음#0004@4-5",
+      "unit": "일주론 글모음#0004",
+      "body_paragraphs": [
+        4,
+        5
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 379,
+          "text": "먼저 십이운성을 보겠습니다. 갑오일주는 십이운성 상으로 사(死)에 해당합니다. 사(死)는 모든 기운이 쇠퇴하고 약화되고 성장이 멈추는 단계입니다. 천간은 명랑한 봄의 기상의 甲(갑목)이지만 십이운성이 사(死)이니 갑오일주는 갑목의 명랑하고 활발한 성향과 공허하고 쓸쓸한 성향을 동시에 가지고 있습니다."
+        },
+        {
+          "xml_paragraph": 380,
+          "text": "따라서 갑오일주는 남년 모두 겉으로는 화려함을 좋아하지만 내면적으로는 공허할 수 있습니다. 갑오일주에는 자기 표현이 능숙하고 화려함을 추구하는 사람이 많습니다. 그러나 안으로는 부실한 기운이 모여들어 내적인 만족이나 결실은 약한 편입니다. 외화내빈이라고 부를 만한 일주입니다."
+        }
+      ]
+    },
+    {
+      "id": "일주론 글모음#0004@20-24",
+      "unit": "일주론 글모음#0004",
+      "body_paragraphs": [
+        20,
+        24
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 395,
+          "text": "갑오일주 남자는 왕성한 활동력을 지니고 재물이나 외적인 화려함을 추구합니다. 또한 여자를 좋아하는 편이지만 노력만큼 잘 성사되지 않는 특성을 가지고 있습니다. 일지에 홍염살이 있으므로 갑오일주 남자는 여자 관계가 복잡한 경우가 많습니다. 홍염살로 인한 고통을 감내해야 하는 일주입니다."
+        },
+        {
+          "xml_paragraph": 396,
+          "text": "갑오일주 남자는 일찍부터 여자에 눈을 뜨게 되고 유흥에 빠져드는 경우가 많은데, 결혼을 일찍 한다면 실패를 겪을 확률이 커지니 결혼을 미루는 것이 도움이 됩니다."
+        },
+        {
+          "xml_paragraph": 397,
+          "text": "갑오일주 여자는 예술성(표현, 연기, 설득력 등)이 풍부하고 자기 자신을 위한 노력을 아끼지 않는 편입니다. 하지만 갑오일주는 여자 역시 노력에 대한 대가는 부족한 편입니다. 또한 일지의 홍염살의 영향으로 남자를 만나더라도 쉽게 만족하지 못하는 경우가 많습니다."
+        },
+        {
+          "xml_paragraph": 398,
+          "text": "갑오일주 여자의 경우에는 일지 상관이라 하여 고전에서는 좋지 않게 보았습니다. 배우자 인연이 약하고 배우자와의 관계가 자주 흔들리는 일지로 봅니다. 특히 자녀가 태어나고 난 후에 배우자와의 이별운이 있는 것이 갑오일주 여자의 특징입니다."
+        },
+        {
+          "xml_paragraph": 399,
+          "text": "하지만 예술적 감각과 특별한 재능을 바탕으로 자신의 삶을 일구어갈 힘이 있는 일주입니다. 갑오일주 여자의 경우 상관은 재물을 의미하므로 결혼 이후 친정보다는 시댁이 여자의 힘으로 잘 살게 되는 힘이 있습니다."
+        }
+      ]
+    },
+    {
+      "id": "명리학탐구(고급1) 게시판 글모음#0017@7-10",
+      "unit": "명리학탐구(고급1) 게시판 글모음#0017",
+      "body_paragraphs": [
+        7,
+        10
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 446,
+          "text": "2.갑목일간의 특성"
+        },
+        {
+          "xml_paragraph": 447,
+          "text": "갑목은 소나무나 잣나무처럼 곁가지가 별로 없이 쭉쭉뻗은 큰 나무의 형상으로, 우두머리 기질이 강해 다른 사람의 간섭이나 통제는 꺼리는 경향이 강합니다. 언제나 당당하고 자신감이 넘치는 긍정적 사고방식과 생활태도로 지도자적 기질이 강합니다."
+        },
+        {
+          "xml_paragraph": 448,
+          "text": "그러나, 다소 완고하고 고집이 세어 주변과 화합하기 힘들어 다른 사람들의 공격대상이 되기 쉽고, 유연성과 융통성은 부족합니다. 어떤 일이나 시작은 잘하지만 마무리가 약해 결과가 부실하기 쉽고, 게으른 면모도 보입니다."
+        },
+        {
+          "xml_paragraph": 449,
+          "text": "갑목의 특성상 추진하던 일이 실패로 끝나면 돌이키기 힘든 어려운 상황을 맞기 쉽고, 다시금 재기하기 힘든 경우도 생깁니다. 새로운 일을 추진하거나 돌발 상황에 신중히 대처해야만 어려운 상황을 피할 수 있습니다."
+        }
+      ]
+    },
+    {
+      "id": "일주론 글모음#0001@26-30",
+      "unit": "일주론 글모음#0001",
+      "body_paragraphs": [
+        26,
+        30
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 193,
+          "text": "갑자일주 직업, 재물"
+        },
+        {
+          "xml_paragraph": 194,
+          "text": "갑자일주의 직업으로는 교육계에 종사하는 사람이 많습니다. 이 경우 사주에 금(金)이 약한 경우가 많습니다. 관성이 약한 경우에 해당하는데 차선책으로 교육이나 자기 사업을 벌이는 경우에 해당합니다."
+        },
+        {
+          "xml_paragraph": 195,
+          "text": "갑자일주가 연월에 편재가 있으면, 사업의 인연이 빨리 옵니다. 하지만 일지 인성의 영향으로 뭐든지 정직하고 성실하게 처리하려고 하는 경향 때문에 편재의 기운을 금융회사 쪽으로 돌려 사용하는 경우가 많습니다."
+        },
+        {
+          "xml_paragraph": 196,
+          "text": "갑자일주들은 권력을 가졌을 때 공과 사의 구분이 뚜렷합니다. 천문성이 공망이라 고상함(도덕적 정당성)을 추구하는 경향 때문이기도 하며, 분별력이 뛰어나 나설 때와 빠질 때를 잘 압니다. 공무원이라면 돈을 받아야 할 때와 받지 말아야 할 때를 잘 구별합니다."
+        },
+        {
+          "xml_paragraph": 197,
+          "text": "또한 일지에 정인을 두고 있기 때문에 조직에서의 생활에 유리합니다. 일반적으로 갑자일주는 공직과도 어울리며, 높은 자리에 올라서기는 어렵지만 한번 오른다면 쉽게 내려오지 않습니다."
+        }
+      ]
+    },
+    {
+      "id": "일주론 글모음#0001@31-36",
+      "unit": "일주론 글모음#0001",
+      "body_paragraphs": [
+        31,
+        36
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 198,
+          "text": "갑자일주 여자, 남자"
+        },
+        {
+          "xml_paragraph": 199,
+          "text": "갑자일주는 남자 여자 모두 신체적으로 상체(가슴)가 넓습니다. 그만큼 포용력이 넓은 사람이 많으며 의외로 깊이있는 모성애를 가진 사람이 많습니다."
+        },
+        {
+          "xml_paragraph": 200,
+          "text": "갑자일주 여자는 착한 남편을 만나게 되는 기운을 가지고 있지만, 사주에 水를 유심히 살펴야 합니다. 갑자일주 여자가 사주에 수가 많다는 것은 남편을 의미하는 金을 약화시킵니다. 사주에 水가 많다면 여러 남자들에게 호감을 살 수 있는 힘이 되지만 남편의 건강은 담보하지 못합니다."
+        },
+        {
+          "xml_paragraph": 201,
+          "text": "또한 갑자일주 여자의 경우 자주 원치 않는 스캔들에 노출되는 일을 겪습니다. 고전에서는 갑자일주 여자를 보고 남모르는 연정이 있다고 하였습니다. 같은 맥락으로 이해할 수 있습니다."
+        },
+        {
+          "xml_paragraph": 202,
+          "text": "갑자일주는 일지에 인성이 있습니다. 인성과 재성은 반대적 기운이 되니 갑자일주 남자의 경우, 결혼운이 좋지 않습니다. 결혼을 하더라도 중매결혼이 많으며 또한 사주에 토가 많으면 연애를 하더라도 집안의 반대로 결혼이 늦어집니다. 또한 갑자일주 남자의 경우 아내에게 결정을 미루고 의존하는 경우가 많습니다."
+        },
+        {
+          "xml_paragraph": 203,
+          "text": "시주가 갑자(갑자시주)인 사람들은 총명한 사람들이 많은데 시주에서 도화가 성립되면 결혼운이 좋지 않은 경우가 많습니다. 배우자 궁이 불안정하며 배우자가 바람이 나거나 성적인 트러블로 인한 고통이 따릅니다."
+        }
+      ]
+    },
+    {
+      "id": "일주론 글모음#0001@37-42",
+      "unit": "일주론 글모음#0001",
+      "body_paragraphs": [
+        37,
+        42
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 204,
+          "text": "갑자일주 기타"
+        },
+        {
+          "xml_paragraph": 205,
+          "text": "지장간의 편인 때문에 갑자일주들은 변덕을 부리거나 변태적 탐닉에 잘 빠지기도 합니다. 또한 편인의 성질 때문에 한 사람을 나쁘게 찍으면 계속 그 사람을 미워하게 되는 성향도 가지고 있습니다."
+        },
+        {
+          "xml_paragraph": 206,
+          "text": "갑자일주는 남녀 공히 술을 좋아하는 경향이 있습니다. 술을 조심해야 하며, 술로 인한 사고를 유의해야 합니다."
+        },
+        {
+          "xml_paragraph": 207,
+          "text": "갑자일주는 지지가 水인성이므로, 甲(갑목) 입장에서 좋은 기운입니다. 근처에 丙(병화)까지 있으면 좋고, 지지에 巳午未(사오미)가 온다면 목화통명이라 길한 기운이 됩니다. 甲(갑목)은 火(태양)와 水(물)를 갖추게 되면 두려울 것이 없는 법입니다."
+        },
+        {
+          "xml_paragraph": 208,
+          "text": "갑자일주는 사주를 볼때 토(土)를 유심히 살펴야 합니다. 사주 원국 안에 토(土)가 약하면, 나무가 정착하지 못하여 여러가지 삶의 굴곡이 따릅니다. 하지만 오히려 역마의 기운을 살려 직업으로 삼으면 길한 기운이 됩니다."
+        },
+        {
+          "xml_paragraph": 209,
+          "text": "갑자일주는 십신 중 정인에 해당하기 때문에 말과 행동 이전에 생각을 먼저 합니다. 또한 인정이 넘치고 남에게 잘 퍼주는 타입이 많습니다. 특히 약자에게 마음이 약해지고 같이 밥을 먹어도 먼저 계산하려는 사람이 갑자일주입니다."
+        }
+      ]
+    },
+    {
+      "id": "명리학탐구(고급1) 게시판 글모음#0017@1-6",
+      "unit": "명리학탐구(고급1) 게시판 글모음#0017",
+      "body_paragraphs": [
+        1,
+        6
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 440,
+          "text": "319.일주분석(2) - 인성의 특성이 강한 갑자일주"
+        },
+        {
+          "xml_paragraph": 441,
+          "text": "1.일주분석단계"
+        },
+        {
+          "xml_paragraph": 442,
+          "text": "1).갑목일간의 물적 특성에 따른 일간의 기본 마음을 이해하고, 일간의 본성과 지향점을 파악합니다."
+        },
+        {
+          "xml_paragraph": 443,
+          "text": "2).일지가 인성일 때 일간의 마음과 생활태도, 부부관계 등을 파악해야 합니다."
+        },
+        {
+          "xml_paragraph": 444,
+          "text": "3).지장간 분석을 통해 일간 갑목이 가장 원하는 지향점이 무엇인지 파악합니다."
+        },
+        {
+          "xml_paragraph": 445,
+          "text": "4).일지의 합과 충에 따른 변화와 과정을 파악합니다."
+        }
+      ]
+    },
+    {
+      "id": "일주론 글모음#0001@1-6",
+      "unit": "일주론 글모음#0001",
+      "body_paragraphs": [
+        1,
+        6
+      ],
+      "paragraphs": [
+        {
+          "xml_paragraph": 168,
+          "text": "오늘은 '일주론'의 두 번째 시간으로 갑자일주에 대해 정리해보겠습니다."
+        },
+        {
+          "xml_paragraph": 169,
+          "text": "일주론 진행 순서는 \"갑자일주, 갑인일주, 갑진일주~ \" 식으로 진행됩니다. 갑목 일간의 일주를 모두 마무리 한 후에 을목 일간, 병화 일간, 정화 일간 이런 식으로 일주에 대해 정리하겠습니다."
+        },
+        {
+          "xml_paragraph": 170,
+          "text": "그렇게 되면 시작이 갑자일주, 마지막이 계해일주가 되겠네요."
+        },
+        {
+          "xml_paragraph": 171,
+          "text": "하루에 하나의 일주씩 포스팅 할 생각이기 때문에 본인이나 특수관계인의 일주에 대해 알고 싶으신 분은 날짜를 계산해 보시면 되겠습니다."
+        },
+        {
+          "xml_paragraph": 172,
+          "text": "갑자일주 시작하겠습니다."
+        },
+        {
+          "xml_paragraph": 173,
+          "text": "검색을 통해 바로 여기로 오신 분들은 일주론에 관한 글을 읽고 오셔도 좋겠습니다."
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "IN01",
+      "key": "ilju/갑인",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑인.json",
+      "pointer": [
+        "distilled",
+        "성격",
+        0
+      ],
+      "draft_value": "밝고 명랑한 기운이 넘치고 매사에 적극적·능동적 — 자존심과 자아의 끝판왕 (천간·지지 모두 갑목)",
+      "evidence": [
+        "일주론 글모음#0002@4-7"
+      ],
+      "review": {
+        "status": "source_attribution_mismatch",
+        "conditions": "저자의 갑인일주 일반 성향 주장. 천간·지지 모두 갑목은 본기의 표현이며 인목 전체가 갑목 하나라는 뜻으로 확대하지 않음.",
+        "exceptions_or_counterpoints": "강점 다음 문단의 자기중심성·마찰 설명과 별도로 보존.",
+        "scope": "원국 일주 유형; 개인에게 적용되지 않은 문헌 요약. 앱 대표 첫 출처는 고급1#0018이나 이 표현은 일주론#0002에서 확인.",
+        "unknown": "다른 기둥·강도·환경·개인 성향은 검증하지 않음."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "IN02",
+      "key": "ilju/갑인",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑인.json",
+      "pointer": [
+        "distilled",
+        "성격",
+        3
+      ],
+      "draft_value": "손해볼 것을 알아도 바른 말을 해야 직성이 풀림 — 이슈와 인기를 몰고 다니나 실속은 부족 (목 과다 = 용기 과잉, '간뎅이가 부은' 형국)",
+      "evidence": [
+        "현묘의 사주 이야기 글모음#0032@65-72"
+      ],
+      "review": {
+        "status": "condition_omitted",
+        "conditions": "67문단은 연주·월주·시주 등 다른 요인에 의해 얼마든지 달라질 수 있다고 명시. 68문단의 목 과다를 별도 조건으로 보존.",
+        "exceptions_or_counterpoints": "일반적인 목의 유연성과 과도한 목의 경직성을 저자가 대비함.",
+        "scope": "같은 yavares 저자의 추가 글 /388. 일주론 /59와 독립 저자 지지로 세지 않음.",
+        "unknown": "목 과다의 계산 기준·개인 발현은 미확정. 신체 손상·간 건강 비유를 진단으로 쓰지 않음."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "IN03",
+      "key": "ilju/갑인",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑인.json",
+      "pointer": [
+        "distilled",
+        "직업",
+        0
+      ],
+      "draft_value": "남자는 경쟁하여 쟁취하는 사업길 적성 — 직장생활 중에도 자기 사업을 일으키는 성향 (식상이 있으면 전문분야 사업, 없으면 자영업, 관성 金이 튼튼하면 직장에서 크게 성공)",
+      "evidence": [
+        "일주론 글모음#0002@9-12"
+      ],
+      "review": {
+        "status": "conditions_preserved_uncomputed",
+        "conditions": "남자, 식상 있음/없음, 관성 금이 튼튼함을 각각 구별한다.",
+        "exceptions_or_counterpoints": "관성 금이 튼튼하면 직장 성공이라는 같은 문단의 대안을 보존. 사업만 적성이라고 단정하지 않음.",
+        "scope": "저자의 성별·직업 관련 주장. 원국 조건 검사는 하지 않음.",
+        "unknown": "식상의 존재/강도·관성 튼튼함의 정량 기준 및 직업 성과 자료 없음."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "IN04",
+      "key": "ilju/갑인",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑인.json",
+      "pointer": [
+        "distilled",
+        "주의",
+        2
+      ],
+      "draft_value": "신강한 명조의 인신충은 중년까지 직업·부부관계가 불리하고, 신약한 명조는 돈·여자 문제로 이동·변동과 가정 불안이 따름 (일지 인목과 편관 신금의 충)",
+      "evidence": [
+        "명리학탐구(고급1) 게시판 글모음#0018@22-27"
+      ],
+      "review": {
+        "status": "scenario_conditions_omitted",
+        "conditions": "인신충 비교의 신강/신약 갈래. 신강은 월주 인성/비겁과 식상 발산을 향함을 설명하며 일지 비겁 조건에서 중년까지 직업/부부관계를 논한다. 신약 예시는 월주 식상/재성, 일지 인목 의지, 운에서 무신이 오는 조건을 함께 가짐.",
+        "exceptions_or_counterpoints": "원문은 그림의 병술월·임자월을 신강/신약 예시로만 쓰고 월주는 해석하지 않는다고 명시.",
+        "scope": "충 일반론·무신 운의 개별 예시·월주 예시 범위를 분리. 모든 신약 인신충으로 확대 금지.",
+        "unknown": "그림의 실제 명식/시점은 이번 텍스트 검수로 확정하지 않음. 앱 강약 잠정 등급과 저자의 신강/신약 기준을 동일시하지 않음."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "IN05",
+      "key": "ilju/갑인",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑인.json",
+      "pointer": [
+        "distilled",
+        "주의",
+        0
+      ],
+      "draft_value": "너무 강한 힘이라 한번 꺾이면 복구가 매우 어려움 — 힘을 활동적으로 쓰면서도 꺾이지 않게 조절하는 제어력이 반드시 필요",
+      "evidence": [
+        "일주론 글모음#0002@33-40",
+        "명리학탐구(고급1) 게시판 글모음#0018@7-10"
+      ],
+      "review": {
+        "status": "time_context_lost",
+        "conditions": "일주론의 같은 표현은 경자년(2020년) 운세 제목 아래 34–35문단에 위치.",
+        "exceptions_or_counterpoints": "고급1의 갑목 일반 실패/재기 설명이 있으나 2020년 문맥의 정확한 표현을 무시기 규칙으로 승인하지 않음.",
+        "scope": "제외메모는 경자년 운세 제외라 쓰지만 초안에는 해당 표현이 남음. 문헌 저자가 일반론으로 썼을 가능성과 연도 문맥은 별도 보존.",
+        "unknown": "영구 적용 자격 미검증. 후속에서 경자년 단락의 다른 재사용 문장도 전량 점검 필요."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "IN06",
+      "key": "ilju/갑인",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑인.json",
+      "pointer": [
+        "관점차이",
+        0
+      ],
+      "draft_value": {
+        "주제": "사업 적성",
+        "견해": [
+          {
+            "src": "명리학탐구(고급1) 게시판 글모음#0018",
+            "내용": "인해합목으로 주변을 의식하는 마음이 커 강한 추진력·승부욕을 보이기 힘들어, 유행에 민감한 사업 추진은 다소 불리하다고 봄"
+          },
+          {
+            "src": "일주론 글모음#0002",
+            "내용": "남자는 경쟁하여 쟁취하는 사업길에 어울리며 직장생활 중에도 자기 사업을 일으키는 성향이라고 봄"
+          }
+        ]
+      },
+      "evidence": [
+        "명리학탐구(고급1) 게시판 글모음#0018@18-21",
+        "일주론 글모음#0002@9-9"
+      ],
+      "review": {
+        "status": "comparison_scope_omitted",
+        "conditions": "첫 견해는 인해합목 절의 주변 의식/유행에 민감한 사업 조건. 둘째 견해 원문은 남자·식상·금 관성의 갈래.",
+        "exceptions_or_counterpoints": "견해쌍 둘 다 유지. 서로 조건이 달라 직접 모순이나 저자 합의로 판정하지 않음.",
+        "scope": "원문 조건이 다른 사업 설명의 비교; 현재 둘째 견해는 식상/관성 대안을 생략.",
+        "unknown": "해수 실제 존재 조건을 이 텍스트만으로 계산하지 않음. 저자 기준·개인 적성은 미검증."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "OH01",
+      "key": "ilju/갑오",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑오.json",
+      "pointer": [
+        "distilled",
+        "성격",
+        0
+      ],
+      "draft_value": "센스 있는 감수성과 스타일 — 화려하고 매력적이며 독특하고 샤프한 개성으로 한번 보면 잊혀지지 않는 강한 인상을 남김 (일지 상관, 홍염살)",
+      "evidence": [
+        "일주론 글모음#0004@6-7"
+      ],
+      "review": {
+        "status": "source_attribution_mismatch",
+        "conditions": "일지 상관·홍염살을 연결한 저자 성향 설명.",
+        "exceptions_or_counterpoints": "홍염 조건의 개인 성립을 문장 존재만으로 인증하지 않음. 현침살 보류와 별도 주제.",
+        "scope": "현재 첫 출처 고급1#0021과 해당 문장 표현의 출처 일주론#0004를 구별.",
+        "unknown": "외모·매력의 개인 판정·홍염 발현은 미검증."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "OH02",
+      "key": "ilju/갑오",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑오.json",
+      "pointer": [
+        "distilled",
+        "직업",
+        1
+      ],
+      "draft_value": "오화가 정재 미토를 불러와 열심히 일하면 그 자체로 재물이 축적 — 일감이 끊이지 않고 재복이 큰 명조 (원국이 충극 없이 안정될 때)",
+      "evidence": [
+        "명리학탐구(고급1) 게시판 글모음#0021@17-19",
+        "명리학탐구(고급1) 게시판 글모음#0021@20-21"
+      ],
+      "review": {
+        "status": "conditions_preserved_uncomputed",
+        "conditions": "원국에 충극이 없이 안정되어야 한다는 마지막 단서를 보존.",
+        "exceptions_or_counterpoints": "같은 저자의 자오충 설명에서는 일이 부진/중단할 수도 있다고 하며 업종에 따른 반전도 존재.",
+        "scope": "오화가 미토를 불러온다는 저자의 설명. 실제 미토 존재 판정이나 성공 보장으로 바꾸지 않음.",
+        "unknown": "원국 안정·충극 적용 범위·재물 효과는 미검증."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "OH03",
+      "key": "ilju/갑오",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑오.json",
+      "pointer": [
+        "distilled",
+        "주의",
+        2
+      ],
+      "draft_value": "자오충(도화충) 운 — 일의 부진·중단; 연예계·유흥업 종사자에게는 오히려 좋은 기운이나, 흉하게 작용하면 풍류·도박 심취, 문란한 이성문제, 건강 문제",
+      "evidence": [
+        "명리학탐구(고급1) 게시판 글모음#0021@20-21"
+      ],
+      "review": {
+        "status": "alternatives_preserved_uncomputed",
+        "conditions": "자오충 시기, 연예계/유흥업 종사 여부, 흉하게 작용한다는 조건을 구별.",
+        "exceptions_or_counterpoints": "좋게 작동하기도 한다는 반대 방향을 함께 보존.",
+        "scope": "저자의 시기·업종별 가능성 주장. 2020년 고정 예시는 아니며 일반 충 설명 절에 있음.",
+        "unknown": "좋음/흉함의 결정 기준과 발현 시점은 미확정. 건강·관계결과 개인 적용 보류."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "OH04",
+      "key": "ilju/갑오",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑오.json",
+      "pointer": [
+        "관점차이",
+        0
+      ],
+      "draft_value": {
+        "주제": "재물운",
+        "견해": [
+          {
+            "src": "명리학탐구(고급1) 게시판 글모음#0021",
+            "내용": "상관과 정재가 지장간에서 강하게 작동해 의식주에 문제가 없고 일복·재복이 모두 큰 명조로 봄"
+          },
+          {
+            "src": "일주론 글모음#0004",
+            "내용": "외화내빈으로 내적인 만족이나 결실은 약하고, 남녀 모두 노력만큼 대가가 부족한 편이라고 봄"
+          }
+        ]
+      },
+      "evidence": [
+        "명리학탐구(고급1) 게시판 글모음#0021@14-21",
+        "일주론 글모음#0004@4-5",
+        "일주론 글모음#0004@20-24"
+      ],
+      "review": {
+        "status": "comparison_scope_and_modality_lost",
+        "conditions": "고급1 원문은 명조일 수 있음·많다고 봄이며 뒤 절의 원국 안정 조건을 함께 참조. 일주론은 내적 만족·성별 대가·재물/관계 설명을 나누어 말함.",
+        "exceptions_or_counterpoints": "조건이 다른 주장들을 무조건 재물운 좋음 대 나쁨으로 압축하지 않음. 남자의 노력만큼 잘 성사되지 않음은 재물/여자 혼합 문맥이라 재물만으로 확정하지 않음.",
+        "scope": "견해 그룹2개 문장을 함께 보존. 첫 요약의 모두 큰 명조는 원문의 가능 표현보다 강함.",
+        "unknown": "출처별 성공/대가/만족의 관측 정의·공통 평가기준·개인 적용 미확정."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "JA01",
+      "key": "ilju/갑자",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑자.json",
+      "pointer": [
+        "distilled",
+        "성격",
+        2
+      ],
+      "draft_value": "우두머리 기질이 강해 간섭·통제를 꺼리고, 완고하고 고집이 세 유연성은 부족",
+      "evidence": [
+        "명리학탐구(고급1) 게시판 글모음#0017@7-10"
+      ],
+      "review": {
+        "status": "source_attribution_mismatch",
+        "conditions": "갑목일간 일반 성향 설명에서 나온 문장. 갑자만의 고유 특성으로 좁히지 않음.",
+        "exceptions_or_counterpoints": "뒤 실패/재기 설명도 저자의 가능성 주장; 개인 사실 아님.",
+        "scope": "첫 대표 출처 일주론#0001과 실제 표현 출처 고급1#0017 구별.",
+        "unknown": "갑목 일반과 갑자 특유의 효과 차이 미검증."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "JA02",
+      "key": "ilju/갑자",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑자.json",
+      "pointer": [
+        "distilled",
+        "직업",
+        2
+      ],
+      "draft_value": "연월에 편재가 있으면 사업 인연이 빠르며, 일지 정인의 정직함 때문에 금융 쪽으로 풀리는 경우가 많음",
+      "evidence": [
+        "일주론 글모음#0001@26-30"
+      ],
+      "review": {
+        "status": "conditions_preserved_uncomputed",
+        "conditions": "연월에 편재가 있음, 일지 인성에 대한 저자 설명.",
+        "exceptions_or_counterpoints": "금 관성이 약하면 교육/사업 차선이라는 인접 문단 및 공직/조직 대안을 함께 보존.",
+        "scope": "원국 연·월 자리 조건을 가진 문헌 요약. 실제 연월 편재를 계산하지 않음.",
+        "unknown": "편재 존재·원국 구성·금융업 결과의 개인 적용은 보류."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "JA03",
+      "key": "ilju/갑자",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑자.json",
+      "pointer": [
+        "distilled",
+        "관계",
+        2
+      ],
+      "draft_value": "여자: 착한 남편 인연. 단 원국에 水가 많으면 남편(金)을 약화시켜 남편 건강 유의, 원치 않는 스캔들 노출 경향",
+      "evidence": [
+        "일주론 글모음#0001@31-36"
+      ],
+      "review": {
+        "status": "condition_scope_ambiguous",
+        "conditions": "33문단의 수 과다→남편 건강 주장과 34문단의 일반 스캔들 주장은 서로 다른 문장.",
+        "exceptions_or_counterpoints": "초안은 쉼표로 한 줄에 묶어 수 과다 조건이 스캔들까지 수식하는지 불명확.",
+        "scope": "여성 대상 문헌 주장과 고전 재인용. 실제 건강·관계 사건을 추론하지 않음.",
+        "unknown": "수 과다 임계값·건강 근거·스캔들 발생 확률 미검증. 원문 존재와 개인 적용 자격은 별개."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    },
+    {
+      "id": "JA04",
+      "key": "ilju/갑자",
+      "draft_path": "dosa-app/kb/distilled/ilju/갑자.json",
+      "pointer": [
+        "distilled",
+        "주의",
+        3
+      ],
+      "draft_value": "병화(태양)와 사오미 화운을 만나면 목화통명으로 길함 — 물과 태양을 갖추면 두려울 것이 없는 구조",
+      "evidence": [
+        "일주론 글모음#0001@37-42"
+      ],
+      "review": {
+        "status": "position_and_time_ambiguous",
+        "conditions": "원문은 근처에 병화, 지지에 사오미가 온다면을 구분.",
+        "exceptions_or_counterpoints": "인접 토 약함과 역마 직업 전환은 별도 주장으로 보존하며 병화 조건에 자동 합치지 않음.",
+        "scope": "초안의 화운은 원문의 온다면보다 운으로 범위를 좁힘. 운/원국을 원문 한 문장만으로 확정하지 않음.",
+        "unknown": "근처 자리·사오미 전부/일부·운의 단위·시점은 미확정."
+      },
+      "personal_application": "withheld",
+      "training_eligible": false,
+      "probability": null
+    }
+  ],
+  "inventory": {
+    "ilju_files": 60,
+    "personality_drafts": 402,
+    "selected_ilju": [
+      "갑인",
+      "갑오",
+      "갑자"
+    ],
+    "reviewed_items": 14,
+    "string_drafts": 12,
+    "comparison_groups": 2,
+    "personality_drafts_reviewed": 4,
+    "ilju_fully_reviewed": 0
+  },
+  "fallback_review": {
+    "key": "ilju/갑자",
+    "ordered_units": [
+      {
+        "unit": "명리학탐구(고급1) 게시판 글모음#0017",
+        "first_six_body_paragraphs": [
+          "319.일주분석(2) - 인성의 특성이 강한 갑자일주",
+          "1.일주분석단계",
+          "1).갑목일간의 물적 특성에 따른 일간의 기본 마음을 이해하고, 일간의 본성과 지향점을 파악합니다.",
+          "2).일지가 인성일 때 일간의 마음과 생활태도, 부부관계 등을 파악해야 합니다.",
+          "3).지장간 분석을 통해 일간 갑목이 가장 원하는 지향점이 무엇인지 파악합니다.",
+          "4).일지의 합과 충에 따른 변화와 과정을 파악합니다."
+        ],
+        "evidence": "명리학탐구(고급1) 게시판 글모음#0017@1-6"
+      },
+      {
+        "unit": "일주론 글모음#0001",
+        "first_six_body_paragraphs": [
+          "오늘은 '일주론'의 두 번째 시간으로 갑자일주에 대해 정리해보겠습니다.",
+          "일주론 진행 순서는 \"갑자일주, 갑인일주, 갑진일주~ \" 식으로 진행됩니다. 갑목 일간의 일주를 모두 마무리 한 후에 을목 일간, 병화 일간, 정화 일간 이런 식으로 일주에 대해 정리하겠습니다.",
+          "그렇게 되면 시작이 갑자일주, 마지막이 계해일주가 되겠네요.",
+          "하루에 하나의 일주씩 포스팅 할 생각이기 때문에 본인이나 특수관계인의 일주에 대해 알고 싶으신 분은 날짜를 계산해 보시면 되겠습니다.",
+          "갑자일주 시작하겠습니다.",
+          "검색을 통해 바로 여기로 오신 분들은 일주론에 관한 글을 읽고 오셔도 좋겠습니다."
+        ],
+        "evidence": "일주론 글모음#0001@1-6"
+      }
+    ],
+    "assessment": "Actual index order is high1#0017 then ilju#0001, unlike distilled sources order. Fallback returns title/outline and introductions. Current toReading requires distilled and renders neither fallback. All60 drafts exist; latent fallback only, not current UI leakage."
+  },
+  "source_lineage": {
+    "yavares.tistory.com": "Four archived publications in two collections; same publishing domain/author grouping, not four independent supports.",
+    "unresolved:명리학탐구(고급1)": "Three posts in one collection; author identity and independent lineage unresolved. Do not count as three independent authors."
+  },
+  "inference_enabled": false,
+  "training_eligible": 0,
+  "probability": null,
+  "independent_support_count": null
+}

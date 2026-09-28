@@ -1,13 +1,13 @@
 # 기초 보강 인계 — GitHub에서 이어가는 시작점
 
-갱신: 2026-09-28 · 사용자 원문 [64](USER_INTENT_LOG.md)
-직전 PR #208 merged/main `ec88e351ea9c28873c2260e2ad20adda666d8d87`와 검증tree `9e197ef18335e9cfacc13d55fa223246b62fe6a4`를 직접 대조했다.
-현재 작업: [통근4후보 검수](FOUNDATION_ROOTING_CANDIDATES.md). 후보4·2문단·1게시글, 원문13구간과 DOCX 위치를 연결하고 같은 문장의 중복 지지·식신 누락·조건/예외 손실을 별도 검토층에 보존했다. 개인추론·학습은 보류한다.
-**다음 첫 작업은 §5.1의 기본풀이 대표 문장 묶음 검수다.** 관리 진행률9/20=45%를 유지한다. 현재 단위의 검사·병합 완료는 PR영수증을 확인한다.
+갱신: 2026-09-28 · 사용자 원문 [65](USER_INTENT_LOG.md)
+직전 PR #209 merged/main `1b3b0a278d2f74bdf2741b0290e6b0968d28d2a3`와 검증tree `f24491208e644e1a936a82f796af02b4a7b33e91`를 직접 대조했다.
+현재 작업: [기본풀이 대표14항목 검수](FOUNDATION_BASIC_SENTENCES.md). 60파일/402초안을 재계수하고 원문7글·20구간과 조건·예외·시기·계보를 연결했다. 실제6입력·미상1·발췌대체 경로의 전달을 측정했다. 앱 수정·3일주/60일주 전량검수·개인적용/학습은 미완료다.
+**다음 첫 작업은 §5.1의 검토항목 개인 전달 보류·문장별 출처 소비 계약이다.** 관리진행률9/20=45% 유지. 현재 단위의 최종검사·병합은 PR영수증을 확인한다.
 
 2026-09-23 후속: [F01 검토표](FOUNDATION_REVIEW.md)·[판정과 원문 위치](data/foundation_taxonomy_review.json)·[전후 측정](data/foundation_match_measurement.json)을 읽는다. PR #183의 채택66행 중65행은 **기존 판본 보존**이며 새 의미 승인이 아니다. 당시 실제 추가는 `부부 사이`1개였고 PR #187의 상극3개를 포함한 현재 누적은4개다. 부부관계·부부간은 천간합/육합 비유와의 구분 문제로 보류했다. 별칭 판정·P2 재생성 전에 D5 인용 자격을 별도 검수해야 한다. 총칭·넓은 구어와 기존 별칭의 다른 뜻은 남아 있으며 F01 전체 통합 완료로 해석하지 않는다. 아래 §3의 수치는 이전 스냅샷으로 보존한다.
 
-현재 작업의 중단 재개는 [통근4후보 검수](FOUNDATION_ROOTING_CANDIDATES.md)와 실제 PR 상태를 먼저 확인한다. [통합 체크포인트](WORK_CHECKPOINT.md)는 PR #197까지의 보존 이력이다. 이전 자동 승인 검토에서 공개가 거절된 STATUS/체크포인트는 재전송하지 않는다. 사용자의 원문36에 따른 임시 작업기록은 로컬에 남기며 기존 두 파일의 갱신은 미이행이다. 기능 범위·다음 작업은 이 인계, 실제 검사·병합 완료는 PR 영수증으로 확인한다.
+현재 작업의 중단 재개는 [대표 문장 검수](FOUNDATION_BASIC_SENTENCES.md)와 실제 PR 상태를 먼저 확인한다. [통합 체크포인트](WORK_CHECKPOINT.md)는 PR #197까지의 보존 이력이다. 이전 자동 승인 검토에서 공개가 거절된 STATUS/체크포인트는 재전송하지 않는다. 사용자의 원문36에 따른 임시 작업기록은 로컬에 남기며 기존 두 파일의 갱신은 미이행이다. 기능 범위·다음 작업은 이 인계, 실제 검사·병합 완료는 PR 영수증으로 확인한다.
 
 ## 1. 지금 무엇을 하고 있나
 
@@ -66,26 +66,27 @@
 |---|---|---|---|
 | F00 | 인계 자료 보존 완료 / 전체 자산 대조는 미완료 | 의도·청사진·감사·선택 판본 차이 연결 | GitHub만으로 이 표와 실제 차이 자료를 찾을 수 있음 |
 | **F01** | **차이76개·검색 표현4개 적용 / 전체 의미 검수 미완료** | [검토표](FOUNDATION_REVIEW.md)에서 합·충 후속 검토 및 보충 제외는 [후속 문서](FOUNDATION_GENERAL_TERMS.md) 참조. 총칭 실행 등재는 보류하고 [통근 후속](FOUNDATION_ROOTING.md) 원문/가상 측정 완료·추가0. [지장간 겹침/단계 명칭 후속](FOUNDATION_HIDDEN_STAGES.md)에서4행 복구·원문 검수 후 [월률분야·사령](FOUNDATION_MONTH_COMMAND.md) 원문/검색 검수·사령부28행 제외. 사령관·단계 오탐은 보류 조건 유지. 긴 별칭 추가 시 오행·자리 노드 보존 확인 | 현재67채택(65기존 보존)·5분리·4보류. 상극행은3개 부분 채택/1개 보류. 후속 채택마다 원문·반례·적용 범위·회귀 검사 연결. 승인되지 않은 이름을 실행에 섞지 않음 |
-| **F02** | **31행 반영표·후속6검수 / 잔여 의미 검수 진행** | [첫 묶음](FOUNDATION_F02_SIX.md): 실행277개, 원문24구간·별도 검사. 여섯 주제 조회 뒤 [31행 반영표](FOUNDATION_GAP31.md)·후속 정표기4/공망별칭2를 반영해 검색281개. [부분형 후속](FOUNDATION_PARTIAL.md)에서 검색282개. [활인업·재고귀인 조회](FOUNDATION_LIVELIHOOD_LINKS.md) 뒤 [진도화·가도화 비교](FOUNDATION_PEACH_LINKS.md)로10주제 연결. F03 판본·소비계약과 F04 P2/D5·통근 검수 뒤 §5.1의 기본풀이 대표 문장 | 원문·범위·검색 영향·기존 개념 보존 확인. 용어 등재와 관계/조건/생성본 적재를 구분 |
+| **F02** | **31행 반영표·후속6검수 / 잔여 의미 검수 진행** | [첫 묶음](FOUNDATION_F02_SIX.md): 실행277개, 원문24구간·별도 검사. 여섯 주제 조회 뒤 [31행 반영표](FOUNDATION_GAP31.md)·후속 정표기4/공망별칭2를 반영해 검색281개. [부분형 후속](FOUNDATION_PARTIAL.md)에서 검색282개. [활인업·재고귀인 조회](FOUNDATION_LIVELIHOOD_LINKS.md) 뒤 [진도화·가도화 비교](FOUNDATION_PEACH_LINKS.md)로10주제 연결. F03/F04 뒤 대표14항목 검수. 다음 §5.1의 문장별 소비 계약 | 원문·범위·검색 영향·기존 개념 보존 확인. 용어 등재와 관계/조건/생성본 적재를 구분 |
 | F03 | **강약 자리배점 교정·미상 보류 / 기간·현침 판본 검수·현침 소비 보류 구현 / 개인발현 정책 미확정** | [계산 판본 검수](FOUNDATION_CALCULATION_POLICIES.md)·[시간대 수정](FOUNDATION_TIMEZONE_RESOLUTION.md), [앱 소비 검수](FOUNDATION_STRENGTH_CONSUMERS.md)·[미상 공통 보류](FOUNDATION_UNKNOWN_BIRTH_TIME.md), [자리배점 교정](FOUNDATION_STRENGTH_CORRECTION.md), [기간 판본 비교](FOUNDATION_MONTH_PERIODS.md), [현침살 판본 비교](FOUNDATION_HYEONCHIM.md)·[후보/발현 분리 소비계약](FOUNDATION_HYEONCHIM_CONSUMERS.md) | 강약 연지/시지 배점과 자시 처리부터 근거·현 실행값·영향 기록. 미결은 몰래 한쪽으로 고정하지 않음 |
-| F04 | **P2/D5 감사·통근4조건 출처검수 / 개인 적용 보류** | [P2/D5 감사](FOUNDATION_P2_D5.md)의 실패와 [통근4후보 검수](FOUNDATION_ROOTING_CANDIDATES.md)를 보존하고 기본풀이 대표 문장의 조건 범위 검수 | 판단 단계·근거·조건·예외·미상 구별. 인용 검사를 낮추지 않고 실제 재검증 |
+| F04 | **P2/D5 감사·통근4조건 출처검수 / 개인 적용 보류** | [P2/D5 감사](FOUNDATION_P2_D5.md)의 실패와 [통근4후보 검수](FOUNDATION_ROOTING_CANDIDATES.md)를 보존하고 [대표14항목](FOUNDATION_BASIC_SENTENCES.md)의 조건 범위를 검수. 개인전달 계약은 §5.1 | 판단 단계·근거·조건·예외·미상 구별. 인용 검사를 낮추지 않고 실제 재검증 |
 | F05 | F01~F04 결과 활용 | 기존 기본 풀이·60일주 검수에 연결 | 적용 문장·조건·근거 대응, 생시 미상·이견 보존. 대표 묶음과 전량 완료를 구분 |
 | F06 | 후속 | 시간·환경 확장, 관측·검토 라벨, 동일 자료 모델 비교·보정 | 문헌 재현과 실제 결과 검증 분리. 미학습 수치는 확률로 제시하지 않음 |
 
-### 5.1 다음 세션의 첫 실행 — 기본풀이 대표 문장 묶음 검수
+### 5.1 다음 세션의 첫 실행 — 검토항목 개인 전달 보류·문장별 출처 소비 계약
 
-1. 필독문서→[통근4후보 검수](FOUNDATION_ROOTING_CANDIDATES.md)→최신PR merged·head/merge/main tree를 대조한다. 미병합이면 최종검사·독립검토·병합부터 끝낸다. P2/D5와 통근4후보 검수를 반복하지 않는다.
-2. [기본풀이 계획](BASIC_READING_PLAN.md), `basic_reading_findings.json`, `dosa-app/kb/distilled/ilju/`의60파일·402초안 현재 수를 재확인한다. 과거 집계를 현재 실측으로 복사하지 않는다.
-3. `dosa-app/engine/src/report.js`→`app/src/data/saju.ts`에서 문장·발췌·출처가 실제 조립되는 경로를 추적한다. 첫 출처를 여러 문장에 붙이는 경로와 문장별 정확한 귀속을 구별한다.
-4. 오류 유형을 대표하는 작은 일주 묶음을 근거로 선정하고 문장→원문 구간→조건/예외/반론·관점·시점/미상 검토표를 만든다. 인사말/목차, 조건 손실, 출처 혼합을 분리하고 원문이 부족하면 보류한다. 작은 표본을60일주 완료로 세지 않는다.
-5. 통근 자료는 후보4·2문단·1게시글이며 개인효과/확률은 미확정이다. 비교 저자별 같은글자/오행/생조를 섞지 않는다. 기존 카탈로그·P2/D5·별칭·감사 해시를 덮거나 검수 없이 재생성하지 않는다.
-6. 앱 수정이 필요하면 실제KB·개인 입력·문장별 근거와 미상/현침 보류·강약교정·전후DOM/화면을 갖춘 별도 계약으로 진행한다. vendor 직접수정 금지. 기존 조건8·출처조회10/52와 새 문장 검토층을 구별한다.
-7. 임시기록→필수검사→독립검토→원격저장·병합·다음 인계를 남긴다. 기준13/14는 아직 미완료이고 관리진행률9/20=45%다. 공개거절된 STATUS/WORK_CHECKPOINT는 재전송하지 않고 최종영수증은 해당PR에 한 번 기록한다.
+1. 필독문서→[대표 문장 검수](FOUNDATION_BASIC_SENTENCES.md)→최신PR의 merged·head/merge/main tree를 대조한다. 미병합이면 검사·독립검토·병합부터 마친다. 통근/대표14항목 원문검수를 반복하지 않는다.
+2. `data/basic_sentence_review.json`의14항목·20구간과 `data/basic_sentence_consumers.json`의6입력/미상1·발췌 순서를 읽는다. 12문자열+견해그룹2이며 성격은4/402·완전검수 일주0이다. 검토층은 앱에 아직 연결되지 않았다.
+3. 정본 `dosa-app/engine/src/report.js`→`app/src/data/saju.ts`→카드·도사한마디·상담·Brain의 실제 전달을 추적한다. 첫출처 대표 부착을 문장별 근거로 쓰지 않는다. 검토14항목의 개인전달을 보류하고 검수상태·조건·예외·원문 위치를 일관되게 전달하는 최소 계약을 정한다. 검수되지 않은 나머지초안의 처리범위도 명시한다.
+4. IN02의 다른기둥·IN04의 무신운·IN05의2020제목·OH04의가능표현/안정조건·JA04의원국/운미상을 보존한다. 견해그룹 한쪽만 제거해 합의를 만들지 않는다. 원문 존재를 개인적용 자격으로 승격하지 않는다.
+5. 현60개 증류는 존재한다. 메모리에서 갑자 증류만 제거하면 엔진 발췌는 목차/인사말이지만 현재 UI 일주분기는 표시하지 않는다. 이 잠재경로를 현재 화면 누출로 오보고하지 않는다.
+6. 앱을 고치면 정본수정→vendor sync, 실제KB·알려진입력·미상/현침보류·강약교정·전후DOM/PNG와독립검토를 갖춘다. 새 검토기는 report/saju 입력해시를 고정하므로 이전 감사 재현을 별도 판본으로 보존하고 해시만 덮지 않는다. 기존P2/D5·원문·그래프58/132/11·조건8·출처조회10/52는 보존한다.
+7. 임시기록→필수검사→독립검토→원격저장·병합·다음인계를 남긴다. 기준13/14/15는미완료·9/20=45%다. 공개거절 STATUS/WORK_CHECKPOINT는 재전송하지 않고 최종영수증은 PR에 한 번 기록한다.
 
 ```bash
-python3 docs/knowledge-model/rooting_candidate_review.py --check
-python3 -m unittest discover -s docs/knowledge-model -p 'test_rooting_candidate_review.py'
-python3 docs/knowledge-model/p2_d5_review.py --check
+python3 docs/knowledge-model/basic_sentence_review.py --check
+python3 -m unittest discover -s docs/knowledge-model -p 'test_basic_sentence_review.py'
+# 빌드KB와 앱 의존성 준비 후
+node docs/knowledge-model/measure_basic_sentence_consumers.mjs --check
 npm run verify
 ```
 
@@ -385,5 +386,22 @@ npm run verify
 ```bash
 python3 docs/knowledge-model/p2_d5_review.py --check
 python3 -m unittest discover -s docs/knowledge-model -p 'test_p2_d5_review.py'
+npm run verify
+```
+
+### 5.15 PR #209 뒤 실행(보존 이력) — 기본풀이 대표 문장 묶음 검수
+
+1. 필독문서→[통근4후보 검수](FOUNDATION_ROOTING_CANDIDATES.md)→최신PR merged·head/merge/main tree를 대조한다. 미병합이면 최종검사·독립검토·병합부터 끝낸다. P2/D5와 통근4후보 검수를 반복하지 않는다.
+2. [기본풀이 계획](BASIC_READING_PLAN.md), `basic_reading_findings.json`, `dosa-app/kb/distilled/ilju/`의60파일·402초안 현재 수를 재확인한다. 과거 집계를 현재 실측으로 복사하지 않는다.
+3. `dosa-app/engine/src/report.js`→`app/src/data/saju.ts`에서 문장·발췌·출처가 실제 조립되는 경로를 추적한다. 첫 출처를 여러 문장에 붙이는 경로와 문장별 정확한 귀속을 구별한다.
+4. 오류 유형을 대표하는 작은 일주 묶음을 근거로 선정하고 문장→원문 구간→조건/예외/반론·관점·시점/미상 검토표를 만든다. 인사말/목차, 조건 손실, 출처 혼합을 분리하고 원문이 부족하면 보류한다. 작은 표본을60일주 완료로 세지 않는다.
+5. 통근 자료는 후보4·2문단·1게시글이며 개인효과/확률은 미확정이다. 비교 저자별 같은글자/오행/생조를 섞지 않는다. 기존 카탈로그·P2/D5·별칭·감사 해시를 덮거나 검수 없이 재생성하지 않는다.
+6. 앱 수정이 필요하면 실제KB·개인 입력·문장별 근거와 미상/현침 보류·강약교정·전후DOM/화면을 갖춘 별도 계약으로 진행한다. vendor 직접수정 금지. 기존 조건8·출처조회10/52와 새 문장 검토층을 구별한다.
+7. 임시기록→필수검사→독립검토→원격저장·병합·다음 인계를 남긴다. 기준13/14는 아직 미완료이고 관리진행률9/20=45%다. 공개거절된 STATUS/WORK_CHECKPOINT는 재전송하지 않고 최종영수증은 해당PR에 한 번 기록한다.
+
+```bash
+python3 docs/knowledge-model/rooting_candidate_review.py --check
+python3 -m unittest discover -s docs/knowledge-model -p 'test_rooting_candidate_review.py'
+python3 docs/knowledge-model/p2_d5_review.py --check
 npm run verify
 ```
