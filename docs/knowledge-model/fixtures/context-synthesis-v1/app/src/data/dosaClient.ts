@@ -15,14 +15,6 @@ export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[
   return notices
 }
 
-/** Questions are a follow-up to a reading, never its preface. */
-export function readingFollowups(report: ReportBundle, lines: DosaLine[]): string[] {
-  if (hasUnknownBirthTime(report)) return []
-  const context = report.sections.find(s => s.id === 'context-reading')?.context
-  if (!context?.experienceQuestions?.some(q => lines.some(line => line.text === q.prompt))) return []
-  return context.blocks.find(block => block.label === '경험으로 확인할 부분')?.lines ?? []
-}
-
 /** 상담 화면과 통신을 분리한다. 엔진 재구축 시 ReportBundle 경계만 교체한다. */
 export async function requestDosaText(options: {
   topic: string
@@ -81,12 +73,7 @@ export async function requestDosaText(options: {
     // App-owned review status remains visible on success, cache hits and free questions.
     const presented = withoutCitationLines(text)
     if (!presented || basicSentenceMatches(presented).length) return null
-    const followups = readingFollowups(options.report, safeLines)
-    // A provider may copy a question into an early paragraph or combine it with
-    // narration. Normalize our exact owned lines before the UI splits sentences.
-    const body = followups.reduce((text, line) => text.replaceAll(line, ''), presented).trim()
-    if (!body) return null
-    return [...notices.filter(note => !body.includes(note)), body, ...followups].join('\n\n')
+    return [...notices.filter(note => !presented.includes(note)), presented].join('\n\n')
   } catch {
     return null
   } finally {

@@ -79,7 +79,6 @@ export interface ReportBundle {
     id: string
     title: string
     lines?: string[]
-    context?: import('./vendor/contextReading.js').ContextReading
     block?: { distilled?: any; excerpts?: Array<{ paras: string[]; source: { doc: string; title: string }; totalParas: number }>; empty?: boolean }
     [k: string]: unknown
   }>

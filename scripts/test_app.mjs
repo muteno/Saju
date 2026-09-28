@@ -100,9 +100,9 @@ test('PR211의 문장14항목 고정 전달 계약을 재현한다', () => {
 })
 
 let moduleId = 0
-test('원국 조건 종합풀이의 미상·계산·현재 카드/상담 전달을 검증한다', () => {
+test('PR216 원국 조건 종합풀이의 원래 측정과 전달을 재현한다', () => {
   const env = { ...process.env }; delete env.NODE_TEST_CONTEXT
-  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_context_reading.mjs'], {
+  const output = execFileSync(process.execPath, ['docs/knowledge-model/frozen_context_synthesis.mjs', '--test', '--test-reporter=tap', 'docs/knowledge-model/test_context_reading.mjs'], {
     cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 150000,
     stdio: ['ignore', 'pipe', 'pipe'], env,
   })
@@ -241,4 +241,13 @@ test('API의 잘못된 upstream 응답과 취소는 안전하게 폴백한다', 
   const ctrl = new AbortController(); ctrl.abort()
   globalThis.fetch = () => { throw Error('cancelled request must not call provider') }
   assert.equal((await api({ topic: '성격' }, ctrl.signal)).status, 502)
+})
+
+test('월·시 조합 종합문과 경험 질문의 현재 전달을 검증한다', () => {
+  const env = { ...process.env }; delete env.NODE_TEST_CONTEXT
+  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_context_synthesis.mjs'], {
+    cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 150000,
+    stdio: ['ignore', 'pipe', 'pipe'], env,
+  })
+  assert.match(output, /^# tests 7$/m); assert.match(output, /^# pass 7$/m); assert.match(output, /^# skipped 0$/m)
 })

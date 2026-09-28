@@ -9,7 +9,7 @@ export interface ContextMarker {
   principal: boolean;
 }
 export interface ContextReading {
-  policy: 'natal-work-context-v2';
+  policy: 'natal-work-context-v1';
   kind: 'conditional_structural_reading';
   dayPillar: string;
   groups: Record<string, { surface: ContextMarker[]; hidden: ContextMarker[];
@@ -17,7 +17,6 @@ export interface ContextReading {
   conditions: Record<string, 'met' | 'unmet'>;
   monthMain: ContextMarker;
   hourStem: ContextMarker;
-  experienceQuestions: { id: string; prompt: string; clarifies: string }[];
   blocks: { label: string; lines: string[] }[];
   note: string;
   predictionEnabled: false;
