@@ -1,13 +1,13 @@
 # 기초 보강 인계 — GitHub에서 이어가는 시작점
 
-갱신: 2026-09-28 · 사용자 원문 [59](USER_INTENT_LOG.md)
-직전 PR #203 merged, main `006d06c7bb0ee5281ebe94a170688709c48094db`와 검증 tree `9af1bfbbd1dd8167ec854a0d38df74e779346fb2` 일치를 확인했다.
-현재 작업: [강약 자리배점 최소 교정](FOUNDATION_STRENGTH_CORRECTION.md). 연지10·시지15로 교정하고 기존 도움·득세·분류는 앱 잠정 기준으로 구별한다. 미상 보류와 과거 감사 판본은 유지한다.
-**다음 첫 작업은 §5.1의 월률분야·사령 기간 판본 검수다.** 이번 최종검사·병합은 실제 PR영수증을 먼저 확인한다.
+갱신: 2026-09-28 · 사용자 원문 [60](USER_INTENT_LOG.md)
+직전 PR #204 merged, main `b83f8de4cd74c34a549644607f3789e58e7b90af`와 검증 tree `e093279e8ba8d8de5a412423331c1ddd3ece6f5d` 일치를 확인했다.
+현재 작업: [월률분야·사령 기간 판본 검수](FOUNDATION_MONTH_PERIODS.md). 출처별 기간3판본·원문23구간과 합성312행 비교. 실제 절입/출생 계산과 개인 적용은 보류한다.
+**다음 첫 작업은 §5.1의 현침살 판본·자리/발현 조건 검수다.** 이번 최종검사·병합은 실제 PR영수증을 먼저 확인한다.
 
 2026-09-23 후속: [F01 검토표](FOUNDATION_REVIEW.md)·[판정과 원문 위치](data/foundation_taxonomy_review.json)·[전후 측정](data/foundation_match_measurement.json)을 읽는다. PR #183의 채택66행 중65행은 **기존 판본 보존**이며 새 의미 승인이 아니다. 당시 실제 추가는 `부부 사이`1개였고 PR #187의 상극3개를 포함한 현재 누적은4개다. 부부관계·부부간은 천간합/육합 비유와의 구분 문제로 보류했다. 별칭 판정·P2 재생성 전에 D5 인용 자격을 별도 검수해야 한다. 총칭·넓은 구어와 기존 별칭의 다른 뜻은 남아 있으며 F01 전체 통합 완료로 해석하지 않는다. 아래 §3의 수치는 이전 스냅샷으로 보존한다.
 
-현재 작업의 중단 재개는 [자리배점 교정](FOUNDATION_STRENGTH_CORRECTION.md)와 실제 PR 상태를 먼저 확인한다. [통합 체크포인트](WORK_CHECKPOINT.md)는 PR #197까지의 보존 이력이다. 이전 자동 승인 검토에서 공개가 거절된 STATUS/체크포인트는 재전송하지 않는다. 사용자의 원문36에 따른 임시 작업기록은 로컬에 남기며 기존 두 파일의 갱신은 미이행이다. 기능 범위·다음 작업은 이 인계, 실제 검사·병합 완료는 PR 영수증으로 확인한다.
+현재 작업의 중단 재개는 [기간 판본 검수](FOUNDATION_MONTH_PERIODS.md)와 실제 PR 상태를 먼저 확인한다. [통합 체크포인트](WORK_CHECKPOINT.md)는 PR #197까지의 보존 이력이다. 이전 자동 승인 검토에서 공개가 거절된 STATUS/체크포인트는 재전송하지 않는다. 사용자의 원문36에 따른 임시 작업기록은 로컬에 남기며 기존 두 파일의 갱신은 미이행이다. 기능 범위·다음 작업은 이 인계, 실제 검사·병합 완료는 PR 영수증으로 확인한다.
 
 ## 1. 지금 무엇을 하고 있나
 
@@ -66,31 +66,30 @@
 |---|---|---|---|
 | F00 | 인계 자료 보존 완료 / 전체 자산 대조는 미완료 | 의도·청사진·감사·선택 판본 차이 연결 | GitHub만으로 이 표와 실제 차이 자료를 찾을 수 있음 |
 | **F01** | **차이76개·검색 표현4개 적용 / 전체 의미 검수 미완료** | [검토표](FOUNDATION_REVIEW.md)에서 합·충 후속 검토 및 보충 제외는 [후속 문서](FOUNDATION_GENERAL_TERMS.md) 참조. 총칭 실행 등재는 보류하고 [통근 후속](FOUNDATION_ROOTING.md) 원문/가상 측정 완료·추가0. [지장간 겹침/단계 명칭 후속](FOUNDATION_HIDDEN_STAGES.md)에서4행 복구·원문 검수 후 [월률분야·사령](FOUNDATION_MONTH_COMMAND.md) 원문/검색 검수·사령부28행 제외. 사령관·단계 오탐은 보류 조건 유지. 긴 별칭 추가 시 오행·자리 노드 보존 확인 | 현재67채택(65기존 보존)·5분리·4보류. 상극행은3개 부분 채택/1개 보류. 후속 채택마다 원문·반례·적용 범위·회귀 검사 연결. 승인되지 않은 이름을 실행에 섞지 않음 |
-| **F02** | **31행 반영표·후속6검수 / 잔여 의미 검수 진행** | [첫 묶음](FOUNDATION_F02_SIX.md): 실행277개, 원문24구간·별도 검사. 여섯 주제 조회 뒤 [31행 반영표](FOUNDATION_GAP31.md)·후속 정표기4/공망별칭2를 반영해 검색281개. [부분형 후속](FOUNDATION_PARTIAL.md)에서 검색282개. [활인업·재고귀인 조회](FOUNDATION_LIVELIHOOD_LINKS.md) 뒤 [진도화·가도화 비교](FOUNDATION_PEACH_LINKS.md)로10주제 연결. F03 판본 비교·시간대 수정·강약 소비 검수·자리배점 교정 뒤 §5.1의 기간 판본 검수 | 원문·범위·검색 영향·기존 개념 보존 확인. 용어 등재와 관계/조건/생성본 적재를 구분 |
-| F03 | **강약 자리배점 교정·미상 보류 적용 / 기간·현침살 등 남음** | [계산 판본 검수](FOUNDATION_CALCULATION_POLICIES.md)·[시간대 수정](FOUNDATION_TIMEZONE_RESOLUTION.md), [앱 소비 검수](FOUNDATION_STRENGTH_CONSUMERS.md)·[미상 공통 보류](FOUNDATION_UNKNOWN_BIRTH_TIME.md), [자리배점 교정](FOUNDATION_STRENGTH_CORRECTION.md), 다음은 기간 판본 검수 | 강약 연지/시지 배점과 자시 처리부터 근거·현 실행값·영향 기록. 미결은 몰래 한쪽으로 고정하지 않음 |
+| **F02** | **31행 반영표·후속6검수 / 잔여 의미 검수 진행** | [첫 묶음](FOUNDATION_F02_SIX.md): 실행277개, 원문24구간·별도 검사. 여섯 주제 조회 뒤 [31행 반영표](FOUNDATION_GAP31.md)·후속 정표기4/공망별칭2를 반영해 검색281개. [부분형 후속](FOUNDATION_PARTIAL.md)에서 검색282개. [활인업·재고귀인 조회](FOUNDATION_LIVELIHOOD_LINKS.md) 뒤 [진도화·가도화 비교](FOUNDATION_PEACH_LINKS.md)로10주제 연결. F03 판본 비교·시간대 수정·강약 소비 검수·자리배점 교정·기간 판본 검수 뒤 §5.1의 현침살 검수 | 원문·범위·검색 영향·기존 개념 보존 확인. 용어 등재와 관계/조건/생성본 적재를 구분 |
+| F03 | **강약 자리배점 교정·미상 보류 / 기간 비교·개인적용 보류 / 현침살 남음** | [계산 판본 검수](FOUNDATION_CALCULATION_POLICIES.md)·[시간대 수정](FOUNDATION_TIMEZONE_RESOLUTION.md), [앱 소비 검수](FOUNDATION_STRENGTH_CONSUMERS.md)·[미상 공통 보류](FOUNDATION_UNKNOWN_BIRTH_TIME.md), [자리배점 교정](FOUNDATION_STRENGTH_CORRECTION.md), [기간 판본 비교](FOUNDATION_MONTH_PERIODS.md), 다음은 현침살 검수 | 강약 연지/시지 배점과 자시 처리부터 근거·현 실행값·영향 기록. 미결은 몰래 한쪽으로 고정하지 않음 |
 | F04 | F01·F03 뒤 필요한 범위 | 기존 P2 12개 차이와 조건 후보의 첫 묶음을 검토 | 판단 단계·근거·조건·예외·미상 구별. 인용 검사를 낮추지 않고 실제 재검증 |
 | F05 | F01~F04 결과 활용 | 기존 기본 풀이·60일주 검수에 연결 | 적용 문장·조건·근거 대응, 생시 미상·이견 보존. 대표 묶음과 전량 완료를 구분 |
 | F06 | 후속 | 시간·환경 확장, 관측·검토 라벨, 동일 자료 모델 비교·보정 | 문헌 재현과 실제 결과 검증 분리. 미학습 수치는 확률로 제시하지 않음 |
 
-### 5.1 다음 세션의 첫 실행 — 월률분야·사령 기간 판본 검수
+### 5.1 다음 세션의 첫 실행 — 현침살 판본·자리/발현 조건 검수
 
-1. 필독문서→[자리배점 교정](FOUNDATION_STRENGTH_CORRECTION.md)→실제 PR/main/tree를 대조한다. 미병합이면 최신head 검사·검토·병합부터 마치고 완료한 자리교정을 반복하지 않는다.
-2. [월률분야·사령 검수](FOUNDATION_MONTH_COMMAND.md) §1~3과 [지장간 단계 검수](FOUNDATION_HIDDEN_STAGES.md)를 읽는다. `month_board_scope`, `month_choco_period`, `month_sagong_wu_table`, `month_sagong_deuknyeong`, `month_choco_other_positions`, `month_sagong_other_stems`의 실제 원문·인접 문맥을 다시 확인한다. 존재하지 않는76차이 행이나 판본 포인터를 만들지 않는다.
-3. 저자별 기간표·월지/다른 자리·본기 구성·사령/득령을 분리한 새 검토표를 만든다. 오10/10/10 대10/9/11, 묘33/67 대30/60, 지장간 구성과 작용력 수치를 혼합하지 않는다.
-4. 실제 절입시각·출생 절대시각/시간대·경과일·시작/끝 포함·30일 환산이 원문에 있는지 확인한다. 부족하면 기간 판정과 개인 적용을 보류하고 근거와 재개조건을 기록한다. 기존 `HIDDEN_STEMS`의 마지막 본기 계약을 기간·강약·확률로 바꾸지 않는다.
-5. 근거가 충분한 최소 범위에서 같은 입력의 출처별 후보/미상 차이를 재현한다. 출처 미확정 단일정책을 앱에 자동 적용하지 않는다. 새 측정은 별도 판본으로 두고 F03/시간대/48행/자리교정 원본·해시를 보존한다.
-6. 생시 미상 `withhold-unverified-v1`과 알려진입력 자리배점 교정 계약을 유지한다. 후보수를 확률분모로 쓰거나 연구v2를 그대로 브라우저에 이식하지 않는다.
-7. 임시기록→필수검사→독립검토→원격저장·병합·다음 현침살 판본 재개점. 공개가 거절된 STATUS/WORK_CHECKPOINT는 재전송하지 않는다. 현침살→F04 P212개/D5→기본풀이와 실제학습은 후속이다.
+1. 필독문서→[기간 판본 검수](FOUNDATION_MONTH_PERIODS.md)→실제 PR/main/tree를 대조한다. 미병합이면 최신head 검사·독립검토·병합부터 마치고 기간 검수를 반복하지 않는다.
+2. `dosa-app/engine/src/sinsal.js`의 `HYEONCHIM_STEM={0,7}`·`HYEONCHIM_BRANCH={3,6,7,8}`과 주석, `tables.js`의 천간/지지 인덱스, report와 앱 소비처를 함께 읽는다. 갑/신(辛)과 묘/오/미/신(申)을 구별하고, 기록된 판본 차이를 실제 원문에서 확인한다.
+3. 보존 보드→블로그/전사에서 현침살의 구성·자리·동주/인접·개수·원국/운·발현 조건과 부정/예외를 검수한다. 단순 글자 존재와 개인 성향/사건을 분리한다. 기존 사전 등재가 규칙 의미 검수 완료는 아니다. 미검수 ASR을 교정된 정답으로 쓰지 않는다.
+4. 검수한 출처별 판본을 실제 엔진 조건과 같은 입력으로 대조한다. 출처가 충분하지 않으면 보류하며 다른 저자의 조건을 임의로 합치지 않는다. 앱 교정이 필요하면 실제 소비범위·미상 보류·전후 DOM/화면·독립검토까지 갖춘 별도 변경 계약으로 진행한다. vendor 직접 편집 금지.
+5. 이번 기간 비교는 실제 절입/출생 계산이 아니다. 기간정책을 재개하려면 명시 시간대/절입·기산·끝점 포함·30일 환산/초과 처리·해당 판본의 천간 대응과 저자 반론을 확보한다. 원문23구간·312행·기존 F03/시간대/48행/자리교정 해시는 보존한다.
+6. 미상 `withhold-unverified-v1`·강약 연지10/시지15와 잠정 분류의 구분을 유지한다. 후보 수를 확률분모로 쓰지 않는다. F01/F02 보류·F04 P2 12개/D5·기본풀이·실제학습은 후속이다.
+7. 임시기록→필수검사→독립검토→원격저장·병합·다음 재개점. 공개가 거절된 STATUS/WORK_CHECKPOINT는 재전송하지 않고 최종 영수증은 해당 PR에 한 번 기록한다.
 
 ```bash
-npm run build
-node docs/knowledge-model/measure_strength_correction.mjs --check
-node --test docs/knowledge-model/test_strength_correction.mjs
-node --test docs/knowledge-model/test_unknown_birth_time.mjs
+python3 docs/knowledge-model/month_period_review.py --check
+python3 -m unittest discover -s docs/knowledge-model -p 'test_month_period_review.py'
+rg -n '현침|HYEONCHIM' dosa-app/engine/src app/src
 npm run verify
 ```
 
-과거소비5·현재미상7·새교정7검사의 실제 실행·통과·스킵0을 확인한다. 검색282·기본그래프58/132/11·조건8·출처조회10/52/12/9/21·학습적격0·확률null 유지. 보드 자리배점과 잠정 분류 전체를 구분하고 실제 검사·병합은 PR영수증을 따른다.
+현재 기간회귀10개·312합성행, 과거소비5·미상7·자리교정7의 실제실행/스킵0을 확인한다. 검색282·기본그래프58/132/11·조건8·출처조회10/52/12/9/21·학습적격0·확률null은 그대로다. 최종검사·병합은 PR영수증이정본이다.
 
 ### 5.2 PR #184 당시 실행 순서 — 합·충 총칭 2개(보존 이력)
 
@@ -297,3 +296,23 @@ npm run verify
 ```
 
 과거 앱감사는 고정판본에서5실행/5통과/0스킵, 현재 계약은7실행/7통과/0스킵을 강제한다. F01 76/271/4/176·검색282·기본그래프58/132/11·조건8·출처조회10/52/12/9/21·학습적격0·확률null 유지. 최종검사·병합은 PR영수증이정본이다.
+
+### 5.10 PR #204 뒤 실행 — 월률분야·사령 기간 판본 검수(보존 이력)
+
+1. 필독문서→[자리배점 교정](FOUNDATION_STRENGTH_CORRECTION.md)→실제 PR/main/tree를 대조한다. 미병합이면 최신head 검사·검토·병합부터 마치고 완료한 자리교정을 반복하지 않는다.
+2. [월률분야·사령 검수](FOUNDATION_MONTH_COMMAND.md) §1~3과 [지장간 단계 검수](FOUNDATION_HIDDEN_STAGES.md)를 읽는다. `month_board_scope`, `month_choco_period`, `month_sagong_wu_table`, `month_sagong_deuknyeong`, `month_choco_other_positions`, `month_sagong_other_stems`의 실제 원문·인접 문맥을 다시 확인한다. 존재하지 않는76차이 행이나 판본 포인터를 만들지 않는다.
+3. 저자별 기간표·월지/다른 자리·본기 구성·사령/득령을 분리한 새 검토표를 만든다. 오10/10/10 대10/9/11, 묘33/67 대30/60, 지장간 구성과 작용력 수치를 혼합하지 않는다.
+4. 실제 절입시각·출생 절대시각/시간대·경과일·시작/끝 포함·30일 환산이 원문에 있는지 확인한다. 부족하면 기간 판정과 개인 적용을 보류하고 근거와 재개조건을 기록한다. 기존 `HIDDEN_STEMS`의 마지막 본기 계약을 기간·강약·확률로 바꾸지 않는다.
+5. 근거가 충분한 최소 범위에서 같은 입력의 출처별 후보/미상 차이를 재현한다. 출처 미확정 단일정책을 앱에 자동 적용하지 않는다. 새 측정은 별도 판본으로 두고 F03/시간대/48행/자리교정 원본·해시를 보존한다.
+6. 생시 미상 `withhold-unverified-v1`과 알려진입력 자리배점 교정 계약을 유지한다. 후보수를 확률분모로 쓰거나 연구v2를 그대로 브라우저에 이식하지 않는다.
+7. 임시기록→필수검사→독립검토→원격저장·병합·다음 현침살 판본 재개점. 공개가 거절된 STATUS/WORK_CHECKPOINT는 재전송하지 않는다. 현침살→F04 P212개/D5→기본풀이와 실제학습은 후속이다.
+
+```bash
+npm run build
+node docs/knowledge-model/measure_strength_correction.mjs --check
+node --test docs/knowledge-model/test_strength_correction.mjs
+node --test docs/knowledge-model/test_unknown_birth_time.mjs
+npm run verify
+```
+
+과거소비5·현재미상7·새교정7검사의 실제 실행·통과·스킵0을 확인한다. 검색282·기본그래프58/132/11·조건8·출처조회10/52/12/9/21·학습적격0·확률null 유지. 보드 자리배점과 잠정 분류 전체를 구분하고 실제 검사·병합은 PR영수증을 따른다.
