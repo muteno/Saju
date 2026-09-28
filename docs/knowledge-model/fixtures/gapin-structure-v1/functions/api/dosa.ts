@@ -6,7 +6,6 @@
 // 여기서 복제하지 않고 import(Pages Functions는 esbuild 번들이라 functions/ 밖 상대 import 허용).
 import { basicSentenceMatches, safeBasicSentenceParagraphs, BASIC_SENTENCE_NOTICE } from '../../dosa-app/engine/src/basicSentences.js'
 import { PERSONA } from '../../app/src/data/chefs'
-import { withoutCitationLines } from '../../app/src/data/readingPresentation'
 
 interface Env {
   /** 레거시 API 키 경로 — OAuth 체인이 하나도 없을 때의 폴백 */
@@ -83,14 +82,14 @@ const MAX_GROUND_TEXT = 2000
 const NEUTRAL_PERSONA = `당신은 연식당의 사주 도사입니다. 따뜻하고 담백한 존댓말로, 미연시풍 대화 화면에서 사용자의 사주를 풀이합니다.`
 
 const CORE_RULES = `서술 표준 6원칙(반드시 지킬 것):
-1. 일상어 풀이가 본문 — 전문용어는 생활어로 설명. "일지 비견이라…"처럼 전문용어 나열로 문장을 시작하지 말 것
+1. 일상어 풀이가 본문 — 전문용어는 비유·생활어로 번역 (예: 일지 = '나의 안방'). "일지 비견이라…"처럼 전문용어 나열로 문장을 시작하지 말 것 — 용어는 근거줄로
 2. 생활 장면으로 번역 — 언제, 어떤 상황에서, 어떻게 나타나는지
 3. 시기 구체화 — '유년'이 아니라 '2029년 기유년' (엔진이 환산). 시기는 나이("28세 무렵")가 아니라 연도("2021년 무렵")로 말할 것(만나이·세는나이 혼동 방지)
 4. 완충 요인과 대처까지 — "그래서 어떻게 하면 되는지"에 반드시 답할 것
-5. 출처·자료명·저자명·문단번호·인용표시·근거줄은 답변에 붙이지 마라. 판단에 필요한 조건과 한계만 쉬운 말로 설명하라
+5. 단락 끝에 ▸근거줄: 전문용어 + 출처(보드/문헌/엔진) 병기
 6. 단정 금지 — 경향 표현("~하기 쉽습니다", "패턴이 반복될 수 있습니다")
 
-6원칙과 캐릭터 말투가 부딪히면 **내용 규칙(조건 설명·경향 표현·대처 제시)이 우선**하고,
+6원칙과 캐릭터 말투가 부딪히면 **내용 규칙(근거 병기·경향 표현·대처 제시)이 우선**하고,
 어미·말끝만 캐릭터 말투를 따른다(예시 어미의 존댓말은 캐릭터에 맞게 바꿔도 된다).
 
 검수 상태: 개인 적용 보류 문장은 재구성하거나 확정하지 마라. 문장별 귀속 미검수 자료명은 특정 문장의 검증된 출처로 인용하지 마라. 문헌 초안은 개인에게 확인된 사실이 아니다.\n\n절대 규칙: 아래 '근거 자료' 밖의 주장은 절대 하지 마라. 근거에 없으면 "소장 문헌에 없다"고 말하라.
@@ -129,7 +128,13 @@ function buildUserMessage(body: DosaRequest): string {
     .map((g, i) => {
       const text = typeof g?.text === 'string' ? g.text.slice(0, MAX_GROUND_TEXT) : ''
       if (!text) return null
-      return `${i + 1}. ${text}`
+      const srcs = Array.isArray(g.grounds)
+        ? g.grounds
+            .filter((s) => s && (s.doc || s.title))
+            .map((s) => `${s.doc ?? ''}${s.doc && s.title ? ' · ' : ''}${s.title ?? ''}`)
+            .join(' / ')
+        : ''
+      return `${i + 1}. ${text}${srcs ? `\n   전달된 자료명(문장별 귀속 미검수): ${srcs}` : ''}`
     })
     .filter(Boolean)
     .join('\n')
@@ -204,9 +209,7 @@ async function callOnce(
     .join('\n\n')
     .trim()
   if (!text || basicSentenceMatches(text).length) return { ok: false, next: 'fallback' } // 거절·빈 응답 → 클라이언트 L3 폴백
-  const presented = withoutCitationLines(text)
-  if (!presented || basicSentenceMatches(presented).length) return { ok: false, next: 'fallback' }
-  return { ok: true, text: presented }
+  return { ok: true, text }
 }
 
 export async function onRequestPost(ctx: { request: Request; env: Env }): Promise<Response> {
