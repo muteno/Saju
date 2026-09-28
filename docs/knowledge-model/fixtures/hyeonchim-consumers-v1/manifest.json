@@ -1,0 +1,33 @@
+{
+  "commit": "41fbb1f8f3ad0bc07daffac8b8a4fc4ee960063b",
+  "files": [
+    {
+      "path": "dosa-app/engine/src/report.js",
+      "sha256_lf": "bc598498402c426afc1336b12f75051c72f8088a53a19fd03d59d6a6b20e02bc"
+    },
+    {
+      "path": "app/src/engine/vendor/report.js",
+      "sha256_lf": "bc598498402c426afc1336b12f75051c72f8088a53a19fd03d59d6a6b20e02bc"
+    },
+    {
+      "path": "app/src/data/saju.ts",
+      "sha256_lf": "978e285afbb67677af55a4562288c871a16d9be2697b1faf2193f317ca7f6f51"
+    },
+    {
+      "path": "docs/knowledge-model/test_hyeonchim_review.py",
+      "sha256_lf": "734385e0390d5434f1f84a45b4b437de63aeb75a668d2d9fa624eecf759f0380"
+    },
+    {
+      "path": "app/src/data/dosaTopics.ts",
+      "sha256_lf": "198924572a41febae32cf81ae7e39c9bd5687867df8196080cdc6b0d32eb8172"
+    },
+    {
+      "path": "app/src/engine/brain.js",
+      "sha256_lf": "6c99ebbeae23eb4c5cedc621f2cda31d0b4cc9a84e25bd35de124976c4b57c18"
+    },
+    {
+      "path": "app/src/components/BrainPanel.tsx",
+      "sha256_lf": "848cc7898984c7cf1c30843dbb67b1c041f020c02e0a17b8f62f945e27afe7c0"
+    }
+  ]
+}

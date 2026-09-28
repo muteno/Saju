@@ -162,8 +162,7 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; prof
     }
     if (blocks.length) {
       blocks[blocks.length - 1].source = srcOf(d.sources?.[0])
-      cards.push({ id: 'ilju', title: `일주 이야기 — ${d.title ?? ''}`, blocks,
-        ...(byId('ilju')?.block?.withheld ? { note: byId('ilju').block.withheld.note } : {}) })
+      cards.push({ id: 'ilju', title: `일주 이야기 — ${d.title ?? ''}`, blocks })
     }
   }
 
@@ -196,20 +195,11 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; prof
 
     const sinsal = byId('sinsal')
     if (sinsal?.blocks?.length) {
-      // A character candidate is never a personal interpretation or a generic KB excerpt.
-      // Keep its deferral visible even when the normal excerpt list reaches five blocks.
-      const picked: CardBlock[] = sinsal.blocks
-        .filter((b: any) => b.key === 'sinsal/현침살' && b.observation?.status === 'candidate_only')
-        .map((b: any) => ({ label: b.label, lines: [b.note] }))
-      let excerptCount = 0
+      const picked: CardBlock[] = []
       for (const b of sinsal.blocks) {
-        if (b.key === 'sinsal/현침살') continue
-        if (excerptCount >= 5) break
         const pick = pickExcerpt(b.excerpts, 1)
-        if (pick) {
-          picked.push({ label: b.label, lines: pick.paras, source: pick.src })
-          excerptCount++
-        }
+        if (pick) picked.push({ label: b.label, lines: pick.paras, source: pick.src })
+        if (picked.length >= 5) break
       }
       const shown = new Set(picked.map((b) => b.label))
       const restChips = sinsal.blocks.map((b: any) => b.label).filter((l: string) => !shown.has(l))

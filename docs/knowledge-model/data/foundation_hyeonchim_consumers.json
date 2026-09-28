@@ -1,0 +1,5856 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "41fbb1f8f3ad0bc07daffac8b8a4fc4ee960063b",
+  "evaluated_at": "2026-09-28T00:00:00Z",
+  "policy": "hyeonchim-candidate-withhold-v1",
+  "scope": "110 synthetic calendar inputs, not observed people or personal accuracy",
+  "assets": {
+    "pointer_sha256": "95a2485722c02af8de0677e4dc625504feeda0405844c765cc8b18f95d28066c",
+    "kb_sha256": "b5b98b98c6e49f1716e05d7fdd7431b5073084e4c4b00fa3dc1be61292a34f05",
+    "brain_sha256": "51ab4aa0711196dbfed744d6bf1587c009fedbca5ecf104449ecca8f8f433f66"
+  },
+  "lookup": {
+    "key": "sinsal/현침살",
+    "chain": [
+      "sinsal/신살이란?"
+    ],
+    "index": [
+      {
+        "key": "sinsal/신살이란?",
+        "entries": [
+          {
+            "key": "신살 글모음#0019",
+            "doc": "신살 글모음",
+            "title": "신살이란? (PART 1)"
+          },
+          {
+            "key": "신살 글모음#0020",
+            "doc": "신살 글모음",
+            "title": "신살이란? (PART 2)"
+          }
+        ]
+      }
+    ],
+    "distilled": null,
+    "brain_node": null
+  },
+  "sources": [
+    {
+      "path": "dosa-app/engine/src/report.js",
+      "sha256_lf": "7767596cd54da5fabf6987f32b3044db2baf29c0c7909c5139a525d5d032fc90"
+    },
+    {
+      "path": "app/src/engine/vendor/report.js",
+      "sha256_lf": "7767596cd54da5fabf6987f32b3044db2baf29c0c7909c5139a525d5d032fc90"
+    },
+    {
+      "path": "app/src/data/saju.ts",
+      "sha256_lf": "3a1369f8c9df583e7193020d0b3bc1951231fd615311e24cd7e007a98910dde8"
+    },
+    {
+      "path": "app/src/data/dosaTopics.ts",
+      "sha256_lf": "efb8381e6871bf5bfd184405644250e64cff35ac82dc4e5afb4317b07ed7bdc3"
+    },
+    {
+      "path": "app/src/engine/brain.js",
+      "sha256_lf": "683f4e37dd99a7619629ecc97069ae3af6c6f9ea117a6543d05aa3e4bafe767a"
+    },
+    {
+      "path": "app/src/components/BrainPanel.tsx",
+      "sha256_lf": "1a30ae73610c2852eb13782222103a477efc4ce1828e9efc94851836ee44f02c"
+    },
+    {
+      "path": "docs/knowledge-model/measure_hyeonchim_consumers.mjs",
+      "sha256_lf": "4058a020aa04265f2ead839c02599754b1c8cc158e01fe03337695e4ae891c61"
+    }
+  ],
+  "rows": [
+    {
+      "id": "known-extreme-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "d7d9f8f471bc39d3138b591e27090b58560c442fa3b79939e93c94f3dc3e681d",
+      "after_sha256": "a264966732edcb089845e53fc97bd2e989ac91b306e41d101b868fda296d693a",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-extreme-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "51a35805c5fdb98ea842b479775c550a8d8ddf04a198f8c760a95ad268990992",
+      "after_sha256": "193aab28c4041642345918cad55fcfe75b89a52bbe1683a812acd55d4d7900e5",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-extreme-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "caf14cbfebaa3a411d326e1dd4c0031e4617ec95540c8558555100b94c9913a1",
+      "after_sha256": "23dbc863180da27dd0bc50339c1f52c61b9addbaf56e7d4dca9835c58e113bbf",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-extreme-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "55d0512134c8497848bdc13cc62440d56695e3bde292a307194692d5e7c34cce",
+      "after_sha256": "e13da9326e40e5e4c5e1329ffa5211e93624bf308382b648c5c3be3cdcc01638",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-strong-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "未"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "8380ef4368d7acfe3a550bd0f4c320d7e9fb1129eceae450a142fba4ef5962c8",
+      "after_sha256": "9713ab78b19d512d598b1257c4004450f9604aff6dfb0ff0989eff3738aea628",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-strong-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "未"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "1dfd890d9d2274567f07766173c51ed3cd5cdb443413ac5a885289852c9855a0",
+      "after_sha256": "78c9f89b9d9893af4ce946ca90acb94b2e5484605be56b1c77f214155ddd802a",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-strong-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "未"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "1f2c3e3d8d1213694f540348cfbc2ad0d4a61ad295882a80ca33fdad8837f0e5",
+      "after_sha256": "4faa9ec7c6970f3b2c765fbea11860816e1eec4aa2e0185a7a9eb91aab0037da",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-strong-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 14,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "未"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "aad01c23618aa166dcd8c052fc1f6caef93d305ef2dcd969148ee045d3ab1d94",
+      "after_sha256": "11deddc10691aebe58234370f78cf314c294978e6c5a68d080ec7713eeda17b5",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-strong-up-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "申"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/임신",
+          "topic": "현침살",
+          "count": 3,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "2280131ef14663e3bc96845725e8b1784930cb7bf73ce288bae5044ca09516e8",
+      "after_sha256": "3e089549a785143c17ce02fc807c768403d9a34722015438cc3dd29828a45e3b",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "辛"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "未"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/신미",
+          "topic": "현침살",
+          "count": 1,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 8,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "b6a1bbce946a8879c8016d7e8ddc4d0d79636ca84e0d72a713ee1676bcb14570",
+      "after_sha256": "c4ba0cdd8c94cf7a42cacb5180bae69d5d6a74010938def170d83a726e190c0a",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "known-strong-up-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "申"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/임신",
+          "topic": "현침살",
+          "count": 3,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "eb17e4466fe4474b07c27a006588f6ad3ecc5aedb7df40bc64785251c71c6824",
+      "after_sha256": "527512c4551b0d33609be10386b1d2c435320ff027537368605ec8b3263c6238",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "known-strong-up-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "申"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/임신",
+          "topic": "현침살",
+          "count": 3,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "489aa0dd23294c6081e7eb9450f9d0c5ad1a2f46733252fc97e834d99e57cf8a",
+      "after_sha256": "12b960ed06a30cfcbb2f4e827629b0baf3b2e893dfd41380b32ecd4d7d6e990b",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "known-weak-down-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          }
+        ],
+        "markerCount": 1,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 5,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "09722205fff30f2005f1cbf1a1ed15d62adb77f68b6dda8168cc4a4c2dbb67ee",
+      "after_sha256": "315777ccc48a4d28c346731977c234c26051116b29666ce4eadabf2a0fef686a",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-weak-down-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          }
+        ],
+        "markerCount": 1,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "9f912d10fc8705a3200a5db99cbc5ed52b8683b1d035156ce2b16659e749e4cb",
+      "after_sha256": "6edd906b5fac7143f5e20b3eb2e1877cae818938a8db66e45be046a53602ee49",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-weak-down-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          }
+        ],
+        "markerCount": 1,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 5,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "c767d7ee78e40906d8d73bd0b497a8b53ade78d3c95e215f218fbbd71f71c60e",
+      "after_sha256": "edc49b1b87169dbcfb1d49cf3d0fecf7c6b15dd89eded7c9275ef383f28945ec",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-weak-down-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 0,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          }
+        ],
+        "markerCount": 1,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 5,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "3508b73d9d415f7db8044c5e2f6d1e900185378cbe961ed60a307949b43491bc",
+      "after_sha256": "e89735e8dcffb9ee39e18870b90fa28192ccfd85434258733ef68d295afd0097",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-weak-up-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "午"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "申"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 12,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "9084896df6e9b3b1fd395a2fed3b36d1a81b8369e31358b4412d102d6e6b2c7a",
+      "after_sha256": "1966dfa1ad79c918d1d879b5163c571ab81dd011a1f34eb1bb09f4d53e850e4b",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-weak-up-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "午"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "申"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 12,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "d96ab84215555ac906eb8fd601f6a5187eded75fcac386341c60c7b5affb1638",
+      "after_sha256": "b15c480d92cfb4cd5347caca546c0cae0e9b69e2f7222b0dd6d431280f200ae9",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-weak-up-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "午"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "申"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 12,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "5c0b3e08d071d0f13756282ddb47639a9ab5bb42c706dacf05186c3869120eca",
+      "after_sha256": "8c7ed059e4ae8d52010a1fb9f9c93f6e9356d28035d76458b68d2a2c60c973f9",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-weak-up-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 16,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "午"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "申"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 12,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "87193eec68c5bb149fb993880ad920554639b11f0c5617b7a1ebcaa9ca0df5c1",
+      "after_sha256": "8aa2b45e0e1e2bbfb14a287506c409164736715b7f726f61f56e0e44b1d067f4",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-extreme-up-solar-midnight23",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "d118a0a448092b1eaf6c87cc9a3f4e4f01b22c0b0fc3f85ae83a66a227c4b8b3",
+      "after_sha256": "c35d62ff5b6f08c89e90b4930b496867af9bcf850a438fbd58a74277de4ace61",
+      "changed_paths": [
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류"
+      ]
+    },
+    {
+      "id": "known-extreme-up-solar-keepDay",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "05a2e4d8aeafc7400c302bf115c5647c374fddb7be0323264a6ca83588e368a5",
+      "after_sha256": "e6bd7d5ffe0d66ae9039e54fd623a57d0b503ca9af3299c56f49492437440542",
+      "changed_paths": [
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류"
+      ]
+    },
+    {
+      "id": "known-extreme-up-civil-midnight23",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "387e390388c8cd688aa20cef23b251b2cd8ce8b3a272b6165e79b8afa3c4c575",
+      "after_sha256": "fe27b0a03bc7a24d0c22dd067e484ec93442670eeadb22f73c1db38a30613166",
+      "changed_paths": [
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류"
+      ]
+    },
+    {
+      "id": "known-extreme-up-civil-keepDay",
+      "input": {
+        "year": 1989,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "7fc313df0eb6533cf60aef4a2a6a094042a7d4ce952c2a4b4dffc0cc6eb8e44d",
+      "after_sha256": "058300d10394a682471d9d1260778cf34b1149042d6ef57dc04b8988e2d8b684",
+      "changed_paths": [
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류"
+      ]
+    },
+    {
+      "id": "known-zi-before-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "2524549481217bd9a921b38241d82e8bbb64192007aeb86c90f54dade9b0c18c",
+      "after_sha256": "5ca0e20a7264edcb62c38ca0b7b770202dd1d82a0ef288c61fead7c00da50dd5",
+      "changed_paths": [
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류"
+      ]
+    },
+    {
+      "id": "known-zi-before-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "3894a6906cbb81074813b0103a06cf903dece5e7c635d79493c7f32b97c9df4f",
+      "after_sha256": "f5f558879a1d1d27341e86377bd455f78b70ca9a504bddd4d6f560bcf06a35c8",
+      "changed_paths": [
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류"
+      ]
+    },
+    {
+      "id": "known-zi-before-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "卯"
+          }
+        ],
+        "markerCount": 1,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "a7eb262311f9bc53c7d1e285513991a86625abe07e65a45b9db67c5187a6fcdf",
+      "after_sha256": "5dc27de750a09750bd4b7a4a86e65de25240a0fba3f2bd743ec43911cde2d99c",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-zi-before-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 31,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "cff346e7404bf33d72beff85e3650038b299c4ae7902f91991721d7e89775272",
+      "after_sha256": "9e6e0eb38ebd1d14debee59d9de94a072a07641397af9096a51e04129d450112",
+      "changed_paths": [
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류"
+      ]
+    },
+    {
+      "id": "known-zi-after-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "卯"
+          }
+        ],
+        "markerCount": 1,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "2fe1baaac5afc45ba10f50ba3eb6279338f1aa8753ff38789be9302e5df8f644",
+      "after_sha256": "5213a8c711aa30f2f40cebde23fbadd1dced9b5db8b43a1a65fec3d9da3f7672",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-zi-after-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "f3ccbb7eb0561b5e46eebd76ffaa8c5a8a411bdb861f36db404d7ac11b5ddd6a",
+      "after_sha256": "e58cd08598d98053f1bf6fa5915547b30f9cdd6e4c4d8d794d5b8ced43557526",
+      "changed_paths": [
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류"
+      ]
+    },
+    {
+      "id": "known-zi-after-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "卯"
+          }
+        ],
+        "markerCount": 1,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "20b4831e14e262b19e3ee47f3b8bac9e9c481599b054622379e13b0c1c02aff5",
+      "after_sha256": "1127d0971a97c3746738a6939ea323fd0427a2af0eb4cb8f2b553ca765e9e767",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-zi-after-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": 23,
+        "minute": 32,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "2a2acea3b814ee473d90ad73d2ff6c5f9c0b193d2c02818260c55cbd90182b30",
+      "after_sha256": "6ec340c90cb0253730c1b420efb0623c10f9c90c95f77e7b9964f1c6374444c3",
+      "changed_paths": [
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류"
+      ]
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "申"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "cb6e0e184f88caf01c337fe488d26909f8ee081fb08696576469663c70467ff7",
+      "after_sha256": "2472f7e718d93f5ead799b86a2c109ead831119ab22abe38eed0c9cab6d5793a",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "申"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "e38be07ee7554e61d050d78ea0d5fa6727d412c75abf599a7aa5f339947ec1f6",
+      "after_sha256": "544a17a9eaf5b923de4dff73452f0978fbdc324862cba656569f056c13829a05",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "辛"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "bc0c60c95041acff3ebd8c921f0a7fe36f8dd298f988f967d5c599e182800d3b",
+      "after_sha256": "86b6dd93f75cb890680e6c26969bb268f1a78b39544aa36cc4e26f205e7caae9",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 27,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "辛"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "d3de81678ca5d15afb165fe44df3037ca01e7f77b065f13e70e26d6d60cf9a06",
+      "after_sha256": "974775edda3aedf2925722c515b8c243e1f23211810cc6f669603d42407d1916",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-ipchun-after-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "申"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "bd139fd51002db7bc24df5e28710af4a086c6c6f8451f82190e78e9c3c320384",
+      "after_sha256": "b84ccabff803dec9d20970a67fb5a0a7e565b551243731832732a211dfa8fac9",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-ipchun-after-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "申"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "f5a1776482b073f64ad4293cb364d15bef3742311f7b619b589b1136ea9560be",
+      "after_sha256": "fddc810d8c2e5c0049ccc89a8dca66e4ea6c5a34a90226f4e5afccc0a2454346",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-ipchun-after-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "辛"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 12,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "47a204f42b4e17ff028770716e4f26d2a44ece8fb80c6cbbb37c3ba48de9fda1",
+      "after_sha256": "359853b3f70d3a8388a0ee8994f21aaf0a869001ad39569153a450d963a36c09",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "known-ipchun-after-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 17,
+        "minute": 28,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "辛"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 12,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "33b1b225af8b7b3ecdcc77a45f2a2ed52ff6e9c5b3f3cff2f2bf94f2fc5fca23",
+      "after_sha256": "e9142fcac278a6fc38c02d8bf50dd101671f7c1962b352a8a060e0e45baddc58",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "unknown-ordinary-solar-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": true,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": null,
+      "changed_topics": [],
+      "before_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5",
+      "after_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5",
+      "changed_paths": []
+    },
+    {
+      "id": "unknown-ordinary-solar-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": null,
+      "changed_topics": [],
+      "before_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7",
+      "after_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7",
+      "changed_paths": []
+    },
+    {
+      "id": "unknown-ordinary-civil-midnight23",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": true,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": null,
+      "changed_topics": [],
+      "before_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb",
+      "after_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb",
+      "changed_paths": []
+    },
+    {
+      "id": "unknown-ordinary-civil-keepDay",
+      "input": {
+        "year": 1990,
+        "month": 1,
+        "day": 1,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": null,
+      "changed_topics": [],
+      "before_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d",
+      "after_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d",
+      "changed_paths": []
+    },
+    {
+      "id": "unknown-ipchun-solar-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978
+      },
+      "unknown": true,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": null,
+      "changed_topics": [],
+      "before_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e",
+      "after_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e",
+      "changed_paths": []
+    },
+    {
+      "id": "unknown-ipchun-solar-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": null,
+      "changed_topics": [],
+      "before_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b",
+      "after_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b",
+      "changed_paths": []
+    },
+    {
+      "id": "unknown-ipchun-civil-midnight23",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": true,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": null,
+      "changed_topics": [],
+      "before_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541",
+      "after_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541",
+      "changed_paths": []
+    },
+    {
+      "id": "unknown-ipchun-civil-keepDay",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": null,
+        "minute": null,
+        "hourUnknown": true,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "unknown": true,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": null,
+      "changed_topics": [],
+      "before_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db",
+      "after_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db",
+      "changed_paths": []
+    },
+    {
+      "id": "hyeonchim-0",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 4,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "8ae2b069b849a42aadf90a04745037251138e4722e977ed2ebe367f9e4f420a4",
+      "after_sha256": "8ab69cfb2f77cb00128f66d1c7b85e7d54d514213ba7727bb2064547f4366237",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-1",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "de314f6d5cede19dc31dcf3b61544de171f9fcbab7ce2627b74426063f3c497d",
+      "after_sha256": "add08f7122bda4908ddaa17dd8356f3ad59acf468981426db82a5c0b7c606a34",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-2",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 3,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 4,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 8,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "54e18c030c29ae86ce5f0c36f60fece3a5140b15ae843666767eb50bb1cf0274",
+      "after_sha256": "527951541da25cd454b9aadc59e81756cfbd7780f31df9f9af9a57a57e2f74db",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-3",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 4,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "07d08178e615da3f0c1364157d94f68b646e970c17eb549a54ed6c8cb5946a56",
+      "after_sha256": "553496be6ef2563157d779e45a2a6b0bea90e80f325683c38880c6375d499e8e",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-4",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 5,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 8,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "431d75fa1dc75e4b80c7ecd942465596595231a402d2cc82cdd6d97270823165",
+      "after_sha256": "e1aa653219ec22e3466ed68be3153f2a6271eb788afac1b593a4ace1d711d337",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-5",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 6,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "7d75c1a98a0c5bfd9984534473e8736359eb5df7f4406d8d4206b40a3dc5c05c",
+      "after_sha256": "4368b5c21db355482e1eec310ec74b279a26df3657cc9222986102c2908c019e",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-6",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 7,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "午"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/경오",
+          "topic": "현침살",
+          "count": 1,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "b42be0dc700bd98d7476bb8bb7fe03b1286a1d5bbf3a9944827e028c4036f523",
+      "after_sha256": "98be2d0fbf6c5d722af9d409fddfe8d2cfd784cc96536e9cff9afbc60180521d",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "hyeonchim-7",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 8,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "辛"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "未"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 5,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/신미",
+          "topic": "현침살",
+          "count": 1,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "42041b88a5edc92931d30009e39337790f60f0f3c31c906c3f651aa291686a8e",
+      "after_sha256": "bd8c090536ef945124afb6c20b93fc863c9a839028fe81e539a2f10a52aa9f63",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "hyeonchim-8",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 9,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "申"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/임신",
+          "topic": "현침살",
+          "count": 3,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "b606efb59924d2538f7d95239e37477449820285780c8115a3faa2b675daedee",
+      "after_sha256": "89039b7375d6d647c4d512ba2ba6a0f66443b2adf6cf9b4b095d06fcd47ea0b1",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "hyeonchim-9",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 10,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "2909632effd068e077d56c9aba7f2195ee6bd70a68588c1bedc9626234237f3c",
+      "after_sha256": "3d8ba7fe74c1907c68119fd0c84d9de7e4cfc3854369c39ceeb192d4fdc84d67",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-10",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 11,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "936d80f0787b313b5ef48c55df57321ed06433b4f07eac9bd16a78abfe1461f3",
+      "after_sha256": "70bf12cc1e244db81c8cc247d2b605f074da151777174a69e90ffe67672386ae",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-11",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 12,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "86f7e516034df626e02f95739cb06d1daf150f6234f650d01ed2b9238f795769",
+      "after_sha256": "746705833ffb23421967bd4463707db7caef4c668c0b35e1f58123cdac5b96d5",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-12",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 13,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "c9a3fc9722e3ae3c3cbea8d9abc76c26743fca1e1c61fdc6279e1ce8d546c710",
+      "after_sha256": "42d6cd7ae3fbb5c010936834658b37e32f96a38d8f9c670e153eb91c18bef98a",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-13",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 14,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "bbeb2744469f39df412b689e3021f110f999c31da6c703358715291cef0839cb",
+      "after_sha256": "73dd30331381f4d96e96b24a316412394048303828ac05a7b14a7e4ca5267178",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-14",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 15,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "71b37caf6bb15f558673362c9ff00e4ec7d80935f6c96765c92048129fb87e47",
+      "after_sha256": "28fb1734194b83fd3545e751b92b1a1406a954bd72626d46f4085d7520e78e7c",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-15",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 16,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/기묘",
+          "topic": "현침살",
+          "count": 1,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "761e750a8c859bfc0fc948db22ffc657038760d90b87c5399aaffab83ee082f6",
+      "after_sha256": "697f3e491e8890de179252c881e587f1771828630929abaf7aa969e100df6593",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "hyeonchim-16",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 17,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "ccbed529105a68b94b3d4a0de6c0f11d27e3d86eb8df0bf47687bbf0ad507807",
+      "after_sha256": "eb48949c6079134c2da900fe60aab522492e5e9b3662c15e7fa86210f9a815aa",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-17",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 18,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "辛"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 4,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/신사",
+          "topic": "현침살",
+          "count": 1,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "40500feca81c4a90c67c7641373b1ce006ace498b8be784569c6ca2f972ec10c",
+      "after_sha256": "d5e6e6cb367b343d096e3cc142e8f5021cabf211996972ddfb2b0419878fcacd",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "hyeonchim-18",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 19,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "午"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 8,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "b1972a8c74abaf59c78e2aa6bad2c68b743bd486a1b3b912cedf9840bba1b8d4",
+      "after_sha256": "ab7761a2fd26957cbeb58bdf6c8eabb0aec891d8621f8e60537638be215e8568",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-19",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 20,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "未"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "be7b50c2e6fa96fdeb3d66b8ef74b885291bdfc5832f73e3dac2634f34cf6f46",
+      "after_sha256": "3ab7295eb10ad0728a30bd21014f8313012b653df1105cc6ffc32817c44cac1d",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-20",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 21,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "申"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 4,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "1dc364fa164ed2d1e21e44bb0542375bb8aea850a8c347561ba63f58e590dead",
+      "after_sha256": "259c1d16456bd234423e4b000ac42bb8c3b5b5afce4a2987fd3e43cbd2db09f4",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-21",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 22,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "106ca2e087ef70e32aadb300888dbe5646c066e5e66ab4da43b8f536230f6a4d",
+      "after_sha256": "0a3d3dd6c559183458cb771768eff51bb1e051e002c798bf1840c77e84e52ddb",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-22",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 23,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "e2f68dd505d58bda2450f3c66a32f79632023cc9eac3c162dcc07d3f0abababe",
+      "after_sha256": "054b517eb5bb307bf80149d581e64734776015edb7ffb2bc73a589830865d46a",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-23",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 24,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 13,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "dc31baca239a4c4bd051464f0cb7a99d0e7766c7dfadfc1de365b336931be95a",
+      "after_sha256": "9f7c9553cf775dca55508f756600b66d9b88d78cf71c5a8ec910299192eb3fab",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-24",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 25,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "bdb9f7b68612dafb506bba23f4de7c01209793ec26b3d4cc13007b51ae635003",
+      "after_sha256": "6de4fef11bfe34f7cd16e4bbacb6da7679f2adbd3a863cf0ee83a36a53c94c5b",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-25",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 26,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "4fef5c4e987f0443e00685cc1eb4858811e9204abee41652740a48308db0e885",
+      "after_sha256": "90dfde8e1a3fe60bc44b50b02871631edfb63bffe7e42ffd39051251449f1e9b",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-26",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 27,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "41aa3e6b1fdd845b6309bacfa4737a4a42b1fa35f5030088d9320ac65009f665",
+      "after_sha256": "2c7e9ae95b18763c4e6e10685b322367d5fe18f3417b940f75535bc1622f592f",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-27",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 28,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "辛"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 5,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 8,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "d1b388bb99d953044ff3718691b4fd2296c55a157032bef20e02470a6757e58f",
+      "after_sha256": "1fd984288e3ebff8c55fd96ebab5016cef024120885e4658fe16e99d285d27f5",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-28",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 29,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "4aeaab9371a5bf1c5fe2dbf8da293b8d24b6478e9b26ffdaee2068b4e0c6e4b1",
+      "after_sha256": "316528fd0edfd7aafd09b18fd5a79e2c101be65538c0c627276773f2ca499165",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-29",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 30,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "ac36e6d947e7eb1a50deda2e75fc1c4d17ae0d3d418383d083d5e1c90e6fd1f3",
+      "after_sha256": "e77affde51a55f7efd5c533e0bea607c461fe771129cf114b9058010f4952d1a",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-30",
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 31,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "午"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 4,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 8,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "c7a625ebb573b6919e15189436fa18d23a5813a7349fd4bef134f37861a88a0f",
+      "after_sha256": "89158d1f956cd45c511a2b393667c353d5a37d9e25affb2b92c2f28239b92b4f",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-31",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "未"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 8,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "00224330c6737de2fe9c1eee462eb423df441709b87c68b20868dadecd0f6412",
+      "after_sha256": "3ce5f45f2e65dcadeaf1c36f5e42dbcfab318a2805669e0eb5e739bfd20f1b74",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-32",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "申"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 4,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "fa0558024226a2317a4d36d0de7996402aa2afe3810b8f37351c4cbce971777d",
+      "after_sha256": "ff83cf704d51b2668767bbdaa46ef7fc4abac7c0dc85d89dd1183dee5f3b0421",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-33",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 3,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "cfb7d5b304c2b01c9290ca353aaefc46e77d783429d7e30aad36e634d9c6cb98",
+      "after_sha256": "d045160b0a36b2179601b34d6b2fa4324522d752829834e6b155224c602409ad",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-34",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "1505c884f189d2349e3630f4f57c9570182adce65d71fdf3fc0a6e6c756d564b",
+      "after_sha256": "38d07e5c4c40b23604e121650589095ec5b16c4b8339047c272e4937e9a419ae",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-35",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 5,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "b1fee48790444cf5e22c0fbbe35b27ae09b3f81c739ec152dc2c821922fa6768",
+      "after_sha256": "4225f1feff57dd8c0bd705b19446dfd4810642d20bbafcc66c97d917f38fde94",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-36",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 6,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "249655695efd143df5907a87b1448f95f07e1ddae994fcc046332fe644dcc8b3",
+      "after_sha256": "d461014337b30399f178faca9e6e7c4dc9933c013eb63256160f00fb2d728369",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-37",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 7,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "辛"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 4,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/신축",
+          "topic": "현침살",
+          "count": 3,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 12,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "aaba0a28b4f73a7b8dc12274dd63cbe4d301b652b38a9ffd86b449f46bf02d98",
+      "after_sha256": "98f1acdf20465cbde150cc7e1b4c4d4cb0c544acc4e4ee81d4dd17777ed86254",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "hyeonchim-38",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 8,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 5,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "37ddc881a02aa9eb6116bcb394cd00bebf079c15cf3105736b0c2244eae53afe",
+      "after_sha256": "bb810d67a71b71bcefeb23739c64ebbfd060924752cab8f135a3d9e85cc3cc81",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-39",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 9,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 8,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "bfa0aeabec94ae7b7138481f8f57b3f8090ad2db92dea4ae225e6da27cd75155",
+      "after_sha256": "bd5b17554500d2f6f223840b4454fcc8a6bd3aa056dacc835b56606786c621a3",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-40",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 10,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "bf09e52373ddf34f329b026e62b57bc297e22cb5c3660c4661d065f52168259c",
+      "after_sha256": "4db9fe9c0acf3f1cc134dfd88eeaa5ed0ef0e0d5136c5129e0e6995facb57b4c",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-41",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 11,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "11e5398ecddb6564b6f2ac51243e2576e06d81bb17d67953ea51aae2d8f725d1",
+      "after_sha256": "203d38d313fd1c07c61b0a3351d30e6b80d4ecfe3bd53f5e7fd88e1ffa90573a",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-42",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 12,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "午"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 4,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "cdc845ae143121a7a28589d75c0879a467b15ac370dc3470df3706f489e8d1b7",
+      "after_sha256": "47ef2e4e5b6170065551058c1988545a72267a800c5afa0d270aa109ca2e2a5a",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-43",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 13,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "未"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/정미",
+          "topic": "현침살",
+          "count": 2,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "164def860c55908534abfc2eb28cce90da976878aa5f5168de37350302ec75d5",
+      "after_sha256": "1590995c16319920667f8ec53daf03135d5399ddaeadfef163a39f76e75bf74e",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "hyeonchim-44",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 14,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "申"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/무신",
+          "topic": "현침살",
+          "count": 1,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "b33adcafa37e855828a9c9e4b9f429b5430a51cc0ae674282251ad71688e0f5a",
+      "after_sha256": "764443622600c6a82be9948fb2013e4a3495b1cbbcbb99ba3ea9ed20bc0481b6",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "hyeonchim-45",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 15,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "7bf6009565ccf59fc35198de4fbcadd2b214597167360779f07aa64454e9ebd5",
+      "after_sha256": "e20d2e76916ab553adde17ae255812421b2f00553b885a82fa9a02adb6992378",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-46",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 16,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 8,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "4c117d2ba84bf5de3e4f38e6f0a38e71d9db65e71230bb7d652e1fd8e9a9294c",
+      "after_sha256": "6d7ad3440688beadfb70208b381d2d6d8d3cd38292cd3b831ebed774e3276414",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-47",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 17,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "辛"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 4,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "37fde2b73d3a1f5cc51aef58d1087649812dc8e4179ed56ba802c78f2aed5b6c",
+      "after_sha256": "fabaafbe9dbd4c7777b2a5cc7057631538938d9de9f28f71e892d62ae7635e84",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-48",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 18,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "1e67a14acf5833c4e6dc662b7f5a713914c762a5801ef362230eb1cdf67f6079",
+      "after_sha256": "299e5d9d37052d2e52d0c6cb7045b3424a340c484d388740ec3d11fd81e5a80b",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-49",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 19,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "1a152d17a4bf3f8f4059192606ec1d9f354ee7ec460b9d42a5443cac3c9596e8",
+      "after_sha256": "9e0610defd07ed6dfcada32c48d509e29c12957267fe3654b4c6ead20bb0f03f",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-50",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 20,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "1ee15d563013130510e86748a01949f80870720cec0b78f1169b158ff28d1ee1",
+      "after_sha256": "1a4ad9480fa59bd414ca32e2ace8e089d69782c35d4e55d10807e433b041a6d1",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-51",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 21,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "卯"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "6f1d50012b66a704da922bcab358588f5e1d520ac6aecd387eed52b1ad643110",
+      "after_sha256": "293a24edfbddff59a488168c9471fe7987749e861680af022138eb767e75aac4",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-52",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 22,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "3c4e84b3900055df0449a5bb13e5b5a573ce6aec0f12e5e0f899d2a890a39e0f",
+      "after_sha256": "25ffdaf031e8032a907b6bdcb639632856c434830e29f9f4fc5d51e766c29c6b",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-53",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 23,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 5,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "4a0ab4f82ab64a9af0d25f82c9cabd9324d29a8b06acb2f21a52741b815af786",
+      "after_sha256": "e7eb5cc2a9e595f5c392e8c66ce3c3362dce5f6ee40c420e80329629e2790e56",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-54",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 24,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "午"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/무오",
+          "topic": "현침살",
+          "count": 2,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "936a7bef9da04dd525d5b6daaf3e181369eac3e7eb3a3f3deddfe90dec5a4c8f",
+      "after_sha256": "09f3bf68326121e3758a64ebd184f9cd77bc4cbe7d09d0e0689f52fe2931d121",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "hyeonchim-55",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 25,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "未"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/기미",
+          "topic": "현침살",
+          "count": 2,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "36bdafd215d35173f3ba5338c081ffcb28d1dc48a4766769f4397821bb664997",
+      "after_sha256": "21b3de76e6313ccfe31a905185dbde30e9276cc200737ddc8fdbe5a5402ca862",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "hyeonchim-56",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 26,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "branch",
+            "character": "申"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 3,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [
+        {
+          "key": "ilju/경신",
+          "topic": "현침살",
+          "count": 2,
+          "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+        }
+      ],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 10,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [
+        "성격",
+        "직업",
+        "관계",
+        "주의"
+      ],
+      "before_sha256": "a2d5c707c612751607712b719d85ff1ccbb903c480b29234cb188ab7eae1ec0f",
+      "after_sha256": "fd63548bcad259dfec964bd6b415b10ccd65587d84f5d5642b366bc904aa1e74",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/topics/성격",
+        "/topics/직업",
+        "/topics/관계",
+        "/topics/주의",
+        "/hook/reading/cards",
+        "/hook/report/sections",
+        "/requests"
+      ]
+    },
+    {
+      "id": "hyeonchim-57",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 27,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "day",
+            "part": "stem",
+            "character": "辛"
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 4,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 11,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "7c8e9fda6394f7545c83f81f43a946cd0d89b8318cbc5602e5bd49085b87e0c1",
+      "after_sha256": "60f2e891d49e3ddc20519381d9e1b450c11054c7591f4b9623276bac67f37e47",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-58",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 28,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 6,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "f820b24d9761c8fcd98b4d655e9c39bab15ea88f5021b45e59e40f36be6f4128",
+      "after_sha256": "433dfd1d68e7e086fdbbb38e6608e07b7d2aab12f388aaa18ac7e19b179d7bb3",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-59",
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 29,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "year",
+            "part": "stem",
+            "character": "甲"
+          },
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 2,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 9,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "21985e707dd10b4dcce9d2724b29005797f88fbf29d2229f3cf69d3edbc93ab2",
+      "after_sha256": "8f4f80d1aaadc65edab2ed67dea8207b71a307d0803643493ea8d6e7fca9165d",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    },
+    {
+      "id": "hyeonchim-60",
+      "input": {
+        "year": 2022,
+        "month": 2,
+        "day": 4,
+        "hour": 10,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": null,
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 8,
+        "조견표": 4,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "ede7803a11c37796d29c97dc8a5accb7b20b1ef7c8782b114118ede057a895f0",
+      "after_sha256": "37396ea2551c49ba821ad1db084d490af37c32af65734ebee990a55b6d5434b4",
+      "changed_paths": [
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류"
+      ]
+    },
+    {
+      "id": "hyeonchim-61",
+      "input": {
+        "year": 2022,
+        "month": 2,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "longitude": 126.978,
+        "solarTimeCorrection": false
+      },
+      "unknown": false,
+      "observation": {
+        "status": "candidate_only",
+        "basis": "legacy-surface-character-list-v1",
+        "markers": [
+          {
+            "position": "hour",
+            "part": "branch",
+            "character": "午"
+          }
+        ],
+        "markerCount": 1,
+        "manifestation": "withheld",
+        "probability": null
+      },
+      "withheld_blocks": [],
+      "withheld_brain": {
+        "노드": 0,
+        "관계": 7,
+        "조견표": 3,
+        "note": "현침살 관련 문장은 발현 조건 검수 중이라 개인의 성향·직업·사건 해석에서 보류합니다."
+      },
+      "changed_topics": [],
+      "before_sha256": "af00d8a4619c4754632b68bd62204e75fceb7a5b642c268d6ba906ac40627903",
+      "after_sha256": "ce394b9a6fb762a65c7fcd6bcdd03d2955db1999c02c48d8d4991d53d4e0fe8b",
+      "changed_paths": [
+        "/report/sections",
+        "/reading/cards",
+        "/brain/관계",
+        "/brain/조견표",
+        "/brain/보류",
+        "/hook/reading/cards",
+        "/hook/report/sections"
+      ]
+    }
+  ],
+  "probability": null,
+  "training_labels": false
+}
