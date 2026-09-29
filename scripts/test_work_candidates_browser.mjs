@@ -44,7 +44,7 @@ try{
    const data=await save(`${baseline?'before':'after'}-chat-${width}-${mode}`,x);assert.equal(data.scrollWidth,width);assert.deepEqual(x.errors,[]);assert.deepEqual(x.external,[]);
   }finally{await x.context.close();}
  }
- if(!baseline)for(const[answer,pattern]of[['맞아요.',/후보를 유지/],['반대예요.',/반대 경험을 반영/],['경험이 없어요.',/개인에게 적용하는 판단은 보류/],['말하고 싶지 않아요.',/답하지 않은 상태/]]){
+ if(!baseline)for(const[answer,pattern]of[['맞아요.',/풀이’를 유지해요/],['반대예요.',/반대 경험을 반영/],['경험이 없어요.',/개인에게 적용하는 판단은 보류/],['말하고 싶지 않아요.',/답하지 않은 상태/]]){
   const x=await open(390,'local'),{page}=x;try{const d=x.model.context.decision,button=page.getByRole('button',{name:x.model.labels['직업'],exact:true});await until(page,()=>button.count());await button.click();await until(page,async()=>norm(await page.getByRole('log').innerText()).includes(d.question.prompt));
    const freeBefore=x.requests.filter(r=>r.question).length;
    await page.getByRole('textbox',{name:'도사에게 직접 묻기'}).fill(answer);await page.getByRole('button',{name:'보내기',exact:true}).click();await page.waitForFunction(()=>document.querySelector('textarea')?.readOnly===false);await finish(page);
