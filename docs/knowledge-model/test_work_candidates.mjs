@@ -58,7 +58,8 @@ test('peer combination, orthodox officer, competing claims, branch-only scope an
  assert.equal(decision(mock({year:57,month:14,day:50,hour:0})).mode,'resource-duty');
  const hidden=decision(mock({year:8,month:14,day:50,hour:2}));assert.equal(hidden.mode,'scope-withheld');assert.deepEqual(hidden.selectedIds,[]);
  const absent=decision(mock({year:0,month:14,day:50,hour:2}));assert.equal(absent.mode,'outside-bundle');assert.equal(absent.active,false);
- assert.equal(decision(mock({year:56,month:14,day:51,hour:2})),null);
+ // PR227 returned null outside 甲; PR230 compares the same ten-god relations for every day master (test_stem_candidates.mjs).
+ const yi=decision(mock({year:56,month:14,day:51,hour:2}));assert.equal(yi.mode,'resource-duty');assert.equal(yi.policy,'stem-resource-authority-v1');assert.equal(yi.features.stemScope,1);
  // Hidden food is present in this actual Yin month, but does not meet the stem-only countercondition.
  assert.equal(decision(chart(0)).mode,'resource-demand');assert.equal(decision(chart(0)).features.foodStem,0);
 });
@@ -140,7 +141,7 @@ test('KB110 comparison keeps calculations/brain/fortune and all unknown8 exactly
   for(const key of['chart','raw','keys','brain','direct','fortune'])assert.deepEqual(row[key],old[key]);
   const r=row.report.sections.find(s=>s.id==='context-reading').context;
   const prior=old.report.sections.find(s=>s.id==='context-reading').context;
-  assert.equal(prior.policy,'natal-work-context-v9');assert.equal(r.policy,'natal-work-context-v10');assert.ok(!Object.hasOwn(prior,'decision'));
+  assert.equal(prior.policy,'natal-work-context-v9');assert.equal(r.policy,'natal-work-context-v11');assert.ok(!Object.hasOwn(prior,'decision'));
   for(const key of['groups','conditions','strength','monthDayChung','monthDayYukhap','monthDayCompound','monthDayHyeong'])assert.deepEqual(r[key],prior[key]);
   if(r.decision?.active)changed++;else assert.deepEqual(r.blocks,prior.blocks);
   assert.deepEqual(row.reading.cards.find(c=>c.id==='context-reading').blocks,r.blocks);

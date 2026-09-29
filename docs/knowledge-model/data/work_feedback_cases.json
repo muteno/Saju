@@ -2867,5 +2867,35 @@
     ]
    ]
   ]
+ },
+ "pr230_duty_other_means": {
+  "note": "Added by PR230 after an independent read-only reviewer (same model) reproduced duty answers that credit only other people being read as supported. Expectations are the implementer's reading, fixed before the corrective edit; a development set, not human labels.",
+  "question": "성과나 자원을 관리하는 일이 정해진 기준·책임을 수행하는 데 도움이 된 경험이 있나요?",
+  "rows": [
+   [
+    "팀원이랑 나눠서 해결했어요",
+    "clarify:unclear"
+   ],
+   [
+    "다른 사람이랑 같이 해서 편했어요",
+    "clarify:unclear"
+   ],
+   [
+    "동료가 도와줘서 수월했어요",
+    "clarify:unclear"
+   ],
+   [
+    "외주를 맡겨서 해결했어요",
+    "clarify:unclear"
+   ],
+   [
+    "도움이 됐어요",
+    "supported"
+   ],
+   [
+    "도움이 안 됐어요",
+    "contradicted"
+   ]
+  ]
  }
 }

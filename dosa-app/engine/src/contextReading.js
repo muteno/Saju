@@ -298,7 +298,8 @@ export function buildContextReading(chart) {
   }
   if (supporting.length === 3) synthesis += ' 관성도 함께 있으므로 규칙·책임이라는 조건까지 같이 읽어야 해요.';
   const hiddenTopics = ['식상', '재성', '관성'].filter(group => groups[group].status === 'hidden_only');
-  if (hiddenTopics.length) synthesis += ` ${hiddenTopics.join('·')}은 지장간에서만 보이므로, 겉에 드러난 계열만으로 풀이를 끝내지 않아요. 다만 숨은 글자가 실제로 얼마나 작용하는지는 아직 판단하지 않아요.`;
+  const hiddenNote = hiddenTopics.length ? `${hiddenTopics.join('·')}은 지장간에서만 보이므로, 겉에 드러난 계열만으로 풀이를 끝내지 않아요. 다만 숨은 글자가 실제로 얼마나 작용하는지는 아직 판단하지 않아요.` : null;
+  if (hiddenNote) synthesis += ` ${hiddenNote}`;
   const combined = combineRoles(monthMain, hourStem, groups, positionText);
   const strength = strengthContext(chart, monthMain, hourStem, hidden, positionText);
   const dayMain = hidden.find(m => m.position === 'day' && m.principal);
@@ -327,16 +328,18 @@ export function buildContextReading(chart) {
   }
   const decision = buildWorkDecision(chart, { stems, groups });
   const questions = decision?.active ? [decision.question] : [...combined.questions, strength.question];
-  return { policy: 'natal-work-context-v10', kind: 'conditional_structural_reading',
+  return { policy: 'natal-work-context-v11', kind: 'conditional_structural_reading',
     dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem, decision,
     strength, monthDayChung, monthDayYukhap, monthDayCompound, monthDayHyeong, experienceQuestions: questions,
     blocks: [{ label: '같은 일주여도 달라지는 부분', lines: [overview] },
       { label: '표현·결과·책임의 구성', lines: roleLines },
-      { label: '함께 읽으면', lines: [...(decision?.active ? decision.lines : [combined.synthesis]),
+      // A selected candidate replaces only the broad group synthesis; the month/hour roles that the
+      // strength line refers back to and the hidden-stem note stay (PR230).
+      { label: '함께 읽으면', lines: [...(decision?.active ? decision.lines : []), combined.synthesis,
         ...(monthDayChung.facts ? [monthDayChung.facts, monthDayChung.interpretation] : []),
         ...(yukhapReading.facts ? [yukhapReading.facts, yukhapReading.interpretation] : []),
         ...(monthDayHyeong.facts ? [monthDayHyeong.facts, monthDayHyeong.interpretation] : []),
-        ...(decision?.active ? [] : [synthesis]), strength.facts, strength.hypothesis, strength.roots.facts, strength.roots.interpretation] },
+        ...(decision?.active ? (hiddenNote ? [hiddenNote] : []) : [synthesis]), strength.facts, strength.hypothesis, strength.roots.facts, strength.roots.interpretation] },
       { label: '경험으로 확인할 부분', lines: [...questions.map(q => q.prompt),
         '답을 통해 실제 맡은 역할과 상황을 더 구체적으로 물을 수 있고, 경험이 없다면 없다고 말해도 돼요. 맞지 않는 경험도 함께 살피며, 답만으로 사주가 맞았다거나 적성을 확인했다고 판단하지 않아요.'] }],
     note: CONTEXT_READING_NOTICE, predictionEnabled: false, trainingEligible: false, probability: null };

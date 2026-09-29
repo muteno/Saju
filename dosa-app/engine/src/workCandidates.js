@@ -1,4 +1,5 @@
-// Experimental, source-informed comparison of natal Jia-day stem candidates.
+// Experimental, source-informed comparison of natal day-master stem candidates
+// (甲 from PR227; other day masters move the same ten-god relations, PR230).
 // References/assumptions: docs/knowledge-model/CONDITIONAL_WORK_READING.md.
 // This never activates the source-claim catalog as personal prediction rules.
 import { detectRelations } from './relations.js';
@@ -28,16 +29,22 @@ export function evaluateCondition(expression, features, depth = 0) {
 }
 const feature = name => ({ feature: name });
 const all = (...names) => ({ all: names.map(feature) });
-const COUNTER = { any: [feature('foodStem'), feature('peerKillingCombination')] };
-const RULES = [
-  { id: 'resource-duty', condition: all('jiaDay', 'wealthStem', 'officerStem'), label: '성과·자원과 기준·책임의 연결' },
-  { id: 'resource-demand', condition: all('jiaDay', 'wealthStem', 'killingStem'), counter: COUNTER, label: '성과·자원 확대에 따른 과제 증가' },
-  { id: 'food-response', condition: all('jiaDay', 'wealthStem', 'killingStem', 'foodStem'), label: '과제 증가와 직접 실행을 통한 대응의 공존' },
-  { id: 'peer-response', condition: all('jiaDay', 'wealthStem', 'killingStem', 'peerKillingCombination'), label: '과제 증가와 협업·역할 조율의 공존' },
-];
+// The scope feature names the day masters a rule set covers ('jiaDay' keeps PR227's traces).
+// 甲 reads the 편관 combination as a 겁재 response (peerKillingCombination); other day masters
+// record only that 편관 combines with another stem (killingCombination: 겁재 if yang, 상관 if yin).
+const rules = scope => {
+  const combo = scope === 'jiaDay' ? 'peerKillingCombination' : 'killingCombination';
+  return [
+    { id: 'resource-duty', condition: all(scope, 'wealthStem', 'officerStem'), label: '성과·자원과 기준·책임의 연결' },
+    { id: 'resource-demand', condition: all(scope, 'wealthStem', 'killingStem'), counter: { any: [feature('foodStem'), feature(combo)] }, label: '성과·자원 확대에 따른 과제 증가' },
+    { id: 'food-response', condition: all(scope, 'wealthStem', 'killingStem', 'foodStem'), label: '과제 증가와 직접 실행을 통한 대응의 공존' },
+    { id: 'peer-response', condition: all(scope, 'wealthStem', 'killingStem', combo),
+      label: scope === 'jiaDay' ? '과제 증가와 협업·역할 조율의 공존' : '과제 증가와 편관 천간합(작용 미상)의 공존' },
+  ];
+};
 
-export function compareWorkCandidates(features) {
-  return RULES.map(rule => {
+export function compareWorkCandidates(features, scope = 'jiaDay') {
+  return rules(scope).map(rule => {
     const condition = evaluateCondition(rule.condition, features);
     const counter = rule.counter ? evaluateCondition(rule.counter, features) : null;
     const status = condition.value === 0 ? 'inapplicable' : condition.value === null ? 'withheld'
@@ -57,35 +64,47 @@ export const WORK_QUESTIONS = Object.freeze({
 const POSITION = { year: '연간', month: '월간', hour: '시간' };
 const POS_KR = { year: '년', month: '월', hour: '시' };
 const markerText = m => `${POSITION[m.position]} ${m.character}(${m.tenGod})`;
+// The copula follows the stem's reading (무·기·계 end in a vowel), not the ten-god in parentheses.
+const copula = m => ('戊己癸'.includes(m.character) ? '예요' : '이에요');
 export const WORK_CANDIDATE_LIMIT = '갑목 일간의 원국 천간을 비교한 해석 가설이에요. 지장간·강약·합화의 실제 작용과 운의 시기는 아직 종합하지 않았고, 직업 적성·성공·개인 사건을 확정하지 않아요.';
+const STEM_NAMES = ['갑목', '을목', '병화', '정화', '무토', '기토', '경금', '신금', '임수', '계수'];
+/** Other day masters: the ten-god relations of the source's 甲·丙 wealth/authority examples, moved. */
+export const stemCandidateLimit = stem => `${STEM_NAMES[stem]} 일간의 천간 글자만 비교한 해석 가설이에요. 참고 자료의 예시는 갑목·병화 일간 몇 개뿐이라, 다른 일간에는 같은 십성 관계를 넓혀 적용했어요. 이 비교에는 지장간·강약·합의 실제 작용과 운의 시기를 넣지 않았고, 직업 적성·성공·개인 사건을 정하지 않아요.`;
 
 /** Context markers come from the complete chart; no user-supplied conclusions. */
 export function buildWorkDecision(chart, { stems, groups }) {
-  if (chart.pillarsIdx.day % 10 !== 0) return null;
+  const stem = chart.pillarsIdx.day % 10, jia = stem === 0, scope = jia ? 'jiaDay' : 'stemScope';
   const has = god => stems.some(m => m.tenGod === god);
   const wealth = stems.filter(m => ['정재', '편재'].includes(m.tenGod));
   const authority = stems.filter(m => ['정관', '편관'].includes(m.tenGod));
-  const combinations = detectRelations(chart.pillarsIdx).stemHap.filter(r => {
-    const participants = stems.filter(m => r.positions.includes(POS_KR[m.position]));
-    return participants.length === 2 && participants.some(m => m.tenGod === '겁재') && participants.some(m => m.tenGod === '편관');
-  });
-  const features = { jiaDay: 1, wealthStem: +!!wealth.length, officerStem: +has('정관'), killingStem: +has('편관'),
-    foodStem: +has('식신'), peerKillingCombination: +!!combinations.length };
-  const candidates = compareWorkCandidates(features);
+  // 편관 combined with another natal stem; the partner is 겁재 for a yang day master, 상관 for a yin one.
+  const combinations = detectRelations(chart.pillarsIdx).stemHap
+    .map(r => stems.filter(m => r.positions.includes(POS_KR[m.position])))
+    .filter(ms => ms.length === 2 && ms.some(m => m.tenGod === '편관'));
+  // The source reads it two ways: 甲 with 편관 in the year stem 'resolved' (1033~1035), 丙 with 편관
+  // in the month stem 'pursued' (1175~1177, 월일간 상극). Day master and position both differ, so only
+  // 甲 outside the month stem keeps PR227's response; every other combination is unknown (null).
+  const resolved = jia && combinations.every(ms => ms.find(m => m.tenGod === '편관').position !== 'month');
+  const combo = combinations.length ? (resolved ? 1 : null) : 0;
+  const features = { [scope]: 1, wealthStem: +!!wealth.length, officerStem: +has('정관'), killingStem: +has('편관'),
+    foodStem: +has('식신'), [jia ? 'peerKillingCombination' : 'killingCombination']: combo };
+  const candidates = compareWorkCandidates(features, scope);
   const selectedIds = candidates.filter(c => c.status === 'selected').map(c => c.id);
   const applicable = groups['재성'].status !== 'absent' && groups['관성'].status !== 'absent';
-  const scopeOnly = applicable && !selectedIds.length;
-  const active = applicable;
-  const mode = !active ? 'outside-bundle' : scopeOnly ? 'scope-withheld'
+  const conditionOnly = applicable && !selectedIds.length && candidates.some(c => c.status === 'withheld');
+  const scopeOnly = applicable && !selectedIds.length && !conditionOnly;
+  // A withheld comparison has no reading to add: it does not replace the existing synthesis and questions.
+  const active = applicable && selectedIds.length > 0;
+  const mode = !applicable ? 'outside-bundle' : conditionOnly ? 'condition-withheld' : scopeOnly ? 'scope-withheld'
     : selectedIds.length > 1 ? 'competing' : selectedIds[0];
   const markerFacts = [...wealth, ...authority, ...stems.filter(m => ['식신','겁재'].includes(m.tenGod))];
-  const facts = markerFacts.length ? `천간에서 확인한 글자는 ${markerFacts.map(markerText).join(', ')}이에요.` : '이 해석 묶음에 필요한 재성·관성의 천간 조합은 보이지 않아요.';
+  const facts = markerFacts.length ? `천간에서 확인한 글자는 ${markerFacts.map(markerText).join(', ')}${copula(markerFacts.at(-1))}.` : '이 해석 묶음에 필요한 재성·관성의 천간 조합은 보이지 않아요.';
+  // Withheld modes keep their texts only in the record: they are not shown and ask nothing.
   let interpretation, reason, alternative, prompt;
   if (scopeOnly) {
     interpretation = '재성·관성 주제는 원국에 있지만, 천간끼리의 관계로 설명하는 후보는 보류해요.';
     reason = `재성은 ${wealth.length ? wealth.map(markerText).join(', ') : '천간에 없고 지지 본기·지장간에만'}, 관성은 ${authority.length ? authority.map(markerText).join(', ') : '천간에 없고 지지 본기·지장간에만'} 보여서 이번 후보의 자리 조건을 모두 충족하지 않아요.`;
     alternative = '지지의 다른 읽기 방법까지 틀렸다는 뜻은 아니에요. 원래의 자리 관찰은 유지하되, 천간과 지지를 섞어 재생관·재생살의 성립으로 옮기지 않아요.';
-    prompt = WORK_QUESTIONS['scope-withheld'];
   } else if (mode === 'food-response') {
     interpretation = '성과·자원을 늘리는 일이 과제를 늘릴 가능성과, 직접 만들고 실행하는 방식으로 그 과제를 다룰 가능성을 함께 읽어요.';
     reason = '재성·편관과 함께 천간의 식신이 있어, 과제 증가만 보던 후보를 낮추고 실행을 통한 대응 후보를 먼저 비교해요.';
@@ -108,19 +127,25 @@ export function buildWorkDecision(chart, { stems, groups }) {
     prompt = WORK_QUESTIONS['resource-duty'];
   } else if (mode === 'resource-demand') {
     interpretation = '성과·자원을 늘리는 일이 해결해야 할 요구·과제도 함께 늘릴 수 있다는 가설을 먼저 살펴요.';
-    reason = '천간의 재성과 편관이 함께 있고, 이번에 비교하는 식신 또는 겁재·편관 합의 대응 조건은 천간에서 확인되지 않아요.';
     const hurting = stems.filter(m => m.tenGod === '상관');
-    if (hurting.length) reason += ` ${hurting.map(markerText).join(', ')}은 상관이므로 이번 식신 조건에 해당하지 않아요.`;
+    if (jia) {
+      reason = '천간의 재성과 편관이 함께 있고, 이번에 비교하는 식신 또는 겁재·편관 합의 대응 조건은 천간에서 확인되지 않아요.';
+      if (hurting.length) reason += ` ${hurting.map(markerText).join(', ')}은 상관이므로 이번 식신 조건에 해당하지 않아요.`;
+    } else {
+      reason = '천간의 재성과 편관이 함께 있고, 이번에 대응 조건으로 비교하는 식신은 천간에 없어요. 편관과 합을 이루는 천간도 없어요.';
+      if (hurting.length) reason += ` 이번 비교는 식신만 대응 조건으로 보므로, 천간의 상관(${hurting.map(m => `${POSITION[m.position]} ${m.character}`).join(', ')})은 넣지 않았어요.`;
+    }
     alternative = '대응 조건이 안 보인다는 말은 실제 해결 능력이 없다는 뜻이 아니에요. 부담이 늘지 않았거나 다른 방식으로 해결한 경험이면 이 후보를 낮춰야 해요.';
     prompt = WORK_QUESTIONS['resource-demand'];
   }
   const question = active ? { id: `work-candidate-${mode}`, prompt,
     clarifies: '선택한 해석 가설의 경험상 일치·반대·경험 없음·미응답; 자기보고는 독립 적중률이 아님' } : null;
-  return { policy: 'jia-stem-resource-authority-v1', scope: 'jia-day-natal-stems',
-    assumption: 'reviewed generation_planes examples, finite stem-presence comparison; observed relations are not verified personal effects',
+  return { policy: jia ? 'jia-stem-resource-authority-v1' : 'stem-resource-authority-v1', scope: jia ? 'jia-day-natal-stems' : 'day-stem-natal-stems',
+    assumption: jia ? 'reviewed generation_planes examples, finite stem-presence comparison; observed relations are not verified personal effects'
+      : 'generation_planes principle (stems first) with the 甲·丙 wealth/authority examples moved to this day master by ten-god relation; a 편관 stem combination (겁재 if yang, 상관 if yin) is withheld as unknown; not verified personal effects',
     sourceClaimIds: ['generation_definition', 'generation_planes'], features, candidates, selectedIds,
     active, mode, facts, interpretation: interpretation ?? null, reason: reason ?? null, alternative: alternative ?? null,
-    lines: active ? [interpretation, facts, reason, alternative, WORK_CANDIDATE_LIMIT] : [], question,
+    lines: active ? [interpretation, facts, reason, alternative, jia ? WORK_CANDIDATE_LIMIT : stemCandidateLimit(stem)] : [], question,
     beforeFeedback: true, probability: null, trainingEligible: false };
 }
 
