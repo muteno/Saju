@@ -218,6 +218,8 @@ const PHRASE = {
 };
 const NOT_A_HIT = '경험을 들은 뒤 고친 풀이라 처음 풀이의 적중으로 세지 않아요.';
 const OUTSIDE = '앞에서 본 강약·지장간·지지 관계 관찰과, 식신·겁재 합 밖의 다른 천간 관계(인성·상관 등)·운의 시기는 아직 이 비교에 합치지 않았어요. 궁금한 점을 직접 물어보면 이어서 볼게요.';
+// Other day masters compared 식신 and any 편관 stem combination (its partner is 상관 for a yin day master).
+const OUTSIDE_STEM = '앞에서 본 강약·지장간·지지 관계 관찰과, 식신과 편관 천간합 밖의 다른 천간 관계(인성, 편관과 합하지 않은 상관 등)·운의 시기는 아직 이 비교에 합치지 않았어요. 궁금한 점을 직접 물어보면 이어서 볼게요.';
 const FEEDBACK_KINDS = ['supported', 'contradicted', 'no-experience', 'unanswered', 'unsure', 'mixed'];
 const OFFERED = {
   'clarify:ambiguous-negative': ['no-experience', 'contradicted', 'unanswered', 'unsure'],
@@ -232,10 +234,11 @@ export function feedbackPlan(decision) {
   if (!decision?.active || !decision.question) return null;
   const demand = { id: 'work-candidate-resource-demand', prompt: WORK_QUESTIONS['resource-demand'], kind: 'demand', candidate: 'resource-demand', name: NAMES['resource-demand'] };
   const mode = decision.mode, own = { id: decision.question.id, prompt: decision.question.prompt, candidate: mode, name: NAMES[mode] };
+  const outside = decision.policy === 'stem-resource-authority-v1' ? OUTSIDE_STEM : OUTSIDE;
   if (mode === 'food-response' || mode === 'peer-response')
-    return { mode, first: { ...own, kind: 'help', means: MEANS[mode], meansCue: MEANS_CUE[mode] }, demand };
-  if (mode === 'resource-duty') return { mode, first: { ...own, kind: 'duty' } };
-  if (mode === 'resource-demand') return { mode, first: { ...demand, id: own.id, prompt: own.prompt } };
+    return { mode, outside, first: { ...own, kind: 'help', means: MEANS[mode], meansCue: MEANS_CUE[mode] }, demand };
+  if (mode === 'resource-duty') return { mode, outside, first: { ...own, kind: 'duty' } };
+  if (mode === 'resource-demand') return { mode, outside, first: { ...demand, id: own.id, prompt: own.prompt } };
   return null; // competing/scope-withheld: choice answers are not revised here.
 }
 
@@ -307,8 +310,8 @@ function revision(plan, question, kind, state, evidence) {
       core = `고친 풀이: 성과·자원을 늘리며 해결할 일도 함께 늘었다는 부분은 말해 준 경험 범위에서 받아들여요. ${priorNote} ${NOT_A_HIT}`;
     }
     if (kind === 'contradicted') core = prior === 'weakened'
-      ? `고친 풀이: 앞의 대응 풀이와 이 풀이가 모두 낮아져, 이 천간 비교로는 말해 준 경험을 설명하지 못해요. ${OUTSIDE}`
-      : `고친 풀이: 이 천간 비교로는 말해 준 경험을 설명하지 못해요.${prior === 'withheld' ? ` ${priorNote}` : ''} ${OUTSIDE}`;
+      ? `고친 풀이: 앞의 대응 풀이와 이 풀이가 모두 낮아져, 이 천간 비교로는 말해 준 경험을 설명하지 못해요. ${plan.outside}`
+      : `고친 풀이: 이 천간 비교로는 말해 준 경험을 설명하지 못해요.${prior === 'withheld' ? ` ${priorNote}` : ''} ${plan.outside}`;
     if (kind === 'mixed') core = '고친 풀이: 성과·자원을 늘린 일이 해결할 일도 늘린 범위와 그렇지 않은 범위가 함께 있다고 좁혀 읽어요. 두 범위를 가르는 조건은 명식이 아니라 말해 준 경험에서 왔어요.';
     if (!core && priorNote) note = priorNote;
   }

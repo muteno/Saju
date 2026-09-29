@@ -117,7 +117,14 @@ test('feedback revision works the same way outside 甲 and follows the chart con
  assert.equal(food.targetCandidateId,'food-response');assert.equal(food.nextQuestion.id,'work-candidate-resource-demand');
  assert.equal(food.beforeFeedback.policy,'stem-resource-authority-v1');assert.equal(food.beforeFeedback.scope,'day-stem-natal-stems');
  assert.equal(demand.targetCandidateId,'resource-demand');assert.equal(demand.nextQuestion,null);assert.match(demand.revisedInterpretation,/설명하지 못해요/);
+ // The scope sentence names what this comparison looked at: 식신 and any 편관 stem combination (상관 for yin).
  const yin=buildContextReading(chart(1965,1,7,4)).decision;
+ for(const r of[demand,resolveWorkFeedback({decision:yin,footer:'',messages:[{role:'assistant',text:yin.question.prompt}],answer:'반대예요'})]){
+  assert.match(r.revisedInterpretation,/식신과 편관 천간합 밖의 다른 천간 관계\(인성, 편관과 합하지 않은 상관 등\)/);assert.ok(!r.revisedInterpretation.includes('식신·겁재 합 밖'));}
+ const jia=buildContextReading(chart(1980,2,11,4)).decision; // 甲 keeps the PR228 sentence
+ const jiaStep=resolveWorkFeedback({decision:jia,footer:'',messages:[{role:'assistant',text:jia.question.prompt}],answer:'반대예요'});
+ const jiaEnd=resolveWorkFeedback({decision:jia,footer:'',messages:[{role:'assistant',text:jia.question.prompt},{role:'user',text:'반대예요'},{role:'assistant',text:jiaStep.text}],answer:'반대예요'});
+ assert.match(jiaEnd.revisedInterpretation,/식신·겁재 합 밖의 다른 천간 관계\(인성·상관 등\)/);
  assert.equal(resolveWorkFeedback({decision:yin,footer:'',messages:[{role:'assistant',text:yin.question.prompt}],answer:'네, 일이 많이 늘었어요'}).after,'retained-as-self-report');
  assert.equal(buildContextReading(chart(1970,6,15,18)).decision.question,null); // withheld: nothing to revise
  // Duty question (乙 1970-01-05 08시): help credited only to other people is not a yes to it.

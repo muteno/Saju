@@ -7,7 +7,7 @@ export interface FeedbackRead {
   segments: (AnswerClause & { tag: string | null; up: boolean; down: boolean })[]; demandEvidence: 'up' | 'down' | null;
 }
 export interface FeedbackQuestion { id: string; prompt: string; kind: 'help' | 'duty' | 'demand'; candidate: string; name: string; means?: string; meansCue?: 'self' | 'others' }
-export interface FeedbackPlan { mode: string; first: FeedbackQuestion; demand?: FeedbackQuestion }
+export interface FeedbackPlan { mode: string; outside: string; first: FeedbackQuestion; demand?: FeedbackQuestion }
 export type FeedbackStatus = 'retained-as-self-report' | 'weakened' | 'withheld' | 'scoped' | 'unconfirmed';
 export interface FeedbackState {
   pending: 'first' | 'demand' | null; clarify: FeedbackKind | null; evidence: 'up' | 'down' | 'conflict' | null;
