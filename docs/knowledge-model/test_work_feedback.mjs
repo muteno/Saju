@@ -101,7 +101,10 @@ test('task increase heard in a help answer is used once, and conflicting reports
  const up=session(chart(4));assert.equal(up.say('일이 많이 늘었어요').answer.kind,'clarify:help-unanswered');
  const after=up.say('반대예요');assert.equal(after.nextQuestion,null);assert.equal(after.feedback['resource-demand'],'retained-as-self-report');assert.doesNotMatch(after.text,/요구·과제도 함께 늘린 경험이 있나요/);
  const both=session(chart(4)).say('도움이 안 됐어요, 일만 늘었어요');assert.equal(both.answer.kind,'contradicted');assert.equal(both.answer.demandEvidence,'up');assert.equal(both.nextQuestion,null);
- const rather=session(chart(4)).say('오히려 일이 더 늘었어요');assert.equal(rather.answer.kind,'contradicted');assert.equal(rather.nextQuestion,null);
+ // Task growth after 오히려/더 is the premise, not a failure of the method (PR228 Codex review).
+ const rather=session(chart(4)).say('오히려 일이 더 늘었어요');assert.equal(rather.answer.kind,'clarify:help-unanswered');assert.equal(rather.state.evidence,'up');
+ const helped=session(chart(4)).say('도움이 됐어요. 오히려 일이 많이 늘었어요');assert.equal(helped.answer.kind,'supported');assert.equal(helped.feedback['resource-demand'],'retained-as-self-report');
+ assert.equal(session(chart(4)).say('오히려 부담이 늘었어요').answer.kind,'contradicted');
  // "Tasks never grew" does not decide the resource→task candidate: it is asked.
  const down=session(chart(4)).say('일이 늘어난 적이 없어요');assert.equal(down.answer.kind,'no-experience');assert.equal(down.nextQuestion.id,DEMAND);
  assert.equal(down.feedback['resource-demand'],undefined);assert.match(down.text,/성과·자원을 늘린 적이 없어서인지/);

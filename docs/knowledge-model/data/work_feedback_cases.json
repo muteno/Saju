@@ -58,7 +58,7 @@
   ],
   [
    "오히려 일이 더 늘었어요",
-   "contradicted"
+   "clarify:help-unanswered"
   ],
   [
    "아니요, 오히려 부담이 커졌어요",
@@ -343,7 +343,7 @@
    ]
   ]
  },
- "precision_first_changes": "After the 8-reviewer pass the parser only decides when every clause fits a whole-clause template. Three earlier expectations moved to a clarifying question: demand '도움이 됐어요' (off-subject), '도움이 됐다기보다 오히려 부담이었어요' (quotative hedge), duty '일이 많이 늘었어요' (not the asked proposition).",
+ "precision_first_changes": "After the 8-reviewer pass the parser only decides when every clause fits a whole-clause template. Three earlier expectations moved to a clarifying question: demand '도움이 됐어요' (off-subject), '도움이 됐다기보다 오히려 부담이었어요' (quotative hedge), duty '일이 많이 늘었어요' (not the asked proposition). PR229 (post-merge Codex review): task growth alone after 오히려/더 is the question's premise, not the opposite experience; '오히려 일이 더 늘었어요' now asks whether the method helped (clarify:help-unanswered), and only burden/difficulty words read as the opposite.",
  "review_adversarial": {
   "note": "Written by independent reviewer 2 (same model, read-only) against the first parser; acceptable readings are the reviewer's, not human labels. Used to design the precision-first rules, so it is a development set. Pass rule: never a definite reading outside the acceptable list; clarify:* or null (normal chat) are safe fallbacks.",
   "help_self": [
