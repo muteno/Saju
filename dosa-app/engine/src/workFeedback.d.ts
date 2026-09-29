@@ -16,7 +16,7 @@ export interface FeedbackState {
 export interface WorkFeedbackStep {
   action: 'revise' | 'clarify' | 'unresolved'; questionId: string; targetCandidateId: string; answer: FeedbackRead;
   before: { questionId: string; targetCandidateId: string; reading: string | null; feedback: Record<string, FeedbackStatus> };
-  beforeFeedback: { mode: string; selectedIds: string[]; interpretation: string | null; candidates: { id: string; status: string }[] };
+  beforeFeedback: { policy: string; scope: string; mode: string; selectedIds: string[]; interpretation: string | null; candidates: { id: string; status: string }[] };
   after: FeedbackStatus | 'pending'; feedback: Record<string, FeedbackStatus>;
   revisedInterpretation: string | null; note: string | null;
   nextQuestion: { id: string; prompt: string; targetCandidateId: string } | null;

@@ -14,7 +14,7 @@ export interface RootObservation {
   status: 'principal_present' | 'additional_only' | 'absent';
 }
 export interface ContextReading {
-  policy: 'natal-work-context-v10';
+  policy: 'natal-work-context-v11';
   kind: 'conditional_structural_reading';
   dayPillar: string;
   decision: WorkDecision | null;

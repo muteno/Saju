@@ -495,6 +495,14 @@ test('현재 조건부 후보·반대조건·피드백·전달 경로를 검증�
   assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 9\b/)
 })
 
+test('갑목 외 일간의 천간 재성·관성 후보 비교와 합 조건을 검증한다', () => {
+  const env={...process.env};delete env.NODE_TEST_CONTEXT
+  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_stem_candidates.mjs'],{
+    cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:150000,env,stdio:['ignore','pipe','pipe'],
+  })
+  assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 5\b/)
+})
+
 test('자연어 경험 답을 표시된 질문·후보와 연결해 확인·수정한다', () => {
   const env={...process.env};delete env.NODE_TEST_CONTEXT
   const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_work_feedback.mjs'],{

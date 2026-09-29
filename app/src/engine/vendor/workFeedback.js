@@ -1,4 +1,4 @@
-// Explicit revision of the Jia stem work candidates from a visible conversation.
+// Explicit revision of the day-master stem work candidates from a visible conversation.
 // References/assumptions: docs/knowledge-model/CONDITIONAL_WORK_READING.md.
 // Precision first: a free answer changes a candidate only when every clause fits
 // a small whole-clause template. Other answers with feedback cues get at most one
@@ -104,6 +104,7 @@ const OTHERS = /팀원|동료|다른\s*사람|남(?:이|에게|한테)|같이|�
 const OTHERS_NEGATED = /(?:팀원|동료|남|다른\s*사람)\S*\s*(?:도움\s*)?없이|맡긴\s*적(?:은|이)?\s*없|안\s*맡/u;
 const SELF = /혼자|직접|제가\s*다|스스로|손수/u;
 const RESOURCE = /매출|수입|수익|이익|돈|자원|성과|실적|규모|사업|고객|매장|연봉|월급/u;
+const DUTY = /기준|책임|규칙|규정|의무/u;
 const TASK_RE = new RegExp(TASK, 'u');
 const INCREASE = new RegExp(`${TASK}(?:이|가|도|은|는|만)?\\s*(?:더|많이|꽤|계속|확|훨씬|너무|엄청|두\\s*배로?|세\\s*배로?)?\\s*(?:늘었|늘어났|많아졌|커졌|불어났|쌓였)`, 'u');
 const NO_INCREASE = new RegExp(`${TASK}(?:이|가|도|은|는)?\\s*(?:딱히\\s*|별로\\s*)?(?:(?:늘|늘어나|많아지)(?:지|진|지는|지도)\\s*않|안\\s*늘|(?:늘어난|늘었던)\\s*(?:적|건|게)\\S*\\s*없)`, 'u');
@@ -130,6 +131,9 @@ function tagClause(text, kind, means) {
     if (T.demandSupport.test(c)) return 'support';
     return null;
   }
+  // The duty question asks whether resources served a duty; help credited only to other people
+  // (no resource or duty word) answers a different question, so the clause stays unread.
+  if (kind === 'duty' && OTHERS.test(c) && !OTHERS_NEGATED.test(c) && !RESOURCE.test(c) && !DUTY.test(c)) return null;
   if (means === 'self' && OTHERS.test(c) && !OTHERS_NEGATED.test(c) && !SELF.test(c)) return 'other-means';
   if (means === 'others' && (SELF.test(c) || OTHERS_NEGATED.test(c)) && !(OTHERS.test(c) && !OTHERS_NEGATED.test(c))) return 'other-means';
   if (/보다/u.test(c) && OTHERS.test(c) && SELF.test(c)) return null;
@@ -323,7 +327,7 @@ export function advanceWorkFeedback(decision, plan, state, answer, { afterMenu =
   if (afterMenu && (read.explicit ? read.kind === 'supported' : read.segments.every(s => ['affirm', 'negative', 'filler'].includes(s.tag)))) return null;
   const base = { questionId: question.id, targetCandidateId: question.candidate, answer: read,
     before: { questionId: question.id, targetCandidateId: question.candidate, reading: state.reading, feedback: { ...state.feedback } },
-    beforeFeedback: { mode: decision.mode, selectedIds: [...decision.selectedIds], interpretation: decision.interpretation,
+    beforeFeedback: { policy: decision.policy, scope: decision.scope, mode: decision.mode, selectedIds: [...decision.selectedIds], interpretation: decision.interpretation,
       candidates: decision.candidates.map(c => ({ id: c.id, status: c.status })) } };
   const heard = question.kind === 'help' && plan.demand ? read.demandEvidence : null;
   const evidence = mergeEvidence(state.evidence, heard);
