@@ -19,8 +19,8 @@ async function next(page){await page.evaluate(()=>document.activeElement?.blur()
 async function until(page,fn){for(let i=0;i<150;i++){if(await fn())return;assert.ok(await next(page),'ended before target');}assert.fail('target missing');}
 const logText=async page=>norm(await page.getByRole('log').innerText());
 const untilText=(page,text)=>until(page,async()=>(await logText(page)).includes(norm(text)));
-async function open(width,hour,unknown=false){
- const context=await browser.newContext({viewport:{width,height:844},reducedMotion:'reduce',serviceWorkers:'block'}),page=await context.newPage();page.setDefaultTimeout(8000);
+async function open(width,hour,unknown=false,motion='reduce'){
+ const context=await browser.newContext({viewport:{width,height:844},reducedMotion:motion,serviceWorkers:'block'}),page=await context.newPage();page.setDefaultTimeout(8000);
  const x={context,page,requests:[],errors:[],external:[]};page.on('pageerror',e=>x.errors.push(e.message));
  await context.route('**/*',async route=>{const u=new URL(route.request().url());if(u.origin!==base){x.external.push(u.href);return route.abort();}if(u.pathname==='/api/dosa'){
   const body=route.request().postDataJSON();x.requests.push(body);
@@ -66,6 +66,15 @@ try{
   {const x=await open(390,4);try{await openWork(x);await untilText(x.page,'또 궁금한 것이 있는가?');assert.equal(await send(x,COMPOUND),0);await untilText(x.page,'좁혀 읽어요');await save('menu-content',x);}finally{await x.context.close();}}
   // 4c) Answering after the app's guidance paragraph is shown.
   {const x=await open(390,4);try{await openWork(x);const footer=x.model.context.blocks.at(-1).lines.at(-1);await untilText(x.page,footer);assert.equal(await send(x,'반대예요.'),0);await untilText(x.page,DEMAND_Q);await save('after-footer',x);}finally{await x.context.close();}}
+  // 4d) A bare yes sent while the menu line is still typing answers the menu, not the work question.
+  {const x=await open(390,4,false,'no-preference');try{await openWork(x);const d=x.model.context.decision;
+   const footer=x.model.context.blocks.at(-1).lines.at(-1);await untilText(x.page,footer);
+   await x.page.getByRole('button',{name:'다음 이야기',exact:true}).click(); // queue is empty: the menu line starts typing
+   await x.page.getByRole('textbox',{name:'도사에게 직접 묻기'}).fill('네');
+   const typing=await x.page.evaluate(()=>(document.querySelector('[role="log"]')?.innerText??'').trim().endsWith('또 궁금한 것이 있는가?')?'done':'typing');
+   const before=x.requests.length;await x.page.getByRole('button',{name:'보내기',exact:true}).click();await x.page.waitForFunction(()=>document.querySelector('textarea')?.readOnly===false);const sent=x.requests.length-before;await x.page.waitForTimeout(300);await save('menu-typing-yes',x);
+   assert.equal(typing,'typing','menu line should still be typing when the answer is sent');assert.equal(sent,1);assert.doesNotMatch(norm(await x.page.getByRole('log').innerText()),new RegExp(d.question.id));
+  }finally{await x.context.close();}}
   // 5) Another topic resets the conversation scope.
   {const x=await open(390,4);try{await openWork(x);await untilText(x.page,'또 궁금한 것이 있는가?');const other=x.page.getByRole('button',{name:x.model.labels['성격'],exact:true});await other.click();await until(x.page,async()=>(await logText(x.page)).endsWith('또 궁금한 것이 있는가?')&&(await logText(x.page)).split('또 궁금한 것이 있는가?').length>2);
    assert.equal(await send(x,'반대예요.'),1);await untilText(x.page,PROVIDER);await save('other-topic',x);}finally{await x.context.close();}}

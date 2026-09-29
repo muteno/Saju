@@ -813,7 +813,11 @@ export default function DosaChat({
       .map(m => ({ role: m.who === 'ai' ? 'assistant' as const : 'user' as const, text: m.text }))
     const same = retry && retryContext.current?.question === q ? retryContext.current : null
     const context = same ? same.context : recentConversation(visible, contextTopic.current)
-    const feedbackMessages = same ? same.feedbackMessages : visible.slice(-MAX_FEEDBACK_MESSAGES)
+    // A menu line that is still typing already asks for a new topic: keep it for the
+    // local feedback replay so a bare yes/no is not read as an answer to the work question.
+    const typingMenu = !tw.done && last?.who === 'ai' && last.text === MENU_PROMPT
+    const feedbackMessages = same ? same.feedbackMessages
+      : [...visible, ...(typingMenu ? [{ role: 'assistant' as const, text: MENU_PROMPT }] : [])].slice(-MAX_FEEDBACK_MESSAGES)
     retryContext.current = { question: q, context, feedbackMessages }
     const revision = ++conversation.current
     cancelTopics()
