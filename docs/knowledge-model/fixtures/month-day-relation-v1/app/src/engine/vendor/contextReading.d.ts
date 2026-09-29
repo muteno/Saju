@@ -13,7 +13,7 @@ export interface RootObservation {
   status: 'principal_present' | 'additional_only' | 'absent';
 }
 export interface ContextReading {
-  policy: 'natal-work-context-v7';
+  policy: 'natal-work-context-v6';
   kind: 'conditional_structural_reading';
   dayPillar: string;
   groups: Record<string, { surface: ContextMarker[]; hidden: ContextMarker[];
@@ -23,16 +23,6 @@ export interface ContextReading {
   hourStem: ContextMarker;
   monthDayChung: {
     scope: 'natal-month-day-branch-chung';
-    status: 'present' | 'absent';
-    branches: number[];
-    relation: { name: string; positions: string[] } | null;
-    dayMain: ContextMarker;
-    facts: string | null;
-    interpretation: string | null;
-    question: string | null;
-  };
-  monthDayYukhap: {
-    scope: 'natal-month-day-branch-yukhap';
     status: 'present' | 'absent';
     branches: number[];
     relation: { name: string; positions: string[] } | null;

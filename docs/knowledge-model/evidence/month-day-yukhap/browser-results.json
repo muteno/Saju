@@ -1,0 +1,811 @@
+{
+  "browser": "153.0.8010.0",
+  "beforeHashes": {
+    "app/src/data/dosaClient.ts": "f36291786361501d6e13c24066aae625e6a5ebf3a0deb99d805b922c45132b59",
+    "app/src/components/DosaChat.tsx": "d2ca24866c97d448d03f680ca653caa774d58102f6d4a990497cfc6bfe6bf0f7",
+    "app/src/engine/vendor/contextReading.js": "8add62c87b71c5decf6934802f50634464be47a9016f3e6f21421203dcb82bbf",
+    "dosa-app/engine/src/contextReading.js": "8add62c87b71c5decf6934802f50634464be47a9016f3e6f21421203dcb82bbf"
+  },
+  "afterHashes": {
+    "app/src/data/dosaClient.ts": "f36291786361501d6e13c24066aae625e6a5ebf3a0deb99d805b922c45132b59",
+    "app/src/components/DosaChat.tsx": "d2ca24866c97d448d03f680ca653caa774d58102f6d4a990497cfc6bfe6bf0f7",
+    "app/src/engine/vendor/contextReading.js": "8add62c87b71c5decf6934802f50634464be47a9016f3e6f21421203dcb82bbf",
+    "dosa-app/engine/src/contextReading.js": "8add62c87b71c5decf6934802f50634464be47a9016f3e6f21421203dcb82bbf"
+  },
+  "sourceUnchanged": true,
+  "results": [
+    {
+      "id": "work-2023-01-18-390-cached",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2023-01-18-390-early",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2023-01-18-390-after-body",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2023-01-18-390-after-question",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2023-01-18-1280-cached",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2023-01-18-1280-early",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2023-01-18-1280-after-body",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2023-01-18-1280-after-question",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2024-02-05-390-cached",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2024-02-05-390-early",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2024-02-05-390-after-body",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2024-02-05-390-after-question",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2024-02-05-1280-cached",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2024-02-05-1280-early",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2024-02-05-1280-after-body",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-2024-02-05-1280-after-question",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2023-01-18-390-selection",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2023-01-18-390-after-intro",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2023-01-18-390-after-body",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2023-01-18-1280-selection",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2023-01-18-1280-after-intro",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2023-01-18-1280-after-body",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2024-02-05-390-selection",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2024-02-05-390-after-intro",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2024-02-05-390-after-body",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2024-02-05-1280-selection",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2024-02-05-1280-after-intro",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-2024-02-05-1280-after-body",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "unknown-2023-01-18-390",
+      "result": "PASS",
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "unknown-2023-01-18-1280",
+      "result": "PASS",
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "unknown-2024-02-05-390",
+      "result": "PASS",
+      "docWidth": 390,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "unknown-2024-02-05-1280",
+      "result": "PASS",
+      "docWidth": 1280,
+      "errors": [],
+      "external": []
+    }
+  ],
+  "totals": {
+    "pass": 32,
+    "fail": 0,
+    "error": 0
+  }
+}

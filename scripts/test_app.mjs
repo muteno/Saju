@@ -408,7 +408,7 @@ test('강약 조건과 한계가 서버의 순수 프롬프트 함수에서도 �
   assert.match(source, /content: buildUserMessage\(body\)/)
   const { terms } = JSON.parse(readFileSync(new URL('../app/src/engine/vendor/data/solar_terms.json', import.meta.url)))
   const { topicLines } = await import('../app/src/data/dosaTopics.ts')
-  for (const [year, month, day, hour = 12] of [[2011,2,28],[2026,2,9],[2024,1,8],[2024,1,7],[2024,2,6],[2024,3,9,12],[2024,5,8,8],[2024,1,13,8],[2024,11,8,0],[2024,5,9,12],[2024,11,5,8],[2024,4,28],[2024,10,25],[2024,10,6],[2024,8,7],[2024,8,5],[2024,4,7]]) {
+  for (const [year, month, day, hour = 12] of [[2011,2,28],[2026,2,9],[2024,1,8],[2024,1,7],[2024,2,6],[2024,3,9,12],[2024,5,8,8],[2024,1,13,8],[2024,11,8,0],[2024,5,9,12],[2024,11,5,8],[2024,4,28],[2024,10,25],[2024,10,6],[2024,8,7],[2024,8,5],[2024,4,7],[2023,1,18],[2023,7,17],[2023,4,9],[2024,2,3],[2023,5,14],[2025,7,2],[2024,2,5],[2023,11,5],[2023,8,4]]) {
     const chart = computeChart({year,month,day,hour,minute:0,gender:'F',solarTimeCorrection:false,lateZiRule:'keepDay'},terms)
     const current = buildReport(chart,chartToKeys(chart),{aliases:{},index:{},bodies:{}})
     const context = current.sections.find(s=>s.id==='context-reading').context
@@ -421,6 +421,9 @@ test('강약 조건과 한계가 서버의 순수 프롬프트 함수에서도 �
         assert.ok(prompt.includes(text))
       if (context.monthDayChung.status === 'present')
         for (const text of [context.monthDayChung.facts,context.monthDayChung.interpretation,context.experienceQuestions[1].prompt])
+          assert.ok(prompt.includes(text))
+      if (context.monthDayYukhap.status === 'present')
+        for (const text of [context.monthDayYukhap.facts,context.monthDayYukhap.interpretation,context.experienceQuestions[1].prompt])
           assert.ok(prompt.includes(text))
       if(topic==='성격')assert.ok(prompt.includes('경험 없음'))
     }
@@ -444,10 +447,18 @@ test('PR221 월지·시간 자리 순서6검사를 원래 판본으로 재현한
   assert.match(output,/# tests 6\b/);assert.match(output,/# pass 6\b/);assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/)
 })
 
-test('현재 월지·일지 충6검사와 실제 입력·상담·미상 경로를 검증한다', () => {
+test('PR222 월지·일지 충6검사를 원래 판본으로 재현한다', () => {
   const env={...process.env};delete env.NODE_TEST_CONTEXT
-  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_month_day_relation.mjs'],{
+  const output=execFileSync(process.execPath,['docs/knowledge-model/frozen_month_day_relation.mjs','--test','--test-reporter=tap','docs/knowledge-model/test_month_day_relation.mjs'],{
     cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:120000,env,stdio:['ignore','pipe','pipe'],
   })
   assert.match(output,/# tests 6\b/);assert.match(output,/# pass 6\b/);assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/)
+})
+
+test('현재 월지·일지 육합7검사와 충·실제 입력·상담·미상 경로를 검증한다', () => {
+  const env={...process.env};delete env.NODE_TEST_CONTEXT
+  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_month_day_yukhap.mjs'],{
+    cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:120000,env,stdio:['ignore','pipe','pipe'],
+  })
+  assert.match(output,/# tests 7\b/);assert.match(output,/# pass 7\b/);assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/)
 })
