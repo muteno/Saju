@@ -1,0 +1,61 @@
+{
+  "browser": "153.0.8010.0",
+  "sourceHashesBefore": {
+    "app/src/data/dosaClient.ts": "908741420a0ac643b50e23d70907776e7e55f515a4c992837bb54eaa04c3fdbd",
+    "app/src/components/DosaChat.tsx": "d2ca24866c97d448d03f680ca653caa774d58102f6d4a990497cfc6bfe6bf0f7",
+    "app/src/engine/vendor/contextReading.js": "f43c245d71b267804a8ba91cffceb48c56df68c2a884a9d31565cee40f00c261",
+    "dosa-app/engine/src/contextReading.js": "f43c245d71b267804a8ba91cffceb48c56df68c2a884a9d31565cee40f00c261"
+  },
+  "sourceHashesAfter": {
+    "app/src/data/dosaClient.ts": "908741420a0ac643b50e23d70907776e7e55f515a4c992837bb54eaa04c3fdbd",
+    "app/src/components/DosaChat.tsx": "d2ca24866c97d448d03f680ca653caa774d58102f6d4a990497cfc6bfe6bf0f7",
+    "app/src/engine/vendor/contextReading.js": "f43c245d71b267804a8ba91cffceb48c56df68c2a884a9d31565cee40f00c261",
+    "dosa-app/engine/src/contextReading.js": "f43c245d71b267804a8ba91cffceb48c56df68c2a884a9d31565cee40f00c261"
+  },
+  "sourceUnchanged": true,
+  "rows": [
+    {
+      "id": "narrow-fallback-2024-02-05",
+      "result": "PASS",
+      "assertions": [
+        "Analysis card contains compound facts, interpretation, and three questions once",
+        "503 work fallback: compound facts once, interpretation once, all three complete questions in original order once"
+      ],
+      "errors": [],
+      "external": [],
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "positions": [
+        2052,
+        2148,
+        2333
+      ]
+    },
+    {
+      "id": "desktop-notice-only-2023-05-14",
+      "result": "PASS",
+      "assertions": [
+        "Analysis card contains compound facts, interpretation, and three questions once",
+        "503 work fallback: compound facts once, interpretation once, all three complete questions in original order once",
+        "Free-question exact notice-only 200 response: shown once, no failure or retry prompt"
+      ],
+      "errors": [],
+      "external": [],
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "positions": [
+        2236,
+        2294,
+        2486
+      ]
+    }
+  ],
+  "passed": 2,
+  "failed": 0
+}

@@ -1,0 +1,915 @@
+{
+  "baseline_commit": "1b53a24f3ac6dfbdee2867d13f05ed95b628b9f3",
+  "policy": "natal-work-context-v8",
+  "scope": "same month/day pair yukhap and pa together; synthetic calendar inputs; personal accuracy unmeasured",
+  "training_eligible": 0,
+  "probability": null,
+  "sources": [
+    {
+      "path": "dosa-app/engine/src/contextReading.js",
+      "sha256_lf": "f43c245d71b267804a8ba91cffceb48c56df68c2a884a9d31565cee40f00c261"
+    },
+    {
+      "path": "dosa-app/engine/src/contextReading.d.ts",
+      "sha256_lf": "1ed6cad655331f69ef47ebe311151de757fee2aea9d2b4c9bc26e30e535cc68a"
+    },
+    {
+      "path": "app/src/engine/vendor/contextReading.js",
+      "sha256_lf": "f43c245d71b267804a8ba91cffceb48c56df68c2a884a9d31565cee40f00c261"
+    },
+    {
+      "path": "app/src/engine/vendor/contextReading.d.ts",
+      "sha256_lf": "1ed6cad655331f69ef47ebe311151de757fee2aea9d2b4c9bc26e30e535cc68a"
+    },
+    {
+      "path": "app/src/data/dosaClient.ts",
+      "sha256_lf": "908741420a0ac643b50e23d70907776e7e55f515a4c992837bb54eaa04c3fdbd"
+    },
+    {
+      "path": "dosa-app/engine/src/relations.js",
+      "sha256_lf": "fdc6f4b3674b3821940e10b89c0beab6916ddb92bcf12ad87358e3d6d0297acb"
+    }
+  ],
+  "rows": [
+    {
+      "id": "known-extreme-down-solar-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "90960c433a0f83d99773ee65c568cd90c453f72ac76648b415902f7485a9a0fe",
+      "after_sha256": "4d376e200970e4ca9fba3b094368cf0737aacb7b6a1f0ce1926c81fbc086fceb"
+    },
+    {
+      "id": "known-extreme-down-solar-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "ca4c2d2a9d425be7460645bef00252a1d10b0d13d285dbaf0663b746250939d4",
+      "after_sha256": "431f9302eba28fe231df90fa974a8f3a2657cea94f8b97cc56427ed1fd3e8652"
+    },
+    {
+      "id": "known-extreme-down-civil-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "1bff23a01dfd01baedb7ee833c6cd082ee7115f3ec26e8b39e9bccf736806164",
+      "after_sha256": "1313ca1b0b03f8caabfd6d717494f259e2b54a204b04a2583de3ea819972c539"
+    },
+    {
+      "id": "known-extreme-down-civil-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "ea5092c5330832e8e7f9a473854f4dfc53652af798cc1f20a252ef81fa4d7d7f",
+      "after_sha256": "01426a0c0cb65cc0478c5d71835e39f757a037828e494f6decb700ccec49dc67"
+    },
+    {
+      "id": "known-strong-down-solar-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "48cf15ad01d4cc5e0c465da2bdc490f072fb80c0cd1fe213563e812ef8c620ba",
+      "after_sha256": "2a5708a6f8418fe2d1fb4a84f09804b3f4e29dfdad3891d074dd222463f4b169"
+    },
+    {
+      "id": "known-strong-down-solar-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "19c7cd90cbbf07ffa8f9c5121ac94bbf2cfd8585a88115167a9a375e3838baea",
+      "after_sha256": "688e3a38eb0d1cb45f3e304f413b6d7329583a4710cb1d5e955a844e8611374a"
+    },
+    {
+      "id": "known-strong-down-civil-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "41093e9a2fb1c2314d8f1f582b810915574ad56520033883ea684cd8b57bc87e",
+      "after_sha256": "08eb2be573833a3e86a936db04dbe4f74512bc54bbbd733a949529f9a5400822"
+    },
+    {
+      "id": "known-strong-down-civil-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "4a729bec30456859d4fc89f66689bfd3f76d35ab29ace743e7de00d4e964d2e3",
+      "after_sha256": "a02be813bd9ab38b30811dee6439c009e0c34106e30ac302c52fd8e09028f8a2"
+    },
+    {
+      "id": "known-strong-up-solar-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f7cfc2a6406f640a05982fefb3415869f82710232d7d56ff1ea3b254d3b519ce",
+      "after_sha256": "7a0d3c4c83c6bec159fcf1c201acf21d053efa5a8430db092627afbab90c9192"
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "43724652dca31bc41ff83054c44b596154a8e04dc4401a684b33cf0dd429fe18",
+      "after_sha256": "ddbc7ce34598bcb8ccaa2b1fab7d180c172451f5f42551229f309b0eddbf40f0"
+    },
+    {
+      "id": "known-strong-up-civil-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "045b55703829da4112e9825f30bb12e213d7d9b87ead1a457d2dae00f91c3dfe",
+      "after_sha256": "efdd03302224339d8eeb31a6de4e886214bca639e1a1b7cfaaeddd4263267202"
+    },
+    {
+      "id": "known-strong-up-civil-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "a36556e1c9a6b9319b695fe43241b1db2f2b815295a81da2d328c34f8ac3c42f",
+      "after_sha256": "fad6cb0d699e302bf8a0a30d4350977c590674b2a192386622ac4b6188d2424b"
+    },
+    {
+      "id": "known-weak-down-solar-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "cfafb2710719fda3b2da2143c2d80290fe969d7d6c7984f33a183b1388ffcca3",
+      "after_sha256": "645b2d994fe6bb6b46814123d588a7735d6f1d7b8e4911979b73e71eb84abae6"
+    },
+    {
+      "id": "known-weak-down-solar-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "bf24eebd7860bff04388c1f5208b378bba3bf58ff38c201759382cc67c8b2874",
+      "after_sha256": "3b1290a75ab8d34f85fc47e469a3b53128537eb947e8473a5274ce04e4c42cab"
+    },
+    {
+      "id": "known-weak-down-civil-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "5fbdd217d21dca9f6cfd6abe8b780a1d02af1f59434fc2ad3114ffab3e963730",
+      "after_sha256": "12bd9d6a1937136d73479839e5c22e44a9e7982ed2489e3deab94e3342a60f03"
+    },
+    {
+      "id": "known-weak-down-civil-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "88aed39316e32fb4be832092c57d5d4ec4cf9f0e423e9f640a8ee625ea4e5018",
+      "after_sha256": "d541c2c1c6b09ca4b2e2b4358c549ae355afd7638f95644e48b02fb6eadeb5a1"
+    },
+    {
+      "id": "known-weak-up-solar-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "5ca8b649459b359bfd03ecea3380842439a66d3af09e4e9e095e056ac34215a5",
+      "after_sha256": "2ced8d586d5f043502585176c2cf00313322121465f98e55bab4162ba0995664"
+    },
+    {
+      "id": "known-weak-up-solar-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f5096a7eeb8beca34958ba42dfb7cd422e2c13c9ca4e871b2ed1b7265bf1a247",
+      "after_sha256": "918256714785c1c8b3a8c7199d1e98bef191db0ce038f80bab87f5411502b484"
+    },
+    {
+      "id": "known-weak-up-civil-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f37044b6cdc943496c05c67f0ae0517298064f4e19e170b5bd0ec54bdc416092",
+      "after_sha256": "6ce79b99acde468e3c7ce4cc491561aae605a1839c83e9e278bfaee34eb2f141"
+    },
+    {
+      "id": "known-weak-up-civil-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "d33e77663014d2e36124d3dfbfb7b295a63364921f8c9c61753ffac8bc595694",
+      "after_sha256": "8102c7d00c2d602c255080d6005d25b5d99215caccdae12a3bacf38fc0a35bdd"
+    },
+    {
+      "id": "known-extreme-up-solar-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "4fb8cdf67ec70eeb45454440ed9ebabd4121e8a5b532bfde14cc2be1055461d4",
+      "after_sha256": "dfc0614c30ab9ad12ad4e3933332784eee16fecb82b4ff8e2278c968ab243456"
+    },
+    {
+      "id": "known-extreme-up-solar-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "39e067f111e47bb241f3a4c5e136b8f0850f7beac63ce22387d3940e02105a82",
+      "after_sha256": "78792007ab965e3416a067c2768a2cd4d07df58e3c64d877875fe5493cbdfffa"
+    },
+    {
+      "id": "known-extreme-up-civil-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "eeb6c2d86387affcd63e612d2fb75e2ada806dbd8ab537db3aa77b6b1ac11594",
+      "after_sha256": "f11716abcac98d21d9c37b0cdff1c6e189aa5e74c7b8b9c988914f2c2a5edcaf"
+    },
+    {
+      "id": "known-extreme-up-civil-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "e18745bf88c94c4ce784bab9729d17e3702c78f991e4e21bfe9d743f1eca68fb",
+      "after_sha256": "4114c87e97db86a655d2d03340acd6f679f66f92ecf2a05e840781cccbe8d3f0"
+    },
+    {
+      "id": "known-zi-before-solar-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "33280aadf08b8d7eb08ee72a11e0dbbf1764321edf9c7b0ecf051e48e5722e52",
+      "after_sha256": "a0a79cfb6e981a0e9391110763e59892b3d5ae245ea81fbf31507e58435c8621"
+    },
+    {
+      "id": "known-zi-before-solar-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "7d4bce3be5c89fe8dd98e15708a7308d941853d80925c8491a5a70f1f3ab4873",
+      "after_sha256": "03710dee51bbb768678013a6aa1af120bbf4d1cf63e9b9d1a3b542805a7f2040"
+    },
+    {
+      "id": "known-zi-before-civil-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "d4c74d050ea70187fc48ce16d58e269480bf0b9c1fe6a478c839d45d46c5e7e8",
+      "after_sha256": "1734c5a7bbabd691a0885e47a55f635cb89c1eceb78e35de11501f21f4881a77"
+    },
+    {
+      "id": "known-zi-before-civil-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "afa874ef88a520367b2a85931ddd986bd85626e07760b46c32e172a93360ac85",
+      "after_sha256": "849d36e01c4404eb4c773990e38378f2d0f2a347cbf8122b6f870175a9b8235d"
+    },
+    {
+      "id": "known-zi-after-solar-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "a1c5aa21f184f0fdb22c69f47d030fe2893c4db2a893dfe807043df07bc0570e",
+      "after_sha256": "195053b4f39b659791f3dfe13acf471fb189b306c45aee6b2500bba769d6e387"
+    },
+    {
+      "id": "known-zi-after-solar-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f4472ab12316e879066bd43964f6ecefa22a15a289876edd266faadb10a74392",
+      "after_sha256": "26da6a8c63d59122f676a646584ab47dfc66c01c09b66c3b736d37cc3217a904"
+    },
+    {
+      "id": "known-zi-after-civil-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "8f7d85b7c39659ff94afe011ea54514038127b48bc200e99a0ec778a3d484daf",
+      "after_sha256": "4d316296e5f894b753dfa7e3724afeb5dc847d3f454a69e601b1bc20bd2b86c8"
+    },
+    {
+      "id": "known-zi-after-civil-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f16b1a2919f93b44d27e230887ad0ee5317d3c50f77beab045343d4b06a7a464",
+      "after_sha256": "7fc55736f6fdf6fd6fb35f82de56c146a2c0060c5f7f98d2fddc8c869923125b"
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "ba730b6700aa5b60fb679717b6a98153716aa6008ce683bab0fb3f352cec4cfa",
+      "after_sha256": "694e2d7ba9b11702d322cf59380cfcf8a5a36a9c2468aea32a30ea93383c42af"
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "92f361f6186c7e1ebaeacbed99a3ac6ced7d1c550f016b025d9832b0314eafe7",
+      "after_sha256": "b6965d3bfe739d423a70b4c72cfb5f24a69bac7072a4a1a1b10694d275678ff0"
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "198397ea1e06b9dca3e73818bd0042e043e7d0fd79211f8b47327c6ba15f62e3",
+      "after_sha256": "f8a4786afdc272af69c2d7a12a762e0b14b3187a3477a2bd4ca96b25c61c57c6"
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "888bf9d02845e2f0f9ad57d03362037a79ac1b3e22420bc7e2ec6432b3254c6b",
+      "after_sha256": "2253d69f929554ad637a349183a60c683800b1664efd21405660a978169a3b9f"
+    },
+    {
+      "id": "known-ipchun-after-solar-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "4ff7ce9b4604a94feccb4707a043be0675abd8a59a786e43268da5e06226911f",
+      "after_sha256": "ab4c21ec026ec7e8dcff4670de3ed2f9f50e547d6e5c619c1816b69de71080db"
+    },
+    {
+      "id": "known-ipchun-after-solar-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "4e2a8f4b6bcb6b93aef1d9c6452c8144bb704d8ea673de9813e13760181bca28",
+      "after_sha256": "f6a9bce60575335756464a6f89b121979cf6102c2e7cdff7706fe7d0707f72b4"
+    },
+    {
+      "id": "known-ipchun-after-civil-midnight23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "bad6d49c3f30af355b151fc3d25650bff27376d4345210d9039903b3b0254431",
+      "after_sha256": "a291d2a7b6d5189048e7555f49c0dc294d1e67226eed86c4da47727d242b01a9"
+    },
+    {
+      "id": "known-ipchun-after-civil-keepDay",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "7f53c8eca298ccbb1f76bef600eb46432f822601c23756f042ea79266d4971a4",
+      "after_sha256": "ced8f3ee0a40cbd1044bdf1fc24bb1aa96daf25c065ed63e794f5f629aad7ab8"
+    },
+    {
+      "id": "unknown-ordinary-solar-midnight23",
+      "unknown": true,
+      "compound": null,
+      "calculations_unchanged": true,
+      "before_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5",
+      "after_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5"
+    },
+    {
+      "id": "unknown-ordinary-solar-keepDay",
+      "unknown": true,
+      "compound": null,
+      "calculations_unchanged": true,
+      "before_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7",
+      "after_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7"
+    },
+    {
+      "id": "unknown-ordinary-civil-midnight23",
+      "unknown": true,
+      "compound": null,
+      "calculations_unchanged": true,
+      "before_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb",
+      "after_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb"
+    },
+    {
+      "id": "unknown-ordinary-civil-keepDay",
+      "unknown": true,
+      "compound": null,
+      "calculations_unchanged": true,
+      "before_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d",
+      "after_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d"
+    },
+    {
+      "id": "unknown-ipchun-solar-midnight23",
+      "unknown": true,
+      "compound": null,
+      "calculations_unchanged": true,
+      "before_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e",
+      "after_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e"
+    },
+    {
+      "id": "unknown-ipchun-solar-keepDay",
+      "unknown": true,
+      "compound": null,
+      "calculations_unchanged": true,
+      "before_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b",
+      "after_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b"
+    },
+    {
+      "id": "unknown-ipchun-civil-midnight23",
+      "unknown": true,
+      "compound": null,
+      "calculations_unchanged": true,
+      "before_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541",
+      "after_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541"
+    },
+    {
+      "id": "unknown-ipchun-civil-keepDay",
+      "unknown": true,
+      "compound": null,
+      "calculations_unchanged": true,
+      "before_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db",
+      "after_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db"
+    },
+    {
+      "id": "hyeonchim-0",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "3fa01fe51646b7db05591fac4071bf7cc11a236c5a66ebe57157b6b5a37b5cf1",
+      "after_sha256": "2d6fbfd9616ca3005531d7a8e86c3aac61427d4ec208ea30947ea13f692497da"
+    },
+    {
+      "id": "hyeonchim-1",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "862186b3bc9b9d3ebb35aa74967457efa514c985544315679df604ed7c4b2479",
+      "after_sha256": "215d2263322c29e15e9d6a5046e576e11861e7147cf035d79e4f8baaac6356a2"
+    },
+    {
+      "id": "hyeonchim-2",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "a38e655be9ef15c4b46820e260c7a942d159eb071549a377dea017adc13b08fe",
+      "after_sha256": "1a9d3a2fb3ee992586ca2f83777bf062ff54ec0b0a0bbda999967c78d55365e1"
+    },
+    {
+      "id": "hyeonchim-3",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "dcc8adb7b5891b053439c2000f8b19844387e93bd809e4aca716f13d17d805db",
+      "after_sha256": "38228641885a7f13e0f17b9e6ffd3de74f29fbdeb71ac6f6224b96a2cbda2f5f"
+    },
+    {
+      "id": "hyeonchim-4",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f6ad5872583a298a17dba941788c7be32af9a59880d3024f0b89aeaa02646de6",
+      "after_sha256": "5564246f41be50f0ce8da6ec1092a34a9a82cbfab79732bc06598d1d7776f181"
+    },
+    {
+      "id": "hyeonchim-5",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "fb2b5ac69b75661795cec85f49b5fca85c6ae1906f787f74cab232eca5274cca",
+      "after_sha256": "6cc4f39c35388cf968dbf02dbfa798ab3e9e613f2cad19d47df94dccc60cdd61"
+    },
+    {
+      "id": "hyeonchim-6",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "48ce81d7c6a215050ac4805252ee382d288285da17295db2d1450c1b8803648f",
+      "after_sha256": "38a3620c699d75399a1ecc223e571c187f2cc77e3cb993c00a07572b613ff621"
+    },
+    {
+      "id": "hyeonchim-7",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f3a0ead42cb3568e54f286cd4589d0e25ccce17c4da012490757de115215f3f6",
+      "after_sha256": "62c0374eac44f196cd8bbaff60a81fd6271637a945472843295e74a0efa7641f"
+    },
+    {
+      "id": "hyeonchim-8",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "ac033439533e14b61518979e60b11e8122d95b65c558290735e2f1682a403cf2",
+      "after_sha256": "a56ab937b95a6e379135814041c6003cb2a2ff047534bd5cca9a6454a4cc0dac"
+    },
+    {
+      "id": "hyeonchim-9",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "d5a8ac906d34a764cb5736e4360be5018cae9b95a999c8edcaabe7ea66e30517",
+      "after_sha256": "aef192ad1e537e95c286724b6e02876d1482bd4e489dfb0c65fe3b46482e3388"
+    },
+    {
+      "id": "hyeonchim-10",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "bc458533ec3d6bdf0c49e11bd609aa3acdec24b21eca92fb83b08d1f724a9256",
+      "after_sha256": "9ff5ea35f1f76d87934ffba4121088fb1402a08ac7f0d69fc8f203a7b88a5b15"
+    },
+    {
+      "id": "hyeonchim-11",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "baa56fbb3b6a7538ec08c1130935dffaae7d1fa1971859c6fcab65982c74798f",
+      "after_sha256": "8e0e7d39a1243d2933dda0b64f432868b90d30eced48bd10c62d92561c4d2959"
+    },
+    {
+      "id": "hyeonchim-12",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "2033a2c17050881bf4b2e10413601aecffd3815de5dd25e101a9e501eda92bce",
+      "after_sha256": "51d4c35dbd768b9139b90d07251a5fc83e8a586d878120324ab176530349aeee"
+    },
+    {
+      "id": "hyeonchim-13",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "081a4add3ee935adf5945ad137747e8456f7fd1f3ed260f1020754c33afecb26",
+      "after_sha256": "6bf0a9fdcc2b827587cbb121543dbaa7176d2f92cc05ce07299c7b7423d9f822"
+    },
+    {
+      "id": "hyeonchim-14",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "27bfcc02fbb6b93cc3a0421e8b1430b1fd4b8ecfc20c07073225e1bcd8091f48",
+      "after_sha256": "c22871de904092cb39b31c353d65df8aad949456a3c456370ff1c41031425863"
+    },
+    {
+      "id": "hyeonchim-15",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f50fdda48c540bb2d2016cf37f5219860fbd08b700f5e335c3909f6575ff6ee7",
+      "after_sha256": "e29342221b23a51bef32348b12f2559ae3e8cef159684e3ab46c01fcd45fbeef"
+    },
+    {
+      "id": "hyeonchim-16",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "4b05bb4cdd8aa65a4c6ae18eaaf197e6631fb113f5ef9f95bb4cdc24dbc3949e",
+      "after_sha256": "c9855f2ebd757eb458c861b6f375c3859ec34bc6ceada59d37ed997eaa9e54f7"
+    },
+    {
+      "id": "hyeonchim-17",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "3c6a576c52d8f13f7a633f036c8588f9506f08c5eda2acde7c06b3ac717f649c",
+      "after_sha256": "835e6019e4afe1affe9abb75b9f0317b98fceb960ac0c1cafd63bb0060f29229"
+    },
+    {
+      "id": "hyeonchim-18",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "63b76d1abdaaaae6aa86ad807026b02618e077a9e9c5752db413a88417e41535",
+      "after_sha256": "2074f81fe2316e30c8d2fd184c1d20b47a76839dfb49b82ee2c936470dc26da9"
+    },
+    {
+      "id": "hyeonchim-19",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f449d5a55241f86b0d7c1d8e18a688b64172da1780de61aa57be034d36932d4e",
+      "after_sha256": "9ecb5c1a62f8c871b38cea86573f3294b38ad2c035a262fc067a620659cfb858"
+    },
+    {
+      "id": "hyeonchim-20",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "a2cdfbfdab7b2ceb00b8791c5ea995c2fbc337e4d04613bcba2a1cd584573813",
+      "after_sha256": "bfddf2c1d74267c3032c533f500b61630ce43178e255b5ea3d270b115b313346"
+    },
+    {
+      "id": "hyeonchim-21",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "51253e3a8ef25fe2d8e2ad502b866344b5ddbf1aa472847b281dc4b6fd692153",
+      "after_sha256": "750b36f5c07c553d4256e5f3d165296be98f96a9b3a740b048c7e5f25e7e435a"
+    },
+    {
+      "id": "hyeonchim-22",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "b9b546a0303c99d53887ff8955f9b64e47964cf1cb1b3344c1844f2ac2b6ea54",
+      "after_sha256": "49a85bcb9e1c4b3a95a8db1c7fce5467f65729e76ff5dd0a4b36f7bf3bbee37f"
+    },
+    {
+      "id": "hyeonchim-23",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "96e127687b7708a9017d2e0dbe31cbfcaf469c0860f755c4e2d26295eeb7b904",
+      "after_sha256": "e0925b405eff7434b69affeb6c0138f2b699f3203900966d3da36673f96c2aea"
+    },
+    {
+      "id": "hyeonchim-24",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "7e0b6a0564bb0483011dd6f6ee31f0252c4aa7ac1fca69b116d6f5d661ea3ace",
+      "after_sha256": "74604b1fdaa5f74865ea25f60b88e32cd43a20c0ffa3c2f653cc7c2beed89874"
+    },
+    {
+      "id": "hyeonchim-25",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "61a52abc712a465c10b3ee4824b52b400e0a01dc6c3518391f1943846a759535",
+      "after_sha256": "dbcd08dbe2fb0f782cb86060e9447c4379ba93ec226bcd421a898a04a19586cf"
+    },
+    {
+      "id": "hyeonchim-26",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "0e02231d7690e392c5b2be6a28dafe35bb83b12e8be65d9d7cbfac34f2cbb746",
+      "after_sha256": "7058c9dea92a141693ad775eca2cf09ec59e5977d87adf2cba10be5d0744f51f"
+    },
+    {
+      "id": "hyeonchim-27",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "b8be771e81d0183cef7e2aec0daef762a97391672d80ec12a8911bf5cce0d9a2",
+      "after_sha256": "026ad566664cb754a118e8b896b01ef6ac39d59c39f53f027a7d623f6ee390e9"
+    },
+    {
+      "id": "hyeonchim-28",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "949766c8051d4c309140181e41dfe46e61fb9c8ca72aace62a2b0505f634ab2d",
+      "after_sha256": "2ad4b0ae8300f240fae7624dd8296e25db96b23f49ae41875dbe1fe4d3334122"
+    },
+    {
+      "id": "hyeonchim-29",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "2a01afdbc078e68c5a74d0e2d4ced4ad769b5b18911a6183dd0048828ae512bd",
+      "after_sha256": "731c49a565dc20bb69fa30c3568d0dfc9769441db0496003a0fb5fadfcca09d5"
+    },
+    {
+      "id": "hyeonchim-30",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "2dc1bb7ceaccc05dd18b4d8d2c06b2a389dd3b0633fa23b61652d9e1c13c115c",
+      "after_sha256": "e6313528397c2376025cf426ae0e409031e3421b42dbca8c989ba7ecb471064d"
+    },
+    {
+      "id": "hyeonchim-31",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f502fe6a5a4787fb14453b8680907aba33a97f080be5e90dfde0c426b0f53cf3",
+      "after_sha256": "5b0e4319be0dadc5af7644daf0d80ec51d26918eac57f34d4b2e17342dbd50e0"
+    },
+    {
+      "id": "hyeonchim-32",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "102aebdbd903cc3508e708cf7d4178d46579fc8c17f5056d2b16bb91aa0dc567",
+      "after_sha256": "cce0a07f77ab2182dd8f5525c3ddbec1a15586bf685b8caf4e10ec058862a330"
+    },
+    {
+      "id": "hyeonchim-33",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "ea4f75ed641fffdc89c3d5441b5d8dd4a0d57110e35f03dfa4dbb19e6e3834e8",
+      "after_sha256": "9284bbf1cf0228db0eabcd9b210b3ed6850592bcd55c233963c9e744f3ebf49f"
+    },
+    {
+      "id": "hyeonchim-34",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "9645c46c90ae320653f4fd40e826feaaa255c0698a58d3451624688410375108",
+      "after_sha256": "cc110681c9aa83d491a51b53eabe01f572f5fd96779ff0b67ad6a461db3f6cb3"
+    },
+    {
+      "id": "hyeonchim-35",
+      "unknown": false,
+      "compound": "present",
+      "calculations_unchanged": true,
+      "before_sha256": "c52f263ebc9b9b32e53486ab5e2e4cd65b326a2a05f368cac4ad987dd8a28c95",
+      "after_sha256": "40174976c58d35b3d3a8cad1fe1881c6f6e24e1fd3d9f38df03be0b189825ff8"
+    },
+    {
+      "id": "hyeonchim-36",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "309448a8a5eb6a8357db78d777cdc57b8763e3eecdb394beddd019333b528b2f",
+      "after_sha256": "b901b992145a76b0150386d845998f99ab034e10d7115a948c660a873e03612b"
+    },
+    {
+      "id": "hyeonchim-37",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "50c1e7f373a3cee7a712dc938d863468935b3ed2ff37824644943fea63cddb6f",
+      "after_sha256": "9ff0a2c9df79eace644b200eee60018d987e6bb1d953dffc99477253e31758b6"
+    },
+    {
+      "id": "hyeonchim-38",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "962c482d864d8b0a0b66fbcf30c89386b4c524850dc3be94349ee5ddfd53a4ca",
+      "after_sha256": "c537f3977341ac89a42a30b4bb5f04655fdb6283a9616dd4529186322a3965cb"
+    },
+    {
+      "id": "hyeonchim-39",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "31a462aa5cc876cb31d5268bfd18bea460228e84c5410152e0172eca755fa609",
+      "after_sha256": "b2e2a75f3d6dcd59f1406e7a2ad1be1b58a742f7c172f503d3bb5038e229bd5b"
+    },
+    {
+      "id": "hyeonchim-40",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "22d8164240566b22dab2c75f62c8eedd534eb89e4aaed8cf68a6bc55d9bea4da",
+      "after_sha256": "1a183a5a9ce868b090e4a430faad01c4f4202c07f4bc9787fdfabaf8f77729ac"
+    },
+    {
+      "id": "hyeonchim-41",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f925feb72a32718fec7bcd89d2098a80914c3d08dbe889f8e59ef55f39fa4947",
+      "after_sha256": "95e8a42840788e7f4e43b68237ed95204d9ca33d37a836e699f04b5748f621d4"
+    },
+    {
+      "id": "hyeonchim-42",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "dcab3826a4ad7a865b20c0c80aa402e50c5ba81afb2dcf01be0cb6704b09c8ab",
+      "after_sha256": "535fb2a68e577c43b77aae2d4b4d82c3ef03273809641c3abf6ca0ea43150019"
+    },
+    {
+      "id": "hyeonchim-43",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "8099c02a07c574de01a8860aab1898ab1a1b1fca8b59100b6d29370872c96d7e",
+      "after_sha256": "70dd070ff19763e785af3bc452b966a432c3a5ddec68169321f24b6f69f85ed8"
+    },
+    {
+      "id": "hyeonchim-44",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "5cb25f1f2986eb2d39b014dd0ec3eb5afcf1648e70bb8c2d13a1a1929ed5dfd4",
+      "after_sha256": "9dce8f24f202f121b81710077b08ac31407d95919b8cf580238fc477d1f07e98"
+    },
+    {
+      "id": "hyeonchim-45",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "3012fafee73c910e0b01e7ae91cb985a7b9daa94b8c42c86eb863ae33fb5a98e",
+      "after_sha256": "9fff4ba3cb43140643f63cd771b25237b0f1362cc26c886797cc1e1e7bd29a57"
+    },
+    {
+      "id": "hyeonchim-46",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "802bc4d1655283715eb93b71cc56297204c6aa84188506826e2d79b0f5fb07f2",
+      "after_sha256": "3bcb6c94f0239e5221ab828a026f1d4e0d0855290ddac86e5d5584b1a20e9b01"
+    },
+    {
+      "id": "hyeonchim-47",
+      "unknown": false,
+      "compound": "present",
+      "calculations_unchanged": true,
+      "before_sha256": "ef9ed97555efd18cd4befb6703bd11aa398284db5ef27a33b512894ff697f431",
+      "after_sha256": "a0260675f3a3dd3e2e89de13b12cd9a3f89f5b91f809a6b7c7688fad19871416"
+    },
+    {
+      "id": "hyeonchim-48",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "538c1a0d364ebcc52ee46f34082b3e731a1d766df84ca419478b0dff53854789",
+      "after_sha256": "cfc409a79fcb5613e41e4c83823178a3bc6d4e544677ba46e0b3b6fad0ccc5e4"
+    },
+    {
+      "id": "hyeonchim-49",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "588b915cacf4cd6f1e6edced24a25453bf2869b581c73728f9e8ea9d88f4fc42",
+      "after_sha256": "a7cd8c23301ccb7a4c2c54e171b049fd48d50016afbda748d6d1c9b8fa534260"
+    },
+    {
+      "id": "hyeonchim-50",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "fdc3055e31bd1641882f3a1bcc6dcd0cc1c2390373e6d117b4a88a3127bebc6b",
+      "after_sha256": "a99e4a220f1140b12f9ea3ae9b3fb90ef98366ccbf3985af998cd7d040432c49"
+    },
+    {
+      "id": "hyeonchim-51",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "fade10a11d7f3ae4e7c065ffbdc81223e9a6d9be37935be9668c00dc47169edd",
+      "after_sha256": "3e7afc3a0a26f09c5268669819cd699503fc714e2b0ac569af82db9fe9071970"
+    },
+    {
+      "id": "hyeonchim-52",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "36961fd84cb3d41a650ef3cfd413c0d2b2b96e77323cf69fb89295060994aa43",
+      "after_sha256": "367b7e505b2148dddc700f3df36c10240a7834c7371a990ca3191a983b7d7eea"
+    },
+    {
+      "id": "hyeonchim-53",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "076a07179d280bd9b2481b621e600bcd967d43280fd60872d4ed46ef7372eb99",
+      "after_sha256": "716ce0ae888bc9c2665a524baf16146ef542a1dbd7c125d8f997684f7280e482"
+    },
+    {
+      "id": "hyeonchim-54",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "5ee85e854c1a1daf794cfb9196555b19acb5bf8b93fb20f913abc8b6cdf26147",
+      "after_sha256": "55e4ff69ddf6084617a2653170e1c004835c3dd80be590b72473a6f88f3d899f"
+    },
+    {
+      "id": "hyeonchim-55",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "87f31fbe8458d52b22689677ca0736f18f60572df2d4522612205e46e1f5546c",
+      "after_sha256": "91ec83756b5b259ab154166ca544fadd6447bc09d9b26621022a7512d2e3982f"
+    },
+    {
+      "id": "hyeonchim-56",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "555e3cfa181b14fbdc199a1b32b7d0d6565360875892e7a4a8a1dc35626ef9e0",
+      "after_sha256": "050fa169df4e7e9ea1a14681f3d9d88b85c9ca9a011197ec40546e6ba91ca84d"
+    },
+    {
+      "id": "hyeonchim-57",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "976868112a86dca169e51ddbd3ea739fca542c160ed25a68a43ed8b4e21b1530",
+      "after_sha256": "b599adfd9cf1064dbad1c68945e76f53783678d1f1192808576b93feb84e9744"
+    },
+    {
+      "id": "hyeonchim-58",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "11b955cefe4acb7b61dcc15d682753a05288013a5400f2842db260c2f6abaef1",
+      "after_sha256": "ccc4448078c8cf8b39518acf845103e7a4f87336dfc7d9ccba532d3c8344dabd"
+    },
+    {
+      "id": "hyeonchim-59",
+      "unknown": false,
+      "compound": "present",
+      "calculations_unchanged": true,
+      "before_sha256": "aee06a585ab1b3443e0268d79aae5fdb7dea2b32cff4a65d58341faad5b2169e",
+      "after_sha256": "026affdc36a358c8de0eac4823e189166c19f8e7c137306593a3ffd9edfc6944"
+    },
+    {
+      "id": "hyeonchim-60",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "71f6667fd3a3b485dd90e64678c5d50af8402d4a9b07324ba7284760ec7bc2f0",
+      "after_sha256": "9b2dc9a8b1bc1c14945cc1ef75c062712c71c6ec1e07cd6148343154856b9514"
+    },
+    {
+      "id": "hyeonchim-61",
+      "unknown": false,
+      "compound": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "3a2af5d063b3fe3b0e5380fd60d02a47dc0b3c9af60ab85ac2447ba5101a4852",
+      "after_sha256": "7da5764eb1b9675f3c810fb8226c7625c9f55e51e1981507d40ddc9e0c586bc6"
+    }
+  ]
+}

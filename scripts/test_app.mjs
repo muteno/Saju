@@ -422,8 +422,9 @@ test('강약 조건과 한계가 서버의 순수 프롬프트 함수에서도 �
       if (context.monthDayChung.status === 'present')
         for (const text of [context.monthDayChung.facts,context.monthDayChung.interpretation,context.experienceQuestions[1].prompt])
           assert.ok(prompt.includes(text))
-      if (context.monthDayYukhap.status === 'present')
-        for (const text of [context.monthDayYukhap.facts,context.monthDayYukhap.interpretation,context.experienceQuestions[1].prompt])
+      const yukhapReading = context.monthDayCompound.status === 'present' ? context.monthDayCompound : context.monthDayYukhap
+      if (yukhapReading.status === 'present')
+        for (const text of [yukhapReading.facts,yukhapReading.interpretation,context.experienceQuestions[1].prompt])
           assert.ok(prompt.includes(text))
       if(topic==='성격')assert.ok(prompt.includes('경험 없음'))
     }
@@ -455,9 +456,18 @@ test('PR222 월지·일지 충6검사를 원래 판본으로 재현한다', () =
   assert.match(output,/# tests 6\b/);assert.match(output,/# pass 6\b/);assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/)
 })
 
-test('현재 월지·일지 육합7검사와 충·실제 입력·상담·미상 경로를 검증한다', () => {
+test('PR223 월지·일지 육합7검사를 원래 판본으로 재현한다', () => {
   const env={...process.env};delete env.NODE_TEST_CONTEXT
-  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_month_day_yukhap.mjs'],{
+  const output=execFileSync(process.execPath,['docs/knowledge-model/frozen_month_day_yukhap.mjs','--test','--test-reporter=tap','docs/knowledge-model/test_month_day_yukhap.mjs'],{
+    cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:120000,env,stdio:['ignore','pipe','pipe'],
+  })
+  assert.match(output,/# tests 7\b/);assert.match(output,/# pass 7\b/);assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/)
+})
+
+
+test('현재 월일 육합·파 복합풀이7검사와 단독관계·실제입력·상담·미상을 검증한다', () => {
+  const env={...process.env};delete env.NODE_TEST_CONTEXT
+  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_month_day_compound.mjs'],{
     cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:120000,env,stdio:['ignore','pipe','pipe'],
   })
   assert.match(output,/# tests 7\b/);assert.match(output,/# pass 7\b/);assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/)
