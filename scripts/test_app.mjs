@@ -417,17 +417,18 @@ test('강약 조건과 한계가 서버의 순수 프롬프트 함수에서도 �
       const body = {topic,chartSummary:chartSummaryOf(current),grounds:topicLines(current,topic),
         ...(topic==='성격'?{question:'그런 경험은 없는데 어떻게 읽어?',conversation}:{})}
       const prompt = buildPrompt(body)
-      for (const text of [context.blocks[2].lines[0],context.experienceQuestions[0].prompt,context.strength.facts,context.strength.hypothesis,context.strength.question.prompt,context.strength.roots.facts,context.strength.roots.interpretation,context.note])
+      if (context.decision?.active) for (const text of context.decision.lines) assert.ok(prompt.includes(text))
+      for (const text of [context.blocks[2].lines[0],context.experienceQuestions[0].prompt,context.strength.facts,context.strength.hypothesis,context.strength.roots.facts,context.strength.roots.interpretation,context.note])
         assert.ok(prompt.includes(text))
       if (context.monthDayChung.status === 'present')
-        for (const text of [context.monthDayChung.facts,context.monthDayChung.interpretation,context.experienceQuestions[1].prompt])
+        for (const text of [context.monthDayChung.facts,context.monthDayChung.interpretation,(context.experienceQuestions[1] ?? context.experienceQuestions[0]).prompt])
           assert.ok(prompt.includes(text))
       const yukhapReading = context.monthDayCompound.status === 'present' ? context.monthDayCompound : context.monthDayYukhap
       if (yukhapReading.status === 'present')
-        for (const text of [yukhapReading.facts,yukhapReading.interpretation,context.experienceQuestions[1].prompt])
+        for (const text of [yukhapReading.facts,yukhapReading.interpretation,(context.experienceQuestions[1] ?? context.experienceQuestions[0]).prompt])
           assert.ok(prompt.includes(text))
       if (context.monthDayHyeong.status === 'present')
-        for (const text of [context.monthDayHyeong.facts,context.monthDayHyeong.interpretation,context.experienceQuestions[1].prompt])
+        for (const text of [context.monthDayHyeong.facts,context.monthDayHyeong.interpretation,(context.experienceQuestions[1] ?? context.experienceQuestions[0]).prompt])
           assert.ok(prompt.includes(text))
       if(topic==='성격')assert.ok(prompt.includes('경험 없음'))
     }
@@ -477,10 +478,19 @@ test('PR224 월일 육합·파7검사를 원래 판본으로 재현한다', () =
 })
 
 
-test('현재 부분형·삼형 참여 자리7검사와 실제입력·상담·미상을 검증한다', () => {
+test('PR225 부분형·삼형 원래7검사와 측정 해시를 보존한다', () => {
   const env={...process.env};delete env.NODE_TEST_CONTEXT
-  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_hyeong_scope.mjs'],{
+  const output=execFileSync(process.execPath,['docs/knowledge-model/frozen_hyeong_scope.mjs','--test','--test-reporter=tap','docs/knowledge-model/test_hyeong_scope.mjs'],{
     cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:150000,env,stdio:['ignore','pipe','pipe'],
   })
   assert.match(output,/# tests 7\b/);assert.match(output,/# pass 7\b/);assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/)
+})
+
+
+test('현재 조건부 후보·반대조건·피드백·전달 경로를 검증한다', () => {
+  const env={...process.env};delete env.NODE_TEST_CONTEXT
+  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_work_candidates.mjs'],{
+    cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:150000,env,stdio:['ignore','pipe','pipe'],
+  })
+  assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 9\b/)
 })

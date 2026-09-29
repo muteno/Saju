@@ -1,3 +1,4 @@
+import type { WorkDecision } from './workCandidates.js';
 export const CONTEXT_READING_NOTICE: string;
 export interface ContextMarker {
   position: 'year' | 'month' | 'day' | 'hour';
@@ -13,9 +14,10 @@ export interface RootObservation {
   status: 'principal_present' | 'additional_only' | 'absent';
 }
 export interface ContextReading {
-  policy: 'natal-work-context-v9';
+  policy: 'natal-work-context-v10';
   kind: 'conditional_structural_reading';
   dayPillar: string;
+  decision: WorkDecision | null;
   groups: Record<string, { surface: ContextMarker[]; hidden: ContextMarker[];
     status: 'surface_present' | 'hidden_only' | 'absent' }>;
   conditions: Record<string, 'met' | 'unmet'>;

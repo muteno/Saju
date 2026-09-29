@@ -3,7 +3,6 @@
 import { STEMS_HANJA, BRANCHES_HANJA, HIDDEN_STEMS, STEM_ELEMENT, ELEMENTS, TEN_GODS, tenGod, sexStem, sexBranch, sexName } from './tables.js';
 import { strengthJudge } from './judge.js';
 import { detectRelations } from './relations.js';
-import { buildWorkDecision } from './workCandidates.js';
 
 const POSITIONS = ['year', 'month', 'day', 'hour'];
 const POSITION_NAMES = { year: '연', month: '월', day: '일', hour: '시' };
@@ -325,18 +324,17 @@ export function buildContextReading(chart) {
       prompt: `${combined.questions[1].prompt} ${monthDayHyeong.question}`,
       clarifies: `${combined.questions[1].clarifies}; 부분형/삼형 전체 참여 자리의 주제와 조정·비조정·경험 없음` };
   }
-  const decision = buildWorkDecision(chart, { stems, groups });
-  const questions = decision?.active ? [decision.question] : [...combined.questions, strength.question];
-  return { policy: 'natal-work-context-v10', kind: 'conditional_structural_reading',
-    dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem, decision,
+  const questions = [...combined.questions, strength.question];
+  return { policy: 'natal-work-context-v9', kind: 'conditional_structural_reading',
+    dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem,
     strength, monthDayChung, monthDayYukhap, monthDayCompound, monthDayHyeong, experienceQuestions: questions,
     blocks: [{ label: '같은 일주여도 달라지는 부분', lines: [overview] },
       { label: '표현·결과·책임의 구성', lines: roleLines },
-      { label: '함께 읽으면', lines: [...(decision?.active ? decision.lines : [combined.synthesis]),
+      { label: '함께 읽으면', lines: [combined.synthesis,
         ...(monthDayChung.facts ? [monthDayChung.facts, monthDayChung.interpretation] : []),
         ...(yukhapReading.facts ? [yukhapReading.facts, yukhapReading.interpretation] : []),
         ...(monthDayHyeong.facts ? [monthDayHyeong.facts, monthDayHyeong.interpretation] : []),
-        ...(decision?.active ? [] : [synthesis]), strength.facts, strength.hypothesis, strength.roots.facts, strength.roots.interpretation] },
+        synthesis, strength.facts, strength.hypothesis, strength.roots.facts, strength.roots.interpretation] },
       { label: '경험으로 확인할 부분', lines: [...questions.map(q => q.prompt),
         '답을 통해 실제 맡은 역할과 상황을 더 구체적으로 물을 수 있고, 경험이 없다면 없다고 말해도 돼요. 맞지 않는 경험도 함께 살피며, 답만으로 사주가 맞았다거나 적성을 확인했다고 판단하지 않아요.'] }],
     note: CONTEXT_READING_NOTICE, predictionEnabled: false, trainingEligible: false, probability: null };

@@ -3,7 +3,6 @@ import { chartSummaryOf, topicLines, type DosaLine } from './dosaTopics'
 import type { ReportBundle } from '../engine'
 import { withoutCitationLines } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
-import { reviseWorkDecision } from '../engine/vendor/workCandidates.js'
 import { CONTEXT_READING_NOTICE } from '../engine/vendor/contextReading.js'
 import { parseConversationContext, type ConversationContext } from './conversationContext'
 
@@ -24,9 +23,6 @@ export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[
   if (yukhapReading?.status === 'present' && yukhapReading.facts) notices.push(yukhapReading.facts)
   const hyeong = report.sections.find(s => s.id === 'context-reading')?.context?.monthDayHyeong
   if (hyeong?.status === 'present' && hyeong.facts) notices.push(hyeong.facts)
-  const decision = report.sections.find(s => s.id === 'context-reading')?.context?.decision
-  if (decision?.active && decision.question && lines.some(line => line.text === decision.question?.prompt))
-    notices.push(...decision.lines)
   return notices
 }
 
@@ -72,20 +68,6 @@ export async function requestDosaText(options: {
   const parsed = options.question ? parseConversationContext(options.conversation) : undefined
   // Prior model words are conversation, not a new route around withheld readings.
   const conversation = parsed && !basicSentenceMatches(parsed.messages.filter(m => m.role === 'assistant').map(m => m.text).join('\n\n')).length ? parsed : undefined
-  const decision = options.report.sections.find(s => s.id === 'context-reading')?.context?.decision
-  if (decision?.question && conversation?.topic === '직업') {
-    const question = decision.question.prompt
-    const index = conversation.messages.findLastIndex(message => message.role === 'assistant' && message.text.trim() === question)
-    const footer = options.report.sections.find(s => s.id === 'context-reading')?.context?.blocks
-      .find(block => block.label === '경험으로 확인할 부분')?.lines.at(-1) ?? ''
-    const allowedAfter = new Set([footer, ...footer.split(/(?<=[.?!…])\s+/)])
-    const onlyOwnedFooterAfter = index >= 0 && conversation.messages.slice(index + 1)
-      .every(message => message.role === 'assistant' && allowedAfter.has(message.text.trim()))
-    if (onlyOwnedFooterAfter) {
-      const revision = reviseWorkDecision(decision, options.question)
-      if (revision) return revision.text
-    }
-  }
   const ctrl = new AbortController()
   const abort = () => ctrl.abort()
   options.signal?.addEventListener('abort', abort, { once: true })
