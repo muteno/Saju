@@ -1,0 +1,1392 @@
+{
+  "maxima": {
+    "before": {
+      "bytes": 11995,
+      "withHistory": 37082,
+      "groundMax": 223,
+      "groundCount": 27,
+      "qMax": 193
+    },
+    "after": {
+      "bytes": 13825,
+      "withHistory": 38912,
+      "groundMax": 300,
+      "groundCount": 29,
+      "qMax": 300
+    }
+  },
+  "generated": [
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-7",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-10",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-19",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-22",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-31",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-34",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-41",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-44",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-53",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "성격",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "성격",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "성격",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "올해",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "올해",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "올해",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "직업",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "직업",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "직업",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "관계",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "관계",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "관계",
+      "mode": "body-and-questions",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "주의",
+      "mode": "facts-only",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "주의",
+      "mode": "facts-split",
+      "pass": true
+    },
+    {
+      "id": "hyeonchim-56",
+      "topic": "주의",
+      "mode": "body-and-questions",
+      "pass": true
+    }
+  ],
+  "knownLimitations": [
+    {
+      "phase": "before",
+      "mode": "free-questions",
+      "repeats": 2
+    },
+    {
+      "phase": "before",
+      "mode": "mid-sentence",
+      "repeats": 2
+    },
+    {
+      "phase": "after",
+      "mode": "free-questions",
+      "repeats": 2
+    },
+    {
+      "phase": "after",
+      "mode": "mid-sentence",
+      "repeats": 2
+    }
+  ]
+}

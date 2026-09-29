@@ -1,0 +1,386 @@
+{
+  "base": "http://127.0.0.1:5173",
+  "browser": "153.0.8010.0",
+  "beforeHashes": {
+    "app/src/data/dosaClient.ts": "8589a2631c0bbf053dcffb815328db3ea1d4d3cb3e5829ffedbebef62fda0ac7",
+    "app/src/components/DosaChat.tsx": "d2ca24866c97d448d03f680ca653caa774d58102f6d4a990497cfc6bfe6bf0f7",
+    "app/src/engine/vendor/contextReading.js": "3ce30638fcea9d61296be1d56b230270cae75412fe8b88c52418b7fcbbe07bb4",
+    "dosa-app/engine/src/contextReading.js": "3ce30638fcea9d61296be1d56b230270cae75412fe8b88c52418b7fcbbe07bb4"
+  },
+  "afterHashes": {
+    "app/src/data/dosaClient.ts": "8589a2631c0bbf053dcffb815328db3ea1d4d3cb3e5829ffedbebef62fda0ac7",
+    "app/src/components/DosaChat.tsx": "d2ca24866c97d448d03f680ca653caa774d58102f6d4a990497cfc6bfe6bf0f7",
+    "app/src/engine/vendor/contextReading.js": "3ce30638fcea9d61296be1d56b230270cae75412fe8b88c52418b7fcbbe07bb4",
+    "dosa-app/engine/src/contextReading.js": "3ce30638fcea9d61296be1d56b230270cae75412fe8b88c52418b7fcbbe07bb4"
+  },
+  "sourceUnchanged": true,
+  "results": [
+    {
+      "id": "work-two-position-320-early",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-two-position-320-after-question",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-chung-partial-320-early",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-chung-partial-320-after-question",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-chung-full-320-early",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-chung-full-320-after-question",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-four-position-320-early",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 0
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "work-four-position-320-after-question",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ],
+        "limit": 1,
+        "interpretation": 1
+      },
+      "questionCounts": [
+        1,
+        1,
+        1
+      ],
+      "clauseCounts": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-two-position-320-selection",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-chung-partial-320-selection",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-chung-full-320-selection",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    },
+    {
+      "id": "nonwork-four-position-320-selection",
+      "result": "PASS",
+      "counts": {
+        "facts": 1,
+        "factClauses": [
+          1,
+          1
+        ]
+      },
+      "docWidth": 320,
+      "errors": [],
+      "external": []
+    }
+  ],
+  "totals": {
+    "pass": 12,
+    "fail": 0,
+    "error": 0
+  }
+}

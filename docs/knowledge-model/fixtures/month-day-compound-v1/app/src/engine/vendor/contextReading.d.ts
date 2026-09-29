@@ -13,7 +13,7 @@ export interface RootObservation {
   status: 'principal_present' | 'additional_only' | 'absent';
 }
 export interface ContextReading {
-  policy: 'natal-work-context-v9';
+  policy: 'natal-work-context-v8';
   kind: 'conditional_structural_reading';
   dayPillar: string;
   groups: Record<string, { surface: ContextMarker[]; hidden: ContextMarker[];
@@ -47,17 +47,6 @@ export interface ContextReading {
     branches: number[];
     relations: { kind: 'yukhap' | 'pa'; name: string; positions: string[] }[];
     dayMain: ContextMarker;
-    facts: string | null;
-    interpretation: string | null;
-    question: string | null;
-  };
-  monthDayHyeong: {
-    scope: 'natal-hyeong-including-month-day';
-    status: 'present' | 'absent';
-    relation: { name: string; positions: string[]; partial?: true } | null;
-    form: 'partial' | 'full' | null;
-    participants: (ContextMarker & { branch: number; branchCharacter: string })[];
-    branchKindCount: number;
     facts: string | null;
     interpretation: string | null;
     question: string | null;

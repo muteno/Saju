@@ -184,7 +184,7 @@ function monthDayYukhapContext(chart, monthMain, dayMain) {
 
 // The same two positions can have both relations. Keep the original relation
 // records and read their coexistence without cancellation or strength arithmetic.
-// Partial/full hyeong may cover additional positions and is outside this scope.
+// Partial/full hyeong is described separately with its entire participating scope.
 function monthDayCompoundContext(chart, monthMain, yukhap) {
   const pa = yukhap.status === 'present' ? detectRelations(chart.pillarsIdx).pa.find(r =>
     r.positions.length === 2 && r.positions.includes('월') && r.positions.includes('일')) : null;
@@ -200,6 +200,41 @@ function monthDayCompoundContext(chart, monthMain, yukhap) {
   return { ...base, facts, interpretation, question };
 }
 
+
+// Preserve the existing relation's full position set. Three participating
+// positions need not mean three distinct branches: repetitions stay partial.
+function monthDayHyeongContext(chart, hidden) {
+  const relation = detectRelations(chart.pillarsIdx).hyeong.find(r =>
+    (r.partial === true || r.name.endsWith('삼형')) &&
+    r.positions.includes('월') && r.positions.includes('일')) ?? null;
+  const positionKeys = { year: '년', month: '월', day: '일', hour: '시' };
+  const participants = relation ? POSITIONS.filter(p => relation.positions.includes(positionKeys[p])).map(position => {
+    const main = hidden.find(m => m.position === position && m.principal);
+    const branch = sexBranch(chart.pillarsIdx[position]);
+    return { ...main, branch, branchCharacter: BRANCHES_HANJA[branch] };
+  }) : [];
+  const form = relation ? (relation.partial === true ? 'partial' : 'full') : null;
+  const branchKindCount = new Set(participants.map(p => p.branch)).size;
+  const base = { scope: 'natal-hyeong-including-month-day', status: relation ? 'present' : 'absent',
+    relation, form, participants, branchKindCount };
+  if (!relation) return { ...base, facts: null, interpretation: null, question: null };
+  const place = p => `${POSITION_NAMES[p.position]}지(${p.branchCharacter})`;
+  const positions = participants.map(place).join('·');
+  const others = participants.filter(p => p.position !== 'month' && p.position !== 'day');
+  const repeated = participants.length > branchKindCount;
+  const facts = `${positions}에서 ${form === 'partial' ? '부분형' : '삼형'}인 ${relation.name}이 보여요. ` +
+    (form === 'partial' ? '삼형의 세 글자 중 두 종류가 있는 부분형이며' : '세 종류의 글자가 모두 있는 삼형이며') +
+    (repeated ? ', 같은 글자가 여러 자리에 있어도 글자 종류가 늘지는 않고' : '') +
+    ', 이 관찰만으로 갈등·질병·성패·변화 시기나 기운의 세기를 정하지 않아요.';
+  const topics = participants.map(p => `${place(p)} 본기 ${p.character}(${p.tenGod})의 ‘${ROLES[GROUPS.indexOf(p.group)]}’`).join(' / ');
+  const interpretation = `${topics} 주제를 함께 살펴봐요. ` +
+    (others.length ? `이 형은 ${others.map(place).join('·')}까지 포함하므로 월지·일지 두 자리만의 관계로 줄이지 않아요.`
+      : '이 부분형의 참여 범위는 월지·일지 두 자리예요.') +
+    ' 함께 다룬 일과 따로 조정한 일을 확인하는 계기로 읽으며, 다른 합·충·파와 겹쳐도 상쇄하거나 힘을 합산하지 않아요.';
+  const roles = [...new Set(participants.map(p => ROLES[GROUPS.indexOf(p.group)]))].join(' / ');
+  const question = `이 형에 참여하는 ${positions}의 주제(${roles})를 함께 다뤘거나 따로 조정했던 경험은 무엇인가요? 조정할 필요가 없었거나 그런 경험이 없다면 그대로 말해 주세요.`;
+  return { ...base, facts, interpretation, question };
+}
 
 function completeChart(chart) {
   const { hour, minute, hourUnknown } = chart?.input ?? {};
@@ -283,15 +318,22 @@ export function buildContextReading(chart) {
         ? '월지·일지 육합과 파의 동시 관찰에서 확인할 두 주제의 연결·조정·분리·반대 경험·경험 없음'
         : '월지·일지 육합에서 확인할 두 주제의 연결·분리·반대 경험·경험 없음'}` };
   }
+  const monthDayHyeong = monthDayHyeongContext(chart, hidden);
+  if (monthDayHyeong.question) {
+    combined.questions[1] = { ...combined.questions[1],
+      prompt: `${combined.questions[1].prompt} ${monthDayHyeong.question}`,
+      clarifies: `${combined.questions[1].clarifies}; 부분형/삼형 전체 참여 자리의 주제와 조정·비조정·경험 없음` };
+  }
   const questions = [...combined.questions, strength.question];
-  return { policy: 'natal-work-context-v8', kind: 'conditional_structural_reading',
+  return { policy: 'natal-work-context-v9', kind: 'conditional_structural_reading',
     dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem,
-    strength, monthDayChung, monthDayYukhap, monthDayCompound, experienceQuestions: questions,
+    strength, monthDayChung, monthDayYukhap, monthDayCompound, monthDayHyeong, experienceQuestions: questions,
     blocks: [{ label: '같은 일주여도 달라지는 부분', lines: [overview] },
       { label: '표현·결과·책임의 구성', lines: roleLines },
       { label: '함께 읽으면', lines: [combined.synthesis,
         ...(monthDayChung.facts ? [monthDayChung.facts, monthDayChung.interpretation] : []),
         ...(yukhapReading.facts ? [yukhapReading.facts, yukhapReading.interpretation] : []),
+        ...(monthDayHyeong.facts ? [monthDayHyeong.facts, monthDayHyeong.interpretation] : []),
         synthesis, strength.facts, strength.hypothesis, strength.roots.facts, strength.roots.interpretation] },
       { label: '경험으로 확인할 부분', lines: [...questions.map(q => q.prompt),
         '답을 통해 실제 맡은 역할과 상황을 더 구체적으로 물을 수 있고, 경험이 없다면 없다고 말해도 돼요. 맞지 않는 경험도 함께 살피며, 답만으로 사주가 맞았다거나 적성을 확인했다고 판단하지 않아요.'] }],
