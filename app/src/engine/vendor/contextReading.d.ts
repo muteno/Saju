@@ -13,7 +13,7 @@ export interface RootObservation {
   status: 'principal_present' | 'additional_only' | 'absent';
 }
 export interface ContextReading {
-  policy: 'natal-work-context-v4';
+  policy: 'natal-work-context-v5';
   kind: 'conditional_structural_reading';
   dayPillar: string;
   groups: Record<string, { surface: ContextMarker[]; hidden: ContextMarker[];

@@ -1,0 +1,300 @@
+{
+  "baseline_commit": "ca3afb9b4ec22949f15c7eba72972fe76e2f1248",
+  "note": "Synthetic comparison dates; same day/score/root status does not mean other chart features are identical; reading order is not a temporal/causal claim.",
+  "pairs": [
+    {
+      "before": [
+        {
+          "input": {
+            "year": 2024,
+            "month": 3,
+            "day": 9,
+            "hour": 12,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "임신",
+          "a": "식상",
+          "b": "재성",
+          "score": 25,
+          "band": "weak",
+          "roots": [
+            "additional_only",
+            "additional_only"
+          ],
+          "text": "월지 본기 乙(상관) 및 시간 丙(편재)의 조합에서는 표현·실행한 것을 결과와 자원 관리로 이어가는 과정을 함께 읽어요.",
+          "question": "최근 만든 결과물은 어떻게 사용되었나요? 만드는 과정과 시간·비용·결과를 관리하는 과정에서 각각 맡은 일은 무엇이었나요?"
+        },
+        {
+          "input": {
+            "year": 2024,
+            "month": 5,
+            "day": 8,
+            "hour": 8,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "임신",
+          "a": "재성",
+          "b": "식상",
+          "score": 25,
+          "band": "weak",
+          "roots": [
+            "additional_only",
+            "additional_only"
+          ],
+          "text": "월지 본기 丙(편재) 및 시간 甲(식신)의 조합에서는 표현·실행한 것을 결과와 자원 관리로 이어가는 과정을 함께 읽어요.",
+          "question": "최근 만든 결과물은 어떻게 사용되었나요? 만드는 과정과 시간·비용·결과를 관리하는 과정에서 각각 맡은 일은 무엇이었나요?"
+        }
+      ],
+      "after": [
+        {
+          "input": {
+            "year": 2024,
+            "month": 3,
+            "day": 9,
+            "hour": 12,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "임신",
+          "a": "식상",
+          "b": "재성",
+          "score": 25,
+          "band": "weak",
+          "roots": [
+            "additional_only",
+            "additional_only"
+          ],
+          "text": "월지 본기 乙(상관) 및 시간 丙(편재)의 조합에서는 월지 본기의 표현·실행을 중심으로 무엇을 만드는지 읽고, 시간의 결과·자원 관리는 만든 것을 어디에 쓰고 어떻게 관리하는지 살펴보는 주제로 붙여요. 이는 두 자리를 구별하는 풀이 순서이며, 실제 행동이나 인생의 시간 순서를 뜻하지 않아요.",
+          "question": "최근 직접 만들거나 실행한 일부터 떠올려 볼까요? 그 결과를 사용하는 목적이나 시간·비용에 맞춰 무엇을 조정했나요? 그런 조정이나 경험이 없었다면 없다고 말해 주세요."
+        },
+        {
+          "input": {
+            "year": 2024,
+            "month": 5,
+            "day": 8,
+            "hour": 8,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "임신",
+          "a": "재성",
+          "b": "식상",
+          "score": 25,
+          "band": "weak",
+          "roots": [
+            "additional_only",
+            "additional_only"
+          ],
+          "text": "월지 본기 丙(편재) 및 시간 甲(식신)의 조합에서는 월지 본기의 결과·자원 관리를 중심으로 목표와 쓸 수 있는 자원을 읽고, 시간의 표현·실행은 그 조건에 맞는 방법이나 결과물을 살펴보는 주제로 붙여요. 이는 두 자리를 구별하는 풀이 순서이며, 실제 행동이나 인생의 시간 순서를 뜻하지 않아요.",
+          "question": "최근 맡은 목표나 쓸 수 있는 시간·비용부터 떠올려 볼까요? 그 조건에 맞추어 만들거나 실행하는 방법을 바꾼 적이 있나요? 바꾸지 않았거나 경험이 없다면 그대로 말해 주세요."
+        }
+      ]
+    },
+    {
+      "before": [
+        {
+          "input": {
+            "year": 2024,
+            "month": 1,
+            "day": 13,
+            "hour": 8,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "병자",
+          "a": "식상",
+          "b": "관성",
+          "score": 30,
+          "band": "weak",
+          "roots": [
+            "absent",
+            "absent"
+          ],
+          "text": "월지 본기 己(상관) 및 시간 壬(편관)의 조합에서는 자유롭게 표현·실행하는 과정과 기준·책임을 지키는 과정을 함께 읽어요.",
+          "question": "최근 새 방식으로 시도한 일에서 정해진 기준은 어떤 역할을 했나요? 도움이 된 점이나 맞지 않았던 점이 있나요?"
+        },
+        {
+          "input": {
+            "year": 2024,
+            "month": 11,
+            "day": 8,
+            "hour": 0,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "병자",
+          "a": "관성",
+          "b": "식상",
+          "score": 30,
+          "band": "weak",
+          "roots": [
+            "absent",
+            "absent"
+          ],
+          "text": "월지 본기 壬(편관) 및 시간 戊(식신)의 조합에서는 자유롭게 표현·실행하는 과정과 기준·책임을 지키는 과정을 함께 읽어요.",
+          "question": "최근 새 방식으로 시도한 일에서 정해진 기준은 어떤 역할을 했나요? 도움이 된 점이나 맞지 않았던 점이 있나요?"
+        }
+      ],
+      "after": [
+        {
+          "input": {
+            "year": 2024,
+            "month": 1,
+            "day": 13,
+            "hour": 8,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "병자",
+          "a": "식상",
+          "b": "관성",
+          "score": 30,
+          "band": "weak",
+          "roots": [
+            "absent",
+            "absent"
+          ],
+          "text": "월지 본기 己(상관) 및 시간 壬(편관)의 조합에서는 월지 본기의 표현·실행을 중심으로 시도한 방식을 읽고, 시간의 규칙·책임은 그 시도를 지켜야 할 기준과 맞춰 보는 주제로 붙여요. 이는 두 자리를 구별하는 풀이 순서이며, 실제 행동이나 인생의 시간 순서를 뜻하지 않아요.",
+          "question": "최근 시도하거나 표현한 일부터 떠올려 볼까요? 정해진 기준이나 맡은 책임이 그 방식에 도움이 되었거나 맞지 않았던 점은 무엇이었나요? 영향이나 경험이 없었다면 없다고 말해 주세요."
+        },
+        {
+          "input": {
+            "year": 2024,
+            "month": 11,
+            "day": 8,
+            "hour": 0,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "병자",
+          "a": "관성",
+          "b": "식상",
+          "score": 30,
+          "band": "weak",
+          "roots": [
+            "absent",
+            "absent"
+          ],
+          "text": "월지 본기 壬(편관) 및 시간 戊(식신)의 조합에서는 월지 본기의 규칙·책임을 중심으로 맡은 역할과 지켜야 할 기준을 읽고, 시간의 표현·실행은 그 안에서 선택하거나 제안한 방식을 살펴보는 주제로 붙여요. 이는 두 자리를 구별하는 풀이 순서이며, 실제 행동이나 인생의 시간 순서를 뜻하지 않아요.",
+          "question": "최근 맡은 책임이나 지켜야 했던 기준부터 떠올려 볼까요? 그 안에서 직접 선택하거나 제안한 방법은 무엇이었나요? 선택할 여지가 없었거나 경험이 없다면 그대로 말해 주세요."
+        }
+      ]
+    },
+    {
+      "before": [
+        {
+          "input": {
+            "year": 2024,
+            "month": 5,
+            "day": 9,
+            "hour": 12,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "계유",
+          "a": "재성",
+          "b": "관성",
+          "score": 25,
+          "band": "weak",
+          "roots": [
+            "additional_only",
+            "additional_only"
+          ],
+          "text": "월지 본기 丙(정재) 및 시간 戊(정관)의 조합에서는 결과·자원을 관리하는 과정과 맡은 기준·책임을 지키는 과정을 함께 읽어요.",
+          "question": "최근 맡은 일에서 시간·비용·결과와 지켜야 할 기준을 어떻게 조정했나요? 조정할 필요가 없었다면 그대로 말해 주세요."
+        },
+        {
+          "input": {
+            "year": 2024,
+            "month": 11,
+            "day": 5,
+            "hour": 8,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "계유",
+          "a": "관성",
+          "b": "재성",
+          "score": 25,
+          "band": "weak",
+          "roots": [
+            "additional_only",
+            "additional_only"
+          ],
+          "text": "월지 본기 戊(정관) 및 시간 丙(정재)의 조합에서는 결과·자원을 관리하는 과정과 맡은 기준·책임을 지키는 과정을 함께 읽어요.",
+          "question": "최근 맡은 일에서 시간·비용·결과와 지켜야 할 기준을 어떻게 조정했나요? 조정할 필요가 없었다면 그대로 말해 주세요."
+        }
+      ],
+      "after": [
+        {
+          "input": {
+            "year": 2024,
+            "month": 5,
+            "day": 9,
+            "hour": 12,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "계유",
+          "a": "재성",
+          "b": "관성",
+          "score": 25,
+          "band": "weak",
+          "roots": [
+            "additional_only",
+            "additional_only"
+          ],
+          "text": "월지 본기 丙(정재) 및 시간 戊(정관)의 조합에서는 월지 본기의 결과·자원 관리를 중심으로 목표와 자원 배분을 읽고, 시간의 규칙·책임은 그 목표를 맡을 때 지켜야 할 범위를 살펴보는 주제로 붙여요. 이는 두 자리를 구별하는 풀이 순서이며, 실제 행동이나 인생의 시간 순서를 뜻하지 않아요.",
+          "question": "최근 관리한 결과나 시간·비용부터 떠올려 볼까요? 그 목표와 맡은 책임의 범위가 맞았거나 조정이 필요했던 점은 무엇이었나요? 조정이나 경험이 없었다면 없다고 말해 주세요."
+        },
+        {
+          "input": {
+            "year": 2024,
+            "month": 11,
+            "day": 5,
+            "hour": 8,
+            "minute": 0,
+            "gender": "F",
+            "solarTimeCorrection": false,
+            "lateZiRule": "keepDay"
+          },
+          "day": "계유",
+          "a": "관성",
+          "b": "재성",
+          "score": 25,
+          "band": "weak",
+          "roots": [
+            "additional_only",
+            "additional_only"
+          ],
+          "text": "월지 본기 戊(정관) 및 시간 丙(정재)의 조합에서는 월지 본기의 규칙·책임을 중심으로 맡은 역할의 범위를 읽고, 시간의 결과·자원 관리는 그 역할에 필요한 시간·비용과 결과를 살펴보는 주제로 붙여요. 이는 두 자리를 구별하는 풀이 순서이며, 실제 행동이나 인생의 시간 순서를 뜻하지 않아요.",
+          "question": "최근 맡은 역할이나 책임부터 떠올려 볼까요? 그 일을 위해 필요한 시간·비용과 기대한 결과를 어떻게 정했나요? 직접 정하지 않았거나 경험이 없다면 그대로 말해 주세요."
+        }
+      ]
+    }
+  ]
+}
