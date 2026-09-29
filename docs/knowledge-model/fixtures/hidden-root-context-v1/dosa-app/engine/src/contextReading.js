@@ -9,8 +9,8 @@ const GROUPS = ['비겁', '식상', '재성', '관성', '인성'];
 const ROLES = ['자기 기준과 동료', '표현과 실행', '결과와 자원 관리', '규칙과 책임', '배움과 준비'];
 export const CONTEXT_READING_NOTICE = '글자의 조합과 앱의 잠정 계산 기준으로 본 강약을 읽는 설명이에요. 점수는 능력이나 확률이 아니며, 직업 적성·수입·성공이나 기운의 세기를 확정하지 않으니 실제 경험과 대조해서 읽어 주세요.';
 
-// Interpretation prompts, not measured personal effects. Unreviewed role pairs
-// retain the shared reading; the six work-role pairs below retain position order.
+// Interpretation prompts, not measured personal effects. Pair keys are sorted;
+// the actual month/hour positions remain explicit in every rendered synthesis.
 const PAIR_READINGS = {
   '0:1': ['자기 기준을 정하는 일과 생각을 표현·실행하는 일을 연결해 읽어요.', '최근 직접 방향을 정해 만든 일이 있나요? 혼자 결정한 부분과 다른 사람의 의견을 반영한 부분은 각각 무엇이었나요?'],
   '0:2': ['자기 방식으로 선택하는 일과 시간·비용·결과를 관리하는 일을 함께 읽어요.', '최근 원하는 방식과 쓸 수 있는 시간·비용이 달랐던 일이 있나요? 무엇을 유지하고 무엇을 바꿨나요?'],
@@ -23,17 +23,6 @@ const PAIR_READINGS = {
   '2:4': ['배움·준비가 시간·비용·결과 관리와 어떻게 이어지는지 함께 읽어요.', '최근 자료를 찾거나 배운 내용이 시간·비용·결과를 관리하는 데 쓰였나요? 쓰이지 않은 부분도 있었나요?'],
   '3:4': ['배움·준비와 기준·책임을 맡는 과정을 함께 읽어요.', '최근 맡은 역할을 위해 새로 배운 것이 있나요? 준비가 도움이 된 부분과 실제로 해 보아야 알 수 있었던 부분은 무엇이었나요?'],
 };
-// Month branch principal and hour stem are different observation positions.
-// This is a reading/question order, never a life-stage or causal prediction.
-const ORDERED_WORK_READINGS = {
-  '1:2': ['월지 본기의 표현·실행을 중심으로 무엇을 만드는지 읽고, 시간의 결과·자원 관리는 만든 것을 어디에 쓰고 어떻게 관리하는지 살펴보는 주제로 붙여요.', '최근 직접 만들거나 실행한 일부터 떠올려 볼까요? 그 결과를 사용하는 목적이나 시간·비용에 맞춰 무엇을 조정했나요? 그런 조정이나 경험이 없었다면 없다고 말해 주세요.'],
-  '2:1': ['월지 본기의 결과·자원 관리를 중심으로 목표와 쓸 수 있는 자원을 읽고, 시간의 표현·실행은 그 조건에 맞는 방법이나 결과물을 살펴보는 주제로 붙여요.', '최근 맡은 목표나 쓸 수 있는 시간·비용부터 떠올려 볼까요? 그 조건에 맞추어 만들거나 실행하는 방법을 바꾼 적이 있나요? 바꾸지 않았거나 경험이 없다면 그대로 말해 주세요.'],
-  '1:3': ['월지 본기의 표현·실행을 중심으로 시도한 방식을 읽고, 시간의 규칙·책임은 그 시도를 지켜야 할 기준과 맞춰 보는 주제로 붙여요.', '최근 시도하거나 표현한 일부터 떠올려 볼까요? 정해진 기준이나 맡은 책임이 그 방식에 도움이 되었거나 맞지 않았던 점은 무엇이었나요? 영향이나 경험이 없었다면 없다고 말해 주세요.'],
-  '3:1': ['월지 본기의 규칙·책임을 중심으로 맡은 역할과 지켜야 할 기준을 읽고, 시간의 표현·실행은 그 안에서 선택하거나 제안한 방식을 살펴보는 주제로 붙여요.', '최근 맡은 책임이나 지켜야 했던 기준부터 떠올려 볼까요? 그 안에서 직접 선택하거나 제안한 방법은 무엇이었나요? 선택할 여지가 없었거나 경험이 없다면 그대로 말해 주세요.'],
-  '2:3': ['월지 본기의 결과·자원 관리를 중심으로 목표와 자원 배분을 읽고, 시간의 규칙·책임은 그 목표를 맡을 때 지켜야 할 범위를 살펴보는 주제로 붙여요.', '최근 관리한 결과나 시간·비용부터 떠올려 볼까요? 그 목표와 맡은 책임의 범위가 맞았거나 조정이 필요했던 점은 무엇이었나요? 조정이나 경험이 없었다면 없다고 말해 주세요.'],
-  '3:2': ['월지 본기의 규칙·책임을 중심으로 맡은 역할의 범위를 읽고, 시간의 결과·자원 관리는 그 역할에 필요한 시간·비용과 결과를 살펴보는 주제로 붙여요.', '최근 맡은 역할이나 책임부터 떠올려 볼까요? 그 일을 위해 필요한 시간·비용과 기대한 결과를 어떻게 정했나요? 직접 정하지 않았거나 경험이 없다면 그대로 말해 주세요.'],
-};
-const ORDERED_READING_LIMIT = '이는 두 자리를 구별하는 풀이 순서이며, 실제 행동이나 인생의 시간 순서를 뜻하지 않아요.';
 const SAME_QUESTIONS = [
   '최근 스스로 결정한 일과 다른 사람과 함께 정한 일은 각각 무엇이었나요? 상황에 따라 방식이 달랐나요?',
   '최근 생각을 말하거나 결과물로 옮긴 일은 무엇이었나요? 실행하지 않은 생각이 있다면 이유는 무엇이었나요?',
@@ -46,10 +35,9 @@ function combineRoles(monthMain, hourStem, groups, positionText) {
   const mi = GROUPS.indexOf(monthMain.group), hi = GROUPS.indexOf(hourStem.group);
   const key = [mi, hi].sort((a, b) => a - b).join(':');
   const pair = PAIR_READINGS[key];
-  const ordered = ORDERED_WORK_READINGS[`${mi}:${hi}`];
   const interpretation = mi === hi
     ? `두 자리에서 ‘${ROLES[mi]}’ 주제가 반복돼요. 같은 주제가 겹치는 구성이지, 그 성향이나 능력이 더 강하다는 판정은 아니에요.`
-    : ordered ? `${ordered[0]} ${ORDERED_READING_LIMIT}` : pair[0];
+    : pair[0];
   const synthesis = `${positionText(monthMain)} 및 ${positionText(hourStem)}의 조합에서는 ${interpretation}`;
   const hidden = ['식상', '재성', '관성'].filter(g => groups[g].status === 'hidden_only');
   const absent = ['식상', '재성', '관성'].filter(g => groups[g].status === 'absent');
@@ -59,8 +47,8 @@ function combineRoles(monthMain, hourStem, groups, positionText) {
       ? `글자에서 보이지 않는 ${absent.join('·')}의 주제(${absent.map(g => ROLES[GROUPS.indexOf(g)]).join(' / ')})도 현실에서 맡은 적이 있나요? 있었다면 어떤 상황이었나요?`
       : '표현·실행, 결과·자원 관리, 규칙·책임 가운데 최근 실제로 맡은 일과 맡지 않은 일은 각각 무엇이었나요?';
   const questions = [
-    { id: `month-hour-${mi}-${hi}`, prompt: mi === hi ? SAME_QUESTIONS[mi] : (ordered ?? pair)[1],
-      clarifies: ordered ? '월지 본기 주제를 먼저 확인하고 시간 주제를 대조하는 질문; 실제 행동 순서·인과·시기 판정은 아님' : '월·시에서 읽은 주제가 실제 업무에서 함께 나타나는 방식과 맞지 않는 상황' },
+    { id: `month-hour-${mi}-${hi}`, prompt: mi === hi ? SAME_QUESTIONS[mi] : pair[1],
+      clarifies: '월·시에서 읽은 주제가 실제 업무에서 함께 나타나는 방식과 맞지 않는 상황' },
     { id: hidden.length ? 'hidden-context' : absent.length ? 'absent-context' : 'shared-context', prompt: question,
       clarifies: '글자의 관찰 범위와 별개로 실제 맡은 역할·경험의 유무' },
   ];
@@ -206,7 +194,7 @@ export function buildContextReading(chart) {
   const combined = combineRoles(monthMain, hourStem, groups, positionText);
   const strength = strengthContext(chart, monthMain, hourStem, hidden, positionText);
   const questions = [...combined.questions, strength.question];
-  return { policy: 'natal-work-context-v5', kind: 'conditional_structural_reading',
+  return { policy: 'natal-work-context-v4', kind: 'conditional_structural_reading',
     dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem,
     strength, experienceQuestions: questions,
     blocks: [{ label: '같은 일주여도 달라지는 부분', lines: [overview] },

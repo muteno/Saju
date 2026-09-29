@@ -408,8 +408,8 @@ test('강약 조건과 한계가 서버의 순수 프롬프트 함수에서도 �
   assert.match(source, /content: buildUserMessage\(body\)/)
   const { terms } = JSON.parse(readFileSync(new URL('../app/src/engine/vendor/data/solar_terms.json', import.meta.url)))
   const { topicLines } = await import('../app/src/data/dosaTopics.ts')
-  for (const [year, month, day] of [[2011,2,28],[2026,2,9],[2024,1,8],[2024,1,7],[2024,2,6]]) {
-    const chart = computeChart({year,month,day,hour:12,minute:0,gender:'F',solarTimeCorrection:false,lateZiRule:'keepDay'},terms)
+  for (const [year, month, day, hour = 12] of [[2011,2,28],[2026,2,9],[2024,1,8],[2024,1,7],[2024,2,6],[2024,3,9,12],[2024,5,8,8],[2024,1,13,8],[2024,11,8,0],[2024,5,9,12],[2024,11,5,8]]) {
+    const chart = computeChart({year,month,day,hour,minute:0,gender:'F',solarTimeCorrection:false,lateZiRule:'keepDay'},terms)
     const current = buildReport(chart,chartToKeys(chart),{aliases:{},index:{},bodies:{}})
     const context = current.sections.find(s=>s.id==='context-reading').context
     for (const topic of ['직업','성격']) {
@@ -417,7 +417,7 @@ test('강약 조건과 한계가 서버의 순수 프롬프트 함수에서도 �
       const body = {topic,chartSummary:chartSummaryOf(current),grounds:topicLines(current,topic),
         ...(topic==='성격'?{question:'그런 경험은 없는데 어떻게 읽어?',conversation}:{})}
       const prompt = buildPrompt(body)
-      for (const text of [context.strength.facts,context.strength.hypothesis,context.strength.question.prompt,context.strength.roots.facts,context.strength.roots.interpretation,context.note])
+      for (const text of [context.blocks[2].lines[0],context.experienceQuestions[0].prompt,context.strength.facts,context.strength.hypothesis,context.strength.question.prompt,context.strength.roots.facts,context.strength.roots.interpretation,context.note])
         assert.ok(prompt.includes(text))
       if(topic==='성격')assert.ok(prompt.includes('경험 없음'))
     }
@@ -425,10 +425,18 @@ test('강약 조건과 한계가 서버의 순수 프롬프트 함수에서도 �
 })
 
 
-test('현재 지장간·강약 풀이의9검사와110입력 전달·미상 보류를 검증한다', () => {
+test('PR220 고정판본의 지장간·강약9검사와110입력 전달을 보존한다', () => {
   const env={...process.env};delete env.NODE_TEST_CONTEXT
-  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_hidden_root_context.mjs'],{
+  const output=execFileSync(process.execPath,['docs/knowledge-model/frozen_hidden_root_context.mjs','--test','--test-reporter=tap','docs/knowledge-model/test_hidden_root_context.mjs'],{
     cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:120000,env,stdio:['ignore','pipe','pipe'],
   })
   assert.match(output,/# tests 9\b/);assert.match(output,/# pass 9\b/);assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/)
+})
+
+test('현재 월지·시간 자리 순서6검사와 기존 강약·지장간·미상 경로를 검증한다', () => {
+  const env={...process.env};delete env.NODE_TEST_CONTEXT
+  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_ordered_roles.mjs'],{
+    cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:120000,env,stdio:['ignore','pipe','pipe'],
+  })
+  assert.match(output,/# tests 6\b/);assert.match(output,/# pass 6\b/);assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/)
 })
