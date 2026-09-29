@@ -8,12 +8,8 @@ export interface ContextMarker {
   group: string;
   principal: boolean;
 }
-export interface RootObservation {
-  principal: ContextMarker[]; additional: ContextMarker[];
-  status: 'principal_present' | 'additional_only' | 'absent';
-}
 export interface ContextReading {
-  policy: 'natal-work-context-v4';
+  policy: 'natal-work-context-v3';
   kind: 'conditional_structural_reading';
   dayPillar: string;
   groups: Record<string, { surface: ContextMarker[]; hidden: ContextMarker[];
@@ -27,9 +23,6 @@ export interface ContextReading {
       detail: Record<'year' | 'month' | 'day' | 'hour', { stemHelp: boolean; branchHelp: boolean }> };
     band: 'strong' | 'weak' | 'balanced';
     supports: Omit<ContextMarker, 'group'>[];
-    roots: { scope: 'four-natal-branches-existing-hidden-stems';
-      sameStem: RootObservation; sameElement: RootObservation;
-      facts: string; interpretation: string; question: string };
     facts: string;
     hypothesis: string;
     question: { id: string; prompt: string; clarifies: string };

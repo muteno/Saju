@@ -1,0 +1,25 @@
+{
+  "commit": "b1720e16561a2bc2784e04879add53be05555ac1",
+  "files": [
+    {
+      "path": "dosa-app/engine/src/contextReading.js",
+      "sha256_lf": "43572484cfd143d10c426e03d3af244707f7d2c86436150b239111b2169f59f3"
+    },
+    {
+      "path": "dosa-app/engine/src/contextReading.d.ts",
+      "sha256_lf": "48d2c51266392b04d1678d3b21f92fc0fd2131a7a3b56a7e0eccc76f691e39c2"
+    },
+    {
+      "path": "app/src/engine/vendor/contextReading.js",
+      "sha256_lf": "43572484cfd143d10c426e03d3af244707f7d2c86436150b239111b2169f59f3"
+    },
+    {
+      "path": "app/src/engine/vendor/contextReading.d.ts",
+      "sha256_lf": "48d2c51266392b04d1678d3b21f92fc0fd2131a7a3b56a7e0eccc76f691e39c2"
+    },
+    {
+      "path": "app/src/data/dosaClient.ts",
+      "sha256_lf": "06568c5f39f20e6dbd2ff784b8ec26353e6c3090ef3b0fdabc9423fae7a67fb7"
+    }
+  ]
+}

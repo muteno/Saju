@@ -1,0 +1,1063 @@
+{
+  "scope": "Eight synthetic calendar inputs, not observed individuals; personal accuracy unmeasured",
+  "rows": [
+    {
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 8,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 7,
+        "hour": 30
+      },
+      "dayPillar": "신미",
+      "strength": {
+        "observation": {
+          "score": 55,
+          "max": 110,
+          "label": "중화",
+          "deukryeong": true,
+          "deukji": true,
+          "deuksi": false,
+          "deukse": false,
+          "detail": {
+            "year": {
+              "stemHelp": false,
+              "branchHelp": false
+            },
+            "month": {
+              "stemHelp": false,
+              "branchHelp": true
+            },
+            "day": {
+              "stemHelp": true,
+              "branchHelp": true
+            },
+            "hour": {
+              "stemHelp": false,
+              "branchHelp": false
+            }
+          }
+        },
+        "band": "balanced",
+        "supports": [
+          {
+            "position": "month",
+            "part": "hidden",
+            "stem": 5,
+            "character": "己",
+            "tenGod": "편인",
+            "principal": true
+          },
+          {
+            "position": "day",
+            "part": "hidden",
+            "stem": 5,
+            "character": "己",
+            "tenGod": "편인",
+            "principal": true
+          }
+        ],
+        "facts": "원국 전체의 강약을 함께 보면, 앱의 잠정 기준은 중화(55/110점)이에요. 일간 자신 외에 월지 본기 己(편인), 일지 본기 己(편인)을 도움으로 셌어요.",
+        "hypothesis": "앞의 ‘배움과 준비 / 결과와 자원 관리’ 조합에 이 조건을 더하면, 스스로 밀고 나갈 부분과 준비·협업이 필요한 부분을 상황에 따라 나누는 방식을 살펴보는 해석 가설로 이어져요. 실제로 그런지는 경험을 확인해야 해요.",
+        "roots": {
+          "scope": "four-natal-branches-existing-hidden-stems",
+          "sameStem": {
+            "principal": [],
+            "additional": [
+              {
+                "position": "month",
+                "part": "hidden",
+                "stem": 7,
+                "character": "辛",
+                "tenGod": "비견",
+                "group": "비겁",
+                "principal": false
+              }
+            ],
+            "status": "additional_only"
+          },
+          "sameElement": {
+            "principal": [],
+            "additional": [
+              {
+                "position": "month",
+                "part": "hidden",
+                "stem": 7,
+                "character": "辛",
+                "tenGod": "비견",
+                "group": "비겁",
+                "principal": false
+              }
+            ],
+            "status": "additional_only"
+          },
+          "facts": "네 지지의 지장간에서 일간 辛과 같은 글자: 월지 지장간 辛(비견) / 같은 금 오행: 월지 지장간 辛(비견)이에요. 본기 밖 글자는 앞의 강약 점수에 따로 더하지 않았으며, 같은 글자와 같은 오행의 관찰만으로 통근의 강도나 실제 능력을 정하지 않아요.",
+          "interpretation": "지지 본기에는 없던 같은 오행이 나머지 지장간에는 남아 있어요. 앞의 점수가 이 글자를 따로 세지 않았다는 뜻이므로, 점수만 보고 자기 기준과 동료라는 주제까지 없다고 단정하지 않아요.",
+          "question": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 비슷한 일을 혼자 진행한 경우와 준비·협업이 필요했던 경우 무엇이 달랐고, 차이가 없었다면 어떤 상황이었나요?"
+        },
+        "question": {
+          "id": "strength-balanced-additional_only-additional_only",
+          "prompt": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 비슷한 일을 혼자 진행한 경우와 준비·협업이 필요했던 경우 무엇이 달랐고, 차이가 없었다면 어떤 상황이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      },
+      "questions": [
+        {
+          "id": "month-hour-4-2",
+          "prompt": "최근 자료를 찾거나 배운 내용이 시간·비용·결과를 관리하는 데 쓰였나요? 쓰이지 않은 부분도 있었나요?",
+          "clarifies": "월·시에서 읽은 주제가 실제 업무에서 함께 나타나는 방식과 맞지 않는 상황"
+        },
+        {
+          "id": "shared-context",
+          "prompt": "표현·실행, 결과·자원 관리, 규칙·책임 가운데 최근 실제로 맡은 일과 맡지 않은 일은 각각 무엇이었나요?",
+          "clarifies": "글자의 관찰 범위와 별개로 실제 맡은 역할·경험의 유무"
+        },
+        {
+          "id": "strength-balanced-additional_only-additional_only",
+          "prompt": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 비슷한 일을 혼자 진행한 경우와 준비·협업이 필요했던 경우 무엇이 달랐고, 차이가 없었다면 어떤 상황이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      ]
+    },
+    {
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 7,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 6,
+        "hour": 18
+      },
+      "dayPillar": "경오",
+      "strength": {
+        "observation": {
+          "score": 40,
+          "max": 110,
+          "label": "중화",
+          "deukryeong": true,
+          "deukji": false,
+          "deuksi": false,
+          "deukse": false,
+          "detail": {
+            "year": {
+              "stemHelp": false,
+              "branchHelp": false
+            },
+            "month": {
+              "stemHelp": false,
+              "branchHelp": true
+            },
+            "day": {
+              "stemHelp": true,
+              "branchHelp": false
+            },
+            "hour": {
+              "stemHelp": false,
+              "branchHelp": false
+            }
+          }
+        },
+        "band": "balanced",
+        "supports": [
+          {
+            "position": "month",
+            "part": "hidden",
+            "stem": 5,
+            "character": "己",
+            "tenGod": "정인",
+            "principal": true
+          }
+        ],
+        "facts": "원국 전체의 강약을 함께 보면, 앱의 잠정 기준은 중화(40/110점)이에요. 일간 자신 외에 월지 본기 己(정인)을 도움으로 셌어요.",
+        "hypothesis": "앞의 ‘배움과 준비 / 표현과 실행’ 조합에 이 조건을 더하면, 스스로 밀고 나갈 부분과 준비·협업이 필요한 부분을 상황에 따라 나누는 방식을 살펴보는 해석 가설로 이어져요. 실제로 그런지는 경험을 확인해야 해요.",
+        "roots": {
+          "scope": "four-natal-branches-existing-hidden-stems",
+          "sameStem": {
+            "principal": [],
+            "additional": [],
+            "status": "absent"
+          },
+          "sameElement": {
+            "principal": [],
+            "additional": [
+              {
+                "position": "month",
+                "part": "hidden",
+                "stem": 7,
+                "character": "辛",
+                "tenGod": "겁재",
+                "group": "비겁",
+                "principal": false
+              }
+            ],
+            "status": "additional_only"
+          },
+          "facts": "네 지지의 지장간에서 일간 庚과 같은 글자: 없음 / 같은 금 오행: 월지 지장간 辛(겁재)이에요. 본기 밖 글자는 앞의 강약 점수에 따로 더하지 않았으며, 같은 글자와 같은 오행의 관찰만으로 통근의 강도나 실제 능력을 정하지 않아요.",
+          "interpretation": "같은 글자는 없지만 같은 오행은 본기 밖 지장간에 있어요. 같은 글자 기준의 부재를 같은 오행까지 없다는 뜻으로 넓히지 않고, 앞의 일·재능 가설도 능력의 유무를 단정하지 않는 범위로 읽어요.",
+          "question": "같은 글자는 없지만 같은 오행은 있다는 차이를 실제 능력 차이로 정하지 않아요. 최근 비슷한 일을 혼자 진행한 경우와 준비·협업이 필요했던 경우 무엇이 달랐고, 차이가 없었다면 어떤 상황이었나요?"
+        },
+        "question": {
+          "id": "strength-balanced-absent-additional_only",
+          "prompt": "같은 글자는 없지만 같은 오행은 있다는 차이를 실제 능력 차이로 정하지 않아요. 최근 비슷한 일을 혼자 진행한 경우와 준비·협업이 필요했던 경우 무엇이 달랐고, 차이가 없었다면 어떤 상황이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      },
+      "questions": [
+        {
+          "id": "month-hour-4-1",
+          "prompt": "최근 배운 것을 실제로 써 본 일이 있나요? 준비한 대로 된 부분과 해 보면서 바꾼 부분은 무엇이었나요?",
+          "clarifies": "월·시에서 읽은 주제가 실제 업무에서 함께 나타나는 방식과 맞지 않는 상황"
+        },
+        {
+          "id": "shared-context",
+          "prompt": "표현·실행, 결과·자원 관리, 규칙·책임 가운데 최근 실제로 맡은 일과 맡지 않은 일은 각각 무엇이었나요?",
+          "clarifies": "글자의 관찰 범위와 별개로 실제 맡은 역할·경험의 유무"
+        },
+        {
+          "id": "strength-balanced-absent-additional_only",
+          "prompt": "같은 글자는 없지만 같은 오행은 있다는 차이를 실제 능력 차이로 정하지 않아요. 최근 비슷한 일을 혼자 진행한 경우와 준비·협업이 필요했던 경우 무엇이 달랐고, 차이가 없었다면 어떤 상황이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      ]
+    },
+    {
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 6,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 40,
+        "month": 2,
+        "day": 36,
+        "hour": 18
+      },
+      "dayPillar": "경자",
+      "strength": {
+        "observation": {
+          "score": 20,
+          "max": 110,
+          "label": "신약",
+          "deukryeong": false,
+          "deukji": false,
+          "deuksi": false,
+          "deukse": false,
+          "detail": {
+            "year": {
+              "stemHelp": false,
+              "branchHelp": true
+            },
+            "month": {
+              "stemHelp": false,
+              "branchHelp": false
+            },
+            "day": {
+              "stemHelp": true,
+              "branchHelp": false
+            },
+            "hour": {
+              "stemHelp": false,
+              "branchHelp": false
+            }
+          }
+        },
+        "band": "weak",
+        "supports": [
+          {
+            "position": "year",
+            "part": "hidden",
+            "stem": 4,
+            "character": "戊",
+            "tenGod": "편인",
+            "principal": true
+          }
+        ],
+        "facts": "원국 전체의 강약을 함께 보면, 앱의 잠정 기준은 신약(20/110점)이에요. 일간 자신 외에 연지 본기 戊(편인)을 도움으로 셌어요.",
+        "hypothesis": "앞의 ‘결과와 자원 관리 / 표현과 실행’ 조합에 이 조건을 더하면, 맡은 일을 감당할 때 필요한 준비·협업과 혼자 맡을 수 있는 범위를 살펴보는 해석 가설로 이어져요. 실제로 그런지는 경험을 확인해야 해요.",
+        "roots": {
+          "scope": "four-natal-branches-existing-hidden-stems",
+          "sameStem": {
+            "principal": [],
+            "additional": [],
+            "status": "absent"
+          },
+          "sameElement": {
+            "principal": [],
+            "additional": [],
+            "status": "absent"
+          },
+          "facts": "네 지지의 지장간에서 일간 庚과 같은 글자: 없음 / 같은 금 오행: 없음이에요. 본기 밖 글자는 앞의 강약 점수에 따로 더하지 않았으며, 같은 글자와 같은 오행의 관찰만으로 통근의 강도나 실제 능력을 정하지 않아요.",
+          "interpretation": "이 지장간표의 네 지지에는 일간과 같은 오행이 보이지 않아요. 앞의 도움 목록에는 다른 천간이나 일간을 생하는 인성이 있을 수 있으므로, 이 관찰을 원국 전체의 도움 부재나 혼자 일할 능력의 부족으로 읽지 않아요.",
+          "question": "네 지지에 같은 오행이 없다는 관찰을 실제 도움이나 능력이 없다는 뜻으로 읽지는 않아요. 최근 일을 혼자 진행할 때와 준비·도움을 받을 때 무엇이 달랐고, 혼자서도 무리 없었거나 차이가 없었던 경험은 무엇이었나요?"
+        },
+        "question": {
+          "id": "strength-weak-absent-absent",
+          "prompt": "네 지지에 같은 오행이 없다는 관찰을 실제 도움이나 능력이 없다는 뜻으로 읽지는 않아요. 최근 일을 혼자 진행할 때와 준비·도움을 받을 때 무엇이 달랐고, 혼자서도 무리 없었거나 차이가 없었던 경험은 무엇이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      },
+      "questions": [
+        {
+          "id": "month-hour-2-1",
+          "prompt": "최근 만든 결과물은 어떻게 사용되었나요? 만드는 과정과 시간·비용·결과를 관리하는 과정에서 각각 맡은 일은 무엇이었나요?",
+          "clarifies": "월·시에서 읽은 주제가 실제 업무에서 함께 나타나는 방식과 맞지 않는 상황"
+        },
+        {
+          "id": "shared-context",
+          "prompt": "표현·실행, 결과·자원 관리, 규칙·책임 가운데 최근 실제로 맡은 일과 맡지 않은 일은 각각 무엇이었나요?",
+          "clarifies": "글자의 관찰 범위와 별개로 실제 맡은 역할·경험의 유무"
+        },
+        {
+          "id": "strength-weak-absent-absent",
+          "prompt": "네 지지에 같은 오행이 없다는 관찰을 실제 도움이나 능력이 없다는 뜻으로 읽지는 않아요. 최근 일을 혼자 진행할 때와 준비·도움을 받을 때 무엇이 달랐고, 혼자서도 무리 없었거나 차이가 없었던 경험은 무엇이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      ]
+    },
+    {
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 0,
+        "day": 1,
+        "hour": 18
+      },
+      "dayPillar": "을축",
+      "strength": {
+        "observation": {
+          "score": 80,
+          "max": 110,
+          "label": "신강",
+          "deukryeong": true,
+          "deukji": false,
+          "deuksi": false,
+          "deukse": true,
+          "detail": {
+            "year": {
+              "stemHelp": true,
+              "branchHelp": true
+            },
+            "month": {
+              "stemHelp": true,
+              "branchHelp": true
+            },
+            "day": {
+              "stemHelp": true,
+              "branchHelp": false
+            },
+            "hour": {
+              "stemHelp": true,
+              "branchHelp": false
+            }
+          }
+        },
+        "band": "strong",
+        "supports": [
+          {
+            "position": "year",
+            "part": "stem",
+            "stem": 9,
+            "character": "癸",
+            "tenGod": "편인",
+            "principal": false
+          },
+          {
+            "position": "year",
+            "part": "hidden",
+            "stem": 1,
+            "character": "乙",
+            "tenGod": "비견",
+            "principal": true
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "stem": 0,
+            "character": "甲",
+            "tenGod": "겁재",
+            "principal": false
+          },
+          {
+            "position": "month",
+            "part": "hidden",
+            "stem": 9,
+            "character": "癸",
+            "tenGod": "편인",
+            "principal": true
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "stem": 8,
+            "character": "壬",
+            "tenGod": "정인",
+            "principal": false
+          }
+        ],
+        "facts": "원국 전체의 강약을 함께 보면, 앱의 잠정 기준은 신강(80/110점)이에요. 일간 자신 외에 연간 癸(편인), 연지 본기 乙(비견), 월간 甲(겁재), 월지 본기 癸(편인), 시간 壬(정인)을 도움으로 셌어요.",
+        "hypothesis": "앞의 ‘배움과 준비’ 조합에 이 조건을 더하면, 자기 판단을 일에 옮기는 방식과 다른 사람의 요구에 맞춰 조정하는 부분을 살펴보는 해석 가설로 이어져요. 실제로 그런지는 경험을 확인해야 해요.",
+        "roots": {
+          "scope": "four-natal-branches-existing-hidden-stems",
+          "sameStem": {
+            "principal": [
+              {
+                "position": "year",
+                "part": "hidden",
+                "stem": 1,
+                "character": "乙",
+                "tenGod": "비견",
+                "group": "비겁",
+                "principal": true
+              }
+            ],
+            "additional": [],
+            "status": "principal_present"
+          },
+          "sameElement": {
+            "principal": [
+              {
+                "position": "year",
+                "part": "hidden",
+                "stem": 1,
+                "character": "乙",
+                "tenGod": "비견",
+                "group": "비겁",
+                "principal": true
+              }
+            ],
+            "additional": [
+              {
+                "position": "year",
+                "part": "hidden",
+                "stem": 0,
+                "character": "甲",
+                "tenGod": "겁재",
+                "group": "비겁",
+                "principal": false
+              }
+            ],
+            "status": "principal_present"
+          },
+          "facts": "네 지지의 지장간에서 일간 乙과 같은 글자: 연지 본기 乙(비견) / 같은 목 오행: 연지 본기 乙(비견), 연지 지장간 甲(겁재)이에요. 본기 밖 글자는 앞의 강약 점수에 따로 더하지 않았으며, 같은 글자와 같은 오행의 관찰만으로 통근의 강도나 실제 능력을 정하지 않아요.",
+          "interpretation": "지지 본기에서 읽은 구성에 더해 본기 밖에도 같은 글자나 같은 오행이 보여요. 같은 글자의 자리와 같은 오행의 자리를 구별해 앞의 일·재능 가설을 읽되, 겹친 개수를 힘이나 적성의 크기로 바꾸지 않아요.",
+          "question": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 자기 판단대로 진행했거나 주도하지 않았던 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요?"
+        },
+        "question": {
+          "id": "strength-strong-principal_present-principal_present",
+          "prompt": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 자기 판단대로 진행했거나 주도하지 않았던 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      },
+      "questions": [
+        {
+          "id": "month-hour-4-4",
+          "prompt": "최근 새로 배우거나 준비한 일은 무엇이었나요? 실제로 써 본 부분과 아직 쓰지 않은 부분은 무엇이었나요?",
+          "clarifies": "월·시에서 읽은 주제가 실제 업무에서 함께 나타나는 방식과 맞지 않는 상황"
+        },
+        {
+          "id": "hidden-context",
+          "prompt": "지장간에만 보이는 관성의 주제(규칙과 책임)를 실제로 맡았던 일이 있나요? 맡은 적이 없거나 떠오르지 않아도 괜찮아요.",
+          "clarifies": "글자의 관찰 범위와 별개로 실제 맡은 역할·경험의 유무"
+        },
+        {
+          "id": "strength-strong-principal_present-principal_present",
+          "prompt": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 자기 판단대로 진행했거나 주도하지 않았던 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      ]
+    },
+    {
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 1,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 0,
+        "day": 0,
+        "hour": 6
+      },
+      "dayPillar": "갑자",
+      "strength": {
+        "observation": {
+          "score": 85,
+          "max": 110,
+          "label": "극신강",
+          "deukryeong": true,
+          "deukji": true,
+          "deuksi": false,
+          "deukse": true,
+          "detail": {
+            "year": {
+              "stemHelp": true,
+              "branchHelp": true
+            },
+            "month": {
+              "stemHelp": true,
+              "branchHelp": true
+            },
+            "day": {
+              "stemHelp": true,
+              "branchHelp": true
+            },
+            "hour": {
+              "stemHelp": false,
+              "branchHelp": false
+            }
+          }
+        },
+        "band": "strong",
+        "supports": [
+          {
+            "position": "year",
+            "part": "stem",
+            "stem": 9,
+            "character": "癸",
+            "tenGod": "정인",
+            "principal": false
+          },
+          {
+            "position": "year",
+            "part": "hidden",
+            "stem": 1,
+            "character": "乙",
+            "tenGod": "겁재",
+            "principal": true
+          },
+          {
+            "position": "month",
+            "part": "stem",
+            "stem": 0,
+            "character": "甲",
+            "tenGod": "비견",
+            "principal": false
+          },
+          {
+            "position": "month",
+            "part": "hidden",
+            "stem": 9,
+            "character": "癸",
+            "tenGod": "정인",
+            "principal": true
+          },
+          {
+            "position": "day",
+            "part": "hidden",
+            "stem": 9,
+            "character": "癸",
+            "tenGod": "정인",
+            "principal": true
+          }
+        ],
+        "facts": "원국 전체의 강약을 함께 보면, 앱의 잠정 기준은 극신강(85/110점)이에요. 일간 자신 외에 연간 癸(정인), 연지 본기 乙(겁재), 월간 甲(비견), 월지 본기 癸(정인), 일지 본기 癸(정인)을 도움으로 셌어요.",
+        "hypothesis": "앞의 ‘배움과 준비 / 규칙과 책임’ 조합에 이 조건을 더하면, 자기 판단을 일에 옮기는 방식과 다른 사람의 요구에 맞춰 조정하는 부분을 살펴보는 해석 가설로 이어져요. 실제로 그런지는 경험을 확인해야 해요.",
+        "roots": {
+          "scope": "four-natal-branches-existing-hidden-stems",
+          "sameStem": {
+            "principal": [],
+            "additional": [
+              {
+                "position": "year",
+                "part": "hidden",
+                "stem": 0,
+                "character": "甲",
+                "tenGod": "비견",
+                "group": "비겁",
+                "principal": false
+              }
+            ],
+            "status": "additional_only"
+          },
+          "sameElement": {
+            "principal": [
+              {
+                "position": "year",
+                "part": "hidden",
+                "stem": 1,
+                "character": "乙",
+                "tenGod": "겁재",
+                "group": "비겁",
+                "principal": true
+              }
+            ],
+            "additional": [
+              {
+                "position": "year",
+                "part": "hidden",
+                "stem": 0,
+                "character": "甲",
+                "tenGod": "비견",
+                "group": "비겁",
+                "principal": false
+              }
+            ],
+            "status": "principal_present"
+          },
+          "facts": "네 지지의 지장간에서 일간 甲과 같은 글자: 연지 지장간 甲(비견) / 같은 목 오행: 연지 본기 乙(겁재), 연지 지장간 甲(비견)이에요. 본기 밖 글자는 앞의 강약 점수에 따로 더하지 않았으며, 같은 글자와 같은 오행의 관찰만으로 통근의 강도나 실제 능력을 정하지 않아요.",
+          "interpretation": "지지 본기에서 읽은 구성에 더해 본기 밖에도 같은 글자나 같은 오행이 보여요. 같은 글자의 자리와 같은 오행의 자리를 구별해 앞의 일·재능 가설을 읽되, 겹친 개수를 힘이나 적성의 크기로 바꾸지 않아요.",
+          "question": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 자기 판단대로 진행했거나 주도하지 않았던 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요?"
+        },
+        "question": {
+          "id": "strength-strong-additional_only-principal_present",
+          "prompt": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 자기 판단대로 진행했거나 주도하지 않았던 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      },
+      "questions": [
+        {
+          "id": "month-hour-4-3",
+          "prompt": "최근 맡은 역할을 위해 새로 배운 것이 있나요? 준비가 도움이 된 부분과 실제로 해 보아야 알 수 있었던 부분은 무엇이었나요?",
+          "clarifies": "월·시에서 읽은 주제가 실제 업무에서 함께 나타나는 방식과 맞지 않는 상황"
+        },
+        {
+          "id": "hidden-context",
+          "prompt": "지장간에만 보이는 재성의 주제(결과와 자원 관리)를 실제로 맡았던 일이 있나요? 맡은 적이 없거나 떠오르지 않아도 괜찮아요.",
+          "clarifies": "글자의 관찰 범위와 별개로 실제 맡은 역할·경험의 유무"
+        },
+        {
+          "id": "strength-strong-additional_only-principal_present",
+          "prompt": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 자기 판단대로 진행했거나 주도하지 않았던 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      ]
+    },
+    {
+      "input": {
+        "year": 2024,
+        "month": 1,
+        "day": 25,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 39,
+        "month": 1,
+        "day": 24,
+        "hour": 54
+      },
+      "dayPillar": "무자",
+      "strength": {
+        "observation": {
+          "score": 65,
+          "max": 110,
+          "label": "신강",
+          "deukryeong": true,
+          "deukji": false,
+          "deuksi": true,
+          "deukse": false,
+          "detail": {
+            "year": {
+              "stemHelp": false,
+              "branchHelp": false
+            },
+            "month": {
+              "stemHelp": false,
+              "branchHelp": true
+            },
+            "day": {
+              "stemHelp": true,
+              "branchHelp": false
+            },
+            "hour": {
+              "stemHelp": true,
+              "branchHelp": true
+            }
+          }
+        },
+        "band": "strong",
+        "supports": [
+          {
+            "position": "month",
+            "part": "hidden",
+            "stem": 5,
+            "character": "己",
+            "tenGod": "겁재",
+            "principal": true
+          },
+          {
+            "position": "hour",
+            "part": "stem",
+            "stem": 4,
+            "character": "戊",
+            "tenGod": "비견",
+            "principal": false
+          },
+          {
+            "position": "hour",
+            "part": "hidden",
+            "stem": 3,
+            "character": "丁",
+            "tenGod": "정인",
+            "principal": true
+          }
+        ],
+        "facts": "원국 전체의 강약을 함께 보면, 앱의 잠정 기준은 신강(65/110점)이에요. 일간 자신 외에 월지 본기 己(겁재), 시간 戊(비견), 시지 본기 丁(정인)을 도움으로 셌어요.",
+        "hypothesis": "앞의 ‘자기 기준과 동료’ 조합에 이 조건을 더하면, 자기 판단을 일에 옮기는 방식과 다른 사람의 요구에 맞춰 조정하는 부분을 살펴보는 해석 가설로 이어져요. 실제로 그런지는 경험을 확인해야 해요.",
+        "roots": {
+          "scope": "four-natal-branches-existing-hidden-stems",
+          "sameStem": {
+            "principal": [],
+            "additional": [],
+            "status": "absent"
+          },
+          "sameElement": {
+            "principal": [
+              {
+                "position": "month",
+                "part": "hidden",
+                "stem": 5,
+                "character": "己",
+                "tenGod": "겁재",
+                "group": "비겁",
+                "principal": true
+              }
+            ],
+            "additional": [
+              {
+                "position": "hour",
+                "part": "hidden",
+                "stem": 5,
+                "character": "己",
+                "tenGod": "겁재",
+                "group": "비겁",
+                "principal": false
+              }
+            ],
+            "status": "principal_present"
+          },
+          "facts": "네 지지의 지장간에서 일간 戊과 같은 글자: 없음 / 같은 토 오행: 월지 본기 己(겁재), 시지 지장간 己(겁재)이에요. 본기 밖 글자는 앞의 강약 점수에 따로 더하지 않았으며, 같은 글자와 같은 오행의 관찰만으로 통근의 강도나 실제 능력을 정하지 않아요.",
+          "interpretation": "같은 글자는 없지만 같은 오행은 지지 본기에 있어요. 같은 글자 기준의 부재를 같은 오행까지 없다는 뜻으로 넓히지 않고, 앞의 일·재능 가설도 능력의 유무를 단정하지 않는 범위로 읽어요.",
+          "question": "같은 글자는 없지만 같은 오행은 있다는 차이를 실제 능력 차이로 정하지 않아요. 최근 자기 판단대로 진행했거나 주도하지 않았던 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요?"
+        },
+        "question": {
+          "id": "strength-strong-absent-principal_present",
+          "prompt": "같은 글자는 없지만 같은 오행은 있다는 차이를 실제 능력 차이로 정하지 않아요. 최근 자기 판단대로 진행했거나 주도하지 않았던 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      },
+      "questions": [
+        {
+          "id": "month-hour-0-0",
+          "prompt": "최근 스스로 결정한 일과 다른 사람과 함께 정한 일은 각각 무엇이었나요? 상황에 따라 방식이 달랐나요?",
+          "clarifies": "월·시에서 읽은 주제가 실제 업무에서 함께 나타나는 방식과 맞지 않는 상황"
+        },
+        {
+          "id": "hidden-context",
+          "prompt": "지장간에만 보이는 식상의 주제(표현과 실행)를 실제로 맡았던 일이 있나요? 맡은 적이 없거나 떠오르지 않아도 괜찮아요.",
+          "clarifies": "글자의 관찰 범위와 별개로 실제 맡은 역할·경험의 유무"
+        },
+        {
+          "id": "strength-strong-absent-principal_present",
+          "prompt": "같은 글자는 없지만 같은 오행은 있다는 차이를 실제 능력 차이로 정하지 않아요. 최근 자기 판단대로 진행했거나 주도하지 않았던 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      ]
+    },
+    {
+      "input": {
+        "year": 2000,
+        "month": 10,
+        "day": 23,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 16,
+        "month": 22,
+        "day": 50,
+        "hour": 6
+      },
+      "dayPillar": "갑인",
+      "strength": {
+        "observation": {
+          "score": 25,
+          "max": 110,
+          "label": "신약",
+          "deukryeong": false,
+          "deukji": true,
+          "deuksi": false,
+          "deukse": false,
+          "detail": {
+            "year": {
+              "stemHelp": false,
+              "branchHelp": false
+            },
+            "month": {
+              "stemHelp": false,
+              "branchHelp": false
+            },
+            "day": {
+              "stemHelp": true,
+              "branchHelp": true
+            },
+            "hour": {
+              "stemHelp": false,
+              "branchHelp": false
+            }
+          }
+        },
+        "band": "weak",
+        "supports": [
+          {
+            "position": "day",
+            "part": "hidden",
+            "stem": 0,
+            "character": "甲",
+            "tenGod": "비견",
+            "principal": true
+          }
+        ],
+        "facts": "원국 전체의 강약을 함께 보면, 앱의 잠정 기준은 신약(25/110점)이에요. 일간 자신 외에 일지 본기 甲(비견)을 도움으로 셌어요.",
+        "hypothesis": "앞의 ‘결과와 자원 관리 / 규칙과 책임’ 조합에 이 조건을 더하면, 맡은 일을 감당할 때 필요한 준비·협업과 혼자 맡을 수 있는 범위를 살펴보는 해석 가설로 이어져요. 실제로 그런지는 경험을 확인해야 해요.",
+        "roots": {
+          "scope": "four-natal-branches-existing-hidden-stems",
+          "sameStem": {
+            "principal": [
+              {
+                "position": "day",
+                "part": "hidden",
+                "stem": 0,
+                "character": "甲",
+                "tenGod": "비견",
+                "group": "비겁",
+                "principal": true
+              }
+            ],
+            "additional": [],
+            "status": "principal_present"
+          },
+          "sameElement": {
+            "principal": [
+              {
+                "position": "day",
+                "part": "hidden",
+                "stem": 0,
+                "character": "甲",
+                "tenGod": "비견",
+                "group": "비겁",
+                "principal": true
+              }
+            ],
+            "additional": [
+              {
+                "position": "year",
+                "part": "hidden",
+                "stem": 1,
+                "character": "乙",
+                "tenGod": "겁재",
+                "group": "비겁",
+                "principal": false
+              }
+            ],
+            "status": "principal_present"
+          },
+          "facts": "네 지지의 지장간에서 일간 甲과 같은 글자: 일지 본기 甲(비견) / 같은 목 오행: 일지 본기 甲(비견), 연지 지장간 乙(겁재)이에요. 본기 밖 글자는 앞의 강약 점수에 따로 더하지 않았으며, 같은 글자와 같은 오행의 관찰만으로 통근의 강도나 실제 능력을 정하지 않아요.",
+          "interpretation": "지지 본기에서 읽은 구성에 더해 본기 밖에도 같은 글자나 같은 오행이 보여요. 같은 글자의 자리와 같은 오행의 자리를 구별해 앞의 일·재능 가설을 읽되, 겹친 개수를 힘이나 적성의 크기로 바꾸지 않아요.",
+          "question": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 일을 혼자 진행할 때와 준비·도움을 받을 때 무엇이 달랐고, 혼자서도 무리 없었거나 차이가 없었던 경험은 무엇이었나요?"
+        },
+        "question": {
+          "id": "strength-weak-principal_present-principal_present",
+          "prompt": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 일을 혼자 진행할 때와 준비·도움을 받을 때 무엇이 달랐고, 혼자서도 무리 없었거나 차이가 없었던 경험은 무엇이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      },
+      "questions": [
+        {
+          "id": "month-hour-2-3",
+          "prompt": "최근 맡은 일에서 시간·비용·결과와 지켜야 할 기준을 어떻게 조정했나요? 조정할 필요가 없었다면 그대로 말해 주세요.",
+          "clarifies": "월·시에서 읽은 주제가 실제 업무에서 함께 나타나는 방식과 맞지 않는 상황"
+        },
+        {
+          "id": "shared-context",
+          "prompt": "표현·실행, 결과·자원 관리, 규칙·책임 가운데 최근 실제로 맡은 일과 맡지 않은 일은 각각 무엇이었나요?",
+          "clarifies": "글자의 관찰 범위와 별개로 실제 맡은 역할·경험의 유무"
+        },
+        {
+          "id": "strength-weak-principal_present-principal_present",
+          "prompt": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 일을 혼자 진행할 때와 준비·도움을 받을 때 무엇이 달랐고, 혼자서도 무리 없었거나 차이가 없었던 경험은 무엇이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      ]
+    },
+    {
+      "input": {
+        "year": 2001,
+        "month": 4,
+        "day": 21,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "pillars": {
+        "year": 17,
+        "month": 28,
+        "day": 50,
+        "hour": 6
+      },
+      "dayPillar": "갑인",
+      "strength": {
+        "observation": {
+          "score": 35,
+          "max": 110,
+          "label": "중화",
+          "deukryeong": false,
+          "deukji": true,
+          "deuksi": false,
+          "deukse": false,
+          "detail": {
+            "year": {
+              "stemHelp": false,
+              "branchHelp": false
+            },
+            "month": {
+              "stemHelp": true,
+              "branchHelp": false
+            },
+            "day": {
+              "stemHelp": true,
+              "branchHelp": true
+            },
+            "hour": {
+              "stemHelp": false,
+              "branchHelp": false
+            }
+          }
+        },
+        "band": "balanced",
+        "supports": [
+          {
+            "position": "month",
+            "part": "stem",
+            "stem": 8,
+            "character": "壬",
+            "tenGod": "편인",
+            "principal": false
+          },
+          {
+            "position": "day",
+            "part": "hidden",
+            "stem": 0,
+            "character": "甲",
+            "tenGod": "비견",
+            "principal": true
+          }
+        ],
+        "facts": "원국 전체의 강약을 함께 보면, 앱의 잠정 기준은 중화(35/110점)이에요. 일간 자신 외에 월간 壬(편인), 일지 본기 甲(비견)을 도움으로 셌어요.",
+        "hypothesis": "앞의 ‘결과와 자원 관리 / 규칙과 책임’ 조합에 이 조건을 더하면, 스스로 밀고 나갈 부분과 준비·협업이 필요한 부분을 상황에 따라 나누는 방식을 살펴보는 해석 가설로 이어져요. 실제로 그런지는 경험을 확인해야 해요.",
+        "roots": {
+          "scope": "four-natal-branches-existing-hidden-stems",
+          "sameStem": {
+            "principal": [
+              {
+                "position": "day",
+                "part": "hidden",
+                "stem": 0,
+                "character": "甲",
+                "tenGod": "비견",
+                "group": "비겁",
+                "principal": true
+              }
+            ],
+            "additional": [],
+            "status": "principal_present"
+          },
+          "sameElement": {
+            "principal": [
+              {
+                "position": "day",
+                "part": "hidden",
+                "stem": 0,
+                "character": "甲",
+                "tenGod": "비견",
+                "group": "비겁",
+                "principal": true
+              }
+            ],
+            "additional": [
+              {
+                "position": "month",
+                "part": "hidden",
+                "stem": 1,
+                "character": "乙",
+                "tenGod": "겁재",
+                "group": "비겁",
+                "principal": false
+              }
+            ],
+            "status": "principal_present"
+          },
+          "facts": "네 지지의 지장간에서 일간 甲과 같은 글자: 일지 본기 甲(비견) / 같은 목 오행: 일지 본기 甲(비견), 월지 지장간 乙(겁재)이에요. 본기 밖 글자는 앞의 강약 점수에 따로 더하지 않았으며, 같은 글자와 같은 오행의 관찰만으로 통근의 강도나 실제 능력을 정하지 않아요.",
+          "interpretation": "지지 본기에서 읽은 구성에 더해 본기 밖에도 같은 글자나 같은 오행이 보여요. 같은 글자의 자리와 같은 오행의 자리를 구별해 앞의 일·재능 가설을 읽되, 겹친 개수를 힘이나 적성의 크기로 바꾸지 않아요.",
+          "question": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 비슷한 일을 혼자 진행한 경우와 준비·협업이 필요했던 경우 무엇이 달랐고, 차이가 없었다면 어떤 상황이었나요?"
+        },
+        "question": {
+          "id": "strength-balanced-principal_present-principal_present",
+          "prompt": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 비슷한 일을 혼자 진행한 경우와 준비·협업이 필요했던 경우 무엇이 달랐고, 차이가 없었다면 어떤 상황이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      },
+      "questions": [
+        {
+          "id": "month-hour-2-3",
+          "prompt": "최근 맡은 일에서 시간·비용·결과와 지켜야 할 기준을 어떻게 조정했나요? 조정할 필요가 없었다면 그대로 말해 주세요.",
+          "clarifies": "월·시에서 읽은 주제가 실제 업무에서 함께 나타나는 방식과 맞지 않는 상황"
+        },
+        {
+          "id": "shared-context",
+          "prompt": "표현·실행, 결과·자원 관리, 규칙·책임 가운데 최근 실제로 맡은 일과 맡지 않은 일은 각각 무엇이었나요?",
+          "clarifies": "글자의 관찰 범위와 별개로 실제 맡은 역할·경험의 유무"
+        },
+        {
+          "id": "strength-balanced-principal_present-principal_present",
+          "prompt": "점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요. 최근 비슷한 일을 혼자 진행한 경우와 준비·협업이 필요했던 경우 무엇이 달랐고, 차이가 없었다면 어떤 상황이었나요?",
+          "clarifies": "잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치"
+        }
+      ]
+    }
+  ]
+}
