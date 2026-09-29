@@ -1,0 +1,67 @@
+[
+  {
+    "id": "after-chat-390-local",
+    "requests": 5,
+    "errors": []
+  },
+  {
+    "id": "after-chat-390-cached",
+    "requests": 5,
+    "errors": []
+  },
+  {
+    "id": "after-chat-390-early",
+    "requests": 5,
+    "errors": []
+  },
+  {
+    "id": "after-chat-390-late",
+    "requests": 4,
+    "errors": []
+  },
+  {
+    "id": "after-chat-1280-local",
+    "requests": 4,
+    "errors": []
+  },
+  {
+    "id": "after-chat-1280-cached",
+    "requests": 5,
+    "errors": []
+  },
+  {
+    "id": "after-chat-1280-early",
+    "requests": 5,
+    "errors": []
+  },
+  {
+    "id": "after-chat-1280-late",
+    "requests": 5,
+    "errors": []
+  },
+  {
+    "id": "feedback-맞아요",
+    "requests": 5,
+    "errors": []
+  },
+  {
+    "id": "feedback-반대예요",
+    "requests": 5,
+    "errors": []
+  },
+  {
+    "id": "feedback-경험이없어요",
+    "requests": 4,
+    "errors": []
+  },
+  {
+    "id": "feedback-말하고싶지않아요",
+    "requests": 4,
+    "errors": []
+  },
+  {
+    "id": "unknown",
+    "requests": 0,
+    "errors": []
+  }
+]

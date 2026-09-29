@@ -1,0 +1,29 @@
+{
+  "commit": "dde2be8f9a9cfb07fdc19fd887e274ee02f5b26f",
+  "reason": "PR225 original seven tests and receipts; distinct source files only, engine mirror reuses the same bytes",
+  "files": [
+    {
+      "source": "contextReading.js",
+      "destinations": [
+        "dosa-app/engine/src/contextReading.js",
+        "app/src/engine/vendor/contextReading.js"
+      ],
+      "sha256_lf": "3ce30638fcea9d61296be1d56b230270cae75412fe8b88c52418b7fcbbe07bb4"
+    },
+    {
+      "source": "contextReading.d.ts",
+      "destinations": [
+        "dosa-app/engine/src/contextReading.d.ts",
+        "app/src/engine/vendor/contextReading.d.ts"
+      ],
+      "sha256_lf": "d784aaaed1089c49fcfc2d2e8a35ddbba5d5ca42571b8003a987371fabc93668"
+    },
+    {
+      "source": "dosaClient.ts",
+      "destinations": [
+        "app/src/data/dosaClient.ts"
+      ],
+      "sha256_lf": "8589a2631c0bbf053dcffb815328db3ea1d4d3cb3e5829ffedbebef62fda0ac7"
+    }
+  ]
+}
