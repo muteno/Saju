@@ -3,9 +3,14 @@ import { chartSummaryOf, topicLines, type DosaLine } from './dosaTopics'
 import type { ReportBundle } from '../engine'
 import { withoutCitationLines } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
-import { resolveWorkFeedback } from '../engine/vendor/workFeedback.js'
+import { resolveWorkFeedback, ownedFeedbackPrompts } from '../engine/vendor/workFeedback.js'
 import { CONTEXT_READING_NOTICE } from '../engine/vendor/contextReading.js'
-import { parseConversationContext, type ConversationContext } from './conversationContext'
+import { parseConversationContext, type ConversationContext, type ConversationMessage } from './conversationContext'
+
+/** The chat's own menu line after a reading; it may sit between a shown question and its answer. */
+export const MENU_PROMPT = '또 궁금한 것이 있는가?'
+/** Local feedback replay may look further back than the provider history (never sent). */
+export const MAX_FEEDBACK_MESSAGES = 40
 
 /** Calculation limits belong to the app and survive a generated/late answer. */
 export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[] {
@@ -49,6 +54,8 @@ export async function requestDosaText(options: {
   hourUnknown?: boolean
   question?: string
   conversation?: ConversationContext
+  /** Visible messages of the same scope, only for the local feedback replay. */
+  feedbackMessages?: ConversationMessage[]
   timeoutMs?: number
   signal?: AbortSignal
 }): Promise<string | null> {
@@ -78,7 +85,8 @@ export async function requestDosaText(options: {
     // assistant text (menu, provider reply, partly shown reply) leaves this to chat.
     const footer = options.report.sections.find(s => s.id === 'context-reading')?.context?.blocks
       .find(block => block.label === '경험으로 확인할 부분')?.lines.at(-1) ?? ''
-    const feedback = resolveWorkFeedback({ decision, footer, messages: conversation.messages, answer: options.question })
+    const local = Array.isArray(options.feedbackMessages) ? options.feedbackMessages.slice(-MAX_FEEDBACK_MESSAGES) : conversation.messages
+    const feedback = resolveWorkFeedback({ decision, footer, messages: local, answer: options.question, menuPrompts: [MENU_PROMPT] })
     if (feedback) return feedback.text
   }
   const ctrl = new AbortController()
@@ -113,7 +121,9 @@ export async function requestDosaText(options: {
     const followups = readingFollowups(options.report, safeLines)
     // A provider may copy a question into an early paragraph or combine it with
     // narration. Normalize our exact owned lines before the UI splits sentences.
-    const owned = [...notices, ...followups].flatMap(line => [line, ...line.split(/(?<=[.?!…])\s+/)])
+    // A free answer must not re-ask the app's own feedback question as if it were new.
+    const reasked = options.question ? ownedFeedbackPrompts(decision) : []
+    const owned = [...notices, ...followups, ...reasked].flatMap(line => [line, ...line.split(/(?<=[.?!…])\s+/)])
     const body = owned.reduce((text, line) => text.replaceAll(line, ''), presented).trim()
     // A complete owned observation can itself answer a free question.
     // Do not turn an exact (possibly paragraph-split) valid answer into failure.

@@ -8,7 +8,7 @@ import type { OhaengKey } from '../theme'
 import { TOPICS, TOPIC_INTROS, TOPIC_FOCUS, topicLines, HOUR_UNKNOWN_NOTICE } from '../data/dosaTopics'
 import type { Topic } from '../data/dosaTopics'
 import { dosaModel } from '../data/prefs'
-import { requestDosaText, shouldSendOnEnter, readingNotices, readingFollowups } from '../data/dosaClient'
+import { requestDosaText, shouldSendOnEnter, readingNotices, readingFollowups, MENU_PROMPT, MAX_FEEDBACK_MESSAGES } from '../data/dosaClient'
 import { chefForGender, counterpartChef, nextChef, bargeLineOf, voiceOf } from '../data/chefs'
 import type { Chef } from '../data/chefs'
 import type { JeonggokPick } from '../data/jeonggok'
@@ -16,7 +16,7 @@ import type { Pillar } from '../data/saju'
 import type { ReportBundle } from '../engine'
 import { hasUnknownBirthTime } from '../engine/birthTime'
 import { useReducedMotion } from './Motion'
-import { recentConversation, type ConversationContext } from '../data/conversationContext'
+import { recentConversation, type ConversationContext, type ConversationMessage } from '../data/conversationContext'
 
 /**
  * 상담 = **메신저**(운영자 260726 · YETA 캐릭터챗 문법 계승).
@@ -510,7 +510,7 @@ export default function DosaChat({
   const conversation = useRef(0)
   const contextStart = useRef(0)
   const contextTopic = useRef<string | undefined>(undefined)
-  const retryContext = useRef<{ question: string; context?: ConversationContext } | null>(null)
+  const retryContext = useRef<{ question: string; context?: ConversationContext; feedbackMessages: ConversationMessage[] } | null>(null)
   const composing = useRef(false)
   const [inputFocused, setInputFocused] = useState(false)
   const inputRef = useRef<HTMLTextAreaElement | null>(null)
@@ -811,9 +811,10 @@ export default function DosaChat({
     const visible = log.slice(contextStart.current, !tw.done && last?.who === 'ai' ? -1 : undefined)
       .filter(m => !m.narration && !m.contextIgnore)
       .map(m => ({ role: m.who === 'ai' ? 'assistant' as const : 'user' as const, text: m.text }))
-    const context = retry && retryContext.current?.question === q
-      ? retryContext.current.context : recentConversation(visible, contextTopic.current)
-    retryContext.current = { question: q, context }
+    const same = retry && retryContext.current?.question === q ? retryContext.current : null
+    const context = same ? same.context : recentConversation(visible, contextTopic.current)
+    const feedbackMessages = same ? same.feedbackMessages : visible.slice(-MAX_FEEDBACK_MESSAGES)
+    retryContext.current = { question: q, context, feedbackMessages }
     const revision = ++conversation.current
     cancelTopics()
     const ctrl = new AbortController()
@@ -832,7 +833,7 @@ export default function DosaChat({
         topic: '성격', report, lines: topicLines(report, '성격', hourUnknown),
         chefId: chef.id, model: dosaModel(), profileName, hourUnknown,
         timeoutMs: 25000, question: q, signal: ctrl.signal,
-        conversation: context,
+        conversation: context, feedbackMessages,
       })
       if (ctrl.signal.aborted || conversation.current !== revision) return
       if (text) {
@@ -891,7 +892,7 @@ export default function DosaChat({
       setStage('menu')
       setTopicKey(null)
       topicRef.current = null
-      say(['또 궁금한 것이 있는가?'])
+      say([MENU_PROMPT])
     }
   }
 

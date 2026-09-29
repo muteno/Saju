@@ -1,5 +1,5 @@
 {
- "purpose": "Expected reading of one free answer to an app-owned work-candidate question. Written before the parser; not copied from implementation text. Not personal outcomes or training labels.",
+ "purpose": "Expected reading of one free answer to an app-owned work-candidate question. The 36+9 rows under help/demand were written before the first parser; later sections say when they were added. Every section has been used to tune the parser, so passing them is not accuracy. Not personal outcomes or training labels.",
  "evaluation_date": "2026-09-29",
  "kinds": {
   "supported": "clear agreement with the asked proposition",
@@ -13,7 +13,7 @@
   "clarify:help-unanswered": "reports only task increase to a help question",
   "clarify:unclear": "conflicting cues that cannot be split",
   "null": "no feedback cue or a new question; use the normal conversation path",
-  "clarify:other-means": "answers with a different way than the one asked (own execution vs sharing roles)"
+  "clarify:other-means": "answers with a different way than the one asked (own execution vs sharing roles); legend added after the first pass"
  },
  "help": [
   [
@@ -208,7 +208,7 @@
   ],
   [
    "도움이 됐어요",
-   null
+   "clarify:unclear"
   ]
  ],
  "help_means": "self (food-response question: own execution)",
@@ -241,7 +241,7 @@
    ],
    [
     "도움이 됐다기보다 오히려 부담이었어요",
-    "contradicted"
+    "clarify:unclear"
    ],
    [
     "해봤는데 별 차이 없었어요",
@@ -317,7 +317,7 @@
   "duty": [
    [
     "일이 많이 늘었어요",
-    null
+    "clarify:unclear"
    ],
    [
     "도움이 안 됐어요",
@@ -340,6 +340,2531 @@
    [
     "그런 일이 없었어요",
     "no-experience"
+   ]
+  ]
+ },
+ "precision_first_changes": "After the 8-reviewer pass the parser only decides when every clause fits a whole-clause template. Three earlier expectations moved to a clarifying question: demand '도움이 됐어요' (off-subject), '도움이 됐다기보다 오히려 부담이었어요' (quotative hedge), duty '일이 많이 늘었어요' (not the asked proposition).",
+ "review_adversarial": {
+  "note": "Written by independent reviewer 2 (same model, read-only) against the first parser; acceptable readings are the reviewer's, not human labels. Used to design the precision-first rules, so it is a development set. Pass rule: never a definite reading outside the acceptable list; clarify:* or null (normal chat) are safe fallbacks.",
+  "help_self": [
+   [
+    "도움 안되진 않았어",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "도움이안되진않았어요",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "도움 안됐던 건 아냐",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "도움이 안 됐다고는 못하겠어요",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "도움이 안 됐다면 거짓말이죠",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "도움이 안 됐을 리가 없죠",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "도움이 안 됐다기보다는 애매했어요",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "도움됐다고는 못 하겠어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움이 됐다고 보기 어려워요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움이 됐다는 느낌은 없어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움이 됐다곤 생각 안 해요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "나아졌다고 할 수 없어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "효과가 있었다고 보긴 어렵네요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "아직 해결했다고 보기 어려워요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "좋았다고 할 수 없어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움이 됐다고 하기엔 애매해요",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "도움이 됐냐 하면 그건 아닌 거 같아요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움 됐냐 하면 아니요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "좋았냐 하면 아니요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움이 됐던 적은 없어요",
+    [
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "도움 됐던 기억이 없네요",
+    [
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "도움 받았던 적 없어요",
+    [
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "직접 해서 좋았던 적은 없어요",
+    [
+     "contradicted",
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "나았던 적 없어요",
+    [
+     "contradicted",
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "편해졌던 적 없어요",
+    [
+     "contradicted",
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "도움이 되긴커녕 방해만 됐어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움되긴 뭐가 돼요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움 되긴 개뿔",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "좋긴 뭐가 좋았어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "퍽이나 도움 됐겠네요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "아주 도움 많이 됐네요 일이 세 배로 늘었으니",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "부담이 줄지 않았어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "부담이 줄긴커녕 늘었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "부담이 덜하진 않았어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움이 됐으면 좋았을 텐데요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "좋았을 텐데 못 해봤어요",
+    [
+     "no-experience"
+    ]
+   ],
+   [
+    "직접 했으면 좋았을 거예요",
+    [
+     "no-experience"
+    ]
+   ],
+   [
+    "예전이 더 좋았어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "해결했다고 생각했는데 아니었어",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "처음엔 도움이 됐다고 생각했는데 아니더라고요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움 됐다고 생각했는데 착각이었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "편해졌다기보다는 그냥 그랬어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "그렇게 좋았던 건 아닌데",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "좋았던 건 아닌데요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움 됐다 안 됐다 했어요",
+    [
+     "clarify:partial"
+    ]
+   ],
+   [
+    "좋았다 나빴다 했어요",
+    [
+     "clarify:partial"
+    ]
+   ],
+   [
+    "오히려 수월했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "오히려 편했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "ㅋㅋ 오히려 편했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "오히려 일이 쉬워졌어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "오히려 빨리 끝났어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "제가 다 했더니 오히려 수월했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "오히려 제가 직접 하는 게 낫더라고요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "오히려 직접 하는 게 속 편했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "오히려 좋아요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "오히려 좋던데요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "직접 하니까 반대로 수월했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "반대로 말하면 직접 한 덕분에 버텼어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "안 했으면 더 힘들었을 거예요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "직접 안 했으면 훨씬 더 힘들었을 거예요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "더 어려워질 뻔했는데 직접 해서 막았어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "덕분에 더 힘들 일이 없었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "더 꼬이지 않게 직접 정리했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "남의 방해 없이 직접 해서 빨리 끝냈어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "방해 요소를 직접 없앴어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "큰 차이 없이 잘 해결했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "시간 차이 없이 바로 처리돼서 편해졌어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "사이가 나빠지진 않았고 도움이 됐어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "더 힘들지는 않았어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "나빠지지 않았어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "힘들어졌을 때 직접 하니 풀렸어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "나빠질 줄 알았는데 오히려 좋았어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "더 어려워질 줄 알았는데 괜찮았어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "일이 어려워졌지만 직접 하니 괜찮았어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "일이 힘들어졌는데 직접 해서 해결했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "일이 버거워졌는데 직접 처리하니 부담이 줄었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "기분이 나빠서 직접 했는데 결과는 좋았어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "맞아요 도움 안 됐어요",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "맞아요 오히려 더 힘들어졌어요",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "그 말이 맞아요 전혀 도움이 안 됐어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "예상이 맞았어요, 도움 안 될 줄 알았거든요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "맞아요 반대예요",
+    [
+     "contradicted",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "있어요 근데 별로였어요",
+    [
+     "clarify:unclear",
+     null
+    ]
+   ],
+   [
+    "어... 별로요",
+    [
+     "clarify:unclear",
+     null
+    ]
+   ],
+   [
+    "어.. 딱히",
+    [
+     "clarify:unclear",
+     null
+    ]
+   ],
+   [
+    "좋은 경험은 없었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "직접 해서 좋은 경험은 없었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "편했던 경험은 없어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "성공한 경험이 없어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "그런 적 없고 오히려 부담만 늘었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "반대인 적은 없어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "일이 많아지진 않았어요",
+    [
+     "no-experience",
+     "clarify:help-unanswered"
+    ]
+   ],
+   [
+    "일이 늘지는 않았어요",
+    [
+     "no-experience",
+     "clarify:help-unanswered"
+    ]
+   ],
+   [
+    "일이 늘어난 건 없어요",
+    [
+     "no-experience",
+     "clarify:help-unanswered"
+    ]
+   ],
+   [
+    "일이 늘었던 적은 없어요",
+    [
+     "no-experience",
+     "clarify:help-unanswered"
+    ]
+   ],
+   [
+    "일이 늘 그대로였어요",
+    [
+     "no-experience",
+     "clarify:help-unanswered"
+    ]
+   ],
+   [
+    "부담이 늘지 않았어요",
+    [
+     "no-experience",
+     "clarify:help-unanswered"
+    ]
+   ],
+   [
+    "과제가 늘었다고 느끼진 않았어요",
+    [
+     "no-experience",
+     "clarify:help-unanswered"
+    ]
+   ],
+   [
+    "어...",
+    [
+     null
+    ]
+   ],
+   [
+    "예...",
+    [
+     null
+    ]
+   ],
+   [
+    "예... 뭐 그냥요",
+    [
+     null
+    ]
+   ],
+   [
+    "네, 감사합니다",
+    [
+     null
+    ]
+   ],
+   [
+    "일정이 딱 맞았어요",
+    [
+     null
+    ]
+   ],
+   [
+    "매출이 늘어서 좋았어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "운이 좋았어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "이 앱이 도움이 됐어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "도움이 됐을 것 같아요",
+    [
+     "unsure"
+    ]
+   ],
+   [
+    "도움이 됐으면 좋겠어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "좀 더 빨리 했으면 좋았을 걸요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "도움이 되더라도 일이 너무 많았어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "도움이 되긴 했어도 결국 더 힘들어졌어요",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "도움이 됐다기보다 그냥 원래 하던 거예요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "버거워서 직접 했어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "위기를 넘어갈 수 있었어요",
+    [
+     null,
+     "supported",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "그냥 넘어갈 수 있을 정도로 수월해졌어요",
+    [
+     null,
+     "supported",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "이런 경험이 없었으면 힘들었을 거예요",
+    [
+     "supported",
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "그런 적 없을 리가요",
+    [
+     "supported",
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "경험이 없진 않아요",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "한 번도 그런 적 없었던 건 아니에요",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "이런 일이 없도록 직접 챙겼어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "이런 일이 없었으면 좋겠어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "반대 경험은 없어요",
+    [
+     "supported",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "부정적인 경험은 없었어요",
+    [
+     "supported",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "힘들었던 경험은 없어요",
+    [
+     "supported",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "그런 적 없어요 오히려 편했어요",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "그렇게 해본 적이 없어서 도움이 됐는지 모르겠어요",
+    [
+     "no-experience",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "처음엔 좋았다가 나중엔 버거웠어요",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "도움은 됐지만 일이 두 배로 늘었어요",
+    [
+     "supported",
+     "mixed",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "처음엔 도움이 됐는데 나중엔 감당이 안 됐어요",
+    [
+     "mixed",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "도움 됐어요. 근데 결국 번아웃 왔어요",
+    [
+     "mixed",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "직접 해서 좋았는데 몸이 많이 상했어요",
+    [
+     "mixed",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "네, 근데 일이 너무 많아졌어요",
+    [
+     "clarify:unclear",
+     "mixed"
+    ]
+   ],
+   [
+    "도움이 됐어요. 그런데 올해 운은 어때요",
+    [
+     null
+    ]
+   ],
+   [
+    "좋았어요 근데 내년은 어떨까요",
+    [
+     null
+    ]
+   ],
+   [
+    "맞아요 그럼 이직 시기 알려주세요",
+    [
+     null
+    ]
+   ],
+   [
+    "네, 그런데 연애운도 봐 주세요",
+    [
+     null
+    ]
+   ],
+   [
+    "그건 모르겠고 올해 운세 알려줘",
+    [
+     null
+    ]
+   ],
+   [
+    "올해 연애운은 좋았어요",
+    [
+     null
+    ]
+   ],
+   [
+    "남편이랑 사이가 안 좋았어요",
+    [
+     null
+    ]
+   ],
+   [
+    "건강은 괜찮았어요",
+    [
+     null
+    ]
+   ],
+   [
+    "네, 알겠어요",
+    [
+     null
+    ]
+   ],
+   [
+    "네. 알겠습니다",
+    [
+     null
+    ]
+   ],
+   [
+    "네, 계속 해 주세요",
+    [
+     null
+    ]
+   ],
+   [
+    "어",
+    [
+     null
+    ]
+   ],
+   [
+    "부담이 줄지는 않았어요",
+    [
+     "contradicted",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "좋았다고 보긴 어려워요",
+    [
+     "contradicted",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "해결했다고 하긴 어려워요",
+    [
+     "contradicted",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "효과가 있었다고 보긴 힘들어요",
+    [
+     "contradicted",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "나빠지진 않았어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "차이가 없진 않았어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "아니요 도움 안 됐어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "아니 별로 도움 안 됐어",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움이 된 적이 있어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "도움이 된 경험이 있어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "도움 된 적 있어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "네 있어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "아뇨 없어요",
+    [
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "바다가 좋았어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "도움이 됐던 적이 한 번도 없어요",
+    [
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "딱히 도움이 됐다고 느낀 적은 없어요",
+    [
+     "contradicted",
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "도움이 되긴커녕 오히려 방해됐어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "그게 도움이 됐는지 어떻게 알아요",
+    [
+     null,
+     "unsure"
+    ]
+   ],
+   [
+    "반대라고 하긴 어렵고 그냥 그랬어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "아니요, 오히려 일이 더 늘었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움이 안 됐어요. 오히려 일이 늘었어요",
+    [
+     "contradicted"
+    ]
+   ]
+  ],
+  "help_others": [
+   [
+    "나눠서 하는 것보다 혼자 하는 게 나았어요",
+    [
+     "contradicted",
+     "clarify:other-means"
+    ]
+   ],
+   [
+    "다른 사람과 나누니까 오히려 편했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "외주 줬더니 오히려 편했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "팀원들이 반대했지만 나눠서 하니 편해졌어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "반대 의견이 많아서 조율이 필요했지만 결국 해결했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "동료들 도움 없이 해결했어요",
+    [
+     "clarify:other-means"
+    ]
+   ],
+   [
+    "남한테 맡긴 적은 없고 제가 다 해서 좋았어요",
+    [
+     "clarify:other-means"
+    ]
+   ],
+   [
+    "동료랑 같이 해서 좋았던 적은 없어요",
+    [
+     "contradicted",
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "반대로 말하면 나눠서 한 덕분에 살았어요",
+    [
+     "supported"
+    ]
+   ]
+  ],
+  "help_self_means": [
+   [
+    "직접 하는 것보다 맡기는 게 나았어요",
+    [
+     "contradicted",
+     "clarify:other-means"
+    ]
+   ]
+  ],
+  "duty": [
+   [
+    "오히려 기준 맞추기가 수월했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "자원 관리를 안 했으면 더 힘들었을 거예요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "도움이 됐다고 보기는 어렵네요",
+    [
+     "contradicted"
+    ]
+   ]
+  ],
+  "demand": [
+   [
+    "딱히 늘어난 건 없어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘어난 게 없어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘어난 일은 없었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "일이 늘었다고 할 만한 건 없어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘어날 일이 없었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘어나지도 않았어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "많아지지도 않았어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "커지지도 않았어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘어났던 적 없어요",
+    [
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "늘었던 적 없어요",
+    [
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "많아졌던 기억은 없어요",
+    [
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "늘었다고 생각 안 해요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘었다고는 할 수 없어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘어났다기보다는 비슷했어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘긴 뭘 늘어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘어나긴 뭐가 늘어나요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘었다고 하기엔 좀 애매해요",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "늘어날 거라 예상했는데 그렇지 않았어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "고객이 늘었지만 할 일은 비슷했어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "맞아요 반대로 줄었어요",
+    [
+     "contradicted",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "맞아요 오히려 줄었어요",
+    [
+     "contradicted",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "반대로 과제가 엄청 늘었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "반대로 말하면 일이 늘었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "반대하는 사람들 설득할 일이 늘었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "반대라고 하긴 어렵네요",
+    [
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "일이 그대로 저한테 쌓였어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "말 그대로 폭증했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "부담이 그대로 저한테 왔어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "쉬는 시간이 줄었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "여유 시간이 줄어들었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "잠이 줄었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "오히려 여유가 없어졌어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "일이 줄어들 틈이 없었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "줄어들긴커녕 더 늘었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "안 늘었다고 하면 거짓말이죠",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "차이가 없을 수가 없죠 엄청 늘었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "많아졌다 줄었다 했어요",
+    [
+     "clarify:partial"
+    ]
+   ],
+   [
+    "그런 적 없고 오히려 줄었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "매출은 늘었는데 할 일은 그대로였어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "매출은 늘었지만 요구는 안 늘었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "규모가 커졌지만 할 일은 그대로였어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "사업이 커지긴 했는데 일은 오히려 줄었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "성과는 늘었는데 요구가 늘진 않았어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "수익이 커졌는데 책임은 그대로예요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘어날 줄 알았는데 안 늘었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "요구가 줄어들 거라 생각했는데 더 늘었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "일은 늘었는데 스트레스는 줄었어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "수입이 늘었어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "늘었을 거예요 아마",
+    [
+     "unsure"
+    ]
+   ],
+   [
+    "아마 늘었을걸요",
+    [
+     "unsure"
+    ]
+   ],
+   [
+    "일이 늘어지기만 했어요",
+    [
+     null,
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "책임만 커지고 할 일은 줄었어요",
+    [
+     "mixed",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "늘었다고 보긴 어려워요",
+    [
+     "contradicted",
+     "clarify:unclear"
+    ]
+   ],
+   [
+    "과제가 늘었다고 느낀 적은 없어요",
+    [
+     "contradicted",
+     "clarify:ambiguous-negative"
+    ]
+   ],
+   [
+    "아니요 안 늘었어요",
+    [
+     "contradicted"
+    ]
+   ]
+  ]
+ },
+ "blind_holdout": {
+  "note": "Written by a separate agent (same model) that was told not to read the repository; labels are that agent's (model-written, not human). Scored once after the precision-first rewrite without tuning on it: 160 answers → 44 read correctly, 78 sent to one clarifying question, 38 left to normal chat, 0 confident readings outside the accepted set. Labels: chat = not an answer (normal chat), clarify = a careful human would ask again. Later changes may tune on it; then it is no longer held out.",
+  "score_at_pr228": {
+   "total": 160,
+   "correct": 44,
+   "clarify": 78,
+   "chat": 38,
+   "confident_wrong": 0
+  },
+  "Q_SELF": [
+   [
+    "네 도움 됐어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "ㅇㅇ 내가 만든 엑셀 템플릿 덕분에 살았음",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "아니요 별로요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "그런 적 없는데",
+    [
+     "contradicted",
+     "no-experience",
+     "clarify"
+    ]
+   ],
+   [
+    "성과를 늘려본 적 자체가 없어서요",
+    [
+     "no-experience"
+    ]
+   ],
+   [
+    "말하기 싫어요",
+    [
+     "unanswered"
+    ]
+   ],
+   [
+    "잘 모르겠어요",
+    [
+     "unsure"
+    ]
+   ],
+   [
+    "글쎄.. 도움이 됐던 것 같기도 하고",
+    [
+     "unsure",
+     "clarify"
+    ]
+   ],
+   [
+    "처음엔 제 방식이 먹혔는데 규모 커지니까 안 통하더라고요",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "자동화 스크립트 짜서 돌렷더니 반복업무 확 줄엇어",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "오히려 내 방식 고집하다가 일이 더 꼬였음",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움 안 됐다고는 못하죠",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "안 도움됐다고 하면 거짓말이지",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "도움이 됐겠냐고요 ㅋㅋ",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "아주 퍽이나 도움 됐네요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "근데 사주로 그런 것도 알 수 있어요?",
+    [
+     "chat"
+    ]
+   ],
+   [
+    "오늘 운세는 어때요",
+    [
+     "chat"
+    ]
+   ],
+   [
+    "ㅇㅋ",
+    [
+     "chat",
+     "clarify"
+    ]
+   ],
+   [
+    "ㅇㅇ",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "네",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "아뇨",
+    [
+     "contradicted",
+     "no-experience",
+     "clarify"
+    ]
+   ],
+   [
+    "팀장님이 다 정리해주셔서 제가 따로 한 건 없어요",
+    [
+     "no-experience",
+     "clarify"
+    ]
+   ],
+   [
+    "동료들이랑 같이 해서 버틴 거지 뭐",
+    [
+     "clarify",
+     "contradicted"
+    ]
+   ],
+   [
+    "전혀 아닌 건 아니고요",
+    [
+     "supported",
+     "mixed",
+     "clarify"
+    ]
+   ],
+   [
+    "매출 늘면서 업무가 두배 됐는데 제가 짠 프로세스로 겨우 소화했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "네 근데 한계는 있었어요",
+    [
+     "supported",
+     "mixed"
+    ]
+   ],
+   [
+    "어느 정도는요",
+    [
+     "supported",
+     "mixed"
+    ]
+   ],
+   [
+    "반반?",
+    [
+     "mixed",
+     "unsure",
+     "clarify"
+    ]
+   ],
+   [
+    "그때그때 달라요",
+    [
+     "mixed",
+     "clarify"
+    ]
+   ],
+   [
+    "바빠서 나중에 얘기할게요",
+    [
+     "unanswered",
+     "chat"
+    ]
+   ],
+   [
+    "패스",
+    [
+     "unanswered"
+    ]
+   ],
+   [
+    "그건 좀 사적인 거라..",
+    [
+     "unanswered"
+    ]
+   ],
+   [
+    "기억이 잘 안 나네요",
+    [
+     "unsure"
+    ]
+   ],
+   [
+    "아마 그랬을걸요?",
+    [
+     "unsure",
+     "supported"
+    ]
+   ],
+   [
+    "안 해봤어요 그런 거",
+    [
+     "no-experience"
+    ]
+   ],
+   [
+    "내가 직접 뭘 만들어 본 적이 없어서 모르겠네",
+    [
+     "no-experience",
+     "unsure"
+    ]
+   ],
+   [
+    "도움 되긴 개뿔",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "진짜 많이 됐죠!! 제가 만든 체크리스트 아직도 팀에서 씀",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "도움이 안 된 건 아닌데 결정적이진 않았어요",
+    [
+     "supported",
+     "mixed"
+    ]
+   ],
+   [
+    "초반엔 헤맸는데 나중에 제 방식 잡히고 나서는 훨씬 수월했어요",
+    [
+     "supported",
+     "mixed"
+    ]
+   ],
+   [
+    "처음엔 좋았는데 나중엔 오히려 내 방식이 발목 잡더라",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "없지는 않죠",
+    [
+     "supported",
+     "clarify"
+    ]
+   ],
+   [
+    "없진 않은데 딱히 기억에 남는 건 없네요",
+    [
+     "unsure",
+     "clarify",
+     "supported"
+    ]
+   ],
+   [
+    "도움 됐다기보단 그냥 버틴 거죠",
+    [
+     "contradicted",
+     "clarify"
+    ]
+   ],
+   [
+    "ㄴㄴ 전혀",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "ㅋㅋㅋㅋ",
+    [
+     "chat"
+    ]
+   ],
+   [
+    "응 완전",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "당연하지 내가 다 갈아넣었는데",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "아니 그건 아니고 그냥 운이 좋았어",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "내 방식이 도움됐다기보다 외주 준 게 컸어",
+    [
+     "contradicted",
+     "clarify"
+    ]
+   ],
+   [
+    "음 딱히?",
+    [
+     "contradicted",
+     "clarify"
+    ]
+   ],
+   [
+    "별 차이 없었던듯",
+    [
+     "contradicted",
+     "unsure"
+    ]
+   ],
+   [
+    "혼자 다 하느라 죽는 줄 알았지 도움은 무슨",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움이 됐는지 안 됐는지 따져본 적은 없는데 일은 굴러갔어요",
+    [
+     "unsure",
+     "clarify"
+    ]
+   ],
+   [
+    "늘어난 일 처리하려고 노션으로 업무 관리 체계 만들었는데 꽤 괜찮았어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "제가 만든 방식이 저한텐 편했는데 다른 사람들은 불편해해서 결국 바꿨어요",
+    [
+     "mixed",
+     "clarify"
+    ]
+   ],
+   [
+    "작은 건에선 통했고 큰 프로젝트에선 안 통했어요",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "아직 신입이라 그런 경험은 없어요",
+    [
+     "no-experience"
+    ]
+   ],
+   [
+    "이전 회사에선 됐는데 지금 회사에선 아니에요",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "되긴 했어 근데 야근은 똑같이 했음 ㅋㅋ",
+    [
+     "supported",
+     "mixed"
+    ]
+   ],
+   [
+    "아니었던 것 같아요",
+    [
+     "contradicted",
+     "unsure"
+    ]
+   ],
+   [
+    "제가 짠 매크로 없었으면 절대 못 했을 듯",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "몰라 그런거 생각 안 하고 살아",
+    [
+     "unsure",
+     "unanswered"
+    ]
+   ],
+   [
+    "직접 만든 건 별로 효과 없었고 선배가 알려준 방법이 먹혔어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "제 방식이랑 팀 협업 둘 다 도움됐어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "네네 제 방식 덕분에 야근이 두 배가 됐죠^^",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움됏던듯 ㅎ",
+    [
+     "supported",
+     "unsure"
+    ]
+   ],
+   [
+    "음 제가 작년에 매출이 갑자기 늘면서 주문 처리가 감당이 안 됐거든요 그래서 주말에 혼자 구글시트로 주문 관리하는 거 만들어서 돌렸는데 솔직히 그거 없었으면 멘붕이었을 거예요 물론 지금은 회사에서 시스템 들여와서 그건 안 쓰지만요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "처음 몇 달은 제가 만든 루틴대로 하니까 진짜 편했어요 근데 거래처가 세 배로 늘고 나니까 그 루틴으로는 도저히 안 돌아가서 결국 다 갈아엎었죠 그래서 도움이 됐다고도 안 됐다고도 하기가 좀..",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "그게 무슨 뜻이에요 직접 만든 방식이라는게",
+    [
+     "chat",
+     "clarify"
+    ]
+   ]
+  ],
+  "Q_OTHERS": [
+   [
+    "네 역할 나눠서 하니까 훨씬 나았어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "협업하면 오히려 말만 많아지고 느려지던데요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "혼자 일하는 구조라 조율할 사람이 없었어요",
+    [
+     "no-experience"
+    ]
+   ],
+   [
+    "그냥 제가 알아서 다 했어요",
+    [
+     "no-experience",
+     "clarify"
+    ]
+   ],
+   [
+    "처음엔 조율이 잘 됐는데 인원이 늘어나니까 혼선만 생겼어요",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "ㅇㅇ 파트장이랑 업무 쪼갠 게 신의 한 수였음",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "사람 얘기는 좀 하기 그래요",
+    [
+     "unanswered"
+    ]
+   ],
+   [
+    "음 조율이 된 건지 잘 모르겠어요",
+    [
+     "unsure"
+    ]
+   ],
+   [
+    "조율이라고 할 만한 게 있었나 싶네요",
+    [
+     "no-experience",
+     "unsure",
+     "clarify"
+    ]
+   ],
+   [
+    "되긴 됐는데 조율하는 데 에너지를 너무 써서 퉁쳐지는 느낌",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "아뇨 제가 다 떠안았죠 뭐",
+    [
+     "contradicted",
+     "no-experience"
+    ]
+   ],
+   [
+    "팀원들이 역할 나눠줘서 살았다 진짜",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "조율한다고 했는데 결국 제 일만 늘던데요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "그게 도움이 안 됐다고 할 순 없죠",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "우리 팀장님은 조율을 안 하셔서 ㅋㅋ",
+    [
+     "no-experience",
+     "clarify"
+    ]
+   ],
+   [
+    "같이 하는 게 낫긴 한데 케바케",
+    [
+     "supported",
+     "mixed"
+    ]
+   ],
+   [
+    "혹시 제 직업운도 봐줄 수 있어요",
+    [
+     "chat"
+    ]
+   ],
+   [
+    "음 아마?",
+    [
+     "unsure"
+    ]
+   ],
+   [
+    "당연하죠 혼자선 절대 못 했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "퍽이나요 회의만 늘었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "평소엔 괜찮았는데 마감 직전엔 다 소용없었어요",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "안 해봤는데요",
+    [
+     "no-experience"
+    ]
+   ],
+   [
+    "외주 업체랑 일정 맞춘 게 컸어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "조율보단 제가 만든 매뉴얼이 더 컸어요",
+    [
+     "clarify",
+     "contradicted"
+    ]
+   ],
+   [
+    "네? 역할 조율이요",
+    [
+     "chat",
+     "clarify"
+    ]
+   ]
+  ],
+  "Q_DUTY": [
+   [
+    "네 예산 관리하다 보니 규정 지키는 게 몸에 뱄어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "관리 업무 때문에 정작 제 본업 책임은 못 챙겼어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "자원 관리를 맡아본 적이 없어요",
+    [
+     "no-experience"
+    ]
+   ],
+   [
+    "기준이 뭘 말하는 건지부터 모르겠는데요",
+    [
+     "chat",
+     "clarify"
+    ]
+   ],
+   [
+    "어느 정도는 도움 됐죠",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "처음엔 헷갈렸는데 익숙해지니까 기준 맞추기가 쉬워졌어요",
+    [
+     "supported",
+     "mixed"
+    ]
+   ],
+   [
+    "숫자 관리랑 책임 수행은 별개라고 봐요",
+    [
+     "contradicted",
+     "clarify"
+    ]
+   ],
+   [
+    "잘 모르겠음",
+    [
+     "unsure"
+    ]
+   ],
+   [
+    "그런 건 말하고 싶지 않아요",
+    [
+     "unanswered"
+    ]
+   ],
+   [
+    "재고 관리하면서 매장 기준 맞추는 데 확실히 도움 됐음",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "관리하느라 기준은 뒷전이었죠 ㅋㅋ",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "도움 된 적도 있고 방해된 적도 있고",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "그냥 시키는 일만 해서요",
+    [
+     "no-experience",
+     "clarify"
+    ]
+   ],
+   [
+    "아마 그랬던 것 같은데 확실친 않아요",
+    [
+     "unsure",
+     "supported"
+    ]
+   ],
+   [
+    "응 덕분에 감사 때 안 털렸음",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "별로 상관없었어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "저 공무원인데 이것도 해당돼요",
+    [
+     "chat",
+     "clarify"
+    ]
+   ],
+   [
+    "전 회사에선 도움 됐고 지금은 잘 모르겠어요",
+    [
+     "supported",
+     "clarify"
+    ]
+   ],
+   [
+    "ㅇㅋ 알겠어요",
+    [
+     "chat"
+    ]
+   ],
+   [
+    "관리 일을 맡아본 적은 있는데 그게 책임 수행이랑 이어졌는지는 글쎄요",
+    [
+     "unsure"
+    ]
+   ]
+  ],
+  "Q_DEMAND": [
+   [
+    "네 매출 늘자마자 CS 폭탄 맞았어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "아니요 오히려 여유가 생겼어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "딱히 늘진 않았어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "성과를 늘려본 적이 없어서..",
+    [
+     "no-experience"
+    ]
+   ],
+   [
+    "당연하죠 일 잘하면 일 더 주잖아요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "ㅋㅋㅋ 그걸 질문이라고",
+    [
+     "supported",
+     "clarify"
+    ]
+   ],
+   [
+    "처음엔 일이 늘었는데 시스템 갖추고 나니까 오히려 줄었어요",
+    [
+     "mixed"
+    ]
+   ],
+   [
+    "늘었다기보다 종류가 바뀐 거죠",
+    [
+     "contradicted",
+     "clarify"
+    ]
+   ],
+   [
+    "그대로였던 것 같아요",
+    [
+     "contradicted",
+     "unsure"
+    ]
+   ],
+   [
+    "안 늘었다고 하면 거짓말이죠",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "늘지 않은 건 아니지만 감당할 만했어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "몰라요",
+    [
+     "unsure"
+    ]
+   ],
+   [
+    "이건 넘어갈게요",
+    [
+     "unanswered"
+    ]
+   ],
+   [
+    "돈 벌면 일은 줄어드는 거 아닌가",
+    [
+     "clarify",
+     "chat",
+     "unsure"
+    ]
+   ],
+   [
+    "요구사항 늘어난 건 맞는데 그게 성과 때문인지는 모르겠네",
+    [
+     "supported",
+     "unsure",
+     "clarify"
+    ]
+   ],
+   [
+    "네 근데 그만큼 사람도 뽑아줘서 괜찮았어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "일은 늘었는데 까다로운 요구는 오히려 줄었어요",
+    [
+     "mixed",
+     "clarify"
+    ]
+   ],
+   [
+    "ㅇㅇ 개많아짐",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "그런 편이죠",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "음.. 모르겠어요 그땐 정신이 없어서",
+    [
+     "unsure"
+    ]
+   ],
+   [
+    "매출 늘었는데 일은 똑같았어요",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "직원 뽑고 나서는 오히려 제가 할 일이 줄었어요",
+    [
+     "contradicted",
+     "clarify"
+    ]
+   ],
+   [
+    "이거 왜 물어보는 거예요",
+    [
+     "chat"
+    ]
+   ],
+   [
+    "사업 시작 전이라 아직 몰라요",
+    [
+     "no-experience"
+    ]
+   ],
+   [
+    "매출은 늘었는데 문제는 오히려 줄었다고 해야 하나",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "성수기엔 확 늘고 비수기엔 그냥 그래요",
+    [
+     "supported",
+     "mixed",
+     "clarify"
+    ]
+   ],
+   [
+    "안 늘어난 적이 없죠",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "많아지긴 했는데 대부분 쓸데없는 거였어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "크게 달라진 건 없었던 거 같은데 잘 모르겠어요",
+    [
+     "contradicted",
+     "unsure"
+    ]
+   ],
+   [
+    "당연히 아니죠",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "네네 덕분에 휴가도 못 갔어요^^",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "성과 늘린 게 제 성과가 아니라서요 ㅋㅋ",
+    [
+     "no-experience",
+     "clarify"
+    ]
+   ],
+   [
+    "늘긴 했는데 요구라기보다는 기회였죠",
+    [
+     "supported",
+     "clarify"
+    ]
+   ],
+   [
+    "음 대충 비슷?",
+    [
+     "contradicted",
+     "unsure"
+    ]
+   ],
+   [
+    "투자받고 나서 투자자 보고만 세 배 됐어요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "처음 1년은 괜찮았는데 2년차부터 감당 안 될 만큼 늘었어요",
+    [
+     "supported",
+     "mixed"
+    ]
+   ],
+   [
+    "딱 잘라 말하기 어렵네요",
+    [
+     "unsure",
+     "clarify"
+    ]
+   ],
+   [
+    "ㄴㄴ 그대로임",
+    [
+     "contradicted"
+    ]
+   ],
+   [
+    "늘린 적이 있어야 알죠 ㅠ",
+    [
+     "no-experience"
+    ]
+   ],
+   [
+    "아니 뭐 늘었다고 해야 되나 줄었다고 해야 되나",
+    [
+     "unsure",
+     "clarify",
+     "mixed"
+    ]
+   ],
+   [
+    "오늘 날씨 좋네요",
+    [
+     "chat"
+    ]
+   ],
+   [
+    "제 얘기는 아니고 친구가 그랬대요",
+    [
+     "no-experience",
+     "clarify"
+    ]
+   ],
+   [
+    "감사합니다",
+    [
+     "chat"
+    ]
+   ],
+   [
+    "작년에 쇼핑몰 매출이 거의 두 배가 됐는데요 그때 좋아했던 것도 잠깐이고 반품 문의 배송 문의 이런 게 진짜 끝도 없이 들어와서 밤에도 핸드폰 붙잡고 있었어요 그래서 결국 알바 한 명 더 썼고요",
+    [
+     "supported"
+    ]
+   ],
+   [
+    "음 뭐랄까 성과가 늘면서 해야 할 게 늘어난 것도 있고 반대로 예전에 골치 아팠던 게 해결된 것도 있어서 딱 하나로 말하긴 어려운데 그래도 전체적으로 보면 늘어난 쪽이 좀 더 많았던 것 같긴 해요",
+    [
+     "mixed",
+     "supported"
+    ]
    ]
   ]
  }

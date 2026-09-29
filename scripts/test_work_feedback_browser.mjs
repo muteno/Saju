@@ -38,7 +38,7 @@ const COMPOUND='처음에는 도움이 됐는데 일이 커지면서 오히려 �
 try{
  // 1) One compound answer at 390/1280: before = generic provider chat, after = split revision.
  for(const width of[390,1280]){const x=await open(width,4);try{await openWork(x);await send(x,COMPOUND);
-  await untilText(x.page,baseline?PROVIDER:'경험을 들은 뒤 고친 풀이라 처음 풀이의 적중으로 세지 않아요.');
+  await untilText(x.page,baseline?PROVIDER:'두 범위를 가르는 조건은 명식이 아니라 말해 준 경험에서 왔어요.');
   const data=await save(`feedback-compound-${width}`,x);
   if(!baseline){assert.equal(questions(x),0);assert.match(data.dom,/부분은 도움이 된 경험/);assert.match(data.dom,/좁혀 읽어요/);}
  }finally{await x.context.close();}}
@@ -46,12 +46,12 @@ try{
  {const x=await open(390,4);try{await openWork(x);const d=x.model.context.decision;
   if(baseline){await send(x,'아니요');await untilText(x.page,PROVIDER);await save('feedback-chain-390',x);}
   else{
-   await send(x,'아니요');await untilText(x.page,'두 가지로 읽혀요');
+   await send(x,'아니요');await untilText(x.page,'두 가지로 읽혀요');await save('feedback-clarify-390',x);
    await send(x,'경험이 없어요');await untilText(x.page,DEMAND_Q);
    await send(x,'네, 일이 많이 늘었어요');await untilText(x.page,'그대로예요');
    const data=await save('feedback-chain-390',x);const dom=norm(data.dom);
    assert.equal(questions(x),0);assert.equal(dom.split(norm(d.question.prompt)).length-1,1);assert.equal(dom.split(DEMAND_Q).length-1,1);
-   assert.match(dom,/과제 증가’ 후보를 유지/);
+   assert.match(dom,/해결할 일도 함께 늘었다는 부분은 말해 준 경험 범위에서 받아들여요/);
   }
  }finally{await x.context.close();}}
  // 3) Same opposite answer on the 06:00 chart (hurting officer, no food) ends differently.
@@ -62,6 +62,10 @@ try{
  if(!baseline){
   // 4) After the menu question, a short answer is not attached to the work question.
   {const x=await open(390,4);try{await openWork(x);await untilText(x.page,'또 궁금한 것이 있는가?');assert.equal(await send(x,'네'),1);await untilText(x.page,PROVIDER);await save('menu-yes',x);}finally{await x.context.close();}}
+  // 4b) A content answer after the menu line still answers the shown question.
+  {const x=await open(390,4);try{await openWork(x);await untilText(x.page,'또 궁금한 것이 있는가?');assert.equal(await send(x,COMPOUND),0);await untilText(x.page,'좁혀 읽어요');await save('menu-content',x);}finally{await x.context.close();}}
+  // 4c) Answering after the app's guidance paragraph is shown.
+  {const x=await open(390,4);try{await openWork(x);const footer=x.model.context.blocks.at(-1).lines.at(-1);await untilText(x.page,footer);assert.equal(await send(x,'반대예요.'),0);await untilText(x.page,DEMAND_Q);await save('after-footer',x);}finally{await x.context.close();}}
   // 5) Another topic resets the conversation scope.
   {const x=await open(390,4);try{await openWork(x);await untilText(x.page,'또 궁금한 것이 있는가?');const other=x.page.getByRole('button',{name:x.model.labels['성격'],exact:true});await other.click();await until(x.page,async()=>(await logText(x.page)).endsWith('또 궁금한 것이 있는가?')&&(await logText(x.page)).split('또 궁금한 것이 있는가?').length>2);
    assert.equal(await send(x,'반대예요.'),1);await untilText(x.page,PROVIDER);await save('other-topic',x);}finally{await x.context.close();}}

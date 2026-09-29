@@ -130,7 +130,8 @@ export const EXPLICIT_ANSWERS = new Map([
   ['경험이 없어요', 'no-experience'], ['경험 없어요', 'no-experience'], ['말하고 싶지 않아요', 'unanswered'], ['답하지 않을래요', 'unanswered'],
 ]);
 
-/** Only explicit, scoped answers are classified. Other language goes to normal chat. */
+/** PR227 exact-answer contract, kept for its regression test. The app now reads
+ * answers through workFeedback.js (resolveWorkFeedback), which reuses EXPLICIT_ANSWERS. */
 export function reviseWorkDecision(decision, answer) {
   if (!decision?.active || !decision.question || ['scope-withheld','competing'].includes(decision.mode)) return null;
   const status = typeof answer === 'string' ? EXPLICIT_ANSWERS.get(answer.trim().replace(/[.!。!]+$/u, '').trim()) : undefined;
