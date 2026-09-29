@@ -1,12 +1,13 @@
 // Read the complete natal chart together. Exact symbol conditions are not
 // probabilities, strength measurements, occupational aptitude or predictions.
 import { STEMS_HANJA, BRANCHES_HANJA, HIDDEN_STEMS, TEN_GODS, tenGod, sexStem, sexBranch, sexName } from './tables.js';
+import { strengthJudge } from './judge.js';
 
 const POSITIONS = ['year', 'month', 'day', 'hour'];
 const POSITION_NAMES = { year: '연', month: '월', day: '일', hour: '시' };
 const GROUPS = ['비겁', '식상', '재성', '관성', '인성'];
 const ROLES = ['자기 기준과 동료', '표현과 실행', '결과와 자원 관리', '규칙과 책임', '배움과 준비'];
-export const CONTEXT_READING_NOTICE = '글자의 조합을 읽는 설명이에요. 기운의 세기나 직업 적성·수입·성공을 확정하지 않으며, 실제 경험과 대조해서 읽어 주세요.';
+export const CONTEXT_READING_NOTICE = '글자의 조합과 앱의 잠정 계산 기준으로 본 강약을 읽는 설명이에요. 점수는 능력이나 확률이 아니며, 직업 적성·수입·성공이나 기운의 세기를 확정하지 않으니 실제 경험과 대조해서 읽어 주세요.';
 
 // Interpretation prompts, not measured personal effects. Pair keys are sorted;
 // the actual month/hour positions remain explicit in every rendered synthesis.
@@ -52,6 +53,43 @@ function combineRoles(monthMain, hourStem, groups, positionText) {
       clarifies: '글자의 관찰 범위와 별개로 실제 맡은 역할·경험의 유무' },
   ];
   return { synthesis, questions };
+}
+
+// Reuse the existing calculation, including its provisional help/classification
+// policy. The reading below is a question to investigate, not a personal verdict.
+function strengthContext(chart, monthMain, hourStem, positionText) {
+  const observation = strengthJudge(chart);
+  const band = ['신강', '극신강'].includes(observation.label) ? 'strong'
+    : ['신약', '극신약'].includes(observation.label) ? 'weak' : 'balanced';
+  const dayStem = sexStem(chart.pillarsIdx.day);
+  const supports = [];
+  for (const position of POSITIONS) {
+    const branch = sexBranch(chart.pillarsIdx[position]);
+    const hidden = HIDDEN_STEMS[branch];
+    for (const [part, stem, helps] of [
+      ['stem', sexStem(chart.pillarsIdx[position]), position !== 'day' && observation.detail[position].stemHelp],
+      ['hidden', hidden[hidden.length - 1], observation.detail[position].branchHelp],
+    ]) if (helps) supports.push({ position, part, stem, character: STEMS_HANJA[stem],
+      tenGod: TEN_GODS[tenGod(dayStem, stem)], principal: part === 'hidden' });
+  }
+  const facts = `원국 전체의 강약을 함께 보면, 앱의 잠정 기준은 ${observation.label}(${observation.score}/${observation.max}점)이에요. ` +
+    (supports.length ? `일간 자신 외에 ${supports.map(positionText).join(', ')}을 도움으로 셌어요.`
+      : '이 기준에서는 일간 자신 외에 도움으로 세는 천간·지지 본기가 없어요.');
+  const roles = [...new Set([monthMain.group, hourStem.group])].map(g => ROLES[GROUPS.indexOf(g)]).join(' / ');
+  const focus = band === 'strong'
+    ? '자기 판단을 일에 옮기는 방식과 다른 사람의 요구에 맞춰 조정하는 부분을'
+    : band === 'weak'
+      ? '맡은 일을 감당할 때 필요한 준비·협업과 혼자 맡을 수 있는 범위를'
+      : '스스로 밀고 나갈 부분과 준비·협업이 필요한 부분을 상황에 따라 나누는 방식을';
+  const hypothesis = `앞의 ‘${roles}’ 조합에 이 조건을 더하면, ${focus} 살펴보는 해석 가설로 이어져요. 실제로 그런지는 경험을 확인해야 해요.`;
+  const question = band === 'strong'
+    ? '최근 자기 판단대로 진행한 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요? 주도하지 않았던 경험도 괜찮아요.'
+    : band === 'weak'
+      ? '최근 맡은 일을 혼자 진행할 때와 준비하거나 도움을 받을 때 무엇이 달랐나요? 혼자서도 무리 없었던 경험이나 차이가 없었던 경우도 말해 주세요.'
+      : '최근 비슷한 일을 했어도 혼자 진행한 경우와 준비·협업이 필요했던 경우가 달랐나요? 상황에 따른 차이가 없었다면 그대로 말해 주세요.';
+  return { observation, band, supports, facts, hypothesis,
+    question: { id: `strength-${band}`, prompt: question,
+      clarifies: '잠정 강약 조건에 연결한 진행·조정·도움의 가설과 실제 경험의 일치·불일치' } };
 }
 
 function completeChart(chart) {
@@ -117,13 +155,15 @@ export function buildContextReading(chart) {
   const hiddenTopics = ['식상', '재성', '관성'].filter(group => groups[group].status === 'hidden_only');
   if (hiddenTopics.length) synthesis += ` ${hiddenTopics.join('·')}은 지장간에서만 보이므로, 겉에 드러난 계열만으로 풀이를 끝내지 않아요. 다만 숨은 글자가 실제로 얼마나 작용하는지는 아직 판단하지 않아요.`;
   const combined = combineRoles(monthMain, hourStem, groups, positionText);
-  return { policy: 'natal-work-context-v2', kind: 'conditional_structural_reading',
+  const strength = strengthContext(chart, monthMain, hourStem, positionText);
+  const questions = [...combined.questions, strength.question];
+  return { policy: 'natal-work-context-v3', kind: 'conditional_structural_reading',
     dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem,
-    experienceQuestions: combined.questions,
+    strength, experienceQuestions: questions,
     blocks: [{ label: '같은 일주여도 달라지는 부분', lines: [overview] },
       { label: '표현·결과·책임의 구성', lines: roleLines },
-      { label: '함께 읽으면', lines: [combined.synthesis, synthesis] },
-      { label: '경험으로 확인할 부분', lines: [...combined.questions.map(q => q.prompt),
+      { label: '함께 읽으면', lines: [combined.synthesis, synthesis, strength.facts, strength.hypothesis] },
+      { label: '경험으로 확인할 부분', lines: [...questions.map(q => q.prompt),
         '답을 통해 실제 맡은 역할과 상황을 더 구체적으로 물을 수 있고, 경험이 없다면 없다고 말해도 돼요. 맞지 않는 경험도 함께 살피며, 답만으로 사주가 맞았다거나 적성을 확인했다고 판단하지 않아요.'] }],
     note: CONTEXT_READING_NOTICE, predictionEnabled: false, trainingEligible: false, probability: null };
 }

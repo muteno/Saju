@@ -1,0 +1,124 @@
+[
+  {
+    "case": "card-gapin-390",
+    "score": 65,
+    "label": "신강",
+    "questions": 3,
+    "overflow": 0
+  },
+  {
+    "case": "card-gapo-390",
+    "score": 40,
+    "label": "중화",
+    "questions": 3,
+    "overflow": 0
+  },
+  {
+    "case": "card-gapja-390",
+    "score": 85,
+    "label": "극신강",
+    "questions": 3,
+    "overflow": 0
+  },
+  {
+    "case": "card-gapin-1280",
+    "score": 65,
+    "label": "신강",
+    "questions": 3,
+    "overflow": 0
+  },
+  {
+    "case": "card-gapo-1280",
+    "score": 40,
+    "label": "중화",
+    "questions": 3,
+    "overflow": 0
+  },
+  {
+    "case": "card-gapja-1280",
+    "score": 85,
+    "label": "극신강",
+    "questions": 3,
+    "overflow": 0
+  },
+  {
+    "case": "unknown-390",
+    "strengthHidden": true
+  },
+  {
+    "case": "unknown-1280",
+    "strengthHidden": true
+  },
+  {
+    "case": "queue-local-390",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  },
+  {
+    "case": "queue-early-390",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  },
+  {
+    "case": "queue-after-local-390",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  },
+  {
+    "case": "queue-after-first-390",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  },
+  {
+    "case": "queue-after-third-390",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  },
+  {
+    "case": "queue-cached-390",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  },
+  {
+    "case": "queue-local-1280",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  },
+  {
+    "case": "queue-early-1280",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  },
+  {
+    "case": "queue-after-local-1280",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  },
+  {
+    "case": "queue-after-first-1280",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  },
+  {
+    "case": "queue-after-third-1280",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  },
+  {
+    "case": "queue-cached-1280",
+    "questions": 3,
+    "questionDuplicates": 0,
+    "thirdQuestionInConversation": true
+  }
+]

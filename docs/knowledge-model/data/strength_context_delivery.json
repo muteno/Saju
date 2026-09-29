@@ -1,0 +1,1021 @@
+{
+  "baseline_commit": "513226cfce058b4135102b539cb4371dbb05c8bb",
+  "scope": "110 synthetic calendar inputs, 102 known and 8 unknown; personal accuracy unmeasured",
+  "policy": "natal-work-context-v3",
+  "training_eligible": 0,
+  "probability": null,
+  "sources": [
+    {
+      "path": "dosa-app/engine/src/contextReading.js",
+      "sha256_lf": "43572484cfd143d10c426e03d3af244707f7d2c86436150b239111b2169f59f3"
+    },
+    {
+      "path": "dosa-app/engine/src/contextReading.d.ts",
+      "sha256_lf": "48d2c51266392b04d1678d3b21f92fc0fd2131a7a3b56a7e0eccc76f691e39c2"
+    },
+    {
+      "path": "app/src/engine/vendor/contextReading.js",
+      "sha256_lf": "43572484cfd143d10c426e03d3af244707f7d2c86436150b239111b2169f59f3"
+    },
+    {
+      "path": "app/src/engine/vendor/contextReading.d.ts",
+      "sha256_lf": "48d2c51266392b04d1678d3b21f92fc0fd2131a7a3b56a7e0eccc76f691e39c2"
+    },
+    {
+      "path": "dosa-app/engine/src/judge.js",
+      "sha256_lf": "6f0f53d223bb7e159650145e201f0db2c94d2d6067ace86a79b1dc45daa8045d"
+    }
+  ],
+  "rows": [
+    {
+      "id": "known-extreme-down-solar-midnight23",
+      "unknown": false,
+      "label": "신강",
+      "score": 80,
+      "calculations_unchanged": true,
+      "before_sha256": "685922d01766f12a6207c59866440a2a5fffbb388b28fb66c6a1371ade3d2d56",
+      "after_sha256": "a32b86a74415b7d953acf50a3831fea9f51c415c3d4d1b74a0f277ffb9ebd2b5"
+    },
+    {
+      "id": "known-extreme-down-solar-keepDay",
+      "unknown": false,
+      "label": "신강",
+      "score": 80,
+      "calculations_unchanged": true,
+      "before_sha256": "78c8a164ec23c2ca528861b0fca0ffddcaa08b520dca64bf4553166d646e156e",
+      "after_sha256": "a9bd6168b8bc363506ecfeee75a6320aa0353f19e67b5b318f9a7c76f12615a2"
+    },
+    {
+      "id": "known-extreme-down-civil-midnight23",
+      "unknown": false,
+      "label": "신강",
+      "score": 80,
+      "calculations_unchanged": true,
+      "before_sha256": "821d7c7cf1148e32fabbae147d34979bcca5150b951f9730d354a61dedfa25ef",
+      "after_sha256": "c7d27730256a52fbf5a6e49b4507aeac0fbf9a547dff05b1d15637f1d59581ce"
+    },
+    {
+      "id": "known-extreme-down-civil-keepDay",
+      "unknown": false,
+      "label": "신강",
+      "score": 80,
+      "calculations_unchanged": true,
+      "before_sha256": "49118434ea1e2fd00c535ed1b464bd9738d22760076bfe4f7e7adfc424d1bd67",
+      "after_sha256": "10df27e2451d2aa5dca20228b0b2c86090ddbd9d5e4e38b3a4d708a302913e8c"
+    },
+    {
+      "id": "known-strong-down-solar-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "a915bc5cd27d7083eb4e590d02d9c44a8c66896a17e124e2457263dff183a15b",
+      "after_sha256": "ef97406a7346c34871279646c16f97c53b4cd137dc933892c6b5289d6965b755"
+    },
+    {
+      "id": "known-strong-down-solar-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "3b1edcc6c42dc04a30a394e32e448f4bc97e12db50e07473b398e9ad661c8245",
+      "after_sha256": "fa1ab6cf9e8dd7e0aa5eb67e07660c612eab7e61a521973972c4f56d90d66541"
+    },
+    {
+      "id": "known-strong-down-civil-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "a1e0657c5d0740b6016fc4e04de5f2c997f76a9433a72bb073f45c6287773b69",
+      "after_sha256": "b65ee213c2b6ef394cf69b42a7112002e72bc2dacdf2cb9bbf9f7a75de6b21f2"
+    },
+    {
+      "id": "known-strong-down-civil-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "b153f2989dabb1b77964ce4ab852439f1071ba74065b65967f8bbda9e8528a07",
+      "after_sha256": "63d569ce3b1e28736f5ee1f05023819db7b40a12ae6ad520f7c560ac7d78eb9c"
+    },
+    {
+      "id": "known-strong-up-solar-midnight23",
+      "unknown": false,
+      "label": "신강",
+      "score": 60,
+      "calculations_unchanged": true,
+      "before_sha256": "9e46bb814a07091039d4046132a1cefb89ecbacb90476d3bf2f347ee632f5035",
+      "after_sha256": "c3a914ce825eb7a889383a6a9cee7daa5df80d3c2fba88d1b82f202b1cf91d76"
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "unknown": false,
+      "label": "신강",
+      "score": 65,
+      "calculations_unchanged": true,
+      "before_sha256": "2d2b4c659d747ddbd4132dc68611486a7e4f5d23ad13e6e596e0c6617430b2b7",
+      "after_sha256": "7bdefbf018a50bc9390ff8675ad3064b7372e78cf19402a355c42d04ced367bd"
+    },
+    {
+      "id": "known-strong-up-civil-midnight23",
+      "unknown": false,
+      "label": "신강",
+      "score": 60,
+      "calculations_unchanged": true,
+      "before_sha256": "208fb9c26cfe53c17d7f30e2018cacc5ffe73986d8f4de3c977736eb4c3fe3b6",
+      "after_sha256": "c8692f2c96507262af803f7913f8291d310d674fa1b8999bfde6a0de7f08652f"
+    },
+    {
+      "id": "known-strong-up-civil-keepDay",
+      "unknown": false,
+      "label": "신강",
+      "score": 60,
+      "calculations_unchanged": true,
+      "before_sha256": "15ce79a3a0a60bc938806875a2579d894143b5915030b61ac3a1cd8183105174",
+      "after_sha256": "6f1ce593e78ded0eea94262180ed6e2934a27e4b082daccae3895470e02b298f"
+    },
+    {
+      "id": "known-weak-down-solar-midnight23",
+      "unknown": false,
+      "label": "신약",
+      "score": 30,
+      "calculations_unchanged": true,
+      "before_sha256": "4226de16b3eb1d9e502ebf694978dd837dd7a09ac78bbca9871b730ec2ae793d",
+      "after_sha256": "ca0e9520baa8e7652530b4c93a6e4ebddb9ff2b4dc903987f7102d438b786d55"
+    },
+    {
+      "id": "known-weak-down-solar-keepDay",
+      "unknown": false,
+      "label": "신강",
+      "score": 70,
+      "calculations_unchanged": true,
+      "before_sha256": "1a61ad5ea4a330884cfbadd45e430333648f1fb395aef98c757a5ee2c55afb51",
+      "after_sha256": "dc73d87984b38236bd3817b77e914c53b05a8a48d8e810778bad0189c620ef73"
+    },
+    {
+      "id": "known-weak-down-civil-midnight23",
+      "unknown": false,
+      "label": "신약",
+      "score": 30,
+      "calculations_unchanged": true,
+      "before_sha256": "4b22fb7b93cd48ec1b7541069b9284523e601c64cba1eeabc4cc892ad549a6dd",
+      "after_sha256": "04b8883fece79910e56166ebdca775db3fdc23e10238e66a13d696ae20cd8585"
+    },
+    {
+      "id": "known-weak-down-civil-keepDay",
+      "unknown": false,
+      "label": "신약",
+      "score": 30,
+      "calculations_unchanged": true,
+      "before_sha256": "17fa733c5dcd0745e546c163a18997e1e477125ea73acf789e0dfce441df222c",
+      "after_sha256": "f232c84d60ff4fd1f573db984044584ec042bbea1db482b923c82a1744c0de3d"
+    },
+    {
+      "id": "known-weak-up-solar-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "8e149fa9ff6dcf87b9c2b46de5c76d4908abc96ff22bdc196bbec91aca18d9fb",
+      "after_sha256": "3bb194ff2605dcee7544e22ce25304dc6be4bb720ec6f268b11fe644679e7e8e"
+    },
+    {
+      "id": "known-weak-up-solar-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "fb009c0495b069dca31dd2a059d05047568c7bedbffcfa27d1002af765a7a968",
+      "after_sha256": "9b15a9097bd4117755b9e0965313345c3a698ff4c7fe28e887f42785cfa359c2"
+    },
+    {
+      "id": "known-weak-up-civil-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "8417824016e838d49d74671bd7ff7d357cde7c328070704644197243414c0ae0",
+      "after_sha256": "6f9fa0e5e2d9f3a9a71c8418a1357256bdfb5e4f95683d8c6e5d68a67367f8cd"
+    },
+    {
+      "id": "known-weak-up-civil-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "ccfa03f6cb07addf0947ab8cae48ac9d64c5979e2d201c413c02dd67a878e7bc",
+      "after_sha256": "e102984bb2baae51df912226f65ed64659b44a76148c012cad9afea3e9fa9e70"
+    },
+    {
+      "id": "known-extreme-up-solar-midnight23",
+      "unknown": false,
+      "label": "극신강",
+      "score": 85,
+      "calculations_unchanged": true,
+      "before_sha256": "1ea087584c581b5f412989c123790bcfde92c047d4559eeb0dc67bb3a50797a0",
+      "after_sha256": "10e78bace35e40c62e99f6b9e7a7d252afcebfb64a6ff77f314bb02d2584e09b"
+    },
+    {
+      "id": "known-extreme-up-solar-keepDay",
+      "unknown": false,
+      "label": "극신강",
+      "score": 85,
+      "calculations_unchanged": true,
+      "before_sha256": "4768073acfdb8027428edda77694855494b099c59deb345d5861f07c1c4b0161",
+      "after_sha256": "34de9257e97cc664dd651c66fb1b351476ba562147f3036abc46f73be7555642"
+    },
+    {
+      "id": "known-extreme-up-civil-midnight23",
+      "unknown": false,
+      "label": "극신강",
+      "score": 85,
+      "calculations_unchanged": true,
+      "before_sha256": "edea66c627bfed823598c56b8482654c0082f7a0327c549640f913d84c8de7ac",
+      "after_sha256": "c7c3b6bb9e8cecd23ed3977b0115d49aa06161ba1e43781221621b5980eefa78"
+    },
+    {
+      "id": "known-extreme-up-civil-keepDay",
+      "unknown": false,
+      "label": "극신강",
+      "score": 85,
+      "calculations_unchanged": true,
+      "before_sha256": "2221677e513481b4c94293ee8d8768266b20343cbb43008a4d4fe2cd4cd6ab3e",
+      "after_sha256": "5bc6dcf61a08a6fe2b6550cc434f0cc2e8fb43b0f49120166ceb51b9914ac05b"
+    },
+    {
+      "id": "known-zi-before-solar-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "4efcf829fc14c3dda60a53d4dfd64d1bec9dbe55da34dfb3e16d2c452889f7b3",
+      "after_sha256": "1e7334345f9e1701e2e5515352bc06553d9ba60e5813114dea0f8da2a778666e"
+    },
+    {
+      "id": "known-zi-before-solar-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "871654f13262e97b1c467957632224416d9f7c8cf2983dd0fbbc7ae67aad3736",
+      "after_sha256": "ba535622110cf21a5dc49c45b4c5481f27054f68c229b43b64f107db06c7a30e"
+    },
+    {
+      "id": "known-zi-before-civil-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "afe9580a5036742b73987e0edb785201fda11340c3f9645ced2cb30de33ede8b",
+      "after_sha256": "d6f7653dfd658278bba08e30ef050b03a160bdbf918e4005765f9314c81564d4"
+    },
+    {
+      "id": "known-zi-before-civil-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "8f4d767b2476da07ff77e3da3371ba05ec181458180e6d2740c0858a2aabb86e",
+      "after_sha256": "d73d4382446c63f0b7f9be76093a2aeabf3e3038cde94aa5bb45cfe47c07d38f"
+    },
+    {
+      "id": "known-zi-after-solar-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "98c74a1b1fdd2363a1f8bb217f905bf7f4531b82367ade4aded752dcf906315a",
+      "after_sha256": "849f3e973e864b26feeab6659d9bcb28102b932ea59ec8bedd0e6a2cc2717348"
+    },
+    {
+      "id": "known-zi-after-solar-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "62515a963a33c626ce69cb029ca04ac7c4e3b07a2d27c798626cdc209d5c5f10",
+      "after_sha256": "133f72bd57f17c6231dc37dff480597c9f5870c8d416f5edbe136810d084b007"
+    },
+    {
+      "id": "known-zi-after-civil-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "e2b79fa632eacfcda73ed4214cf4af097213fad0ac4fe8e65efedd6080289020",
+      "after_sha256": "ec4130516314f19220eec339677763817c7f0d186c1f00823487127806f09c07"
+    },
+    {
+      "id": "known-zi-after-civil-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "811805a52e1af1281150eece798fdeafa5b4adf43253ba5442211252eae5c955",
+      "after_sha256": "dd5875161a135481637c1776bf8c3e5c043543f02c52a8838b6b344efe6f2abf"
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "80fa8903271666d43273629b72c722a14d6614e9f08fa18a92f6a025802be398",
+      "after_sha256": "f1a30714f72789d29824ed7b41a91a59d5bfda952d3376d7e37bf0ffaa116c5c"
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "2326d8e64cc352d6f876ce05abe339ffa7ae450c1082bf9eff257bad443c4c46",
+      "after_sha256": "007d9c10fff6139121cdc91d71463979023598f47d262c0a94029f8679f3d597"
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "ac34bb690f746b3577090defc16ea72c6a36eca3ab5e39b2b72674b0eac40184",
+      "after_sha256": "7cb08d16e88c99c9b5893aefdf8b8c13b9cf1024b2a17fd8009922fee59eee17"
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "f468852675365f6dee0df149d3e51bbf63b33bafba805612c90bd4dd35f1799d",
+      "after_sha256": "ff25d2588af0ed9f952463d8786f231fa6f7edc1f2a97b47d7491a85579975d3"
+    },
+    {
+      "id": "known-ipchun-after-solar-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "dc073d58bec79fd020431d3a1f9c93d90ae2ac01293b6a8e2fa583140b69d999",
+      "after_sha256": "382ab50f1e2822b913d7ccbc06a4f92d4106efbae90e91a24b2c41b24a68fde1"
+    },
+    {
+      "id": "known-ipchun-after-solar-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "1f706630c545eb881c88abcac10bac39eca765b661ce30178355b201462aadac",
+      "after_sha256": "07ccebf2419bcfc9244371a1f127e7db2f74eb12640b4bdd2a44de03e8570004"
+    },
+    {
+      "id": "known-ipchun-after-civil-midnight23",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "359963eb8a80788c1041d066b2fd0e5416b0758ff2ea28a5d459c3cdf5201f22",
+      "after_sha256": "ca8a6ef72bb409ccd352b0bb48c5cc7a9ec980665703c765b02b2775c5d24797"
+    },
+    {
+      "id": "known-ipchun-after-civil-keepDay",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "4b48566934658cdf99d1e9509db01345b7a3c7ee61df26020119c66ea86b295c",
+      "after_sha256": "130115720030907afc56373e6f8a134b003cae4ea4ed2963100b147de55d3a92"
+    },
+    {
+      "id": "unknown-ordinary-solar-midnight23",
+      "unknown": true,
+      "label": null,
+      "score": null,
+      "calculations_unchanged": true,
+      "before_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5",
+      "after_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5"
+    },
+    {
+      "id": "unknown-ordinary-solar-keepDay",
+      "unknown": true,
+      "label": null,
+      "score": null,
+      "calculations_unchanged": true,
+      "before_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7",
+      "after_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7"
+    },
+    {
+      "id": "unknown-ordinary-civil-midnight23",
+      "unknown": true,
+      "label": null,
+      "score": null,
+      "calculations_unchanged": true,
+      "before_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb",
+      "after_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb"
+    },
+    {
+      "id": "unknown-ordinary-civil-keepDay",
+      "unknown": true,
+      "label": null,
+      "score": null,
+      "calculations_unchanged": true,
+      "before_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d",
+      "after_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d"
+    },
+    {
+      "id": "unknown-ipchun-solar-midnight23",
+      "unknown": true,
+      "label": null,
+      "score": null,
+      "calculations_unchanged": true,
+      "before_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e",
+      "after_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e"
+    },
+    {
+      "id": "unknown-ipchun-solar-keepDay",
+      "unknown": true,
+      "label": null,
+      "score": null,
+      "calculations_unchanged": true,
+      "before_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b",
+      "after_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b"
+    },
+    {
+      "id": "unknown-ipchun-civil-midnight23",
+      "unknown": true,
+      "label": null,
+      "score": null,
+      "calculations_unchanged": true,
+      "before_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541",
+      "after_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541"
+    },
+    {
+      "id": "unknown-ipchun-civil-keepDay",
+      "unknown": true,
+      "label": null,
+      "score": null,
+      "calculations_unchanged": true,
+      "before_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db",
+      "after_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db"
+    },
+    {
+      "id": "hyeonchim-0",
+      "unknown": false,
+      "label": "극신강",
+      "score": 85,
+      "calculations_unchanged": true,
+      "before_sha256": "36f51052e81e965f7591fbcec94199e51ec8025721de78493bb11f25e5be21e0",
+      "after_sha256": "0c00dadeb7ad7c7646946bb56a671dac514b7488946f9a5d2aa35950fd762cf2"
+    },
+    {
+      "id": "hyeonchim-1",
+      "unknown": false,
+      "label": "신강",
+      "score": 80,
+      "calculations_unchanged": true,
+      "before_sha256": "dab2761eef8d6e2c99a274758582da32fa81dc52a5146cc3568a9928d8afac00",
+      "after_sha256": "ba7a9c17fe5b6ec8ff439a3df8f2b993bbf5eb8cc8e6dbd0f295af83dfcc2dc8"
+    },
+    {
+      "id": "hyeonchim-2",
+      "unknown": false,
+      "label": "신강",
+      "score": 70,
+      "calculations_unchanged": true,
+      "before_sha256": "a9a12a5908153f6d6919ed6bfcf974948a2c7fe9fb23e71630c3be2fde91241e",
+      "after_sha256": "e386d563d93dcb81a98c3045d8b1323fa6c4c3cb52b7b96d1f8a692c3d3a5f16"
+    },
+    {
+      "id": "hyeonchim-3",
+      "unknown": false,
+      "label": "신강",
+      "score": 70,
+      "calculations_unchanged": true,
+      "before_sha256": "9c9d5a58b5952a15c1e2ba6bb903722536b31c57e16add78fc4ab6bcba934013",
+      "after_sha256": "db06c6d94950677b6dd67b2aa9fe4ce82b97797445290eac31303282adb89a2b"
+    },
+    {
+      "id": "hyeonchim-4",
+      "unknown": false,
+      "label": "중화",
+      "score": 50,
+      "calculations_unchanged": true,
+      "before_sha256": "251e5bacf91ace346dad40fb1e525023a07e35d0615210d76d35d20c8027623a",
+      "after_sha256": "af5ddf15927db32e0ca1efbdacd6b61ed5185ee330a620120fb9dbf2b54ea88e"
+    },
+    {
+      "id": "hyeonchim-5",
+      "unknown": false,
+      "label": "신강",
+      "score": 70,
+      "calculations_unchanged": true,
+      "before_sha256": "396a6a867d5ff9d0f92cb751651effd9768e0a4dfa928bcfed2fc2a4ffb05594",
+      "after_sha256": "8e5daf8587c685139559f8f25344328f8e91fbcf24674718e92ed00d3d6066b5"
+    },
+    {
+      "id": "hyeonchim-6",
+      "unknown": false,
+      "label": "중화",
+      "score": 40,
+      "calculations_unchanged": true,
+      "before_sha256": "ab740c6cf75530185224edb5490dd62ce7f3023cb7c1cbee87d3f67abaa81cad",
+      "after_sha256": "3879496351b8a6f8d509961ddc756d472b73ccca17d0200205dd0ecc60befa86"
+    },
+    {
+      "id": "hyeonchim-7",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "9c5cbc6f3a7ab960a65e3f10d3ffb3eb9761956d13fc1907870ffce437d94715",
+      "after_sha256": "2fb0f6b32b8ff27bc4afb3fa21c976f3c62951a9cb01c6043c63bffc16bf9afc"
+    },
+    {
+      "id": "hyeonchim-8",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "87d7469cceb489b3f44ba172bb532f6cf45dbae6f56f02ad309470c99fc3375b",
+      "after_sha256": "c6f467f217d22b4f1a4de54f427d6b89c0549712789d52c9b73b1195dcfbb3b7"
+    },
+    {
+      "id": "hyeonchim-9",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "48ccc9315f35bfff5c947863482a5a294c0e397864432ad2cc315daf3d774f3f",
+      "after_sha256": "bb34200e9cc79d0ce23b21acf156f05b717ce068ac62567eac7e05cf941cffbc"
+    },
+    {
+      "id": "hyeonchim-10",
+      "unknown": false,
+      "label": "중화",
+      "score": 40,
+      "calculations_unchanged": true,
+      "before_sha256": "513d98ab761c698a47c96dcccbc6e22a49c4e0ef52c7fef7d7ef3e96b98921a4",
+      "after_sha256": "bfc2a33af68b60d623d6da906ac6e9de714157e5a0bd00b5de51ad0647a9c47f"
+    },
+    {
+      "id": "hyeonchim-11",
+      "unknown": false,
+      "label": "신강",
+      "score": 65,
+      "calculations_unchanged": true,
+      "before_sha256": "1576639507eb0e47300b54e000e13588c6b65897accc6a2d54188ea3e24df362",
+      "after_sha256": "090b633f7bd1eefdf97f237fcbff34e8e469c69326108442cea92aa7a98d4cee"
+    },
+    {
+      "id": "hyeonchim-12",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "4c68c72416bc84584c599c83f28ad91357d60fe440a2714737b257c80ee82def",
+      "after_sha256": "a9a55e8c7ae7a6ed862b897157a6eda7c5ebda082248ff041b60dfdce2566a44"
+    },
+    {
+      "id": "hyeonchim-13",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "bcc82c3675e29e5b56cc8493516937aace220a90d869fa3af66d6b0fa081ee90",
+      "after_sha256": "956c542177acaae93ab8feae48856807d4dcddd245ec599b0071ace7d2b506c3"
+    },
+    {
+      "id": "hyeonchim-14",
+      "unknown": false,
+      "label": "신강",
+      "score": 65,
+      "calculations_unchanged": true,
+      "before_sha256": "e3783aa49b71e895e6ff399ce8c329dbfbd499cd4ea01ba7f210686d6fa8067a",
+      "after_sha256": "c0ae70a6623a2062366b4f8bc046e37dcac299de07a49ac5fc89ef3bfdd6c638"
+    },
+    {
+      "id": "hyeonchim-15",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "901ace9524cb19e2287e9b2b34db9afde77dafbff8d94722b66d18b61579bdae",
+      "after_sha256": "7735914d7c8795f69b825ca48cdb3206cc3bbe32a8824295226b221ac2d0c813"
+    },
+    {
+      "id": "hyeonchim-16",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "5ccf8e4c056aab7eb508e513d9dc12583b028dfab68533f809b1811cda709fe7",
+      "after_sha256": "ea9f92eda5b262db6e915152f28e7e97b6cda7dac8a8bf6da62873eeccaae2fc"
+    },
+    {
+      "id": "hyeonchim-17",
+      "unknown": false,
+      "label": "중화",
+      "score": 40,
+      "calculations_unchanged": true,
+      "before_sha256": "92e68c02f555ab6b9f697a849e634ad22c74250dac39232965344b690664679b",
+      "after_sha256": "266fdb9044d9e48df6964763852f4e17ae1d1104f6b45c86bf578d03cd3c565e"
+    },
+    {
+      "id": "hyeonchim-18",
+      "unknown": false,
+      "label": "신약",
+      "score": 20,
+      "calculations_unchanged": true,
+      "before_sha256": "6a1beb6984f021efe8464478330d09e4f4382a665e710fe46924416fc027d116",
+      "after_sha256": "376a5132838fd9b8b975b0f489f60648896ac73528a24d03f122f0daa495ea33"
+    },
+    {
+      "id": "hyeonchim-19",
+      "unknown": false,
+      "label": "신약",
+      "score": 20,
+      "calculations_unchanged": true,
+      "before_sha256": "0b52fac6cfa29aa7a617cbb928cb4f12ef1ea5b3d0ef19a2081f9f627d0e9784",
+      "after_sha256": "c3214479476301d38e42bf0c6388cab9216207069fc9421237e59889700897aa"
+    },
+    {
+      "id": "hyeonchim-20",
+      "unknown": false,
+      "label": "중화",
+      "score": 40,
+      "calculations_unchanged": true,
+      "before_sha256": "dbfaebb57ddfea63dc3d069f2e0c3c4865d868742d33781a089d8bd4a089cb1f",
+      "after_sha256": "80ceca43968920a8d2cd1b85dd48aa6f80fdca51962456dbe5bb7e879335a032"
+    },
+    {
+      "id": "hyeonchim-21",
+      "unknown": false,
+      "label": "중화",
+      "score": 50,
+      "calculations_unchanged": true,
+      "before_sha256": "0955a6faaf491c4345bf0f4b1cd9dffa238fa43c019688ce57d4aa929f2de94c",
+      "after_sha256": "5527918d0e36d3ef84a957e1e1a57f8f10546478e2d4ade5f9cfc8b6773d17bd"
+    },
+    {
+      "id": "hyeonchim-22",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "310ab990972cb8f0c13261b769cb97b89f4be8d797d79a585b0c4fe05af0950e",
+      "after_sha256": "f4a6c71c302f196673473108c1102f0df5f5245e44a72ac1f340d4af1b61b321"
+    },
+    {
+      "id": "hyeonchim-23",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "f7152132352107a9008b88d28cba4f6e6f56fdc72daab5e22d109244fb3c6085",
+      "after_sha256": "f42a1fe8a521adec765d61d39e5a6b086d202ece72150da0960f207525257ab7"
+    },
+    {
+      "id": "hyeonchim-24",
+      "unknown": false,
+      "label": "신강",
+      "score": 65,
+      "calculations_unchanged": true,
+      "before_sha256": "0e7f7d350e9d6eb2425377845d68c5015ba7c964a8cb70c4cc5d75f5e176cdd0",
+      "after_sha256": "be10f3b3cbc6385b176a027a3aee521624cdd93fbe02f392006eeb67a5472e55"
+    },
+    {
+      "id": "hyeonchim-25",
+      "unknown": false,
+      "label": "신강",
+      "score": 70,
+      "calculations_unchanged": true,
+      "before_sha256": "997b4ab5dee7857906fe0ff2bc846558a8fe97cee101b4f5eb907d3674210583",
+      "after_sha256": "470fb0ad4c187cbc94ca5e6cede234799f54cf9e76910d6b370705afd6ca6e86"
+    },
+    {
+      "id": "hyeonchim-26",
+      "unknown": false,
+      "label": "중화",
+      "score": 40,
+      "calculations_unchanged": true,
+      "before_sha256": "ef40b18de0c4ca66a17bf57dcfe01bb44e0ae17a877bc93a8ce3f115f4e1059d",
+      "after_sha256": "4cd0840407a91c27b544f7fc3e15f9cee3981af1b2637269bb3780e224df1ee3"
+    },
+    {
+      "id": "hyeonchim-27",
+      "unknown": false,
+      "label": "중화",
+      "score": 40,
+      "calculations_unchanged": true,
+      "before_sha256": "1e173ba11b5bdfd233bda9f361a755489c99cd31de56d20ae7fa4ad25c72b3e3",
+      "after_sha256": "79890430c4d651af56f7425a998e5bf25a156ee03b55f237e64bf1f10fb05cbd"
+    },
+    {
+      "id": "hyeonchim-28",
+      "unknown": false,
+      "label": "신약",
+      "score": 20,
+      "calculations_unchanged": true,
+      "before_sha256": "7d38a4cdc4211c71aeb5798ad4467bd40d4214c3402c0a1b5888435f52dd0299",
+      "after_sha256": "076679a8a2f81bb11153bebfa2b9599553e93216ca523cb75c70e9e2f64fdb90"
+    },
+    {
+      "id": "hyeonchim-29",
+      "unknown": false,
+      "label": "신약",
+      "score": 20,
+      "calculations_unchanged": true,
+      "before_sha256": "bdddcd6b56fc085831ab4c34062703303bf9d1ef1ab66362bc32243a5d1f6bef",
+      "after_sha256": "02715eef00ac96141726bdbdc9ef2f185c416e8e2ba242df56457ccd5eb9ee0e"
+    },
+    {
+      "id": "hyeonchim-30",
+      "unknown": false,
+      "label": "중화",
+      "score": 40,
+      "calculations_unchanged": true,
+      "before_sha256": "47d94670cf84217ae7a313fa65c76386e1e578d5497545bed748a3be67ef7b18",
+      "after_sha256": "8b7f30e7c244ab564fd4422a3ac96d9865177044ba81bd4f5214ed441b78e5c9"
+    },
+    {
+      "id": "hyeonchim-31",
+      "unknown": false,
+      "label": "중화",
+      "score": 50,
+      "calculations_unchanged": true,
+      "before_sha256": "0dff377911b8e9cbd746cf5db967e20956027f8098da721750d7834e70574f4f",
+      "after_sha256": "dd5e275769a0ef10fc637f288b11333596d6daea369e7cfb12605d7144a0947d"
+    },
+    {
+      "id": "hyeonchim-32",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "a8093e1d822cb08fe01758b4517ec0a44082f2e43bb303c17a1a584c17f74e79",
+      "after_sha256": "cdf54195f4863ae78c1b05593f97fdec23e81f74dd5951e71a640bef7c8500d0"
+    },
+    {
+      "id": "hyeonchim-33",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "6ee192fe6483c806a1c757a47693d059cb770bebb47dad9621f4fe717a4cf3c0",
+      "after_sha256": "45e60393b39bb2c5794b181ad5d86f979f5846ee27ea3fe33e37b388a8d90f0a"
+    },
+    {
+      "id": "hyeonchim-34",
+      "unknown": false,
+      "label": "신강",
+      "score": 80,
+      "calculations_unchanged": true,
+      "before_sha256": "0953b4fe954bcd49c3d8d78a11163939c6a610a4b03fcf55e13ccead6415acdd",
+      "after_sha256": "92af0720a9bbacb8ef8d24c99c8312572bbfe1ed46d3b677935fedbee38f9b35"
+    },
+    {
+      "id": "hyeonchim-35",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "6bde694fbb096031b803d03e900e9b78b87455c70300ac5801a82d9625e395e2",
+      "after_sha256": "7c60afb67f5228ffce724cfbe1ea748dc0bc44b9b44586efb0a54a0b2ae65a6d"
+    },
+    {
+      "id": "hyeonchim-36",
+      "unknown": false,
+      "label": "신약",
+      "score": 20,
+      "calculations_unchanged": true,
+      "before_sha256": "d78b870aa983b1203394fd7092075d7467c7848480182a90cb99638a214740bd",
+      "after_sha256": "4d2465d21ccb5f9280cfd10f48cb8ee21503b1430b7c761dfb9436561ca51cbc"
+    },
+    {
+      "id": "hyeonchim-37",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "bc39528262e225278e8729721ccda30c4abddcddbfc1df10c1cf858f7cb63a20",
+      "after_sha256": "ff6e69772fd53fbf30ddfab1320e351f6ef1e140752583c23fd3ac3f023ce8d8"
+    },
+    {
+      "id": "hyeonchim-38",
+      "unknown": false,
+      "label": "극신약",
+      "score": 10,
+      "calculations_unchanged": true,
+      "before_sha256": "31ba709ffd7aade6396d98ae4b28a9590bb182d9801eec8ede34fdfaabfbff79",
+      "after_sha256": "b7a107c3d0702bd89cab10e8ec0d5ba9301b20c562e0fe7b13c0e809916408c7"
+    },
+    {
+      "id": "hyeonchim-39",
+      "unknown": false,
+      "label": "극신약",
+      "score": 10,
+      "calculations_unchanged": true,
+      "before_sha256": "d49511282ced427945c60cc070612f3a1cc9ce2705e503f846b1917229ba39c8",
+      "after_sha256": "e12b11d0fda1ddcee0f1fc04ab0ce2aed35bc8f4faf286e88dca85440b2f5f18"
+    },
+    {
+      "id": "hyeonchim-40",
+      "unknown": false,
+      "label": "중화",
+      "score": 50,
+      "calculations_unchanged": true,
+      "before_sha256": "a96b21ba6589ff4255b537e281452637477f6a08c0cc6c65fc998bd9afd51467",
+      "after_sha256": "048a6463c03128209693cc7fb978c0662bbe14ffbdff8168a4c0bc5f343d577f"
+    },
+    {
+      "id": "hyeonchim-41",
+      "unknown": false,
+      "label": "신강",
+      "score": 60,
+      "calculations_unchanged": true,
+      "before_sha256": "6db9d48e5e4763a3e09cc840a64015aa62875284576a96d4f3bb80233fe1b250",
+      "after_sha256": "beb9100fc0254a964891d6553160e74af2c9e70cda6aa3757171bd942e7bf209"
+    },
+    {
+      "id": "hyeonchim-42",
+      "unknown": false,
+      "label": "극신강",
+      "score": 100,
+      "calculations_unchanged": true,
+      "before_sha256": "08b6b5586dcdca110ba53ae1e81fa53860680c2f9aa25d852bf76004f101be9b",
+      "after_sha256": "6c9e2a8eb3a34484677429e706912f715e64993be4fa4faf396b310f8dffa7a4"
+    },
+    {
+      "id": "hyeonchim-43",
+      "unknown": false,
+      "label": "극신강",
+      "score": 85,
+      "calculations_unchanged": true,
+      "before_sha256": "398e5e3f1c083961ab154340aa4364fa6669a7d2d23e64af5ea405e0b47abcec",
+      "after_sha256": "3f181193bebe22ef637b101ef8c36a25a68697fbc212f15eb163272ad483b6d8"
+    },
+    {
+      "id": "hyeonchim-44",
+      "unknown": false,
+      "label": "중화",
+      "score": 55,
+      "calculations_unchanged": true,
+      "before_sha256": "bceab4f6b94aa6702e819e9c9e449b5fd4f21b0335637172ac0a5a5ae682c920",
+      "after_sha256": "fd983b6255e88a1d85a9a61fff6974c5a68ea2ffb2af4aaa86889f98e20a9bd3"
+    },
+    {
+      "id": "hyeonchim-45",
+      "unknown": false,
+      "label": "중화",
+      "score": 45,
+      "calculations_unchanged": true,
+      "before_sha256": "46ffef2ec1079136d8064f31174f24b2e2884dbd1dca487288db4de0d94d3bf8",
+      "after_sha256": "935a9572cf46a2c8a55ab71231fb0adaed63da5de0dc78721b8863721159899c"
+    },
+    {
+      "id": "hyeonchim-46",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "4665c68ffcb46a300f2ab04b8fb4b1ea692d6b88b5357e835a8356f546d83635",
+      "after_sha256": "3b7d47e11627f659aa748333d86b5b3c4d95710bfd4066e663114246fe1b6446"
+    },
+    {
+      "id": "hyeonchim-47",
+      "unknown": false,
+      "label": "신약",
+      "score": 20,
+      "calculations_unchanged": true,
+      "before_sha256": "78bad5dbb902507a0d2a27734ae5f02222c692efbe505abc9ad55ea01df6509c",
+      "after_sha256": "16f1a7058b4aaea14f09751ec78fe224aae90a404a089b7cdae40cfc75c53e9f"
+    },
+    {
+      "id": "hyeonchim-48",
+      "unknown": false,
+      "label": "신약",
+      "score": 25,
+      "calculations_unchanged": true,
+      "before_sha256": "37ca0c93f55a3dba8e1c48308e56a697be46945d0ba0e0eb3f7ca749fc9c2086",
+      "after_sha256": "fcce677b678bdd3d4cd8c6aa6005f560a26f3f934c9b014af58bcc3fa39423df"
+    },
+    {
+      "id": "hyeonchim-49",
+      "unknown": false,
+      "label": "극신약",
+      "score": 10,
+      "calculations_unchanged": true,
+      "before_sha256": "14e216488f3915529dcdbba594ee770b41f6bc628c08ee6e06f29dc85604134a",
+      "after_sha256": "7fddeeb1e9ca4c63ad5ef92c8f77748362eabb0f0b384f7ef0290f8ba0905a2b"
+    },
+    {
+      "id": "hyeonchim-50",
+      "unknown": false,
+      "label": "신강",
+      "score": 65,
+      "calculations_unchanged": true,
+      "before_sha256": "c6219a3497808a90edbcde1278587dc45409609d8d4f5ded54ae7356b98d2ff8",
+      "after_sha256": "4690d5ad8b43c50341459ec1347a4c91113d9a3185de070e33e4c795bea650ae"
+    },
+    {
+      "id": "hyeonchim-51",
+      "unknown": false,
+      "label": "신강",
+      "score": 75,
+      "calculations_unchanged": true,
+      "before_sha256": "812714d17f6f1a33c494aa2f60fe754644805b422f2ceed4c5c0d55730dae3ef",
+      "after_sha256": "a4b5066c6f6dc7aec5be9e267d6b7a737db4f92eaf86d37164de9e36ea71bd2a"
+    },
+    {
+      "id": "hyeonchim-52",
+      "unknown": false,
+      "label": "극신강",
+      "score": 85,
+      "calculations_unchanged": true,
+      "before_sha256": "60246d6c20851850861d71a965937a904e80589deaac7dc7e57b1b93b86fb7f0",
+      "after_sha256": "ae90187d210778f49ff9e7ba7c4838985f68b0b42fc8dc9743893eb4fb80ebbe"
+    },
+    {
+      "id": "hyeonchim-53",
+      "unknown": false,
+      "label": "극신강",
+      "score": 100,
+      "calculations_unchanged": true,
+      "before_sha256": "58cae43efb837aece61026883b5e48ef14e5865ce6f8045b0fec0e7a2140ca69",
+      "after_sha256": "4ff5f882e98b666dfb02ffff405455a58d7da0e35f0eba216614a15fedae2da9"
+    },
+    {
+      "id": "hyeonchim-54",
+      "unknown": false,
+      "label": "신강",
+      "score": 70,
+      "calculations_unchanged": true,
+      "before_sha256": "62a741abd1498bf077d2b2fbd358f66758e62c7e0e59596cc501cd9ca5d5dc54",
+      "after_sha256": "c433c79c5b76eec56f77c53eba4e99f51456d247604fc43a97bf1c0c1165966f"
+    },
+    {
+      "id": "hyeonchim-55",
+      "unknown": false,
+      "label": "신강",
+      "score": 60,
+      "calculations_unchanged": true,
+      "before_sha256": "18b29131b91f7e336e84007db9d0b3405ac57c7b4363b5d3ac7e345cc0e2477d",
+      "after_sha256": "cfd84d7cec37bde1d39e1f5eac956f1c73b3c5b508b0edee597f4e4e4eae87ed"
+    },
+    {
+      "id": "hyeonchim-56",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "c64a81a19ed922ca4f2feafeb3ce74b94abde1d4db400dcd15972ef622682ef3",
+      "after_sha256": "6654b8826baeeebed834c87d9fb787774c23d65a39a35fd2cdf90e1954c3bbcd"
+    },
+    {
+      "id": "hyeonchim-57",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "010805bb965bc695ff170bfd1915649a336cb85e7ceae64502e4e634854b0e6a",
+      "after_sha256": "52e0c0251b4b0ea5ab756de4bc3abb387f5c9ef1d28fe02da2531b08ae02fbd0"
+    },
+    {
+      "id": "hyeonchim-58",
+      "unknown": false,
+      "label": "극신약",
+      "score": 10,
+      "calculations_unchanged": true,
+      "before_sha256": "5aa16f7e5bf1eb880b87d6c477f50d5bf0efdb15ca7ac6f0a4ec82b37cd933df",
+      "after_sha256": "1d33f26f1bbee9e3a25443bfcf1e78222df9ee282c971a519737a2a6d9dc95f2"
+    },
+    {
+      "id": "hyeonchim-59",
+      "unknown": false,
+      "label": "신약",
+      "score": 25,
+      "calculations_unchanged": true,
+      "before_sha256": "38b2f2ca2e1f0dd017d3614f3aa1c3bffa1011668910e18116319485d4512a98",
+      "after_sha256": "1950fc0b76bdda36726031c6d3d40be2a4cea5da9103b81b9e06cf3652355ef6"
+    },
+    {
+      "id": "hyeonchim-60",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "31e9b444a5f5040be266f004cd92258dcc2c358bb966be96ae26b29b026444c0",
+      "after_sha256": "e297f1ded96e0011c57d292d970bf15e25ebe71fafc523af73a1af75bc6db45b"
+    },
+    {
+      "id": "hyeonchim-61",
+      "unknown": false,
+      "label": "중화",
+      "score": 35,
+      "calculations_unchanged": true,
+      "before_sha256": "2f221eeead44299b8e4cfaf5b3efddb1d13a275529eb6d4f9de2b1df507b20e4",
+      "after_sha256": "3e9c6c1b2fd77657346bea37c038db1a962d04444b949f9176cf3d7ed143a29e"
+    }
+  ]
+}
