@@ -17,8 +17,6 @@ export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[
   if (roots) notices.push(roots.facts)
   const relation = report.sections.find(s => s.id === 'context-reading')?.context?.monthDayChung
   if (relation?.status === 'present' && relation.facts) notices.push(relation.facts)
-  const yukhap = report.sections.find(s => s.id === 'context-reading')?.context?.monthDayYukhap
-  if (yukhap?.status === 'present' && yukhap.facts) notices.push(yukhap.facts)
   return notices
 }
 
