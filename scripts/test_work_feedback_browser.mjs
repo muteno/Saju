@@ -73,7 +73,8 @@ try{
    await x.page.getByRole('textbox',{name:'도사에게 직접 묻기'}).fill('네');
    const typing=await x.page.evaluate(()=>(document.querySelector('[role="log"]')?.innerText??'').trim().endsWith('또 궁금한 것이 있는가?')?'done':'typing');
    const before=x.requests.length;await x.page.getByRole('button',{name:'보내기',exact:true}).click();await x.page.waitForFunction(()=>document.querySelector('textarea')?.readOnly===false);const sent=x.requests.length-before;await x.page.waitForTimeout(300);await save('menu-typing-yes',x);
-   assert.equal(typing,'typing','menu line should still be typing when the answer is sent');assert.equal(sent,1);assert.doesNotMatch(norm(await x.page.getByRole('log').innerText()),new RegExp(d.question.id));
+   assert.equal(typing,'typing','menu line should still be typing when the answer is sent');assert.equal(sent,1);
+   assert.equal(x.requests.at(-1).conversation?.messages.at(-1)?.text,'또 궁금한 것이 있는가?'); // the provider sees the menu line tooassert.doesNotMatch(norm(await x.page.getByRole('log').innerText()),new RegExp(d.question.id));
   }finally{await x.context.close();}}
   // 5) Another topic resets the conversation scope.
   {const x=await open(390,4);try{await openWork(x);await untilText(x.page,'또 궁금한 것이 있는가?');const other=x.page.getByRole('button',{name:x.model.labels['성격'],exact:true});await other.click();await until(x.page,async()=>(await logText(x.page)).endsWith('또 궁금한 것이 있는가?')&&(await logText(x.page)).split('또 궁금한 것이 있는가?').length>2);

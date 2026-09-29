@@ -811,13 +811,14 @@ export default function DosaChat({
     const visible = log.slice(contextStart.current, !tw.done && last?.who === 'ai' ? -1 : undefined)
       .filter(m => !m.narration && !m.contextIgnore)
       .map(m => ({ role: m.who === 'ai' ? 'assistant' as const : 'user' as const, text: m.text }))
-    const same = retry && retryContext.current?.question === q ? retryContext.current : null
-    const context = same ? same.context : recentConversation(visible, contextTopic.current)
-    // A menu line that is still typing already asks for a new topic: keep it for the
-    // local feedback replay so a bare yes/no is not read as an answer to the work question.
+    // A menu line that is still typing already asks for a new topic. Keep this fixed line
+    // in both histories so neither the local replay nor the provider reads a bare yes/no
+    // as an answer to the earlier work question.
     const typingMenu = !tw.done && last?.who === 'ai' && last.text === MENU_PROMPT
-    const feedbackMessages = same ? same.feedbackMessages
-      : [...visible, ...(typingMenu ? [{ role: 'assistant' as const, text: MENU_PROMPT }] : [])].slice(-MAX_FEEDBACK_MESSAGES)
+    const shown = typingMenu ? [...visible, { role: 'assistant' as const, text: MENU_PROMPT }] : visible
+    const same = retry && retryContext.current?.question === q ? retryContext.current : null
+    const context = same ? same.context : recentConversation(shown, contextTopic.current)
+    const feedbackMessages = same ? same.feedbackMessages : shown.slice(-MAX_FEEDBACK_MESSAGES)
     retryContext.current = { question: q, context, feedbackMessages }
     const revision = ++conversation.current
     cancelTopics()
