@@ -111,7 +111,8 @@ test('report, work grounds, summaries and generated answers retain the selected 
  }
 }));
 
-test('only an unambiguous latest owned question consumes explicit feedback locally; unrelated text uses provider',async()=>withConsumers(async(client,topics)=>{
+// PR227 sent '아니요'/partial answers to the provider; workFeedback.js now asks one local clarifying question (test_work_feedback.mjs).
+test('only the latest owned question consumes feedback locally; unrelated scope uses provider',async()=>withConsumers(async(client,topics)=>{
  const report=reportOf(chart(4)),d=report.sections.find(s=>s.id==='context-reading').context.decision;let calls=0;
  globalThis.fetch=async()=>{calls++;return Response.json({text:'질문의 의미를 확인해요.'});};
  const options={topic:'성격',report,lines:topics.topicLines(report,'성격'),chefId:'noona',model:'sonnet',question:'반대예요.',conversation:{version:1,topic:'직업',messages:[{role:'assistant',text:d.question.prompt}]}};
@@ -121,9 +122,10 @@ test('only an unambiguous latest owned question consumes explicit feedback local
  assert.equal(calls,0);
  for(const answer of['맞아요.','경험이 없어요.','말하고 싶지 않아요.'])assert.ok(await client.requestDosaText({...options,question:answer}));assert.equal(calls,0);
  await client.requestDosaText({...options,conversation:{version:1,messages:[{role:'assistant',text:'다른 질문인가요?'}]}});assert.equal(calls,1);
- await client.requestDosaText({...options,question:'반대인 때도 있고 아닌 때도 있어요.'});assert.equal(calls,2);
- await client.requestDosaText({...options,question:'아니요'});assert.equal(calls,3);
- await client.requestDosaText({...options,hourUnknown:true});assert.equal(calls,3);
+ assert.match(await client.requestDosaText({...options,question:'반대인 때도 있고 아닌 때도 있어요.'}),/때에 따라 달랐다는 뜻/);assert.equal(calls,1);
+ assert.match(await client.requestDosaText({...options,question:'아니요'}),/두 가지로 읽혀요/);assert.equal(calls,1);
+ await client.requestDosaText({...options,question:'그게 무슨 뜻이에요?'});assert.equal(calls,2);
+ await client.requestDosaText({...options,hourUnknown:true});assert.equal(calls,2);
 }));
 
 test('KB110 comparison keeps calculations/brain/fortune and all unknown8 exactly unchanged',async()=>{

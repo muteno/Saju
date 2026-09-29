@@ -1,0 +1,346 @@
+{
+ "purpose": "Expected reading of one free answer to an app-owned work-candidate question. Written before the parser; not copied from implementation text. Not personal outcomes or training labels.",
+ "evaluation_date": "2026-09-29",
+ "kinds": {
+  "supported": "clear agreement with the asked proposition",
+  "contradicted": "clear opposite experience (did not help / made it worse, or no increase for the demand question)",
+  "no-experience": "the situation itself was not experienced",
+  "unanswered": "declines to answer",
+  "unsure": "does not know / only speculates",
+  "mixed": "two separable parts with opposite polarity; keep both parts",
+  "clarify:ambiguous-negative": "bare no or 'never helped' that cannot separate no-experience from opposite",
+  "clarify:partial": "sometimes yes/sometimes no without saying when",
+  "clarify:help-unanswered": "reports only task increase to a help question",
+  "clarify:unclear": "conflicting cues that cannot be split",
+  "null": "no feedback cue or a new question; use the normal conversation path",
+  "clarify:other-means": "answers with a different way than the one asked (own execution vs sharing roles)"
+ },
+ "help": [
+  [
+   "맞아요.",
+   "supported"
+  ],
+  [
+   "네",
+   "supported"
+  ],
+  [
+   "응 도움 됐어",
+   "supported"
+  ],
+  [
+   "네, 직접 해 보니 도움이 많이 됐어요.",
+   "supported"
+  ],
+  [
+   "직접 만든 게 도움이 됐어요",
+   "supported"
+  ],
+  [
+   "부담이 줄었어요",
+   "supported"
+  ],
+  [
+   "반대예요.",
+   "contradicted"
+  ],
+  [
+   "도움이 안 됐어요",
+   "contradicted"
+  ],
+  [
+   "별로 도움이 안 됐어요.",
+   "contradicted"
+  ],
+  [
+   "도움이 되지 않았어요",
+   "contradicted"
+  ],
+  [
+   "오히려 일이 더 늘었어요",
+   "contradicted"
+  ],
+  [
+   "아니요, 오히려 부담이 커졌어요",
+   "contradicted"
+  ],
+  [
+   "경험이 없어요.",
+   "no-experience"
+  ],
+  [
+   "아니요, 그런 경험은 없어요",
+   "no-experience"
+  ],
+  [
+   "그런 적 없어요",
+   "no-experience"
+  ],
+  [
+   "해 본 적이 없어요",
+   "no-experience"
+  ],
+  [
+   "말하고 싶지 않아요.",
+   "unanswered"
+  ],
+  [
+   "패스할게요",
+   "unanswered"
+  ],
+  [
+   "잘 모르겠어요",
+   "unsure"
+  ],
+  [
+   "모르겠어요",
+   "unsure"
+  ],
+  [
+   "도움이 될 것 같아요",
+   "unsure"
+  ],
+  [
+   "처음에는 도움이 됐는데 일이 커지면서 오히려 부담이 늘었어",
+   "mixed",
+   [
+    "support",
+    "contradict"
+   ]
+  ],
+  [
+   "처음엔 도움이 안 됐지만 나중에는 도움이 됐어요",
+   "mixed",
+   [
+    "contradict",
+    "support"
+   ]
+  ],
+  [
+   "아니요",
+   "clarify:ambiguous-negative"
+  ],
+  [
+   "아뇨.",
+   "clarify:ambiguous-negative"
+  ],
+  [
+   "도움이 된 적은 없어요",
+   "clarify:ambiguous-negative"
+  ],
+  [
+   "반대인 때도 있고 아닌 때도 있어요.",
+   "clarify:partial"
+  ],
+  [
+   "도움이 된 때도 있어요",
+   "clarify:partial"
+  ],
+  [
+   "대체로 맞지만 반대인 적도 있어요",
+   "clarify:partial"
+  ],
+  [
+   "맞는 것 같기도 하고 아닌 것 같기도 해요",
+   "clarify:partial"
+  ],
+  [
+   "일이 많이 늘었어요",
+   "clarify:help-unanswered"
+  ],
+  [
+   "아니요. 하지만 또 맞아요",
+   "clarify:unclear"
+  ],
+  [
+   "도움이 됐는데 일도 많이 늘었어요",
+   "supported"
+  ],
+  [
+   "그게 무슨 뜻이에요?",
+   null
+  ],
+  [
+   "올해 재물운은 어때요?",
+   null
+  ],
+  [
+   "도움은 됐어요. 그런데 올해 운은 어때요?",
+   null
+  ]
+ ],
+ "demand": [
+  [
+   "네, 일이 많이 늘었어요",
+   "supported"
+  ],
+  [
+   "맞아요",
+   "supported"
+  ],
+  [
+   "과제가 늘지 않았어요",
+   "contradicted"
+  ],
+  [
+   "오히려 일이 줄었어요",
+   "contradicted"
+  ],
+  [
+   "반대예요",
+   "contradicted"
+  ],
+  [
+   "그런 경험은 없어요",
+   "no-experience"
+  ],
+  [
+   "처음엔 늘었는데 나중엔 줄었어요",
+   "mixed",
+   [
+    "support",
+    "contradict"
+   ]
+  ],
+  [
+   "아니요",
+   "clarify:ambiguous-negative"
+  ],
+  [
+   "도움이 됐어요",
+   null
+  ]
+ ],
+ "help_means": "self (food-response question: own execution)",
+ "probe_after_first_pass": {
+  "note": "Adversarial inputs added after the first parser pass exposed misreadings (double negation, -다가 clauses, other means). Expectations are the implementer reading of each sentence, fixed before the corrective edit; still not independent human labels.",
+  "help_self": [
+   [
+    "오히려 도움이 됐어요",
+    "supported"
+   ],
+   [
+    "좋았어요",
+    "supported"
+   ],
+   [
+    "안 좋았어요",
+    "contradicted"
+   ],
+   [
+    "안 맞았어요",
+    "clarify:ambiguous-negative"
+   ],
+   [
+    "없어요",
+    "clarify:ambiguous-negative"
+   ],
+   [
+    "도움 받은 적 없어요",
+    "clarify:ambiguous-negative"
+   ],
+   [
+    "도움이 됐다기보다 오히려 부담이었어요",
+    "contradicted"
+   ],
+   [
+    "해봤는데 별 차이 없었어요",
+    "contradicted"
+   ],
+   [
+    "도움이 안 되진 않았어요",
+    "clarify:unclear"
+   ],
+   [
+    "도움이 전혀 안 되지는 않았어요",
+    "clarify:unclear"
+   ],
+   [
+    "네 맞아요 근데 요즘은 아니에요",
+    "clarify:unclear"
+   ],
+   [
+    "초반엔 괜찮았는데 갈수록 힘들어졌어요",
+    "mixed",
+    [
+     "support",
+     "contradict"
+    ]
+   ],
+   [
+    "처음에 좋았다가 나중에 안 좋았어요",
+    "mixed",
+    [
+     "support",
+     "contradict"
+    ]
+   ],
+   [
+    "그런 상황이 없었어요",
+    "no-experience"
+   ],
+   [
+    "일이 늘어난 적이 없어요",
+    "no-experience"
+   ],
+   [
+    "네 경험 없어요",
+    "no-experience"
+   ],
+   [
+    "도움이 됐는지 잘 모르겠어요",
+    "unsure"
+   ],
+   [
+    "팀원이랑 나눠서 해결했어요",
+    "clarify:other-means"
+   ],
+   [
+    "그냥 그랬어요",
+    null
+   ],
+   [
+    "ㅇㅇ",
+    null
+   ]
+  ],
+  "help_others": [
+   [
+    "직접 해 보니 도움이 됐어요",
+    "clarify:other-means"
+   ],
+   [
+    "팀원과 역할을 나눠서 도움이 됐어요",
+    "supported"
+   ]
+  ],
+  "duty": [
+   [
+    "일이 많이 늘었어요",
+    null
+   ],
+   [
+    "도움이 안 됐어요",
+    "contradicted"
+   ]
+  ],
+  "demand": [
+   [
+    "딱히 늘진 않았어요",
+    "contradicted"
+   ],
+   [
+    "늘었다 줄었다 했어요",
+    "clarify:partial"
+   ],
+   [
+    "좀 늘었죠",
+    "supported"
+   ],
+   [
+    "그런 일이 없었어요",
+    "no-experience"
+   ]
+  ]
+ }
+}

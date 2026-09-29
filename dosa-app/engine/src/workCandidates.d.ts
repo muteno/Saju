@@ -15,6 +15,8 @@ export interface WorkRevision {
   text: string; probability: null; trainingEligible: false;
 }
 export const WORK_CANDIDATE_LIMIT: string;
+export const WORK_QUESTIONS: Readonly<Record<'scope-withheld' | 'food-response' | 'peer-response' | 'competing' | 'resource-duty' | 'resource-demand', string>>;
+export const EXPLICIT_ANSWERS: Map<string, WorkRevision['status']>;
 export function evaluateCondition(expression: ConditionExpression, features: Record<string, ConditionValue>, depth?: number): ConditionTrace;
 export function compareWorkCandidates(features: Record<string, ConditionValue>): WorkCandidate[];
 export function buildWorkDecision(chart: any, context: any): WorkDecision | null;

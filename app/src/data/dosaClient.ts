@@ -3,7 +3,7 @@ import { chartSummaryOf, topicLines, type DosaLine } from './dosaTopics'
 import type { ReportBundle } from '../engine'
 import { withoutCitationLines } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
-import { reviseWorkDecision } from '../engine/vendor/workCandidates.js'
+import { resolveWorkFeedback } from '../engine/vendor/workFeedback.js'
 import { CONTEXT_READING_NOTICE } from '../engine/vendor/contextReading.js'
 import { parseConversationContext, type ConversationContext } from './conversationContext'
 
@@ -74,17 +74,12 @@ export async function requestDosaText(options: {
   const conversation = parsed && !basicSentenceMatches(parsed.messages.filter(m => m.role === 'assistant').map(m => m.text).join('\n\n')).length ? parsed : undefined
   const decision = options.report.sections.find(s => s.id === 'context-reading')?.context?.decision
   if (decision?.question && conversation?.topic === '직업') {
-    const question = decision.question.prompt
-    const index = conversation.messages.findLastIndex(message => message.role === 'assistant' && message.text.trim() === question)
+    // Replays the shown owned question and every local answer after it; any other
+    // assistant text (menu, provider reply, partly shown reply) leaves this to chat.
     const footer = options.report.sections.find(s => s.id === 'context-reading')?.context?.blocks
       .find(block => block.label === '경험으로 확인할 부분')?.lines.at(-1) ?? ''
-    const allowedAfter = new Set([footer, ...footer.split(/(?<=[.?!…])\s+/)])
-    const onlyOwnedFooterAfter = index >= 0 && conversation.messages.slice(index + 1)
-      .every(message => message.role === 'assistant' && allowedAfter.has(message.text.trim()))
-    if (onlyOwnedFooterAfter) {
-      const revision = reviseWorkDecision(decision, options.question)
-      if (revision) return revision.text
-    }
+    const feedback = resolveWorkFeedback({ decision, footer, messages: conversation.messages, answer: options.question })
+    if (feedback) return feedback.text
   }
   const ctrl = new AbortController()
   const abort = () => ctrl.abort()
