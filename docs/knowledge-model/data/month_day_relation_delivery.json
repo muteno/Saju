@@ -1,0 +1,915 @@
+{
+  "baseline_commit": "220052673e927b355eec41240e2408d7172310d2",
+  "policy": "natal-work-context-v6",
+  "scope": "month/day branch chung only; synthetic calendar inputs; personal accuracy unmeasured",
+  "training_eligible": 0,
+  "probability": null,
+  "sources": [
+    {
+      "path": "dosa-app/engine/src/contextReading.js",
+      "sha256_lf": "6f6fba43c30ce99311f6c472284b989fea9d6a2c15618d4c456673d44dd9507d"
+    },
+    {
+      "path": "dosa-app/engine/src/contextReading.d.ts",
+      "sha256_lf": "19ffc1158bc924c51162fdcf331832a29a665189e52ae3dafbc3706969af478c"
+    },
+    {
+      "path": "app/src/engine/vendor/contextReading.js",
+      "sha256_lf": "6f6fba43c30ce99311f6c472284b989fea9d6a2c15618d4c456673d44dd9507d"
+    },
+    {
+      "path": "app/src/engine/vendor/contextReading.d.ts",
+      "sha256_lf": "19ffc1158bc924c51162fdcf331832a29a665189e52ae3dafbc3706969af478c"
+    },
+    {
+      "path": "app/src/data/dosaClient.ts",
+      "sha256_lf": "d14a5b87b0d325cefb7b2b0fa17cbe8c5fdd112ae24ccae84387b429fe3cabb7"
+    },
+    {
+      "path": "dosa-app/engine/src/relations.js",
+      "sha256_lf": "fdc6f4b3674b3821940e10b89c0beab6916ddb92bcf12ad87358e3d6d0297acb"
+    }
+  ],
+  "rows": [
+    {
+      "id": "known-extreme-down-solar-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "ed9e14bbcacbe930436910c086c0a1b1735fd00d1d5413eb91d1af6a2adba998",
+      "after_sha256": "134f13f479daa2ae330fe9b361ddfe24af9f74f700ea96e2b7f34fd5316de1c8"
+    },
+    {
+      "id": "known-extreme-down-solar-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "7743a51b3d0d01a01ada862daadeb93267498d9798b34a54d970a77232d45568",
+      "after_sha256": "0fcb75f049250840a600a8bc94b3023f4cbff8a16b6afb9ba9621696cef708d0"
+    },
+    {
+      "id": "known-extreme-down-civil-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f5a497ef0f50ef9b19c6d99028d6252f1d1e70b69ae9a3ef6110e247aad010cf",
+      "after_sha256": "10a0916dc928b0c3481f7277cad8d044f14bf8604262191271de62efcac904e7"
+    },
+    {
+      "id": "known-extreme-down-civil-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "20737c1386675b0cf2c057908996512e902f28a9be92440464e6cc22c56a777c",
+      "after_sha256": "6ce00a7ac983330e7a0b5a68472d6d49c96b1c2d652fbb6c32e786dfab061a95"
+    },
+    {
+      "id": "known-strong-down-solar-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "1c615af3fc0aa87600f349ff0c0a371d181b85060e046832145726cb26ab25fe",
+      "after_sha256": "411b0bbb94b116884ddaa05c9a8f314ef9766feaa6710a11fc9a5e64daddc034"
+    },
+    {
+      "id": "known-strong-down-solar-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "097f3954d5d95c6723a198567f3e0fd802c100e1c693098c7978b6d25822a48e",
+      "after_sha256": "a8f909024418ebd25887682a16122247c38b0aaf5d9e8ba01bc82810a8b959c5"
+    },
+    {
+      "id": "known-strong-down-civil-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "465c97ed924d574a14467cdc0d1a39dc2ec707cf4b182e9cfa2a9500e747d2dd",
+      "after_sha256": "2f4535b65c8d4957ae816e616b5e259dcf86185c647415c6cc8d6c1c1880f36d"
+    },
+    {
+      "id": "known-strong-down-civil-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "e939a96d1dde7602305ff1f93a094094d8c2e339145f855418618d567f25b09b",
+      "after_sha256": "2b7de324087d9430adec784d1e087fbfb13a8e6f9659a2eb151922c346e48202"
+    },
+    {
+      "id": "known-strong-up-solar-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "e91b5801a92e92bf8ed033d26ffcc6ea6d59140e5fc3ed217b18923a0698a3bc",
+      "after_sha256": "ecb8ee3fec22e6b8c0675bda08ad537eb0ad6dbb2d22fe941d4eed35ee2ddf6e"
+    },
+    {
+      "id": "known-strong-up-solar-keepDay",
+      "unknown": false,
+      "chung": "present",
+      "calculations_unchanged": true,
+      "before_sha256": "c05d0cbb27fc63cbec457d1cac9c956226ca0f0752526519aa9a7cdf5320d4c6",
+      "after_sha256": "5627ddbf936d70a535ec73253b3b973850e190900e826def990141d305390f74"
+    },
+    {
+      "id": "known-strong-up-civil-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "34e5d1b60853fae0ade35965e4c788f6dd5d5970f66eead09ee8bf5330e96418",
+      "after_sha256": "aae0008fe97d9235eb963ac22dbcd12f17d41075664b1c73a653155614a83d03"
+    },
+    {
+      "id": "known-strong-up-civil-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "5f257b578f82fc4140fc867d24294ed2ff75ad642e5e30339d3211dc2438a61d",
+      "after_sha256": "abfea0bfd460841c6b36378d349b44e1d75f1f8d33e229bab8be94c6ab5054c8"
+    },
+    {
+      "id": "known-weak-down-solar-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "02c466fc3d01cd885a348f3f1f8a550d19faa33f3394a36fd82a5c76f6bf6a11",
+      "after_sha256": "fbe36b2ccdc40a2528fb69fe4f481319b08c575885ca36f9c08d0ab6f90c2a3f"
+    },
+    {
+      "id": "known-weak-down-solar-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "d40b1e02d9925a927c8055f0c18ca2766226db3c209158f73f93949d1396e6d9",
+      "after_sha256": "f0841a53bb86f9f7785ab46b06d085565cc63937d1b07b75e2e57930cda8c579"
+    },
+    {
+      "id": "known-weak-down-civil-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "e0542388821551f6f6212017c7b2de4128f774876de757b5bb07380f3e5e26d9",
+      "after_sha256": "e7fe4e65112c0f74aba296a89cfbb7cf6e99ab63c1e828a2061a9ab5c6aaf1b7"
+    },
+    {
+      "id": "known-weak-down-civil-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "41b60dcbe7c020197f55dc6c2c7f51d92657cebe73c0d5b51a8d171a42e7e689",
+      "after_sha256": "349490e8c83ac819b292ef1623e7bf15eacd2e4632585735a61a9c070bf3cf5e"
+    },
+    {
+      "id": "known-weak-up-solar-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "db1398a277456d89f90c555769e03043f9c035d7efb935509ce1878c55b1a700",
+      "after_sha256": "69ddd24e9d087bc9face4bbf04672dc16a54869975f440b9fc7bb093d287d673"
+    },
+    {
+      "id": "known-weak-up-solar-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f30f5043f2e28f6b0f6d74c6c9c2da1d9bd176fb92d116c8df6795d7ac14f8ea",
+      "after_sha256": "b0e59f2f2686f90aa5c062d9f49b46680f484977aec6c58ed167ef33d1e0ca29"
+    },
+    {
+      "id": "known-weak-up-civil-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "8f5a5c4b4be806395f2d27ec3dd13b257abf07e57d667347ef962e5919470039",
+      "after_sha256": "27992a0f8249c90f047722eb6d871c7763c07328c292b7dbd952d341e51c7c2e"
+    },
+    {
+      "id": "known-weak-up-civil-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "1a78d55eb00f1f97181728ad59c7d0e00aa8abfe1ae6f2fff18264e8aad279ac",
+      "after_sha256": "299ac6d8b7eb097ed3e5947c337757ae0160d6e83df044ef85112c4f3eea47aa"
+    },
+    {
+      "id": "known-extreme-up-solar-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "274fc4208b45ed31bbb17a2b7722dd7507de0b3a9b5d055d23c4dcca2897a9da",
+      "after_sha256": "a052f0cec1574d880c492b77578636b5581fd4bdf0e17d5e333ef78cd20f069d"
+    },
+    {
+      "id": "known-extreme-up-solar-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "2dece3b0ce22c5e737eaf24b4fba7371ca5a9e6bace70ed873ac89df6b8e0777",
+      "after_sha256": "9bf5abde7e330b936e4234ef247adac5f0dd174a08d6dbd14f80fe5ead7fa2b8"
+    },
+    {
+      "id": "known-extreme-up-civil-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f63ebd18cb5a98019106ced7aa39745e2e52b61f576be9f32218ebcd641b6314",
+      "after_sha256": "6b4c30a654dcc31b0b6baeae2b20c183dcb9f35697d5226c286802661b15d32a"
+    },
+    {
+      "id": "known-extreme-up-civil-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "af529596a82cfad18bdfed1d7e7aa49b757c310f17fb30f1c170286737d46a79",
+      "after_sha256": "bd6668c1ab4c96dd0746bd64f7b52682d1db330a3568e7fe3f51fc4c1668d7e8"
+    },
+    {
+      "id": "known-zi-before-solar-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "b990794c88233431a2af726cd35610eee50b6d284f1f4497506f2ba84e503b10",
+      "after_sha256": "d0125778881d55c87fa414a7de7a208d742b1df406db4ce301b03882ed302f21"
+    },
+    {
+      "id": "known-zi-before-solar-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "5388036926bc88414e036f5d0bd111ec49a9c8b7bcbe3e134b2ee1fab6d4f774",
+      "after_sha256": "16f8198f91859fc25381eef58ef9872e1c5b4e74e0a60a2a1124446bd19a4899"
+    },
+    {
+      "id": "known-zi-before-civil-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "599cd33596d1f688badaa038d583a593f6bd0822e23af9c669fe07c59c2fbc07",
+      "after_sha256": "9032b066f6d59f11e3b3de74f757e861cf1c851600ba617c1f36cf87d4f75e0e"
+    },
+    {
+      "id": "known-zi-before-civil-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "2a876a288dd9ac634f288423410df986a318794232caa13fd0fac60710840a80",
+      "after_sha256": "aa5871ec91c39955cae974daffead7dbd0721ffe76f12b4d5a649165e5d22a42"
+    },
+    {
+      "id": "known-zi-after-solar-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "9c72f95224c410ab40a9ac293cee0059bf94e0308a818cc412c9aac8ffe843cb",
+      "after_sha256": "eae3801b74a31280c5631ab47bc93679fb23ea8e324a60e396e5516e995fe257"
+    },
+    {
+      "id": "known-zi-after-solar-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "ae75887b5cd6cd0e65dceca3c6747966d062de2d8c0d543e5969bd127cc9051f",
+      "after_sha256": "b7464129bf586557613033ba01d9a063b54495de81e87bad4ab405907317979b"
+    },
+    {
+      "id": "known-zi-after-civil-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "7a487baaf4174db55055722f9b55dfe921b079496e943db335c276b85f27c0f3",
+      "after_sha256": "3a1c51f08a67bcd0fee096c8120017c2b2b8210aca1c2adda258eef33415aae0"
+    },
+    {
+      "id": "known-zi-after-civil-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "834f87caea281502e561c101a51b1abbfc3d37cb9eea499d15ea121aa53ea6b2",
+      "after_sha256": "763542045f6e4a246d19d8574e28329e50bd5aab0d21de854535efaecc4a1659"
+    },
+    {
+      "id": "known-ipchun-before-solar-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "ef76ceda1eb1eec24503c2063b534549ac63292da99c4ab9ce7a2670e7d0f511",
+      "after_sha256": "49099f14e765d893e569f25397adc371f98ece0a7c2d9f1be3c018b9c8b6e7da"
+    },
+    {
+      "id": "known-ipchun-before-solar-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "a4d27a747354550dafab2e0b60eb278673b5007f9ff070e79adb33c4f570f7dd",
+      "after_sha256": "4da9393a3652326847f1efd65e0f442c4e3f08efeea74357bc913cf4afdd9a12"
+    },
+    {
+      "id": "known-ipchun-before-civil-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "3c172db9d88c1dda084e0aefb9d5d36dee550345370b2e9c7e6a243945fd507a",
+      "after_sha256": "225609ced502a2ab11e7fcd347e29150b7913aa2e9791429e5e8c84868d4b9ec"
+    },
+    {
+      "id": "known-ipchun-before-civil-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "27f2ed38f03266f57a39f9616e981f1ee8b3b2494e92af6a4d2d3c385d89c955",
+      "after_sha256": "54c375ca86d310c0efa9e692f05c428d609e0e59e18c88127b54b882c46ec3ef"
+    },
+    {
+      "id": "known-ipchun-after-solar-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "7071b240ce912512dfe0d289a30cf799e8309a30d34fc06c931b2a8a0d3120a0",
+      "after_sha256": "338453205bba9b7e07e73acccebb55752e8dc0854ca0e684ebbb4893517b2bc6"
+    },
+    {
+      "id": "known-ipchun-after-solar-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f77b78544754616228a5b82b063526a964a0e4b718a9142932121396c01c6f3e",
+      "after_sha256": "6ec25792902a0f0d72360cd3ae8f5fa5a4c6690014349de3e59148899efde602"
+    },
+    {
+      "id": "known-ipchun-after-civil-midnight23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "a6eb1a8f3bf6b60357aec90104bed4f6fd902325a729962301c771752a1ebe69",
+      "after_sha256": "9aeb98e6cc80282affa7e2812ea23eba6b9f41b15e1e9f6ac44d207a26e763c9"
+    },
+    {
+      "id": "known-ipchun-after-civil-keepDay",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "ac1553e51611beb0fa51165bb0d5b69b6f9b480ab2a1b0c3bea776bc4b0821cc",
+      "after_sha256": "96cb46ff5cdd46203a03823960d1a2ece2aee168fea3bb146b0a61b76633db91"
+    },
+    {
+      "id": "unknown-ordinary-solar-midnight23",
+      "unknown": true,
+      "chung": null,
+      "calculations_unchanged": true,
+      "before_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5",
+      "after_sha256": "11c42ecc32925fda87a1fac5006879dfc6fbb53cf588c5b18811504afe4fd6f5"
+    },
+    {
+      "id": "unknown-ordinary-solar-keepDay",
+      "unknown": true,
+      "chung": null,
+      "calculations_unchanged": true,
+      "before_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7",
+      "after_sha256": "802242416aaeb6b2a3b269e4b665683b37458eaa28401bcbdabaceb903b438c7"
+    },
+    {
+      "id": "unknown-ordinary-civil-midnight23",
+      "unknown": true,
+      "chung": null,
+      "calculations_unchanged": true,
+      "before_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb",
+      "after_sha256": "b5477483071e832497f4dc0fafd7a41321af1300dcf0ee51085263b5e949a4cb"
+    },
+    {
+      "id": "unknown-ordinary-civil-keepDay",
+      "unknown": true,
+      "chung": null,
+      "calculations_unchanged": true,
+      "before_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d",
+      "after_sha256": "53f51bd077ee626baa773bea2c0fcc77778c5f0f313ef0f585454e1c58a47e6d"
+    },
+    {
+      "id": "unknown-ipchun-solar-midnight23",
+      "unknown": true,
+      "chung": null,
+      "calculations_unchanged": true,
+      "before_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e",
+      "after_sha256": "1bfcaa9a49785aa8a47a8742acfcb0bd645d10470f2276549ec9020edb58fc0e"
+    },
+    {
+      "id": "unknown-ipchun-solar-keepDay",
+      "unknown": true,
+      "chung": null,
+      "calculations_unchanged": true,
+      "before_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b",
+      "after_sha256": "7a727ff00c98905051211c8be849b89007c96f1df63cd6a904666774f3d02f2b"
+    },
+    {
+      "id": "unknown-ipchun-civil-midnight23",
+      "unknown": true,
+      "chung": null,
+      "calculations_unchanged": true,
+      "before_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541",
+      "after_sha256": "19b576d80b0fd1ab8355877f8a1b2693c44ace50e1550e9b553d14f6cb067541"
+    },
+    {
+      "id": "unknown-ipchun-civil-keepDay",
+      "unknown": true,
+      "chung": null,
+      "calculations_unchanged": true,
+      "before_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db",
+      "after_sha256": "5c4352f69c4f12787badb3ae05b2874e28e559be63000764adab00ea40c7d0db"
+    },
+    {
+      "id": "hyeonchim-0",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "688fde50141727ccca5c4075541fdd406320f6280ada2919c6db5867838768d4",
+      "after_sha256": "00f9444893c92cec576f89b7a11332c2c0f1c910f6012143c64bb1af219c9875"
+    },
+    {
+      "id": "hyeonchim-1",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "9b6edfa406b8c96874191f5a90497df870075608642f816dc1cb2cb2bf7543bc",
+      "after_sha256": "42e29b133bc5873dc11cac5e4c28959b66d55289c3d10bf3b65d78255bb0ed98"
+    },
+    {
+      "id": "hyeonchim-2",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "bcbbc3470aebcf4899664a127c3aa18948495d1e0e46adf8bed1793504707096",
+      "after_sha256": "e8e672c1518ea5d358c095a36373b2e24dd7457edd36194dcdeb275a60df4b93"
+    },
+    {
+      "id": "hyeonchim-3",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "29486aad49f55e2cb1975d203e47fc2b499b513026cab955b1cbc8e1b462e7ac",
+      "after_sha256": "401cbf1fd7850d9921e370a78dbd12ac904e2433e9ad59d4180915435e8c72dd"
+    },
+    {
+      "id": "hyeonchim-4",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "6942339401e7436d14687252b94088331a697b74c01cf495d509a02cd015a584",
+      "after_sha256": "63310052716333083719b1a668be2f2db71f9f6f447f72ee90f24bcb0e481a6b"
+    },
+    {
+      "id": "hyeonchim-5",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "371e7140c5d411799ec7411f30f99601cd73b10698b3229a69fde33d4e55ebbf",
+      "after_sha256": "efa00536f2388c88e53c06e67496d19afe5429e1027f64bd3803339dc756529a"
+    },
+    {
+      "id": "hyeonchim-6",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "8cc723559dbef50a3e5de7d2c84b1dd4959b396a1f0887578444f0fe7c73d6bf",
+      "after_sha256": "ba09639f8628bbc594e9019cb8d057222997c25e53a23bf0ac4f43610467f227"
+    },
+    {
+      "id": "hyeonchim-7",
+      "unknown": false,
+      "chung": "present",
+      "calculations_unchanged": true,
+      "before_sha256": "27bab33da34f46dba373bd34d6710b5798c29b13188d7c116dffd1649f6bf1ba",
+      "after_sha256": "d1bac279cd8e7763e9366479519e7caff2d198a01e383882bbdb972dd27b561f"
+    },
+    {
+      "id": "hyeonchim-8",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "08bccab608ffbd11a4f9640e616ec6c3ed993015291e3609987c771f22b49e5b",
+      "after_sha256": "051cf1bee9320fdf453eed7c7ea198639228e1c61c3a0e6bfa4b06355443c5dd"
+    },
+    {
+      "id": "hyeonchim-9",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "143fe2abfa376d0f51ef34f1a17f4660be3443f85dbfd8d7d34f56bfae6f60ad",
+      "after_sha256": "e8d4083937166c13e00a270fc55191934bfbcb18e4a469a14dcbd63df2b3e995"
+    },
+    {
+      "id": "hyeonchim-10",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "380ee4fdc7b250e46c4d244f4bfa393e84875ba244eec7d5ad8aeeca455e96aa",
+      "after_sha256": "d1fa76bea1f8ecac789d7d3510f5bd6facd2d5ddfb2ce18adbed3956fefec54a"
+    },
+    {
+      "id": "hyeonchim-11",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "7d318fd0f54514d6c2b378cf34d24dc85145b94be45e9641de57ba8b1e1fa4e3",
+      "after_sha256": "d6ddd9bb978e4fac48c478b02a4035c984ba50fc3d1eb6e73bc4b1f8015b73d2"
+    },
+    {
+      "id": "hyeonchim-12",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "8d0a0a574f464582dc0d0b9c61c1beaac8bda313f1884c302e50b4e669c3d728",
+      "after_sha256": "90e10fb8affa42a81ed9faa1bf22c4ea6a242bf2c834f7d4375a411b47a9debc"
+    },
+    {
+      "id": "hyeonchim-13",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f2c6525d66d418b50d37db4cbe1d74a8a65bee3f9d9be3678fadb82ae9b11b35",
+      "after_sha256": "bf0e7ca93408e2896c44e2f48afaa9db506fa30480dc4957cefc20c62ad32da5"
+    },
+    {
+      "id": "hyeonchim-14",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "9e53737da73fb96d61df2aadbb7fe0d7e6b1a25dba639335de16b8a10cbe06fc",
+      "after_sha256": "77f3ec3fbe6e920c4d29b68957b8886f21a4f27f21153f4acdae94bba945cfb7"
+    },
+    {
+      "id": "hyeonchim-15",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "4695b0a36c69e041bc55f0637ffe6ce8e52dc71bbc5d6e2a2e4ebdb8113c6aaa",
+      "after_sha256": "f85deb17f8641a8711692642747a9c8aa7acd456aae7124b557c41aa6530d5c6"
+    },
+    {
+      "id": "hyeonchim-16",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "d5a0ff2f950239059661d04429339a9968230e324771050eebea334d941c1395",
+      "after_sha256": "98b3f1a41137eb3d6e6c1699c2e089fc985fbadf2e6ee31dc4cf3eb316b2d664"
+    },
+    {
+      "id": "hyeonchim-17",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "80870917fa3c31be8308bd557ff46bcb014e8a6f81c6f15076f227ee469142c5",
+      "after_sha256": "0ba180d8ba2bc5c5be5efcc3c23cee8ad08c810eb5ce4aaf84a6abe99da2c9f5"
+    },
+    {
+      "id": "hyeonchim-18",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "7662ad880d3d649c08397faa2d136c255522dd2bc5f836343329ff5252b40033",
+      "after_sha256": "abf61891f378e322b67f7bda85c47899b2cd915ea220b3bcec0288174b0ef838"
+    },
+    {
+      "id": "hyeonchim-19",
+      "unknown": false,
+      "chung": "present",
+      "calculations_unchanged": true,
+      "before_sha256": "0565b7e53eac6f68783a1ad2e9e94e65e0d962af92724843416843408ff5a14e",
+      "after_sha256": "7755856fde1172cfe58b0fb0f51503521d281a8db0052060d264e53ee6ddc38a"
+    },
+    {
+      "id": "hyeonchim-20",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "69846310497d6002f0c296ac4e8d9a222962f745bb55d196130abe01f0e5c246",
+      "after_sha256": "83a33b483f00be79bda1de7a377b65bf07d91d6af05d0ed53031a9e0ac08ef91"
+    },
+    {
+      "id": "hyeonchim-21",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "047419ecc62223c8a21612e1d20824c8f59492cfa221fd262a3ce3e5b984fd26",
+      "after_sha256": "11b2ce911a7411e63f96230064c393d6b40c224f37508a52a40a36c5e20b0828"
+    },
+    {
+      "id": "hyeonchim-22",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "4ac5d545c2f562e1174efddea11001c148973d900b14e73268c2d63bc548cb87",
+      "after_sha256": "df09bf53c037ab7c3eb478bcf43321ed641e525353b55e2ac791b52fc97b7522"
+    },
+    {
+      "id": "hyeonchim-23",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "15395448b7c212cec48fd0017b627d00235552ea7fd13658fe69f33f3e97902a",
+      "after_sha256": "e89c310f5987a0718af76a01cfe873ba8224c8c64895e84f64c58b5a8ce87387"
+    },
+    {
+      "id": "hyeonchim-24",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "efe3d08efa465fb1899a6ca287d2cb6c662cf9f3bae01de20f9e6474afb47f0f",
+      "after_sha256": "0bc8d591da13fbbb1a542a610892bba825ff6fbba71b37aad1fe93dab31b571c"
+    },
+    {
+      "id": "hyeonchim-25",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "aa2f8302be0cc301efd3341341e5b2ad497d0d250a1491dfb6b255d3c7451487",
+      "after_sha256": "88068f077a36319b4f71917931e9e749c1cd106fdd309a04a3e7d015d8ea7757"
+    },
+    {
+      "id": "hyeonchim-26",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "46354fbd5534656ae7f10a44c624a1ad902df6c4d03d1b244585e3ae860a5977",
+      "after_sha256": "30803a83310ca22bd5e7ab2c673c55ca0ecb8b472175479b835b5c8a40f5f29b"
+    },
+    {
+      "id": "hyeonchim-27",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "eec3079fa9585315af88bda2319a220781dc6fb030e8e89488333c3e0b3ef5f3",
+      "after_sha256": "4970554eca3f2cfcf2b56fe8332dae32da67fc727e125bef0f2c4a376990ceca"
+    },
+    {
+      "id": "hyeonchim-28",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "0d9441c966237411c349483f1d787060e8b65a88fbfbf74642309560896a6a1c",
+      "after_sha256": "277d8148d64dc4ed7fda201e7bf35f5dec9982405f4395069466ebfef63b5f65"
+    },
+    {
+      "id": "hyeonchim-29",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "804bdca800880f080fa4ee2abb2691d3154eae13f200fb58f6b8e014a49e34aa",
+      "after_sha256": "93e8fd86c76612c5dc91eaf5ba889498a7157e422dccd8a7bcedc9fef4fde73a"
+    },
+    {
+      "id": "hyeonchim-30",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "7ff9c3574cebae8ba4bddb468f91841495da7bdd56ff7ff6e540000cbd202648",
+      "after_sha256": "5e6342e5d69bb63221cdd9a9baa15bf74baed219d44d858b500a855c3a9b4cf0"
+    },
+    {
+      "id": "hyeonchim-31",
+      "unknown": false,
+      "chung": "present",
+      "calculations_unchanged": true,
+      "before_sha256": "d113756b8b92d370a08ba4ec5438a084df92a1e2e7add2e9153368cb973b0e54",
+      "after_sha256": "9680560f2c005c20a8dab094ced2eadb81ef0b8d22043a642955f4df01412732"
+    },
+    {
+      "id": "hyeonchim-32",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "7c05233698bfc4bcd0da611831687b06d94e5df3589636a8770328d2f34ea296",
+      "after_sha256": "9947260eddec79dfece48bc49a92dbc0a88f23c6c10b848761e60a7050cea67f"
+    },
+    {
+      "id": "hyeonchim-33",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "55bb48cb1c6ca81c050c89a5032767a8706903320c6afcc05e4e0293b6175bab",
+      "after_sha256": "9aad8dccea81daa5744afbd500527ca8145d83e426a9dbdcf044fc795a7f43ac"
+    },
+    {
+      "id": "hyeonchim-34",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "4576205acf8c011332893c492fbf00ccbf2247ac709fcb2df44a153bc44896c9",
+      "after_sha256": "c0e5dfd828b33ba2ad2460addf2cfbce24984a77aa2fe67ca479a71047f91b9c"
+    },
+    {
+      "id": "hyeonchim-35",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "1e73f7e0eee0fda30a843cacceeef3bbc9d4ab10a828c7acad2c3a4b54d66144",
+      "after_sha256": "6c8693d6fe4264c2329424ed5073aa7b0508c7044c45657790bd6beb6b5df6ce"
+    },
+    {
+      "id": "hyeonchim-36",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "a63bfe311fb987411280032a8f621d81ad4eca28b4cf0ae65a462f31ceb9fb52",
+      "after_sha256": "713f8bbadbd1925bb0683ccfb2aeb0e10719df99e600b41a2c149afea338965c"
+    },
+    {
+      "id": "hyeonchim-37",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "db6f0c445991e613edaf141b2ce7a94638c108abad8aaa242df9c28b44f0dea6",
+      "after_sha256": "024da85565036f8eb5c2bd69e00a9b206f4889444315dbb0109e7e6027e491ee"
+    },
+    {
+      "id": "hyeonchim-38",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "8798d770eaf671083f32d553415b5d7039cf77559533a898732350935baeb097",
+      "after_sha256": "44c448312a5effdb28ec839f6fac714c1650cabba6b8ed97cbae764c5ca24b83"
+    },
+    {
+      "id": "hyeonchim-39",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "b833b18f5b93c851f8d519bc7f85800ff32f902a253c1e775740b0807bb7c338",
+      "after_sha256": "ce93252f6b1627260a9d28f1a93891029f8d7aa6a418d4a857cd1e47d415c556"
+    },
+    {
+      "id": "hyeonchim-40",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "fe3466ab92273d52a110e29c46d8acff4cd805bd1eaf7f1baa326d2908d3182c",
+      "after_sha256": "9a39dd722fa3bf3602cba964296ce2b3429e4d4fbf36c70962c9c760fefac881"
+    },
+    {
+      "id": "hyeonchim-41",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "946407c794a44a5b481cfa936706d339ecbde209bb1e570e252feff05df34dab",
+      "after_sha256": "4e216563a17d398a0017fefa66468ad83c082ac7e77d9942c2823bc192f5e828"
+    },
+    {
+      "id": "hyeonchim-42",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "5649125b37f1ed3d6c472e1753e3e91397821d2a06f92473565f56e1387dda9d",
+      "after_sha256": "bb203249416c3288f205ef683b41b9d2b07d61f0b44184e81092e8beb6a02069"
+    },
+    {
+      "id": "hyeonchim-43",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f80aff4e718cdb36f5129959f1597768144f0374bfd0573e5f56dffb1264ce63",
+      "after_sha256": "eb01cb16c4f406bfdba60f398fad2c8166bfc023636067c5608c6683b3003d8b"
+    },
+    {
+      "id": "hyeonchim-44",
+      "unknown": false,
+      "chung": "present",
+      "calculations_unchanged": true,
+      "before_sha256": "ad9b40e0a8e828ad99b45880a0544d19047884d415792fd95a13d7de94cb149d",
+      "after_sha256": "4542cbd0d9b769771770fc7aac40529a7ac15c8df8d87c394c0f6df484c06463"
+    },
+    {
+      "id": "hyeonchim-45",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f1f89ef9e4a5cc396862e9be32a1bffff34f63559d145a7fc69e60fa3f5cf167",
+      "after_sha256": "e6633f52216ea129ea938c427bb95c281e2a7491fdc6f157c2543ba3f49d5efd"
+    },
+    {
+      "id": "hyeonchim-46",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "8e53c55605eaa5224fa22e144e15ed635698e1cfb8fea799829538bd868e1c81",
+      "after_sha256": "adf4b7268604a625bff7bfff025baa53ff9094dbc3361c561a868a5b7411bc91"
+    },
+    {
+      "id": "hyeonchim-47",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "1ac813dd893f182ea7621cd24f8b80f056bee753b2795fb3f0160321454e580f",
+      "after_sha256": "f15c26bd76f495998964a0cb5007bac15180891d520a06fe20b85ab11f7164fa"
+    },
+    {
+      "id": "hyeonchim-48",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "9fb7dfe8e4cd2c1723e45ee5e0f57bf12c95fc1ad1c42747b841f070fc966141",
+      "after_sha256": "fbe3b666d7612fae2a36803cb09df8bdca126ad078febf9db3471edf78c25936"
+    },
+    {
+      "id": "hyeonchim-49",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "100b9839b128279a892d9bd81a5cfb0e7e2ade0c63789b539f847f66257c4e9a",
+      "after_sha256": "20340cb9be9ac64deb4d36a18e4724f2ebdac88e1bc6c9d06fdeaa4f0f336d75"
+    },
+    {
+      "id": "hyeonchim-50",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "127a0727f48b21b3620179330ed13e3727c525a47fa754c5899c3bf86b22e3a3",
+      "after_sha256": "a27ba12d3adf17d1c716ceb9ccbde96b5cff14f0080072af760279dbc45237e6"
+    },
+    {
+      "id": "hyeonchim-51",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "d1cb9c1a89532c3dbb65e4df9e3bee4ffbd445ce00e99a19722aef8fb1ed9b1b",
+      "after_sha256": "94ca2295f06d10eda75edb1b40e5f01d4186678d55647b4c8412f8960c2c86cd"
+    },
+    {
+      "id": "hyeonchim-52",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "fdd3972fcbde8341c5815d56244a4d04c0da941d9e5a6ed6ffde86ebaaa8a5d4",
+      "after_sha256": "c5c561e2216c15e19e0757e7c1f8d66e3316e9b22f2569db03bb9936e887f4a1"
+    },
+    {
+      "id": "hyeonchim-53",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "00e8d45db3fd5e6d026ad327aa9d57eb6e07642ab71461fb9fddd10d38ec7bbc",
+      "after_sha256": "88301695313b3cf9cf8e9484c30cfed756c78ea6de29cd6b4a01622ffb29b1ce"
+    },
+    {
+      "id": "hyeonchim-54",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "69f204add6a8ad77b07e58623711fd9c70ff7b2d8373b2bfe667ffac2efc65cf",
+      "after_sha256": "929d30da0dbc7bc26c254622d892d5443c16a2a6cd0f22a305fef9aa6beacae6"
+    },
+    {
+      "id": "hyeonchim-55",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "8cdc798bfafd196b205738bf2d45a8a6f116e19e3c3a913d267757db4e14b644",
+      "after_sha256": "32697cfb590e2fd0333762ab2c223ccc66041959527b209ceb0caec8d4e04149"
+    },
+    {
+      "id": "hyeonchim-56",
+      "unknown": false,
+      "chung": "present",
+      "calculations_unchanged": true,
+      "before_sha256": "087e59cc168e082d13ab989c609d1de6d83210e098105771e6496c36c6faf564",
+      "after_sha256": "6f31c7e2b376946c4dfe61cf709073fe50767361c22111d32dede447048ee17f"
+    },
+    {
+      "id": "hyeonchim-57",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "0fabef9b831d84457af9e0b451d7e475f2a982c474484c8f994cc6c1c4ecb00e",
+      "after_sha256": "b8091786fb78c548b866b75dffcc237cc89c834803e0b887bcacaf0dfd75a643"
+    },
+    {
+      "id": "hyeonchim-58",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "aa84a2e31017d5798221ce8b9d37e3dfa540be0c2e3896f20b1fadbbdc98dd4a",
+      "after_sha256": "cd069cee2140f17b595371004d2b539e98f8de1d1308b8faf610dc5c3116ba9e"
+    },
+    {
+      "id": "hyeonchim-59",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "f15b5e4b54cc219187663c1c3490220e88caae4121d35f637512c8e846c9ab5a",
+      "after_sha256": "430ba613094cdd2e8e415e3b5a5a4771e4031bea6260a5ab182372182659150f"
+    },
+    {
+      "id": "hyeonchim-60",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "76d935e1d9a737185304ec6d110e1aaa436ef3d4a12e5a1cc146ff7db12673b9",
+      "after_sha256": "c10f97c809656f6fdbbacd0db61449ec46eaf6802df48686478c20ffe9de7303"
+    },
+    {
+      "id": "hyeonchim-61",
+      "unknown": false,
+      "chung": "absent",
+      "calculations_unchanged": true,
+      "before_sha256": "6a48575b69b8d3b265cf8626c289d23b5a3418c977b814341c3e29b0af48aaa3",
+      "after_sha256": "28bd8547809c54833be77fbb057e9770069759accd434bfa630b73cc99f1101e"
+    }
+  ]
+}

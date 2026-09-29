@@ -2,6 +2,7 @@
 // probabilities, strength measurements, occupational aptitude or predictions.
 import { STEMS_HANJA, BRANCHES_HANJA, HIDDEN_STEMS, STEM_ELEMENT, ELEMENTS, TEN_GODS, tenGod, sexStem, sexBranch, sexName } from './tables.js';
 import { strengthJudge } from './judge.js';
+import { detectRelations } from './relations.js';
 
 const POSITIONS = ['year', 'month', 'day', 'hour'];
 const POSITION_NAMES = { year: '연', month: '월', day: '일', hour: '시' };
@@ -141,6 +142,28 @@ function strengthContext(chart, monthMain, hourStem, hidden, positionText) {
       clarifies: '잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치' } };
 }
 
+// Observe only the adjacent natal month/day branches using the existing engine.
+// A missing chung says nothing about other relationships or real-life harmony.
+function monthDayChungContext(chart, monthMain, dayMain) {
+  const branches = [sexBranch(chart.pillarsIdx.month), sexBranch(chart.pillarsIdx.day)];
+  const relation = detectRelations(chart.pillarsIdx).chung.find(r =>
+    r.positions.length === 2 && r.positions.includes('월') && r.positions.includes('일')) ?? null;
+  const base = { scope: 'natal-month-day-branch-chung', status: relation ? 'present' : 'absent',
+    branches, relation, dayMain };
+  if (!relation) return { ...base, facts: null, interpretation: null, question: null };
+  const monthRole = ROLES[GROUPS.indexOf(monthMain.group)], dayRole = ROLES[GROUPS.indexOf(dayMain.group)];
+  const same = monthMain.group === dayMain.group;
+  const facts = `월지(${BRANCHES_HANJA[branches[0]]})·일지(${BRANCHES_HANJA[branches[1]]}) 사이에는 ${relation.name}이 있어요. ` +
+    '두 글자의 관계를 확인한 것이며, 실제 갈등·실패·변화 시기나 어느 쪽의 힘을 정한 것은 아니에요.';
+  const interpretation = same
+    ? `월지 본기와 일지 본기 ${dayMain.character}(${dayMain.tenGod})에서 ‘${monthRole}’ 주제가 함께 보여요. 이 충은 같은 주제를 상황에 따라 유지하거나 조정했는지 더 확인하는 계기로 읽으며, 주제가 같다고 힘을 더하거나 충이 있다고 갈등을 가정하지 않아요.`
+    : `앞에서 읽은 월지 본기의 ‘${monthRole}’ 주제와 일지 본기 ${dayMain.character}(${dayMain.tenGod})의 ‘${dayRole}’ 주제를 함께 살펴봐요. 이 충은 두 주제를 같이 맡을 때 잘 맞았던 부분과 조정이 필요했던 부분을 더 확인하는 계기로 읽으며, 글자의 관계를 실제 역할의 충돌로 단정하지 않아요.`;
+  const question = same
+    ? `또 월지·일지에서 함께 읽은 ‘${monthRole}’ 주제를 실제로 맡았다면, 같은 기준을 유지하거나 상황에 맞춰 바꾼 경우가 있었나요? 조정이 없었거나 그런 경험이 없다면 그대로 말해 주세요.`
+    : `또 월지에서 읽은 ‘${monthRole}’ 주제와 일지에서 읽은 ‘${dayRole}’ 주제를 함께 맡은 적이 있나요? 두 주제가 잘 맞았거나 조정이 필요했던 부분은 무엇이고, 조정이 없었거나 그런 경험이 없다면 그대로 말해 주세요.`;
+  return { ...base, facts, interpretation, question };
+}
+
 function completeChart(chart) {
   const { hour, minute, hourUnknown } = chart?.input ?? {};
   return chart?.birthTime?.status !== 'unknown' && hourUnknown !== true &&
@@ -205,13 +228,22 @@ export function buildContextReading(chart) {
   if (hiddenTopics.length) synthesis += ` ${hiddenTopics.join('·')}은 지장간에서만 보이므로, 겉에 드러난 계열만으로 풀이를 끝내지 않아요. 다만 숨은 글자가 실제로 얼마나 작용하는지는 아직 판단하지 않아요.`;
   const combined = combineRoles(monthMain, hourStem, groups, positionText);
   const strength = strengthContext(chart, monthMain, hourStem, hidden, positionText);
+  const dayMain = hidden.find(m => m.position === 'day' && m.principal);
+  const monthDayChung = monthDayChungContext(chart, monthMain, dayMain);
+  if (monthDayChung.question) {
+    combined.questions[1] = { ...combined.questions[1],
+      prompt: `${combined.questions[1].prompt} ${monthDayChung.question}`,
+      clarifies: `${combined.questions[1].clarifies}; 월지·일지 충에서 확인할 실제 주제의 조정·비조정·경험 없음` };
+  }
   const questions = [...combined.questions, strength.question];
-  return { policy: 'natal-work-context-v5', kind: 'conditional_structural_reading',
+  return { policy: 'natal-work-context-v6', kind: 'conditional_structural_reading',
     dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem,
-    strength, experienceQuestions: questions,
+    strength, monthDayChung, experienceQuestions: questions,
     blocks: [{ label: '같은 일주여도 달라지는 부분', lines: [overview] },
       { label: '표현·결과·책임의 구성', lines: roleLines },
-      { label: '함께 읽으면', lines: [combined.synthesis, synthesis, strength.facts, strength.hypothesis, strength.roots.facts, strength.roots.interpretation] },
+      { label: '함께 읽으면', lines: [combined.synthesis,
+        ...(monthDayChung.facts ? [monthDayChung.facts, monthDayChung.interpretation] : []),
+        synthesis, strength.facts, strength.hypothesis, strength.roots.facts, strength.roots.interpretation] },
       { label: '경험으로 확인할 부분', lines: [...questions.map(q => q.prompt),
         '답을 통해 실제 맡은 역할과 상황을 더 구체적으로 물을 수 있고, 경험이 없다면 없다고 말해도 돼요. 맞지 않는 경험도 함께 살피며, 답만으로 사주가 맞았다거나 적성을 확인했다고 판단하지 않아요.'] }],
     note: CONTEXT_READING_NOTICE, predictionEnabled: false, trainingEligible: false, probability: null };
