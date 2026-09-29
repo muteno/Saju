@@ -1,0 +1,30 @@
+[
+  {
+    "width": 390,
+    "timing": "selection",
+    "noticeCount": 1,
+    "provisionalClauseCount": 1,
+    "errors": 0
+  },
+  {
+    "width": 390,
+    "timing": "intro",
+    "noticeCount": 1,
+    "provisionalClauseCount": 1,
+    "errors": 0
+  },
+  {
+    "width": 1280,
+    "timing": "selection",
+    "noticeCount": 1,
+    "provisionalClauseCount": 1,
+    "errors": 0
+  },
+  {
+    "width": 1280,
+    "timing": "intro",
+    "noticeCount": 1,
+    "provisionalClauseCount": 1,
+    "errors": 0
+  }
+]

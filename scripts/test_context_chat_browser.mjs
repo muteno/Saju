@@ -42,18 +42,21 @@ try{
     const ground=held[0].body.grounds;
     const q1=ground.find(g=>g.text.startsWith('최근 맡은 일에서 스스로 정한 부분')).text;
     const q2=ground.find(g=>g.text.startsWith('표현·실행, 결과·자원 관리')).text;
+    const q3=ground.find(g=>g.text.startsWith('최근 자기 판단대로 진행한 일')).text;
     const limit=ground.find(g=>g.text.startsWith('답을 통해 실제 맡은 역할')).text;
     if(mode==='after-question'){
       for(let i=0;i<50&&!(await log.innerText()).includes(q1);i++)assert.ok(await next(page),'must reach first question');
       assert.ok((await log.innerText()).includes(q1));
     }
-    const response=`${q1} ${q2} ${limit}\n\n`+Array.from({length:12},(_,i)=>`생성 본문 ${i+1}을 확인해요.`).join('\n\n');
+    const response=`${q1} ${q2} ${q3} ${limit}\n\n`+Array.from({length:12},(_,i)=>`생성 본문 ${i+1}을 확인해요.`).join('\n\n');
     await held[0].route.fulfill({status:200,json:{text:response}});
     await page.waitForTimeout(150);
     for(let i=0;i<70;i++){if(!await next(page))break;}
     const text=await log.innerText();
     assert.equal(text.split(q1).length-1,1,`${mode}: first question exactly once`);
     assert.equal(text.split(q2).length-1,1,`${mode}: second question exactly once`);
+    assert.equal(text.split(q3).length-1,1,`${mode}: third question exactly once`);
+    assert.ok(text.indexOf(q2)<text.indexOf(q3),`${mode}: third question after second`);
     assert.equal(text.split(limit).length-1,1,`${mode}: question limit exactly once`);
     if(mode==='early'){
       assert.ok(text.includes('생성 본문 1을 확인해요.'));
@@ -66,7 +69,7 @@ try{
     assert.deepEqual(errors,[]);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),390);
     await page.screenshot({path:`${out}/${mode}.png`});
     await writeFile(`${out}/${mode}.txt`,text);
-    results.push({mode,questions:2,duplicates:0,errors,fullBody:mode==='early'?'generated':'local'});
+    results.push({mode,questions:3,duplicates:0,errors,fullBody:mode==='early'?'generated':'local'});
     await page.close();
   }
   await writeFile(`${out}/result.json`,JSON.stringify(results,null,2)+'\n');console.log(JSON.stringify(results));
