@@ -373,9 +373,9 @@ test('대화 속 보류된 도사 문장이 나뉘어 들어와도 검수 우회
 })
 
 
-test('현재 강약 조건의 종합 풀이·110입력 전달·미상 보류를 검증한다', () => {
+test('PR219 강약 조건의 원래 측정·6검사를 고정판본으로 재현한다', () => {
   const env = {...process.env}; delete env.NODE_TEST_CONTEXT
-  const output = execFileSync(process.execPath, ['--test', '--test-reporter=tap', 'docs/knowledge-model/test_strength_context.mjs'], {
+  const output = execFileSync(process.execPath, ['docs/knowledge-model/frozen_strength_context.mjs','--test', '--test-reporter=tap', 'docs/knowledge-model/test_strength_context.mjs'], {
     cwd: fileURLToPath(new URL('../', import.meta.url)), encoding: 'utf8', timeout: 120000, env, stdio: ['ignore','pipe','pipe'],
   })
   assert.match(output, /# tests 6\b/)
@@ -408,7 +408,7 @@ test('강약 조건과 한계가 서버의 순수 프롬프트 함수에서도 �
   assert.match(source, /content: buildUserMessage\(body\)/)
   const { terms } = JSON.parse(readFileSync(new URL('../app/src/engine/vendor/data/solar_terms.json', import.meta.url)))
   const { topicLines } = await import('../app/src/data/dosaTopics.ts')
-  for (const [year, month, day] of [[2011,2,28],[2026,2,9]]) {
+  for (const [year, month, day] of [[2011,2,28],[2026,2,9],[2024,1,8],[2024,1,7],[2024,2,6]]) {
     const chart = computeChart({year,month,day,hour:12,minute:0,gender:'F',solarTimeCorrection:false,lateZiRule:'keepDay'},terms)
     const current = buildReport(chart,chartToKeys(chart),{aliases:{},index:{},bodies:{}})
     const context = current.sections.find(s=>s.id==='context-reading').context
@@ -417,9 +417,18 @@ test('강약 조건과 한계가 서버의 순수 프롬프트 함수에서도 �
       const body = {topic,chartSummary:chartSummaryOf(current),grounds:topicLines(current,topic),
         ...(topic==='성격'?{question:'그런 경험은 없는데 어떻게 읽어?',conversation}:{})}
       const prompt = buildPrompt(body)
-      for (const text of [context.strength.facts,context.strength.hypothesis,context.strength.question.prompt,context.note])
+      for (const text of [context.strength.facts,context.strength.hypothesis,context.strength.question.prompt,context.strength.roots.facts,context.strength.roots.interpretation,context.note])
         assert.ok(prompt.includes(text))
       if(topic==='성격')assert.ok(prompt.includes('경험 없음'))
     }
   }
+})
+
+
+test('현재 지장간·강약 풀이의9검사와110입력 전달·미상 보류를 검증한다', () => {
+  const env={...process.env};delete env.NODE_TEST_CONTEXT
+  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_hidden_root_context.mjs'],{
+    cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:120000,env,stdio:['ignore','pipe','pipe'],
+  })
+  assert.match(output,/# tests 9\b/);assert.match(output,/# pass 9\b/);assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/)
 })

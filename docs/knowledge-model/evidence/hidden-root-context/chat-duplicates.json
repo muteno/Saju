@@ -1,0 +1,350 @@
+[
+  {
+    "name": "2024-1-8-직업-selection-split",
+    "topic": "직업",
+    "timing": "selection",
+    "layout": "split",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "generatedFirst": true,
+    "generatedLast": true,
+    "rootSummarySent": true,
+    "rootGroundSent": true,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  },
+  {
+    "name": "2024-1-8-직업-selection-first",
+    "topic": "직업",
+    "timing": "selection",
+    "layout": "first",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "generatedFirst": true,
+    "generatedLast": true,
+    "rootSummarySent": true,
+    "rootGroundSent": true,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  },
+  {
+    "name": "2024-1-8-직업-intro-split",
+    "topic": "직업",
+    "timing": "intro",
+    "layout": "split",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "generatedFirst": true,
+    "generatedLast": true,
+    "rootSummarySent": true,
+    "rootGroundSent": true,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  },
+  {
+    "name": "2024-1-8-직업-intro-first",
+    "topic": "직업",
+    "timing": "intro",
+    "layout": "first",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "generatedFirst": true,
+    "generatedLast": true,
+    "rootSummarySent": true,
+    "rootGroundSent": true,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  },
+  {
+    "name": "2024-1-8-직업-after-local-split",
+    "topic": "직업",
+    "timing": "after-local",
+    "layout": "split",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "generatedFirst": false,
+    "generatedLast": false,
+    "rootSummarySent": true,
+    "rootGroundSent": true,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  },
+  {
+    "name": "2024-1-8-직업-after-local-first",
+    "topic": "직업",
+    "timing": "after-local",
+    "layout": "first",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "generatedFirst": false,
+    "generatedLast": false,
+    "rootSummarySent": true,
+    "rootGroundSent": true,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  },
+  {
+    "name": "2024-1-8-성격-selection-split",
+    "topic": "성격",
+    "timing": "selection",
+    "layout": "split",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "generatedFirst": true,
+    "generatedLast": true,
+    "rootSummarySent": true,
+    "rootGroundSent": false,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  },
+  {
+    "name": "2024-1-8-성격-selection-first",
+    "topic": "성격",
+    "timing": "selection",
+    "layout": "first",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "generatedFirst": true,
+    "generatedLast": true,
+    "rootSummarySent": true,
+    "rootGroundSent": false,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  },
+  {
+    "name": "2024-1-8-성격-intro-split",
+    "topic": "성격",
+    "timing": "intro",
+    "layout": "split",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "generatedFirst": true,
+    "generatedLast": true,
+    "rootSummarySent": true,
+    "rootGroundSent": false,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  },
+  {
+    "name": "2024-1-8-성격-intro-first",
+    "topic": "성격",
+    "timing": "intro",
+    "layout": "first",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "generatedFirst": true,
+    "generatedLast": true,
+    "rootSummarySent": true,
+    "rootGroundSent": false,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  },
+  {
+    "name": "2024-1-8-성격-after-local-split",
+    "topic": "성격",
+    "timing": "after-local",
+    "layout": "split",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "generatedFirst": true,
+    "generatedLast": true,
+    "rootSummarySent": true,
+    "rootGroundSent": false,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  },
+  {
+    "name": "2024-1-8-성격-after-local-first",
+    "topic": "성격",
+    "timing": "after-local",
+    "layout": "first",
+    "roots": [
+      "additional_only",
+      "additional_only"
+    ],
+    "noticeCount": 1,
+    "rootFactCount": 1,
+    "rootSentenceCounts": [
+      1,
+      1
+    ],
+    "questionCounts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "generatedFirst": true,
+    "generatedLast": true,
+    "rootSummarySent": true,
+    "rootGroundSent": false,
+    "overflow": 390,
+    "errors": [],
+    "external": []
+  }
+]

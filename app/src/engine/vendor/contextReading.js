@@ -1,6 +1,6 @@
 // Read the complete natal chart together. Exact symbol conditions are not
 // probabilities, strength measurements, occupational aptitude or predictions.
-import { STEMS_HANJA, BRANCHES_HANJA, HIDDEN_STEMS, TEN_GODS, tenGod, sexStem, sexBranch, sexName } from './tables.js';
+import { STEMS_HANJA, BRANCHES_HANJA, HIDDEN_STEMS, STEM_ELEMENT, ELEMENTS, TEN_GODS, tenGod, sexStem, sexBranch, sexName } from './tables.js';
 import { strengthJudge } from './judge.js';
 
 const POSITIONS = ['year', 'month', 'day', 'hour'];
@@ -55,9 +55,44 @@ function combineRoles(monthMain, hourStem, groups, positionText) {
   return { synthesis, questions };
 }
 
+// Same character and same element are distinct observations, not competing
+// strength scores. Scope is the four natal branches under the existing table.
+function hiddenRootContext(dayStem, hidden, positionText) {
+  const collect = predicate => {
+    const matches = hidden.filter(predicate);
+    const principal = matches.filter(m => m.principal);
+    const additional = matches.filter(m => !m.principal);
+    return { principal, additional, status: principal.length ? 'principal_present'
+      : additional.length ? 'additional_only' : 'absent' };
+  };
+  const sameStem = collect(m => m.stem === dayStem);
+  const sameElement = collect(m => STEM_ELEMENT[m.stem] === STEM_ELEMENT[dayStem]);
+  const locations = scope => [...scope.principal, ...scope.additional].map(positionText).join(', ') || '없음';
+  const facts = `네 지지의 지장간에서 일간 ${STEMS_HANJA[dayStem]}과 같은 글자: ${locations(sameStem)} / 같은 ${ELEMENTS[STEM_ELEMENT[dayStem]]} 오행: ${locations(sameElement)}이에요. ` +
+    '본기 밖 글자는 앞의 강약 점수에 따로 더하지 않았으며, 같은 글자와 같은 오행의 관찰만으로 통근의 강도나 실제 능력을 정하지 않아요.';
+  let interpretation, question;
+  if (sameElement.status === 'absent') {
+    interpretation = '이 지장간표의 네 지지에는 일간과 같은 오행이 보이지 않아요. 앞의 도움 목록에는 다른 천간이나 일간을 생하는 인성이 있을 수 있으므로, 이 관찰을 원국 전체의 도움 부재나 혼자 일할 능력의 부족으로 읽지 않아요.';
+    question = '네 지지에 같은 오행이 없다는 관찰을 실제 도움이나 능력이 없다는 뜻으로 읽지는 않아요.';
+  } else if (sameStem.status === 'absent') {
+    interpretation = `같은 글자는 없지만 같은 오행은 ${sameElement.status === 'additional_only' ? '본기 밖 지장간에' : '지지 본기에'} 있어요. 같은 글자 기준의 부재를 같은 오행까지 없다는 뜻으로 넓히지 않고, 앞의 일·재능 가설도 능력의 유무를 단정하지 않는 범위로 읽어요.`;
+    question = '같은 글자는 없지만 같은 오행은 있다는 차이를 실제 능력 차이로 정하지 않아요.';
+  } else if (sameStem.additional.length || sameElement.additional.length) {
+    interpretation = sameElement.status === 'additional_only'
+      ? '지지 본기에는 없던 같은 오행이 나머지 지장간에는 남아 있어요. 앞의 점수가 이 글자를 따로 세지 않았다는 뜻이므로, 점수만 보고 자기 기준과 동료라는 주제까지 없다고 단정하지 않아요.'
+      : '지지 본기에서 읽은 구성에 더해 본기 밖에도 같은 글자나 같은 오행이 보여요. 같은 글자의 자리와 같은 오행의 자리를 구별해 앞의 일·재능 가설을 읽되, 겹친 개수를 힘이나 적성의 크기로 바꾸지 않아요.';
+    question = '점수에 따로 세지 않은 지장간의 글자가 있다는 관찰을 숨은 능력의 증거로 읽지는 않아요.';
+  } else {
+    interpretation = '같은 글자와 같은 오행은 지지 본기에 있고 본기 밖의 추가 관찰은 없어요. 앞에서 이미 도움으로 센 자리를 다시 가산하지 않으며, 이 구성과 실제 일하는 방식이 맞는지는 경험으로 확인해요.';
+    question = '이미 본기에서 센 글자를 다시 가산하거나 실제 능력으로 정하지 않아요.';
+  }
+  return { scope: 'four-natal-branches-existing-hidden-stems', sameStem, sameElement,
+    facts, interpretation, question };
+}
+
 // Reuse the existing calculation, including its provisional help/classification
 // policy. The reading below is a question to investigate, not a personal verdict.
-function strengthContext(chart, monthMain, hourStem, positionText) {
+function strengthContext(chart, monthMain, hourStem, hidden, positionText) {
   const observation = strengthJudge(chart);
   const band = ['신강', '극신강'].includes(observation.label) ? 'strong'
     : ['신약', '극신약'].includes(observation.label) ? 'weak' : 'balanced';
@@ -82,14 +117,16 @@ function strengthContext(chart, monthMain, hourStem, positionText) {
       ? '맡은 일을 감당할 때 필요한 준비·협업과 혼자 맡을 수 있는 범위를'
       : '스스로 밀고 나갈 부분과 준비·협업이 필요한 부분을 상황에 따라 나누는 방식을';
   const hypothesis = `앞의 ‘${roles}’ 조합에 이 조건을 더하면, ${focus} 살펴보는 해석 가설로 이어져요. 실제로 그런지는 경험을 확인해야 해요.`;
+  const roots = hiddenRootContext(dayStem, hidden, positionText);
   const question = band === 'strong'
-    ? '최근 자기 판단대로 진행한 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요? 주도하지 않았던 경험도 괜찮아요.'
+    ? '최근 자기 판단대로 진행했거나 주도하지 않았던 일에서 다른 사람의 요구와 맞았거나 달랐던 부분은 무엇이었나요?'
     : band === 'weak'
-      ? '최근 맡은 일을 혼자 진행할 때와 준비하거나 도움을 받을 때 무엇이 달랐나요? 혼자서도 무리 없었던 경험이나 차이가 없었던 경우도 말해 주세요.'
-      : '최근 비슷한 일을 했어도 혼자 진행한 경우와 준비·협업이 필요했던 경우가 달랐나요? 상황에 따른 차이가 없었다면 그대로 말해 주세요.';
-  return { observation, band, supports, facts, hypothesis,
-    question: { id: `strength-${band}`, prompt: question,
-      clarifies: '잠정 강약 조건에 연결한 진행·조정·도움의 가설과 실제 경험의 일치·불일치' } };
+      ? '최근 일을 혼자 진행할 때와 준비·도움을 받을 때 무엇이 달랐고, 혼자서도 무리 없었거나 차이가 없었던 경험은 무엇이었나요?'
+      : '최근 비슷한 일을 혼자 진행한 경우와 준비·협업이 필요했던 경우 무엇이 달랐고, 차이가 없었다면 어떤 상황이었나요?';
+  roots.question = `${roots.question} ${question}`;
+  return { observation, band, supports, facts, hypothesis, roots,
+    question: { id: `strength-${band}-${roots.sameStem.status}-${roots.sameElement.status}`, prompt: roots.question,
+      clarifies: '잠정 강약·지장간 관찰과 실제 자기 방식·협업 경험의 일치·불일치' } };
 }
 
 function completeChart(chart) {
@@ -155,14 +192,14 @@ export function buildContextReading(chart) {
   const hiddenTopics = ['식상', '재성', '관성'].filter(group => groups[group].status === 'hidden_only');
   if (hiddenTopics.length) synthesis += ` ${hiddenTopics.join('·')}은 지장간에서만 보이므로, 겉에 드러난 계열만으로 풀이를 끝내지 않아요. 다만 숨은 글자가 실제로 얼마나 작용하는지는 아직 판단하지 않아요.`;
   const combined = combineRoles(monthMain, hourStem, groups, positionText);
-  const strength = strengthContext(chart, monthMain, hourStem, positionText);
+  const strength = strengthContext(chart, monthMain, hourStem, hidden, positionText);
   const questions = [...combined.questions, strength.question];
-  return { policy: 'natal-work-context-v3', kind: 'conditional_structural_reading',
+  return { policy: 'natal-work-context-v4', kind: 'conditional_structural_reading',
     dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem,
     strength, experienceQuestions: questions,
     blocks: [{ label: '같은 일주여도 달라지는 부분', lines: [overview] },
       { label: '표현·결과·책임의 구성', lines: roleLines },
-      { label: '함께 읽으면', lines: [combined.synthesis, synthesis, strength.facts, strength.hypothesis] },
+      { label: '함께 읽으면', lines: [combined.synthesis, synthesis, strength.facts, strength.hypothesis, strength.roots.facts, strength.roots.interpretation] },
       { label: '경험으로 확인할 부분', lines: [...questions.map(q => q.prompt),
         '답을 통해 실제 맡은 역할과 상황을 더 구체적으로 물을 수 있고, 경험이 없다면 없다고 말해도 돼요. 맞지 않는 경험도 함께 살피며, 답만으로 사주가 맞았다거나 적성을 확인했다고 판단하지 않아요.'] }],
     note: CONTEXT_READING_NOTICE, predictionEnabled: false, trainingEligible: false, probability: null };

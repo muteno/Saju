@@ -13,8 +13,6 @@ export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[
     .filter(note => lines.some(line => line.text === note))
   if (report.sections.some(s => s.id === 'context-reading' && s.lines?.includes(CONTEXT_READING_NOTICE)))
     notices.push(CONTEXT_READING_NOTICE)
-  const roots = report.sections.find(s => s.id === 'context-reading')?.context?.strength?.roots
-  if (roots) notices.push(roots.facts)
   return notices
 }
 
@@ -92,12 +90,8 @@ export async function requestDosaText(options: {
     const followups = readingFollowups(options.report, safeLines)
     // A provider may copy a question into an early paragraph or combine it with
     // narration. Normalize our exact owned lines before the UI splits sentences.
-    const owned = [...notices, ...followups].flatMap(line => [line, ...line.split(/(?<=[.?!…])\s+/)])
-    const body = owned.reduce((text, line) => text.replaceAll(line, ''), presented).trim()
-    // A complete owned observation can itself answer a free question.
-    // Do not turn an exact (possibly paragraph-split) valid answer into failure.
-    const completeNotice = notices.some(note => note.split(/(?<=[.?!…])\s+/).every(clause => presented.includes(clause)))
-    if (!body && !completeNotice) return null
+    const body = followups.reduce((text, line) => text.replaceAll(line, ''), presented).trim()
+    if (!body) return null
     return [...notices.filter(note => !body.includes(note)), body, ...followups].join('\n\n')
   } catch {
     return null

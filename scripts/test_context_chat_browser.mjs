@@ -42,7 +42,7 @@ try{
     const ground=held[0].body.grounds;
     const q1=ground.find(g=>g.text.startsWith('최근 맡은 일에서 스스로 정한 부분')).text;
     const q2=ground.find(g=>g.text.startsWith('표현·실행, 결과·자원 관리')).text;
-    const q3=ground.find(g=>g.text.startsWith('최근 자기 판단대로 진행한 일')).text;
+    const q3=ground.find(g=>g.text.startsWith('점수에 따로 세지 않은 지장간')).text;
     const limit=ground.find(g=>g.text.startsWith('답을 통해 실제 맡은 역할')).text;
     if(mode==='after-question'){
       for(let i=0;i<50&&!(await log.innerText()).includes(q1);i++)assert.ok(await next(page),'must reach first question');
