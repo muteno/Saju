@@ -182,6 +182,25 @@ function monthDayYukhapContext(chart, monthMain, dayMain) {
 }
 
 
+// The same two positions can have both relations. Keep the original relation
+// records and read their coexistence without cancellation or strength arithmetic.
+// Partial/full hyeong may cover additional positions and is outside this scope.
+function monthDayCompoundContext(chart, monthMain, yukhap) {
+  const pa = yukhap.status === 'present' ? detectRelations(chart.pillarsIdx).pa.find(r =>
+    r.positions.length === 2 && r.positions.includes('월') && r.positions.includes('일')) : null;
+  const base = { scope: 'natal-month-day-yukhap-pa', status: pa ? 'present' : 'absent',
+    branches: [...yukhap.branches], dayMain: yukhap.dayMain,
+    relations: pa ? [{ kind: 'yukhap', ...yukhap.relation }, { kind: 'pa', ...pa }] : [] };
+  if (!pa) return { ...base, facts: null, interpretation: null, question: null };
+  const monthRole = ROLES[GROUPS.indexOf(monthMain.group)], dayRole = ROLES[GROUPS.indexOf(yukhap.dayMain.group)];
+  const facts = `월지(${BRANCHES_HANJA[base.branches[0]]})·일지(${BRANCHES_HANJA[base.branches[1]]}) 사이에는 육합인 ${yukhap.relation.name}과 ${pa.name}가 함께 있어요. ` +
+    '같은 두 글자의 관계이며, 합이 파를 없애거나 괄호의 오행으로 합화가 성립했다는 뜻도, 실제 조화·갈등·성공·실패·변화 시기를 정한 것도 아니에요.';
+  const interpretation = `월지 본기의 ‘${monthRole}’ 주제와 일지 본기 ${yukhap.dayMain.character}(${yukhap.dayMain.tenGod})의 ‘${dayRole}’ 주제를 연결해 다루는 경우와 조정·분리가 필요한 경우를 함께 살펴봐요. 연결과 조정이 같은 일에서 있었는지 경험으로 확인하며, 두 관계를 좋고 나쁨으로 상쇄하거나 힘으로 합산하지 않아요.`;
+  const question = `또 월지의 ‘${monthRole}’ 주제와 일지의 ‘${dayRole}’ 주제를 연결해 맡거나 처음부터 따로 다룬 일이 있었나요? 그 과정에서 함께한 부분과 조정하거나 나눈 부분은 무엇이고, 차이나 경험이 없다면 그대로 말해 주세요.`;
+  return { ...base, facts, interpretation, question };
+}
+
+
 function completeChart(chart) {
   const { hour, minute, hourUnknown } = chart?.input ?? {};
   return chart?.birthTime?.status !== 'unknown' && hourUnknown !== true &&
@@ -254,20 +273,25 @@ export function buildContextReading(chart) {
       clarifies: `${combined.questions[1].clarifies}; 월지·일지 충에서 확인할 실제 주제의 조정·비조정·경험 없음` };
   }
   const monthDayYukhap = monthDayYukhapContext(chart, monthMain, dayMain);
-  if (monthDayYukhap.question) {
+  const monthDayCompound = monthDayCompoundContext(chart, monthMain, monthDayYukhap);
+  const joint = monthDayCompound.status === 'present';
+  const yukhapReading = joint ? monthDayCompound : monthDayYukhap;
+  if (yukhapReading.question) {
     combined.questions[1] = { ...combined.questions[1],
-      prompt: `${combined.questions[1].prompt} ${monthDayYukhap.question}`,
-      clarifies: `${combined.questions[1].clarifies}; 월지·일지 육합에서 확인할 두 주제의 연결·분리·반대 경험·경험 없음` };
+      prompt: `${combined.questions[1].prompt} ${yukhapReading.question}`,
+      clarifies: `${combined.questions[1].clarifies}; ${joint
+        ? '월지·일지 육합과 파의 동시 관찰에서 확인할 두 주제의 연결·조정·분리·반대 경험·경험 없음'
+        : '월지·일지 육합에서 확인할 두 주제의 연결·분리·반대 경험·경험 없음'}` };
   }
   const questions = [...combined.questions, strength.question];
-  return { policy: 'natal-work-context-v7', kind: 'conditional_structural_reading',
+  return { policy: 'natal-work-context-v8', kind: 'conditional_structural_reading',
     dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem,
-    strength, monthDayChung, monthDayYukhap, experienceQuestions: questions,
+    strength, monthDayChung, monthDayYukhap, monthDayCompound, experienceQuestions: questions,
     blocks: [{ label: '같은 일주여도 달라지는 부분', lines: [overview] },
       { label: '표현·결과·책임의 구성', lines: roleLines },
       { label: '함께 읽으면', lines: [combined.synthesis,
         ...(monthDayChung.facts ? [monthDayChung.facts, monthDayChung.interpretation] : []),
-        ...(monthDayYukhap.facts ? [monthDayYukhap.facts, monthDayYukhap.interpretation] : []),
+        ...(yukhapReading.facts ? [yukhapReading.facts, yukhapReading.interpretation] : []),
         synthesis, strength.facts, strength.hypothesis, strength.roots.facts, strength.roots.interpretation] },
       { label: '경험으로 확인할 부분', lines: [...questions.map(q => q.prompt),
         '답을 통해 실제 맡은 역할과 상황을 더 구체적으로 물을 수 있고, 경험이 없다면 없다고 말해도 돼요. 맞지 않는 경험도 함께 살피며, 답만으로 사주가 맞았다거나 적성을 확인했다고 판단하지 않아요.'] }],

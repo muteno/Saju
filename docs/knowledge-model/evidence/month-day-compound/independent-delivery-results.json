@@ -1,0 +1,131 @@
+{
+  "consumerChecks": 40,
+  "responseChecks": 190,
+  "promptChecks": 190,
+  "unknownChecks": 40,
+  "networkRequests": 0,
+  "deepFrozenReports": 8,
+  "sharedPositionArrays": 2,
+  "profiles": [
+    {
+      "input": {
+        "year": 2024,
+        "month": 2,
+        "day": 5,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "compound": "present",
+      "yukhap": "present",
+      "chung": "absent"
+    },
+    {
+      "input": {
+        "year": 2023,
+        "month": 5,
+        "day": 14,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "compound": "present",
+      "yukhap": "present",
+      "chung": "absent"
+    },
+    {
+      "input": {
+        "year": 2023,
+        "month": 1,
+        "day": 18,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "compound": "absent",
+      "yukhap": "present",
+      "chung": "absent"
+    },
+    {
+      "input": {
+        "year": 2023,
+        "month": 4,
+        "day": 9,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "compound": "absent",
+      "yukhap": "present",
+      "chung": "absent"
+    },
+    {
+      "input": {
+        "year": 2023,
+        "month": 11,
+        "day": 5,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "compound": "absent",
+      "yukhap": "present",
+      "chung": "absent"
+    },
+    {
+      "input": {
+        "year": 2023,
+        "month": 8,
+        "day": 4,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "compound": "absent",
+      "yukhap": "present",
+      "chung": "absent"
+    },
+    {
+      "input": {
+        "year": 2025,
+        "month": 7,
+        "day": 2,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "compound": "absent",
+      "yukhap": "absent",
+      "chung": "absent"
+    },
+    {
+      "input": {
+        "year": 2024,
+        "month": 4,
+        "day": 28,
+        "hour": 12,
+        "minute": 0,
+        "gender": "F",
+        "solarTimeCorrection": false,
+        "lateZiRule": "keepDay"
+      },
+      "compound": "absent",
+      "yukhap": "absent",
+      "chung": "present"
+    }
+  ]
+}
