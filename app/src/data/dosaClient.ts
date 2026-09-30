@@ -13,10 +13,12 @@ export const MENU_PROMPT = '또 궁금한 것이 있는가?'
 export const MAX_FEEDBACK_MESSAGES = 40
 
 /** The comparison the reading shows and asks about: the stem–stem decision first, else the
- * stem–branch rooting decision. Kept here (not in the engine) so an older pinned engine still runs. */
-export function activeWorkDecision(context: Pick<ContextReading, 'decision'> & { rootingDecision?: ContextReading['rootingDecision'] } | null | undefined) {
+ * stem–branch rooting decision, else the branch season decision. Kept here (not in the engine) so an
+ * older pinned engine still runs. */
+export function activeWorkDecision(context: Pick<ContextReading, 'decision'> & { rootingDecision?: ContextReading['rootingDecision']; branchDecision?: ContextReading['branchDecision'] } | null | undefined) {
   if (context?.decision?.active) return context.decision
-  return context?.rootingDecision?.active ? context.rootingDecision : context?.decision ?? null
+  if (context?.rootingDecision?.active) return context.rootingDecision
+  return context?.branchDecision?.active ? context.branchDecision : context?.decision ?? null
 }
 
 /** Calculation limits belong to the app and survive a generated/late answer. */

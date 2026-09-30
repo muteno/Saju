@@ -77,7 +77,9 @@ test('every day master: side, features and mode follow the independent rooting r
     // The F04 capacity sentence (재관을 받아들이고 … 감당) is not used, and nothing is promised.
     for(const line of rd.lines)assert.ok(!/감당|받아들일 수|확률/.test(line),line);
    }else{
-    assert.equal(rd.question,null);assert.deepEqual(rd.lines,[]);assert.equal(r.experienceQuestions.length,3);
+    assert.equal(rd.question,null);assert.deepEqual(rd.lines,[]);
+    // A withheld rooting comparison may hand over to the branch season comparison (PR232); otherwise nothing changes.
+    if(r.branchDecision?.active)assert.deepEqual(r.experienceQuestions,[r.branchDecision.question]);else assert.equal(r.experienceQuestions.length,3);
     assert.ok(!lines.includes(ROOTING_LIMIT));
    }
   }}
@@ -92,7 +94,8 @@ test('same 甲戌 day: 관성 only in 戌\'s 辛 is withheld, 관성 as the 申 
  assert.deepEqual(POS.map(q=>pillar(chart(1980,1,2,8).pillarsIdx[q])),['己未','丙子','甲戌','戊辰']);
  assert.deepEqual(POS.map(q=>pillar(chart(1980,1,2,16).pillarsIdx[q])),['己未','丙子','甲戌','壬申']);
  assert.equal(a.decision.mode,'scope-withheld');assert.equal(b.decision.mode,'scope-withheld'); // same before
- assert.equal(a.rootingDecision.mode,'hidden-only');assert.equal(a.experienceQuestions.length,3);
+ assert.equal(a.rootingDecision.mode,'hidden-only'); // PR232: 戌's season body (가을) carries 관성; see test_branch_season.mjs
+ assert.equal(a.branchDecision.mode,'season-shaken');assert.deepEqual(a.experienceQuestions,[a.branchDecision.question]);
  assert.match(a.rootingDecision.reason,/체용론/);
  assert.equal(b.rootingDecision.mode,'grounded-link');assert.deepEqual(b.experienceQuestions,[b.rootingDecision.question]);
  const link=b.rootingDecision.roots[0].places.find(x=>x.link);

@@ -245,6 +245,23 @@ const ROOTING_NAMES = {
     'separate-roots': '기준·책임을 맡는 일과 성과·자원의 환경을 따로 읽는 풀이', 'surface-only': '기준·책임을 맡는 일이 뿌리 없이 드러나 있다는 풀이' },
 };
 const OUTSIDE_ROOTING = '앞에서 본 강약·지장간·지지끼리의 관계와, 천간끼리의 비교·지지 안의 복합 작용(체용)·운의 시기는 아직 이 비교에 합치지 않았어요. 궁금한 점을 직접 물어보면 이어서 볼게요.';
+// Branch season decisions (branchSeasonCandidates.js, PR232) ask the same link question: a branch link and a
+// rooting in a season body predict help; a resource-diverted or separate reading predicts none.
+const BRANCH_EFFECTS = {
+  'branch-link': ROOTING_EFFECTS['grounded-link'], 'branch-diverted': ROOTING_EFFECTS['separate-roots'],
+  'season-grounded': ROOTING_EFFECTS['grounded-link'], 'season-shaken': ROOTING_EFFECTS['shaken-link'],
+  'season-separate': ROOTING_EFFECTS['separate-roots'], 'season-surface': ROOTING_EFFECTS['surface-only'],
+};
+const BRANCH_FAMILY = { 'branch-link': 'link', 'branch-diverted': 'diverted', 'season-grounded': 'grounded', 'season-shaken': 'shaken', 'season-separate': 'separate', 'season-surface': 'separate' };
+const BRANCH_NAMES = {
+  both: { 'branch-link': '성과·자원의 환경이 기준·책임의 환경으로 이어지기 수월하다는 풀이',
+    'branch-diverted': '성과·자원과 기준·책임의 환경이 배움·준비 쪽으로 묶여 곧바로 이어지지 않는다는 풀이' },
+  wealth: { 'season-grounded': '성과·자원을 다루는 일이 계절로 품은 기준·책임의 환경에 근거한다는 풀이', 'season-shaken': '성과·자원을 다루는 일의 근거인 기준·책임의 계절 환경이 흔들린다는 풀이',
+    'season-separate': '성과·자원을 다루는 일과 기준·책임의 계절 환경을 따로 읽는 풀이', 'season-surface': '성과·자원을 다루는 일이 뿌리 없이 드러나 있다는 풀이' },
+  authority: { 'season-grounded': '기준·책임을 맡는 일이 계절로 품은 성과·자원의 환경에 근거한다는 풀이', 'season-shaken': '기준·책임을 맡는 일의 근거인 성과·자원의 계절 환경이 흔들린다는 풀이',
+    'season-separate': '기준·책임을 맡는 일과 성과·자원의 계절 환경을 따로 읽는 풀이', 'season-surface': '기준·책임을 맡는 일이 뿌리 없이 드러나 있다는 풀이' },
+};
+const OUTSIDE_BRANCH = '앞에서 본 강약·지장간과 지지의 다른 관계(충·형 등), 천간끼리의 비교·운의 시기는 아직 이 비교에 합치지 않았어요. 궁금한 점을 직접 물어보면 이어서 볼게요.';
 const afterOf = (question, kind) => EFFECT_AFTER[question.effects?.[kind]] ?? AFTER[kind];
 const mergeEvidence = (prev, next) => (prev == null ? next : next == null || next === prev ? prev : 'conflict');
 
@@ -255,6 +272,12 @@ export function feedbackPlan(decision) {
   const mode = decision.mode, own = { id: decision.question.id, prompt: decision.question.prompt, candidate: mode, name: NAMES[mode] };
   if (decision.policy === 'stem-branch-rooting-v1') return ROOTING_EFFECTS[mode]
     ? { mode, outside: OUTSIDE_ROOTING, first: { ...own, kind: 'duty', name: ROOTING_NAMES[decision.side][mode], effects: ROOTING_EFFECTS[mode], themes: ROOTING_THEMES[decision.side] } }
+    : null;
+  // Both groups only in the branches ask whether the wealth environment helped the authority role; one side in
+  // the stems asks the rooting question of that side (the other group's environment is a storage branch's season).
+  if (decision.policy === 'branch-season-v1') return BRANCH_EFFECTS[mode]
+    ? { mode, outside: OUTSIDE_BRANCH, first: { ...own, kind: 'duty', name: BRANCH_NAMES[decision.side ?? 'both'][mode], effects: BRANCH_EFFECTS[mode],
+      themes: ROOTING_THEMES[decision.side ?? 'authority'], family: BRANCH_FAMILY[mode] } }
     : null;
   const outside = decision.policy === 'stem-resource-authority-v1' ? OUTSIDE_STEM : OUTSIDE;
   if (mode === 'food-response' || mode === 'peer-response')
@@ -308,7 +331,8 @@ function rootingRevision(plan, question, kind) {
   }[kind];
   if (withheld) return { status: withheld, core: null, note: null };
   const scoped = `고친 풀이: ${envTheme} 환경이 ${work}에 도움이 된 범위와 그렇지 않은 범위가 함께 있다고 좁혀 읽어요. 두 범위를 가르는 조건은 명식이 아니라 말해 준 경험에서 왔어요.`;
-  const shaken = plan.mode === 'shaken-link';
+  const family = question.family ?? (plan.mode === 'shaken-link' ? 'shaken' : plan.mode === 'grounded-link' ? 'grounded' : 'separate');
+  const shaken = family === 'shaken';
   return {
     retain: { status: `말해 준 경험 범위에서 ${name}를 유지해요. 처음부터 명식만으로 맞힌 것으로 세지는 않아요.`,
       core: !shaken ? null : kind === 'mixed'
@@ -316,11 +340,17 @@ function rootingRevision(plan, question, kind) {
         : `고친 풀이: 그 환경이 도움이 되지 않았거나 부딪힌 경험은 뿌리 지지가 흔들린다는 풀이와 같은 방향이에요. 다만 그 이유가 충·형 때문인지는 명식만으로 정하지 않아요. ${NOT_A_HIT}` },
     'retain-link': { status: `말해 준 경험 범위에서 ${envTheme} 환경에 근거한다는 부분은 받아들여요.`,
       core: `고친 풀이: ${envTheme} 환경이 ${work}에 도움이 된 경험을 받아들이고, 그 근거가 흔들린다는 부분은 확인되지 않은 가설로 둬요. ${NOT_A_HIT}` },
-    weaken: plan.mode === 'grounded-link'
+    weaken: family === 'grounded'
       ? { status: `말해 준 반대 경험을 반영해 ${name}를 낮춰요.`,
         core: `고친 풀이: 뿌리로 이어진 자리는 원국 관찰로 남기되, ${envTheme} 환경이 ${work}에 도움이 되지 않았거나 부딪힌 경험을 반영해 ‘그 환경을 근거로 나온다’는 해석을 낮춰요. 따로 움직였는지 부딪혔는지는 아직 몰라요. ${NOT_A_HIT}` }
-      : { status: `말해 준 경험을 반영해 ${name}를 낮춰요.`,
-        core: `고친 풀이: 원국의 뿌리 자리로는 보이지 않던 연결이 경험에서는 있었어요. 이 비교로는 그 연결을 설명하지 못해요. ${plan.outside}` },
+      : family === 'link'
+        ? { status: `말해 준 반대 경험을 반영해 ${name}를 낮춰요.`,
+          core: `고친 풀이: 같은 계절이나 삼합으로 이어진 자리는 원국 관찰로 남기되, ${envTheme} 환경이 ${work}에 도움이 되지 않았거나 부딪힌 경험을 반영해 ‘이어지기 수월하다’는 해석을 낮춰요. 따로 움직였는지 부딪혔는지는 아직 몰라요. ${NOT_A_HIT}` }
+        : family === 'diverted'
+          ? { status: `말해 준 경험을 반영해 ${name}를 낮춰요.`,
+            core: `고친 풀이: 원국에서는 두 환경이 배움·준비 쪽으로 묶인다고 봤지만, 경험에서는 ${envTheme} 환경이 ${work}에 바로 도움이 됐어요. 이 비교로는 그 연결을 설명하지 못해요. ${plan.outside}` }
+          : { status: `말해 준 경험을 반영해 ${name}를 낮춰요.`,
+            core: `고친 풀이: 원국의 뿌리 자리로는 보이지 않던 연결이 경험에서는 있었어요. 이 비교로는 그 연결을 설명하지 못해요. ${plan.outside}` },
     scope: { status: `경험을 나눠서 볼게요. 도움이 된 쪽에서는 ${name}를 유지하고, 그렇지 않았던 쪽에서는 낮춰요.`, core: scoped },
     'scope-reversed': { status: `경험을 나눠서 볼게요. 도움이 된 쪽에서는 ${name}를 낮추고, 그렇지 않았던 쪽에서는 유지해요.`, core: scoped },
   }[effect] ?? { status: null, core: null, note: null };

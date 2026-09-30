@@ -511,6 +511,14 @@ test('한쪽만 천간인 재성·관성을 천간–지지 뿌리(통근)로 �
   assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 6\b/)
 })
 
+test('두 판정이 닿지 않는 재성·관성을 지지의 계절 본체·삼합 방향으로 비교하고 조건에 따라 답을 다르게 고친다', () => {
+  const env={...process.env};delete env.NODE_TEST_CONTEXT
+  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_branch_season.mjs'],{
+    cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:150000,env,stdio:['ignore','pipe','pipe'],
+  })
+  assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 4\b/)
+})
+
 test('자연어 경험 답을 표시된 질문·후보와 연결해 확인·수정한다', () => {
   const env={...process.env};delete env.NODE_TEST_CONTEXT
   const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_work_feedback.mjs'],{

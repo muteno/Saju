@@ -1,6 +1,7 @@
 import type { WorkDecision } from './workCandidates.js';
 import type { RootingDecision } from './rootingCandidates.js';
-export type FeedbackDecision = WorkDecision | RootingDecision;
+import type { BranchDecision } from './branchSeasonCandidates.js';
+export type FeedbackDecision = WorkDecision | RootingDecision | BranchDecision;
 export type FeedbackKind = 'supported' | 'contradicted' | 'no-experience' | 'unanswered' | 'unsure' | 'mixed'
   | 'clarify:ambiguous-negative' | 'clarify:partial' | 'clarify:help-unanswered' | 'clarify:other-means' | 'clarify:unclear';
 export interface AnswerClause { text: string; core: string; contrast: boolean }
@@ -9,7 +10,8 @@ export interface FeedbackRead {
   segments: (AnswerClause & { tag: string | null; up: boolean; down: boolean })[]; demandEvidence: 'up' | 'down' | null;
 }
 export interface FeedbackQuestion { id: string; prompt: string; kind: 'help' | 'duty' | 'demand'; candidate: string; name: string; means?: string; meansCue?: 'self' | 'others';
-  effects?: Partial<Record<FeedbackKind, 'retain' | 'retain-link' | 'weaken' | 'scope' | 'scope-reversed'>>; themes?: { stem: string; env: string; work: string; envTheme: string; grounded: string } }
+  effects?: Partial<Record<FeedbackKind, 'retain' | 'retain-link' | 'weaken' | 'scope' | 'scope-reversed'>>; themes?: { stem: string; env: string; work: string; envTheme: string; grounded: string };
+  family?: 'grounded' | 'shaken' | 'separate' | 'link' | 'diverted' }
 export interface FeedbackPlan { mode: string; outside: string; first: FeedbackQuestion; demand?: FeedbackQuestion }
 export type FeedbackStatus = 'retained-as-self-report' | 'weakened' | 'withheld' | 'scoped' | 'unconfirmed';
 export interface FeedbackState {
