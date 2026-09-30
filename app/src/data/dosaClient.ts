@@ -38,9 +38,13 @@ export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[
   if (yukhapReading?.status === 'present' && yukhapReading.facts) notices.push(yukhapReading.facts)
   const hyeong = report.sections.find(s => s.id === 'context-reading')?.context?.monthDayHyeong
   if (hyeong?.status === 'present' && hyeong.facts) notices.push(hyeong.facts)
-  const decision = activeWorkDecision(report.sections.find(s => s.id === 'context-reading')?.context)
-  if (decision?.active && decision.question && lines.some(line => line.text === decision.question?.prompt))
+  const context = report.sections.find(s => s.id === 'context-reading')?.context
+  const decision = activeWorkDecision(context)
+  if (decision?.active && decision.question && lines.some(line => line.text === decision.question?.prompt)) {
     notices.push(...decision.lines)
+    // The 대운 periods read apart from the chart travel with the comparison they belong to (absent in older engines).
+    if (context?.daeunTiming?.active) notices.push(...context.daeunTiming.lines)
+  }
   return notices
 }
 

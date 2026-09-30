@@ -519,6 +519,14 @@ test('두 판정이 닿지 않는 재성·관성을 지지의 계절 본체·삼
   assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 4\b/)
 })
 
+test('뿌리 없는 천간·충 받은 뿌리의 원국 풀이에 대운의 뿌리·합 시기 후보를 원국과 따로 붙인다', () => {
+  const env={...process.env};delete env.NODE_TEST_CONTEXT
+  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_daeun_timing.mjs'],{
+    cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:150000,env,stdio:['ignore','pipe','pipe'],
+  })
+  assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 4\b/)
+})
+
 test('자연어 경험 답을 표시된 질문·후보와 연결해 확인·수정한다', () => {
   const env={...process.env};delete env.NODE_TEST_CONTEXT
   const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_work_feedback.mjs'],{
