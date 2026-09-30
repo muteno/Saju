@@ -273,7 +273,8 @@ export function feedbackPlan(decision) {
   if (decision.policy === 'stem-branch-rooting-v1') return ROOTING_EFFECTS[mode]
     ? { mode, outside: OUTSIDE_ROOTING, first: { ...own, kind: 'duty', name: ROOTING_NAMES[decision.side][mode], effects: ROOTING_EFFECTS[mode], themes: ROOTING_THEMES[decision.side] } }
     : null;
-  // Both groups only in the branches ask whether the wealth environment helped the authority role.
+  // Both groups only in the branches ask whether the wealth environment helped the authority role; one side in
+  // the stems asks the rooting question of that side (the other group's environment is a storage branch's season).
   if (decision.policy === 'branch-season-v1') return BRANCH_EFFECTS[mode]
     ? { mode, outside: OUTSIDE_BRANCH, first: { ...own, kind: 'duty', name: BRANCH_NAMES[decision.side ?? 'both'][mode], effects: BRANCH_EFFECTS[mode],
       themes: ROOTING_THEMES[decision.side ?? 'authority'], family: BRANCH_FAMILY[mode] } }
