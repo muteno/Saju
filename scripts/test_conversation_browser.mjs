@@ -10,7 +10,8 @@ const server=await createServer({root:root+'app',logLevel:'silent',server:{host:
 const base=`http://127.0.0.1:${server.httpServer.address().port}`;
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/tmp/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
 const results=[];
-const QUERY='/talk?y=2024&mo=2&d=20&t=12:00&g=F&city=서울&sc=0&lz=0&hu=0&n=검수';
+// 2024-02-20 12:00 shows a stem–branch rooting candidate since PR231; 2024-11-29 12:00 asks the same three questions (no month/day relation).
+const QUERY='/talk?y=2024&mo=11&d=29&t=12:00&g=F&city=서울&sc=0&lz=0&hu=0&n=검수';
 const FOLLOWUP='그때 본인이 정할 수 있었던 범위가 있었나요?';
 async function open({motion='reduce',query=QUERY,width=390}={}){
   const page=await browser.newPage({viewport:{width,height:844},reducedMotion:motion});page.setDefaultTimeout(8000);

@@ -51,9 +51,12 @@ test('every day master: ten gods, 편관 combinations and the selected candidate
    assert.equal(d.active,ACTIVE.has(d.mode));
    assert.equal(d.policy,jia?'jia-stem-resource-authority-v1':'stem-resource-authority-v1');
    const lines=r.blocks[2].lines;
-   if(!d.active){assert.equal(d.question,null);assert.deepEqual(d.lines,[]);assert.equal(r.experienceQuestions.length,3);
+   // A withheld stem comparison asks nothing itself; one-side charts may hand over to the rooting comparison (PR231).
+   if(!d.active){assert.equal(d.question,null);assert.deepEqual(d.lines,[]);
+    assert.equal(r.experienceQuestions.length,r.rootingDecision?.active?1:3);
     for(const line of lines)assert.ok(!line.includes('해석 가설이에요. 참고 자료의 예시는'));}
-   else{assert.equal(r.experienceQuestions.length,1);assert.deepEqual(lines.slice(0,d.lines.length),d.lines);
+   else{assert.equal(r.rootingDecision,null); // both groups in the stems: no rooting comparison
+    assert.equal(r.experienceQuestions.length,1);assert.deepEqual(lines.slice(0,d.lines.length),d.lines);
     assert.equal(d.lines.at(-1),jia?WORK_CANDIDATE_LIMIT:`${NAMES[day%10]} 일간의 천간 글자만 비교한 해석 가설이에요. 참고 자료의 예시는 갑목·병화 일간 몇 개뿐이라, 다른 일간에는 같은 십성 관계를 넓혀 적용했어요. 이 비교에는 지장간·강약·합의 실제 작용과 운의 시기를 넣지 않았고, 직업 적성·성공·개인 사건을 정하지 않아요.`);
     // The month/hour roles the strength line points back to stay on screen.
     assert.ok(lines[d.lines.length].includes('의 조합에서는'),at);assert.ok(lines.includes(r.strength.hypothesis));}
@@ -106,7 +109,11 @@ test('甲 keeps PR227 wording; only a 편관 in the month stem withholds the 겁
  assert.equal(month.mode,'condition-withheld');assert.equal(month.features.peerKillingCombination,null);assert.equal(month.active,false);
  const hidden=buildContextReading(mock({year:8,month:14,day:50,hour:2}));
  assert.equal(hidden.decision.mode,'scope-withheld');assert.equal(hidden.decision.active,false);assert.equal(hidden.decision.question,null);
- assert.equal(hidden.experienceQuestions.length,3);assert.ok(!hidden.blocks[2].lines.some(l=>l.startsWith('재성·관성 주제는 원국에 있지만')));
+ assert.ok(!hidden.blocks[2].lines.some(l=>l.startsWith('재성·관성 주제는 원국에 있지만')));
+ // 壬申 戊寅 甲寅 丙寅: 戊 roots in the 申 whose principal is 편관, and 寅申충 hits it — the rooting comparison takes the question (PR231).
+ assert.equal(hidden.rootingDecision.mode,'shaken-link');assert.deepEqual(hidden.experienceQuestions,[hidden.rootingDecision.question]);
+ const kept=buildContextReading(chart(1980,1,2,8)); // 관성 only in 戌's 辛: both comparisons withheld, the existing reading stays
+ assert.equal(kept.decision.mode,'scope-withheld');assert.equal(kept.rootingDecision.mode,'hidden-only');assert.equal(kept.experienceQuestions.length,3);
  assert.match(hidden.decision.interpretation,/천간끼리의 관계로 설명하는 후보는 보류/); // kept for the record, not shown
 });
 

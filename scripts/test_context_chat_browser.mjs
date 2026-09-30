@@ -40,23 +40,24 @@ try{
     const started=Date.now();while(!held.length&&Date.now()-started<5000)await page.waitForTimeout(50);
     assert.ok(held.length,'work request must be held');
     const ground=held[0].body.grounds;
-    const q1=ground.find(g=>g.text.startsWith('최근 맡은 일에서 스스로 정한 부분')).text;
-    const q2=ground.find(g=>g.text.startsWith('표현·실행, 결과·자원 관리')).text;
-    const q3=ground.find(g=>g.text.startsWith('점수에 따로 세지 않은 지장간')).text;
+    // The owned questions come from the reading itself: since PR231 this 갑인 chart (庚 편관 without a root, 재성 as
+    // the 辰 principal) shows the stem–branch rooting comparison and asks its one question instead of three.
+    const qs=await page.evaluate(async()=>{const {parseShare}=await import('/src/data/profiles.ts'),{buildReading}=await import('/src/engine/index.js');
+      return buildReading(parseShare(location.search).input).sections.find(s=>s.id==='context-reading').context.experienceQuestions.map(q=>q.prompt);});
+    assert.equal(qs.length,1);for(const q of qs)assert.ok(ground.some(g=>g.text===q),'owned question in grounds');
+    const q1=qs[0];
     const limit=ground.find(g=>g.text.startsWith('답을 통해 실제 맡은 역할')).text;
     if(mode==='after-question'){
       for(let i=0;i<50&&!(await log.innerText()).includes(q1);i++)assert.ok(await next(page),'must reach first question');
       assert.ok((await log.innerText()).includes(q1));
     }
-    const response=`${q1} ${q2} ${q3} ${limit}\n\n`+Array.from({length:12},(_,i)=>`생성 본문 ${i+1}을 확인해요.`).join('\n\n');
+    const response=`${qs.join(' ')} ${limit}\n\n`+Array.from({length:12},(_,i)=>`생성 본문 ${i+1}을 확인해요.`).join('\n\n');
     await held[0].route.fulfill({status:200,json:{text:response}});
     await page.waitForTimeout(150);
     for(let i=0;i<70;i++){if(!await next(page))break;}
     const text=await log.innerText();
-    assert.equal(text.split(q1).length-1,1,`${mode}: first question exactly once`);
-    assert.equal(text.split(q2).length-1,1,`${mode}: second question exactly once`);
-    assert.equal(text.split(q3).length-1,1,`${mode}: third question exactly once`);
-    assert.ok(text.indexOf(q2)<text.indexOf(q3),`${mode}: third question after second`);
+    for(const q of qs)assert.equal(text.split(q).length-1,1,`${mode}: owned question exactly once`);
+    for(let i=1;i<qs.length;i++)assert.ok(text.indexOf(qs[i-1])<text.indexOf(qs[i]),`${mode}: owned questions keep their order`);
     assert.equal(text.split(limit).length-1,1,`${mode}: question limit exactly once`);
     if(mode==='early'){
       assert.ok(text.includes('생성 본문 1을 확인해요.'));
@@ -69,7 +70,7 @@ try{
     assert.deepEqual(errors,[]);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),390);
     await page.screenshot({path:`${out}/${mode}.png`});
     await writeFile(`${out}/${mode}.txt`,text);
-    results.push({mode,questions:3,duplicates:0,errors,fullBody:mode==='early'?'generated':'local'});
+    results.push({mode,questions:qs.length,duplicates:0,errors,fullBody:mode==='early'?'generated':'local'});
     await page.close();
   }
   await writeFile(`${out}/result.json`,JSON.stringify(results,null,2)+'\n');console.log(JSON.stringify(results));

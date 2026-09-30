@@ -16,8 +16,9 @@ const server=await createServer({root:root+'/app',cacheDir:out+'/vite-cache',log
 const base=`http://127.0.0.1:${server.httpServer.address().port}`;
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/tmp/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage'],env:{...process.env,FONTCONFIG_PATH:process.env.FONTCONFIG_PATH||'/etc/fonts'}});
 const results=[];
-// 2024-04-28 12:00 (壬午 hour) shows a 식신 work candidate since PR230 and asks one question; 10:00 keeps the relation questions.
-const dates=[{id:'2024-04-28',mo:4,d:28,t:'10:00',ilju:'임술',same:true},{id:'2024-10-06',mo:10,d:6,ilju:'계묘',same:false}];
+// 2024-04-28 12:00 (壬午 hour) shows a 식신 work candidate since PR230, and 10:00 (乙巳) and 2024-10-06 12:00 (戊午) show a
+// stem–branch rooting candidate since PR231; each asks one question. 08:00 and 14:00 keep the relation questions.
+const dates=[{id:'2024-04-28',mo:4,d:28,t:'08:00',ilju:'임술',same:true},{id:'2024-10-06',mo:10,d:6,t:'14:00',ilju:'계묘',same:false}];
 const norm=s=>s.replace(/(?:도사|나):/g,'').replace(/\s+/g,' ').trim();
 const clauses=s=>s.split(/(?<=[.?!…])\s+/).filter(Boolean);
 const count=(text,part)=>norm(text).split(norm(part)).length-1;

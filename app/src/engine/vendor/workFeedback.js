@@ -5,6 +5,7 @@
 // clarifying question; questions, other topics and cue-less text go to normal chat.
 // Nothing is stored, learned, scored or shown as a probability.
 import { WORK_QUESTIONS, EXPLICIT_ANSWERS } from './workCandidates.js';
+import { ROOTING_THEMES } from './rootingCandidates.js';
 
 const norm = text => String(text ?? '').replace(/\s+/g, ' ').trim();
 const bare = text => norm(text).replace(/(?:^|\s)[ㅋㅎㅠㅜ]{2,}(?=\s|$)/gu, ' ').replace(/[.!。!~…]+$/u, '').trim();
@@ -227,6 +228,24 @@ const OFFERED = {
   'clarify:other-means': FEEDBACK_KINDS, 'clarify:unclear': FEEDBACK_KINDS,
 };
 const AFTER = { supported: 'retained-as-self-report', contradicted: 'weakened', 'no-experience': 'withheld', unanswered: 'withheld', unsure: 'withheld', mixed: 'scoped' };
+// Stem–branch rooting (rootingCandidates.js) asks one link question in every mode; the chart condition
+// decides whether the same answer keeps or lowers the reading (a link is predicted only when rooted in
+// the other group's branch; 'shaken' predicts help at some times and not at others).
+const ROOTING_EFFECTS = {
+  'grounded-link': { supported: 'retain', contradicted: 'weaken', mixed: 'scope' },
+  'shaken-link': { supported: 'retain-link', contradicted: 'retain', mixed: 'retain' },
+  'separate-roots': { supported: 'weaken', contradicted: 'retain', mixed: 'scope-reversed' },
+  'surface-only': { supported: 'weaken', contradicted: 'retain', mixed: 'scope-reversed' },
+};
+const EFFECT_AFTER = { retain: 'retained-as-self-report', 'retain-link': 'retained-as-self-report', weaken: 'weakened', scope: 'scoped', 'scope-reversed': 'scoped' };
+const ROOTING_NAMES = {
+  wealth: { 'grounded-link': '성과·자원을 다루는 일이 기준·책임의 환경에 근거한다는 풀이', 'shaken-link': '성과·자원을 다루는 일의 근거인 기준·책임의 환경이 흔들린다는 풀이',
+    'separate-roots': '성과·자원을 다루는 일과 기준·책임의 환경을 따로 읽는 풀이', 'surface-only': '성과·자원을 다루는 일이 뿌리 없이 드러나 있다는 풀이' },
+  authority: { 'grounded-link': '기준·책임을 맡는 일이 성과·자원의 환경에 근거한다는 풀이', 'shaken-link': '기준·책임을 맡는 일의 근거인 성과·자원의 환경이 흔들린다는 풀이',
+    'separate-roots': '기준·책임을 맡는 일과 성과·자원의 환경을 따로 읽는 풀이', 'surface-only': '기준·책임을 맡는 일이 뿌리 없이 드러나 있다는 풀이' },
+};
+const OUTSIDE_ROOTING = '앞에서 본 강약·지장간·지지끼리의 관계와, 천간끼리의 비교·지지 안의 복합 작용(체용)·운의 시기는 아직 이 비교에 합치지 않았어요. 궁금한 점을 직접 물어보면 이어서 볼게요.';
+const afterOf = (question, kind) => EFFECT_AFTER[question.effects?.[kind]] ?? AFTER[kind];
 const mergeEvidence = (prev, next) => (prev == null ? next : next == null || next === prev ? prev : 'conflict');
 
 /** Question plan for a revisable decision: the first owned question and follow-ups. */
@@ -234,6 +253,9 @@ export function feedbackPlan(decision) {
   if (!decision?.active || !decision.question) return null;
   const demand = { id: 'work-candidate-resource-demand', prompt: WORK_QUESTIONS['resource-demand'], kind: 'demand', candidate: 'resource-demand', name: NAMES['resource-demand'] };
   const mode = decision.mode, own = { id: decision.question.id, prompt: decision.question.prompt, candidate: mode, name: NAMES[mode] };
+  if (decision.policy === 'stem-branch-rooting-v1') return ROOTING_EFFECTS[mode]
+    ? { mode, outside: OUTSIDE_ROOTING, first: { ...own, kind: 'duty', name: ROOTING_NAMES[decision.side][mode], effects: ROOTING_EFFECTS[mode], themes: ROOTING_THEMES[decision.side] } }
+    : null;
   const outside = decision.policy === 'stem-resource-authority-v1' ? OUTSIDE_STEM : OUTSIDE;
   if (mode === 'food-response' || mode === 'peer-response')
     return { mode, outside, first: { ...own, kind: 'help', means: MEANS[mode], meansCue: MEANS_CUE[mode] }, demand };
@@ -276,8 +298,37 @@ function clarifyText(read, question) {
   return `${quoted(read.text)} 답은 한 방향으로 정확히 읽기 어려워요. ${options} 둘 다였다면 어떤 때 그랬고 어떤 때 아니었는지 나눠 말해 주세요.`;
 }
 
+/** Rooting modes: the effect of an answer depends on the mode (ROOTING_EFFECTS). */
+function rootingRevision(plan, question, kind) {
+  const name = `‘${question.name}’`, { envTheme, work } = question.themes, effect = question.effects[kind];
+  const withheld = {
+    'no-experience': `그 경험이 없으므로 ${name}를 개인에게 적용하는 판단은 보류해요. 경험 없음은 반대 경험이나 능력 부족과 달라요.`,
+    unanswered: `답하지 않은 상태로 남겨 둘게요. ${name}는 확인되지 않은 가설로 두고, 동의하거나 반대한 것으로 처리하지 않아요.`,
+    unsure: `확실하지 않다면 ${name}는 확인되지 않은 가설로 둘게요.`,
+  }[kind];
+  if (withheld) return { status: withheld, core: null, note: null };
+  const scoped = `고친 풀이: ${envTheme} 환경이 ${work}에 도움이 된 범위와 그렇지 않은 범위가 함께 있다고 좁혀 읽어요. 두 범위를 가르는 조건은 명식이 아니라 말해 준 경험에서 왔어요.`;
+  const shaken = plan.mode === 'shaken-link';
+  return {
+    retain: { status: `말해 준 경험 범위에서 ${name}를 유지해요. 처음부터 명식만으로 맞힌 것으로 세지는 않아요.`,
+      core: !shaken ? null : kind === 'mixed'
+        ? `고친 풀이: 그 환경이 도움이 된 때와 그렇지 않은 때가 함께 있었다는 경험은 뿌리 지지가 흔들린다는 풀이와 같은 방향이에요. 두 경우를 가르는 조건은 명식이 아니라 말해 준 경험에서 왔어요. ${NOT_A_HIT}`
+        : `고친 풀이: 그 환경이 도움이 되지 않았거나 부딪힌 경험은 뿌리 지지가 흔들린다는 풀이와 같은 방향이에요. 다만 그 이유가 충·형 때문인지는 명식만으로 정하지 않아요. ${NOT_A_HIT}` },
+    'retain-link': { status: `말해 준 경험 범위에서 ${envTheme} 환경에 근거한다는 부분은 받아들여요.`,
+      core: `고친 풀이: ${envTheme} 환경이 ${work}에 도움이 된 경험을 받아들이고, 그 근거가 흔들린다는 부분은 확인되지 않은 가설로 둬요. ${NOT_A_HIT}` },
+    weaken: plan.mode === 'grounded-link'
+      ? { status: `말해 준 반대 경험을 반영해 ${name}를 낮춰요.`,
+        core: `고친 풀이: 뿌리로 이어진 자리는 원국 관찰로 남기되, ${envTheme} 환경이 ${work}에 도움이 되지 않았거나 부딪힌 경험을 반영해 ‘그 환경을 근거로 나온다’는 해석을 낮춰요. 따로 움직였는지 부딪혔는지는 아직 몰라요. ${NOT_A_HIT}` }
+      : { status: `말해 준 경험을 반영해 ${name}를 낮춰요.`,
+        core: `고친 풀이: 원국의 뿌리 자리로는 보이지 않던 연결이 경험에서는 있었어요. 이 비교로는 그 연결을 설명하지 못해요. ${plan.outside}` },
+    scope: { status: `경험을 나눠서 볼게요. 도움이 된 쪽에서는 ${name}를 유지하고, 그렇지 않았던 쪽에서는 낮춰요.`, core: scoped },
+    'scope-reversed': { status: `경험을 나눠서 볼게요. 도움이 된 쪽에서는 ${name}를 낮추고, 그렇지 않았던 쪽에서는 유지해요.`, core: scoped },
+  }[effect] ?? { status: null, core: null, note: null };
+}
+
 /** Status sentence, revised core and note for one applied answer. */
 function revision(plan, question, kind, state, evidence) {
+  if (question.effects) return { note: null, ...rootingRevision(plan, question, kind) };
   const name = `‘${question.name}’`, first = plan.first, isFirst = question.id === first.id;
   const prior = !isFirst && first.kind === 'help' ? state.feedback[first.candidate] : null;
   const priorNote = prior === 'weakened' ? `앞에서 낮춘 ‘${first.name}’는 그대로 낮춘 상태예요.`
@@ -350,7 +401,7 @@ export function advanceWorkFeedback(decision, plan, state, answer, { afterMenu =
     return result(base, state.feedback, { action: 'clarify', after: 'pending', nextQuestion: null, revisedInterpretation: null, note: null,
       text: clarifyText(read, question), state: { ...state, clarify: read.kind, evidence } });
   }
-  const feedback = { ...state.feedback, [question.candidate]: AFTER[read.kind] };
+  const feedback = { ...state.feedback, [question.candidate]: afterOf(question, read.kind) };
   const { status, core, note } = revision(plan, question, read.kind, state, evidence);
   let evidenceLine = null;
   if (question.kind === 'help' && plan.demand && evidence === 'up' && feedback[plan.demand.candidate] !== 'retained-as-self-report') {
@@ -362,7 +413,7 @@ export function advanceWorkFeedback(decision, plan, state, answer, { afterMenu =
   const next = askDemand ? plan.demand : null;
   const text = [understanding(read, question), status, evidenceLine, core, next ? note : null, next?.prompt,
     !next && note && !core ? note : null].filter(Boolean).join('\n\n');
-  return result(base, feedback, { action: 'revise', after: AFTER[read.kind], revisedInterpretation: core, note,
+  return result(base, feedback, { action: 'revise', after: afterOf(question, read.kind), revisedInterpretation: core, note,
     nextQuestion: next ? { id: next.id, prompt: next.prompt, targetCandidateId: next.candidate } : null, text,
     state: { ...state, pending: next ? 'demand' : null, clarify: null, evidence, feedback,
       reading: core ?? state.reading, asked: next ? [...state.asked, next.id] : state.asked } });

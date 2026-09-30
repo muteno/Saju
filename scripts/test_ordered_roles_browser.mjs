@@ -9,7 +9,9 @@ const server=await createServer({root:root+'/app',logLevel:'silent',server:{host
 const base=`http://127.0.0.1:${server.httpServer.address().port}`;
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/tmp/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
 const results=[];
-const dates=[{id:'2024-03-09-12',mo:3,d:9,t:'12:00',width:390,q1:'최근 직접 만들거나 실행한 일부터 떠올려 볼까요?'},{id:'2024-05-08-08',mo:5,d:8,t:'08:00',width:1280,q1:'최근 맡은 목표나 쓸 수 있는 시간·비용부터 떠올려 볼까요?'}];
+// 2024-03-09 12:00 and 2024-05-08 08:00 show a stem–branch rooting candidate since PR231 (one question);
+// these keep the same ordered month/hour roles with no work comparison shown.
+const dates=[{id:'2024-02-28-12',mo:2,d:28,t:'12:00',width:390,q1:'최근 직접 만들거나 실행한 일부터 떠올려 볼까요?'},{id:'2024-01-11-04',mo:1,d:11,t:'04:00',width:1280,q1:'최근 맡은 목표나 쓸 수 있는 시간·비용부터 떠올려 볼까요?'}];
 const normalize=s=>s.replace(/(?:도사|나):/g,'').replace(/\s+/g,' ').trim();
 const clauses=s=>s.split(/(?<=[.?!…])\s+/).filter(Boolean);
 async function next(page){
