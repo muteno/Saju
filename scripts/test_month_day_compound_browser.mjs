@@ -16,7 +16,7 @@ const server=await createServer({root:root+'/app',cacheDir:out+'/vite-cache',log
 const base=`http://127.0.0.1:${server.httpServer.address().port}`;
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/tmp/chromium',headless:true,args:['--no-sandbox','--disable-dev-shm-usage'],env:{...process.env,FONTCONFIG_PATH:process.env.FONTCONFIG_PATH||'/etc/fonts'}});
 const results=[];
-const dates=[{id:'2023-05-14',y:2023,mo:5,d:14,ilju:'임신',same:false},{id:'2024-02-05',y:2024,mo:2,d:5,ilju:'기해',same:false}];
+const dates=[{id:'2023-05-14',y:2023,mo:5,d:14,ilju:'임신',same:false},{id:'2024-02-05',y:2024,mo:2,d:5,t:'10:00',ilju:'기해',same:false}];
 const norm=s=>s.replace(/(?:도사|나):/g,'').replace(/\s+/g,' ').trim();
 const clauses=s=>s.split(/(?<=[.?!…])\s+/).filter(Boolean);
 const count=(text,part)=>norm(text).split(norm(part)).length-1;
@@ -31,7 +31,7 @@ async function open(date,width,target='직업',unknown=false){
  page.on('pageerror',e=>x.errors.push(e.message));
  await context.route('**/*',async route=>{const u=new URL(route.request().url());if(u.origin!==base){x.external.push(u.href);await route.abort();x.aborted.push(u.href);return;}
  if(u.pathname==='/api/dosa'){const body=route.request().postDataJSON();x.requests.push(body);if(body.topic===target&&!body.question){x.held.push({route,body});return;}return route.fulfill({status:503,json:{}});}return route.continue();});
- await page.goto(`${base}/talk?y=${date.y}&mo=${date.mo}&d=${date.d}&t=12:00&g=F&city=서울&sc=0&lz=0&hu=${unknown?1:0}&n=검수`);await page.getByRole('log').waitFor();
+ await page.goto(`${base}/talk?y=${date.y}&mo=${date.mo}&d=${date.d}&t=${date.t??'12:00'}&g=F&city=서울&sc=0&lz=0&hu=${unknown?1:0}&n=검수`);await page.getByRole('log').waitFor();
  x.model=await page.evaluate(async()=>{const {parseShare}=await import('/src/data/profiles.ts'),{buildReading}=await import('/src/engine/index.js'),{topicLines,TOPICS}=await import('/src/data/dosaTopics.ts'),{readingNotices,readingFollowups}=await import('/src/data/dosaClient.ts');const s=parseShare(location.search),r=buildReading(s.input),c=r.sections.find(s=>s.id==='context-reading')?.context;return {input:s.input,context:c,labels:Object.fromEntries(TOPICS.map(t=>[t.key,t.label])),workLines:topicLines(r,'직업'),personalityLines:topicLines(r,'성격'),notices:readingNotices(r,topicLines(r,'성격')),followups:readingFollowups(r,topicLines(r,'직업'))};});
  return x;
 }

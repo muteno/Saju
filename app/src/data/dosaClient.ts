@@ -4,13 +4,20 @@ import type { ReportBundle } from '../engine'
 import { withoutCitationLines } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
 import { resolveWorkFeedback, ownedFeedbackPrompts } from '../engine/vendor/workFeedback.js'
-import { CONTEXT_READING_NOTICE } from '../engine/vendor/contextReading.js'
+import { CONTEXT_READING_NOTICE, type ContextReading } from '../engine/vendor/contextReading.js'
 import { parseConversationContext, type ConversationContext, type ConversationMessage } from './conversationContext'
 
 /** The chat's own menu line after a reading; it may sit between a shown question and its answer. */
 export const MENU_PROMPT = '또 궁금한 것이 있는가?'
 /** Local feedback replay may look further back than the provider history (never sent). */
 export const MAX_FEEDBACK_MESSAGES = 40
+
+/** The comparison the reading shows and asks about: the stem–stem decision first, else the
+ * stem–branch rooting decision. Kept here (not in the engine) so an older pinned engine still runs. */
+export function activeWorkDecision(context: Pick<ContextReading, 'decision'> & { rootingDecision?: ContextReading['rootingDecision'] } | null | undefined) {
+  if (context?.decision?.active) return context.decision
+  return context?.rootingDecision?.active ? context.rootingDecision : context?.decision ?? null
+}
 
 /** Calculation limits belong to the app and survive a generated/late answer. */
 export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[] {
@@ -29,7 +36,7 @@ export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[
   if (yukhapReading?.status === 'present' && yukhapReading.facts) notices.push(yukhapReading.facts)
   const hyeong = report.sections.find(s => s.id === 'context-reading')?.context?.monthDayHyeong
   if (hyeong?.status === 'present' && hyeong.facts) notices.push(hyeong.facts)
-  const decision = report.sections.find(s => s.id === 'context-reading')?.context?.decision
+  const decision = activeWorkDecision(report.sections.find(s => s.id === 'context-reading')?.context)
   if (decision?.active && decision.question && lines.some(line => line.text === decision.question?.prompt))
     notices.push(...decision.lines)
   return notices
@@ -79,7 +86,7 @@ export async function requestDosaText(options: {
   const parsed = options.question ? parseConversationContext(options.conversation) : undefined
   // Prior model words are conversation, not a new route around withheld readings.
   const conversation = parsed && !basicSentenceMatches(parsed.messages.filter(m => m.role === 'assistant').map(m => m.text).join('\n\n')).length ? parsed : undefined
-  const decision = options.report.sections.find(s => s.id === 'context-reading')?.context?.decision
+  const decision = activeWorkDecision(options.report.sections.find(s => s.id === 'context-reading')?.context)
   if (decision?.question && conversation?.topic === '직업') {
     // Replays the shown owned question and every local answer after it; any other
     // assistant text (menu, provider reply, partly shown reply) leaves this to chat.
