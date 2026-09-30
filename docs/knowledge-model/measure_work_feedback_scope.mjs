@@ -1,11 +1,13 @@
-// Reproduces the PR228/PR230/PR231/PR232 measurements (see CONDITIONAL_WORK_READING.md).
+// Reproduces the PR228/PR230/PR231/PR232/PR233 measurements (see CONDITIONAL_WORK_READING.md).
 //   node docs/knowledge-model/measure_work_feedback_scope.mjs grid
 //     → 1950-01-01..2009-12-31, every day × even hours, F, no solar correction, keepDay
 //   node docs/knowledge-model/measure_work_feedback_scope.mjs layer <git-ref> [strict]
 //     → the whole engine at <git-ref> vs now on the same symbolic charts: every decision the ref already
 //       has (decision; rootingDecision from PR231) must be identical everywhere, and every other change must
 //       be a chart whose new decision (rootingDecision for refs before PR231, branchDecision from PR232) is
-//       shown. `strict` exits 1 otherwise.
+//       shown, or (PR233) whose 대운 timing is shown. The symbolic charts carry a 대운 list built like
+//       manseryeok.js from the month pillar (both directions, 대운수 1~10); a ref without the timing ignores it.
+//       `strict` exits 1 otherwise.
 //   node docs/knowledge-model/measure_work_feedback_scope.mjs same <git-ref> [strict]
 //     → buildContextReading on symbolic charts of every day master (days k*7 mod 60, k=0..9: one day of each stem),
 //       current vs <ref>'s workCandidates.js. Reports identical charts, charts the ref did not cover,
@@ -20,7 +22,11 @@ import {isDeepStrictEqual} from 'node:util';
 import {computeChart} from '../../dosa-app/engine/src/manseryeok.js';
 import {buildContextReading} from '../../dosa-app/engine/src/contextReading.js';
 import {feedbackPlan} from '../../dosa-app/engine/src/workFeedback.js';
+import {sexName} from '../../dosa-app/engine/src/tables.js';
 const DECISIONS=['decision','rootingDecision','branchDecision'];
+// PR233: the 대운 timing is a layer on the shown decision, not a decision.
+const LAYERS=[...DECISIONS,'daeunTiming'];
+const synthetic=(month,forward,su)=>({su,forward,list:Array.from({length:10},(_,i)=>({age:su+i*10,name:sexName(((month+(forward?i+1:-(i+1)))%60+60)%60)}))});
 const shown=r=>DECISIONS.map(k=>r[k]).find(d=>d?.active)??null;
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const [mode,ref]=process.argv.slice(2);
@@ -28,6 +34,7 @@ if(mode==='grid'){
  const {terms}=JSON.parse(readFileSync(root+'dosa-app/engine/data/solar_terms.json'));
  const out={total:0,withDecision:0,displayed:0,revisable:0,modes:{},scopeWithheld:{bothBranchOnly:0,wealthStemOnly:0,authorityStemOnly:0},
   rooting:{charts:0,displayed:0,revisable:0,modes:{},linkBases:{}},branch:{charts:0,displayed:0,revisable:0,modes:{},pairKinds:{},linkBases:{}},anyDisplayed:0,anyRevisable:0,anyDisplayedHidingRelationQuestion:0,
+  daeun:{charts:0,shown:0,byTarget:{},noRule:0,candidateCounts:{},adultCandidateCounts:{},statuses:{},genderDiffers:0,genderCompared:0},
   conditionWithheld:{jiaMonthKilling:0,yangPeer:0,yinHurting:0},displayedHidingRelationQuestion:0,jia:{total:0,modes:{}}};
  for(let t=Date.UTC(1950,0,1);t<Date.UTC(2010,0,1);t+=86400000){const d=new Date(t);
   for(let hour=0;hour<24;hour+=2){out.total++;
@@ -53,6 +60,15 @@ if(mode==='grid'){
     if(bd.active)o.displayed++;if(feedbackPlan(bd))o.revisable++;
     if(bd.pairs){const kinds=[...new Set(bd.pairs.map(x=>x.kind))].sort().join('|')||'no-pair';o.pairKinds[kinds]=(o.pairKinds[kinds]??0)+1;}
     if(bd.roots)for(const b of new Set(bd.roots.flatMap(x=>x.places.filter(p=>p.link).map(p=>p.state.basis))))o.linkBases[b]=(o.linkBases[b]??0)+1;}
+   // PR233: 대운 periods on the shown reading; the same natal chart with the other direction (gender) compared.
+   const dt=r.daeunTiming;
+   if(dt){const o=out.daeun;o.charts++;if(!dt.applicable)o.noRule++;
+    if(dt.active){o.shown++;const k=`${dt.target.side}:${dt.target.mode}`;o.byTarget[k]=(o.byTarget[k]??0)+1;
+     const n=dt.candidates.length,adult=dt.candidates.filter(x=>x.age>=20&&x.age<70).length;
+     o.candidateCounts[n]=(o.candidateCounts[n]??0)+1;o.adultCandidateCounts[adult]=(o.adultCandidateCounts[adult]??0)+1;
+     for(const x of dt.periods)o.statuses[x.status]=(o.statuses[x.status]??0)+1;
+     const m=buildContextReading(computeChart({year:d.getUTCFullYear(),month:d.getUTCMonth()+1,day:d.getUTCDate(),hour,minute:0,gender:'M',solarTimeCorrection:false,lateZiRule:'keepDay'},terms)).daeunTiming;
+     const key=t=>t.candidates.map(x=>x.ganji).join(',');o.genderCompared++;if(key(m)!==key(dt))o.genderDiffers++;}}
    const w=shown(r);if(w){out.anyDisplayed++;if(feedbackPlan(w))out.anyRevisable++;
     if(r.monthDayChung.question||r.monthDayYukhap.question||r.monthDayCompound.question||r.monthDayHyeong.question)out.anyDisplayedHidingRelationQuestion++;}}}
  console.log(JSON.stringify(out,null,1));
@@ -63,18 +79,24 @@ if(mode==='grid'){
   for(const f of files)writeFileSync(join(dir,f.split('/').at(-1)),execFileSync('git',['show',`${ref}:${f}`],{cwd:root}));
   writeFileSync(join(dir,'package.json'),'{"type":"module"}');
   const {buildContextReading:old}=await import(pathToFileURL(join(dir,'contextReading.js')).href);
-  const out={ref,charts:0,kept:null,added:null,decisionIdentical:0,decisionChanged:0,changedDecisions:{},identicalOtherwise:0,changedWithShown:{},changedOther:0,questionsBefore:{},questionsAfter:{}};
+  const out={ref,charts:0,kept:null,added:null,decisionIdentical:0,decisionChanged:0,changedDecisions:{},identicalOtherwise:0,changedWithShown:{},changedOther:0,questionsBefore:{},questionsAfter:{},timingShown:0};
   const bump=(o,k)=>{o[k]=(o[k]??0)+1;};
   for(let k=0;k<10;k++)for(let day=k*7%60,year=0;year<60;year++)for(let month=0;month<60;month++)for(const hour of[0,1,2,3,4,5,6,7,8,9,10,11,26,37,48,59]){
-   const c={input:{hour:12,minute:0},pillarsIdx:{year,month,day,hour}};out.charts++;const a=buildContextReading(c),b=old(c);
+   const c={input:{hour:12,minute:0},pillarsIdx:{year,month,day,hour},daeun:synthetic(month,(year+hour)%2===0,1+(year+month+hour)%10)};out.charts++;const a=buildContextReading(c),b=old(c);
    // Decisions the ref already has must not change; decisions it lacks are the new layer.
-   const kept=DECISIONS.filter(k=>k in b),added=DECISIONS.filter(k=>k in a&&!(k in b));out.kept??=kept;out.added??=added;
+   const kept=LAYERS.filter(k=>k in b),added=LAYERS.filter(k=>k in a&&!(k in b));out.kept??=kept;out.added??=added;
+   if(a.daeunTiming?.active)out.timingShown++;
    const changed=kept.filter(k=>!isDeepStrictEqual(a[k],b[k]));
    if(changed.length){out.decisionChanged++;for(const k of changed)bump(out.changedDecisions,k);}else out.decisionIdentical++;
    const strip=r=>Object.fromEntries(Object.entries(r).filter(([key])=>key!=='policy'&&!added.includes(key)));
    if(isDeepStrictEqual(strip(a),strip(b))){out.identicalOtherwise++;continue;}
    const now=added.map(k=>a[k]).find(d=>d?.active);
-   if(now){bump(out.changedWithShown,`${now.scope==='both-natal-branches'?'both':now.side}:${now.mode}`);
+   if(now?.policy==='daeun-timing-v1'){bump(out.changedWithShown,`daeun:${now.target.side}:${now.target.mode}`);
+    // The timing only adds its own lines after the shown comparison: everything else, the questions included, stays.
+    const rest=r=>Object.fromEntries(Object.entries(strip(r)).filter(([key])=>key!=='blocks'));
+    const without=a.blocks.map(block=>({...block,lines:block.lines.filter(line=>!now.lines.includes(line))}));
+    if(!isDeepStrictEqual(rest(a),rest(b))||!isDeepStrictEqual(without,b.blocks))out.changedOther++;}
+   else if(now){bump(out.changedWithShown,`${now.scope==='both-natal-branches'?'both':now.side}:${now.mode}`);
     bump(out.questionsBefore,b.experienceQuestions.length);bump(out.questionsAfter,a.experienceQuestions.length);}
    else out.changedOther++;}
   console.log(JSON.stringify(out,null,1));if(process.argv[4]==='strict'&&(out.decisionChanged||out.changedOther))process.exitCode=1;

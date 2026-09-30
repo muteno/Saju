@@ -6,6 +6,7 @@ import { detectRelations } from './relations.js';
 import { buildWorkDecision } from './workCandidates.js';
 import { buildRootingDecision } from './rootingCandidates.js';
 import { buildBranchSeasonDecision } from './branchSeasonCandidates.js';
+import { buildDaeunTiming } from './daeunTiming.js';
 
 const POSITIONS = ['year', 'month', 'day', 'hour'];
 const POSITION_NAMES = { year: '연', month: '월', day: '일', hour: '시' };
@@ -336,15 +337,18 @@ export function buildContextReading(chart) {
   // the branches are read by season body and 삼합 direction (the two decisions above are unchanged).
   const branchDecision = buildBranchSeasonDecision(chart, { stems, groups, decision, rootingDecision });
   const work = decision.active ? decision : rootingDecision?.active ? rootingDecision : branchDecision?.active ? branchDecision : null;
+  // The shown reading's reason is a luck condition (no root, a root under 충): the 대운 periods are read apart from
+  // the chart and added after it (the natal decisions above are unchanged).
+  const daeunTiming = buildDaeunTiming(chart, work);
   const questions = work ? [work.question] : [...combined.questions, strength.question];
-  return { policy: 'natal-work-context-v13', kind: 'conditional_structural_reading',
-    dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem, decision, rootingDecision, branchDecision,
+  return { policy: 'natal-work-context-v14', kind: 'conditional_structural_reading',
+    dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem, decision, rootingDecision, branchDecision, daeunTiming,
     strength, monthDayChung, monthDayYukhap, monthDayCompound, monthDayHyeong, experienceQuestions: questions,
     blocks: [{ label: '같은 일주여도 달라지는 부분', lines: [overview] },
       { label: '표현·결과·책임의 구성', lines: roleLines },
       // A selected candidate replaces only the broad group synthesis; the month/hour roles that the
       // strength line refers back to and the hidden-stem note stay (PR230).
-      { label: '함께 읽으면', lines: [...(work ? work.lines : []), combined.synthesis,
+      { label: '함께 읽으면', lines: [...(work ? work.lines : []), ...(daeunTiming?.active ? daeunTiming.lines : []), combined.synthesis,
         ...(monthDayChung.facts ? [monthDayChung.facts, monthDayChung.interpretation] : []),
         ...(yukhapReading.facts ? [yukhapReading.facts, yukhapReading.interpretation] : []),
         ...(monthDayHyeong.facts ? [monthDayHyeong.facts, monthDayHyeong.interpretation] : []),

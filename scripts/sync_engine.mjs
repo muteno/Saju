@@ -10,7 +10,7 @@ import { dirname, join } from 'node:path'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const SRC = join(root, 'dosa-app/engine/src')
 const VENDOR = join(root, 'app/src/engine/vendor')
-const FILES = ['tables.js', 'manseryeok.js', 'sinsal.js', 'relations.js', 'judge.js', 'keyset.js', 'report.js', 'unse.js', 'basicSentences.js', 'basicSentenceData.js', 'basicSentences.d.ts', 'gapinConditions.js', 'gapinSentenceData.js', 'gapinStructure.js', 'gapinStructureData.js', 'contextReading.js', 'contextReading.d.ts', 'workCandidates.js', 'workCandidates.d.ts', 'workFeedback.js', 'workFeedback.d.ts', 'rootingCandidates.js', 'rootingCandidates.d.ts', 'branchSeasonCandidates.js', 'branchSeasonCandidates.d.ts']
+const FILES = ['tables.js', 'manseryeok.js', 'sinsal.js', 'relations.js', 'judge.js', 'keyset.js', 'report.js', 'unse.js', 'basicSentences.js', 'basicSentenceData.js', 'basicSentences.d.ts', 'gapinConditions.js', 'gapinSentenceData.js', 'gapinStructure.js', 'gapinStructureData.js', 'contextReading.js', 'contextReading.d.ts', 'workCandidates.js', 'workCandidates.d.ts', 'workFeedback.js', 'workFeedback.d.ts', 'rootingCandidates.js', 'rootingCandidates.d.ts', 'branchSeasonCandidates.js', 'branchSeasonCandidates.d.ts', 'daeunTiming.js', 'daeunTiming.d.ts']
 const DATA = ['solar_terms.json']
 
 const check = process.argv.includes('--check')
