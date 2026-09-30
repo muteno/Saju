@@ -51,9 +51,10 @@ test('every day master: ten gods, 편관 combinations and the selected candidate
    assert.equal(d.active,ACTIVE.has(d.mode));
    assert.equal(d.policy,jia?'jia-stem-resource-authority-v1':'stem-resource-authority-v1');
    const lines=r.blocks[2].lines;
-   // A withheld stem comparison asks nothing itself; one-side charts may hand over to the rooting comparison (PR231).
+   // A withheld stem comparison asks nothing itself; it may hand over to the rooting comparison (PR231) or
+   // the branch season comparison (PR232).
    if(!d.active){assert.equal(d.question,null);assert.deepEqual(d.lines,[]);
-    assert.equal(r.experienceQuestions.length,r.rootingDecision?.active?1:3);
+    assert.equal(r.experienceQuestions.length,r.rootingDecision?.active||r.branchDecision?.active?1:3);
     for(const line of lines)assert.ok(!line.includes('해석 가설이에요. 참고 자료의 예시는'));}
    else{assert.equal(r.rootingDecision,null); // both groups in the stems: no rooting comparison
     assert.equal(r.experienceQuestions.length,1);assert.deepEqual(lines.slice(0,d.lines.length),d.lines);
@@ -112,8 +113,10 @@ test('甲 keeps PR227 wording; only a 편관 in the month stem withholds the 겁
  assert.ok(!hidden.blocks[2].lines.some(l=>l.startsWith('재성·관성 주제는 원국에 있지만')));
  // 壬申 戊寅 甲寅 丙寅: 戊 roots in the 申 whose principal is 편관, and 寅申충 hits it — the rooting comparison takes the question (PR231).
  assert.equal(hidden.rootingDecision.mode,'shaken-link');assert.deepEqual(hidden.experienceQuestions,[hidden.rootingDecision.question]);
- const kept=buildContextReading(chart(1980,1,2,8)); // 관성 only in 戌's 辛: both comparisons withheld, the existing reading stays
- assert.equal(kept.decision.mode,'scope-withheld');assert.equal(kept.rootingDecision.mode,'hidden-only');assert.equal(kept.experienceQuestions.length,3);
+ const kept=buildContextReading(chart(1980,1,2,8)); // 관성 only in 戌's 辛: both comparisons withheld (unchanged)…
+ assert.equal(kept.decision.mode,'scope-withheld');assert.equal(kept.rootingDecision.mode,'hidden-only');
+ // …and 戌's season body (가을, 관성) now carries the question: 戊·己 root in 戌, which 진술충 hits (PR232).
+ assert.equal(kept.branchDecision.mode,'season-shaken');assert.deepEqual(kept.experienceQuestions,[kept.branchDecision.question]);
  assert.match(hidden.decision.interpretation,/천간끼리의 관계로 설명하는 후보는 보류/); // kept for the record, not shown
 });
 

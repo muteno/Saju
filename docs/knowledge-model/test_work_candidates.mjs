@@ -135,16 +135,17 @@ test('KB110 comparison keeps calculations/brain/fortune and all unknown8 exactly
   execFileSync(process.execPath,['docs/knowledge-model/measure_hyeonchim_consumers.mjs','--capture','capture.json'],{cwd:frozen.directory,env,stdio:'pipe',timeout:120000});
   before=JSON.parse(readFileSync(frozen.directory+'/capture.json'));
  }finally{frozen.cleanup();}const after=await capture();
- assert.deepEqual(after.assets,before.assets);assert.deepEqual(after.lookup,before.lookup);let unknown=0,changed=0,rooted=0;
+ assert.deepEqual(after.assets,before.assets);assert.deepEqual(after.lookup,before.lookup);let unknown=0,changed=0,rooted=0,branched=0;
  for(const[rowIndex,row]of after.rows.entries()){
   const old=before.rows[rowIndex];if(row.profile.hourUnknown){unknown++;assert.deepEqual(row,old);assert.equal(row.requests.length,0);continue;}
   for(const key of['chart','raw','keys','brain','direct','fortune'])assert.deepEqual(row[key],old[key]);
   const r=row.report.sections.find(s=>s.id==='context-reading').context;
   const prior=old.report.sections.find(s=>s.id==='context-reading').context;
-  assert.equal(prior.policy,'natal-work-context-v9');assert.equal(r.policy,'natal-work-context-v12');assert.ok(!Object.hasOwn(prior,'decision'));
+  assert.equal(prior.policy,'natal-work-context-v9');assert.equal(r.policy,'natal-work-context-v13');assert.ok(!Object.hasOwn(prior,'decision'));
   for(const key of['groups','conditions','strength','monthDayChung','monthDayYukhap','monthDayCompound','monthDayHyeong'])assert.deepEqual(r[key],prior[key]);
-  // A shown stem comparison (PR227) or stem–branch rooting comparison (PR231) is the only change to the blocks.
-  if(r.decision?.active)changed++;else if(r.rootingDecision?.active)rooted++;else assert.deepEqual(r.blocks,prior.blocks);
+  // A shown stem comparison (PR227), stem–branch rooting comparison (PR231) or branch season comparison (PR232)
+  // is the only change to the blocks.
+  if(r.decision?.active)changed++;else if(r.rootingDecision?.active)rooted++;else if(r.branchDecision?.active)branched++;else assert.deepEqual(r.blocks,prior.blocks);
   assert.deepEqual(row.reading.cards.find(c=>c.id==='context-reading').blocks,r.blocks);
- }assert.equal(unknown,8);assert.ok(changed>0);assert.ok(rooted>0);assert.equal(after.rows.length,110);
+ }assert.equal(unknown,8);assert.ok(changed>0);assert.ok(rooted>0);assert.ok(branched>0);assert.equal(after.rows.length,110);
 });

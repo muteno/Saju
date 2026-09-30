@@ -5,6 +5,7 @@ import { strengthJudge } from './judge.js';
 import { detectRelations } from './relations.js';
 import { buildWorkDecision } from './workCandidates.js';
 import { buildRootingDecision } from './rootingCandidates.js';
+import { buildBranchSeasonDecision } from './branchSeasonCandidates.js';
 
 const POSITIONS = ['year', 'month', 'day', 'hour'];
 const POSITION_NAMES = { year: '연', month: '월', day: '일', hour: '시' };
@@ -331,10 +332,13 @@ export function buildContextReading(chart) {
   // Wealth or authority in the stems on one side only: the stem–stem comparison is out of scope, so the
   // stem–branch rooting comparison reads it instead (the stem decision itself is unchanged).
   const rootingDecision = buildRootingDecision(chart, { stems, hidden, groups });
-  const work = decision.active ? decision : rootingDecision?.active ? rootingDecision : null;
+  // Neither comparison applies (both groups only in the branches, or the other group only in hidden stems):
+  // the branches are read by season body and 삼합 direction (the two decisions above are unchanged).
+  const branchDecision = buildBranchSeasonDecision(chart, { stems, groups, decision, rootingDecision });
+  const work = decision.active ? decision : rootingDecision?.active ? rootingDecision : branchDecision?.active ? branchDecision : null;
   const questions = work ? [work.question] : [...combined.questions, strength.question];
-  return { policy: 'natal-work-context-v12', kind: 'conditional_structural_reading',
-    dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem, decision, rootingDecision,
+  return { policy: 'natal-work-context-v13', kind: 'conditional_structural_reading',
+    dayPillar: sexName(p.day), groups, conditions, monthMain, hourStem, decision, rootingDecision, branchDecision,
     strength, monthDayChung, monthDayYukhap, monthDayCompound, monthDayHyeong, experienceQuestions: questions,
     blocks: [{ label: '같은 일주여도 달라지는 부분', lines: [overview] },
       { label: '표현·결과·책임의 구성', lines: roleLines },
