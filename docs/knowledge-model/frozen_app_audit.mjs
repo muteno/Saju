@@ -1,6 +1,6 @@
 // Reproduce historical app audits against pinned pre-fix consumers.
 // Original evidence/data hashes remain enforced; pre-correction engine is pinned separately.
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync } from 'node:fs';
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { resolve, dirname } from 'node:path';
@@ -18,6 +18,23 @@ const contextFixture = new URL('fixtures/context-reading-v1/', import.meta.url);
 const synthesisFixture = new URL('fixtures/context-synthesis-v1/', import.meta.url);
 const conversationFixture = new URL('fixtures/conversation-context-v1/', import.meta.url);
 const structureFixture = new URL('fixtures/gapin-structure-v1/', import.meta.url);
+const preTemperamentFixture = new URL('fixtures/pre-temperament-v1/', import.meta.url);
+
+/** PR235 changed report.js and three app consumers for the 성격 reading. Every historical audit copies the current
+ * sources first and then its own old files; this puts those four back at the previous main before that overlay. */
+export function pinPreTemperament(directory) {
+  const manifest = JSON.parse(readFileSync(new URL('manifest.json', preTemperamentFixture)));
+  assert.equal(manifest.commit, '9bbdbcebbe97f09f326d823b13961494432d30ef');
+  for (const file of manifest.files) {
+    const bytes = readFileSync(new URL(file.source, preTemperamentFixture));
+    assert.equal(createHash('sha256').update(bytes.toString('utf8').replace(/\r\n/g, '\n')).digest('hex'), file.sha256_lf);
+    for (const path of file.destinations) {
+      assert.ok(/^(app\/src\/|dosa-app\/engine\/src\/)/.test(path) && !path.includes('..'));
+      mkdirSync(dirname(resolve(directory, path)), { recursive: true });
+      writeFileSync(resolve(directory, path), bytes);
+    }
+  }
+}
 
 export function frozenApp({ consumers = 'legacy' } = {}) {
   assert.ok(['legacy', 'unknown-time-v1', 'pre-hyeonchim-v1', 'basic-sentences-v1', 'gapin-delivery-v1', 'gapin-structure-v1', 'context-reading-v1', 'context-synthesis-v1'].includes(consumers));
@@ -75,6 +92,7 @@ export function frozenApp({ consumers = 'legacy' } = {}) {
       mkdirSync(resolve(directory, 'refine-tools'));
       cpSync(resolve(root, 'refine-tools/units.json'), resolve(directory, 'refine-tools/units.json'));
     }
+    pinPreTemperament(directory);
     const versions = consumers === 'context-synthesis-v1' ? [[synthesisFixture, 'bba9975a33e0a343109d51d7657b062d72f39b73']] : consumers === 'context-reading-v1' ? [[contextFixture, '875756c9113144148fcbb88fb7adce3477612af4']] : consumers === 'gapin-structure-v1' ? [[structureFixture, '6a4d75775f3e71f5e0c651cd3ea208e06c450247']] : consumers === 'gapin-delivery-v1' ? [[gapinFixture, '70b1a9c0a118b6681fe0372499197fc2e424a468']] : consumers === 'basic-sentences-v1' ? [[basicFixture, '931f81c6acc852316c48272a3cd691d8c8d481ec']] : [[hyeonchimFixture, '41fbb1f8f3ad0bc07daffac8b8a4fc4ee960063b']];
     // PR214's smaller overlay inherited the then-unchanged group/chat sources.
     // Pin those through PR215 first, then apply PR214's exact older consumers.

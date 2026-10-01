@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
-import {frozenApp} from './frozen_app_audit.mjs';
+import {frozenApp,pinPreTemperament} from './frozen_app_audit.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const source=new URL('fixtures/month-day-yukhap-v1/',import.meta.url);
 export function monthDayYukhapBaseline() {
@@ -15,6 +15,7 @@ export function monthDayYukhapBaseline() {
  try {
   for(const path of ['app/src','dosa-app/engine/src','functions/api/dosa.ts'])
    cpSync(resolve(root,path),resolve(frozen.directory,path),{recursive:true});
+  pinPreTemperament(frozen.directory); // PR235's report/consumer changes are not part of this receipt
   for(const file of manifest.files){
    assert.ok(/^(app\/src\/|dosa-app\/engine\/src\/)/.test(file.path)&&!file.path.includes('..'));
    const src=new URL(file.path,source);

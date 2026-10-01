@@ -186,6 +186,10 @@ test('replay: only the latest shown question with every local answer shown; a me
  const resolve=(messages,answer='아니요')=>resolveTemperamentFeedback({decision,footer:decision.footer,messages,answer,menuPrompts:[MENU]});
  assert.ok(resolve(s.messages));assert.equal(resolve([]),null);
  assert.equal(resolve([...s.messages,{role:'assistant',text:MENU}],'네'),null);
+ assert.equal(resolve([...s.messages,{role:'assistant',text:MENU}],'아니요'),null);
+ // A worded answer cannot be an answer to the menu line.
+ assert.equal(resolve([...s.messages,{role:'assistant',text:MENU}],'그런 편이에요').after,'retained-as-self-report');
+ assert.equal(resolve([...s.messages,{role:'assistant',text:MENU}],'별로 그렇지 않아요').nextQuestion.id,decision.followup.id);
  assert.equal(resolve([...s.messages,{role:'assistant',text:MENU}],'때에 따라 달라요').after,'scoped');
  assert.equal(resolve([{role:'assistant',text:q},{role:'assistant',text:'공급자가 덧붙인 문장이에요.'}]),null);
  assert.equal(resolve([...s.messages,{role:'user',text:'무슨 뜻이에요?'},{role:'assistant',text:'공급자 답변이에요.'}]),null);

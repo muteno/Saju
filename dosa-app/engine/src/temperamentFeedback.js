@@ -37,6 +37,8 @@ const ASKING = /[?？]|까요|나요|어때|어떨|알려\s*주|알려줘|봐\s*
 const OTHER_TOPIC = /연애|남편|아내|배우자|남친|여친|애인|건강|올해|내년|운세|재물|궁합|결혼|이직|알겠|감사|고마워|고맙|계속\s*해/u;
 const CUE = /맞|아니|그래|그렇|반대|모르|편이|때|가끔|자주|느껴|느꼈|겉|속|드러|보여|보이|별로|딱히|없|있/u;
 const TAGS = ['decline', 'unsure', 'partial', 'reversed', 'negative', 'affirm', 'filler'];
+// A bare yes/no could answer the chat's menu line (‘또 궁금한 것이 있는가?’); ‘그런 편이에요’·‘별로요’ answer the question.
+const BARE = /^(?:네|넵|예|응|맞아요|맞아|맞습니다|맞죠|그래요|아니요|아니오|아뇨|아니|아니에요|아닙니다|있어요|없어요)$/u;
 // A leading hesitation word does not change the clause ('음 잘 모르겠어요').
 const LEAD_FILLER = /^(?:음+|흠+|어+|아+|글쎄|사실|솔직히)\s+(?=\S)/u;
 const tagOf = core => { const c = bare(core).replace(LEAD_FILLER, ''); return TAGS.find(t => FORMS[t].test(c)) ?? null; };
@@ -144,7 +146,7 @@ export function advanceTemperamentFeedback(decision, plan, state, answer, { afte
   let read = readTemperamentAnswer(answer, { reversible: plan.mode === 'inner-outer' && state.pending === 'first' });
   if (!read) return null;
   // After the menu question a bare yes/no may answer the menu, not the owned question.
-  if (afterMenu && read.segments.every(s => ['affirm', 'negative', 'filler'].includes(s.tag))) return null;
+  if (afterMenu && read.segments.every(s => s.tag === 'filler' || (['affirm', 'negative'].includes(s.tag) && BARE.test(bare(s.core).replace(LEAD_FILLER, ''))))) return null;
   if (state.clarify && !OFFERED.includes(read.kind)) read = { ...read, kind: 'clarify:unclear' };
   const base = { questionId: question.id, targetCandidateId: question.candidate, answer: read,
     before: { questionId: question.id, targetCandidateId: question.candidate, reading: state.reading, feedback: { ...state.feedback } },

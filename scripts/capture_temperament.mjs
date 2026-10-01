@@ -25,11 +25,12 @@ const server=await createServer({root:root+'/app',cacheDir:out+'/vite-'+label,lo
 const base=`http://127.0.0.1:${server.httpServer.address().port}`;
 const PROVIDER='(모의 공급자) 말해 준 경험을 일반 상담으로 이어서 볼게요.',MENU='또 궁금한 것이 있는가?';
 const norm=s=>s.replace(/\s+/g,' ').trim();
-// [id, kind, date, hour, gender, width, answers]: one day pillar in two months (甲寅 寅월/辰월, 己酉 申월/戌월), the answers
-// that lower an inside/outside reading and ask the complementary question, and the analysis card.
-const SCENES=[['gapin-yin-F','chat','1980-02-11',4,'F',390,[]],['gapin-jin-F','chat','1980-04-11',4,'F',390,['아니요','네']],
- ['giyu-sin-F','chat','1985-09-07',2,'F',390,[]],['giyu-sul-F','chat','1985-11-06',2,'F',390,['아니요']],
- ['gapin-jin-F-1280','chat','1980-04-11',4,'F',1280,[]],['card-gapin-jin-F','card','1980-04-11',4,'F',390,[]],['card-giyu-sul-F-1280','card','1985-11-06',2,'F',1280,[]]];
+// [id, kind, date, hour, gender, width, answers, afterMenu]: one day pillar in two months (甲寅 寅월/辰월, 己酉 申월/戌월);
+// answers typed right after the question (the inside/outside reading lowered, then the complementary question) or after
+// the menu line (a worded answer), a 'at some times' answer, and the analysis card.
+const SCENES=[['gapin-yin-F','chat','1980-02-11',4,'F',390,['때에 따라 달라요'],false],['gapin-jin-F','chat','1980-04-11',4,'F',390,['아니요','네'],false],
+ ['giyu-sin-F','chat','1985-09-07',2,'F',390,[],true],['giyu-sul-F','chat','1985-11-06',2,'F',390,['별로 그렇지 않아요'],true],
+ ['gapin-jin-F-1280','chat','1980-04-11',4,'F',1280,[],true],['card-gapin-jin-F','card','1980-04-11',4,'F',390,[],false],['card-giyu-sul-F-1280','card','1985-11-06',2,'F',1280,[],false]];
 const query=(date,hour,g)=>{const[y,mo,d]=date.split('-').map(Number);return`y=${y}&mo=${mo}&d=${d}&t=${hour}:00&g=${g}&city=서울&sc=0&lz=0&hu=0&n=검수`;};
 async function next(p){await p.evaluate(()=>document.activeElement?.blur());const b=p.getByRole('button',{name:/^(다음 이야기|한 번에 보기)$/});if(await b.count()){await b.click();return true;}const y=p.getByRole('button',{name:'그… 맞아',exact:true});if(await y.count()){await y.click();return true;}return false;}
 const logText=async p=>norm(await p.getByRole('log').innerText());
@@ -42,7 +43,7 @@ async function slices(p,start,file){const log=p.getByRole('log');
  return shots;}
 const rows=[];
 try{
- for(const[id,kind,date,hour,g,width,answers]of SCENES){
+ for(const[id,kind,date,hour,g,width,answers,afterMenu]of SCENES){
   const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce',serviceWorkers:'block'}),p=await context.newPage();p.setDefaultTimeout(8000);
   const errors=[],external=[],requests=[];p.on('pageerror',e=>errors.push(e.message));
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(u.origin!==base){external.push(u.href);return route.abort();}
@@ -59,18 +60,23 @@ try{
     continue;
    }
    await p.goto(`${base}/talk?${query(date,hour,g)}`);await p.getByRole('log').waitFor();
-   const labels=await p.evaluate(async()=>{const{TOPICS}=await import('/src/data/dosaTopics.ts');return Object.fromEntries(TOPICS.map(t=>[t.key,t.label]));});
+   const model=await p.evaluate(async()=>{const{parseShare}=await import('/src/data/profiles.ts'),{buildReading}=await import('/src/engine/index.js'),{TOPICS}=await import('/src/data/dosaTopics.ts');
+    const r=buildReading(parseShare(location.search).input),t=r.sections.find(x=>x.id==='temperament-reading')?.temperament;
+    return{labels:Object.fromEntries(TOPICS.map(x=>[x.key,x.label])),footer:t?.footer??null};});
+   const labels=model.labels;
    const topic=p.getByRole('button',{name:labels['성격'],exact:true});for(let i=0;i<80&&!(await topic.count());i++)if(!(await next(p)))await p.waitForTimeout(200);
    await topic.click();
-   // The whole 성격 reading: advance until the menu line comes back.
-   for(let i=0;i<80;i++){const t=await logText(p);if(t.endsWith(MENU)&&t.split(MENU).length>1&&t.lastIndexOf(MENU)>t.indexOf(labels['성격']))break;if(!(await next(p)))await p.waitForTimeout(250);}
+   // The whole 성격 reading: up to its question's footer (an answer typed there), or on to the menu line.
+   const stop=t=>afterMenu||!model.footer?t.endsWith(MENU)&&t.lastIndexOf(MENU)>t.indexOf(labels['성격']):t.endsWith(norm(model.footer));
+   for(let i=0;i<80;i++){const t=await logText(p);if(stop(t))break;if(!(await next(p)))await p.waitForTimeout(250);}
    const reading=await slices(p,labels['성격'],`chat-${id}-0-${label}`);
    const steps=[];
    for(const[k,answer]of answers.entries()){
     const before=requests.filter(r=>r.question).length,shownBefore=(await logText(p)).length;
     await p.getByRole('textbox',{name:'도사에게 직접 묻기'}).fill(answer);await p.getByRole('button',{name:'보내기',exact:true}).click();
     await p.waitForFunction(()=>document.querySelector('textarea')?.readOnly===false);await p.waitForTimeout(300);
-    for(let i=0;i<60;i++){const t=await logText(p);if(t.length>shownBefore&&t.endsWith(MENU))break;if(!(await next(p)))await p.waitForTimeout(250);}
+    // Until the reply ends with a question: the app's next question (answered right there) or the menu line.
+    for(let i=0;i<60;i++){const t=await logText(p);if(t.length>shownBefore+answer.length+4&&t.endsWith('?'))break;if(!(await next(p)))await p.waitForTimeout(250);}
     steps.push({answer,slices:await slices(p,answer,`chat-${id}-${k+1}-${label}`),providerRequests:requests.filter(r=>r.question).length-before});
    }
    rows.push({id,kind,date,hour,gender:g,width,slices:[...reading,...steps.flatMap(s=>s.slices)],steps,text:await p.getByRole('log').innerText(),errors,external,
