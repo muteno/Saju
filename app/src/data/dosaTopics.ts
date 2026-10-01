@@ -6,7 +6,8 @@ import { BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, applyBasicSentencePolicy
 import type { ReportBundle } from '../engine'
 import type { TemperamentReading } from '../engine/vendor/temperamentCandidates.js'
 import type { RelationReading } from '../engine/vendor/relationCandidates.js'
-import { displayReadingText, forEnteredGender } from './readingPresentation'
+import { displayReadingText } from './readingPresentation'
+import { forEnteredGender } from './draftLines'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE as HOUR_UNKNOWN_NOTICE } from '../engine/birthTime'
 
 export interface DosaLine {

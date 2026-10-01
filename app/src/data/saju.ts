@@ -13,7 +13,7 @@ import {
 } from '../engine'
 import { enneaLensCard } from './enneaLens'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
-import { forEnteredGender } from './readingPresentation'
+import { forEnteredGender } from './draftLines'
 
 /**
  * 화면 데이터층 — 전부 dosa-app L1 엔진 실계산 + L3 근거 리포트에서 생성.
