@@ -82,6 +82,13 @@ class LedgerTextTests(unittest.TestCase):
 
     def test_concept_masking_and_supplement(self):
         self.assertNotIn("육해", self.B.개념_가리기("교육해 주시는"))
+        self.assertNotIn("도화", self.B.개념_가리기("도화로운 사이트에 정리"))
+        self.assertIn("도화", self.B.개념_가리기("도화살이 있으면"))
+        g = self.B.개념_가리기
+        self.assertNotIn("상관", g("외모하고는 상관이 없어요") + g("상관없이 하는") + g("오행의 상관관계"))
+        self.assertIn("상관", g("상관이 있으면 말을 잘한다"))
+        self.assertNotIn("비겁", g("비겁한 사람"))
+        self.assertIn("비겁", g("비겁하고 편재가 강한"))
         self.assertIn("관대지", self.B.개념_가리기("관대지에 놓인"))
         self.assertEqual(self.B.보충개념("병화 일간이 신월에 태어났다"), {"신금(申)", "월지"})
         self.assertEqual(self.B.보충개념("사월 초파일"), set())
