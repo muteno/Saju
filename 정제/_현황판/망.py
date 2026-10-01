@@ -234,6 +234,22 @@ class 망:
         path = path[::-1]
         return [(self.nodes[path[0]], 1.0)] + [(self.nodes[b], float(s[a, b])) for a, b in zip(path, path[1:])]
 
+    # ── 의미 닮음: 두 개념이 «같은 뜻 쪽으로» 기우는 정도(로그 배수 벡터의 코사인). 같이 말해지는지와는 다른 거리다.
+    def 의미벡터(self, A, 관법=None, 맥락=()):
+        d = self.의미분포(A, 관법, 맥락)
+        return np.log(np.array([d[m][0] for m in self.meanings])) - np.log(self.기준률(관법, 맥락))
+
+    def 닮은개념(self, A, 관법=None, k=8, 최소=200):
+        a = self.의미벡터(A, 관법)
+        out = []
+        for B in self.nodes:
+            if B == A or self.의미분포(B, 관법)[self.meanings[0]][3] < 최소:
+                continue
+            b = self.의미벡터(B, 관법)
+            cos = float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-12))
+            out.append((B, cos))
+        return sorted(out, key=lambda x: -x[1])[:k]
+
     # ── 개념 카드: 무엇인지 + 의미 확률 + 가까운 개념
     def 카드(self, A, 관법=None, 맥락=(), k=8):
         dist = self.의미분포(A, 관법, 맥락)
@@ -279,7 +295,7 @@ class _문장원문:
         import sys
         sys.path.insert(0, str(HERE))
         import 코퍼스, build_망
-        self._split = build_망.문장들
+        self._split = lambda t: build_망.문장들(build_망.전사_교정(t))   # 원장과 똑같이 교정한 뒤 나눈다(행 정렬)
         meta = json.loads((D / "meta.json").read_text(encoding="utf-8"))
         self.para_ids = meta["para_ids"]
         self.text = {}

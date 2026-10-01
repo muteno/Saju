@@ -1,18 +1,11 @@
 # Saju
 
-사주 자료에서 기본 개념과 조건을 추려, 원국의 구성·키워드 조합·대운 등 시간 맥락을 반영하는 대화형 풀이를 만드는 프로젝트입니다.
+웹 스크랩·유튜브 전사로 개념마다 관계망을 만들고, 관계를 함께 나온 개념·대운·관법에 따라 달라지는 0~1 확률로 계산해 사주를 본다.
 
-## 작업을 이어받을 때
+- 풀이: `python3 정제/_현황판/풀이.py 1990-05-15 14:30 남 --나이 35`
+- 개념 카드: `python3 정제/_현황판/개념카드.py 편관(칠살)`
+- 원장 만들기: `python3 정제/_현황판/build_망.py` (data/망/, git 제외, numpy·scipy 필요)
+- 정확도: `python3 정제/_현황판/망_평가.py`
+- 앱: `app/` · 품질 게이트: `npm run verify`
 
-**현재 우선 작업은 [기초 보강 인계](docs/knowledge-model/FOUNDATION_HANDOFF.md)에서 시작합니다.** [청사진](docs/knowledge-model/FOUNDATION_BLUEPRINT.md)·[17개 문서 점검](docs/knowledge-model/FOUNDATION_AUDIT.md)·실제 판본 차이를 기존 설계와 연결했습니다. 기초 구현 완료라는 뜻은 아닙니다.
-
-- [사용자 원문 기록](docs/knowledge-model/USER_INTENT_LOG.md): 최초 설명부터 수정 과정까지 보존합니다.
-- [프로젝트 아젠다](docs/knowledge-model/PROJECT_AGENDA.md): 현재 목표와 아직 열려 있는 설계 질문입니다.
-- [기본 풀이 개발 계획](docs/knowledge-model/BASIC_READING_PLAN.md): 일주·기본 성향 풀이를 먼저 갖추는 순서입니다.
-- [Figma 기본 개념 연결](docs/knowledge-model/FIGMA_FOUNDATION.md): 기존 보드 자료를 개념층에 연결한 범위와 다음 보강 사항입니다.
-- [지식망·수학 연구·시제품](docs/knowledge-model/README.md): 출처가 붙은 자료와 현재 실행 코드입니다.
-- [현재 세션 현황](dosa-app/STATUS.md), [에이전트 필독](AGENTS.md), [작업 규칙](CLAUDE.md)
-
-자료와 코드 시제품이 존재하는 것과 사주 해석 모델의 품질이 검증된 것은 구별합니다. 원문 기록의 예시는 학습 정답으로 사용하지 않습니다.
-
-실제 웹 앱은 `app/`에 있으며 루트에서 `npm run verify`로 저장소 품질 게이트를 실행합니다.
+규칙은 `CLAUDE.md`.

@@ -51,6 +51,7 @@ def 만세력(year, month, day, hour=None, minute=0, 성별="M"):
 
 
 신호맥락_기본 = True
+신호중심 = True   # 신호마다 의미 배수의 평균을 뺀다 — «개념 문장은 원래 삶 얘기가 많다»는 공통 몫을 빼서 신호 많은 명식 쏠림을 막는다
 확산 = 0.0      # 망을 한 걸음 더 탄다: 켜진 개념 A의 이웃 B(문단 공기 강도 상위 3)를 무게 × 강도 × 이 값으로 켠다
 확산_이웃 = 3
 
@@ -76,7 +77,10 @@ def 합산(net, 신호, 관법=None, 맥락=(), 배수=None, 최소=30, 신호�
         p = np.array([d[m][0] for m in net.meanings])
         lp0 = np.log(net.기준률(관법, ctx))
         w = v["무게"] * (배수 or {}).get(A, 1.0) * (1 + 횟수가중 * max(0, v.get("횟수", 1) - 1))
-        c = λ * w * np.clip(np.log(p) - lp0, -0.5, 3.0)
+        lift = np.clip(np.log(p) - lp0, -0.5, 3.0)
+        if 신호중심:
+            lift = lift - lift.mean()
+        c = λ * w * lift
         total += c
         기여[A] = c
     return total, 기여
@@ -129,13 +133,13 @@ def 기준분포(net, 관법=None, 시주=True, n=1500, seed=7):
     # 원장이 다시 만들어지면(의미 사전·코퍼스가 바뀌면) 기준분포도 다시 센다 — 원장 시각으로 확인한다.
     #   (문장 수만 보면 의미 사전만 고친 재생성을 못 알아본다)
     stamp = int((M.D / "S.npz").stat().st_mtime)
-    key = (관법, 시주, n, seed, stamp, 신호맥락_기본)
+    key = (관법, 시주, n, seed, stamp, 신호맥락_기본, 신호중심)
     if key in _기준:
         return _기준[key]
     f = M.D / f"기준분포_{관법 or '전체'}_{'시' if 시주 else '무시'}_{n}.npz"
     if f.exists():
         z = np.load(f)
-        if "원장" in z and int(z["원장"]) == stamp and bool(z["신호맥락"]) == 신호맥락_기본:
+        if "원장" in z and int(z["원장"]) == stamp and bool(z["신호맥락"]) == 신호맥락_기본 and bool(z.get("신호중심", False)) == 신호중심:
             _기준[key] = (z["원국"], z["대운"])
             return _기준[key]
     rng = np.random.default_rng(seed)
@@ -145,7 +149,7 @@ def 기준분포(net, 관법=None, 시주=True, n=1500, seed=7):
         A.append(합산(net, Mi.명식_신호(기둥, 성별)["신호"], 관법)[0])
         B.append(합산(net, Mi.운_신호(기둥, 운), 관법, ("대운",))[0])
     A, B = np.array(A), np.array(B)
-    np.savez_compressed(f, 원국=A, 대운=B, 원장=stamp, 신호맥락=신호맥락_기본)
+    np.savez_compressed(f, 원국=A, 대운=B, 원장=stamp, 신호맥락=신호맥락_기본, 신호중심=신호중심)
     _기준[key] = (A, B)
     return _기준[key]
 
@@ -237,6 +241,47 @@ def 시주_후보(net, 기둥, 성별=None, 관법=None, 답=None):
             "가르는질문": [{"의미": m, "후보간_퍼짐": v} for m, v in qs], "답수": len(답)}
 
 
+주요관법 = ["산책처럼", "남석", "도화", "석우당", "초코", "현묘"]   # 문장 4만 개 이상 갈래
+
+
+def 관법비교(기둥, 성별=None, net=None, 관법들=None, n=600):
+    """같은 명식을 고수 갈래(이론 베이스)마다 따로 본다 — 여럿이 함께 짚는 것(공통)과 한 갈래만 짚는 것(갈래별)을 가른다.
+
+    각 갈래는 그 갈래 문장으로 센 확률·그 갈래 기준 명식 분포(무작위 n개)로 백분위를 낸다.
+      공통   = 갈래 절반 이상에서 백분위 ≥ 임계_질문(75)
+      갈래별 = 한 갈래에서만 백분위 ≥ 임계_풀이(90)이고 나머지는 모두 75 미만
+    """
+    net = net or M.망()
+    sig = Mi.명식_신호(기둥, 성별)["신호"]
+    시주 = len(기둥) > 3 and 기둥[3] is not None
+    kws = 관법들 or 주요관법
+    PCT, TOP = {}, {}
+    for kw in kws:
+        ref_a, _ = 기준분포(net, kw, 시주, n=n)
+        강도, 기여 = 합산(net, sig, kw)
+        PCT[kw] = _백분위(ref_a, 강도)
+        i_top = {i: sorted(((A, float(c[i])) for A, c in 기여.items() if c[i] > 0), key=lambda x: -x[1])[:2] for i in range(len(net.meanings))}
+        TOP[kw] = i_top
+    k = len(kws)
+    공통, 갈래 = [], []
+    for i, m in enumerate(net.meanings):
+        hi = [kw for kw in kws if PCT[kw][i] >= 임계_질문]
+        top = [kw for kw in kws if PCT[kw][i] >= 임계_풀이]
+        if len(hi) >= max(2, (k + 1) // 2):
+            공통.append((m, hi, float(np.median([PCT[kw][i] for kw in kws]))))
+        elif len(top) == 1 and len(hi) == 1:
+            kw = top[0]
+            갈래.append((m, kw, float(PCT[kw][i]), [A for A, _ in TOP[kw][i]]))
+    공통.sort(key=lambda x: (-len(x[1]), -x[2]))
+    return {"갈래수": k, "공통": 공통, "갈래별": 갈래}
+
+
+def 보이기_관법비교(c):
+    print(f"\n■ 고수 갈래 {c['갈래수']}곳 비교 (갈래마다 그 갈래 문장으로 센 확률 · 그 갈래 기준 백분위)")
+    print("  여럿이 함께 짚는 것(절반 이상 ≥75): " + (" · ".join(f"{m}({len(v)}곳)" for m, v, _ in c["공통"]) or "없음"))
+    print("  한 갈래만 짚는 것(그 갈래만 ≥90): " + (" · ".join(f"{m}[{kw} {p:.0f} — {'·'.join(src)}]" for m, kw, p, src in c["갈래별"]) or "없음"))
+
+
 def 보이기(r):
     g = " ".join(x or "??" for x in r["기둥"])
     print(f"■ 원국 {g}  (연 월 일 시) · 일간 {r['일간']} · 강약 {r['강약']} {r['점수']}")
@@ -290,6 +335,7 @@ def _cli(argv):
     ap.add_argument("--대운")
     ap.add_argument("--답")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--관법비교", action="store_true")
     a = ap.parse_args(argv)
     성별 = a.성별
     대운, 나이 = a.대운, a.나이
@@ -318,6 +364,8 @@ def _cli(argv):
         print(json.dumps(r, ensure_ascii=False, indent=1, default=float))
     else:
         보이기(r)
+        if a.관법비교:
+            보이기_관법비교(관법비교(기둥, 성별))
 
 
 if __name__ == "__main__":

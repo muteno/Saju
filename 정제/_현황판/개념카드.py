@@ -7,6 +7,7 @@
   배수 = 확률 ÷ 기준률(아무 문장에서나 그 의미가 말해질 확률).
   조건 = 같은 문단에 어떤 개념이 함께 있을 때 그 확률이 오르내리는 정도(로그 오즈 차, z ≥ 2만).
   거리 = −ln(문단 공기 강도) 최단 경로. 강도 = 오치아이 n(A∧B)/√(n(A)n(B)).
+  닮음 = 두 개념의 의미 배수(로그) 벡터 코사인 — 같이 말해지지 않아도 같은 뜻 쪽으로 기우는 정도(문장 200개 이상인 개념끼리).
 
 사용
   python 개념카드.py 편관(칠살)
@@ -73,6 +74,7 @@ def 카드(net, A, 관법=None, 맥락=(), 대상=None, 거리대상=None, k의�
     near = sorted(((net.nodes[j], float(d[i, j]), net.강도(A, net.nodes[j], 관법, tuple(맥락)))
                    for j in range(len(net.nodes)) if j != i and np.isfinite(d[i, j])), key=lambda x: x[1])[:8]
     out["가까운"] = [{"개념": b, "거리": x, "강도": s} for b, x, s in near]
+    out["닮은"] = [{"개념": b, "닮음": c} for b, c in net.닮은개념(A, 관법, k=6)] if nA >= 200 else []
     if 거리대상:
         out["거리대상"] = {"대상": 거리대상, "거리": net.거리(A, 거리대상, 관법, tuple(맥락)),
                        "경로": net.경로(A, 거리대상, 관법, tuple(맥락))}
@@ -99,6 +101,8 @@ def 보이기(c):
             vals = sorted(kv.items(), key=lambda x: -x[1])
             print(f"  관법별 [{m}]: " + " · ".join(f"{k} {v:.3f}" for k, v in vals))
     print("  가까운 개념(거리 · 강도): " + " · ".join(f"{x['개념']} {x['거리']:.2f}·{x['강도']:.2f}" for x in c["가까운"]))
+    if c.get("닮은"):
+        print("  뜻이 닮은 개념(의미 닮음): " + " · ".join(f"{x['개념']} {x['닮음']:.2f}" for x in c["닮은"]))
     if "거리대상" in c:
         g = c["거리대상"]
         path = " → ".join(f"{b}({s:.2f})" if k else b for k, (b, s) in enumerate(g["경로"]))

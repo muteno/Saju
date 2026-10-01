@@ -72,6 +72,32 @@ def 간지들(text):
     return out
 
 
+# 전사 받아쓰기 교정 — 유튜브 자동 자막이 명리 용어를 비슷한 소리의 다른 말로 적는다(블로그로 옮긴 전사에도 남아 있다).
+#   실측(코퍼스 전체, 261001): 평관 6,303(편관 4,575보다 많다) · 편제 5,300 · 겁제 3,196 · 청간 7,234 · 대원 1,556 ·
+#   병호 1,727 · 세훈 703 · 감옥 700 · 일관 14,598(일간 22,626). 교정 없이 세면 이 문장들은 개념이 없는 문장이 된다.
+#   ⚠원장에서만 교정한다(7월 파이프라인·원천 전사는 그대로). 실제 낱말과 겹치는 것은 문맥을 건다.
+_교정 = [
+    (re.compile(r"평관"), "편관"),
+    (re.compile(r"겁제"), "겁재"),
+    (re.compile(r"편제"), "편재"),
+    (re.compile(r"정제(?=[가는를의와이에도로]|\s|$)"), "정재"),
+    (re.compile(r"청간"), "천간"),
+    (re.compile(r"상광"), "상관"),
+    (re.compile(r"대원(?=[이은을의에도과]|\s|$)"), "대운"),
+    (re.compile(r"세훈"), "세운"),
+    (re.compile(r"병호(?=\s?일주|\s?일간|\s?일관|년|월|일)"), "병오"),
+    (re.compile(r"감옥(?!에 갇|에 가|살이|에서|에 들어|을 가| 가|에 갈)"), "갑목"),
+    (re.compile(r"(?<=[목화토금수])\s?일관"), " 일간"),
+    (re.compile(r"일관(?=[은이을의과에도]\s|\s?입장|\s?기준)"), "일간"),
+]
+
+
+def 전사_교정(text):
+    for rx, to in _교정:
+        text = rx.sub(to, text)
+    return text
+
+
 # 문장 나누기 — 웹은 문장부호, 전사는 종결어미 뒤 공백이 경계다.
 SENT = re.compile(r"(?<=[.!?。…])\s+|\n+|(?<=[다요죠])\s+")
 
@@ -132,7 +158,7 @@ def main():
     para_ids, post_ids, post_index = [], [], {}
     n_s = 0
     for pi, r in enumerate(코퍼스.문단들()):
-        text = r["text"]
+        text = 전사_교정(r["text"])
         pc = [cidx[c] for c in (bnm.concepts_in(text) | 간지들(text)) if c in cidx]
         para_ids.append(r["para_id"])
         pid = r.get("post_id") or r["para_id"]
