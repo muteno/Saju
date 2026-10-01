@@ -64,7 +64,7 @@ def 실행(n후보=199, seed=11, 보기=True, 관법적용=False):
         시주 = 기둥[3] is not None
         cands = [기둥] + [P.무작위_명식(rng, 시주)[0] for _ in range(n후보)]
         kwu = (src_kw if src_kw in net.ki and src_kw != "기타" else None) if 관법적용 else None
-        S = np.array([P.합산(hold, Mi.명식_신호(c, 성별)["신호"], kwu)[0] for c in cands])
+        S = np.array([P.합산(hold, Mi.명식_신호(c, 성별)["신호"], kwu, 척도종류="시" if 시주 else "무시")[0] for c in cands])
         Z = (S - S.mean(axis=0)) / (S.std(axis=0) + 1e-6)
         cs = np.array([E.spearman(Z[i], g) for i in range(len(cands))])
         rank = float((cs > cs[0]).sum()) / n후보

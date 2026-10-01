@@ -60,6 +60,43 @@ GANJI60 = [_G[i % 10] + _B[i % 12] for i in range(60)]
 _GANJI_RX = re.compile(f"([{_G}])([{_B}])\\s?(?:일주|일생|日柱)|([{_HG}])([{_HB}])\\s?(?:일주|日柱|日)")
 
 
+# 보충 인식 — 7월 개념 인식(별칭)이 못 잡는 글자 표기. 원장에서만 더한다(7월 파이프라인·별칭 판정은 그대로).
+#   실측(261001): 「신월에 태어났다」류 X월 4,618 · 「병일간」류 · 「미시에 태어」류 479 · 한자 간지 「甲辰」「未土」.
+#   ⚠사월·오월·유월은 달 이름(4·5·6월)과 겹쳐 «생/에 태어»가 붙을 때만 지지로 본다.
+#   ⚠한자 한 글자는 다른 한자말(孔子·未來)과 겹쳐 간지 짝이나 오행·월·일·시 글자가 붙을 때만 본다.
+_STEM_NODE = ["갑목(甲)", "을목(乙)", "병화(丙)", "정화(丁)", "무토(戊)", "기토(己)", "경금(庚)", "신금(辛)", "임수(壬)", "계수(癸)"]
+_BRANCH_NODE = ["자수(子)", "축토(丑)", "인목(寅)", "묘목(卯)", "진토(辰)", "사화(巳)", "오화(午)", "미토(未)", "신금(申)", "유금(酉)", "술토(戌)", "해수(亥)"]
+_보충 = [
+    (re.compile(r"(?<![가-힣])([인묘진신술해자축미])월(?=생|에|의|은|이|\s)"), "B월"),
+    (re.compile(r"(?<![가-힣])([사오유])월(?=생|에 태어)"), "B월"),
+    (re.compile(r"(?<![가-힣])([자축인묘진사오미신유술해])시(?=생|에 태어)"), "B시"),
+    (re.compile(r"(?<![가-힣])([갑을병정무기경신임계])\s?일간"), "S일간"),
+    (re.compile(f"([{_HG}])([{_HB}])"), "HSB"),
+    (re.compile(f"([{_HB}])(?=[土水木火金月時日])"), "HB"),
+    (re.compile(f"([{_HG}])(?=[木火土金水日])"), "HS"),
+]
+
+
+def 보충개념(text):
+    out = set()
+    for rx, kind in _보충:
+        for m in rx.finditer(text):
+            g = m.group(1)
+            if kind == "B월":
+                out |= {_BRANCH_NODE[_B.index(g)], "월지"}
+            elif kind == "B시":
+                out |= {_BRANCH_NODE[_B.index(g)], "시지"}
+            elif kind == "S일간":
+                out |= {_STEM_NODE[_G.index(g)], "일간"}
+            elif kind == "HSB":
+                out |= {_STEM_NODE[_HG.index(g)], _BRANCH_NODE[_HB.index(m.group(2))]}
+            elif kind == "HB":
+                out.add(_BRANCH_NODE[_HB.index(g)])
+            elif kind == "HS":
+                out.add(_STEM_NODE[_HG.index(g)])
+    return out
+
+
 def 간지들(text):
     out = set()
     for m in _GANJI_RX.finditer(text):
@@ -96,6 +133,16 @@ def 전사_교정(text):
     for rx, to in _교정:
         text = rx.sub(to, text)
     return text
+
+
+# 개념 인식 전 가리기 — 7월 별칭이 일상어 속에서 잡히는 것(실측 261001 표본): 교육해→육해(해) · 돌파·자유파→파 ·
+#   서태지→태지(절·태·양) · 고지식·차고지→고지 · 고관대작·관대한→관대 · 목욕탕→목욕 · 통근 버스/통근하→통근.
+#   의미 인식에는 원문을 그대로 쓰고 개념 인식에만 가린다(원장에서만).
+_가림 = re.compile(r"교육해|돌파|자유파|서태지|고지식|차고지|고관대[작장]|관대(?=한|하게|함|히|해)|목욕(?=탕|재계|을 하|하)|통근(?= ?버스| ?시간|하)")
+
+
+def 개념_가리기(text):
+    return _가림.sub(lambda m: "□" * len(m.group(0)), text)
 
 
 # 문장 나누기 — 웹은 문장부호, 전사는 종결어미 뒤 공백이 경계다.
@@ -159,7 +206,8 @@ def main():
     n_s = 0
     for pi, r in enumerate(코퍼스.문단들()):
         text = 전사_교정(r["text"])
-        pc = [cidx[c] for c in (bnm.concepts_in(text) | 간지들(text)) if c in cidx]
+        tm = 개념_가리기(text)
+        pc = [cidx[c] for c in (bnm.concepts_in(tm) | 간지들(tm) | 보충개념(tm)) if c in cidx]
         para_ids.append(r["para_id"])
         pid = r.get("post_id") or r["para_id"]
         if pid not in post_index:
@@ -171,7 +219,8 @@ def main():
         for c in pc:
             q_r.append(pi); q_c.append(c)
         for s in 문장들(text):
-            sc = [cidx[c] for c in (bnm.concepts_in(s) | 간지들(s)) if c in cidx]
+            sm_ = 개념_가리기(s)
+            sc = [cidx[c] for c in (bnm.concepts_in(sm_) | 간지들(sm_) | 보충개념(sm_)) if c in cidx]
             sm = [midx[m] for m in 의미.의미들(s)]
             for c in sc:
                 s_r.append(n_s); s_c.append(c)
