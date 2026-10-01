@@ -5,11 +5,14 @@ import { withoutCitationLines } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
 import { resolveWorkFeedback, ownedFeedbackPrompts } from '../engine/vendor/workFeedback.js'
 import { CONTEXT_READING_NOTICE, type ContextReading } from '../engine/vendor/contextReading.js'
-import { todayKST } from '../engine'
 import { parseConversationContext, type ConversationContext, type ConversationMessage } from './conversationContext'
 
 /** The chat's own menu line after a reading; it may sit between a shown question and its answer. */
 export const MENU_PROMPT = '또 궁금한 것이 있는가?'
+/** This year in KST, as the engine's todayKST() reads it (the engine index is not importable here: it bundles the KB). */
+export function kstYear(now = new Date()): number {
+  return Number(new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric' }).format(now))
+}
 /** Local feedback replay may look further back than the provider history (never sent). */
 export const MAX_FEEDBACK_MESSAGES = 40
 
@@ -104,7 +107,7 @@ export async function requestDosaText(options: {
       .find(block => block.label === '경험으로 확인할 부분')?.lines.at(-1) ?? ''
     const local = Array.isArray(options.feedbackMessages) ? options.feedbackMessages.slice(-MAX_FEEDBACK_MESSAGES) : conversation.messages
     // Today's year only keeps periods that have not begun out of the asked time (the engine stays pure).
-    const feedback = resolveWorkFeedback({ decision, timing, asOfYear: todayKST().year, footer, messages: local, answer: options.question, menuPrompts: [MENU_PROMPT] })
+    const feedback = resolveWorkFeedback({ decision, timing, asOfYear: kstYear(), footer, messages: local, answer: options.question, menuPrompts: [MENU_PROMPT] })
     if (feedback) return feedback.text
   }
   const ctrl = new AbortController()
