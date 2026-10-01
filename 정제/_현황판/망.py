@@ -29,7 +29,7 @@ D = HERE / "data" / "망"
 
 
 class 망:
-    def __init__(self, 제외_글=None, α=20.0):
+    def __init__(self, 제외_글=None, α=20.0, 창=0):
         self.meta = json.loads((D / "meta.json").read_text(encoding="utf-8"))
         S = sparse.load_npz(D / "S.npz")
         self.S = S.tocsc()
@@ -38,6 +38,21 @@ class 망:
         self.Q = sparse.load_npz(D / "Q.npz").tocsc()
         rows = np.load(D / "rows.npz")
         self.post = rows["post"]; self.kw = rows["kw"]
+        # 창: 개념이 말해진 문장 뒤 «창» 문장까지(같은 문단 안) 의미를 함께 센다.
+        #     고수는 개념을 말하고 다음 한두 문장에서 뜻을 푼다 — 한 문장만 보면 짝을 놓친다.
+        self.Sm_raw = self.Sm   # 채점(정답)은 늘 문장 단위 원본으로 센다
+        if 창:
+            para = rows["para"]
+            W = self.Sm.copy().astype(np.uint8)
+            n = W.shape[0]
+            for k in range(1, 창 + 1):
+                nxt = sparse.vstack([self.Sm[k:], sparse.csr_matrix((k, W.shape[1]), dtype=np.uint8)]).tocsr()
+                same = np.zeros(n, dtype=bool); same[:n - k] = para[k:] == para[:n - k]
+                nxt = sparse.diags(same.astype(np.float32)) @ nxt.astype(np.float32)
+                W = W + nxt
+            W.data[:] = 1
+            self.Sm = W.tocsr()
+        self.창 = 창
         paras = np.load(D / "paras.npz")
         self.qpost = paras["post"]; self.qkw = paras["kw"]
         self.nodes = self.meta["nodes"]; self.meanings = self.meta["meanings"]

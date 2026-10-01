@@ -65,7 +65,7 @@ def 정답_의미(net, pid, 최소=1):
     if j is None:
         return set()
     rows = net.post == j
-    cnt = np.asarray(net.S[rows][:, net.mcols].sum(axis=0)).ravel()
+    cnt = np.asarray(net.Sm_raw[np.flatnonzero(rows)].sum(axis=0)).ravel()
     return {net.meanings[i] for i, c in enumerate(cnt) if c >= 최소}
 
 
@@ -74,10 +74,10 @@ def 편차(net, pid, kw, ex_rows):
     j = net.pi.get(pid)
     rows = net.post == j
     n_p = int(rows.sum())
-    c = np.asarray(net.Sm[np.flatnonzero(rows)].sum(axis=0)).ravel()
+    c = np.asarray(net.Sm_raw[np.flatnonzero(rows)].sum(axis=0)).ravel()
     ref = (net.kw == net.ki[kw]) if kw else np.ones_like(rows)
     ref &= ~ex_rows
-    r = (np.asarray(net.Sm[np.flatnonzero(ref)].sum(axis=0)).ravel() + 1) / (ref.sum() + 2)
+    r = (np.asarray(net.Sm_raw[np.flatnonzero(ref)].sum(axis=0)).ravel() + 1) / (ref.sum() + 2)
     return np.log((c + 0.5) / (n_p * r + 0.5))
 
 
@@ -102,9 +102,15 @@ def auc(scores, positive):
 POS_NODES = {"일지", "월지", "연지", "시지", "월간", "연간", "시간(時干)", "일간"}
 
 
-def 예측(net, 기둥, λ=0.6, 신호필터=None, 관법=None, 위치=False):
+import 명식 as _명식
+_TEN = set(_명식.TEN.values())
+
+
+def 예측(net, 기둥, λ=0.6, 신호필터=None, 관법=None, 위치=False, 상대=False, 최소맥락=40):
     """명식 → 의미별 점수(로그 기준률 + Σ 무게·로그 배수)와 명식 고유 부분(Σ 무게·로그 배수)."""
-    sig = 명식_신호(기둥)["신호"]
+    info = 명식_신호(기둥)
+    sig = info["신호"]
+    day_node = _명식.STEM_NODE[_명식.STEMS.index(info["일간"])]
     base = net.기준률(관법)
     lp0 = np.log(base)
     spec = np.zeros(len(net.meanings))
@@ -118,6 +124,11 @@ def 예측(net, 기둥, λ=0.6, 신호필터=None, 관법=None, 위치=False):
         nA = d[net.meanings[0]][3]
         if nA < 30:
             continue
+        if 상대 and (A in _TEN or A.endswith("일반")) and day_node in net.ni:
+            # 상대 개념: 십성은 일간에 대한 관계라서, 그 일간이 함께 말해진 문단에서의 확률을 쓴다.
+            dc = net.의미분포(A, 관법, (day_node,))
+            if dc[net.meanings[0]][3] >= 최소맥락:
+                d = dc
         if 위치:
             ps = [p for p in v["자리"] if p in POS_NODES]
             if len(ps) == 1:
@@ -140,8 +151,8 @@ def 관법_of(net, 출처):
     return k if k in net.ki else None
 
 
-def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False):
-    net = M.망()
+def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False, 창=0, 상대=False):
+    net = M.망(창=창)
     gold = 정답_일주(net)
     by_ilju = defaultdict(list)
     for pid, g in gold.items():
@@ -160,7 +171,7 @@ def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False):
 
         def P(j, kw):
             if (j, kw) not in cache:
-                full, only, used = 예측(hold, [None, None, j, None], λ=λ, 관법=kw, 위치=위치)
+                full, only, used = 예측(hold, [None, None, j, None], λ=λ, 관법=kw, 위치=위치, 상대=상대)
                 cache[(j, kw)] = (full, only)
             return cache[(j, kw)]
         for pid in by_ilju[ilju]:
@@ -197,7 +208,7 @@ def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False):
         A1 = np.mean([r["AUC_망"] for r in res]); A0 = np.mean([r["AUC_빈도"] for r in res])
         A2 = np.mean([r["AUC_고유"] for r in res]); R = np.mean([r["순위"] for r in res])
         top5 = np.mean([r["순위"] <= 5 for r in res]); top1 = np.mean([r["순위"] == 1 for r in res])
-        print(f"[일주 대조] 글 {len(res)}편 · 일주 {len({r['일주'] for r in res})}개 · 엄격 홀드아웃={엄격} · λ={λ} · 관법={관법적용} · 위치={위치}")
+        print(f"[일주 대조] 글 {len(res)}편 · 일주 {len({r['일주'] for r in res})}개 · 엄격 홀드아웃={엄격} · λ={λ} · 관법={관법적용} · 위치={위치} · 창={창} · 상대={상대}")
         print(f"  ① 의미 판별력 AUC: 망 {A1:.3f}  vs  빈도 순 추측 {A0:.3f}  (명식 고유 부분만 {A2:.3f}, 무작위 0.5)")
         print(f"  ② 명식 판별: 그 일주의 평균 순위 {R:.1f} / 60 (무작위 30.5) · 1등 {top1:.0%} · 5등 안 {top5:.0%}")
         C = np.mean([r["강조상관"] for r in res]); RC = np.mean([r["강조순위"] for r in res])
@@ -213,7 +224,8 @@ def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False):
 if __name__ == "__main__":
     λ = float(sys.argv[1]) if len(sys.argv) > 1 else 0.6
     opts = set(sys.argv[2:])
-    rs = 실행(λ=λ, 관법적용="관법" in opts, 위치="위치" in opts)
+    창 = next((int(o[1:]) for o in opts if o.startswith("w")), 0)
+    rs = 실행(λ=λ, 관법적용="관법" in opts, 위치="위치" in opts, 창=창, 상대="상대" in opts)
     by = defaultdict(list)
     for r in rs:
         by[r["출처"]].append(r)
