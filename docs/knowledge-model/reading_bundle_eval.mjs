@@ -2,12 +2,14 @@
 // versions, with the version names hidden. It collects what the chat speaks for a topic when the provider is not used
 // (DosaChat selectTopic: the topic lines without raw excerpts, the app's own question and footer last), then measures
 // the bundle by criteria fixed before reading the outputs (READING_BUNDLE_EVAL.md): sentences used for any chart,
-// the same character named by two topics, repetition across topics, questions, and outcome/timing words. The
+// the same character named by two topics, repetition across topics, questions, outcome/timing words and (원문96, C6)
+// how many readings still speak a same-day-pillar draft item. The
 // contradiction judgement itself is the implementer's reading, kept in READING_BUNDLE_EVAL.md, not computed here.
 //
 //   git worktree add <dir> <commit>; ln -s $PWD/app/node_modules <dir>/app/node_modules
 //   cp app/public/kb-*.json <dir>/app/public/; cp app/src/engine/vendor/kb_ref.json <dir>/app/src/engine/vendor/
 //   BUNDLE_ROOTS="pr225=<dir225>,pr236=<dir236>,branch=." node docs/knowledge-model/reading_bundle_eval.mjs
+//   (원문96 ran pr225,pr236,pr237=<main 5000d06>,branch: up to four blind labels)
 // writes data/reading_bundle_eval.json (with the key) and evidence/reading-bundle/bundle.md (blinded).
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {createRequire} from 'node:module';
@@ -60,7 +62,10 @@ async function collect({label,dir}){
     const lines=topics.topicLines(report,key),followups=client.readingFollowups(report,lines);
     readings[key]=[...lines.filter(l=>!l.raw&&!followups.includes(l.text)).map(l=>l.text),...followups];
    }
-   out[x.id]={pillars,readings};
+   // 원문96 (C6): the same-day-pillar draft items of each topic, read from the report's own ilju block.
+   const dd=report.sections.find(s=>s.id==='ilju')?.block?.distilled?.distilled??{};
+   const draft={성격:[dd.핵심,...(dd.성격??[])].filter(Boolean),직업:dd.직업??[],관계:dd.관계??[]};
+   out[x.id]={pillars,readings,draft};
   }
   return out;
  }finally{globalThis.fetch=original;await server.close();}
@@ -88,7 +93,8 @@ function measure(versions){
     const u=ss.filter(s=>universal.has(s));
     return{id:x.id,sentences:ss.length,chars,universalSentences:u.length,universalShare:chars?+(u.join('').length/chars).toFixed(3):0,
      questions:ss.filter(s=>/\?$/.test(s)).length,endsWithQuestion:/\?$/.test(ss.filter(s=>!/^답(에 따라|을 통해)/.test(s)).at(-1)??''),
-     outcome:ss.filter(s=>OUTCOME.test(s)&&!DISCLAIM.test(s)),outcomeDisclaimed:ss.filter(s=>OUTCOME.test(s)&&DISCLAIM.test(s)).length};});
+     outcome:ss.filter(s=>OUTCOME.test(s)&&!DISCLAIM.test(s)),outcomeDisclaimed:ss.filter(s=>OUTCOME.test(s)&&DISCLAIM.test(s)).length,
+     draftItems:(data[x.id].draft?.[t]??[]).filter(item=>data[x.id].readings[t].some(line=>line.includes(item))).length};});
    // Same day pillar pairs (different month or hour, the same gender): the share of one reading's sentences the other repeats.
    const pairs=INPUTS.filter(x=>INPUTS.some(y=>y.id!==x.id&&y.g===x.g&&ilju(y.id)===ilju(x.id)&&y.id<x.id)).map(x=>{
     const y=INPUTS.find(y=>y.id!==x.id&&y.g===x.g&&ilju(y.id)===ilju(x.id)&&y.id<x.id),a=new Set(sentences(data[x.id].readings[t])),b=sentences(data[y.id].readings[t]);
@@ -96,7 +102,7 @@ function measure(versions){
    const avg=k=>+(rows.reduce((a,r)=>a+r[k],0)/rows.length).toFixed(3);
    m.topics[t]={universalThreshold:`${need}/${allIlju.size} 일주`,universal:[...universal],rows,pairs,
     mean:{sentences:avg('sentences'),chars:avg('chars'),universalShare:avg('universalShare'),questions:avg('questions')},
-    readingsWithOutcome:rows.filter(r=>r.outcome.length).length,samePairShare:pairs.length?+(pairs.reduce((a,p)=>a+p.sharedShare,0)/pairs.length).toFixed(3):null};
+    readingsWithOutcome:rows.filter(r=>r.outcome.length).length,readingsWithDraft:rows.filter(r=>r.draftItems).length,samePairShare:pairs.length?+(pairs.reduce((a,p)=>a+p.sharedShare,0)/pairs.length).toFixed(3):null};
   }
   for(const x of INPUTS){
    const per=Object.fromEntries(TOPICS.map(t=>[t,sentences(data[x.id].readings[t])]));
@@ -139,5 +145,5 @@ for(const x of INPUTS){
 }
 mkdirSync(here+'evidence/reading-bundle',{recursive:true});
 writeFileSync(here+'evidence/reading-bundle/bundle.md',md.join('\n'));
-const brief=Object.fromEntries(Object.entries(metrics).map(([v,m])=>[v,{...Object.fromEntries(TOPICS.map(t=>[t,{...m.topics[t].mean,universal:m.topics[t].universal.length,readingsWithOutcome:m.topics[t].readingsWithOutcome,samePairShare:m.topics[t].samePairShare}])),...m.summary}]));
+const brief=Object.fromEntries(Object.entries(metrics).map(([v,m])=>[v,{...Object.fromEntries(TOPICS.map(t=>[t,{...m.topics[t].mean,universal:m.topics[t].universal.length,readingsWithOutcome:m.topics[t].readingsWithOutcome,readingsWithDraft:m.topics[t].readingsWithDraft,samePairShare:m.topics[t].samePairShare}])),...m.summary}]));
 console.log(JSON.stringify(brief,null,1));

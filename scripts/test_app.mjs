@@ -556,6 +556,6 @@ test('관계 주제는 성별에 따른 배우자 별의 자리·음양으로 �
   const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_relation.mjs'],{
     cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:300000,env,stdio:['ignore','pipe','pipe'],
   })
-  // 원문95 added the cross-topic (성격 ‘부딪힘’ ↔ 관계) and the gender-line checks.
-  assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 8\b/)
+  // 원문95 added the cross-topic (성격 ‘부딪힘’ ↔ 관계) and the gender-line checks; 원문96 the draft-to-card check.
+  assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 9\b/)
 })

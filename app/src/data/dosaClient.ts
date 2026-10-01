@@ -2,6 +2,7 @@ import { basicSentenceMatches, safeBasicSentenceParagraphs, BASIC_SENTENCE_NOTIC
 import { chartSummaryOf, topicLines, type DosaLine } from './dosaTopics'
 import type { ReportBundle } from '../engine'
 import { withoutCitationLines } from './readingPresentation'
+import { ILJU_DRAFT_IN_CARD_NOTICE } from './draftLines'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
 import { resolveWorkFeedback, ownedFeedbackPrompts } from '../engine/vendor/workFeedback.js'
 import { CONTEXT_READING_NOTICE, type ContextReading } from '../engine/vendor/contextReading.js'
@@ -44,7 +45,7 @@ export function relationOf(report: ReportBundle): RelationReading | null {
 /** Calculation limits belong to the app and survive a generated/late answer. */
 export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[] {
   if (hasUnknownBirthTime(report)) return []
-  const notices = [BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, GAPIN_SENTENCE_NOTICE]
+  const notices = [BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, GAPIN_SENTENCE_NOTICE, ILJU_DRAFT_IN_CARD_NOTICE]
     .filter(note => lines.some(line => line.text === note))
   if (report.sections.some(s => s.id === 'context-reading' && s.lines?.includes(CONTEXT_READING_NOTICE)))
     notices.push(CONTEXT_READING_NOTICE)
