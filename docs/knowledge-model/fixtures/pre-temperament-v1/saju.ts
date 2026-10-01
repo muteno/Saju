@@ -154,11 +154,6 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; prof
   if (contextSection?.context) cards.push({ id: 'context-reading', title: contextSection.title,
     blocks: contextSection.context.blocks, note: contextSection.context.note })
 
-  // The month branch pattern read with the day branch (성격 topic); same card shape as the work reading.
-  const temperamentSection = byId('temperament-reading')
-  if (temperamentSection?.temperament?.active) cards.push({ id: 'temperament-reading', title: temperamentSection.title,
-    blocks: temperamentSection.temperament.blocks, note: temperamentSection.temperament.note })
-
   // Structural definitions stay separate from personal traits. No bibliography UI.
   const structure = iljuBlock?.structureReference
   if (structure) cards.push({ id: 'ilju-structure', title: '갑인 기본 구조',

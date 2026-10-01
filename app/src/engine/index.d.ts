@@ -80,6 +80,7 @@ export interface ReportBundle {
     title: string
     lines?: string[]
     context?: import('./vendor/contextReading.js').ContextReading
+    temperament?: import('./vendor/temperamentCandidates.js').TemperamentReading
     block?: { distilled?: any; excerpts?: Array<{ paras: string[]; source: { doc: string; title: string }; totalParas: number }>; empty?: boolean }
     [k: string]: unknown
   }>

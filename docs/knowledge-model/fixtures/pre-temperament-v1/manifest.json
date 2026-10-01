@@ -1,0 +1,35 @@
+{
+ "commit": "9bbdbcebbe97f09f326d823b13961494432d30ef",
+ "purpose": "PR235 changed these consumers to add the 성격 temperament reading; historical audits that overlay their own old sources on current app/engine sources pin these files at the previous main so their original receipts stay reproducible.",
+ "files": [
+  {
+   "source": "report.js",
+   "destinations": [
+    "dosa-app/engine/src/report.js",
+    "app/src/engine/vendor/report.js"
+   ],
+   "sha256_lf": "e22cb80707a0cab0b70c6c4146f80b1b16d8d92441cf355a873c8dcdf8414ac1"
+  },
+  {
+   "source": "dosaTopics.ts",
+   "destinations": [
+    "app/src/data/dosaTopics.ts"
+   ],
+   "sha256_lf": "b8d0f8855dae4b24b5807c9502ed1e80c6df1e6449e431f0da61736048238fe8"
+  },
+  {
+   "source": "saju.ts",
+   "destinations": [
+    "app/src/data/saju.ts"
+   ],
+   "sha256_lf": "8a342ce9e934f1702db50f37ff2fecca44732a35a1b439fd101f569b10742467"
+  },
+  {
+   "source": "analysisGroups.ts",
+   "destinations": [
+    "app/src/data/analysisGroups.ts"
+   ],
+   "sha256_lf": "3e0fbed23927491d8bcf4a10435164f100997fd82f7a707d3d63e1c3883a7874"
+  }
+ ]
+}

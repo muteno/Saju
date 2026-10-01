@@ -542,3 +542,11 @@ test('경험의 시기를 대운 시기 후보와 따로 대조하고, 시기를
   })
   assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 6\b/)
 })
+
+test('성격 주제는 월지 바탕·일지 생활 태도의 조건부 판단과 질문 하나로 읽고, 답에 따라 고친다', () => {
+  const env={...process.env};delete env.NODE_TEST_CONTEXT
+  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_temperament.mjs'],{
+    cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:150000,env,stdio:['ignore','pipe','pipe'],
+  })
+  assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 7\b/)
+})

@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
-import {frozenApp} from './frozen_app_audit.mjs';
+import {frozenApp,pinPreTemperament} from './frozen_app_audit.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const source=new URL('fixtures/hidden-root-context-v1/',import.meta.url);
 export function hiddenRootBaseline() {
@@ -15,6 +15,7 @@ export function hiddenRootBaseline() {
  try {
   for(const path of ['app/src','dosa-app/engine/src','functions/api/dosa.ts'])
    cpSync(resolve(root,path),resolve(frozen.directory,path),{recursive:true});
+  pinPreTemperament(frozen.directory); // PR235's report/consumer changes are not part of this receipt
   // This client was unchanged between PR220 and PR221 (Git blob d7eca4c).
   // Pin it now that the current client also preserves a month/day observation.
   const clientSource=new URL('fixtures/ordered-roles-v1/',import.meta.url);
