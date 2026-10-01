@@ -51,6 +51,7 @@ def 만세력(year, month, day, hour=None, minute=0, 성별="M"):
 
 
 신호맥락_기본 = True
+자르기 = (-0.5, 3.0)   # 로그 배수 자르기 — «함께 말해지지 않았다»는 약한 증거라 아래를 얕게 자른다(구현 가정)
 신호중심 = True   # 신호마다 의미 배수의 평균을 뺀다 — «개념 문장은 원래 삶 얘기가 많다»는 공통 몫을 빼서 신호 많은 명식 쏠림을 막는다
 확산 = 0.0      # 망을 한 걸음 더 탄다: 켜진 개념 A의 이웃 B(문단 공기 강도 상위 3)를 무게 × 강도 × 이 값으로 켠다
 확산_이웃 = 3
@@ -77,7 +78,7 @@ def 합산(net, 신호, 관법=None, 맥락=(), 배수=None, 최소=30, 신호�
         p = np.array([d[m][0] for m in net.meanings])
         lp0 = np.log(net.기준률(관법, ctx))
         w = v["무게"] * (배수 or {}).get(A, 1.0) * (1 + 횟수가중 * max(0, v.get("횟수", 1) - 1))
-        lift = np.clip(np.log(p) - lp0, -0.5, 3.0)
+        lift = np.clip(np.log(p) - lp0, 자르기[0], 자르기[1])
         if 신호중심:
             lift = lift - lift.mean()
         c = λ * w * lift

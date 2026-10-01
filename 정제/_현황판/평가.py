@@ -126,13 +126,43 @@ def 예측(net, 기둥, λ=0.6, 신호필터=None, 관법=None, 신호맥락=Fal
     return full, only, list(기여)
 
 
+_이웃캐시 = {}
+
+
+def 갈래이웃(net, kw, 최소=30):
+    """갈래끼리 개념→의미 배수(중심화)의 상관으로 가장 닮은 갈래 순서. 십성·천간·지지·주요 신살로 잰다."""
+    if kw in _이웃캐시:
+        return _이웃캐시[kw]
+    import 명식 as Mi
+    cs = list(set(Mi.TEN.values())) + Mi.STEM_NODE + Mi.BRANCH_NODE + ["도화", "역마", "화개", "백호", "괴강", "양인", "신강", "신약", "지지충", "육합"]
+
+    def vec(k):
+        out = []
+        for A in cs:
+            d = net.의미분포(A, k)
+            v = np.log(np.array([d[m][0] for m in net.meanings])) - np.log(net.기준률(k))
+            out.append(v - v.mean() if d[net.meanings[0]][3] >= 최소 else np.full(len(v), np.nan))
+        return np.array(out)
+    a = vec(kw)
+    sims = []
+    for k in net.관법들:
+        if k in (kw, "기타"):
+            continue
+        b = vec(k)
+        ok = ~(np.isnan(a).any(1) | np.isnan(b).any(1))
+        if ok.sum() > 5:
+            sims.append((k, float(np.corrcoef(a[ok].ravel(), b[ok].ravel())[0, 1])))
+    _이웃캐시[kw] = [k for k, _ in sorted(sims, key=lambda x: -x[1])]
+    return _이웃캐시[kw]
+
+
 def 관법_of(net, 출처):
     import build_망
     k = build_망.관법(출처)
     return k if k in net.ki else None
 
 
-def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False, 창=0, 상대=False, 최소성공=3.0, 중심=0, 제목무게=0.0, 장르기준=False):
+def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False, 창=0, 상대=False, 최소성공=3.0, 중심=0, 제목무게=0.0, 장르기준=False, 이웃=0):
     net = M.망(창=창, 최소성공=최소성공, 제목무게=제목무게)
     gold = 정답_일주(net)
     by_ilju = defaultdict(list)
@@ -160,6 +190,8 @@ def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False, �
             if len(pos) < 2 or len(pos) > len(net.meanings) - 2:
                 continue
             kw = 관법_of(net, gold[pid]["출처"]) if 관법적용 else None
+            if kw and 이웃:
+                kw = (kw,) + tuple(갈래이웃(net, kw)[:이웃])
             preds = {j: P(j, kw) for j in GANJI60}
             if 중심:
                 # 명식 고유 예측을 «60일주 평균에서 얼마나 벗어났나»로 바꾼다(모든 명식에 공통인 쏠림 제거).
@@ -219,7 +251,7 @@ if __name__ == "__main__":
     z = next((int(o[1:]) for o in opts if o.startswith("z")), 0)
     t = next((float(o[1:]) for o in opts if o.startswith("t")), 0.0)
     rs = 실행(λ=λ, 관법적용="관법" in opts, 위치="위치" in opts, 창=창, 상대="상대" in opts, 최소성공=c, 중심=z, 제목무게=t,
-              장르기준="장르" in opts)
+              장르기준="장르" in opts, 이웃=next((int(o[2:]) for o in opts if o.startswith("이웃")), 0))
     by = defaultdict(list)
     for r in rs:
         by[r["출처"]].append(r)

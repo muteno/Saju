@@ -90,13 +90,18 @@ class 망:
         out[M[:, j].indices] = True
         return out
 
+    def _kidx(self, 관법):
+        """관법 = 갈래 이름 하나 또는 여러 갈래의 묶음(튜플 — 학파처럼 함께 센다)."""
+        names = (관법,) if isinstance(관법, str) else tuple(관법)
+        return [self.ki[k] for k in names]
+
     def 행(self, 관법=None, 맥락=()):
         key = ("행", 관법, tuple(sorted(맥락)))
         if key in self._cache:
             return self._cache[key]
         m = self.base.copy()
         if 관법:
-            m &= self.kw == self.ki[관법]
+            m &= np.isin(self.kw, self._kidx(관법))
         for c in 맥락:
             m &= self._col(self.C, self.ni[c])
         self._cache[key] = m
@@ -180,7 +185,7 @@ class 망:
             return self._cache[key]
         q = self.qbase.copy()
         if 관법:
-            q &= self.qkw == self.ki[관법]
+            q &= np.isin(self.qkw, self._kidx(관법))
         for c in 맥락:
             q &= self.Q[:, self.ni[c]].toarray().ravel().astype(bool)
         X = self.Q[q].astype(np.float32)
