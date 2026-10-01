@@ -1,4 +1,4 @@
-// Reproduces the PR228/PR230/PR231/PR232/PR233 measurements (see CONDITIONAL_WORK_READING.md).
+// Reproduces the PR228/PR230/PR231/PR232/PR233/PR234 measurements (see CONDITIONAL_WORK_READING.md).
 //   node docs/knowledge-model/measure_work_feedback_scope.mjs grid
 //     → 1950-01-01..2009-12-31, every day × even hours, F, no solar correction, keepDay
 //   node docs/knowledge-model/measure_work_feedback_scope.mjs layer <git-ref> [strict]
@@ -22,6 +22,9 @@ import {isDeepStrictEqual} from 'node:util';
 import {computeChart} from '../../dosa-app/engine/src/manseryeok.js';
 import {buildContextReading} from '../../dosa-app/engine/src/contextReading.js';
 import {feedbackPlan} from '../../dosa-app/engine/src/workFeedback.js';
+import {timingPlan,compareTiming} from '../../dosa-app/engine/src/timingFeedback.js';
+// PR234: the time comparison is measured as of this year (the app passes today's year).
+const AS_OF=2026,TOLD_AGES=Array.from({length:21},(_,i)=>25+i);
 import {sexName} from '../../dosa-app/engine/src/tables.js';
 const DECISIONS=['decision','rootingDecision','branchDecision'];
 // PR233: the 대운 timing is a layer on the shown decision, not a decision.
@@ -35,6 +38,8 @@ if(mode==='grid'){
  const out={total:0,withDecision:0,displayed:0,revisable:0,modes:{},scopeWithheld:{bothBranchOnly:0,wealthStemOnly:0,authorityStemOnly:0},
   rooting:{charts:0,displayed:0,revisable:0,modes:{},linkBases:{}},branch:{charts:0,displayed:0,revisable:0,modes:{},pairKinds:{},linkBases:{}},anyDisplayed:0,anyRevisable:0,anyDisplayedHidingRelationQuestion:0,
   daeun:{charts:0,shown:0,byTarget:{},noRule:0,candidateCounts:{},adultCandidateCounts:{},statuses:{},genderDiffers:0,genderCompared:0},
+  timing:{plans:0,byRule:{},asks:{rootless:0,clashed:0},noPeriod:{rootless:0,clashed:0},laterOnly:{rootless:0,clashed:0},
+   toldAges:0,placed:0,verdicts:{},bothPlaced:0,verdictDiffers:0,matchedEither:0},
   conditionWithheld:{jiaMonthKilling:0,yangPeer:0,yinHurting:0},displayedHidingRelationQuestion:0,jia:{total:0,modes:{}}};
  for(let t=Date.UTC(1950,0,1);t<Date.UTC(2010,0,1);t+=86400000){const d=new Date(t);
   for(let hour=0;hour<24;hour+=2){out.total++;
@@ -68,7 +73,16 @@ if(mode==='grid'){
      o.candidateCounts[n]=(o.candidateCounts[n]??0)+1;o.adultCandidateCounts[adult]=(o.adultCandidateCounts[adult]??0)+1;
      for(const x of dt.periods)o.statuses[x.status]=(o.statuses[x.status]??0)+1;
      const m=buildContextReading(computeChart({year:d.getUTCFullYear(),month:d.getUTCMonth()+1,day:d.getUTCDate(),hour,minute:0,gender:'M',solarTimeCorrection:false,lateZiRule:'keepDay'},terms)).daeunTiming;
-     const key=t=>t.candidates.map(x=>x.ganji).join(',');o.genderCompared++;if(key(m)!==key(dt))o.genderDiffers++;}}
+     const key=t=>t.candidates.map(x=>x.ganji).join(',');o.genderCompared++;if(key(m)!==key(dt))o.genderDiffers++;
+     // PR234: whether a help answer would ask its time (an explaining period has begun by AS_OF), and the same told
+     // age (25~45, help side) compared on the same natal chart with both 대운 directions.
+     const w=shown(r),pf=timingPlan(w,dt,{asOfYear:AS_OF}),pm=timingPlan(w,m,{asOfYear:AS_OF}),tm=out.timing;
+     if(pf){tm.plans++;tm.byRule[pf.rule]=(tm.byRule[pf.rule]??0)+1;
+      if(pf.explains.length)tm.asks[pf.rule]++;else{tm.noPeriod[pf.rule]++;if(pf.explainsLater)tm.laterOnly[pf.rule]++;}
+      for(const age of TOLD_AGES){if(d.getUTCFullYear()+age+1>AS_OF)break;
+       const told=p=>compareTiming(p,[{polarity:'support',spans:[{unit:'age',from:age,to:age,text:`${age}살`}],relative:[]}]).record[0];
+       const a=told(pf),b=pm?told(pm):null;tm.toldAges++;if(a.verdict){tm.placed++;tm.verdicts[a.verdict]=(tm.verdicts[a.verdict]??0)+1;}
+       if(a.verdict&&b?.verdict){tm.bothPlaced++;if(a.verdict!==b.verdict)tm.verdictDiffers++;if(a.verdict==='matched'||b.verdict==='matched')tm.matchedEither++;}}}}}
    const w=shown(r);if(w){out.anyDisplayed++;if(feedbackPlan(w))out.anyRevisable++;
     if(r.monthDayChung.question||r.monthDayYukhap.question||r.monthDayCompound.question||r.monthDayHyeong.question)out.anyDisplayedHidingRelationQuestion++;}}}
  console.log(JSON.stringify(out,null,1));

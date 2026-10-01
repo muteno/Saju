@@ -6,6 +6,7 @@
 // Nothing is stored, learned, scored or shown as a probability.
 import { WORK_QUESTIONS, EXPLICIT_ANSWERS } from './workCandidates.js';
 import { ROOTING_THEMES } from './rootingCandidates.js';
+import { timingPlan, timingWanted, noExplainingPeriod, compareTiming, readTimingAnswer, leadingTimes, isTimeOnly, sideOfRest, TIMING_SINGLE, TIMING_SPLIT, TIMING_UNPLACED } from './timingFeedback.js';
 
 const norm = text => String(text ?? '').replace(/\s+/g, ' ').trim();
 const bare = text => norm(text).replace(/(?:^|\s)[ㅋㅎㅠㅜ]{2,}(?=\s|$)/gu, ' ').replace(/[.!。!~…]+$/u, '').trim();
@@ -150,13 +151,21 @@ function tagClause(text, kind, means) {
 /** Reads one answer for one question kind: 'help' (response with task increase),
  * 'duty' (help without task increase) or 'demand'. Returns null when the answer
  * asks something, talks about another topic, or has no feedback cue (normal chat). */
-export function readFeedbackAnswer(answer, kind, means = null) {
+export function readFeedbackAnswer(answer, kind, means = null, { timed = false } = {}) {
   if (typeof answer !== 'string' || !['help', 'duty', 'demand'].includes(kind)) return null;
   const text = norm(answer);
   if (!text || text.length > MAX_FEEDBACK_ANSWER || ASKING.test(text) || OTHER_TOPIC.test(text)) return null;
   const explicit = EXPLICIT_ANSWERS.get(bare(text));
   if (explicit) return { kind: explicit, explicit: true, text, segments: [], demandEvidence: null };
   const segments = answerClauses(text).map(clause => {
+    // With a 대운 layer (timingFeedback.js) a clause may start with when it happened: the time is kept and the
+    // rest is read; a yes/no scoped to a time is that side of the experience ('25살 땐 아니었어요').
+    const told = timed ? leadingTimes(clause.core) : null;
+    if (told && (told.spans.length || told.relative.length)) {
+      const raw = isTimeOnly(told.rest) ? 'time-only' : tagClause(told.rest, kind, means) ?? sideOfRest(told.rest);
+      const tag = raw === 'affirm' ? 'support' : raw === 'negative' ? 'contradict' : raw;
+      return { ...clause, tag, up: false, down: false, spans: told.spans, relative: told.relative };
+    }
     const tag = tagClause(clause.core, kind, means);
     // Task increase told inside a help answer is kept apart from the help polarity.
     const up = kind === 'help' && INCREASE.test(clause.core) && !NEGATION_IN_CLAUSE.test(clause.core);
@@ -168,8 +177,8 @@ export function readFeedbackAnswer(answer, kind, means = null) {
   const tags = segments.map(s => s.tag), has = t => tags.includes(t);
   const unknown = segments.filter(s => s.tag === null);
   const definite = [...new Set(tags.map(t => (t === 'no-increase' ? 'none' : t)))]
-    .filter(t => t && !['affirm', 'negative', 'increase', 'filler'].includes(t));
-  if (!tags.some(t => t && t !== 'filler')) return unknown.some(s => CUE_WORDS.test(s.core)) ? result('clarify:unclear') : null;
+    .filter(t => t && !['affirm', 'negative', 'increase', 'filler', 'time-only'].includes(t));
+  if (!tags.some(t => t && t !== 'filler' && t !== 'time-only')) return unknown.some(s => CUE_WORDS.test(s.core)) ? result('clarify:unclear') : null;
   if (has('partial')) return result('clarify:partial');
   if (/\.{2,}|…/u.test(text) && !definite.length) return null; // hesitation, not an answer
   if (unknown.length) return result('clarify:unclear'); // an unread clause may reverse the rest
@@ -266,18 +275,20 @@ const afterOf = (question, kind) => EFFECT_AFTER[question.effects?.[kind]] ?? AF
 const mergeEvidence = (prev, next) => (prev == null ? next : next == null || next === prev ? prev : 'conflict');
 
 /** Question plan for a revisable decision: the first owned question and follow-ups. */
-export function feedbackPlan(decision) {
+export function feedbackPlan(decision, timing = null, { asOfYear = null } = {}) {
   if (!decision?.active || !decision.question) return null;
+  // The 대운 periods read apart from the chart (daeunTiming.js), only for the decision they were read for.
+  const timed = plan => { const t = timingPlan(decision, timing, { asOfYear }); return t ? { ...plan, timing: t } : plan; };
   const demand = { id: 'work-candidate-resource-demand', prompt: WORK_QUESTIONS['resource-demand'], kind: 'demand', candidate: 'resource-demand', name: NAMES['resource-demand'] };
   const mode = decision.mode, own = { id: decision.question.id, prompt: decision.question.prompt, candidate: mode, name: NAMES[mode] };
   if (decision.policy === 'stem-branch-rooting-v1') return ROOTING_EFFECTS[mode]
-    ? { mode, outside: OUTSIDE_ROOTING, first: { ...own, kind: 'duty', name: ROOTING_NAMES[decision.side][mode], effects: ROOTING_EFFECTS[mode], themes: ROOTING_THEMES[decision.side] } }
+    ? timed({ mode, outside: OUTSIDE_ROOTING, first: { ...own, kind: 'duty', name: ROOTING_NAMES[decision.side][mode], effects: ROOTING_EFFECTS[mode], themes: ROOTING_THEMES[decision.side] } })
     : null;
   // Both groups only in the branches ask whether the wealth environment helped the authority role; one side in
   // the stems asks the rooting question of that side (the other group's environment is a storage branch's season).
   if (decision.policy === 'branch-season-v1') return BRANCH_EFFECTS[mode]
-    ? { mode, outside: OUTSIDE_BRANCH, first: { ...own, kind: 'duty', name: BRANCH_NAMES[decision.side ?? 'both'][mode], effects: BRANCH_EFFECTS[mode],
-      themes: ROOTING_THEMES[decision.side ?? 'authority'], family: BRANCH_FAMILY[mode] } }
+    ? timed({ mode, outside: OUTSIDE_BRANCH, first: { ...own, kind: 'duty', name: BRANCH_NAMES[decision.side ?? 'both'][mode], effects: BRANCH_EFFECTS[mode],
+      themes: ROOTING_THEMES[decision.side ?? 'authority'], family: BRANCH_FAMILY[mode] } })
     : null;
   const outside = decision.policy === 'stem-resource-authority-v1' ? OUTSIDE_STEM : OUTSIDE;
   if (mode === 'food-response' || mode === 'peer-response')
@@ -288,9 +299,9 @@ export function feedbackPlan(decision) {
 }
 
 /** Prompts this plan may ask; a provider reply must not re-ask them as its own. */
-export function ownedFeedbackPrompts(decision) {
-  const plan = feedbackPlan(decision);
-  return plan ? [plan.first.prompt, ...(plan.demand ? [plan.demand.prompt] : [])] : [];
+export function ownedFeedbackPrompts(decision, timing = null) {
+  const plan = feedbackPlan(decision, timing);
+  return plan ? [plan.first.prompt, ...(plan.demand ? [plan.demand.prompt] : []), ...(plan.timing ? [TIMING_SINGLE, TIMING_SPLIT] : [])] : [];
 }
 
 function understanding(read, question) {
@@ -303,7 +314,7 @@ function understanding(read, question) {
   return `${quoted(read.text)} 답은 ${phrase[read.kind === 'supported' ? 'support' : 'contradict']}으로 읽었어요.`;
 }
 
-function clarifyText(read, question) {
+function clarifyText(read, question, plan = null) {
   const opts = question.kind === 'demand'
     ? { yes: '해결할 일이 함께 늘었다면', no: '성과·자원을 늘렸는데도 일이 늘지 않았다면', none: '비슷한 일을 겪어 보지 않았다면' }
     : question.kind === 'duty'
@@ -312,7 +323,9 @@ function clarifyText(read, question) {
   if (read.kind === 'clarify:ambiguous-negative')
     return `${q(read.text)}만으로는 두 가지로 읽혀요. ${opts.none} ‘경험이 없어요’, ${opts.no} ‘반대예요’라고 답해 주세요.`;
   if (read.kind === 'clarify:partial')
-    return `${quoted(read.text)} 답은 때에 따라 달랐다는 뜻으로 읽혀요. 어떤 때 그랬고 어떤 때 아니었는지 나눠 말해 주면, 두 경우를 따로 반영할게요.`;
+    return plan?.timing?.explains.length
+      ? `${quoted(read.text)} 답은 때에 따라 달랐다는 뜻으로 읽혀요. ${TIMING_SPLIT}`
+      : `${quoted(read.text)} 답은 때에 따라 달랐다는 뜻으로 읽혀요. 어떤 때 그랬고 어떤 때 아니었는지 나눠 말해 주면, 두 경우를 따로 반영할게요.`;
   const options = `${opts.yes} ‘맞아요’, ${opts.no} ‘반대예요’, ${opts.none} ‘경험이 없어요’라고 답해 주세요.`;
   if (read.kind === 'clarify:help-unanswered')
     return `${quoted(read.text)} 답에서 일이 늘어난 경험은 들었어요. ${question.means}이 그 일을 다루는 데 도움이 됐는지는 아직 답이 없어요. ${options}`;
@@ -324,19 +337,22 @@ function clarifyText(read, question) {
 /** Rooting modes: the effect of an answer depends on the mode (ROOTING_EFFECTS). */
 function rootingRevision(plan, question, kind) {
   const name = `‘${question.name}’`, { envTheme, work } = question.themes, effect = question.effects[kind];
+  // With the 대운 layer the time of the experience is compared next, so the natal revision does not say the
+  // periods are left out, and what divides the two ranges is left to that comparison.
+  const divides = plan.timing ? '원국 비교로는 정하지 못해요' : '명식이 아니라 말해 준 경험에서 왔어요';
   const withheld = {
     'no-experience': `그 경험이 없으므로 ${name}를 개인에게 적용하는 판단은 보류해요. 경험 없음은 반대 경험이나 능력 부족과 달라요.`,
     unanswered: `답하지 않은 상태로 남겨 둘게요. ${name}는 확인되지 않은 가설로 두고, 동의하거나 반대한 것으로 처리하지 않아요.`,
     unsure: `확실하지 않다면 ${name}는 확인되지 않은 가설로 둘게요.`,
   }[kind];
   if (withheld) return { status: withheld, core: null, note: null };
-  const scoped = `고친 풀이: ${envTheme} 환경이 ${work}에 도움이 된 범위와 그렇지 않은 범위가 함께 있다고 좁혀 읽어요. 두 범위를 가르는 조건은 명식이 아니라 말해 준 경험에서 왔어요.`;
+  const scoped = `고친 풀이: ${envTheme} 환경이 ${work}에 도움이 된 범위와 그렇지 않은 범위가 함께 있다고 좁혀 읽어요. 두 범위를 가르는 조건은 ${divides}.`;
   const family = question.family ?? (plan.mode === 'shaken-link' ? 'shaken' : plan.mode === 'grounded-link' ? 'grounded' : 'separate');
   const shaken = family === 'shaken';
   return {
     retain: { status: `말해 준 경험 범위에서 ${name}를 유지해요. 처음부터 명식만으로 맞힌 것으로 세지는 않아요.`,
       core: !shaken ? null : kind === 'mixed'
-        ? `고친 풀이: 그 환경이 도움이 된 때와 그렇지 않은 때가 함께 있었다는 경험은 뿌리 지지가 흔들린다는 풀이와 같은 방향이에요. 두 경우를 가르는 조건은 명식이 아니라 말해 준 경험에서 왔어요. ${NOT_A_HIT}`
+        ? `고친 풀이: 그 환경이 도움이 된 때와 그렇지 않은 때가 함께 있었다는 경험은 뿌리 지지가 흔들린다는 풀이와 같은 방향이에요. 두 경우를 가르는 조건은 ${divides}. ${NOT_A_HIT}`
         : `고친 풀이: 그 환경이 도움이 되지 않았거나 부딪힌 경험은 뿌리 지지가 흔들린다는 풀이와 같은 방향이에요. 다만 그 이유가 충·형 때문인지는 명식만으로 정하지 않아요. ${NOT_A_HIT}` },
     'retain-link': { status: `말해 준 경험 범위에서 ${envTheme} 환경에 근거한다는 부분은 받아들여요.`,
       core: `고친 풀이: ${envTheme} 환경이 ${work}에 도움이 된 경험을 받아들이고, 그 근거가 흔들린다는 부분은 확인되지 않은 가설로 둬요. ${NOT_A_HIT}` },
@@ -350,7 +366,8 @@ function rootingRevision(plan, question, kind) {
           ? { status: `말해 준 경험을 반영해 ${name}를 낮춰요.`,
             core: `고친 풀이: 원국에서는 두 환경이 배움·준비 쪽으로 묶인다고 봤지만, 경험에서는 ${envTheme} 환경이 ${work}에 바로 도움이 됐어요. 이 비교로는 그 연결을 설명하지 못해요. ${plan.outside}` }
           : { status: `말해 준 경험을 반영해 ${name}를 낮춰요.`,
-            core: `고친 풀이: 원국의 뿌리 자리로는 보이지 않던 연결이 경험에서는 있었어요. 이 비교로는 그 연결을 설명하지 못해요. ${plan.outside}` },
+            core: plan.timing ? '고친 풀이: 원국의 뿌리 자리로는 보이지 않던 연결이 경험에서는 있었어요. 원국 비교로는 그 연결을 설명하지 못해요.'
+              : `고친 풀이: 원국의 뿌리 자리로는 보이지 않던 연결이 경험에서는 있었어요. 이 비교로는 그 연결을 설명하지 못해요. ${plan.outside}` },
     scope: { status: `경험을 나눠서 볼게요. 도움이 된 쪽에서는 ${name}를 유지하고, 그렇지 않았던 쪽에서는 낮춰요.`, core: scoped },
     'scope-reversed': { status: `경험을 나눠서 볼게요. 도움이 된 쪽에서는 ${name}를 낮추고, 그렇지 않았던 쪽에서는 유지해요.`, core: scoped },
   }[effect] ?? { status: null, core: null, note: null };
@@ -401,18 +418,75 @@ function revision(plan, question, kind, state, evidence) {
 
 const result = (base, feedback, fields) => ({ ...base, ...fields, feedback: { ...feedback }, probability: null, trainingEligible: false });
 
+const TIMING_ID = 'work-timing';
+const beforeOf = (decision, plan) => ({ policy: decision.policy, scope: decision.scope, mode: decision.mode, selectedIds: [...decision.selectedIds], interpretation: decision.interpretation,
+  candidates: decision.candidates.map(c => ({ id: c.id, status: c.status })),
+  ...(plan.timing ? { timing: { policy: plan.timing.policy, candidates: plan.timing.candidates.map(c => ({ ...c })) } } : {}) });
+const sideOf = { support: 'support', contradict: 'contradict' };
+
+/** Experiences told with a time in an applied answer: each timed clause keeps its own side, and a time-only or
+ * yes clause takes the side of the whole answer when it has one. */
+function toldTimes(read) {
+  const whole = read.kind === 'supported' ? 'support' : read.kind === 'contradicted' ? 'contradict' : null;
+  return read.segments.filter(x => x.spans?.length || x.relative?.length)
+    .map(x => ({ polarity: sideOf[x.tag] ?? whole, spans: x.spans, relative: x.relative }));
+}
+
+/** The 대운 step after a natal revision of the first question: compare a told time, or ask for it once. */
+function timingStep(plan, state, read) {
+  const t = plan.timing;
+  if (!t) return null;
+  const told = toldTimes(read), wanted = timingWanted(t, read.kind);
+  const split = read.kind === 'mixed' || told.some(e => e.polarity === 'contradict') && told.some(e => e.polarity === 'support');
+  if (told.length) {
+    const cmp = compareTiming(t, told);
+    if (!cmp.placed && !wanted) return null; // a side the chart already reads, told at no placeable time
+    if (cmp.placed || !wanted || !t.explains.length || state.timingAsked) return { lines: cmp.lines, status: cmp.placed ? 'compared' : 'unknown', record: cmp.record, feedback: cmp.feedback };
+    // A told time that cannot be placed: say why, then ask once for an age or a year.
+    return { lines: cmp.lines.filter(line => line !== TIMING_UNPLACED), ask: split ? 'split' : 'single', status: 'asked', record: cmp.record, feedback: {} };
+  }
+  if (!wanted) return null;
+  if (!t.explains.length) return { lines: [noExplainingPeriod(t, read.kind)], status: 'no-period', record: [], feedback: {} };
+  if (state.timingAsked) return { lines: ['언제였는지는 듣지 못해 대운과는 맞추지 않았어요.'], status: 'unknown', record: [], feedback: {} };
+  return { lines: [], ask: read.kind === 'mixed' ? 'split' : 'single', status: 'asked', record: [], feedback: {} };
+}
+
+/** The answer to the asked time question: compare it, or leave the 대운 comparison unknown without asking again. */
+function advanceTiming(decision, plan, state, answer) {
+  const read = readTimingAnswer(answer, state.timingAsk === 'single' ? 'support' : null, answerClauses);
+  if (!read) return null;
+  const prompt = state.timingAsk === 'split' ? TIMING_SPLIT : TIMING_SINGLE;
+  const base = { questionId: TIMING_ID, targetCandidateId: 'daeun-timing', answer: read,
+    before: { questionId: TIMING_ID, targetCandidateId: 'daeun-timing', reading: state.reading, feedback: { ...state.feedback } },
+    beforeFeedback: beforeOf(decision, plan) };
+  let lines, status = 'unknown', record = [], gained = {};
+  if (read.kind === 'timed') {
+    const cmp = compareTiming(plan.timing, read.experiences);
+    ({ lines, record } = cmp); gained = cmp.feedback; status = cmp.placed ? 'compared' : 'unknown';
+    if (!cmp.placed) lines = [...lines, '같은 질문은 다시 묻지 않아요.'];
+  } else lines = [{
+    unsure: '시기를 모르면 대운과는 맞추지 않고 그대로 둘게요. 같은 질문은 다시 묻지 않아요.',
+    unanswered: '시기는 답하지 않은 상태로 두고 대운과는 맞추지 않을게요. 같은 질문은 다시 묻지 않아요.',
+  }[read.kind] ?? `${q(read.text)}만으로는 시기를 나이나 연도로 정할 수 없어 대운과는 맞추지 않을게요. 같은 질문은 다시 묻지 않아요.`];
+  const feedback = { ...state.feedback, ...gained };
+  const timing = { status, asked: prompt, record };
+  const text = [lines.slice(0, -1).join(' '), lines.at(-1)].filter(Boolean).join('\n\n');
+  return result(base, feedback, { action: 'revise', after: status === 'compared' ? 'timing-compared' : 'timing-unknown', revisedInterpretation: null, note: null,
+    nextQuestion: null, timing, text, state: { ...state, pending: null, clarify: null, timingAsk: null, feedback, timing } });
+}
+
 /** Applies one answer to the pending question. Pure; returns the next state. */
 export function advanceWorkFeedback(decision, plan, state, answer, { afterMenu = false } = {}) {
+  if (state.pending === 'timing') return plan.timing ? advanceTiming(decision, plan, state, answer) : null;
   const question = state.pending === 'first' ? plan.first : state.pending === 'demand' ? plan.demand : null;
   if (!question) return null;
-  let read = readFeedbackAnswer(answer, question.kind, question.meansCue ?? null);
+  let read = readFeedbackAnswer(answer, question.kind, question.meansCue ?? null, { timed: Boolean(plan.timing) });
   if (!read) return null;
   // After the menu question a bare yes/no may answer the menu, not the owned question.
   if (afterMenu && (read.explicit ? read.kind === 'supported' : read.segments.every(s => ['affirm', 'negative', 'filler'].includes(s.tag)))) return null;
   const base = { questionId: question.id, targetCandidateId: question.candidate, answer: read,
     before: { questionId: question.id, targetCandidateId: question.candidate, reading: state.reading, feedback: { ...state.feedback } },
-    beforeFeedback: { policy: decision.policy, scope: decision.scope, mode: decision.mode, selectedIds: [...decision.selectedIds], interpretation: decision.interpretation,
-      candidates: decision.candidates.map(c => ({ id: c.id, status: c.status })) } };
+    beforeFeedback: beforeOf(decision, plan) };
   const heard = question.kind === 'help' && plan.demand ? read.demandEvidence : null;
   const evidence = mergeEvidence(state.evidence, heard);
   if (state.clarify && !read.kind.startsWith('clarify:') && !OFFERED[state.clarify].includes(read.kind))
@@ -428,8 +502,10 @@ export function advanceWorkFeedback(decision, plan, state, answer, { afterMenu =
       return result(base, feedback, { action: 'unresolved', after: 'unconfirmed', nextQuestion: null, revisedInterpretation: null, note: null, text,
         state: { ...state, pending: null, clarify: null, evidence, feedback } });
     }
+    // 'At some times' with a 대운 layer asks when, which is also the one time question.
+    const asksTime = read.kind === 'clarify:partial' && Boolean(plan.timing?.explains.length) && timingWanted(plan.timing, read.kind);
     return result(base, state.feedback, { action: 'clarify', after: 'pending', nextQuestion: null, revisedInterpretation: null, note: null,
-      text: clarifyText(read, question), state: { ...state, clarify: read.kind, evidence } });
+      text: clarifyText(read, question, asksTime ? plan : null), state: { ...state, clarify: read.kind, evidence, ...(asksTime ? { timingAsked: true } : {}) } });
   }
   const feedback = { ...state.feedback, [question.candidate]: afterOf(question, read.kind) };
   const { status, core, note } = revision(plan, question, read.kind, state, evidence);
@@ -440,21 +516,27 @@ export function advanceWorkFeedback(decision, plan, state, answer, { afterMenu =
   }
   const askDemand = plan.demand && question.id === plan.first.id && ['contradicted', 'no-experience'].includes(read.kind)
     && evidence !== 'up' && !state.asked.includes(plan.demand.id);
-  const next = askDemand ? plan.demand : null;
-  const text = [understanding(read, question), status, evidenceLine, core, next ? note : null, next?.prompt,
+  const step = question.id === plan.first.id ? timingStep(plan, state, read) : null;
+  const askTime = step?.ask ? { id: TIMING_ID, prompt: step.ask === 'split' ? TIMING_SPLIT : TIMING_SINGLE, candidate: 'daeun-timing' } : null;
+  const next = askDemand ? plan.demand : askTime;
+  Object.assign(feedback, step?.feedback ?? {});
+  const timingLines = step?.lines.length ? [step.lines.slice(0, -1).join(' ') || null, step.lines.at(-1)] : [];
+  const text = [understanding(read, question), status, evidenceLine, core, ...timingLines, next ? note : null, next?.prompt,
     !next && note && !core ? note : null].filter(Boolean).join('\n\n');
+  const timing = step ? { status: step.status, asked: askTime?.prompt ?? null, record: step.record } : undefined;
   return result(base, feedback, { action: 'revise', after: afterOf(question, read.kind), revisedInterpretation: core, note,
-    nextQuestion: next ? { id: next.id, prompt: next.prompt, targetCandidateId: next.candidate } : null, text,
-    state: { ...state, pending: next ? 'demand' : null, clarify: null, evidence, feedback,
-      reading: core ?? state.reading, asked: next ? [...state.asked, next.id] : state.asked } });
+    nextQuestion: next ? { id: next.id, prompt: next.prompt, targetCandidateId: next.candidate } : null, text, ...(timing ? { timing } : {}),
+    state: { ...state, pending: next === askTime && askTime ? 'timing' : next ? 'demand' : null, clarify: null, evidence, feedback,
+      reading: core ?? state.reading, asked: next ? [...state.asked, next.id] : state.asked,
+      ...(step ? { timingAsked: Boolean(state.timingAsked || askTime), timingAsk: askTime ? step.ask : null, timing } : {}) } });
 }
 
 /** Replays the visible conversation from the latest shown owned question. Every
  * earlier answer must have been answered locally and shown completely; any other
  * assistant text (provider reply, partial reply) leaves the answer to chat. The menu
  * prompt may sit between a shown question and its answer; bare yes/no after it is chat. */
-export function resolveWorkFeedback({ decision, footer = '', messages, answer, menuPrompts = [] }) {
-  const plan = feedbackPlan(decision);
+export function resolveWorkFeedback({ decision, timing = null, asOfYear = null, footer = '', messages, answer, menuPrompts = [] }) {
+  const plan = feedbackPlan(decision, timing, { asOfYear });
   if (!plan || !Array.isArray(messages) || typeof answer !== 'string') return null;
   const start = messages.findLastIndex(m => m?.role === 'assistant' && norm(m.text) === norm(plan.first.prompt));
   if (start < 0) return null;

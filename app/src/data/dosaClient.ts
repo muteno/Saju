@@ -5,6 +5,7 @@ import { withoutCitationLines } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
 import { resolveWorkFeedback, ownedFeedbackPrompts } from '../engine/vendor/workFeedback.js'
 import { CONTEXT_READING_NOTICE, type ContextReading } from '../engine/vendor/contextReading.js'
+import { todayKST } from '../engine'
 import { parseConversationContext, type ConversationContext, type ConversationMessage } from './conversationContext'
 
 /** The chat's own menu line after a reading; it may sit between a shown question and its answer. */
@@ -92,14 +93,18 @@ export async function requestDosaText(options: {
   const parsed = options.question ? parseConversationContext(options.conversation) : undefined
   // Prior model words are conversation, not a new route around withheld readings.
   const conversation = parsed && !basicSentenceMatches(parsed.messages.filter(m => m.role === 'assistant').map(m => m.text).join('\n\n')).length ? parsed : undefined
-  const decision = activeWorkDecision(options.report.sections.find(s => s.id === 'context-reading')?.context)
+  const workContext = options.report.sections.find(s => s.id === 'context-reading')?.context
+  const decision = activeWorkDecision(workContext)
+  // The 대운 periods read apart from the chart answer only the comparison they belong to (absent in older engines).
+  const timing = workContext?.daeunTiming ?? null
   if (decision?.question && conversation?.topic === '직업') {
     // Replays the shown owned question and every local answer after it; any other
     // assistant text (menu, provider reply, partly shown reply) leaves this to chat.
     const footer = options.report.sections.find(s => s.id === 'context-reading')?.context?.blocks
       .find(block => block.label === '경험으로 확인할 부분')?.lines.at(-1) ?? ''
     const local = Array.isArray(options.feedbackMessages) ? options.feedbackMessages.slice(-MAX_FEEDBACK_MESSAGES) : conversation.messages
-    const feedback = resolveWorkFeedback({ decision, footer, messages: local, answer: options.question, menuPrompts: [MENU_PROMPT] })
+    // Today's year only keeps periods that have not begun out of the asked time (the engine stays pure).
+    const feedback = resolveWorkFeedback({ decision, timing, asOfYear: todayKST().year, footer, messages: local, answer: options.question, menuPrompts: [MENU_PROMPT] })
     if (feedback) return feedback.text
   }
   const ctrl = new AbortController()
@@ -135,7 +140,7 @@ export async function requestDosaText(options: {
     // A provider may copy a question into an early paragraph or combine it with
     // narration. Normalize our exact owned lines before the UI splits sentences.
     // A free answer must not re-ask the app's own feedback question as if it were new.
-    const reasked = options.question ? ownedFeedbackPrompts(decision) : []
+    const reasked = options.question ? ownedFeedbackPrompts(decision, timing) : []
     const owned = [...notices, ...followups, ...reasked].flatMap(line => [line, ...line.split(/(?<=[.?!…])\s+/)])
     const body = owned.reduce((text, line) => text.replaceAll(line, ''), presented).trim()
     // A complete owned observation can itself answer a free question.
