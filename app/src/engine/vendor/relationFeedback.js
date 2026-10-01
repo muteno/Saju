@@ -42,6 +42,7 @@ const WITHHELD = {
 };
 const SCOPED = name => `고친 풀이: ${name}가 맞는 때와 맞지 않는 때가 함께 있다고 좁혀 읽어요. 두 경우를 가르는 조건은 명식이 아니라 말해 준 경험에서 왔어요.`;
 const ASK_NOTE = {
+  'near-checked': '제동 대신 어떤 관계인지 하나만 물을게요.',
   'near-bonded': '다정한 마음은 오가는지 하나만 물을게요.',
   'near-bridged': '그 반대 경우인지 하나만 물을게요.',
   'near-warm': '다정함 대신 기준과 역할이 먼저인지 하나만 물을게요.',
@@ -49,7 +50,14 @@ const ASK_NOTE = {
   'near-mixed': '다정함 대신 기준과 역할이 먼저인지 하나만 물을게요.',
 };
 // What the shown answer turns into: the other warmth reading (first ‘반대예요’ or a ‘yes’ to the complementary question).
+// The checked reading asks the warmth of its own star (정관 → 다정함, 편관 → 기준), so its texts follow that question.
+const CHECK_LOWERED = '스스로 밀고 가려는 바탕 때문에 일지의 배우자 별이 제동으로 읽힌다는 가정을 낮추고';
 const SWITCHED = {
+  'near-checked': plan => ({
+    'near-bonded': `고친 풀이: 제동처럼 느껴져 부딪히는 일은 잦지 않고, 가까운 사람과 마음을 묶어 안정된 생활을 함께 꾸려 간다고 했어요. ${CHECK_LOWERED}, 곁에서 합하는 별로 묶어 꾸려 가는 쪽으로 고쳐 읽어요. ${NOT_A_HIT}`,
+    'near-warm': `고친 풀이: 제동처럼 느껴져 부딪히는 일은 잦지 않고, 다정한 말과 마음 표현이 자연스럽게 오간다고 했어요. ${CHECK_LOWERED}, 음양이 조화되는 별로 다정함이 오가는 쪽으로 고쳐 읽어요. ${NOT_A_HIT}`,
+    'near-firm': `고친 풀이: 제동처럼 느껴져 부딪히는 일은 잦지 않고, 다정한 표현보다 각자의 원칙과 기준을 먼저 세운다고 했어요. ${CHECK_LOWERED}, 기준이 먼저 서는 쪽으로 고쳐 읽어요. ${NOT_A_HIT}`,
+  })[plan.followup.candidate],
   'near-warm': `고친 풀이: ${FIRM_FIRST}라고 했어요. 음양이 조화되는 별로 다정함을 읽은 가정을 낮추고, 기준과 역할이 먼저 서는 쪽으로 고쳐 읽어요. 가까운 자리에 있다는 부분은 이 답만으로 정하지 못해요. ${NOT_A_HIT}`,
   'near-firm': `고친 풀이: 다정한 말과 마음 표현이 자연스럽게 오간다고 했어요. 음양이 같은 별이라 다정함이 덜하다고 읽은 가정을 낮추고, 다정함이 오가는 쪽으로 고쳐 읽어요. ${NOT_A_HIT}`,
   'near-mixed': `고친 풀이: ${FIRM_FIRST}라고 했어요. 곁에 있는 두 별 가운데 일간과 음양이 같은 별 쪽으로 좁혀 읽어요. ${NOT_A_HIT}`,
@@ -57,6 +65,7 @@ const SWITCHED = {
   'near-bridged': `고친 풀이: 가까운 사람의 말과 행동에 예민하게 부딪히는 일이 잦다고 했어요. 인성이 편관과 일간 사이를 이어 준다고 본 가정을 낮추고, 편관의 압박이 그대로 느껴지는 쪽으로 고쳐 읽어요. ${NOT_A_HIT}`,
 };
 const NEITHER = {
+  'near-checked': plan => `고친 풀이: 제동처럼 느껴져 자주 부딪히지도, ${{ 'near-bonded': '마음을 묶어 함께 꾸려 가지도', 'near-warm': '다정한 표현이 자연스럽게 오가지도', 'near-firm': '각자의 원칙과 기준을 먼저 세우지도' }[plan.followup.candidate]} 않는다고 했어요. 일지의 배우자 별로 관계를 읽은 부분을 낮춰요. 어떤 방식인지는 이 비교로 정하지 못해요. ${OUTSIDE}`,
   'near-warm': `고친 풀이: 다정함이 자연스럽게 오가지도, 기준과 역할이 먼저 서지도 않는다고 했어요. 배우자 별의 음양으로 관계의 온도를 읽은 부분을 낮춰요. 어떤 방식인지는 이 비교로 정하지 못해요. ${OUTSIDE}`,
   'near-firm': `고친 풀이: 기준과 역할이 먼저 서지도, 다정함이 자연스럽게 오가지도 않는다고 했어요. 배우자 별의 음양으로 관계의 온도를 읽은 부분을 낮춰요. 어떤 방식인지는 이 비교로 정하지 못해요. ${OUTSIDE}`,
   'near-mixed': `고친 풀이: 다정함이 먼저도, 기준과 역할이 먼저도 아니라고 했어요. 곁에 있는 두 별의 음양으로 관계의 온도를 읽은 부분을 낮춰요. 어떤 방식인지는 이 비교로 정하지 못해요. ${OUTSIDE}`,
@@ -73,6 +82,7 @@ const LOWERED = {
  * complementary question next. */
 function revision(plan, pending, kind) {
   const { mode } = plan, question = pending === 'first' ? plan.first : plan.followup;
+  const text = table => typeof table[mode] === 'function' ? table[mode](plan) : table[mode];
   const name = `‘${question.name}’`;
   if (WITHHELD[kind]) return { feedback: { [question.candidate]: 'withheld' }, status: WITHHELD[kind](name), core: null };
   if (kind === 'mixed') return { feedback: { [question.candidate]: 'scoped' }, status: `때에 따라 달랐다는 답으로 볼게요. 맞는 때에는 ${name}를 유지하고, 그렇지 않은 때에는 낮춰요.`, core: SCOPED(name) };
@@ -81,19 +91,19 @@ function revision(plan, pending, kind) {
     if (kind === 'supported') return { feedback: { [mode]: 'narrowed', 'near-warm': 'retained-as-self-report' }, status: null,
       core: `고친 풀이: 다정한 말과 마음 표현이 먼저 오간다고 했어요. 곁에 있는 두 별 가운데 일간과 음양이 조화되는 별 쪽으로 좁혀 읽어요. ${NOT_A_HIT}` };
     const status = '말해 준 답을 반영해 다정함이 먼저라는 쪽은 낮춰요.';
-    if (kind === 'reversed') return { feedback: { [mode]: 'narrowed', 'near-warm': 'weakened', 'near-firm': 'retained-as-self-report' }, status, core: SWITCHED[mode] };
+    if (kind === 'reversed') return { feedback: { [mode]: 'narrowed', 'near-warm': 'weakened', 'near-firm': 'retained-as-self-report' }, status, core: text(SWITCHED) };
     return { feedback: { [mode]: 'narrowed', 'near-warm': 'weakened' }, status, core: null, ask: true, note: ASK_NOTE[mode] };
   }
   if (pending === 'first') {
     if (kind === 'supported') return { feedback: { [mode]: 'retained-as-self-report' }, status: `말해 준 경험 범위에서 ${name}를 유지해요. 처음부터 명식만으로 맞힌 것으로 세지는 않아요.`, core: null };
     const status = `말해 준 답을 반영해 ${name}를 낮춰요.`;
-    if (kind === 'reversed') return { feedback: { [mode]: 'weakened', [plan.followup.candidate]: 'retained-as-self-report' }, status, core: SWITCHED[mode] };
+    if (kind === 'reversed') return { feedback: { [mode]: 'weakened', [plan.followup.candidate]: 'retained-as-self-report' }, status, core: text(SWITCHED) };
     if (plan.followup) return { feedback: { [mode]: 'weakened' }, status, core: null, ask: true, note: ASK_NOTE[mode] };
     return { feedback: { [mode]: 'weakened' }, status, core: LOWERED[mode] };
   }
   return kind === 'supported'
-    ? { feedback: { [question.candidate]: 'retained-as-self-report' }, status: null, core: SWITCHED[mode] }
-    : { feedback: { [question.candidate]: 'weakened' }, status: null, core: NEITHER[mode] };
+    ? { feedback: { [question.candidate]: 'retained-as-self-report' }, status: null, core: text(SWITCHED) }
+    : { feedback: { [question.candidate]: 'weakened' }, status: null, core: text(NEITHER) };
 }
 
 function clarifyText(read, plan, pending) {

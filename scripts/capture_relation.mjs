@@ -2,6 +2,8 @@
 // Real local React; the provider answers free questions with a fixed mock line and the reading request with 503;
 // external URLs are blocked.
 //   SAJU_ROOT=<checkout> QA_OUT=<dir> node scripts/capture_relation.mjs <before|after>
+// CAPTURE_SET=checked selects the 원문95 scenes instead (READING_BUNDLE_EVAL.md): the 여명 whose 성격 reading is
+// ‘부딪힘’ (1975-02-02 02시) and the 기유 여명 whose 관계 draft carried 남명 items (1985-09-07 02시).
 // Then `node scripts/capture_relation.mjs compare` (QA_OUT with both runs) writes side-by-side compare-*.png.
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {fileURLToPath,pathToFileURL} from 'node:url';
@@ -30,7 +32,9 @@ const norm=s=>s.replace(/\s+/g,' ').trim();
 // of one chart (甲寅 寅월, 己酉 申월); answers typed right after the question (a far reading lowered; a warmth reading
 // lowered, then the complementary question) or after the menu line (a worded answer), a 'at some times' answer, and the
 // analysis card.
-const SCENES=[['gapin-yin-F','chat','1980-02-11',4,'F',390,['아니요'],false],['gapin-jin-F','chat','1980-04-11',4,'F',390,['아니요','네'],false],
+const CHECKED=[['checked-F','chat','1975-02-02',2,'F',390,['아니요','네'],false],['checked-F-1280','chat','1975-02-02',2,'F',1280,[],true],
+ ['gender-giyu-F','chat','1985-09-07',2,'F',390,[],true],['card-checked-F','card','1975-02-02',2,'F',390,[],false]];
+const SCENES=process.env.CAPTURE_SET==='checked'?CHECKED:[['gapin-yin-F','chat','1980-02-11',4,'F',390,['아니요'],false],['gapin-jin-F','chat','1980-04-11',4,'F',390,['아니요','네'],false],
  ['gapin-yin-M','chat','1980-02-11',4,'M',390,[],true],['giyu-sin-F','chat','1985-09-07',2,'F',390,['그런 편이에요'],true],
  ['giyu-sin-M','chat','1985-09-07',2,'M',390,['때에 따라 달라요'],false],
  ['gapin-jin-F-1280','chat','1980-04-11',4,'F',1280,[],true],['card-gapin-jin-F','card','1980-04-11',4,'F',390,[],false],['card-giyu-sin-F-1280','card','1985-09-07',2,'F',1280,[],false]];

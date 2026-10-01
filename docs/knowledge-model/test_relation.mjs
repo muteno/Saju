@@ -4,6 +4,9 @@
 // 고급2 406·407), the bridged 월간 편관 (중급1 105·110, 고급1 315), hidden stems (고급2 404) and the app's mode table —
 // with an independent element/polarity rule, not copied from the engine's tables or wording. The temperament and work
 // readings are checked apart (test_temperament.mjs, `measure_work_feedback_scope.mjs layer <prev main> strict`).
+// 원문95 (READING_BUNDLE_EVAL.md): a woman whose temperament reading is ‘peer-blocked’ (비겁 pattern, 신강, 관성 in the
+// day branch) reads that same 일지 관성 — her spouse star — as checking her direction (중급1 104 예시2, 106), so the two
+// topics never read one character with opposite qualities; the temperament reading is the oracle of that condition.
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {readFileSync} from 'node:fs';
@@ -33,8 +36,10 @@ const yang=c=>S.indexOf(c)%2===0;
 const kind=(me,o)=>{const a=EL[me],b=EL[o];return a===b?'비겁':PRODUCES[a]===b?'식상':CONTROLS[a]===b?'재성':CONTROLS[b]===a?'관성':'인성';};
 const warm=(me,o)=>yang(me)!==yang(o);
 const HAP=['甲己','乙庚','丙辛','丁壬','戊癸'],combine=(a,b)=>HAP.includes(a+b)||HAP.includes(b+a);
-function expected([y,m,d,h],gender){
+function expected([y,m,d,h],gender,c){
  const me=d[0],want=gender==='F'?'관성':'재성',main=gz=>HID[gz[1]].at(-1);
+ // Cross-topic: the 일지 관성 that blocks the strong 비겁 mind in the 성격 reading is the 여명's spouse star.
+ if(gender==='F'&&kind(me,main(d))==='관성'&&c&&buildTemperamentReading(c).mode==='peer-blocked')return'near-checked';
  const visible=[['연간',y[0]],['월간',m[0]],['시간',h[0]],['연지',main(y)],['월지',main(m)],['일지',main(d)],['시지',main(h)]].filter(([,c])=>kind(me,c)===want);
  const near=visible.filter(([p])=>['월간','일지','시간'].includes(p));
  const hidden=[y,m,d,h].some(gz=>[...HID[gz[1]]].slice(0,-1).some(c=>kind(me,c)===want));
@@ -57,11 +62,20 @@ function session(c){
 
 test('source charts: places, warmth, combination, the bridged 월간 편관 and hidden stems',()=>{
  const mode=(...a)=>buildRelationReading(sym(...a)).mode;
- // 중급1 106 (220~224): 인월 甲 여명, 일지 申 편관 — one body (인연) without harmony (정).
+ // 중급1 106 (219~224): 인월 甲 비견격 신강 여명, 일지 申 편관 — one body (인연) without harmony (정), and the husband
+ // star blocking the strong mind (가로막아 방해): the 성격 reading of the same chart is ‘peer-blocked’ (원문95).
  const r106=buildRelationReading(sym('壬子','甲寅','甲申','丙寅','F'));
- assert.equal(r106.mode,'near-firm');assert.deepEqual(r106.stars.facing.map(s=>[s.placeName,s.character,s.god]),[['일지','庚','편관']]);
+ assert.equal(buildTemperamentReading(sym('壬子','甲寅','甲申','丙寅','F')).mode,'peer-blocked');
+ assert.equal(r106.mode,'near-checked');assert.deepEqual(r106.stars.facing.map(s=>[s.placeName,s.character,s.god]),[['일지','庚','편관']]);
+ assert.deepEqual(r106.candidates.filter(c=>c.status==='superseded').map(c=>c.id),['near-firm']);
+ assert.deepEqual([r106.checked.god,r106.checked.warm,r106.checked.pattern,r106.checked.temperamentMode],['편관',false,'비견','peer-blocked']);
+ assert.match(r106.interpretation,/제동/);assert.match(r106.interpretation,/서로의 기준이 앞서는/);
  assert.ok(r106.palaceClash.includes('인신충'));assert.equal(r106.features.bridged,0); // recorded, not used
  assert.equal(mode('壬子','甲寅','甲申','丙寅','M'),'hidden'); // the same chart as 남명: 戊 only as a hidden stem
+ // 104 예시2 (121~124·175~178): the same with 시간 戊 — 여명 checked; 남명 reads its 재성 (178: for a man it is work).
+ assert.equal(mode('壬子','甲寅','甲申','戊辰','F'),'near-checked');assert.equal(mode('壬子','甲寅','甲申','戊辰','M'),'near-firm');
+ // 104 예시1: 일지 午 상관 (the mind's 식상) — no 관성 beside the day master to check it; not strong — the generic reading.
+ assert.notEqual(mode('壬子','甲寅','甲午','戊辰','F'),'near-checked');assert.equal(mode('庚申','甲寅','甲申','庚午','F'),'near-firm');
  // 고급2 401 (56~58): 인월 丙 남명, 일지 申 편재.
  assert.equal(mode('甲辰','壬寅','丙申','己亥','M'),'near-firm');
  // 고급2 404 (137~138): 甲 남명 — 일지 편재 with a 연간 정재 far away; 시간 정재 combining; both beside.
@@ -73,8 +87,14 @@ test('source charts: places, warmth, combination, the bridged 월간 편관 and 
  const r407=buildRelationReading(sym('甲寅','丙寅','戊子','甲寅','M'));
  assert.equal(r407.mode,'near-bonded');assert.equal(r407.bonded.place,'dayBranch');
  assert.equal(mode('甲寅','丙寅','戊午','癸亥','M'),'near-bonded');
- // 고급1 315 (344~347): 丁亥 여명 (壬 정관과 명암합); 丙 여명 월간 癸 정관 (합은 아님).
- assert.equal(mode('甲寅','丙寅','丁亥','甲辰','F'),'near-bonded');
+ // 고급1 315 (344~347): 丁亥 여명 (壬 정관과 명암합); 丙 여명 월간 癸 정관 (합은 아님). The source names no pattern or
+ // strength for 丁亥: a 寅월 정인 pattern keeps the combination; the earlier test chart (丙寅 month: 丙 겁재 pattern,
+ // 신강) is also the 성격 ‘부딪힘’ chart, so the check comes first and the combination is its next question (원문95).
+ assert.equal(mode('甲寅','壬寅','丁亥','甲辰','F'),'near-bonded');
+ const both=buildRelationReading(sym('甲寅','丙寅','丁亥','甲辰','F'));assert.equal(both.mode,'near-checked');
+ assert.deepEqual(both.candidates.filter(c=>c.status==='superseded').map(c=>c.id),['near-bonded','near-warm']);assert.equal(both.followup.candidate,'near-bonded');
+ // 고급1 315 (347~349): 丙 여명 일지 子 정관 — 인연·정 있으나 지향점이 달라 갈등: with the strong 비겁 pattern, checked and warm.
+ const p349=buildRelationReading(sym('丙寅','甲午','丙子','丙申','F'));assert.deepEqual([p349.mode,p349.checked.warm,p349.followup.candidate],['near-checked',true,'near-warm']);
  assert.equal(mode('甲午','癸巳','丙寅','甲午','F'),'near-warm');
  // 고급1 315 (332~340)·중급1 105 (200): 乙 여명 월간 辛 편관 — 인성 in 월지 or 일지 bridges it, 시지 does not.
  assert.equal(mode('丁卯','辛巳','乙未','丙戌','F'),'near-firm');
@@ -102,20 +122,24 @@ test('source charts: places, warmth, combination, the bridged 월간 편관 and 
 });
 
 test('mode table: every symbolic chart gets one reading, a specific source rule supersedes only its generic reading',()=>{
- const seen={F:new Set(),M:new Set()};let n=0;
+ const seen={F:new Set(),M:new Set()};let n=0,checked=0,checkedBonded=0;
  for(const d of GANJI)for(const m of GANJI)for(const y of ['甲子','丁卯','庚午','辛酉','壬戌'])for(const h of ['乙亥','戊申','癸丑'])for(const g of ['F','M']){
-  const r=buildRelationReading(sym(y,m,d,h,g));n++;
-  assert.equal(r.mode,expected([y,m,d,h],g),`${y}·${m}·${d}·${h} ${g}`);
+  const c=sym(y,m,d,h,g),r=buildRelationReading(c);n++;
+  assert.equal(r.mode,expected([y,m,d,h],g,c),`${y}·${m}·${d}·${h} ${g}`);
   assert.equal(r.selectedIds.length,1);seen[g].add(r.mode);
   const generic=r.candidates.filter(c=>!c.specific&&c.condition.value===1);assert.equal(generic.length,1);
   const superseded=r.candidates.filter(c=>c.status==='superseded').map(c=>c.id);
-  if(r.mode==='near-bonded')assert.deepEqual(superseded,['near-warm']);
+  // The checked reading supersedes every other reading that holds (its generic one, and a combination with it).
+  if(r.mode==='near-checked'){checked++;assert.ok(generic[0].id.startsWith('near-'));
+   assert.deepEqual(superseded,r.candidates.filter(c=>c.id!=='near-checked'&&c.condition.value===1).map(c=>c.id));
+   if(superseded.includes('near-bonded'))checkedBonded++;}
+  else if(r.mode==='near-bonded')assert.deepEqual(superseded,['near-warm']);
   else if(r.mode==='near-bridged')assert.deepEqual(superseded,['near-firm']);
   else assert.deepEqual(superseded,[]);
   assert.equal(r.probability,null);assert.equal(r.trainingEligible,false);assert.equal(r.beforeFeedback,true);
  }
- assert.equal(n,108000);
- assert.deepEqual([...seen.F].sort(),['absent','far','hidden','near-bonded','near-bridged','near-firm','near-mixed','near-warm']);
+ assert.equal(n,108000);assert.ok(checked>0&&checkedBonded>0);
+ assert.deepEqual([...seen.F].sort(),['absent','far','hidden','near-bonded','near-bridged','near-checked','near-firm','near-mixed','near-warm']);
  assert.deepEqual([...seen.M].sort(),['absent','far','hidden','near-bonded','near-firm','near-mixed','near-warm']); // 편재 is never bridged
  // Unknown birth time, a missing gender and incomplete charts keep the null contract.
  for(const c of [null,{},{...sym('甲子','丙寅','甲寅','丙寅'),birthTime:{status:'unknown'}},{...sym('甲子','丙寅','甲寅','丙寅'),input:{hour:12,minute:0,gender:'F',hourUnknown:true}},
@@ -143,13 +167,37 @@ test('same day pillar: the month, the hour and the gender change the selected re
  for(const r of [a,b])assert.doesNotMatch(r.lines.join(' '),/이혼|파경|재혼|바람|문란|배우자 덕|해로/);
 });
 
-const find=(mode,g)=>{for(const d of GANJI)for(const m of GANJI){const c=sym('辛酉',m,d,'戊申',g);if(expected(['辛酉',m,d,'戊申'],g)===mode)return c;}throw new Error(mode);};
-const MODES={'near-bonded':'F','near-bridged':'F','near-warm':'F','near-firm':'M','near-mixed':'F',far:'M',hidden:'F',absent:'M'};
+test('cross-topic (원문95): the 성격 ‘부딪힘’ and the 관계 reading of the same 일지 관성 agree; men and other charts keep theirs',()=>{
+ // 1975-02-02 02시 (乙丑·丁丑·己卯·甲... 己卯 day, 丑월 비견, 신강): 성격 blocked by 일지 卯 乙 편관 → 관계 checked by the same star.
+ const f=chart(1975,2,2,2,'F'),m=chart(1975,2,2,2,'M'),t=buildTemperamentReading(f),r=buildRelationReading(f);
+ assert.equal(t.mode,'peer-blocked');assert.equal(r.mode,'near-checked');assert.equal(r.checked.character,t.dayMain.character);
+ assert.match(r.reason,/성격 풀이의 ‘부딪힘’과 같은 조건/);assert.match(r.facts,/월지 바탕은 비견이고, 원국 강약은 앱의 잠정 기준으로 신강이에요/);
+ assert.doesNotMatch(r.lines.join(' '),/사이가 나쁘다는 뜻이 아니에요\. 다정한/); // the near-firm reassurance is gone
+ assert.equal(buildTemperamentReading(m).mode,'peer-blocked');assert.equal(buildRelationReading(m).mode,'hidden'); // 남명: 관성 is not the spouse star
+ // The same day at 14시 is not blocked (the 식신 pattern shows at the hour): the generic reading stays.
+ assert.notEqual(buildTemperamentReading(chart(1975,2,2,14,'F')).mode,'peer-blocked');assert.equal(buildRelationReading(chart(1975,2,2,14,'F')).mode,'near-firm');
+ // 정관 in the day branch keeps its warmth beside the check; a combining 정관 is superseded with it (an explicit precedence).
+ const warm=buildRelationReading(sym('丙寅','甲午','丙子','丙申','F'));assert.equal(warm.mode,'near-checked');assert.equal(warm.checked.warm,true);
+ assert.match(warm.interpretation,/다정한 마음은 오갈 수 있어요/);assert.equal(warm.followup.candidate,'near-warm');
+ const bonded=buildRelationReading(sym('丁卯','丁未','丁亥','丙午','F'));assert.equal(bonded.mode,'near-checked');
+ assert.deepEqual(bonded.candidates.filter(c=>c.status==='superseded').map(c=>c.id),['near-bonded','near-warm']);assert.match(bonded.facts,/명암합/);
+ for(const x of [r,warm,bonded])assert.doesNotMatch(x.lines.join(' '),/이혼|파경|재혼|바람|문란|배우자 덕|해로|남편덕/);
+});
+
+const find=(mode,g,warm)=>{for(const d of GANJI)for(const m of GANJI){const c=sym('辛酉',m,d,'戊申',g);
+ if(expected(['辛酉',m,d,'戊申'],g,c)===mode&&(warm===undefined||buildRelationReading(c).checked?.warm===warm))return c;}throw new Error(mode);};
+const MODES={'near-checked':'F','near-bonded':'F','near-bridged':'F','near-warm':'F','near-firm':'M','near-mixed':'F',far:'M',hidden:'F',absent:'M'};
 test('answers: kept, lowered, switched, narrowed, scoped or withheld by the mode; the complementary question once; one clarification',()=>{
- const followed=['near-bonded','near-bridged','near-warm','near-firm','near-mixed'],reversible=['near-warm','near-firm','near-mixed'];
- const opposite={'near-warm':'near-firm','near-firm':'near-warm','near-mixed':'near-firm','near-bonded':'near-warm','near-bridged':'near-firm'};
- for(const [mode,g] of Object.entries(MODES)){
-  const c=find(mode,g),first=answer=>session(c).say(answer),d=buildRelationReading(c);assert.equal(d.mode,mode);
+ const followed=['near-checked','near-bonded','near-bridged','near-warm','near-firm','near-mixed'],reversible=['near-warm','near-firm','near-mixed'];
+ // The checked reading asks the warmth of its own day-branch star next: 정관 → 다정함, 편관 → 기준 (both are run).
+ // A checked reading whose star combines asks the combination next (one of the warm finds is checked for it below).
+ const cases=[...Object.entries(MODES).map(([mode,g])=>[mode,g,find(mode,g)]),['near-checked','F',find('near-checked','F',true)],['near-checked','F',find('near-checked','F',false)],
+  ['near-checked','F',sym('甲寅','丙寅','丁亥','甲辰','F')]];
+ assert.deepEqual(cases.filter(([m])=>m==='near-checked').map(([,,c])=>buildRelationReading(c).followup.candidate).filter((x,i,a)=>a.indexOf(x)===i).sort(),['near-bonded','near-firm','near-warm']);
+ for(const [mode,g,c] of cases){
+  const first=answer=>session(c).say(answer),d=buildRelationReading(c);assert.equal(d.mode,mode);
+  const opposite={'near-warm':'near-firm','near-firm':'near-warm','near-mixed':'near-firm','near-bonded':'near-warm','near-bridged':'near-firm',
+   'near-checked':d.followup?.candidate};
   const frozen=JSON.stringify(d);
   // Yes
   let s=first('맞아요');
@@ -171,6 +219,12 @@ test('answers: kept, lowered, switched, narrowed, scoped or withheld by the mode
    for(const [reply,status] of [['네','retained-as-self-report'],['아니요','weakened']]){
     const t=session(c);t.say('아니요');const step=t.say(reply);
     assert.equal(step.questionId,d.followup.id);assert.equal(step.feedback[opposite[mode]],status);assert.equal(step.nextQuestion,null);
+    // The checked reading switches to the reading its next question named (정관 → 다정함, 편관 → 기준, 합 → 묶음).
+    if(mode==='near-checked')assert.match(step.revisedInterpretation,reply==='네'
+     ?{'near-warm':/제동으로 읽힌다는 가정을 낮추고, 음양이 조화되는 별로 다정함이 오가는 쪽으로/,'near-firm':/제동으로 읽힌다는 가정을 낮추고, 기준이 먼저 서는 쪽으로/,
+       'near-bonded':/제동으로 읽힌다는 가정을 낮추고, 곁에서 합하는 별로 묶어 꾸려 가는 쪽으로/}[d.followup.candidate]
+     :{'near-warm':/부딪히지도, 다정한 표현이 자연스럽게 오가지도 않는다/,'near-firm':/부딪히지도, 각자의 원칙과 기준을 먼저 세우지도 않는다/,
+       'near-bonded':/부딪히지도, 마음을 묶어 함께 꾸려 가지도 않는다/}[d.followup.candidate]);
     assert.equal(t.say('네'),null); // nothing pending: back to chat
    }
   }
@@ -210,9 +264,9 @@ async function withConsumers(run){
   // The analysis cards need the built KB bundle (npm run build runs before test:app).
   const ref=JSON.parse(readFileSync(root+'app/src/engine/vendor/kb_ref.json')),bytes=readFileSync(root+'app/public/'+ref.file);
   globalThis.fetch=async url=>{assert.equal(String(url),'/'+ref.file);return new Response(bytes,{headers:{'content-type':'application/json'}});};
-  await (await server.ssrLoadModule('/src/engine/index.js')).loadKb();globalThis.fetch=original;
+  const engine=await server.ssrLoadModule('/src/engine/index.js');await engine.loadKb();globalThis.fetch=original;
   await run(await server.ssrLoadModule('/src/data/dosaClient.ts'),await server.ssrLoadModule('/src/data/dosaTopics.ts'),await server.ssrLoadModule('/src/data/conversationContext.ts'),
-  await server.ssrLoadModule('/src/data/analysisGroups.ts'),await server.ssrLoadModule('/src/data/saju.ts'));}finally{globalThis.fetch=original;await server.close();}
+  await server.ssrLoadModule('/src/data/analysisGroups.ts'),await server.ssrLoadModule('/src/data/saju.ts'),engine);}finally{globalThis.fetch=original;await server.close();}
 }
 test('the app: the 관계 topic shows the reading first and its question last, answers it locally and keeps it out of free answers',async()=>withConsumers(async(client,topics,ctx,groups,saju)=>{
  const c=chart(1980,4,11,4,'F'),report=buildReport(c,chartToKeys(c),{aliases:{},index:{},bodies:{}}),r=report.sections.find(s=>s.id==='relation-reading').relation;
@@ -251,4 +305,19 @@ test('the app: the 관계 topic shows the reading first and its question last, a
  assert.ok(card);assert.equal(card.blocks.length,3);
  const rel=groups.buildTopicGroups({headline:'',unseYear:'',dialogue:[],cards:[{id:'hapchung',title:'끌리고 부딪히는 작용',blocks:[]},card]}).find(g=>g.id==='rel');
  assert.deepEqual(rel.cards.map(x=>x.id),['hapchung','relation-reading']);
+}));
+test('the app (원문95): day-pillar draft items addressed to the other gender are left out of the chat and the card',async()=>withConsumers(async(client,topics,ctx,groups,saju,engine)=>{
+ const input=(gender,y=1985,m=9,d=7,h=2)=>({year:y,month:m,day:d,hour:h,minute:0,gender,solarTimeCorrection:false,lateZiRule:'keepDay'});
+ const male=/^\s*(?:남명|남자|남성)\s*[:：]/u,female=/^\s*(?:여명|여자|여성)\s*[:：]/u;
+ const items=lines=>lines.flatMap(l=>l.text.split(/\n{2,}/));
+ // 기유 (1985-09-07 02시) carries both 남명 and 여명 items in its 관계 draft; each gender now reads its own only.
+ const f=items(topics.topicLines(engine.buildReading(input('F')),'관계')),mm=items(topics.topicLines(engine.buildReading(input('M')),'관계'));
+ assert.ok(!f.some(t=>male.test(t))&&f.some(t=>female.test(t)));assert.ok(!mm.some(t=>female.test(t))&&mm.some(t=>male.test(t)));
+ // Items for both and the conditional reading stay; the card of the analysis screen follows the same filter.
+ assert.equal(topics.topicLines(engine.buildReading(input('F')),'관계')[0].text,buildRelationReading(chart(1985,9,7,2,'F')).interpretation);
+ const card=g=>saju.toReading(input(g)).cards.find(c=>c.id==='ilju').blocks.find(b=>b.label==='관계').lines;
+ assert.ok(!card('F').some(t=>male.test(t))&&!card('M').some(t=>female.test(t)));
+ // The checked reading leads the 관계 chat of 1975-02-02 02시 여명 and its question ends it.
+ const report=engine.buildReading(input('F',1975,2,2,2)),r=report.sections.find(s=>s.id==='relation-reading').relation,lines=topics.topicLines(report,'관계').map(l=>l.text);
+ assert.equal(r.mode,'near-checked');assert.equal(lines[0],r.interpretation);assert.deepEqual(client.readingFollowups(report,topics.topicLines(report,'관계')),[r.question.prompt,r.footer]);
 }));

@@ -4,11 +4,15 @@
 //       temperament grid's charts). Modes, where the spouse star sits, how often charts of one day pillar (and the
 //       two genders of one chart) get different readings. Before this change the 관계 topic read the day pillar's
 //       draft list and the day branch excerpt only, so every chart of one day pillar, of either gender, had one text.
+//     원문95: also how the 관계 reading meets the 성격 reading of the same chart — charts whose temperament reading is
+//     ‘peer-blocked’ (the 일지 관성 blocks the strong 비겁 mind) and what the 관계 reading says of that same 일지 관성
+//     (`crossTopic`; `replaced` is the reading PR236 showed for them, kept as the superseded candidate).
 // A synthetic calendar grid, not a user distribution and not an accuracy measure.
 import {readFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {computeChart} from '../../dosa-app/engine/src/manseryeok.js';
 import {buildRelationReading} from '../../dosa-app/engine/src/relationCandidates.js';
+import {buildTemperamentReading} from '../../dosa-app/engine/src/temperamentCandidates.js';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const [mode]=process.argv.slice(2);
 if(mode!=='grid'){console.error('usage: measure_relation_scope.mjs grid');process.exit(2);}
@@ -16,13 +20,18 @@ const {terms}=JSON.parse(readFileSync(root+'dosa-app/engine/data/solar_terms.jso
 const pct=(a,b)=>Math.round(a/b*1000)/10;
 const G=['F','M'];
 const out={charts:0,modes:{F:{},M:{}},palaceClashByMode:{F:{},M:{}},farPlaces:{F:{},M:{}},bondedByDayBranch:{F:0,M:0},
- genderDiffers:0,genderModeDiffers:0,sameDate:{dates:0,readingVaries:{F:0,M:0},modeVaries:{F:0,M:0}}};
+ genderDiffers:0,genderModeDiffers:0,sameDate:{dates:0,readingVaries:{F:0,M:0},modeVaries:{F:0,M:0}},
+ cross:{F:{blocked:0,checked:0,checkedNotBlocked:0,replaced:{},warmStar:0,followup:{}},M:{blocked:0,checked:0}}};
 const byPillar={F:new Map(),M:new Map()},modesByPillar={F:new Map(),M:new Map()};
 for(let t=Date.UTC(1950,0,1);t<Date.UTC(2010,0,1);t+=86400000){const d=new Date(t);const day={F:[],M:[]};let sameMonth=true,first=null;
  for(let hour=0;hour<24;hour+=2){out.charts++;const readings={};
   for(const g of G){
    const c=computeChart({year:d.getUTCFullYear(),month:d.getUTCMonth()+1,day:d.getUTCDate(),hour,minute:0,gender:g,solarTimeCorrection:false,lateZiRule:'keepDay'},terms);
    const r=buildRelationReading(c);readings[g]=r;
+   const blocked=buildTemperamentReading(c).mode==='peer-blocked',x=out.cross[g];
+   if(blocked)x.blocked++;if(r.mode==='near-checked'){x.checked++;if(!blocked)x.checkedNotBlocked=(x.checkedNotBlocked??0)+1;}
+   if(g==='F'&&r.mode==='near-checked'){const rep=r.candidates.filter(k=>k.status==='superseded').map(k=>k.id).join('+');x.replaced[rep]=(x.replaced[rep]??0)+1;
+    if(r.checked.warm)x.warmStar++;x.followup[r.followup.candidate]=(x.followup[r.followup.candidate]??0)+1;}
    if(g==='F'){if(first===null)first=c.pillarsIdx;else if(c.pillarsIdx.month!==first.month||c.pillarsIdx.day!==first.day)sameMonth=false;}
    out.modes[g][r.mode]=(out.modes[g][r.mode]??0)+1;
    if(r.palaceClash.length)out.palaceClashByMode[g][r.mode]=(out.palaceClashByMode[g][r.mode]??0)+1;
@@ -60,5 +69,7 @@ console.log(JSON.stringify({charts:out.charts,
  bondedByDayBranch:out.bondedByDayBranch,
  sameDayPillar,before:'1 per day pillar for both genders (topicLines 관계 read ilju 관계 + daybranch only)',
  genderDiffers:{readingText:pct(out.genderDiffers,out.charts),mode:pct(out.genderModeDiffers,out.charts)},
+ crossTopic:{F:{...out.cross.F,blockedShare:pct(out.cross.F.blocked,out.charts),checkedOfBlocked:pct(out.cross.F.checked,out.cross.F.blocked)},
+  M:{...out.cross.M,blockedShare:pct(out.cross.M.blocked,out.charts),note:'남명: 관성 is not the spouse star; the 관계 reading is not tied to it'}},
  sameDate:{dates:out.sameDate.dates,readingVaries:Object.fromEntries(G.map(g=>[g,pct(out.sameDate.readingVaries[g],out.sameDate.dates)])),
   modeVaries:Object.fromEntries(G.map(g=>[g,pct(out.sameDate.modeVaries[g],out.sameDate.dates)]))}},null,1));
