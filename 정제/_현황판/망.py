@@ -29,7 +29,7 @@ D = HERE / "data" / "망"
 
 
 class 망:
-    def __init__(self, 제외_글=None, α=20.0, 창=0):
+    def __init__(self, 제외_글=None, α=20.0, 창=0, 최소성공=3.0, 제목무게=0.0):
         self.meta = json.loads((D / "meta.json").read_text(encoding="utf-8"))
         S = sparse.load_npz(D / "S.npz")
         self.S = S.tocsc()
@@ -65,6 +65,16 @@ class 망:
         self.post_ids = self.meta["post_ids"]
         self.pi = {p: i for i, p in enumerate(self.post_ids)}
         self.α = α
+        # 최소성공: 사전분포가 «성공 c번»만큼은 상위 값 쪽을 믿게 한다(α = max(α, c/p_상위)).
+        #   드문 의미(기준률 0.1%)는 α=20이면 사전 성공이 0.02번뿐이라 문장 1개로 배수가 4배로 튀었다.
+        self.최소성공 = 최소성공
+        # 제목무게: 제목이 개념 A를 다루는 글(제목 개념 1~2개)의 문장은, A를 직접 말하지 않아도 A에 대한 문장으로
+        #   이 무게만큼 센다. 고수는 「편관의 특징」 글에서 편관을 문장마다 되풀이하지 않는다.
+        self.제목무게 = 제목무게
+        if 제목무게:
+            T = sparse.load_npz(D / "T.npz").tocsc()
+            self.T = T
+            self._제목행 = {}     # 개념 → 제목 주제 글의 문장 행(홀드아웃과 무관 — 복사본끼리 같이 쓴다)
         self.base = np.ones(self.S.shape[0], dtype=bool)
         self.qbase = np.ones(self.Q.shape[0], dtype=bool)
         if 제외_글:
@@ -102,6 +112,17 @@ class 망:
         idx = idx[self.행(관법, 맥락)[idx]]
         n_A = int(len(idx))
         n_AM = np.asarray(self.Sm[idx].sum(axis=0)).ravel() if n_A else np.zeros(len(self.mcols))
+        if self.제목무게 and A in self.ni:
+            if A not in self._제목행:
+                tp = self.T[:, self.ni[A]].indices
+                self._제목행[A] = np.flatnonzero(np.isin(self.post, tp)) if len(tp) else np.zeros(0, dtype=np.int64)
+            tr = self._제목행[A]
+            if len(tr):
+                tr = tr[self.행(관법, 맥락)[tr]]
+                tr = np.setdiff1d(tr, idx, assume_unique=True)
+                if len(tr):
+                    n_A = n_A + self.제목무게 * len(tr)
+                    n_AM = n_AM + self.제목무게 * np.asarray(self.Sm[tr].sum(axis=0)).ravel()
         if 이전 is None:
             if 맥락 or 관법:
                 parent = self.의미분포(A, 관법 if 맥락 else None, ()) if (맥락 or 관법) else None
@@ -110,19 +131,20 @@ class 망:
                 prior = self.기준률()
         else:
             prior = 이전
-        a = n_AM + self.α * prior
-        b = (n_A - n_AM) + self.α * (1 - prior)
+        α = np.maximum(self.α, self.최소성공 / np.clip(prior, 1e-9, 1)) if self.최소성공 else self.α
+        a = n_AM + α * prior
+        b = (n_A - n_AM) + α * (1 - prior)
         p = a / (a + b)
         lo = _beta.ppf(0.05, a, b); hi = _beta.ppf(0.95, a, b)
         out = {m: (float(p[i]), float(lo[i]), float(hi[i]), n_A, int(n_AM[i])) for i, m in enumerate(self.meanings)}
         self._cache[key] = out
         return out
 
-    def 기준률(self, 관법=None):
-        key = ("기준", 관법)
+    def 기준률(self, 관법=None, 맥락=()):
+        key = ("기준", 관법, tuple(sorted(맥락)))
         if key in self._cache:
             return self._cache[key]
-        rows = self.행(관법)
+        rows = self.행(관법, 맥락)
         n = rows.sum()
         cnt = np.asarray(self.Sm[np.flatnonzero(rows)].sum(axis=0)).ravel()
         r = (cnt + 1) / (n + 2)
@@ -193,6 +215,25 @@ class 망:
         d = self.거리행렬(관법, 맥락)
         return float(d[self.ni[A], self.ni[B]])
 
+    def 경로(self, A, B, 관법=None, 맥락=(), 최소공기=5):
+        """A→B 최단 경로(거리 = −ln 공기 강도의 합). 반환 [(노드, 그 단계 강도)]."""
+        from scipy.sparse.csgraph import dijkstra
+        co, n, N = self.공기(관법, 맥락)
+        with np.errstate(divide="ignore", invalid="ignore"):
+            s = co / np.sqrt(np.outer(n, n))
+        s[co < 최소공기] = 0
+        np.fill_diagonal(s, 0)
+        w = np.where(s > 0, -np.log(np.clip(s, 1e-12, 1)), 0)
+        i, j = self.ni[A], self.ni[B]
+        d, pred = dijkstra(sparse.csr_matrix(w), directed=False, indices=i, return_predecessors=True)
+        if not np.isfinite(d[j]):
+            return []
+        path = [j]
+        while path[-1] != i:
+            path.append(pred[path[-1]])
+        path = path[::-1]
+        return [(self.nodes[path[0]], 1.0)] + [(self.nodes[b], float(s[a, b])) for a, b in zip(path, path[1:])]
+
     # ── 개념 카드: 무엇인지 + 의미 확률 + 가까운 개념
     def 카드(self, A, 관법=None, 맥락=(), k=8):
         dist = self.의미분포(A, 관법, 맥락)
@@ -206,6 +247,60 @@ class 망:
         i = self.ni[A]
         near = sorted(((self.nodes[j], float(d[i, j])) for j in range(len(self.nodes)) if j != i and np.isfinite(d[i, j])), key=lambda x: x[1])[:k]
         return {"개념": A, "문장수": dist[self.meanings[0]][3], "의미": rows, "가까운": near}
+
+
+    # ── 근거 문장: 개념 A와 의미 M이 한 문장에서 함께 말해진 실제 문장
+    def 근거문장(self, A, M, 관법=None, 맥락=(), k=2, 최대길이=160):
+        a = self._col(self.S, self.ci[A]) & self.행(관법, 맥락)
+        m = self._col(self.S, self.ci["의:" + M])
+        rows = np.flatnonzero(a & m)
+        if not len(rows):
+            return []
+        txt = 문장_원문()
+        out, seen = [], set()
+        # 한 문장으로 읽히는 길이(15~최대길이자)에서 60자 안팎부터, 글마다 하나씩
+        order = sorted(rows, key=lambda r: (abs(len(txt.get(r)) - 60), r))
+        for r in order:
+            t = txt.get(r)
+            pid = self.post_ids[self.post[r]]
+            if pid in seen or not (15 <= len(t) <= 최대길이):
+                continue
+            seen.add(pid)
+            out.append({"문장": t, "출처": self.관법들[self.kw[r]], "글": pid})
+            if len(out) >= k:
+                break
+        return out
+
+
+class _문장원문:
+    """원장 행 번호 → 문장 원문. 문단을 한 번 읽어 두고 행이 가리키는 문장을 다시 나눈다."""
+
+    def __init__(self):
+        import sys
+        sys.path.insert(0, str(HERE))
+        import 코퍼스, build_망
+        self._split = build_망.문장들
+        meta = json.loads((D / "meta.json").read_text(encoding="utf-8"))
+        self.para_ids = meta["para_ids"]
+        self.text = {}
+        want = set(self.para_ids)
+        for r in 코퍼스.문단들():
+            if r["para_id"] in want:
+                self.text[r["para_id"]] = r["text"]
+        para = np.load(D / "rows.npz")["para"]
+        self.para = para
+        self.first = np.searchsorted(para, np.arange(len(self.para_ids)), side="left")
+
+    def get(self, r):
+        p = int(self.para[r])
+        ss = self._split(self.text.get(self.para_ids[p], ""))
+        i = int(r - self.first[p])
+        return ss[i] if 0 <= i < len(ss) else ""
+
+
+@lru_cache(maxsize=1)
+def 문장_원문():
+    return _문장원문()
 
 
 @lru_cache(maxsize=1)

@@ -18,6 +18,11 @@ if not src.exists():
     raise SystemExit(f"[없음] {src} — ⑱ 앱 두뇌 팩을 먼저 돌려라")
 if dst.exists() and dst.read_bytes() == src.read_bytes():
     print(f"= 이미 최신 ({dst.stat().st_size:,}B) — 복사 생략")
-else:
+elif "--배포" in sys.argv:
     shutil.copyfile(src, dst)
     print(f"→ 배포 {src.stat().st_size:,}B → {dst}")
+else:
+    # ★261001 — 앱 두뇌는 앱 고정 감사(scripts/test_app.mjs → docs/knowledge-model/frozen_*)가 해시로 묶는다.
+    #   코퍼스가 늘어 지도가 바뀌었다고 파이프라인이 몰래 덮으면 감사 17개가 깨진다(실측: 문단 56,202 재생성분).
+    #   앱 쪽 후속 스냅샷 검토 없이 배포하지 않는다 — 배포는 운영자 결정(`python 두뇌_배포.py --배포`).
+    print(f"⚠ 앱 두뇌가 지도와 다름 — 자동 배포 안 함(앱 고정 감사 보호). 배포하려면 --배포 + 앱 후속 스냅샷 검토")

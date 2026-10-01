@@ -13,6 +13,7 @@
   Q.npz   문단 × 개념 271 희소 행렬            — 문단 단위 공기(개념끼리의 거리용)
   meta.json  열 이름·관법 이름·문단/글 id
   rows.npz   문장별 문단 번호·글 번호·관법 번호
+  T.npz   글 × 개념 271+60 희소 행렬            — 그 글 «제목»이 다루는 개념(제목 개념이 1~2개일 때만)
 
 필요: numpy, scipy.  사용: python build_망.py
 """
@@ -75,6 +76,41 @@ def 간지들(text):
 SENT = re.compile(r"(?<=[.!?。…])\s+|\n+|(?<=[다요죠])\s+")
 
 
+def 문장들(text):
+    """원장이 세는 문장 목록(6자 미만은 버린다). 원장 행 순서와 같아야 근거 문장을 되찾을 수 있다."""
+    return [s for s in (x.strip() for x in SENT.split(text)) if len(s) >= 6]
+
+
+# 제목 주제에서 뺄 노드 — 자리·총칭·책 이름처럼 «이 글이 무엇에 대한 글인가»를 말해 주지 못하는 것.
+제목_제외 = re.compile(r"총칭|원국·명식|^일주$|^월주$|^연주$|^시주$|^일간$|^일지$|^월지$|^월간$|^연간$|^연지$|^시지$|^시간|"
+                      r"신년운세|대운|세운|월운|일진|만세력|절기|음양|십이운성 자체|지장간|좋다·나쁘다|관계·결혼|재물·돈|직업·직무|"
+                      r"건강·질병|학업·시험|이동·이사|구설·송사|갈등|출산|사업·창업|적성·재능|배우자|부모|자녀|형제|현묘|초명|강헌|"
+                      r"연해자평|적천수|자평진전|궁통보감|삼명통회|명리정종|명리약언|색·방위|음식·건강|행동·환경")
+
+
+def 제목_행렬(nodes=None, post_ids=None):
+    """글 제목이 다루는 개념 → T.npz(글 × 개념). 제목 개념이 1~2개(주제가 분명)일 때만 적는다."""
+    meta = json.loads((OUT / "meta.json").read_text(encoding="utf-8"))
+    nodes = nodes or meta["nodes"]; post_ids = post_ids or meta["post_ids"]
+    cidx = {c: i for i, c in enumerate(nodes)}
+    pidx = {p: i for i, p in enumerate(post_ids)}
+    seen = set(); r_, c_ = [], []
+    for r in 코퍼스.문단들():
+        pid = r.get("post_id") or r["para_id"]
+        if pid in seen or pid not in pidx:
+            continue
+        seen.add(pid)
+        t = r.get("title") or ""
+        cs = {c for c in (bnm.concepts_in(t) | 간지들(t)) if c in cidx and not 제목_제외.search(c)}
+        if 1 <= len(cs) <= 2:
+            for c in cs:
+                r_.append(pidx[pid]); c_.append(cidx[c])
+    T = sparse.csr_matrix((np.ones(len(r_), dtype=np.uint8), (r_, c_)), shape=(len(post_ids), len(nodes)))
+    T.data[:] = 1
+    sparse.save_npz(OUT / "T.npz", T)
+    return T
+
+
 def main():
     t0 = time.time()
     nodes = [json.loads(l)["concept"] for l in (HERE / "data" / "node_layers.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
@@ -108,10 +144,7 @@ def main():
         para_post_l.append(po); para_kw_l.append(k)
         for c in pc:
             q_r.append(pi); q_c.append(c)
-        for s in SENT.split(text):
-            s = s.strip()
-            if len(s) < 6:
-                continue
+        for s in 문장들(text):
             sc = [cidx[c] for c in (bnm.concepts_in(s) | 간지들(s)) if c in cidx]
             sm = [midx[m] for m in 의미.의미들(s)]
             for c in sc:
@@ -141,10 +174,16 @@ def main():
     (OUT / "meta.json").write_text(json.dumps({"nodes": nodes, "meanings": meanings, "cols": cols, "관법": kw,
                                                "para_ids": para_ids, "post_ids": post_ids,
                                                "문장수": n_s, "문단수": n_p}, ensure_ascii=False), encoding="utf-8")
-    nnz_m = S[:, len(nodes):].sum(axis=0).A1
+    T = 제목_행렬(nodes, post_ids)
+    print(f"  제목 주제: 글 {int((T.sum(axis=1) > 0).sum()):,}편")
+    nnz_m = S[:, len(nodes):].astype(np.int64).sum(axis=0).A1
     print(f"[완료] 문장 {n_s:,} · 문단 {n_p:,} · 글 {len(post_ids):,} · 개념 {len(nodes)} · 의미 {len(meanings)} · {time.time()-t0:.0f}s")
     print("  의미별 문장 수: " + " · ".join(f"{m} {int(x):,}" for m, x in sorted(zip(meanings, nnz_m), key=lambda z: -z[1])))
 
 
 if __name__ == "__main__":
-    main()
+    if sys.argv[1:] == ["제목"]:
+        T = 제목_행렬()
+        print(f"[제목 주제] 글 {int((T.sum(axis=1) > 0).sum()):,}편 · 칸 {T.nnz:,}")
+    else:
+        main()

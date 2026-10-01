@@ -69,14 +69,20 @@ def 정답_의미(net, pid, 최소=1):
     return {net.meanings[i] for i, c in enumerate(cnt) if c >= 최소}
 
 
-def 편차(net, pid, kw, ex_rows):
-    """그 글이 그 고수의 평소 틀보다 어떤 의미를 더/덜 말했나 — log((c+0.5)/(기대+0.5))."""
+def 편차(net, pid, kw, ex_rows, 기준글=None):
+    """그 글이 기준보다 어떤 의미를 더/덜 말했나 — log((c+0.5)/(기대+0.5)).
+
+    기준 = 기준글(같은 고수의 다른 일주 글 등)이 주어지면 그 글들, 아니면 그 고수의 평소 글 전체.
+    """
     j = net.pi.get(pid)
     rows = net.post == j
     n_p = int(rows.sum())
     c = np.asarray(net.Sm_raw[np.flatnonzero(rows)].sum(axis=0)).ravel()
-    ref = (net.kw == net.ki[kw]) if kw else np.ones_like(rows)
-    ref &= ~ex_rows
+    if 기준글:
+        ref = np.isin(net.post, [net.pi[p] for p in 기준글 if p in net.pi and p != pid])
+    else:
+        ref = (net.kw == net.ki[kw]) if kw else np.ones_like(rows)
+        ref &= ~ex_rows
     r = (np.asarray(net.Sm_raw[np.flatnonzero(ref)].sum(axis=0)).ravel() + 1) / (ref.sum() + 2)
     return np.log((c + 0.5) / (n_p * r + 0.5))
 
@@ -106,43 +112,18 @@ import 명식 as _명식
 _TEN = set(_명식.TEN.values())
 
 
-def 예측(net, 기둥, λ=0.6, 신호필터=None, 관법=None, 위치=False, 상대=False, 최소맥락=40):
-    """명식 → 의미별 점수(로그 기준률 + Σ 무게·로그 배수)와 명식 고유 부분(Σ 무게·로그 배수)."""
-    info = 명식_신호(기둥)
-    sig = info["신호"]
-    day_node = _명식.STEM_NODE[_명식.STEMS.index(info["일간"])]
-    base = net.기준률(관법)
-    lp0 = np.log(base)
-    spec = np.zeros(len(net.meanings))
-    used = []
-    for A, v in sig.items():
-        if A in ALWAYS or A not in net.ci:
-            continue
-        if 신호필터 and not 신호필터(A):
-            continue
-        d = net.의미분포(A, 관법)
-        nA = d[net.meanings[0]][3]
-        if nA < 30:
-            continue
-        if 상대 and (A in _TEN or A.endswith("일반")) and day_node in net.ni:
-            # 상대 개념: 십성은 일간에 대한 관계라서, 그 일간이 함께 말해진 문단에서의 확률을 쓴다.
-            dc = net.의미분포(A, 관법, (day_node,))
-            if dc[net.meanings[0]][3] >= 최소맥락:
-                d = dc
-        if 위치:
-            ps = [p for p in v["자리"] if p in POS_NODES]
-            if len(ps) == 1:
-                dc = net.의미분포(A, 관법, (ps[0],))
-                if dc[net.meanings[0]][3] >= 30:
-                    d = dc
-        p = np.array([d[m][0] for m in net.meanings])
-        # «함께 말해지지 않았다»는 약한 증거다 — 로그 배수의 아래를 자른다(드문 의미가 −9로 튀어 순위를 망치던 것).
-        spec += v["무게"] * np.clip(np.log(p) - lp0, -0.5, 3.0)
-        used.append(A)
-    spec *= λ
+def 예측(net, 기둥, λ=0.6, 신호필터=None, 관법=None, 신호맥락=False, **_):
+    """명식 → 의미별 점수(로그 기준률 + 명식 고유)와 명식 고유 부분. 계산은 풀이.합산 하나로 한다."""
+    import 풀이 as P
+    sig = 명식_신호(기둥)["신호"]
+    if 신호필터:
+        sig = {A: v for A, v in sig.items() if 신호필터(A)}
+    P.λ = λ
+    spec, 기여 = P.합산(net, sig, 관법, 신호맥락=신호맥락)
+    lp0 = np.log(net.기준률(관법))
     full = {m: float(lp0[i] + spec[i]) for i, m in enumerate(net.meanings)}
     only = {m: float(spec[i]) for i, m in enumerate(net.meanings)}
-    return full, only, used
+    return full, only, list(기여)
 
 
 def 관법_of(net, 출처):
@@ -151,8 +132,8 @@ def 관법_of(net, 출처):
     return k if k in net.ki else None
 
 
-def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False, 창=0, 상대=False):
-    net = M.망(창=창)
+def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False, 창=0, 상대=False, 최소성공=3.0, 중심=0, 제목무게=0.0, 장르기준=False):
+    net = M.망(창=창, 최소성공=최소성공, 제목무게=제목무게)
     gold = 정답_일주(net)
     by_ilju = defaultdict(list)
     for pid, g in gold.items():
@@ -171,7 +152,7 @@ def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False, �
 
         def P(j, kw):
             if (j, kw) not in cache:
-                full, only, used = 예측(hold, [None, None, j, None], λ=λ, 관법=kw, 위치=위치, 상대=상대)
+                full, only, used = 예측(hold, [None, None, j, None], λ=λ, 관법=kw, 신호맥락=위치)
                 cache[(j, kw)] = (full, only)
             return cache[(j, kw)]
         for pid in by_ilju[ilju]:
@@ -180,11 +161,20 @@ def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False, �
                 continue
             kw = 관법_of(net, gold[pid]["출처"]) if 관법적용 else None
             preds = {j: P(j, kw) for j in GANJI60}
+            if 중심:
+                # 명식 고유 예측을 «60일주 평균에서 얼마나 벗어났나»로 바꾼다(모든 명식에 공통인 쏠림 제거).
+                Mx = np.array([[preds[j][1][m] for m in net.meanings] for j in GANJI60])
+                mu = Mx.mean(axis=0); sd = Mx.std(axis=0) + 1e-6
+                Z = (Mx - mu) / (sd if 중심 == 2 else 1.0)
+                preds = {j: (preds[j][0], {m: float(Z[k, i]) for i, m in enumerate(net.meanings)}) for k, j in enumerate(GANJI60)}
             base = {m: float(np.log(hold.기준률(kw)[i])) for i, m in enumerate(net.meanings)}
             a_full = auc(preds[ilju][0], pos)
             a_base = auc(base, pos)
             exr = ~hold.base
-            g = 편차(net, pid, 관법_of(net, gold[pid]["출처"]), exr)
+            kwp = 관법_of(net, gold[pid]["출처"])
+            # 장르기준: 같은 고수의 다른 일주 글을 기준으로(일주 글이라면 늘 하는 말을 뺀다)
+            same = [p for p, gg in gold.items() if 관법_of(net, gg["출처"]) == kwp and p != pid] if 장르기준 else []
+            g = 편차(net, pid, kwp, exr, same if len(same) >= 5 else None)
             vec = lambda j: np.array([preds[j][1][m] for m in net.meanings])
             emph = {m for i, m in enumerate(net.meanings) if g[i] > 0.3}
             if emph:
@@ -208,7 +198,7 @@ def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False, �
         A1 = np.mean([r["AUC_망"] for r in res]); A0 = np.mean([r["AUC_빈도"] for r in res])
         A2 = np.mean([r["AUC_고유"] for r in res]); R = np.mean([r["순위"] for r in res])
         top5 = np.mean([r["순위"] <= 5 for r in res]); top1 = np.mean([r["순위"] == 1 for r in res])
-        print(f"[일주 대조] 글 {len(res)}편 · 일주 {len({r['일주'] for r in res})}개 · 엄격 홀드아웃={엄격} · λ={λ} · 관법={관법적용} · 위치={위치} · 창={창} · 상대={상대}")
+        print(f"[일주 대조] 글 {len(res)}편 · 일주 {len({r['일주'] for r in res})}개 · 엄격 홀드아웃={엄격} · λ={λ} · 관법={관법적용} · 위치={위치} · 창={창} · 상대={상대} · 최소성공={최소성공} · 중심={중심} · 제목무게={제목무게} · 장르기준={장르기준}")
         print(f"  ① 의미 판별력 AUC: 망 {A1:.3f}  vs  빈도 순 추측 {A0:.3f}  (명식 고유 부분만 {A2:.3f}, 무작위 0.5)")
         print(f"  ② 명식 판별: 그 일주의 평균 순위 {R:.1f} / 60 (무작위 30.5) · 1등 {top1:.0%} · 5등 안 {top5:.0%}")
         C = np.mean([r["강조상관"] for r in res]); RC = np.mean([r["강조순위"] for r in res])
@@ -225,7 +215,11 @@ if __name__ == "__main__":
     λ = float(sys.argv[1]) if len(sys.argv) > 1 else 0.6
     opts = set(sys.argv[2:])
     창 = next((int(o[1:]) for o in opts if o.startswith("w")), 0)
-    rs = 실행(λ=λ, 관법적용="관법" in opts, 위치="위치" in opts, 창=창, 상대="상대" in opts)
+    c = next((float(o[1:]) for o in opts if o.startswith("c")), 3.0)
+    z = next((int(o[1:]) for o in opts if o.startswith("z")), 0)
+    t = next((float(o[1:]) for o in opts if o.startswith("t")), 0.0)
+    rs = 실행(λ=λ, 관법적용="관법" in opts, 위치="위치" in opts, 창=창, 상대="상대" in opts, 최소성공=c, 중심=z, 제목무게=t,
+              장르기준="장르" in opts)
     by = defaultdict(list)
     for r in rs:
         by[r["출처"]].append(r)

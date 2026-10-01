@@ -41,6 +41,7 @@ POS = ["연", "월", "일", "시"]
 STEM_POS_NODE = {"연": "연간", "월": "월간", "일": "일간", "시": "시간(時干)"}
 BRANCH_POS_NODE = {"연": "연지", "월": "월지", "일": "일지", "시": "시지"}
 PILLAR_NODE = {"연": "연주", "월": "월주", "일": "일주", "시": "시주"}
+_POS_CTX = set(STEM_POS_NODE.values()) | set(BRANCH_POS_NODE.values())
 
 TEN = {  # (관계, 같은 음양?) → 십성
     ("같", True): "비견", ("같", False): "겁재",
@@ -153,13 +154,17 @@ def 명식_신호(기둥, 성별=None, 강약배점=None):
     day_stem = next(p[1] for p in pillars if p[0] == "일")
     sig = {}
 
-    def on(node, where, why, w=1.0):
-        s = sig.setdefault(node, {"자리": [], "근거": [], "무게": 0.0})
+    def on(node, where, why, w=1.0, 맥락=None):
+        """맥락 = 이 신호의 확률을 셀 때 함께 있어야 할 개념(상대 개념). 기본은 자리(월지·일지…)."""
+        s = sig.setdefault(node, {"자리": [], "근거": [], "무게": 0.0, "맥락": (), "횟수": 0})
         if where and where not in s["자리"]:
             s["자리"].append(where)
+            s["횟수"] += 1          # 다른 자리에서 또 켜졌다 — 고수가 「관이 셋」처럼 세는 몫
         if why not in s["근거"]:
             s["근거"].append(why)
-        s["무게"] = max(s["무게"], w)
+        if w > s["무게"]:
+            s["무게"] = w
+            s["맥락"] = tuple(맥락) if 맥락 is not None else ((where,) if where in _POS_CTX else ())
 
     on("일간", "일", f"일간 {STEMS[day_stem]}")
     _d = next(p for p in pillars if p[0] == "일")
@@ -202,16 +207,16 @@ def 명식_신호(기둥, 성별=None, 강약배점=None):
         if not full:
             break
         if c >= 4 or (n_chars <= 6 and c >= 3):
-            on("과다·태과", None, f"{e} {int(c)}개", 0.9)
+            on("과다·태과", None, f"{e} {int(c)}개", 0.9, (ELEM_NODE[e],))
         if c == 0:
-            on("고립·불급", None, f"{e} 없음", 0.8)
+            on("고립·불급", None, f"{e} 없음", 0.8, (ELEM_NODE[e],))
     # 십성 그룹 개수 (천간 + 지지 본기, 일간 제외)
     grp_cnt = {}
     for p, t in ten_by_pos.items():
         grp_cnt[GROUP[t]] = grp_cnt.get(GROUP[t], 0) + 1
     for g, c in grp_cnt.items():
         if c >= 3 and full:
-            on("과다·태과", None, f"{g} {c}개", 0.8)
+            on("과다·태과", None, f"{g} {c}개", 0.8, (g,))
     # 통근·투간
     day_e = STEM_ELEM[day_stem]
     roots = [BRANCH_POS_NODE[pos] for pos, si, bi in pillars if any(STEM_ELEM[h] == day_e for h in HIDDEN[bi])]
@@ -267,7 +272,8 @@ def 명식_신호(기둥, 성별=None, 강약배점=None):
             for k in ("천간합", "천간충"):
                 if pr in PAIRS.get(k, ()):
                     w = 0.9 if abs(i - j) == 1 else 0.6
-                    on(rel_node[k], f"{spos[i][0]}·{spos[j][0]}", f"{spos[i][0]}{STEMS[spos[i][1]]}–{spos[j][0]}{STEMS[spos[j][1]]} {k}", w)
+                    on(rel_node[k], f"{spos[i][0]}·{spos[j][0]}", f"{spos[i][0]}{STEMS[spos[i][1]]}–{spos[j][0]}{STEMS[spos[j][1]]} {k}", w,
+                       (STEM_NODE[spos[i][1]], STEM_NODE[spos[j][1]]))
     for i in range(len(bpos)):
         for j in range(i + 1, len(bpos)):
             a, b = bpos[i][1], bpos[j][1]
@@ -278,7 +284,8 @@ def 명식_신호(기둥, 성별=None, 강약배점=None):
                     w = (0.9 if adj else 0.6) if k in ("육합", "지지충") else (0.7 if adj else 0.5)
                     if k == "삼형":
                         w = 0.35   # 두 글자뿐인 반쪽 삼형 — 세 글자가 다 있으면 아래에서 올린다
-                    on(rel_node[k], f"{bpos[i][0]}·{bpos[j][0]}", f"{bpos[i][0]}{BRANCHES[a]}–{bpos[j][0]}{BRANCHES[b]} {k}", w)
+                    on(rel_node[k], f"{bpos[i][0]}·{bpos[j][0]}", f"{bpos[i][0]}{BRANCHES[a]}–{bpos[j][0]}{BRANCHES[b]} {k}", w,
+                       (BRANCH_NODE[a], BRANCH_NODE[b]))
             if a == b and a in (4, 6, 9, 11):
                 on("자형", f"{bpos[i][0]}·{bpos[j][0]}", f"{BRANCHES[a]}{BRANCHES[b]} 자형", 0.6)
             if a == b:
@@ -305,6 +312,13 @@ def 명식_신호(기둥, 성별=None, 강약배점=None):
         n = len([1 for _, bi in bpos if bi in s])
         if n >= 2:
             on(name, None, f"{name} {n}개", 0.4)
+    # 일지 자체의 성질 — 일주론은 일지를 생지=역마·왕지=도화·고지=화개로 부른다
+    #   (예: 남석 「병오일주, 겁재도화」·「병신일주, 편재역마」·「병술일주, 식신화개」). 판본: 다른 지지와의 삼합 기준과 별개.
+    _dbi = next(bi for pos, si, bi in pillars if pos == "일")
+    for name, s, star in (("생지(역마)", SAENGJI, "역마"), ("왕지(도화)", WANGJI, "도화"), ("고지(화개)", GOJI, "화개")):
+        if _dbi in s:
+            on(name, "일지", f"일지 {BRANCHES[_dbi]} = {name}", 0.7)
+            on(star, "일지", f"일지 {BRANCHES[_dbi]} 자체가 {star} 자리(일주론 관례)", 0.5)
     # 신살(일간 기준)
     for p, bi in bpos:
         if bi in CHEONEUL[day_stem]:
@@ -380,9 +394,89 @@ def 명식_신호(기둥, 성별=None, 강약배점=None):
             "글자": [(pos, STEMS[si] + BRANCHES[bi]) for pos, si, bi in pillars], "신호": sig}
 
 
+def 운_신호(기둥, 운간지, 종류="대운"):
+    """원국 기둥 + 운의 간지(대운·세운) → 운이 켜는 개념. 원국 신호와 같은 노드 이름을 쓴다.
+
+    운의 글자는 원국에 «들어오는» 글자다. 그래서
+      · 운 천간·지지의 십성(일간 기준) · 십이운성(일간이 운 지지에서)
+      · 운 지지 ↔ 원국 지지 / 운 천간 ↔ 원국 천간의 합·충·형·파·해·원진·귀문, 원국 두 글자와 삼합 완성
+      · 운 지지가 원국 기준으로 도화·역마·화개·천을귀인·양인인가
+    를 켠다. 무게는 일지·월지와 얽힐수록 크게 둔다(구현 가정).
+    """
+    pillars = []
+    for i, g in enumerate(기둥):
+        if g is None:
+            continue
+        si, bi = 간지(g)
+        pillars.append((POS[i], si, bi))
+    day_stem = next(p[1] for p in pillars if p[0] == "일")
+    us, ub = 간지(운간지)
+    sig = {}
+
+    def on(node, where, why, w, 맥락=()):
+        s = sig.setdefault(node, {"자리": [], "근거": [], "무게": 0.0, "맥락": ()})
+        if where and where not in s["자리"]:
+            s["자리"].append(where)
+        if why not in s["근거"]:
+            s["근거"].append(why)
+        if w > s["무게"]:
+            s["무게"] = w
+            s["맥락"] = tuple(맥락)
+
+    tag = f"{종류} {STEMS[us]}{BRANCHES[ub]}"
+    t = 십성(day_stem, us)
+    on(t, 종류, f"{tag}: 천간 {STEMS[us]} = {t}", 0.9)
+    on(GROUP[t], 종류, f"{tag}: 천간 {t}", 0.6)
+    t2 = 십성(day_stem, BRANCH_MAIN[ub])
+    on(t2, 종류, f"{tag}: 지지 {BRANCHES[ub]} 본기 = {t2}", 0.9)
+    on(GROUP[t2], 종류, f"{tag}: 지지 {t2}", 0.6)
+    on(STEM_NODE[us], 종류, f"{tag}: 천간 글자", 0.5)
+    on(BRANCH_NODE[ub], 종류, f"{tag}: 지지 글자", 0.6)
+    st, raw = 운성(day_stem, ub)
+    on(st, 종류, f"{tag}: 일간이 {BRANCHES[ub]}에서 {raw}", 0.6)
+    for pos, si, bi in pillars:
+        sp, bp = STEM_POS_NODE[pos], BRANCH_POS_NODE[pos]
+        core = pos in ("일", "월")
+        pr = frozenset((STEM_NODE[us], STEM_NODE[si]))
+        for k in ("천간합", "천간충"):
+            if pr in PAIRS.get(k, ()):
+                on(k, sp, f"{tag}: 천간 {STEMS[us]}–{sp} {STEMS[si]} {k}", 0.9 if pos == "일" else 0.6, (STEM_NODE[us], STEM_NODE[si]))
+        pr = frozenset((BRANCH_NODE[ub], BRANCH_NODE[bi]))
+        for k in ("육합", "지지충", "삼형", "상형", "파", "해", "원진", "귀문"):
+            if pr in PAIRS.get(k, ()):
+                node = "삼형" if k == "상형" else k
+                w = (0.9 if core else 0.6) if k in ("육합", "지지충") else (0.6 if core else 0.4)
+                on(node, bp, f"{tag}: 지지 {BRANCHES[ub]}–{bp} {BRANCHES[bi]} {k}", w, (BRANCH_NODE[ub], BRANCH_NODE[bi]))
+        if ub == bi and ub in (4, 6, 9, 11):
+            on("자형", bp, f"{tag}: {BRANCHES[ub]}{BRANCHES[bi]} 자형", 0.5)
+    bset = {bi for _, _, bi in pillars}
+    for g, e in SAMHAP:
+        if ub in g and len((bset - {ub}) & g) == 2:
+            on("삼합", 종류, f"{tag}: 원국과 {''.join(BRANCHES[x] for x in sorted(g))} 삼합 {e}국", 0.8)
+        elif ub in g and len((bset - {ub}) & g) == 1 and ({ub} | (bset & g)) & WANGJI:
+            on("반합", 종류, f"{tag}: 원국과 반합({e})", 0.4)
+    if ub in CHEONEUL[day_stem]:
+        on("천을귀인", 종류, f"{tag}: {BRANCHES[ub]} 천을귀인", 0.6)
+    if YANGIN.get(day_stem) == ub:
+        on("양인", 종류, f"{tag}: {BRANCHES[ub]} 양인", 0.6)
+    if ub == GEONROK[day_stem]:
+        on("건록", 종류, f"{tag}: {BRANCHES[ub]} 건록", 0.5)
+    for pos, si, bi in pillars:
+        if pos not in ("연", "일"):
+            continue
+        e = SAMHAP_OF[bi][1]
+        for name, tbl in (("도화", DOHWA), ("역마", YEOKMA), ("화개", HWAGAE)):
+            if ub == tbl[e]:
+                on(name, 종류, f"{tag}: {BRANCH_POS_NODE[pos]} 기준 {BRANCHES[ub]} {name}", 0.6)
+    if (us, ub) in BAEKHO:
+        on("백호", 종류, f"{tag}: 백호 간지", 0.5)
+    return sig
+
+
 if __name__ == "__main__":
     import sys
     args = sys.argv[1:] or ["경신", "무인", "갑인", "병인"]
+    args = [None if a in ("-", "?") else a for a in args]
     r = 명식_신호(args)
     print(r["일간"], r["강약"], r["점수"], r["글자"])
     for k, v in sorted(r["신호"].items(), key=lambda x: -x[1]["무게"]):
