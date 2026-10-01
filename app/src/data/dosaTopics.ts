@@ -4,6 +4,7 @@
 // 문장 창작 금지 — 허용 범위는 도사 화법 커넥터(TOPIC_INTROS)와 관점차이 병기 틀뿐.
 import { BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, applyBasicSentencePolicy } from '../engine/vendor/basicSentences.js'
 import type { ReportBundle } from '../engine'
+import type { TemperamentReading } from '../engine/vendor/temperamentCandidates.js'
 import { displayReadingText } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE as HOUR_UNKNOWN_NOTICE } from '../engine/birthTime'
 
@@ -30,7 +31,7 @@ export interface Topic {
 
 /** 5개 고정 — API 화이트리스트(functions/api/dosa.ts)와 동일 키 */
 export const TOPICS: Topic[] = [
-  { key: '성격', label: '내 성격이 궁금해', mini: '일주론' },
+  { key: '성격', label: '내 성격이 궁금해', mini: '월지·일주' },
   { key: '올해', label: '올해 운은 어때?', mini: '세운' },
   { key: '직업', label: '일·직업 방향은?', mini: '십신·일주' },
   { key: '관계', label: '연애·관계 이야기', mini: '일지·일주' },
@@ -49,11 +50,11 @@ export const TOPIC_INTROS: Record<string, string> = {
 /**
  * 주제 → 관련 원국 기둥(상담 무대의 원국표가 이 열을 살짝 들어 올린다 — 운영자 260726
  * "설명할 때 관련 있는 사주팔자 부분이 툭 튀어나오는 느낌").
- * 근거 소스와 같은 축의 결정론 매핑: 성격·관계 = 일주(일간·일지=배우자궁), 직업 = 월주(사회궁).
+ * 근거 소스와 같은 축의 결정론 매핑: 성격 = 월지(바탕)·일주, 관계 = 일주(일간·일지=배우자궁), 직업 = 월주(사회궁).
  * 올해(세운)·주의(관점차이)는 특정 기둥이 아니라 비운다.
  */
 export const TOPIC_FOCUS: Record<string, string[]> = {
-  성격: ['일'],
+  성격: ['월', '일'],
   올해: [],
   직업: ['월'],
   관계: ['일'],
@@ -106,6 +107,7 @@ interface SectionLike {
   id: string
   title: string
   lines?: string[]
+  temperament?: TemperamentReading
   block?: TopicBlock
   blocks?: (TopicBlock & { label?: string })[]
   distribution?: Record<string, number>
@@ -166,7 +168,8 @@ export const josa = (word: string, withBatchim: string, without: string): string
 
 /**
  * 주제 → 대사 시퀀스 (결정론 매핑 — 아래 표 밖의 조합 없음)
- * 성격: ilju.핵심(calc) + 성격[] + daymaster 발췌 2문단(hedge)
+ * 성격: 원국 기본 성향(월지 바탕·일지 생활 태도의 조건부 판단, temperament-reading) + ilju.핵심 + 성격[] + daymaster 발췌 2문단(hedge)
+ *       + 그 판단을 가르는 질문 1개(대화에서는 끝으로 옮김)
  * 올해: unse 발췌 첫 6~8문단을 2~3문단씩 묶음
  * 직업: ilju.직업[] + sipsin 최다 십신 발췌 2문단 (시간 모름 시 십신 제외 + 안내 1줄)
  * 관계: ilju.관계[] + daybranch 발췌 2문단
@@ -184,11 +187,15 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
 
   switch (topicKey) {
     case '성격': {
+      // The chart's own reading comes first; its question and footer travel as followups (dosaClient readingFollowups).
+      const temperament = findSection(report, 'temperament-reading')?.temperament
+      if (temperament?.active) out.push(...temperament.lines.map(text => ({ text, tone: 'hedge' as const })))
       if (dd?.핵심) out.push({ text: dd.핵심, tone: 'hedge', ...(dSrc ? { grounds: dSrc } : {}) })
       else out.push(...blockLead(ilju?.block, 3)) // 증류본 없는 일주 폴백 — 발췌 원문
       out.push(...listLines(dd?.성격, dSrc))
       const dm = excerptLine(findSection(report, 'daymaster')?.block?.excerpts?.[0], 2, 'hedge')
       if (dm) out.push(dm)
+      if (temperament?.active) out.push({ text: temperament.question.prompt, tone: 'hedge' }, { text: temperament.footer })
       break
     }
     case '올해': {

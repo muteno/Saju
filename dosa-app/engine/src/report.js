@@ -8,6 +8,7 @@ import { applyBasicSentencePolicy } from './basicSentences.js';
 import { evaluateGapinConditions, gapinConditionLines } from './gapinConditions.js';
 import { gapinStructureReference } from './gapinStructure.js';
 import { buildContextReading } from './contextReading.js';
+import { buildTemperamentReading } from './temperamentCandidates.js';
 import { auspicious } from './sinsal.js';
 
 // Named, unreviewed topic only. This is a delivery eligibility rule, not a truth judgment.
@@ -163,6 +164,10 @@ export function buildReport(chart, keyset, kb) {
   const context = buildContextReading(chart);
   if (context) S.push({ id: 'context-reading', title: '내 원국으로 읽는 일과 재능', context,
     lines: [...context.blocks.flatMap(block => block.lines), context.note] });
+  // The 성격 topic reads the month branch pattern with the day branch (temperamentCandidates.js), apart from the work reading.
+  const temperament = buildTemperamentReading(chart);
+  if (temperament) S.push({ id: 'temperament-reading', title: '내 원국으로 읽는 기본 성향', temperament,
+    lines: [...temperament.blocks.flatMap(block => block.lines), temperament.note] });
 
   // 2) 일주론 (해석의 중심)
   const ilju = topicBlock(keyset.byTopic.ilju[0], kb, { maxUnits: 2, nParas: 6 });

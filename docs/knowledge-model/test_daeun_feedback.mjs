@@ -115,7 +115,7 @@ test('every day master and both directions: the verdict at a told age follows th
 });
 
 test('the same chart with the other 대운 direction: the same answer and the same time revise differently',()=>{
- // 1985-09-07 02시 己卯·甲申·戊戌·乙丑 (season-surface, 관성 甲·乙 without roots): F's 21세 丁亥 brings a root whose
+ // 1985-09-07 02시 乙丑·甲申·己酉·乙丑 (season-surface, 관성 甲·乙 without roots): F's 21세 丁亥 brings a root whose
  // principal 壬 is 재성 (the asked environment); M's periods do not until 91세 乙亥.
  const f=session(chart(1985,9,7,2,'F'),2026),m=session(chart(1985,9,7,2,'M'),2026);
  for(const key of['decision','rootingDecision','branchDecision','experienceQuestions'])assert.deepEqual(f.r[key],m.r[key],key);
