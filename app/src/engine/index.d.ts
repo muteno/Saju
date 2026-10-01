@@ -81,6 +81,7 @@ export interface ReportBundle {
     lines?: string[]
     context?: import('./vendor/contextReading.js').ContextReading
     temperament?: import('./vendor/temperamentCandidates.js').TemperamentReading
+    relation?: import('./vendor/relationCandidates.js').RelationReading
     block?: { distilled?: any; excerpts?: Array<{ paras: string[]; source: { doc: string; title: string }; totalParas: number }>; empty?: boolean }
     [k: string]: unknown
   }>

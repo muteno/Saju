@@ -43,12 +43,13 @@ const BARE = /^(?:네|넵|예|응|맞아요|맞아|맞습니다|맞죠|그래요
 const LEAD_FILLER = /^(?:음+|흠+|어+|아+|글쎄|사실|솔직히)\s+(?=\S)/u;
 const tagOf = core => { const c = bare(core).replace(LEAD_FILLER, ''); return TAGS.find(t => FORMS[t].test(c)) ?? null; };
 
-/** Reads one answer to the shown temperament question. `reversible`: the question names an inside and an outside,
- * so ‘반대예요’ is its own answer; elsewhere it means no. Returns null for normal chat. */
-export function readTemperamentAnswer(answer, { reversible = false } = {}) {
+/** Reads one short answer to a shown yes/no question. `reversible`: the question has a named opposite, so ‘반대예요’
+ * is its own answer; elsewhere it means no. `otherTopic`: words that move the talk to another topic (the 관계 topic
+ * reads relationship words as part of its answers). Returns null for normal chat. */
+export function readShortAnswer(answer, { reversible = false, otherTopic = OTHER_TOPIC } = {}) {
   if (typeof answer !== 'string') return null;
   const text = norm(answer);
-  if (!text || text.length > MAX_FEEDBACK_ANSWER || ASKING.test(text) || OTHER_TOPIC.test(text)) return null;
+  if (!text || text.length > MAX_FEEDBACK_ANSWER || ASKING.test(text) || otherTopic.test(text)) return null;
   const segments = answerClauses(text).map(clause => ({ ...clause, tag: tagOf(clause.core) }));
   if (!segments.length) return null;
   const result = kind => ({ kind, text, segments });
@@ -65,13 +66,23 @@ export function readTemperamentAnswer(answer, { reversible = false } = {}) {
   return result('clarify:unclear');
 }
 
+/** Reads one answer to the shown temperament question; the inside/outside question is reversible. */
+export function readTemperamentAnswer(answer, { reversible = false } = {}) {
+  return readShortAnswer(answer, { reversible });
+}
+
+/** After the menu question a bare yes/no may answer the menu, not the owned question. */
+export function isBareMenuAnswer(read) {
+  return read.segments.every(s => s.tag === 'filler' || (['affirm', 'negative'].includes(s.tag) && BARE.test(bare(s.core).replace(LEAD_FILLER, ''))));
+}
+
 const NOT_A_HIT = '경험을 들은 뒤 고친 풀이라 처음 풀이의 적중으로 세지 않아요.';
 const OUTSIDE = '월간·시간·연주와 운의 시기는 아직 이 비교에 합치지 않았어요. 궁금한 점을 직접 물어보면 이어서 볼게요.';
 const look = god => `‘${TEMPERAMENT_TRAITS[god]} 모습’`;
 const flat = text => bare(text).replace(/[.?!…。！？]+\s+/gu, ', ');
 const clip = text => { const chars = Array.from(flat(text)); return chars.length > 60 ? `${chars.slice(0, 59).join('')}…` : chars.join(''); };
 const lastHasFinal = text => { const code = (Array.from(bare(text).replace(/[’'"”)\]]+$/u, '')).at(-1) ?? '').charCodeAt(0) - 0xac00; return code >= 0 && code <= 11171 && code % 28 !== 0; };
-const quoted = text => { const shown = clip(text); return `‘${shown}’${lastHasFinal(shown) ? '이라는' : '라는'}`; };
+export const quoted = text => { const shown = clip(text); return `‘${shown}’${lastHasFinal(shown) ? '이라는' : '라는'}`; };
 
 /** The question plan of a temperament reading: the shown question, and the complementary question asked once
  * when the first answer is no (inside/outside readings only). */
@@ -146,7 +157,7 @@ export function advanceTemperamentFeedback(decision, plan, state, answer, { afte
   let read = readTemperamentAnswer(answer, { reversible: plan.mode === 'inner-outer' && state.pending === 'first' });
   if (!read) return null;
   // After the menu question a bare yes/no may answer the menu, not the owned question.
-  if (afterMenu && read.segments.every(s => s.tag === 'filler' || (['affirm', 'negative'].includes(s.tag) && BARE.test(bare(s.core).replace(LEAD_FILLER, ''))))) return null;
+  if (afterMenu && isBareMenuAnswer(read)) return null;
   if (state.clarify && !OFFERED.includes(read.kind)) read = { ...read, kind: 'clarify:unclear' };
   const base = { questionId: question.id, targetCandidateId: question.candidate, answer: read,
     before: { questionId: question.id, targetCandidateId: question.candidate, reading: state.reading, feedback: { ...state.feedback } },

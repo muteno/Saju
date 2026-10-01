@@ -7,6 +7,8 @@ import { resolveWorkFeedback, ownedFeedbackPrompts } from '../engine/vendor/work
 import { CONTEXT_READING_NOTICE, type ContextReading } from '../engine/vendor/contextReading.js'
 import { resolveTemperamentFeedback, ownedTemperamentPrompts } from '../engine/vendor/temperamentFeedback.js'
 import type { TemperamentReading } from '../engine/vendor/temperamentCandidates.js'
+import { resolveRelationFeedback, ownedRelationPrompts } from '../engine/vendor/relationFeedback.js'
+import type { RelationReading } from '../engine/vendor/relationCandidates.js'
 import { parseConversationContext, type ConversationContext, type ConversationMessage } from './conversationContext'
 
 /** The chat's own menu line after a reading; it may sit between a shown question and its answer. */
@@ -30,6 +32,12 @@ export function activeWorkDecision(context: Pick<ContextReading, 'decision'> & {
 /** The basic temperament reading of the 성격 topic (absent in older engines and for an unknown birth time). */
 export function temperamentOf(report: ReportBundle): TemperamentReading | null {
   const reading = report.sections.find(s => s.id === 'temperament-reading')?.temperament
+  return reading?.active ? reading : null
+}
+
+/** The close-relationship reading of the 관계 topic (absent in older engines and for an unknown birth time). */
+export function relationOf(report: ReportBundle): RelationReading | null {
+  const reading = report.sections.find(s => s.id === 'relation-reading')?.relation
   return reading?.active ? reading : null
 }
 
@@ -61,6 +69,9 @@ export function readingNotices(report: ReportBundle, lines: DosaLine[]): string[
   // and leads: it is that topic's reading, the calculation limits above follow it.
   const temperament = temperamentOf(report)
   if (temperament && lines.some(line => line.text === temperament.question.prompt)) return [...temperament.lines, ...notices]
+  // The relationship reading leads its own topic the same way (관계 topic).
+  const closeReading = relationOf(report)
+  if (closeReading && lines.some(line => line.text === closeReading.question.prompt)) return [...closeReading.lines, ...notices]
   return notices
 }
 
@@ -70,6 +81,9 @@ export function readingFollowups(report: ReportBundle, lines: DosaLine[]): strin
   const temperament = temperamentOf(report)
   if (temperament && lines.some(line => line.text === temperament.question.prompt))
     return temperament.blocks.find(block => block.label === '경험으로 확인할 부분')?.lines ?? []
+  const relation = relationOf(report)
+  if (relation && lines.some(line => line.text === relation.question.prompt))
+    return relation.blocks.find(block => block.label === '경험으로 확인할 부분')?.lines ?? []
   const context = report.sections.find(s => s.id === 'context-reading')?.context
   if (!context?.experienceQuestions?.some(q => lines.some(line => line.text === q.prompt))) return []
   return context.blocks.find(block => block.label === '경험으로 확인할 부분')?.lines ?? []
@@ -98,10 +112,10 @@ export async function requestDosaText(options: {
   // lines may carry a withheld neighbour or a unit bibliography as sentence evidence.
   const hasIlju = options.report.sections.some(section => section.id === 'ilju')
   const topicCandidates = hasIlju ? topicLines(options.report, options.topic, options.hourUnknown) : options.lines
-  // A free question is grounded on the 성격 lines, but the temperament question and its footer belong to the topic
+  // A free question is grounded on the 성격/관계 lines, but each topic question and its footer belong to the topic
   // reading: they are not sent as grounds and are not re-attached to a free answer (the work question never is).
-  const freeReading = options.question ? temperamentOf(options.report) : null
-  const candidates = freeReading ? topicCandidates.filter(line => line.text !== freeReading.question.prompt && line.text !== freeReading.footer) : topicCandidates
+  const freeOwned = options.question ? [temperamentOf(options.report), relationOf(options.report)].flatMap(reading => reading ? [reading.question.prompt, reading.footer] : []) : []
+  const candidates = freeOwned.length ? topicCandidates.filter(line => !freeOwned.includes(line.text)) : topicCandidates
   const safeLines = candidates.flatMap(line => safeBasicSentenceParagraphs(line.text)
     .map(text => ({ ...line, text })))
   let held = candidates.some(line => basicSentenceMatches(line.text).length > 0)
@@ -134,6 +148,13 @@ export async function requestDosaText(options: {
     // Same replay contract as the work answers: the shown temperament question and every local answer after it.
     const local = Array.isArray(options.feedbackMessages) ? options.feedbackMessages.slice(-MAX_FEEDBACK_MESSAGES) : conversation.messages
     const feedback = resolveTemperamentFeedback({ decision: temperament, footer: temperament.footer, messages: local, answer: options.question, menuPrompts: [MENU_PROMPT] })
+    if (feedback) return feedback.text
+  }
+  const relation = relationOf(options.report)
+  if (relation && conversation?.topic === '관계') {
+    // Same replay contract: the shown relationship question and every local answer after it.
+    const local = Array.isArray(options.feedbackMessages) ? options.feedbackMessages.slice(-MAX_FEEDBACK_MESSAGES) : conversation.messages
+    const feedback = resolveRelationFeedback({ decision: relation, footer: relation.footer, messages: local, answer: options.question, menuPrompts: [MENU_PROMPT] })
     if (feedback) return feedback.text
   }
   const ctrl = new AbortController()
@@ -169,7 +190,7 @@ export async function requestDosaText(options: {
     // A provider may copy a question into an early paragraph or combine it with
     // narration. Normalize our exact owned lines before the UI splits sentences.
     // A free answer must not re-ask the app's own feedback question as if it were new.
-    const reasked = options.question ? [...ownedFeedbackPrompts(decision, timing), ...ownedTemperamentPrompts(temperament)] : []
+    const reasked = options.question ? [...ownedFeedbackPrompts(decision, timing), ...ownedTemperamentPrompts(temperament), ...ownedRelationPrompts(relation)] : []
     const owned = [...notices, ...followups, ...reasked].flatMap(line => [line, ...line.split(/(?<=[.?!…])\s+/)])
     const body = owned.reduce((text, line) => text.replaceAll(line, ''), presented).trim()
     // A complete owned observation can itself answer a free question.
