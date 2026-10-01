@@ -4,6 +4,8 @@
 //   SAJU_ROOT=<checkout> QA_OUT=<dir> node scripts/capture_relation.mjs <before|after>
 // CAPTURE_SET=checked selects the 원문95 scenes instead (READING_BUNDLE_EVAL.md): the 여명 whose 성격 reading is
 // ‘부딪힘’ (1975-02-02 02시) and the 기유 여명 whose 관계 draft carried 남명 items (1985-09-07 02시).
+// CAPTURE_SET=draft selects the 원문96 scenes: the 관계 and 성격 chats whose reading and day-pillar draft said opposite
+// things (r5 1976-12-25 08시 남, h4 1985-09-07 02시 여) and the analysis card that keeps the draft.
 // Then `node scripts/capture_relation.mjs compare` (QA_OUT with both runs) writes side-by-side compare-*.png.
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {fileURLToPath,pathToFileURL} from 'node:url';
@@ -34,7 +36,10 @@ const norm=s=>s.replace(/\s+/g,' ').trim();
 // analysis card.
 const CHECKED=[['checked-F','chat','1975-02-02',2,'F',390,['아니요','네'],false],['checked-F-1280','chat','1975-02-02',2,'F',1280,[],true],
  ['gender-giyu-F','chat','1985-09-07',2,'F',390,[],true],['card-checked-F','card','1975-02-02',2,'F',390,[],false]];
-const SCENES=process.env.CAPTURE_SET==='checked'?CHECKED:[['gapin-yin-F','chat','1980-02-11',4,'F',390,['아니요'],false],['gapin-jin-F','chat','1980-04-11',4,'F',390,['아니요','네'],false],
+// [..., topic, card text]: the chat topic (default 관계) and, for a card, the card to scroll to.
+const DRAFT=[['draft-r5-rel','chat','1976-12-25',8,'M',390,[],false,'관계'],['draft-h4-temper','chat','1985-09-07',2,'F',390,[],false,'성격'],
+ ['draft-r5-rel-1280','chat','1976-12-25',8,'M',1280,[],false,'관계'],['card-draft-r5','card','1976-12-25',8,'M',390,[],false,'관계','일주 이야기']];
+const SCENES=process.env.CAPTURE_SET==='checked'?CHECKED:process.env.CAPTURE_SET==='draft'?DRAFT:[['gapin-yin-F','chat','1980-02-11',4,'F',390,['아니요'],false],['gapin-jin-F','chat','1980-04-11',4,'F',390,['아니요','네'],false],
  ['gapin-yin-M','chat','1980-02-11',4,'M',390,[],true],['giyu-sin-F','chat','1985-09-07',2,'F',390,['그런 편이에요'],true],
  ['giyu-sin-M','chat','1985-09-07',2,'M',390,['때에 따라 달라요'],false],
  ['gapin-jin-F-1280','chat','1980-04-11',4,'F',1280,[],true],['card-gapin-jin-F','card','1980-04-11',4,'F',390,[],false],['card-giyu-sin-F-1280','card','1985-09-07',2,'F',1280,[],false]];
@@ -50,7 +55,7 @@ async function slices(p,start,file){const log=p.getByRole('log');
  return shots;}
 const rows=[];
 try{
- for(const[id,kind,date,hour,g,width,answers,afterMenu]of SCENES){
+ for(const[id,kind,date,hour,g,width,answers,afterMenu,topicKey='관계',cardText='내 원국으로 읽는 가까운 관계']of SCENES){
   const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce',serviceWorkers:'block'}),p=await context.newPage();p.setDefaultTimeout(8000);
   const errors=[],external=[],requests=[];p.on('pageerror',e=>errors.push(e.message));
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(u.origin!==base){external.push(u.href);return route.abort();}
@@ -59,24 +64,24 @@ try{
   try{
    if(kind==='card'){
     await p.goto(`${base}/analysis?${query(date,hour,g)}`,{waitUntil:'networkidle'});await p.evaluate(()=>document.fonts.ready);
-    const btn=p.locator('[role="button"]').filter({hasText:'관계와 인연'}).first();await btn.click();const region=btn.locator('..');await p.waitForTimeout(400);
-    const card=region.getByText('내 원국으로 읽는 가까운 관계',{exact:true});
+    const btn=p.locator('[role="button"]').filter({hasText:topicKey==='성격'?'성향과 기질':'관계와 인연'}).first();await btn.click();const region=btn.locator('..');await p.waitForTimeout(400);
+    const card=region.getByText(cardText,{exact:cardText==='내 원국으로 읽는 가까운 관계'});
     if(await card.count())await card.first().evaluate(el=>{for(let q=el.parentElement;q;q=q.parentElement)if(getComputedStyle(q).overflowY==='auto'&&q.scrollHeight>q.clientHeight){q.scrollTop+=el.getBoundingClientRect().top-q.getBoundingClientRect().top-8;break;}});
     await p.waitForTimeout(300);const f=`${id}-${label}.png`;await p.screenshot({path:`${out}/${f}`});
     rows.push({id,kind,date,hour,gender:g,width,slices:[f],text:await region.innerText(),errors,external,scrollWidth:await p.evaluate(()=>document.documentElement.scrollWidth)});
     continue;
    }
    await p.goto(`${base}/talk?${query(date,hour,g)}`);await p.getByRole('log').waitFor();
-   const model=await p.evaluate(async()=>{const{parseShare}=await import('/src/data/profiles.ts'),{buildReading}=await import('/src/engine/index.js'),{TOPICS}=await import('/src/data/dosaTopics.ts');
-    const r=buildReading(parseShare(location.search).input),t=r.sections.find(x=>x.id==='relation-reading')?.relation;
-    return{labels:Object.fromEntries(TOPICS.map(x=>[x.key,x.label])),footer:t?.footer??null};});
+   const model=await p.evaluate(async key=>{const{parseShare}=await import('/src/data/profiles.ts'),{buildReading}=await import('/src/engine/index.js'),{TOPICS}=await import('/src/data/dosaTopics.ts');
+    const r=buildReading(parseShare(location.search).input),t=key==='성격'?r.sections.find(x=>x.id==='temperament-reading')?.temperament:r.sections.find(x=>x.id==='relation-reading')?.relation;
+    return{labels:Object.fromEntries(TOPICS.map(x=>[x.key,x.label])),footer:t?.footer??null};},topicKey);
    const labels=model.labels;
-   const topic=p.getByRole('button',{name:labels['관계'],exact:true});for(let i=0;i<80&&!(await topic.count());i++)if(!(await next(p)))await p.waitForTimeout(200);
+   const topic=p.getByRole('button',{name:labels[topicKey],exact:true});for(let i=0;i<80&&!(await topic.count());i++)if(!(await next(p)))await p.waitForTimeout(200);
    await topic.click();
    // The whole 관계 reading: up to its question's footer (an answer typed there), or on to the menu line.
-   const stop=t=>afterMenu||!model.footer?t.endsWith(MENU)&&t.lastIndexOf(MENU)>t.indexOf(labels['관계']):t.endsWith(norm(model.footer));
+   const stop=t=>afterMenu||!model.footer?t.endsWith(MENU)&&t.lastIndexOf(MENU)>t.indexOf(labels[topicKey]):t.endsWith(norm(model.footer));
    for(let i=0;i<80;i++){const t=await logText(p);if(stop(t))break;if(!(await next(p)))await p.waitForTimeout(250);}
-   const reading=await slices(p,labels['관계'],`chat-${id}-0-${label}`);
+   const reading=await slices(p,labels[topicKey],`chat-${id}-0-${label}`);
    const steps=[];
    for(const[k,answer]of answers.entries()){
     const before=requests.filter(r=>r.question).length,shownBefore=(await logText(p)).length;

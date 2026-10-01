@@ -310,14 +310,62 @@ test('the app (원문95): day-pillar draft items addressed to the other gender a
  const input=(gender,y=1985,m=9,d=7,h=2)=>({year:y,month:m,day:d,hour:h,minute:0,gender,solarTimeCorrection:false,lateZiRule:'keepDay'});
  const male=/^\s*(?:남명|남자|남성)\s*[:：]/u,female=/^\s*(?:여명|여자|여성)\s*[:：]/u;
  const items=lines=>lines.flatMap(l=>l.text.split(/\n{2,}/));
- // 기유 (1985-09-07 02시) carries both 남명 and 여명 items in its 관계 draft; each gender now reads its own only.
- const f=items(topics.topicLines(engine.buildReading(input('F')),'관계')),mm=items(topics.topicLines(engine.buildReading(input('M')),'관계'));
- assert.ok(!f.some(t=>male.test(t))&&f.some(t=>female.test(t)));assert.ok(!mm.some(t=>female.test(t))&&mm.some(t=>male.test(t)));
- // Items for both and the conditional reading stay; the card of the analysis screen follows the same filter.
+ // 기유 (1985-09-07 02시) carries both 남명 and 여명 items in its 관계 draft; each gender's card reads its own only.
+ // (원문96 moved the 관계 draft out of the chat, so the chat filter is read on 임오's 직업 draft, the one 여자-only item.)
  assert.equal(topics.topicLines(engine.buildReading(input('F')),'관계')[0].text,buildRelationReading(chart(1985,9,7,2,'F')).interpretation);
  const card=g=>saju.toReading(input(g)).cards.find(c=>c.id==='ilju').blocks.find(b=>b.label==='관계').lines;
- assert.ok(!card('F').some(t=>male.test(t))&&!card('M').some(t=>female.test(t)));
+ assert.ok(!card('F').some(t=>male.test(t))&&card('F').some(t=>female.test(t)));assert.ok(!card('M').some(t=>female.test(t))&&card('M').some(t=>male.test(t)));
+ const work=g=>items(topics.topicLines(engine.buildReading(input(g,1990,1,17,10)),'직업'));
+ assert.ok(work('F').some(t=>female.test(t)));assert.ok(!work('M').some(t=>female.test(t)||male.test(t)));
  // The checked reading leads the 관계 chat of 1975-02-02 02시 여명 and its question ends it.
  const report=engine.buildReading(input('F',1975,2,2,2)),r=report.sections.find(s=>s.id==='relation-reading').relation,lines=topics.topicLines(report,'관계').map(l=>l.text);
  assert.equal(r.mode,'near-checked');assert.equal(lines[0],r.interpretation);assert.deepEqual(client.readingFollowups(report,topics.topicLines(report,'관계')),[r.question.prompt,r.footer]);
+}));
+test('the app (원문96): with the topic\'s own chart reading, the 성격·관계 chat leaves the day-pillar draft to the analysis card',async()=>withConsumers(async(client,topics,ctx,groups,saju,engine)=>{
+ // The draft is read from the KB bundle itself (not from the app's projection), so a withheld or reworded copy also counts.
+ const ref=JSON.parse(readFileSync(root+'app/src/engine/vendor/kb_ref.json')),kb=JSON.parse(readFileSync(root+'app/public/'+ref.file));
+ const unit=k=>{const u=kb.distilled[k];return(Array.isArray(u)?u[0]:u)?.distilled??{};};
+ const NOTICES=['남은 일주 설명은','갑인 서술은 원문과 대조했지만','조건·시기·출처를 검토한 일부 문장은','현침살 관련 문장은'];
+ const POINTER='분석 탭의 ‘일주 이야기’ 카드에 따로 두었어요.';
+ const input=(y,m,d,h,gender)=>({year:y,month:m,day:d,hour:h,minute:0,gender,solarTimeCorrection:false,lateZiRule:'keepDay'});
+ // The bundle's hand-picked charts (READING_BUNDLE_EVAL.md h1~h8) with 임오 and a 갑인 남명.
+ const charts=[[1980,2,11,4,'F'],[1980,2,11,4,'M'],[1980,4,11,4,'F'],[1985,9,7,2,'F'],[1985,9,7,2,'M'],[1985,11,6,2,'F'],[1975,2,2,2,'F'],[1975,2,2,14,'F'],[1990,1,17,10,'F'],[1976,12,25,8,'M']];
+ let held=0;
+ for(const c of charts){
+  const report=engine.buildReading(input(...c)),block=report.sections.find(s=>s.id==='ilju').block,pillar=block.key,dd=unit(pillar);
+  const card=saju.toReading(input(...c)).cards.find(x=>x.id==='ilju');
+  for(const [topic,fields] of [['성격',['핵심','성격']],['관계',['관계']]]){
+   const lines=topics.topicLines(report,topic).map(l=>l.text),draft=fields.flatMap(f=>[dd[f]??[]].flat()).filter(Boolean);
+   // No draft item and none of the draft's review notices in the chat lines; the reading leads.
+   for(const item of draft)assert.ok(!lines.some(l=>l.includes(item)),`${pillar} ${topic}: ${item.slice(0,30)}`);
+   assert.ok(!lines.some(l=>NOTICES.some(n=>l.startsWith(n))),`${pillar} ${topic} notices`);
+   const reading=report.sections.find(s=>s.id===(topic==='성격'?'temperament-reading':'relation-reading'))[topic==='성격'?'temperament':'relation'];
+   assert.equal(lines[0],reading.interpretation);
+   assert.deepEqual(client.readingFollowups(report,topics.topicLines(report,topic)),[reading.question.prompt,reading.footer]);
+   // The pointer ends the chat lines only when the card shows that draft (갑인's is withheld by the review policy).
+   const inCard=fields.some(f=>card?.blocks.some(b=>b.label===f&&b.lines.length));
+   assert.equal(lines.filter(l=>l.endsWith(POINTER)).length,inCard?1:0,`${pillar} ${topic} pointer`);
+   if(inCard){assert.ok(lines.at(-1).endsWith(POINTER));assert.ok(client.readingNotices(report,topics.topicLines(report,topic)).some(n=>n.endsWith(POINTER)));held++;}
+  }
+  // The card keeps the draft (this gender's items) with its review notice; 직업·주의 chats keep theirs as before.
+  assert.ok(card.note.includes(block.basicReview.unreviewedNotice));
+  for(const topic of ['직업','주의']){
+   const lines=topics.topicLines(report,topic).map(l=>l.text);
+   assert.ok(!lines.some(l=>l.endsWith(POINTER)));assert.ok(lines.some(l=>NOTICES.some(n=>l.startsWith(n))),`${pillar} ${topic} keeps the notice`);
+  }
+ }
+ assert.equal(held,(charts.length-3)*2); // all but the three 갑인 charts (h1·h2·h3)
+ // A report without the topic reading (an older engine) still speaks the draft with its notice, and no pointer.
+ const report=engine.buildReading(input(1976,12,25,8,'M')),old={...report,sections:report.sections.filter(s=>s.id!=='relation-reading'&&s.id!=='temperament-reading')};
+ for(const [topic,field] of [['성격','성격'],['관계','관계']]){
+  const lines=topics.topicLines(old,topic).map(l=>l.text);
+  assert.ok(unit('ilju/신해')[field].some(item=>lines.some(l=>l.includes(item))));assert.ok(lines.at(-1).startsWith('남은 일주 설명은'));assert.ok(!lines.some(l=>l.endsWith(POINTER)));
+ }
+ // The provider is not given the draft as grounds either (r5 관계: ‘집요하게 집착’ against ‘속에 머묾’).
+ let sent=null;globalThis.fetch=async(_,init)=>{sent=JSON.parse(init.body);return Response.json({text:'공급자 풀이예요.'});};
+ const text=await client.requestDosaText({topic:'관계',report,lines:topics.topicLines(report,'관계'),chefId:'noona',model:'sonnet'});
+ assert.ok(!sent.grounds.some(g=>/집요하게 집착/.test(g.text)));assert.ok(sent.grounds.some(g=>g.text.endsWith(POINTER)));
+ assert.ok(text.includes('공급자 풀이예요.'));assert.ok(text.includes(POINTER));assert.doesNotMatch(text,/집요하게 집착/);
+ // An unknown birth time keeps its single notice.
+ assert.deepEqual(topics.topicLines(report,'관계',true).map(l=>l.text).filter(l=>l.endsWith(POINTER)),[]);
 }));
