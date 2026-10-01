@@ -7,6 +7,7 @@ import type { ReportBundle } from '../engine'
 import type { TemperamentReading } from '../engine/vendor/temperamentCandidates.js'
 import type { RelationReading } from '../engine/vendor/relationCandidates.js'
 import { displayReadingText } from './readingPresentation'
+import { forEnteredGender } from './draftLines'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE as HOUR_UNKNOWN_NOTICE } from '../engine/birthTime'
 
 export interface DosaLine {
@@ -174,7 +175,7 @@ export const josa = (word: string, withBatchim: string, without: string): string
  *       + 그 판단을 가르는 질문 1개(대화에서는 끝으로 옮김)
  * 올해: unse 발췌 첫 6~8문단을 2~3문단씩 묶음
  * 직업: ilju.직업[] + sipsin 최다 십신 발췌 2문단 (시간 모름 시 십신 제외 + 안내 1줄)
- * 관계: 원국 관계 방식(성별에 따른 배우자 별의 자리·음양의 조건부 판단, relation-reading) + ilju.관계[] + daybranch 발췌 2문단
+ * 관계: 원국 관계 방식(성별에 따른 배우자 별의 자리·음양의 조건부 판단, relation-reading) + ilju.관계[](입력 성별의 줄만) + daybranch 발췌 2문단
  *       + 그 판단을 가르는 질문 1개(대화에서는 끝으로 옮김)
  * 주의: ilju.주의[] + 관점차이 병기(견해 src 포함)
  */
@@ -183,7 +184,10 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
   const originalIlju = findSection(report, 'ilju')
   const ilju = originalIlju?.block ? { ...originalIlju, block: applyBasicSentencePolicy(originalIlju.block as unknown as Record<string, unknown>) as unknown as TopicBlock } : originalIlju
   const d = ilju?.block?.distilled
-  const dd = d?.distilled
+  // Draft items addressed to the other gender are left out (the topic lists below; 핵심 is not gendered).
+  const gender = (report.input as { gender?: unknown } | undefined)?.gender
+  const dd = d?.distilled && { ...d.distilled, ...Object.fromEntries((['성격', '직업', '관계', '주의'] as const)
+    .map(key => [key, d.distilled?.[key] && forEnteredGender(d.distilled[key], gender)])) }
   // The unit bibliography is not sentence-level evidence.
   const dSrc = undefined
   const out: DosaLine[] = []

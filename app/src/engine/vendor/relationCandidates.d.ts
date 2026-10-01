@@ -1,4 +1,4 @@
-export type RelationMode = 'near-bonded' | 'near-bridged' | 'near-warm' | 'near-firm' | 'near-mixed' | 'far' | 'hidden' | 'absent';
+export type RelationMode = 'near-checked' | 'near-bonded' | 'near-bridged' | 'near-warm' | 'near-firm' | 'near-mixed' | 'far' | 'hidden' | 'absent';
 export interface SpouseStar {
   place: 'yearStem' | 'monthStem' | 'hourStem' | 'yearBranch' | 'monthBranch' | 'dayBranch' | 'hourBranch';
   placeName: string; stem: number; character: string; god: string; warm: boolean; facing: boolean;
@@ -11,9 +11,11 @@ export interface RelationCandidate {
   status: 'selected' | 'superseded' | 'inapplicable' | 'withheld';
 }
 export interface RelationReading {
-  policy: 'natal-relation-v1'; kind: 'conditional_relation_reading'; scope: 'spouse-star-place-polarity'; assumption: string;
+  policy: 'natal-relation-v2'; kind: 'conditional_relation_reading'; scope: 'spouse-star-place-polarity'; assumption: string;
   dayPillar: string; gender: 'M' | 'F'; spouseGroup: '관성' | '재성'; stars: SpouseStars; bonded: SpouseStar | null;
   bridge: 'month' | 'day' | null; palaceClash: string[];
+  /** 여명 whose temperament reading is ‘peer-blocked’: the 일지 관성 read as checking her direction. */
+  checked: { place: 'dayBranch'; character: string; god: string; warm: boolean; pattern: string; strength: string; temperamentMode: 'peer-blocked' } | null;
   features: Record<string, 0 | 1>; candidates: RelationCandidate[]; selectedIds: RelationMode[];
   active: true; mode: RelationMode; name: string;
   facts: string; interpretation: string; reason: string; alternative: string; lines: string[];

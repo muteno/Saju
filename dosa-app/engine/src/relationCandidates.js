@@ -4,14 +4,17 @@
 // warmth (정) is the harmony of yin and yang with the day master (정관·정재, not 편관·편재), best when it combines
 // with the day master (고급2 401·404·406·407, 고급1 314·315, 중급1 105·106); a 월간 편관 bridged by 인성 in the
 // month or day branch protects the day master instead of pressing it (중급1 105·110, 고급1 315); hidden stems show
-// the inner mind of a relation (고급2 404). Outcome sentences of the source (marriage, divorce, 덕, timing,
-// infidelity, a missing star as a lack of bond) are never delivered. References/assumptions:
-// docs/knowledge-model/CONDITIONAL_RELATION_READING.md. A hypothesis to check against experience: no verdict on a
-// partner or relationship, no strength degree or probability.
+// the inner mind of a relation (고급2 404). When a woman's chart is the strong 비견/겁재 pattern whose mind is
+// blocked by the 관성 in the day branch (the temperament reading's ‘부딪힘’), that 관성 is also her spouse star in the
+// spouse palace: the source reads the same day branch as the partner who checks her own direction (중급1 104 예시2,
+// 106 3.), so the relationship reading follows the same condition instead of contradicting it. Outcome sentences of
+// the source (marriage, divorce, 덕, timing, infidelity, a missing star as a lack of bond) are never delivered.
+// References/assumptions: docs/knowledge-model/CONDITIONAL_RELATION_READING.md. A hypothesis to check against
+// experience: no verdict on a partner or relationship, no strength degree or probability.
 import { STEMS_HANJA, BRANCHES_HANJA, HIDDEN_STEMS, TEN_GODS, tenGod, sexStem, sexBranch, sexName } from './tables.js';
 import { evaluateCondition } from './workCandidates.js';
 import { detectRelations } from './relations.js';
-import { j } from './temperamentCandidates.js';
+import { j, buildTemperamentReading } from './temperamentCandidates.js';
 
 // Only the particle; after 'X(십성)' it follows the hanja's reading, as elsewhere in the engine.
 const pj = (word, pair) => j(word, pair).slice(String(word).length);
@@ -33,6 +36,12 @@ export const RELATION_NOTICE = '원국에서 배우자의 별이 놓인 자리�
 
 const feature = name => ({ feature: name });
 const RULES = [
+  // 중급1 104 예시2 (121~124·175~179)·106 3. (219~224): 여명, 비견격 신강 with 관성 in the day branch — the husband star
+  // the strong mind does not go to checks the day master’s direction (the temperament reading’s ‘peer-blocked’); a 정관
+  // there keeps its warmth beside the friction (고급1 315 347~349: 인연·정 있으나 지향점이 달라 갈등). First: the source
+  // puts the mind’s direction before the star’s use (170·179); over a combination it is an app precedence (no source
+  // example has both), so the combination is the next question.
+  { id: 'near-checked', specific: true, condition: { all: ['facing', 'checked'].map(feature) } },
   // 고급1 314 322·315 344, 고급2 406 193·407 229, 고급1 315 346, 고급2 688: a 정재/정관 beside the day master that combines with it.
   { id: 'near-bonded', specific: true, condition: { all: ['facing', 'warmAll', 'bonded'].map(feature) } },
   // 중급1 105 200·110 317~318, 고급1 315 337~340: a 월간 편관 bridged by 인성 in the month or day branch.
@@ -45,6 +54,7 @@ const RULES = [
   { id: 'absent', condition: { all: [{ not: feature('visible') }, { not: feature('hiddenStar') }] } },
 ];
 const NAMES = {
+  'near-checked': '가까운 사람이 내가 하려는 일에 제동을 거는 것처럼 느껴져 부딪히기 쉽다는 풀이',
   'near-bonded': '가까운 사람과 마음을 묶어 안정된 생활을 함께 꾸려 간다는 풀이',
   'near-bridged': '다정한 표현은 적어도 서로 맡은 역할을 믿고 기댄다는 풀이',
   'near-warm': '가까운 관계가 생활 가까이에 있고 다정한 마음이 오간다는 풀이',
@@ -86,14 +96,15 @@ export function spouseStars(pillarsIdx, gender) {
   return { group: want, visible, hidden, facing: visible.filter(s => s.facing), far: visible.filter(s => !s.facing) };
 }
 
-/** Candidate comparison: a specific source rule, when it holds, supersedes the generic reading that also holds (an
- * explicit precedence, not a score). Exactly one generic rule holds for every complete chart. */
+/** Candidate comparison: the first specific source rule that holds (in the order of RULES) supersedes every other
+ * rule that also holds, generic or specific (an explicit precedence, not a score). Exactly one generic rule holds for
+ * every complete chart. */
 export function compareRelationCandidates(features) {
   const evaluated = RULES.map(rule => ({ id: rule.id, specific: Boolean(rule.specific), condition: evaluateCondition(rule.condition, features) }));
   const specific = evaluated.find(c => c.specific && c.condition.value === 1);
   return evaluated.map(c => ({ ...c, name: NAMES[c.id],
     status: c.condition.value === null ? 'withheld' : c.condition.value === 0 ? 'inapplicable'
-      : specific && !c.specific ? 'superseded' : 'selected' }));
+      : specific && c.id !== specific.id ? 'superseded' : 'selected' }));
 }
 
 const label = s => s.role ? `${s.placeName} ${s.branchCharacter}의 ${s.role === '본기' ? '본기' : '지장간'} ${s.character}(${s.god})` : `${s.placeName} ${s.character}(${s.god})`;
@@ -111,9 +122,14 @@ export function buildRelationReading(chart) {
   // The source examples bridge a 월간 편관 only (중급1 105·110, 고급1 315): 인성 본기 in the month or day branch.
   const bridgeBranch = ['month', 'day'].find(q => groupOf(day, HIDDEN_STEMS[sexBranch(p[q])].at(-1)) === '인성') ?? null;
   const bridged = gender === 'F' && facing.length > 0 && facing.every(s => s.place === 'monthStem' && !s.warm) && bridgeBranch !== null;
+  // The same condition as the temperament reading’s ‘peer-blocked’ (one source of truth): for a woman its 일지 관성 is
+  // the spouse star in the spouse palace. For a man that 관성 is not the spouse star (104 178 reads it as work).
+  const temperament = buildTemperamentReading(chart);
+  const palaceStar = facing.find(s => s.place === 'dayBranch') ?? null;
+  const checked = gender === 'F' && temperament?.mode === 'peer-blocked' && palaceStar !== null;
   const features = { facing: +(facing.length > 0), visible: +(stars.visible.length > 0), hiddenStar: +(stars.hidden.length > 0),
     warmAll: +(facing.length > 0 && firm.length === 0), firmAll: +(facing.length > 0 && warm.length === 0),
-    mixed: +(warm.length > 0 && firm.length > 0), bonded: +(bondedStar !== null), bridged: +bridged };
+    mixed: +(warm.length > 0 && firm.length > 0), bonded: +(bondedStar !== null), bridged: +bridged, checked: +checked };
   const candidates = compareRelationCandidates(features);
   const selectedIds = candidates.filter(c => c.status === 'selected').map(c => c.id);
   const mode = selectedIds[0];
@@ -126,13 +142,33 @@ export function buildRelationReading(chart) {
     : mode === 'far' ? `${star}${pj(stars.group, '이')} 일간 곁(월간·일지·시간)이 아니라 ${list(stars.far)}에만 있어요.`
       : mode === 'hidden' ? `${star}${pj(stars.group, '이')} 천간과 지지 본기에는 없고 ${list(stars.hidden)}에만 있어요.`
         : `${star}${pj(stars.group, '이')} 천간·지지 본기·지장간 어디에도 보이지 않아요.`) +
-    (bondedStar && ['near-bonded', 'near-mixed'].includes(mode)
+    (bondedStar && ['near-bonded', 'near-mixed', 'near-checked'].includes(mode)
       ? ` ${facing.length > 1 ? `그중 ${label(bondedStar)}` : `이 ${bondedStar.character}(${bondedStar.god})`}${pj(bondedStar.character, '은')} 일간 ${hanjaDay}${pj(hanjaDay, '과')} ${bondedStar.role ? '명암합' : '합'}을 이뤄요.` : '') +
     (mode === 'near-bridged' ? ` 월간 편관과 일간 사이를 ${bridgeBranch === 'month' ? '월지' : '일지'} ${BRANCHES_HANJA[sexBranch(p[bridgeBranch])]}의 본기 인성이 이어 줘요.` : '') +
-    (mode.startsWith('near-') && stars.far.length ? ` 그 밖에 ${list(stars.far)}에도 있어요.` : '');
+    (mode.startsWith('near-') && stars.far.length ? ` 그 밖에 ${list(stars.far)}에도 있어요.` : '') +
+    (mode === 'near-checked' ? ` 월지 바탕은 ${temperament.pattern.god}이고, 원국 강약은 앱의 잠정 기준으로 ${j(temperament.strength.label, '이에요')}.` : '');
   const groupWord = stars.group === '관성' ? '원칙과 기준' : '현실의 일과 역할';
   let interpretation, reason, alternative, prompt, followup = null;
-  if (mode === 'near-bonded') {
+  if (mode === 'near-checked') {
+    // The warmth of the star (정) is kept apart from the check on the day master’s direction (106 220~224 judge 인연,
+    // 정 and the check separately).
+    const tone = palaceStar.warm ? '다만 일간과 음양이 조화되는 별이라 다정한 마음은 오갈 수 있어요.'
+      : '일간과 음양이 같은 별이라 다정한 표현보다 서로의 기준이 앞서는 쪽이에요.';
+    interpretation = `배우자의 별인 ${palaceStar.god}${pj(palaceStar.god, '이')} 배우자 자리인 일지에 있어 가까운 관계가 생활 한가운데에 있는데, 스스로 정해 밀고 가려는 바탕이 큰 원국이라 가까운 사람이 내가 하려는 일에 제동을 거는 것처럼 느껴져 부딪히기 쉽다고 읽어요. ${tone}`;
+    // The reading it replaces, named by the candidate it superseded (a combination first, else the generic one).
+    const over = { 'near-bonded': '합으로 묶어 꾸려 간다고만', 'near-warm': '다정함만', 'near-firm': '기준이 먼저 선다고만', 'near-mixed': '다정함과 기준이 함께 있다고만' };
+    const replaced = ['near-bonded', 'near-warm', 'near-firm', 'near-mixed'].find(id => candidates.some(c => c.id === id && c.status === 'superseded'));
+    reason = `월지 바탕이 비겁이고 원국이 ${temperament.strength.label}이면 마음이 표현·결과 쪽을 향해 관성의 간섭·통제를 꺼린다고 보는데(성격 풀이의 ‘부딪힘’과 같은 조건이에요), 여명에게 그 일지의 관성은 배우자의 별이라 ${over[replaced]} 읽는 판단보다 이 판단을 먼저 골랐어요.`;
+    alternative = '부딪히기 쉽다는 말은 사이가 나쁘다거나 관계의 결과를 정한 것이 아니에요. 가까운 사람이 오히려 내가 하려는 일의 방향을 잡아 주거나 힘이 됐다면 이 판단을 낮춰야 해요.';
+    prompt = '가까운 사람이 내가 스스로 정해 밀고 가려는 일에 제동을 거는 것처럼 느껴져 부딪힌 적이 자주 있나요?';
+    // The next question is the reading it superseded: a combination (no source example decides between the two; the
+    // answer does), else the warmth of the day-branch star.
+    followup = replaced === 'near-bonded'
+      ? { id: 'relation-checked-bonded', prompt: '그렇다면 가까운 사람과 마음을 묶어 안정된 생활을 함께 꾸려 가는 편인가요?', candidate: 'near-bonded' }
+      : palaceStar.warm
+        ? { id: 'relation-checked-warm', prompt: '그렇다면 가까운 사람과는 다정한 말과 마음 표현이 자연스럽게 오가는 편인가요?', candidate: 'near-warm' }
+        : { id: 'relation-checked-firm', prompt: '그렇다면 가까운 사람과는 다정한 표현보다 각자의 원칙과 기준을 먼저 세우는 편인가요?', candidate: 'near-firm' };
+  } else if (mode === 'near-bonded') {
     interpretation = `일간과 음양이 조화되는 ${bondedStar.god}${pj(bondedStar.god, '이')} 바로 곁에서 일간과 합을 이뤄, 가까운 사람과 마음을 묶어 안정된 생활을 함께 꾸려 가려는 쪽으로 읽어요.`;
     reason = '배우자의 별이 바로 곁에서 일간과 합하고 음양이 조화되면, 현실적이고 안정된 삶을 함께 추구한다고 보는 관점을 따라 다정함만 읽는 판단보다 이 판단을 먼저 골랐어요.';
     alternative = '안정을 함께 꾸린다는 말은 관계가 오래 간다거나 결혼한다는 뜻이 아니에요. 가까운 사람과도 각자 따로 움직이는 편이라면 이 판단을 낮춰야 해요.';
@@ -182,9 +218,11 @@ export function buildRelationReading(chart) {
   }
   const question = { id: `relation-${mode}`, prompt, clarifies: '선택한 관계 방식 가설의 자기보고 일치·불일치·반대·때에 따라·모름; 자기보고는 독립 적중률이 아님' };
   const lines = [interpretation, where, reason, alternative, RELATION_LIMIT];
-  return { policy: 'natal-relation-v1', kind: 'conditional_relation_reading', scope: 'spouse-star-place-polarity',
-    assumption: '여명 관성·남명 재성 as the spouse star by the entered gender; facing places 월간·일지·시간 and 정/편 warmth (고급2 401·407); combination and the 월간 편관 bridged by 인성 as specific rules; hidden stems as the inner mind (고급2 404); outcomes, 덕, timing and a missing star as a lack of bond are not delivered; not verified personal effects',
+  return { policy: 'natal-relation-v2', kind: 'conditional_relation_reading', scope: 'spouse-star-place-polarity',
+    assumption: '여명 관성·남명 재성 as the spouse star by the entered gender; facing places 월간·일지·시간 and 정/편 warmth (고급2 401·407); combination and the 월간 편관 bridged by 인성 as specific rules; for a woman, the temperament reading’s 비견/겁재-pattern 신강 chart with 관성 in the day branch reads that spouse star as checking her direction (중급1 104 예시2·106, the strong mind moved to other day masters and 정관 by the temperament assumption); hidden stems as the inner mind (고급2 404); outcomes, 덕, timing and a missing star as a lack of bond are not delivered; not verified personal effects',
     dayPillar: sexName(p.day), gender, spouseGroup: stars.group, stars, bonded: bondedStar, bridge: bridged ? bridgeBranch : null, palaceClash,
+    checked: checked ? { place: palaceStar.place, character: palaceStar.character, god: palaceStar.god, warm: palaceStar.warm,
+      pattern: temperament.pattern.god, strength: temperament.strength.label, temperamentMode: temperament.mode } : null,
     features, candidates, selectedIds, active: true, mode, name: NAMES[mode],
     facts: where, interpretation, reason, alternative, lines, question, followup, footer: RELATION_FOOTER,
     blocks: [{ label: '같은 일주여도 달라지는 부분', lines: [where] },

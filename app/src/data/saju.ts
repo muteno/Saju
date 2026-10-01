@@ -13,6 +13,7 @@ import {
 } from '../engine'
 import { enneaLensCard } from './enneaLens'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE } from '../engine/birthTime'
+import { forEnteredGender } from './draftLines'
 
 /**
  * 화면 데이터층 — 전부 dosa-app L1 엔진 실계산 + L3 근거 리포트에서 생성.
@@ -179,10 +180,10 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; prof
       { label: '입력 조건 확인', lines: iljuBlock.conditionLines.slice(1) },
     )
     if (d.distilled?.핵심) blocks.push({ label: '핵심', lines: [d.distilled.핵심] })
-    if (d.distilled?.성격?.length) blocks.push({ label: '성격', lines: d.distilled.성격 })
-    if (d.distilled?.직업?.length) blocks.push({ label: '일과 재능', lines: d.distilled.직업 })
-    if (d.distilled?.관계?.length) blocks.push({ label: '관계', lines: d.distilled.관계 })
-    if (d.distilled?.주의?.length) blocks.push({ label: '주의', lines: d.distilled.주의 })
+    if (forEnteredGender(d.distilled?.성격, input.gender).length) blocks.push({ label: '성격', lines: forEnteredGender(d.distilled.성격, input.gender) })
+    if (forEnteredGender(d.distilled?.직업, input.gender).length) blocks.push({ label: '일과 재능', lines: forEnteredGender(d.distilled.직업, input.gender) })
+    if (forEnteredGender(d.distilled?.관계, input.gender).length) blocks.push({ label: '관계', lines: forEnteredGender(d.distilled.관계, input.gender) })
+    if (forEnteredGender(d.distilled?.주의, input.gender).length) blocks.push({ label: '주의', lines: forEnteredGender(d.distilled.주의, input.gender) })
     if (d.distilled?.물상) blocks.push({ label: '물상', lines: [d.distilled.물상] })
     for (const v of d.관점차이 ?? []) {
       const lines = (v.견해 ?? []).map((g: any) => `${g.src}: ${g.내용}`)
