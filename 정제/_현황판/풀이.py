@@ -10,7 +10,8 @@
        대운 신호는 «대운을 말하는 문단»에서 센 확률을 쓴다(맥락 = 대운) — 같은 십성도 대운 자리에선 값이 달라진다.
   4. 임계 — 같은 망으로 본 기준 명식(무작위 간지 조합) 중 이 명식의 강도가 몇 %보다 높은가(백분위).
        풀이  = 백분위 ≥ 90 이고 받치는 개념(기여 ≥ 0.1)이 2개 이상
-       질문  = 백분위 75~90, 또는 90 이상인데 받치는 개념이 하나뿐 → 답으로 신호를 더 모은다
+       질문  = 원국은 «답에 따라 풀이가 가장 많이 바뀌는» 의미부터(정보가 큰 질문, _물을것),
+               대운은 백분위 75~90 또는 90 이상인데 받치는 개념이 하나뿐인 의미 → 답으로 신호를 더 모은다
        답    = 그렇다/아니다 → 그 의미를 받친 개념의 무게를 받친 몫만큼 올리고/내려 다시 합산한다.
                답한 의미는 «확인됨»으로 따로 둔다(명식만으로 맞힌 것으로 세지 않는다).
   ⚠ 백분위는 «이 망 안에서 다른 명식과 견준 상대 위치», 확률은 «문헌이 그렇게 말하는 정도»다.
@@ -232,16 +233,10 @@ def _판정(net, 강도, 기준, 기여, 관법, 맥락, 근거=True, 답=None):
     return rows
 
 
-def 풀이(기둥, 성별=None, 관법=None, 나이=None, 대운=None, 답=None, net=None, 근거=True):
-    net = net or M.망()
-    info = Mi.명식_신호(기둥, 성별)
-    sig = info["신호"]
-    시주 = len(기둥) > 3 and 기둥[3] is not None
-    ref_a, ref_b = 기준분포(net, 관법, 시주)
+def _답배수(net, 기여0, 답):
+    """답 → 그 의미를 받친 몫만큼 개념 무게 배수(가장 크게 받친 개념이 ×(1±답폭))."""
     배수 = {}
-    종류 = "시" if 시주 else "무시"
-    _, 기여0 = 합산(net, sig, 관법, 척도종류=종류)
-    for m, yes in (답 or {}).items():         # 답 → 그 의미를 받친 몫만큼 개념 무게를 고친다
+    for m, yes in (답 or {}).items():
         i = net.meanings.index(m)
         top = max([c[i] for c in 기여0.values()] + [0.0])
         if top <= 0:
@@ -250,11 +245,58 @@ def 풀이(기둥, 성별=None, 관법=None, 나이=None, 대운=None, 답=None,
             if c[i] > 0:
                 share = float(c[i] / top)
                 배수[A] = 배수.get(A, 1.0) * (1 + 답폭 * share if yes else 1 - 답폭 * share)
+    return 배수
+
+
+def _풀이집합(net, 강도, 기준, 기여):
+    pct = _백분위(기준, 강도)
+    out = set()
+    for i, m in enumerate(net.meanings):
+        if pct[i] >= 임계_풀이 and sum(1 for c in 기여.values() if c[i] >= 받침기여) >= 최소받침:
+            out.add(m)
+    return out
+
+
+def _물을것(net, sig, 관법, 종류, 기여0, 답, ref_a, rows, k=4, 후보하한=50.0):
+    """질문 고르기 — 답에 따라 풀이(임계 넘은 의미)가 가장 많이 바뀌는 의미부터 묻는다(정보가 큰 질문).
+
+    후보 = 아직 답하지 않았고 풀이도 아닌 의미 중 백분위 ≥ 후보하한. 예/아니 두 답을 각각 넣어 다시 합산하고,
+    지금 풀이 집합과 달라지는 의미 수(들어오고 나가는 것)를 센다. 같으면 임계에 가까운 것부터. (구현 가정)
+    """
+    now = {r["의미"] for r in rows if r["판정"] == "풀이"}
+    강도0, 기여00 = 합산(net, sig, 관법, 배수=_답배수(net, 기여0, 답), 척도종류=종류)
+    pct0 = _백분위(ref_a, 강도0)
+    cands = [m for i, m in enumerate(net.meanings) if m not in 답 and m not in now and pct0[i] >= 후보하한]
+    scored = []
+    for m in cands:
+        bian = {}
+        for yes in (True, False):
+            a = dict(답); a[m] = yes
+            s_, c_ = 합산(net, sig, 관법, 배수=_답배수(net, 기여0, a), 척도종류=종류)
+            new = _풀이집합(net, s_, ref_a, c_) - set(a)      # 답한 의미는 풀이에서 빠진다(_판정과 같다)
+            bian[yes] = (sorted(new - now), sorted(now - new))
+        n = sum(len(x) + len(y) for x, y in bian.values())
+        scored.append((n, float(pct0[net.meanings.index(m)]), m, bian))
+    scored.sort(key=lambda x: (-x[0], -x[1]))
+    return [{"의미": m, "바뀜": n, "백분위": p, "예면": {"더함": b[True][0], "뺌": b[True][1]},
+             "아니면": {"더함": b[False][0], "뺌": b[False][1]}} for n, p, m, b in scored[:k]]
+
+
+def 풀이(기둥, 성별=None, 관법=None, 나이=None, 대운=None, 답=None, net=None, 근거=True):
+    net = net or M.망()
+    info = Mi.명식_신호(기둥, 성별)
+    sig = info["신호"]
+    시주 = len(기둥) > 3 and 기둥[3] is not None
+    ref_a, ref_b = 기준분포(net, 관법, 시주)
+    종류 = "시" if 시주 else "무시"
+    _, 기여0 = 합산(net, sig, 관법, 척도종류=종류)
+    배수 = _답배수(net, 기여0, 답)
     강도, 기여 = 합산(net, sig, 관법, 배수=배수, 척도종류=종류)
     out = {"기둥": 기둥, "일간": info["일간"], "강약": info["강약"], "점수": info["점수"],
            "신호": {A: {"무게": v["무게"], "근거": v["근거"][:2]} for A, v in sorted(sig.items(), key=lambda x: -x[1]["무게"])},
            "원국": _판정(net, 강도, ref_a, 기여, 관법, (), 근거, 답), "답": 답 or {},
            "배수": {A: round(b, 3) for A, b in 배수.items() if abs(b - 1) >= 0.05}}
+    out["물을것"] = _물을것(net, sig, 관법, 종류, 기여0, 답 or {}, ref_a, out["원국"])
     if not 시주:
         out["시주후보"] = 시주_후보(net, 기둥, 성별, 관법, 답)
     if 대운:
@@ -338,7 +380,7 @@ def 보이기(r):
     print(f"■ 원국 {g}  (연 월 일 시) · 일간 {r['일간']} · 강약 {r['강약']} {r['점수']}")
     print("  켜진 개념: " + " · ".join(f"{A}({v['무게']:.1f})" for A, v in list(r["신호"].items())[:16]))
 
-    def sect(rows, title):
+    def sect(rows, title, 질문=True):
         print(f"\n■ {title}")
         if not rows:
             print("  (임계를 넘은 의미 없음)")
@@ -349,14 +391,20 @@ def 보이기(r):
             print(f"  ● {x['의미']} — 기준 명식보다 {x['백분위']:.0f}% 위 · 받침: {src}")
             for e in x.get("근거문장", [])[:2]:
                 print(f"      └ [{e['개념']}·{e['출처']}] {e['문장']}")
-        qs = [x for x in rows if x["판정"] == "질문"][:4]
+        qs = [x for x in rows if x["판정"] == "질문"][:4] if 질문 else []
         if qs:
             print("  ? 질문(임계 아래 — 답을 받으면 다시 본다)")
             for x in qs:
                 src = "·".join(A for A, _ in x["받침"]) or "여러 약한 신호"
                 print(f"    - {x['의미']} 쪽 일이 실제로 두드러졌어? (백분위 {x['백분위']:.0f} · 받침 {src})")
 
-    sect(r["원국"], "원국 풀이 (문헌 지지 · 상대 위치)")
+    sect(r["원국"], "원국 풀이 (문헌 지지 · 상대 위치)", 질문=not r.get("물을것"))
+    if r.get("물을것"):
+        print("\n■ 먼저 물을 것 (답에 따라 풀이가 가장 많이 바뀌는 순서)")
+        for q in r["물을것"]:
+            y, n = q["예면"], q["아니면"]
+            f = lambda d: " ".join(([f"+{'·'.join(d['더함'])}"] if d["더함"] else []) + ([f"−{'·'.join(d['뺌'])}"] if d["뺌"] else [])) or "변화 없음"
+            print(f"  - {q['의미']} 쪽 일이 두드러졌어? (백분위 {q['백분위']:.0f}) 예 → {f(y)} / 아니 → {f(n)}")
     if "시주후보" in r:
         h = r["시주후보"]
         print("\n■ 생시 미상 — 시주 후보")

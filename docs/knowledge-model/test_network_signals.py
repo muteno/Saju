@@ -95,5 +95,21 @@ class LedgerTextTests(unittest.TestCase):
         self.assertEqual(self.B.보충개념("孔子께서"), set())
 
 
+class AnswerUpdateTests(unittest.TestCase):
+    def test_answer_scales_by_share(self):
+        """답 반영: 그 의미를 가장 크게 받친 개념이 ×(1±답폭), 덜 받친 개념은 받친 몫만큼, 안 받친 개념은 그대로."""
+        import types
+        import numpy as np
+        import 풀이
+        net = types.SimpleNamespace(meanings=["가", "나"])
+        기여 = {"A": np.array([1.0, 0.0]), "B": np.array([0.5, 0.2]), "C": np.array([-0.3, 0.4])}
+        yes = 풀이._답배수(net, 기여, {"가": True})
+        self.assertAlmostEqual(yes["A"], 1 + 풀이.답폭)
+        self.assertAlmostEqual(yes["B"], 1 + 풀이.답폭 * 0.5)
+        self.assertNotIn("C", yes)
+        no = 풀이._답배수(net, 기여, {"가": False})
+        self.assertAlmostEqual(no["A"], 1 - 풀이.답폭)
+
+
 if __name__ == "__main__":
     unittest.main()
