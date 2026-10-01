@@ -270,6 +270,52 @@ class 망:
         return {"개념": A, "문장수": dist[self.meanings[0]][3], "의미": rows, "가까운": near}
 
 
+    # ── 글 단위 프로필: «그 개념을 제목으로 다룬 고수 글이 자기 평소 글보다 더/덜 말한 의미»
+    #   문장 공기(한 문장에 함께 나왔나)와 다른 증거다. 고수는 「편관」 글에서 편관을 문장마다 되풀이하지 않는다.
+    #   글 g의 강조 = log((c+0.5)/(n·r_관법+0.5)), 프로필 = 평균 × n/(n+k)(글이 적으면 0 쪽으로 당긴다).
+    def _글준비(self):
+        if hasattr(self, "_G"):
+            return
+        npost = len(self.post_ids)
+        cnt = np.zeros((npost, len(self.meanings)))
+        X = self.Sm_raw.tocoo()
+        np.add.at(cnt, (self.post[X.row], X.col), 1)
+        n = np.bincount(self.post, minlength=npost).astype(float)
+        kwp = np.zeros(npost, dtype=int)
+        kwp[self.post] = self.kw
+        G = np.zeros_like(cnt)
+        for k in range(len(self.관법들)):
+            m = kwp == k
+            r = (cnt[m].sum(0) + 1) / (n[m].sum() + 2)
+            G[m] = np.log((cnt[m] + 0.5) / (n[m, None] * r + 0.5))
+        G[n < 5] = 0
+        self._G, self._gn, self._gkw = G, n, kwp
+        self._T = sparse.load_npz(D / "T.npz").tocsc()
+
+    def 글프로필(self, A, 관법=None, 제외_글=None, k=5.0):
+        """반환 (프로필 벡터, 글 수). 제외_글 = 글 번호 집합(평가 홀드아웃). 홀드아웃 망(base)에서 빠진 글도 뺀다."""
+        self._글준비()
+        if A not in self.ni:
+            return np.zeros(len(self.meanings)), 0
+        key = ("글", A, 관법, id(제외_글) if 제외_글 else None)
+        if key in self._cache:
+            return self._cache[key]
+        ps = self._T[:, self.ni[A]].indices
+        ps = ps[self._gn[ps] >= 5]
+        제외_글 = 제외_글 if 제외_글 is not None else getattr(self, "글제외", None)
+        if 제외_글:
+            ps = np.array([p for p in ps if p not in 제외_글], dtype=int)
+        if not self.base.all():
+            alive = np.zeros(len(self.post_ids), dtype=bool)
+            alive[np.unique(self.post[self.base])] = True
+            ps = ps[alive[ps]] if len(ps) else ps
+        if 관법 and len(ps):
+            sel = ps[np.isin(self._gkw[ps], self._kidx(관법))]
+            ps = sel if len(sel) >= 3 else ps
+        out = (self._G[ps].mean(0) * len(ps) / (len(ps) + k), int(len(ps))) if len(ps) else (np.zeros(len(self.meanings)), 0)
+        self._cache[key] = out
+        return out
+
     # ── 근거 문장: 개념 A와 의미 M이 한 문장에서 함께 말해진 실제 문장
     def 근거문장(self, A, M, 관법=None, 맥락=(), k=2, 최대길이=160):
         a = self._col(self.S, self.ci[A]) & self.행(관법, 맥락)

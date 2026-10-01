@@ -119,7 +119,7 @@ def 예측(net, 기둥, λ=0.6, 신호필터=None, 관법=None, 신호맥락=Fal
     if 신호필터:
         sig = {A: v for A, v in sig.items() if 신호필터(A)}
     P.λ = λ
-    spec, 기여 = P.합산(net, sig, 관법, 신호맥락=신호맥락)
+    spec, 기여 = P.합산(net, sig, 관법, 신호맥락=신호맥락, 척도종류="일주" if 기둥[0] is None and 기둥[1] is None and 기둥[3] is None else None)
     lp0 = np.log(net.기준률(관법))
     full = {m: float(lp0[i] + spec[i]) for i, m in enumerate(net.meanings)}
     only = {m: float(spec[i]) for i, m in enumerate(net.meanings)}
@@ -165,6 +165,9 @@ def 관법_of(net, 출처):
 def 실행(λ=0.6, 엄격=True, 출력=True, 관법적용=False, 위치=False, 창=0, 상대=False, 최소성공=3.0, 중심=0, 제목무게=0.0, 장르기준=False, 이웃=0):
     net = M.망(창=창, 최소성공=최소성공, 제목무게=제목무게)
     gold = 정답_일주(net)
+    # 글 단위 프로필에서는 정답 글(일주 글) 전부를 뺀다 — 다른 후보 일주의 프로필에 그 일주의 진짜 고수 글이 섞이면
+    #   후보끼리 비대칭(정답 후보만 홀드아웃)이 생긴다.
+    net.글제외 = {net.pi[p] for p in gold if p in net.pi}
     by_ilju = defaultdict(list)
     for pid, g in gold.items():
         by_ilju[g["일주"]].append(pid)

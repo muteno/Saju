@@ -57,15 +57,13 @@ def 만세력(year, month, day, hour=None, minute=0, 성별="M"):
 확산_이웃 = 3
 
 
-def 합산(net, 신호, 관법=None, 맥락=(), 배수=None, 최소=30, 신호맥락=None):
-    """신호 → (의미별 강도 벡터, 개념별 기여 dict). 배수 = 답으로 바뀐 개념 무게 배수.
+글섞기 = 0.3   # 문장 공기 확률과 글 단위 프로필(그 개념을 제목으로 다룬 고수 글의 강조)을 섞는 비율 — 원국만(대운은 문장만)
 
-    신호맥락: 신호마다 «어디서 켜졌나»(자리·오행·짝 글자)를 맥락으로 더해, 그 맥락이 함께 말해진 문단에서 센
-    확률을 쓴다(상대 개념). 배수는 그 맥락의 기준률 대비로 잰다 — 맥락 자체의 쏠림(일지 문단은 늘 배우자 얘기)을 빼려고.
-    """
+
+def _성분(net, 신호, 관법=None, 맥락=(), 배수=None, 최소=30, 신호맥락=None):
+    """신호 → (문장 기여 dict, 글 기여 dict). 단위는 서로 다르다(척도로 맞춘다)."""
     신호맥락 = 신호맥락_기본 if 신호맥락 is None else 신호맥락
-    total = np.zeros(len(net.meanings))
-    기여 = {}
+    S, Dg = {}, {}
     if 확산:
         신호 = _확산(net, 신호, 관법)
     for A, v in 신호.items():
@@ -77,13 +75,63 @@ def 합산(net, 신호, 관법=None, 맥락=(), 배수=None, 최소=30, 신호�
         d = net.의미분포(A, 관법, ctx)
         p = np.array([d[m][0] for m in net.meanings])
         lp0 = np.log(net.기준률(관법, ctx))
-        w = v["무게"] * (배수 or {}).get(A, 1.0) * (1 + 횟수가중 * max(0, v.get("횟수", 1) - 1))
         lift = np.clip(np.log(p) - lp0, 자르기[0], 자르기[1])
         if 신호중심:
             lift = lift - lift.mean()
-        c = λ * w * lift
-        total += c
-        기여[A] = c
+        w = v["무게"] * (배수 or {}).get(A, 1.0) * (1 + 횟수가중 * max(0, v.get("횟수", 1) - 1))
+        S[A] = λ * w * lift
+        if 글섞기 and not 맥락:
+            g, n = net.글프로필(A, 관법)
+            if n:
+                Dg[A] = λ * w * (g - g.mean() if 글중심 else g)
+    return S, Dg
+
+
+_척도캐시 = {}
+
+
+def 척도(net, 관법=None, 종류="시", n=300, seed=3):
+    """문장 성분·글 성분의 의미별 퍼짐 — 두 성분을 같은 단위로 섞으려고. 견주는 명식과 같은 종류에서 잰다.
+    종류: "시" = 8글자 무작위 n개, "무시" = 시주 없는 6글자, "일주" = 60일주(일주만 있는 명식)."""
+    key = (관법, 종류, int((M.D / "S.npz").stat().st_mtime), getattr(net, "글제외", None) is not None, 신호중심, 글중심, 자르기)
+    if key in _척도캐시:
+        return _척도캐시[key]
+    rng = np.random.default_rng(seed)
+    if 종류 == "일주":
+        charts = [([None, None, g, None], None) for g in (Mi.STEMS[i % 10] + Mi.BRANCHES[i % 12] for i in range(60))]
+    else:
+        charts = []
+        for _ in range(n):
+            기둥, 성별, _u = 무작위_명식(rng, 종류 == "시")
+            charts.append((기둥, 성별))
+    A, B = [], []
+    for 기둥, 성별 in charts:
+        S, Dg = _성분(net, Mi.명식_신호(기둥, 성별)["신호"], 관법)
+        A.append(sum(S.values()) if S else np.zeros(len(net.meanings)))
+        B.append(sum(Dg.values()) if Dg else np.zeros(len(net.meanings)))
+    out = (np.array(A).std(axis=0) + 1e-6, np.array(B).std(axis=0) + 1e-6)
+    _척도캐시[key] = out
+    return out
+
+
+척도_기본 = "시"
+글중심 = False   # 글 성분은 이미 «그 고수 평소 대비» 편차라 신호별로 다시 빼지 않는다(빼면 일주 대조 14.0→14.5로 나빠짐)
+
+
+def 합산(net, 신호, 관법=None, 맥락=(), 배수=None, 최소=30, 신호맥락=None, 척도종류=None):
+    """신호 → (의미별 강도 벡터, 개념별 기여 dict). 배수 = 답으로 바뀐 개념 무게 배수.
+
+    신호맥락: 신호마다 «어디서 켜졌나»(자리·오행·짝 글자)를 맥락으로 더해, 그 맥락이 함께 말해진 문단에서 센
+    확률을 쓴다(상대 개념). 배수는 그 맥락의 기준률 대비로 잰다 — 맥락 자체의 쏠림(일지 문단은 늘 배우자 얘기)을 빼려고.
+    글섞기 > 0이고 원국(맥락 없음)이면, 문장 성분과 글 성분을 각자 퍼짐으로 나눠 (1−글섞기):글섞기로 섞는다.
+    """
+    S, Dg = _성분(net, 신호, 관법, 맥락, 배수, 최소, 신호맥락)
+    if 글섞기 and not 맥락:
+        sS, sD = 척도(net, 관법, 척도종류 or 척도_기본)
+        기여 = {A: (1 - 글섞기) * S[A] / sS + (글섞기 * Dg[A] / sD if A in Dg else 0) for A in S}
+    else:
+        기여 = S
+    total = sum(기여.values()) if 기여 else np.zeros(len(net.meanings))
     return total, 기여
 
 
@@ -134,23 +182,24 @@ def 기준분포(net, 관법=None, 시주=True, n=1500, seed=7):
     # 원장이 다시 만들어지면(의미 사전·코퍼스가 바뀌면) 기준분포도 다시 센다 — 원장 시각으로 확인한다.
     #   (문장 수만 보면 의미 사전만 고친 재생성을 못 알아본다)
     stamp = int((M.D / "S.npz").stat().st_mtime)
-    key = (관법, 시주, n, seed, stamp, 신호맥락_기본, 신호중심)
+    key = (관법, 시주, n, seed, stamp, 신호맥락_기본, 신호중심, 글섞기)
     if key in _기준:
         return _기준[key]
     f = M.D / f"기준분포_{관법 or '전체'}_{'시' if 시주 else '무시'}_{n}.npz"
     if f.exists():
         z = np.load(f)
-        if "원장" in z and int(z["원장"]) == stamp and bool(z["신호맥락"]) == 신호맥락_기본 and bool(z.get("신호중심", False)) == 신호중심:
+        if ("원장" in z and int(z["원장"]) == stamp and bool(z["신호맥락"]) == 신호맥락_기본
+                and bool(z.get("신호중심", False)) == 신호중심 and float(z.get("글섞기", 0.0)) == 글섞기):
             _기준[key] = (z["원국"], z["대운"])
             return _기준[key]
     rng = np.random.default_rng(seed)
     A, B = [], []
     for _ in range(n):
         기둥, 성별, 운 = 무작위_명식(rng, 시주)
-        A.append(합산(net, Mi.명식_신호(기둥, 성별)["신호"], 관법)[0])
+        A.append(합산(net, Mi.명식_신호(기둥, 성별)["신호"], 관법, 척도종류="시" if 시주 else "무시")[0])
         B.append(합산(net, Mi.운_신호(기둥, 운), 관법, ("대운",))[0])
     A, B = np.array(A), np.array(B)
-    np.savez_compressed(f, 원국=A, 대운=B, 원장=stamp, 신호맥락=신호맥락_기본, 신호중심=신호중심)
+    np.savez_compressed(f, 원국=A, 대운=B, 원장=stamp, 신호맥락=신호맥락_기본, 신호중심=신호중심, 글섞기=글섞기)
     _기준[key] = (A, B)
     return _기준[key]
 
@@ -190,7 +239,8 @@ def 풀이(기둥, 성별=None, 관법=None, 나이=None, 대운=None, 답=None,
     시주 = len(기둥) > 3 and 기둥[3] is not None
     ref_a, ref_b = 기준분포(net, 관법, 시주)
     배수 = {}
-    _, 기여0 = 합산(net, sig, 관법)
+    종류 = "시" if 시주 else "무시"
+    _, 기여0 = 합산(net, sig, 관법, 척도종류=종류)
     for m, yes in (답 or {}).items():         # 답 → 그 의미를 받친 몫만큼 개념 무게를 고친다
         i = net.meanings.index(m)
         top = max([c[i] for c in 기여0.values()] + [0.0])
@@ -200,7 +250,7 @@ def 풀이(기둥, 성별=None, 관법=None, 나이=None, 대운=None, 답=None,
             if c[i] > 0:
                 share = float(c[i] / top)
                 배수[A] = 배수.get(A, 1.0) * (1 + 답폭 * share if yes else 1 - 답폭 * share)
-    강도, 기여 = 합산(net, sig, 관법, 배수=배수)
+    강도, 기여 = 합산(net, sig, 관법, 배수=배수, 척도종류=종류)
     out = {"기둥": 기둥, "일간": info["일간"], "강약": info["강약"], "점수": info["점수"],
            "신호": {A: {"무게": v["무게"], "근거": v["근거"][:2]} for A, v in sorted(sig.items(), key=lambda x: -x[1]["무게"])},
            "원국": _판정(net, 강도, ref_a, 기여, 관법, (), 근거, 답), "답": 답 or {},
@@ -259,7 +309,7 @@ def 관법비교(기둥, 성별=None, net=None, 관법들=None, n=600):
     PCT, TOP = {}, {}
     for kw in kws:
         ref_a, _ = 기준분포(net, kw, 시주, n=n)
-        강도, 기여 = 합산(net, sig, kw)
+        강도, 기여 = 합산(net, sig, kw, 척도종류="시" if 시주 else "무시")
         PCT[kw] = _백분위(ref_a, 강도)
         i_top = {i: sorted(((A, float(c[i])) for A, c in 기여.items() if c[i] > 0), key=lambda x: -x[1])[:2] for i in range(len(net.meanings))}
         TOP[kw] = i_top
