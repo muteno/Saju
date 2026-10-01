@@ -18,7 +18,10 @@ export interface TemperamentFeedbackStep {
   nextQuestion: { id: string; prompt: string; targetCandidateId: string } | null;
   text: string; state: TemperamentState; probability: null; trainingEligible: false;
 }
+export function readShortAnswer(answer: unknown, options?: { reversible?: boolean; otherTopic?: RegExp }): TemperamentRead | null;
 export function readTemperamentAnswer(answer: unknown, options?: { reversible?: boolean }): TemperamentRead | null;
+export function isBareMenuAnswer(read: TemperamentRead): boolean;
+export function quoted(text: string): string;
 export function temperamentPlan(decision: TemperamentReading | null | undefined): TemperamentPlan | null;
 export function ownedTemperamentPrompts(decision: TemperamentReading | null | undefined): string[];
 export function advanceTemperamentFeedback(decision: TemperamentReading, plan: TemperamentPlan, state: TemperamentState, answer: unknown, options?: { afterMenu?: boolean }): TemperamentFeedbackStep | null;

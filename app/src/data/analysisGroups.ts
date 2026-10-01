@@ -30,7 +30,7 @@ const GROUP_ORDER: { id: string; title: string }[] = [
  * 카드 id → 주제(통째 배치).
  * - judge(신강신약·조후) = 내 에너지 구조 → 성향의 바탕 / temperament-reading(월지 바탕·일지 생활 태도) → 성향
  * - sipsin(십신 세력) = 욕구·성향 유형론 → 성향 / ennea = 성향 보조 렌즈
- * - hapchung(끌리고 부딪히는 작용) → 관계 / unse → 올해
+ * - hapchung(끌리고 부딪히는 작용)·relation-reading(배우자 별의 자리·음양) → 관계 / unse → 올해
  * - sinsal(주제가 별마다 제각각)·hour-unknown(안내) → 그 밖의 근거
  */
 const CARD_HOME: Record<string, string> = {
@@ -40,6 +40,7 @@ const CARD_HOME: Record<string, string> = {
   sipsin: 'temper',
   ennea: 'temper',
   hapchung: 'rel',
+  'relation-reading': 'rel',
   unse: 'flow',
   sinsal: 'etc',
   'hour-unknown': 'etc',

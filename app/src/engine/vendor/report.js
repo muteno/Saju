@@ -9,6 +9,7 @@ import { evaluateGapinConditions, gapinConditionLines } from './gapinConditions.
 import { gapinStructureReference } from './gapinStructure.js';
 import { buildContextReading } from './contextReading.js';
 import { buildTemperamentReading } from './temperamentCandidates.js';
+import { buildRelationReading } from './relationCandidates.js';
 import { auspicious } from './sinsal.js';
 
 // Named, unreviewed topic only. This is a delivery eligibility rule, not a truth judgment.
@@ -168,6 +169,10 @@ export function buildReport(chart, keyset, kb) {
   const temperament = buildTemperamentReading(chart);
   if (temperament) S.push({ id: 'temperament-reading', title: '내 원국으로 읽는 기본 성향', temperament,
     lines: [...temperament.blocks.flatMap(block => block.lines), temperament.note] });
+  // The 관계 topic reads the spouse star's place and polarity by the entered gender (relationCandidates.js).
+  const relation = buildRelationReading(chart);
+  if (relation) S.push({ id: 'relation-reading', title: '내 원국으로 읽는 가까운 관계', relation,
+    lines: [...relation.blocks.flatMap(block => block.lines), relation.note] });
 
   // 2) 일주론 (해석의 중심)
   const ilju = topicBlock(keyset.byTopic.ilju[0], kb, { maxUnits: 2, nParas: 6 });

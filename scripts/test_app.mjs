@@ -550,3 +550,11 @@ test('성격 주제는 월지 바탕·일지 생활 태도의 조건부 판단�
   })
   assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 7\b/)
 })
+
+test('관계 주제는 성별에 따른 배우자 별의 자리·음양으로 조건부 판단하고 질문 하나로 읽고, 답에 따라 고친다', () => {
+  const env={...process.env};delete env.NODE_TEST_CONTEXT
+  const output=execFileSync(process.execPath,['--test','--test-reporter=tap','docs/knowledge-model/test_relation.mjs'],{
+    cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',timeout:300000,env,stdio:['ignore','pipe','pipe'],
+  })
+  assert.match(output,/# fail 0\b/);assert.match(output,/# skipped 0\b/);assert.match(output,/# tests 6\b/)
+})

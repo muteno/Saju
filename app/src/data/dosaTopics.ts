@@ -5,6 +5,7 @@
 import { BASIC_SENTENCE_NOTICE, UNREVIEWED_ILJU_NOTICE, applyBasicSentencePolicy } from '../engine/vendor/basicSentences.js'
 import type { ReportBundle } from '../engine'
 import type { TemperamentReading } from '../engine/vendor/temperamentCandidates.js'
+import type { RelationReading } from '../engine/vendor/relationCandidates.js'
 import { displayReadingText } from './readingPresentation'
 import { hasUnknownBirthTime, UNKNOWN_BIRTH_TIME_NOTICE as HOUR_UNKNOWN_NOTICE } from '../engine/birthTime'
 
@@ -34,7 +35,7 @@ export const TOPICS: Topic[] = [
   { key: '성격', label: '내 성격이 궁금해', mini: '월지·일주' },
   { key: '올해', label: '올해 운은 어때?', mini: '세운' },
   { key: '직업', label: '일·직업 방향은?', mini: '십신·일주' },
-  { key: '관계', label: '연애·관계 이야기', mini: '일지·일주' },
+  { key: '관계', label: '연애·관계 이야기', mini: '배우자 별·일지' },
   { key: '주의', label: '조심할 건 없어?', mini: '일주·관점차이' },
 ]
 
@@ -108,6 +109,7 @@ interface SectionLike {
   title: string
   lines?: string[]
   temperament?: TemperamentReading
+  relation?: RelationReading
   block?: TopicBlock
   blocks?: (TopicBlock & { label?: string })[]
   distribution?: Record<string, number>
@@ -172,7 +174,8 @@ export const josa = (word: string, withBatchim: string, without: string): string
  *       + 그 판단을 가르는 질문 1개(대화에서는 끝으로 옮김)
  * 올해: unse 발췌 첫 6~8문단을 2~3문단씩 묶음
  * 직업: ilju.직업[] + sipsin 최다 십신 발췌 2문단 (시간 모름 시 십신 제외 + 안내 1줄)
- * 관계: ilju.관계[] + daybranch 발췌 2문단
+ * 관계: 원국 관계 방식(성별에 따른 배우자 별의 자리·음양의 조건부 판단, relation-reading) + ilju.관계[] + daybranch 발췌 2문단
+ *       + 그 판단을 가르는 질문 1개(대화에서는 끝으로 옮김)
  * 주의: ilju.주의[] + 관점차이 병기(견해 src 포함)
  */
 export function topicLines(report: ReportBundle, topicKey: string, hourUnknown = false): DosaLine[] {
@@ -223,9 +226,13 @@ export function topicLines(report: ReportBundle, topicKey: string, hourUnknown =
       break
     }
     case '관계': {
+      // The chart's own reading comes first; its question and footer travel as followups (dosaClient readingFollowups).
+      const relation = findSection(report, 'relation-reading')?.relation
+      if (relation?.active) out.push(...relation.lines.map(text => ({ text, tone: 'hedge' as const })))
       out.push(...listLines(dd?.관계, dSrc))
       const db = excerptLine(findSection(report, 'daybranch')?.block?.excerpts?.[0], 2, 'hedge')
       if (db) out.push(db)
+      if (relation?.active) out.push({ text: relation.question.prompt, tone: 'hedge' }, { text: relation.footer })
       break
     }
     case '주의': {

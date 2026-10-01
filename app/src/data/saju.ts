@@ -159,6 +159,11 @@ export function toReading(input: ChartInput, opts: { hourUnknown?: boolean; prof
   if (temperamentSection?.temperament?.active) cards.push({ id: 'temperament-reading', title: temperamentSection.title,
     blocks: temperamentSection.temperament.blocks, note: temperamentSection.temperament.note })
 
+  // The spouse star's place and polarity by the entered gender (관계 topic); same card shape.
+  const relationSection = byId('relation-reading')
+  if (relationSection?.relation?.active) cards.push({ id: 'relation-reading', title: relationSection.title,
+    blocks: relationSection.relation.blocks, note: relationSection.relation.note })
+
   // Structural definitions stay separate from personal traits. No bibliography UI.
   const structure = iljuBlock?.structureReference
   if (structure) cards.push({ id: 'ilju-structure', title: '갑인 기본 구조',
