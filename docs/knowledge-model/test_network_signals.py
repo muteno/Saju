@@ -23,7 +23,10 @@ class ChartSignalTests(unittest.TestCase):
         self.assertIn("일지", sig["편인"]["자리"])            # 일지 진 본기 무 = 편인
         self.assertIn("시간(時干)", sig["상관"]["자리"])       # 시간 계 = 상관
         self.assertIn("괴강", sig)                           # 경진 괴강
-        self.assertEqual(sig["편관(칠살)"]["맥락"], ("월지",))  # 신호별 맥락 = 자리
+        self.assertEqual(sig["편관(칠살)"]["맥락"], ("성:남",))  # 성별을 알면 십성 맥락 = 성별 관점 문단(육친)
+        self.assertEqual(sig["괴강"]["맥락"], ())
+        sig2 = 명식.명식_신호(["경오", "신사", "경진", "계미"])["신호"]
+        self.assertEqual(sig2["편관(칠살)"]["맥락"], ("월지",))  # 성별을 모르면 자리
 
     def test_day_branch_category(self):
         sig = 명식.명식_신호([None, None, "병오", None])["신호"]
@@ -38,6 +41,9 @@ class ChartSignalTests(unittest.TestCase):
         self.assertIn("천간충", u)                            # 갑경충
         self.assertIn("육합", u)                              # 사신합
         self.assertEqual(set(u["육합"]["맥락"]), {"신금(申)", "사화(巳)"})
+        uf = 명식.운_신호(["경오", "신사", "경진", "계미"], "갑신", "대운", "F")
+        self.assertEqual(uf["편재"]["맥락"], ("성:여",))
+        self.assertIn("원국과 축미술 삼형 완성", " ".join(명식.운_신호(["을축", "갑신", "병오", "을미"], "병술", "세운")["삼형"]["근거"]))
 
 
 class MeaningLexiconTests(unittest.TestCase):
@@ -79,6 +85,11 @@ class LedgerTextTests(unittest.TestCase):
         self.assertEqual(f("감옥에 갇혔다"), "감옥에 갇혔다")
         self.assertEqual(f("정제된 자료"), "정제된 자료")
         self.assertEqual(f("일관된 태도"), "일관된 태도")
+
+    def test_gender_context(self):
+        self.assertEqual(self.B.성별맥락("남자의 경우 재성이 아내"), {"성:남"})
+        self.assertEqual(self.B.성별맥락("여자는 관성이 남편"), {"성:여"})
+        self.assertEqual(self.B.성별맥락("남자는 그렇고 여자는 이렇다"), set())
 
     def test_concept_masking_and_supplement(self):
         self.assertNotIn("육해", self.B.개념_가리기("교육해 주시는"))

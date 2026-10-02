@@ -199,7 +199,7 @@ def 기준분포(net, 관법=None, 시주=True, n=1500, seed=7):
     for _ in range(n):
         기둥, 성별, 운 = 무작위_명식(rng, 시주)
         A.append(합산(net, Mi.명식_신호(기둥, 성별)["신호"], 관법, 척도종류="시" if 시주 else "무시")[0])
-        B.append(합산(net, Mi.운_신호(기둥, 운), 관법, ("대운",))[0])
+        B.append(합산(net, Mi.운_신호(기둥, 운, "대운", 성별), 관법, ("대운",))[0])
     A, B = np.array(A), np.array(B)
     np.savez_compressed(f, 원국=A, 대운=B, 원장=stamp, 설정=설정)
     _기준[key] = (A, B)
@@ -301,7 +301,7 @@ def 풀이(기둥, 성별=None, 관법=None, 나이=None, 대운=None, 답=None,
     if not 시주:
         out["시주후보"] = 시주_후보(net, 기둥, 성별, 관법, 답)
     if 대운:
-        usig = Mi.운_신호(기둥, 대운)
+        usig = Mi.운_신호(기둥, 대운, "대운", 성별)
         u강도, u기여 = 합산(net, usig, 관법, ("대운",))
         out["대운"] = {"간지": 대운, "나이": 나이,
                      "신호": {A: v["근거"][:2] for A, v in usig.items()},

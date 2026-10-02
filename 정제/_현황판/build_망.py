@@ -97,6 +97,17 @@ def 보충개념(text):
     return out
 
 
+# 성별 맥락 — 육친은 성별에 따라 뜻이 갈린다(남명 재성=아내, 여명 관성=남편, 여명 식상=자녀).
+#   문단이 한쪽 성별 관점만 말할 때 «성:남»/«성:여» 맥락 노드를 켠다(둘 다 나오면 켜지 않는다). 실측: 남 2,200 · 여 3,083 · 둘 다 1,284문단.
+_남 = re.compile(r"남명|남자 사주|남성 사주|남자분|남자의 경우|남자에게|남자는|남성은|남편 입장|아내를")
+_여 = re.compile(r"여명|여자 사주|여성 사주|여자분|여자의 경우|여자에게|여자는|여성은|남편을|남편이")
+
+
+def 성별맥락(text):
+    m, f = bool(_남.search(text)), bool(_여.search(text))
+    return {"성:남"} if m and not f else {"성:여"} if f and not m else set()
+
+
 def 간지들(text):
     out = set()
     for m in _GANJI_RX.finditer(text):
@@ -196,6 +207,7 @@ def main():
     nodes = [c for c in nodes if c]
     # 60갑자 일주 노드 — 「갑자일주」처럼 일주로 말해진 것만(「갑자기」 같은 일상어를 막으려고 꼬리를 요구한다)
     nodes += ["간지:" + g for g in GANJI60]
+    nodes += ["성:남", "성:여"]          # 성별 맥락(문단 단위로만 켠다)
     meanings = list(의미.MEANINGS)
     cols = nodes + ["의:" + m for m in meanings]
     cidx = {c: i for i, c in enumerate(nodes)}
@@ -213,7 +225,7 @@ def main():
     for pi, r in enumerate(코퍼스.문단들()):
         text = 전사_교정(r["text"])
         tm = 개념_가리기(text)
-        pc = [cidx[c] for c in (bnm.concepts_in(tm) | 간지들(tm) | 보충개념(tm)) if c in cidx]
+        pc = [cidx[c] for c in (bnm.concepts_in(tm) | 간지들(tm) | 보충개념(tm) | 성별맥락(text)) if c in cidx]
         para_ids.append(r["para_id"])
         pid = r.get("post_id") or r["para_id"]
         if pid not in post_index:
