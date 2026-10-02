@@ -450,6 +450,9 @@ def 운_신호(기둥, 운간지, 종류="대운"):
         if ub == bi and ub in (4, 6, 9, 11):
             on("자형", bp, f"{tag}: {BRANCHES[ub]}{BRANCHES[bi]} 자형", 0.5)
     bset = {bi for _, _, bi in pillars}
+    for trio in ({2, 5, 8}, {1, 10, 7}):   # 인사신·축술미 — 운 글자가 원국 두 글자와 삼형을 완성
+        if ub in trio and (trio - {ub}) <= bset:
+            on("삼형", 종류, f"{tag}: 원국과 {''.join(BRANCHES[x] for x in sorted(trio))} 삼형 완성", 0.9)
     for g, e in SAMHAP:
         if ub in g and len((bset - {ub}) & g) == 2:
             on("삼합", 종류, f"{tag}: 원국과 {''.join(BRANCHES[x] for x in sorted(g))} 삼합 {e}국", 0.8)

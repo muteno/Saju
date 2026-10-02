@@ -182,15 +182,16 @@ _기준 = {}
 def 기준분포(net, 관법=None, 시주=True, n=1500, seed=7):
     # 원장이 다시 만들어지면(의미 사전·코퍼스가 바뀌면) 기준분포도 다시 센다 — 원장 시각으로 확인한다.
     #   (문장 수만 보면 의미 사전만 고친 재생성을 못 알아본다)
-    stamp = int((M.D / "S.npz").stat().st_mtime)
-    key = (관법, 시주, n, seed, stamp, 신호맥락_기본, 신호중심, 글섞기)
+    #   명식.py(신호 계산)·풀이.py(합산 설정)가 바뀌어도 다시 센다 — 원장·두 파일의 수정 시각과 설정값 전체를 열쇠로 쓴다.
+    stamp = max(int((M.D / "S.npz").stat().st_mtime), int(Path(Mi.__file__).stat().st_mtime), int(Path(__file__).stat().st_mtime))
+    설정 = repr((신호맥락_기본, 신호중심, 글섞기, 글중심, 자르기, λ, 횟수가중, 확산))
+    key = (관법, 시주, n, seed, stamp, 설정)
     if key in _기준:
         return _기준[key]
     f = M.D / f"기준분포_{관법 or '전체'}_{'시' if 시주 else '무시'}_{n}.npz"
     if f.exists():
         z = np.load(f)
-        if ("원장" in z and int(z["원장"]) == stamp and bool(z["신호맥락"]) == 신호맥락_기본
-                and bool(z.get("신호중심", False)) == 신호중심 and float(z.get("글섞기", 0.0)) == 글섞기):
+        if "원장" in z and int(z["원장"]) == stamp and "설정" in z and str(z["설정"]) == 설정:
             _기준[key] = (z["원국"], z["대운"])
             return _기준[key]
     rng = np.random.default_rng(seed)
@@ -200,7 +201,7 @@ def 기준분포(net, 관법=None, 시주=True, n=1500, seed=7):
         A.append(합산(net, Mi.명식_신호(기둥, 성별)["신호"], 관법, 척도종류="시" if 시주 else "무시")[0])
         B.append(합산(net, Mi.운_신호(기둥, 운), 관법, ("대운",))[0])
     A, B = np.array(A), np.array(B)
-    np.savez_compressed(f, 원국=A, 대운=B, 원장=stamp, 신호맥락=신호맥락_기본, 신호중심=신호중심, 글섞기=글섞기)
+    np.savez_compressed(f, 원국=A, 대운=B, 원장=stamp, 설정=설정)
     _기준[key] = (A, B)
     return _기준[key]
 
