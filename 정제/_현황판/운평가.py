@@ -62,8 +62,8 @@ def 실행(보기=True, 끝해=2026):
             du = [d for d in 대운 if d["나이"] <= y - y0]
             v = np.zeros(len(net.meanings))
             if du:
-                v += P.합산(hold, Mi.운_신호(기둥, du[-1]["간지"], "대운"), None, ("대운",))[0]
-            v += P.합산(hold, Mi.운_신호(기둥, 그해간지(y), "세운"), None, ("세운(연운)",))[0]
+                v += P.합산(hold, Mi.운_신호(기둥, du[-1]["간지"], "대운", 성별), None, ("대운",))[0]
+            v += P.합산(hold, Mi.운_신호(기둥, 그해간지(y), "세운", 성별), None, ("세운(연운)",))[0]
             return v
         V = np.array([vec(y) for y in cand])
         Z = (V - V.mean(0)) / (V.std(0) + 1e-6)
