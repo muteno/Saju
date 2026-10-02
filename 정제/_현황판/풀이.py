@@ -213,7 +213,7 @@ def 기준분포(net, 관법=None, 시주=True, n=1500, seed=7):
     #   (문장 수만 보면 의미 사전만 고친 재생성을 못 알아본다)
     #   명식.py(신호 계산)·풀이.py(합산 설정)가 바뀌어도 다시 센다 — 원장·두 파일의 수정 시각과 설정값 전체를 열쇠로 쓴다.
     stamp = max(int((M.D / "S.npz").stat().st_mtime), int(Path(Mi.__file__).stat().st_mtime), int(Path(__file__).stat().st_mtime))
-    설정 = repr((신호맥락_기본, 신호중심, 글섞기, 글중심, 자르기, λ, 횟수가중, 확산, Mi.성별맥락, 운글섞기))
+    설정 = repr((신호맥락_기본, 신호중심, 글섞기, 글중심, 자르기, λ, 횟수가중, 확산, Mi.성별맥락, 운글섞기, "세운"))
     key = (관법, 시주, n, seed, stamp, 설정)
     if key in _기준:
         return _기준[key]
@@ -221,18 +221,27 @@ def 기준분포(net, 관법=None, 시주=True, n=1500, seed=7):
     if f.exists():
         z = np.load(f)
         if "원장" in z and int(z["원장"]) == stamp and "설정" in z and str(z["설정"]) == 설정:
-            _기준[key] = (z["원국"], z["대운"])
+            _기준[key] = (z["원국"], z["대운"], z["세운"])
             return _기준[key]
     rng = np.random.default_rng(seed)
-    A, B = [], []
+    rng_y = np.random.default_rng(seed + 1)      # 세운 간지는 따로 뽑는다(원국·대운 기준값이 바뀌지 않게)
+    A, B, Cy = [], [], []
     for _ in range(n):
         기둥, 성별, 운 = 무작위_명식(rng, 시주)
         A.append(합산(net, Mi.명식_신호(기둥, 성별)["신호"], 관법, 척도종류="시" if 시주 else "무시")[0])
         B.append(합산(net, Mi.운_신호(기둥, 운, "대운", 성별), 관법, ("대운",))[0])
-    A, B = np.array(A), np.array(B)
-    np.savez_compressed(f, 원국=A, 대운=B, 원장=stamp, 설정=설정)
-    _기준[key] = (A, B)
+        y = int(rng_y.integers(60))
+        Cy.append(합산(net, Mi.운_신호(기둥, Mi.STEMS[y % 10] + Mi.BRANCHES[y % 12], "세운", 성별), 관법, ("세운(연운)",))[0])
+    A, B, Cy = np.array(A), np.array(B), np.array(Cy)
+    np.savez_compressed(f, 원국=A, 대운=B, 세운=Cy, 원장=stamp, 설정=설정)
+    _기준[key] = (A, B, Cy)
     return _기준[key]
+
+
+def 해간지(y):
+    """양력 해 → 그해 간지(입춘 기준 해의 간지 — 1월·2월 초 출생 같은 경계는 따지지 않는다)."""
+    i = (int(y) - 4) % 60
+    return Mi.STEMS[i % 10] + Mi.BRANCHES[i % 12]
 
 
 def _백분위(ref, x):
@@ -317,12 +326,12 @@ def _물을것(net, sig, 관법, 종류, 기여0, 답, ref_a, rows, k=4, 후보�
              "아니면": {"더함": b[False][0], "뺌": b[False][1]}} for n, p, m, b in scored[:k]]
 
 
-def 풀이(기둥, 성별=None, 관법=None, 나이=None, 대운=None, 답=None, net=None, 근거=True):
+def 풀이(기둥, 성별=None, 관법=None, 나이=None, 대운=None, 답=None, net=None, 근거=True, 세운=None):
     net = net or M.망()
     info = Mi.명식_신호(기둥, 성별)
     sig = info["신호"]
     시주 = len(기둥) > 3 and 기둥[3] is not None
-    ref_a, ref_b = 기준분포(net, 관법, 시주)
+    ref_a, ref_b, ref_c = 기준분포(net, 관법, 시주)
     종류 = "시" if 시주 else "무시"
     _, 기여0 = 합산(net, sig, 관법, 척도종류=종류)
     배수 = _답배수(net, 기여0, 답)
@@ -340,6 +349,11 @@ def 풀이(기둥, 성별=None, 관법=None, 나이=None, 대운=None, 답=None,
         out["대운"] = {"간지": 대운, "나이": 나이,
                      "신호": {A: v["근거"][:2] for A, v in usig.items()},
                      "풀이": _판정(net, u강도, ref_b, u기여, 관법, ("대운",), 근거, 답, usig)}
+    if 세운:
+        ysig = Mi.운_신호(기둥, 세운, "세운", 성별)
+        y강도, y기여 = 합산(net, ysig, 관법, ("세운(연운)",))
+        out["세운"] = {"간지": 세운, "신호": {A: v["근거"][:2] for A, v in ysig.items()},
+                     "풀이": _판정(net, y강도, ref_c, y기여, 관법, ("세운(연운)",), 근거, 답, ysig)}
     return out
 
 
@@ -349,7 +363,7 @@ def 시주_후보(net, 기둥, 성별=None, 관법=None, 답=None):
     점수 = Σ(답한 의미) ±(백분위 − 50)/50  (예 = +, 아니 = −). 확률이 아니라 «답과 어울리는 순서»다(구현 가정).
     """
     ds = Mi.STEMS.index(기둥[2][0])
-    ref_a, _ = 기준분포(net, 관법, True)
+    ref_a = 기준분포(net, 관법, True)[0]
     cands = []
     for hb in range(12):
         hs = ((ds % 5) * 2 + hb) % 10
@@ -385,7 +399,7 @@ def 관법비교(기둥, 성별=None, net=None, 관법들=None, n=600):
     kws = 관법들 or 주요관법
     PCT, TOP = {}, {}
     for kw in kws:
-        ref_a, _ = 기준분포(net, kw, 시주, n=n)
+        ref_a = 기준분포(net, kw, 시주, n=n)[0]
         강도, 기여 = 합산(net, sig, kw, 척도종류="시" if 시주 else "무시")
         PCT[kw] = _백분위(ref_a, 강도)
         i_top = {i: sorted(((A, float(c[i])) for A, c in 기여.items() if c[i] > 0), key=lambda x: -x[1])[:2] for i in range(len(net.meanings))}
@@ -451,6 +465,10 @@ def 보이기(r):
         print(f"\n  대운 {d['간지']}" + (f" ({d['나이']}세~)" if d["나이"] is not None else ""))
         print("  대운이 켠 개념: " + " · ".join(f"{A}" for A in d["신호"]))
         sect(d["풀이"], f"대운 {d['간지']}에 더해지는 것 (대운 문단의 확률)")
+    if "세운" in r:
+        d = r["세운"]
+        print(f"\n  세운 {d['간지']}년 · 켠 개념: " + " · ".join(f"{A}" for A in d["신호"]))
+        sect(d["풀이"], f"세운 {d['간지']}년에 더해지는 것 (세운 문단의 확률 · 신년운세 420편 대조 0.16)")
     if r["답"]:
         print("\n  확인됨(답 — 명식만으로 맞힌 것 아님): " + ", ".join(f"{m}={'예' if v else '아니'}" for m, v in r["답"].items()))
         print("  답으로 바뀐 개념 무게: " + ", ".join(f"{A}×{b:.2f}" for A, b in sorted(r["배수"].items(), key=lambda x: -abs(x[1] - 1))[:10]))
@@ -467,6 +485,7 @@ def _cli(argv):
     ap.add_argument("--관법")
     ap.add_argument("--나이", type=int)
     ap.add_argument("--대운")
+    ap.add_argument("--세운", help="해(예: 2026) 또는 간지(예: 병오)")
     ap.add_argument("--답")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--관법비교", action="store_true")
@@ -493,7 +512,8 @@ def _cli(argv):
         for kv in a.답.split(","):
             k, v = kv.split("=")
             답[k.strip()] = v.strip() in ("예", "네", "y", "yes", "1", "그렇다")
-    r = 풀이(기둥, 성별, a.관법, 나이, 대운, 답)
+    세운 = a.세운 and (해간지(a.세운) if a.세운.isdigit() else a.세운)
+    r = 풀이(기둥, 성별, a.관법, 나이, 대운, 답, 세운=세운)
     if a.json:
         print(json.dumps(r, ensure_ascii=False, indent=1, default=float))
     else:

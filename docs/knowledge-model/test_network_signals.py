@@ -127,6 +127,12 @@ class AnswerUpdateTests(unittest.TestCase):
         no = 풀이._답배수(net, 기여, {"가": False})
         self.assertAlmostEqual(no["A"], 1 - 풀이.답폭)
 
+    def test_year_ganji(self):
+        import 풀이
+        self.assertEqual(풀이.해간지(2026), "병오")
+        self.assertEqual(풀이.해간지(2024), "갑진")
+        self.assertEqual(풀이.해간지(1984), "갑자")
+
 
 if __name__ == "__main__":
     unittest.main()
