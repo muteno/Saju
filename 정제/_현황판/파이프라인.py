@@ -410,7 +410,7 @@ STAGES = [
     dict(
         name="㉓ 관계망 정확도",
         script="망_평가.py",
-        inputs=["data/망/meta.json", "망.py", "명식.py", "풀이.py", "평가.py", "사례평가.py", "고수간대조.py", "운평가.py"],
+        inputs=["data/망/meta.json", "망.py", "명식.py", "풀이.py", "평가.py", "사례평가.py", "고수간대조.py", "운평가.py", "문단평가.py", "조건검증.py", "운문헌평가.py"],
         outputs=["data/망_평가.json"],
         why="고수 일주 풀이·실제 명식 풀이와의 일치(엄격 홀드아웃)와 고수끼리의 천장을 함께 잰다. "
             "⚠문헌 일치이지 개인 적중이 아니다.",

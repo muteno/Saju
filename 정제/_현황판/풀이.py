@@ -58,7 +58,15 @@ def 만세력(year, month, day, hour=None, minute=0, 성별="M"):
 확산_이웃 = 3
 
 
-글섞기 = 0.3   # 문장 공기 확률과 글 단위 프로필(그 개념을 제목으로 다룬 고수 글의 강조)을 섞는 비율 — 원국만(대운은 문장만)
+글섞기 = 0.3   # 문장 공기 확률과 글 단위 프로필(그 개념을 제목으로 다룬 고수 글의 강조)을 섞는 비율
+운글섞기 = True   # 운(대운·세운·월운)에도 같은 비율로 섞는다 — 운 문헌 대조(신년운세 420편) 0.181→0.163(실험에서 일주 짝·홀 절반 모두 개선) · 월운 0.298→0.303(같은 수준)
+
+
+육친 = ("결혼·배우자", "이혼·이별", "연애·이성", "자녀", "부모·조상", "형제·친구")   # 성별에 따라 십성이 가리키는 사람이 바뀌는 의미
+
+
+def _육친idx(net):
+    return [net.meanings.index(m) for m in 육친 if m in net.meanings]
 
 
 def _성분(net, 신호, 관법=None, 맥락=(), 배수=None, 최소=30, 신호맥락=None):
@@ -77,11 +85,18 @@ def _성분(net, 신호, 관법=None, 맥락=(), 배수=None, 최소=30, 신호�
         p = np.array([d[m][0] for m in net.meanings])
         lp0 = np.log(net.기준률(관법, ctx))
         lift = np.clip(np.log(p) - lp0, 자르기[0], 자르기[1])
+        if v.get("성맥락"):          # 육친 의미만 성별 관점 문단에서 센 배수로 바꾼다(명식.성별맥락 = "육친")
+            gctx = tuple(맥락) + tuple(c for c in v["성맥락"] if c in net.ni)
+            dg = net.의미분포(A, 관법, gctx)
+            pg = np.array([dg[m][0] for m in net.meanings])
+            lg = np.clip(np.log(pg) - np.log(net.기준률(관법, gctx)), 자르기[0], 자르기[1])
+            yi = _육친idx(net)
+            lift[yi] = lg[yi]
         if 신호중심:
             lift = lift - lift.mean()
         w = v["무게"] * (배수 or {}).get(A, 1.0) * (1 + 횟수가중 * max(0, v.get("횟수", 1) - 1))
         S[A] = λ * w * lift
-        if 글섞기 and not 맥락:
+        if 글섞기 and (not 맥락 or 운글섞기):
             g, n = net.글프로필(A, 관법)
             if n:
                 Dg[A] = λ * w * (g - g.mean() if 글중심 else g)
@@ -93,11 +108,23 @@ _척도캐시 = {}
 
 def 척도(net, 관법=None, 종류="시", n=300, seed=3):
     """문장 성분·글 성분의 의미별 퍼짐 — 두 성분을 같은 단위로 섞으려고. 견주는 명식과 같은 종류에서 잰다.
-    종류: "시" = 8글자 무작위 n개, "무시" = 시주 없는 6글자, "일주" = 60일주(일주만 있는 명식)."""
-    key = (관법, 종류, int((M.D / "S.npz").stat().st_mtime), getattr(net, "글제외", None) is not None, 신호중심, 글중심, 자르기)
+    종류: "시" = 8글자 무작위 n개, "무시" = 시주 없는 6글자, "일주" = 60일주(일주만 있는 명식),
+          "운:맥락" = 무작위 명식·무작위 운 간지의 운 신호를 그 맥락(예: 운:대운)으로 잰 것."""
+    key = (관법, 종류, int((M.D / "S.npz").stat().st_mtime), getattr(net, "글제외", None) is not None, 신호중심, 글중심, 자르기, Mi.성별맥락, 운글섞기)
     if key in _척도캐시:
         return _척도캐시[key]
     rng = np.random.default_rng(seed)
+    if 종류.startswith("운:"):
+        ctx = tuple(종류[2:].split("|"))
+        A, B = [], []
+        for _ in range(n):
+            기둥, 성별, 운 = 무작위_명식(rng, True)
+            S, Dg = _성분(net, Mi.운_신호(기둥, 운, "대운", 성별), 관법, ctx)
+            A.append(sum(S.values()) if S else np.zeros(len(net.meanings)))
+            B.append(sum(Dg.values()) if Dg else np.zeros(len(net.meanings)))
+        out = (np.array(A).std(axis=0) + 1e-6, np.array(B).std(axis=0) + 1e-6)
+        _척도캐시[key] = out
+        return out
     if 종류 == "일주":
         charts = [([None, None, g, None], None) for g in (Mi.STEMS[i % 10] + Mi.BRANCHES[i % 12] for i in range(60))]
     else:
@@ -124,11 +151,13 @@ def 합산(net, 신호, 관법=None, 맥락=(), 배수=None, 최소=30, 신호�
 
     신호맥락: 신호마다 «어디서 켜졌나»(자리·오행·짝 글자)를 맥락으로 더해, 그 맥락이 함께 말해진 문단에서 센
     확률을 쓴다(상대 개념). 배수는 그 맥락의 기준률 대비로 잰다 — 맥락 자체의 쏠림(일지 문단은 늘 배우자 얘기)을 빼려고.
-    글섞기 > 0이고 원국(맥락 없음)이면, 문장 성분과 글 성분을 각자 퍼짐으로 나눠 (1−글섞기):글섞기로 섞는다.
+    글섞기 > 0이면(운은 운글섞기일 때), 문장 성분과 글 성분을 각자 퍼짐으로 나눠 (1−글섞기):글섞기로 섞는다.
+    운의 퍼짐은 무작위 명식·무작위 운 간지에서 같은 맥락으로 잰다.
     """
     S, Dg = _성분(net, 신호, 관법, 맥락, 배수, 최소, 신호맥락)
-    if 글섞기 and not 맥락:
-        sS, sD = 척도(net, 관법, 척도종류 or 척도_기본)
+    if 글섞기 and (not 맥락 or 운글섞기):
+        종류 = ("운:" + "|".join(맥락)) if 맥락 else (척도종류 or 척도_기본)
+        sS, sD = 척도(net, 관법, 종류)
         기여 = {A: (1 - 글섞기) * S[A] / sS + (글섞기 * Dg[A] / sD if A in Dg else 0) for A in S}
     else:
         기여 = S
@@ -184,7 +213,7 @@ def 기준분포(net, 관법=None, 시주=True, n=1500, seed=7):
     #   (문장 수만 보면 의미 사전만 고친 재생성을 못 알아본다)
     #   명식.py(신호 계산)·풀이.py(합산 설정)가 바뀌어도 다시 센다 — 원장·두 파일의 수정 시각과 설정값 전체를 열쇠로 쓴다.
     stamp = max(int((M.D / "S.npz").stat().st_mtime), int(Path(Mi.__file__).stat().st_mtime), int(Path(__file__).stat().st_mtime))
-    설정 = repr((신호맥락_기본, 신호중심, 글섞기, 글중심, 자르기, λ, 횟수가중, 확산))
+    설정 = repr((신호맥락_기본, 신호중심, 글섞기, 글중심, 자르기, λ, 횟수가중, 확산, Mi.성별맥락, 운글섞기))
     key = (관법, 시주, n, seed, stamp, 설정)
     if key in _기준:
         return _기준[key]
@@ -210,7 +239,7 @@ def _백분위(ref, x):
     return 100.0 * (ref < x[None, :]).mean(axis=0)
 
 
-def _판정(net, 강도, 기준, 기여, 관법, 맥락, 근거=True, 답=None):
+def _판정(net, 강도, 기준, 기여, 관법, 맥락, 근거=True, 답=None, 신호=None):
     pct = _백분위(기준, 강도)
     rows = []
     for i, m in enumerate(net.meanings):
@@ -229,7 +258,12 @@ def _판정(net, 강도, 기준, 기여, 관법, 맥락, 근거=True, 답=None):
         for r in rows:
             r["근거문장"] = []
             for A, _ in r["받침"][:2]:
-                ev = net.근거문장(A, r["의미"], 관법, 맥락, k=1) or net.근거문장(A, r["의미"], None, (), k=1)
+                # 근거도 확률과 같은 맥락(신호의 성별·자리)에서 먼저 찾는다 — 남명에 «여명이라면…» 문장이 붙지 않게
+                v = (신호 or {}).get(A, {})
+                sc = v.get("성맥락") if r["의미"] in 육친 and v.get("성맥락") else v.get("맥락", ())
+                sc = tuple(c for c in sc if c in net.ni and c != A)
+                ev = ((sc and net.근거문장(A, r["의미"], 관법, tuple(맥락) + sc, k=1))
+                      or net.근거문장(A, r["의미"], 관법, 맥락, k=1) or net.근거문장(A, r["의미"], None, (), k=1))
                 r["근거문장"] += [dict(e, 개념=A) for e in ev]
     return rows
 
@@ -295,7 +329,7 @@ def 풀이(기둥, 성별=None, 관법=None, 나이=None, 대운=None, 답=None,
     강도, 기여 = 합산(net, sig, 관법, 배수=배수, 척도종류=종류)
     out = {"기둥": 기둥, "일간": info["일간"], "강약": info["강약"], "점수": info["점수"],
            "신호": {A: {"무게": v["무게"], "근거": v["근거"][:2]} for A, v in sorted(sig.items(), key=lambda x: -x[1]["무게"])},
-           "원국": _판정(net, 강도, ref_a, 기여, 관법, (), 근거, 답), "답": 답 or {},
+           "원국": _판정(net, 강도, ref_a, 기여, 관법, (), 근거, 답, sig), "답": 답 or {},
            "배수": {A: round(b, 3) for A, b in 배수.items() if abs(b - 1) >= 0.05}}
     out["물을것"] = _물을것(net, sig, 관법, 종류, 기여0, 답 or {}, ref_a, out["원국"])
     if not 시주:
@@ -305,7 +339,7 @@ def 풀이(기둥, 성별=None, 관법=None, 나이=None, 대운=None, 답=None,
         u강도, u기여 = 합산(net, usig, 관법, ("대운",))
         out["대운"] = {"간지": 대운, "나이": 나이,
                      "신호": {A: v["근거"][:2] for A, v in usig.items()},
-                     "풀이": _판정(net, u강도, ref_b, u기여, 관법, ("대운",), 근거, 답)}
+                     "풀이": _판정(net, u강도, ref_b, u기여, 관법, ("대운",), 근거, 답, usig)}
     return out
 
 
