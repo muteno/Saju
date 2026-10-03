@@ -110,6 +110,9 @@ class 망:
     # ── 개념 → 의미 확률 (모든 의미를 한 번에)
     def 의미분포(self, A, 관법=None, 맥락=(), 이전=None):
         """A가 말해진 문장에서 각 의미가 함께 말해질 확률. 반환 dict(의미 → (p, lo, hi, n_A, n_AM))."""
+        # 직접 언급 A는 이미 주어졌으므로 같은 자료로 사전을 두 번 갱신하지 않는다.
+        # 제목 가중은 A 없는 본문도 더하므로 그때의 문단 A 필터는 유효한 조건이다.
+        맥락 = tuple(sorted(set(맥락) - ({A} if not self.제목무게 else set())))
         key = ("의미", A, 관법, tuple(sorted(맥락)))
         if key in self._cache:
             return self._cache[key]
@@ -157,9 +160,9 @@ class 망:
         return r
 
     # ── 조건: 어떤 상대 개념이 A→M 확률을 올리고 내리나
-    def 조건효과(self, A, M, 후보=None, 관법=None, 최소=30):
+    def 조건효과(self, A, M, 후보=None, 관법=None, 최소=30, 맥락=()):
         """P(M|A,C) vs P(M|A,¬C). 반환 [(C, p_with, p_without, n_with, 로그오즈차, z)] 내림차순."""
-        a_rows = self.행(관법) & self._col(self.S, self.ci[A])
+        a_rows = self.행(관법, 맥락) & self._col(self.S, self.ci[A])
         m_col = self._col(self.S, self.ci["의:" + M]) if not M.startswith("의:") else self._col(self.S, self.ci[M])
         out = []
         for c in (후보 or self.nodes):
@@ -178,21 +181,62 @@ class 망:
         out.sort(key=lambda x: -abs(x[5]))
         return out
 
-    # ── 개념끼리: 강도·거리 (문단 단위)
-    def 공기(self, 관법=None, 맥락=()):
-        key = ("공기", 관법, tuple(sorted(맥락)))
+    # ── 개념끼리: 방향이 있는 확률과 대칭인 공기 강도는 다른 값이다(문단 단위).
+    def 문단행(self, 관법=None, 맥락=()):
+        key = ("문단행", 관법, tuple(sorted(맥락)))
         if key in self._cache:
             return self._cache[key]
         q = self.qbase.copy()
         if 관법:
             q &= np.isin(self.qkw, self._kidx(관법))
         for c in 맥락:
-            q &= self.Q[:, self.ni[c]].toarray().ravel().astype(bool)
+            q &= self._col(self.Q, self.ni[c])
+        self._cache[key] = q
+        return q
+
+    def 공기(self, 관법=None, 맥락=()):
+        key = ("공기", 관법, tuple(sorted(맥락)))
+        if key in self._cache:
+            return self._cache[key]
+        q = self.문단행(관법, 맥락)
         X = self.Q[q].astype(np.float32)
         co = (X.T @ X).toarray()
         n = np.diag(co).copy()
         self._cache[key] = (co, n, int(q.sum()))
         return self._cache[key]
+
+    def 개념기준률(self, 관법=None, 맥락=()):
+        """선택한 문단에서 B가 나타날 기준률. 문장 기준인 의미 기준률과 구분한다."""
+        _, n, N = self.공기(관법, 맥락)
+        return (n.astype(float) + 1) / (N + 2)
+
+    def 개념분포(self, A, 관법=None, 맥락=()):
+        """P(B|A,맥락,관법): 문단 공기 확률, (p, 90% lo/hi, n_A, n_AB).
+
+        의미분포와 같은 경험적 베타 수축: 맥락→관법→전체 A→전체 B 기준률.
+        A 자신과 이미 조건으로 주어진 B는 추정할 사건이 아니므로 반환하지 않는다.
+        n_A=0이면 상위 사전값만 반환한다. 소비자는 이를 관측된 관계로 그리면 안 된다.
+        """
+        맥락 = tuple(sorted(set(맥락) - {A}))
+        key = ("개념", A, 관법, 맥락)
+        if key in self._cache:
+            return self._cache[key]
+        co, n, _ = self.공기(관법, 맥락)
+        i = self.ni[A]
+        if 맥락 or 관법:
+            parent = self.개념분포(A, 관법 if 맥락 else None)
+            prior = np.array([parent[B][0] if B != A else 1.0 for B in self.nodes])
+        else:
+            prior = self.개념기준률()
+        α = np.maximum(self.α, self.최소성공 / np.clip(prior, 1e-9, 1)) if self.최소성공 else self.α
+        a = co[i].astype(float) + α * prior
+        b = (n[i] - co[i]).astype(float) + α * (1 - prior)
+        p = a / (a + b)
+        lo, hi = _beta.ppf(0.05, a, b), _beta.ppf(0.95, a, b)
+        out = {B: (float(p[j]), float(lo[j]), float(hi[j]), int(n[i]), int(co[i, j]))
+               for j, B in enumerate(self.nodes) if B != A and B not in 맥락}
+        self._cache[key] = out
+        return out
 
     def 강도(self, A, B, 관법=None, 맥락=()):
         co, n, N = self.공기(관법, 맥락)
@@ -201,18 +245,28 @@ class 망:
             return 0.0
         return float(co[i, j] / np.sqrt(n[i] * n[j]))
 
-    def 거리행렬(self, 관법=None, 맥락=(), 최소공기=5):
-        from scipy.sparse.csgraph import dijkstra
-        key = ("거리", 관법, tuple(sorted(맥락)), 최소공기)
+    def _거리그래프(self, 관법=None, 맥락=(), 최소공기=5):
+        key = ("거리그래프", 관법, tuple(sorted(맥락)), 최소공기)
         if key in self._cache:
             return self._cache[key]
         co, n, N = self.공기(관법, 맥락)
         with np.errstate(divide="ignore", invalid="ignore"):
             s = co / np.sqrt(np.outer(n, n))
-        s[co < 최소공기] = 0
+        s[(co < 최소공기) | ~np.isfinite(s)] = 0
         np.fill_diagonal(s, 0)
-        w = np.where(s > 0, -np.log(np.clip(s, 1e-12, 1)), 0)
-        d = dijkstra(sparse.csr_matrix(w), directed=False)
+        ii, jj = np.nonzero(s > 0)
+        # 강도 1의 거리는 0이다. dense→CSR는 이를 '간선 없음'으로 지우므로 명시적으로 저장한다.
+        w = sparse.csr_matrix((-np.log(np.clip(s[ii, jj], 1e-12, 1)), (ii, jj)), shape=s.shape)
+        self._cache[key] = w, s
+        return w, s
+
+    def 거리행렬(self, 관법=None, 맥락=(), 최소공기=5):
+        from scipy.sparse.csgraph import dijkstra
+        key = ("거리", 관법, tuple(sorted(맥락)), 최소공기)
+        if key in self._cache:
+            return self._cache[key]
+        w, _ = self._거리그래프(관법, 맥락, 최소공기)
+        d = dijkstra(w, directed=False)
         self._cache[key] = d
         return d
 
@@ -223,14 +277,9 @@ class 망:
     def 경로(self, A, B, 관법=None, 맥락=(), 최소공기=5):
         """A→B 최단 경로(거리 = −ln 공기 강도의 합). 반환 [(노드, 그 단계 강도)]."""
         from scipy.sparse.csgraph import dijkstra
-        co, n, N = self.공기(관법, 맥락)
-        with np.errstate(divide="ignore", invalid="ignore"):
-            s = co / np.sqrt(np.outer(n, n))
-        s[co < 최소공기] = 0
-        np.fill_diagonal(s, 0)
-        w = np.where(s > 0, -np.log(np.clip(s, 1e-12, 1)), 0)
+        w, s = self._거리그래프(관법, 맥락, 최소공기)
         i, j = self.ni[A], self.ni[B]
-        d, pred = dijkstra(sparse.csr_matrix(w), directed=False, indices=i, return_predecessors=True)
+        d, pred = dijkstra(w, directed=False, indices=i, return_predecessors=True)
         if not np.isfinite(d[j]):
             return []
         path = [j]
@@ -244,13 +293,13 @@ class 망:
         d = self.의미분포(A, 관법, 맥락)
         return np.log(np.array([d[m][0] for m in self.meanings])) - np.log(self.기준률(관법, 맥락))
 
-    def 닮은개념(self, A, 관법=None, k=8, 최소=200):
-        a = self.의미벡터(A, 관법)
+    def 닮은개념(self, A, 관법=None, k=8, 최소=200, 맥락=()):
+        a = self.의미벡터(A, 관법, 맥락)
         out = []
         for B in self.nodes:
-            if B == A or self.의미분포(B, 관법)[self.meanings[0]][3] < 최소:
+            if B == A or self.의미분포(B, 관법, 맥락)[self.meanings[0]][3] < 최소:
                 continue
-            b = self.의미벡터(B, 관법)
+            b = self.의미벡터(B, 관법, 맥락)
             cos = float(a @ b / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-12))
             out.append((B, cos))
         return sorted(out, key=lambda x: -x[1])[:k]
@@ -258,7 +307,7 @@ class 망:
     # ── 개념 카드: 무엇인지 + 의미 확률 + 가까운 개념
     def 카드(self, A, 관법=None, 맥락=(), k=8):
         dist = self.의미분포(A, 관법, 맥락)
-        base = self.기준률(관법)
+        base = self.기준률(관법, 맥락)
         rows = []
         for i, m in enumerate(self.meanings):
             p, lo, hi, nA, nAM = dist[m]

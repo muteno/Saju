@@ -60,12 +60,17 @@ def 실행(보기=True, 겹=5):
         bc = np.broadcast_to((np.asarray(Y[hc].sum(0)).ravel() + 1) / (len(hc) + 2), nAM.shape)
         합["(관계)"][0] += 우도(bc, tA, tAM); 합["(관계)"][1] += 우도(p0, tA, tAM); 합["(관계)"][2] += tA.sum()
         for g, masks in 가름.items():
-            for cm in masks:
+            for ci, cm in enumerate(masks):
                 tA, tAM, _, _ = 셈(te & cm)
                 if tA.sum() == 0:
                     continue
                 cA, cAM, _, _ = 셈(tr & cm)
-                합[g][0] += 우도(p0, tA, tAM); 합[g][1] += 우도(수축(cA, cAM, p0), tA, tAM); 합[g][2] += tA.sum()
+                pc = 수축(cA, cAM, p0)
+                if g != "관법":
+                    # P(M|A,A)=P(M|A): 망.의미분포와 같이 출발 개념을 조건으로 두 번 갱신하지 않는다.
+                    ai = net.ni[조건들[g][ci]]
+                    pc[ai] = p0[ai]
+                합[g][0] += 우도(p0, tA, tAM); 합[g][1] += 우도(pc, tA, tAM); 합[g][2] += tA.sum()
     out = {}
     for g, (a, b, k) in 합.items():
         out[g] = {"쌍": int(k), "조건없음": a / k, "조건": b / k, "개선%": 100 * (b - a) / abs(a)}

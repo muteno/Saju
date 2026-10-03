@@ -10,6 +10,7 @@
 입력: data/링크망.jsonl · node_layers.jsonl · knowledge_metrics.jsonl · 정의카드.jsonl
 출력: 사주신경망.html (자립형 — 외부 참조 0)
 """
+import argparse
 import json
 from pathlib import Path
 from collections import defaultdict, Counter
@@ -17,6 +18,16 @@ from collections import defaultdict, Counter
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from 경로 import 현황판 as HERE, DATA
+
+ap = argparse.ArgumentParser(description=__doc__)
+ap.add_argument("--확률", action="store_true", help="망.py의 현재 원장·조건부 확률로 도식화")
+ap.add_argument("--관법")
+ap.add_argument("--맥락", nargs="*", default=[])
+ap.add_argument("--이웃", type=int, default=6)
+ap.add_argument("--출력", type=Path)
+args = ap.parse_args()
+if (args.관법 or args.맥락) and not args.확률:
+    ap.error("관법·맥락 선택은 --확률 모드에서 지원한다")
 
 
 def jl(n):
@@ -119,6 +130,40 @@ payload = {
     "nodes": nodes, "edges": edges, "pal": PAL,
 }
 
+if args.확률:
+    # 기존 뉴런 배치·곡선·탐색을 재사용한다. 층 순서는 배치일 뿐 확률의 방향을 뒤집지 않는다.
+    import 망 as M
+    from 관계도 import 관계망
+    try:
+        graph = 관계망(M.망(), args.관법, args.맥락, 이웃=args.이웃)
+    except (ValueError, FileNotFoundError) as e:
+        ap.error(str(e))
+    current = {n["n"]: n for n in nodes}
+    nodes = []
+    for g in graph["노드"]:
+        c = g["id"]
+        n = dict(current.get(c, {}))
+        if not n:
+            li, code, big, mid = ((7, "S15", "S15 발현·결과", "문헌 의미") if g["종류"] == "의미"
+                                 else (2, "S13", "S13 자리(궁위)·원국 구조", "맥락") if c.startswith("성:")
+                                 else (1, "S02", "S02 천간", "일주"))
+            n = {"L": li, "code": code, "big": big, "mid": mid, "col": PAL[code],
+                 "q": "", "d": "계산", "au": 0}
+        n.update({"n": c, "p": g.get("문단", g.get("문장", 0)), "unit": "문단" if g["종류"] == "개념" else "문장",
+                  "k": sum(x["L"] == n["L"] for x in nodes)})
+        nodes.append(n)
+    idx = {n["n"]: i for i, n in enumerate(nodes)}
+    # 8번째 항목은 엔진이 계산한 원본 메타데이터다. point estimate를 임의 등급으로 바꾸지 않는다.
+    edges = [[idx[e["시작"]], idx[e["끝"]], 1 if e["종류"] == "개념" else 2,
+              e["확률"], e["종류"], e["배수"], e["동시"], e] for e in graph["관계"]]
+    deg = Counter(i for e in edges for i in e[:2])
+    for i, n in enumerate(nodes):
+        n["deg"] = deg[i]
+    LAY_N = [sum(n["L"] == i for n in nodes) for i in range(len(FLOW))]
+    payload = {"flow": [{"name": f[0], "sub": f[2], "desc": f[3], "n": LAY_N[i]}
+                        for i, f in enumerate(FLOW)], "nodes": nodes, "edges": edges, "pal": PAL,
+               "probability": {k: v for k, v in graph.items() if k not in ("노드", "관계")}}
+
 TPL = r"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
 <title>사주 신경망 — 판단이 흐르는 층</title>
 <style>
@@ -165,10 +210,11 @@ kbd{background:#16233c;border:1px solid #2a3c5c;border-radius:3px;padding:0 4px;
 <div class="panel" id="ctl">
   <h1>사주 신경망</h1>
   <div class="sub">개념 <b id="nN"></b> · 시냅스 <b id="eN"></b> · 층 10</div>
+  <div class="sub" id="probabilityContext"></div>
 
   <div class="grp"><b>시냅스 층</b><div id="tierBox"></div></div>
 
-  <div class="grp"><b>최소 강도 <span id="wv" style="color:#4a86e8">0.00</span></b>
+  <div class="grp"><b><span id="weightLabel">최소 강도</span> <span id="wv" style="color:#4a86e8">0.00</span></b>
     <input type="range" id="wmin" min="0" max="0.9" step="0.05" value="0">
   </div>
 
@@ -193,7 +239,14 @@ kbd{background:#16233c;border:1px solid #2a3c5c;border-radius:3px;padding:0 4px;
 
 <script>
 const D = __DATA__;
-const TIERS = [
+const PROB = D.probability;
+const TIERS = PROB ? [
+  {i:0, name:"", col:"#7fe8d8"},
+  {i:1, name:"개념 → 개념", col:"#f0912f", desc:"문단 조건부 확률 · 화살표는 조건 방향"},
+  {i:2, name:"개념 → 의미", col:"#4a86e8", desc:"문장 조건부 확률 · 개인 적중률 아님"},
+  {i:3, name:"", col:"#4b5c74"},
+  {i:4, name:"", col:"#e0483f"},
+] : [
   {i:0, name:"결정론 규칙",  col:"#7fe8d8", desc:"명리가 정해놓은 다리 — 판단은 여기로만"},
   {i:1, name:"밀착 강",      col:"#f0912f", desc:"우연의 4배+ · 근거 12문단+"},
   {i:2, name:"밀착 중",      col:"#4a86e8", desc:"우연의 2.5배+ · 근거 8문단+"},
@@ -295,19 +348,30 @@ function edgeVisible(e){
 function nodeVisible(n){ return bigOn[n.code] && !collapsed[n.L]; }
 
 // ── 그리기
-function curve(a,b){
+function curve(a,b,arrow=false){
   const A=toS(a), B=toS(b);
   const dx = B.x-A.x, dy = B.y-A.y;
   ctx.beginPath();
   ctx.moveTo(A.x, A.y);
+  let tx,ty;
   if(Math.abs(dx) < 6){                      // 같은 층 → 옆으로 부풀린다
     const bow = Math.min(190, 42+Math.abs(dy)*0.42)*vs;
     ctx.bezierCurveTo(A.x+bow, A.y+dy*0.18, B.x+bow, B.y-dy*0.18, B.x, B.y);
+    tx=-bow; ty=dy*0.18;
   }else{
     const c = Math.abs(dx)*0.55;
     ctx.bezierCurveTo(A.x+c, A.y, B.x-c, B.y, B.x, B.y);
+    tx=c; ty=0;
   }
   ctx.stroke();
+  if(arrow){
+    const angle=Math.atan2(ty,tx), size=Math.max(3,Math.min(7,7*vs));
+    const x=B.x-Math.cos(angle)*Math.max(3,b.r*vs), y=B.y-Math.sin(angle)*Math.max(3,b.r*vs);
+    ctx.beginPath(); ctx.moveTo(x,y);
+    ctx.lineTo(x-size*Math.cos(angle-.5),y-size*Math.sin(angle-.5));
+    ctx.lineTo(x-size*Math.cos(angle+.5),y-size*Math.sin(angle+.5));
+    ctx.closePath(); ctx.fillStyle=ctx.strokeStyle; ctx.fill();
+  }
 }
 
 let _fitted=false;
@@ -352,7 +416,7 @@ function draw(){
       ctx.globalAlpha = a;
       ctx.lineWidth = Math.max(0.5, (t===0? 1.5 : 0.55+e[3]*1.5) * (foc!=null?1.7:1) * Math.min(1.6,vs));
       if(t===4){ ctx.setLineDash([4,4]); }
-      curve(N[e[0]], N[e[1]]);
+      curve(N[e[0]], N[e[1]], PROB && (foc!=null || vs>.6));
       if(t===4) ctx.setLineDash([]);
     }
   }
@@ -440,6 +504,20 @@ function showInfo(i){
   if(i==null){ info.style.display='none'; return; }
   const n=N[i];
   const mine = ADJ[i].map(k=>E[k]).filter(edgeVisible);
+  if(PROB){
+    let h = `<h2>${esc(n.n)}</h2><div class="path">${esc(PROB.관법 || '전체 관법')} · ${esc(PROB.맥락.join(' + ') || '전체 맥락')}</div>`;
+    h += '<div class="def">화살표 A → B = A가 말해졌을 때 B도 말해질 확률. 문헌 지지이며 인과·개인 적중률이 아니다. 구간은 경험적 베타 사후 90%다.</div>';
+    for(const e of [...mine].sort((a,b)=>b[3]-a[3])){
+      const r=e[7], out=e[0]===i, other=N[out?e[1]:e[0]];
+      h += `<div class="sec">${out?'→':'←'} ${esc(other.n)}</div>`;
+      h += `<div>${r.확률.toFixed(3)} [${r.구간90[0].toFixed(3)}–${r.구간90[1].toFixed(3)}] · ${r.동시}/${r.분모} ${r.단위}</div>`;
+      h += `<div class="path">기준률 ${r.기준률.toFixed(3)} · 배수 ×${r.배수.toFixed(2)}`;
+      if(r.공기강도 !== undefined) h += ` · 공기 강도 ${r.공기강도.toFixed(3)}`;
+      h += '</div>';
+    }
+    if(!mine.length) h += '<div class="def">현재 조건·표시 기준에서 보이는 관계가 없다. 무관함이나 확률 0이라는 뜻은 아니다.</div>';
+    info.innerHTML=h; info.style.display='block'; return;
+  }
   const grp = [[],[],[],[],[]];
   for(const e of mine){
     const other = e[0]===i ? e[1] : e[0];
@@ -485,7 +563,7 @@ cv.addEventListener('mousemove',e=>{
     tip.style.display='block';
     tip.style.left=(e.clientX+13)+'px'; tip.style.top=(e.clientY+13)+'px';
     tip.innerHTML=`<b>${n.n}</b> <span style="color:#6d82a3">${n.code}·${n.mid}</span><br>`+
-      `<span style="color:#6d82a3">문단 ${n.p.toLocaleString()} · 시냅스 ${n.deg}</span>`;
+      `<span style="color:#6d82a3">${n.unit || '문단'} ${n.p.toLocaleString()} · 시냅스 ${n.deg}</span>`;
   } else tip.style.display='none';
 });
 cv.addEventListener('click',e=>{
@@ -510,7 +588,8 @@ cv.addEventListener('wheel',e=>{
 // ── 컨트롤
 const tierBox=document.getElementById('tierBox');
 TIERS.forEach(t=>{
-  const cnt=E.filter(e=>e[2]===t.i).length;
+const cnt=E.filter(e=>e[2]===t.i).length;
+  if(PROB && !cnt) return;
   const l=document.createElement('label');
   l.innerHTML=`<input type="checkbox" ${tierOn[t.i]?'checked':''}>
     <span class="sw" style="background:${t.col}"></span>${t.name}<span class="cnt">${cnt}</span>`;
@@ -531,6 +610,17 @@ Object.keys(D.pal).sort().forEach(code=>{
 });
 document.getElementById('nN').textContent=N.length;
 document.getElementById('eN').textContent=E.length.toLocaleString();
+function esc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+if(PROB){
+  document.title='사주 조건부 확률 관계도';
+  document.querySelector('h1').textContent='사주 확률 관계도';
+  document.getElementById('weightLabel').textContent='최소 확률';
+  document.getElementById('probabilityContext').textContent=
+    `${PROB.관법 || '전체 관법'} · ${PROB.맥락.join(' + ') || '전체 맥락'} · 조건 스냅샷\n`+
+    `${PROB.선택문단.toLocaleString()}문단 / ${PROB.선택문장.toLocaleString()}문장 · 문헌 지지\n`+
+    `출발 개념·종류별 상위 ${PROB.표시.종류별이웃}개 (90% 하한/기준률 순), 동시 ${PROB.표시.최소동시}건 이상\n`+
+    `숨김: 근거 부족 ${PROB.표시.숨김.근거부족} / 표시 상한 ${PROB.표시.숨김.표시상한}. 없는 선은 무관함의 증거가 아님. 층은 배치이며 인과·추론 순서가 아님.`;
+}
 document.getElementById('wmin').oninput=e=>{wmin=+e.target.value;
   document.getElementById('wv').textContent=wmin.toFixed(2);inval();sched()};
 document.getElementById('lbl').onchange=e=>{showLbl=e.target.checked;inval();sched()};
@@ -550,8 +640,8 @@ resize(); fit();
 </script></body></html>
 """
 
-out = HERE / "사주신경망.html"
-out.write_text(TPL.replace("__DATA__", json.dumps(payload, ensure_ascii=False)),
+out = args.출력 or (DATA / "망" / "관계도.html" if args.확률 else HERE / "사주신경망.html")
+out.write_text(TPL.replace("__DATA__", json.dumps(payload, ensure_ascii=False, allow_nan=False).replace("<", "\\u003c")),
                encoding="utf-8")
 print(f"→ {out}  ({out.stat().st_size/1024:.0f}KB)")
 print(f"노드 {len(nodes)} · 간선 {len(edges)}")
