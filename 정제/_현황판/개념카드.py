@@ -52,12 +52,12 @@ def 카드(net, A, 관법=None, 맥락=(), 대상=None, 거리대상=None, k의�
     out["덜함"] = sorted(rows, key=lambda r: r["배수"])[:3]
     targets = [대상] if 대상 else [r["의미"] for r in rows[:3]]
     # 조건: 후보 = 이 개념과 같은 문단에 30번 이상 함께 나온 개념
-    co, n, N = net.공기(관법)
+    co, n, N = net.공기(관법, tuple(맥락))
     i = net.ni[A]
     cand = [net.nodes[j] for j in np.flatnonzero(co[i] >= 30) if j != i]
     out["조건"] = {}
     for m in targets:
-        eff = [e for e in net.조건효과(A, m, cand, 관법, 최소=30) if abs(e[5]) >= 2]
+        eff = [e for e in net.조건효과(A, m, cand, 관법, 최소=30, 맥락=tuple(맥락)) if abs(e[5]) >= 2]
         up = [e for e in eff if e[4] > 0][:k조건]
         dn = [e for e in eff if e[4] < 0][:k조건]
         out["조건"][m] = {"올림": [{"조건": e[0], "함께일때": e[1], "없을때": e[2], "문장": e[3], "z": e[5]} for e in up],
@@ -65,7 +65,7 @@ def 카드(net, A, 관법=None, 맥락=(), 대상=None, 거리대상=None, k의�
     # 관법별 — 같은 개념·같은 의미가 이론 베이스마다 얼마나 달리 말해지나
     kws = []
     for kw in net.관법들:
-        d = net.의미분포(A, kw, ())
+        d = net.의미분포(A, kw, tuple(맥락))
         if d[net.meanings[0]][3] >= 30:
             kws.append((kw, d))
     out["관법별"] = {m: {kw: d[m][0] for kw, d in kws} for m in targets}
@@ -74,7 +74,11 @@ def 카드(net, A, 관법=None, 맥락=(), 대상=None, 거리대상=None, k의�
     near = sorted(((net.nodes[j], float(d[i, j]), net.강도(A, net.nodes[j], 관법, tuple(맥락)))
                    for j in range(len(net.nodes)) if j != i and np.isfinite(d[i, j])), key=lambda x: x[1])[:8]
     out["가까운"] = [{"개념": b, "거리": x, "강도": s} for b, x, s in near]
-    out["닮은"] = [{"개념": b, "닮음": c} for b, c in net.닮은개념(A, 관법, k=6)] if nA >= 200 else []
+    cd = net.개념분포(A, 관법, tuple(맥락))
+    out["개념확률"] = [{"개념": b, "확률": p, "구간": [lo, hi], "분모": n, "함께": k}
+                     for b, (p, lo, hi, n, k) in sorted(cd.items(), key=lambda r: -r[1][0])
+                     if k >= 5][:8]
+    out["닮은"] = [{"개념": b, "닮음": c} for b, c in net.닮은개념(A, 관법, k=6, 맥락=tuple(맥락))] if nA >= 200 else []
     if 거리대상:
         out["거리대상"] = {"대상": 거리대상, "거리": net.거리(A, 거리대상, 관법, tuple(맥락)),
                        "경로": net.경로(A, 거리대상, 관법, tuple(맥락))}
@@ -101,6 +105,9 @@ def 보이기(c):
             vals = sorted(kv.items(), key=lambda x: -x[1])
             print(f"  관법별 [{m}]: " + " · ".join(f"{k} {v:.3f}" for k, v in vals))
     print("  가까운 개념(거리 · 강도): " + " · ".join(f"{x['개념']} {x['거리']:.2f}·{x['강도']:.2f}" for x in c["가까운"]))
+    print("  함께 말해질 개념 확률(문단 · 90% 구간 · 동시/분모):")
+    for r in c["개념확률"]:
+        print(f"    → {r['개념']} {r['확률']:.3f} [{r['구간'][0]:.3f}–{r['구간'][1]:.3f}] ({r['함께']}/{r['분모']})")
     if c.get("닮은"):
         print("  뜻이 닮은 개념(의미 닮음): " + " · ".join(f"{x['개념']} {x['닮음']:.2f}" for x in c["닮은"]))
     if "거리대상" in c:
